@@ -3,16 +3,16 @@ import { injectAsyncReducer } from '../../store'
 
 export default function createRoutes (store) {
   return {
-    path: 'post/:slug',
+    path: 'news/:slug',
     getComponents (location, cb) {
       require.ensure([
-        './containers/PostPage',
+        './containers/NewsPage',
         './reducer'
       ], (require) => {
-        let PostPage = require('./containers/PostPage').default
+        let NewsPage = require('./containers/NewsPage').default
         let postReducer = require('./reducer').default
-        injectAsyncReducer(store, 'currentPost', postReducer)
-        cb(null, PostPage)
+        injectAsyncReducer(store, 'currentNews', postReducer)
+        cb(null, NewsPage)
       })
     }
   }

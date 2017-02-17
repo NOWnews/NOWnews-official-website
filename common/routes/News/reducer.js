@@ -8,7 +8,7 @@ const initialState = {
   content: ''
 }
 
-export default function currentPost (state = initialState, action) {
+export default function currentNews (state = initialState, action) {
   switch (action.type) {
     case types.LOAD_POST_REQUEST:
       return { ...state,
@@ -29,4 +29,4 @@ export default function currentPost (state = initialState, action) {
 }
 
 // Example of a co-located selector
-export const selectCurrentPost = state => state.currentPost
+export const selectCurrentPost = state => state.currentNews

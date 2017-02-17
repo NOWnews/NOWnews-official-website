@@ -3,8 +3,8 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { loadPost } from '../actions'
 import { StyleSheet, css } from 'aphrodite'
-import Helmet from 'react-helmet'
 import { selectCurrentPost } from '../reducer'
+import { Head, MainContent } from '../components'
 
 const redial = {
   fetch: ({ dispatch, params: { slug } }) => dispatch(loadPost(slug))
@@ -15,15 +15,14 @@ const mapStateToProps = state => selectCurrentPost(state)
 const PostPage = ({ title, content, isLoading, error }) => {
   return (
     <div>
-      <Helmet title={title} />
       {isLoading &&
         <div>
           <h2 className={css(styles.loading)}>Loading....</h2>
         </div>}
       {!isLoading &&
         <div>
-          <h2 className={css(styles.title)}>{title}</h2>
-          <p className={css(styles.content)}>{content}</p>
+          <Head />
+          <MainContent />
         </div>}
     </div>
   )

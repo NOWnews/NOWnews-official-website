@@ -11,7 +11,7 @@ export default function createRoutes (store) {
       require.ensure([], (require) => {
         cb(null, [
           require('./PostList').default(store), // no need to modify store, no reducer
-          require('./Post').default(store) // no need to modify store, no reducer
+          require('./News').default(store) // no need to modify store, no reducer
         ])
       })
     },

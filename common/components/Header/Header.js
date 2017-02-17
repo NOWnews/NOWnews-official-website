@@ -4,7 +4,7 @@ import { Ad200x70 } from '../Ad'
 import { Logo, Menu, RightSide, RealTime } from './components'
 
 export const Header = () => (
-  <div>
+  <div className='container'>
     <div className={css(styles.header)}>
       <Logo />
       <Ad200x70 />

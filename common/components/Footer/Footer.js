@@ -2,8 +2,8 @@ import React from 'react'
 import AdBlock from './components/AdBlock'
 import { StyleSheet, css } from 'aphrodite'
 
-export const Header = () => (
-  <div className={css(styles.footer)}>
+export const Footer = () => (
+  <div className={css(styles.box)}>
     <div className={css(styles.adBlocks)}>
       { [1, 2, 3, 4, 5].map((index) => <AdBlock key={index} />)}
     </div>
@@ -15,7 +15,7 @@ export const Header = () => (
 )
 
 const styles = StyleSheet.create({
-  footer: {
+  box: {
     backgroundColor: '#424344',
     marginTop: '1rem',
     padding: '1rem 0'
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
     padding: '0 1rem'
   }
 })
-export default Header
+export default Footer

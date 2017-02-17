@@ -3,7 +3,7 @@ import Link from 'react-router/lib/Link'
 import { StyleSheet, css } from 'aphrodite'
 
 const Menu = () => (
-  <div>
+  <div className='container'>
     <div className={css(styles.menu)} >
       { [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((index) =>
         <Link activeClassName={css(styles.link, styles.activeLink)}
