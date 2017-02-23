@@ -2,11 +2,14 @@
 
 const sans = '"Helvetica Neue", sans-serif'
 const serif = 'Georgia, serif'
-const blue = '#0070ff'
+const container = {
+  margin: '0 auto',
+  width: 970
+}
 
 export const Type = {
   sans,
   serif
 }
 
-export const Color = { blue }
+export const Layout = { container }
