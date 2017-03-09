@@ -9,7 +9,7 @@ const Menu = () => (
         <Link activeClassName={css(styles.link, styles.activeLink)}
           className={css(styles.link)}
           key={index}
-          to='/posts'>
+          to='/category'>
           即時
         </Link>
       )}
@@ -20,7 +20,7 @@ const Menu = () => (
         <Link activeClassName={css(styles.link, styles.activeLink)}
           className={css(styles.link)}
           key={index}
-          to='/posts'>
+          to='/category'>
           軍事新聞
         </Link>
       )}

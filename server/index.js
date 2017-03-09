@@ -64,7 +64,7 @@ export const createServer = (config) => {
     const store = configureStore({
       sourceRequest: {
         protocol: req.headers['x-forwarded-proto'] || req.protocol,
-        host: req.headers.host
+        host: '61.67.121.150:10000' || req.headers.host
       }
     })
     const routes = createRoutes(store)

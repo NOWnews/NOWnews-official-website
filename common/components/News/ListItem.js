@@ -1,24 +1,26 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
+import Link from 'react-router/lib/Link'
 
-export const ListItem = () => (
-  <div className={css(styles.box)}>
+export const ListItem = ({ news }) => (
+  <Link className={css(styles.box)} to={'/news/' + news._id}>
     <div className={css(styles.left)}>
-      <img className={css(styles.img)}src='http://fakeimg.pl/640x360/' />
+      <img className={css(styles.img)} src={news.MainPhoto ? news.MainPhoto.url : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
     </div>
     <div className={css(styles.right)}>
-      <div className={css(styles.category)}>生活</div>
-      <div className={css(styles.title)}>標題標題標題標題標題標題標題標題標題</div>
-      <div className={css(styles.time)}>2017/02/17</div>
+      <div className={css(styles.category)}>{news.MainMenu.name}</div>
+      <div className={css(styles.title)}>{news.shortTitle}</div>
+      <div className={css(styles.time)}>{news.formatCreatedAt}</div>
     </div>
-  </div>
+  </Link>
 )
 
 const styles = StyleSheet.create({
   box: {
     display: 'inline-flex',
-    height: 120,
-    marginTop: '1rem'
+    height: 200,
+    marginTop: '1rem',
+    width: '100%'
   },
   category: {
     color: '#1976d2',
@@ -26,10 +28,11 @@ const styles = StyleSheet.create({
     marginTop: '1rem'
   },
   left: {
-    width: '35%'
+    width: '25%'
   },
   img: {
-    maxWidth: '100%'
+    maxWidth: '100%',
+    height: 'auto'
   },
   right: {
     width: '65%',

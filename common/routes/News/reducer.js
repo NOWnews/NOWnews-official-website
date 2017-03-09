@@ -10,17 +10,17 @@ const initialState = {
 
 export default function currentNews (state = initialState, action) {
   switch (action.type) {
-    case types.LOAD_POST_REQUEST:
+    case types.LOAD_NEWS_REQUEST:
       return { ...state,
         isLoading: true,
         error: null}
-    case types.LOAD_POST_SUCCESS:
+    case types.LOAD_NEWS_SUCCESS:
       return { ...state,
         title: action.payload.title,
         content: action.payload.content,
         lastFetched: action.meta.lastFetched,
         isLoading: false}
-    case types.LOAD_POST_FAILURE:
+    case types.LOAD_NEWS_FAILURE:
       return { ...state,
         error: action.payload }
     default:
@@ -28,5 +28,4 @@ export default function currentNews (state = initialState, action) {
   }
 }
 
-// Example of a co-located selector
-export const selectCurrentPost = state => state.currentNews
+export const selectCurrentNews = state => state.currentNews

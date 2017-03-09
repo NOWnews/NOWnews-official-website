@@ -1,18 +1,18 @@
 import { provideHooks } from 'redial'
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { loadPost } from '../actions'
+import { loadNews } from '../actions'
 import { StyleSheet, css } from 'aphrodite'
-import { selectCurrentPost } from '../reducer'
+import { selectCurrentNews } from '../reducer'
 import { Head, MainContent } from '../components'
 
 const redial = {
-  fetch: ({ dispatch, params: { slug } }) => dispatch(loadPost(slug))
+  fetch: ({ dispatch, params: { id } }) => dispatch(loadNews(id))
 }
 
-const mapStateToProps = state => selectCurrentPost(state)
+const mapStateToProps = state => selectCurrentNews(state)
 
-const PostPage = ({ title, content, isLoading, error }) => {
+const NewsPage = ({ title, content, isLoading, error }) => {
   return (
     <div>
       {isLoading &&
@@ -28,7 +28,7 @@ const PostPage = ({ title, content, isLoading, error }) => {
   )
 }
 
-PostPage.propTypes = {
+NewsPage.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
   isLoading: PropTypes.bool,
@@ -54,4 +54,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default provideHooks(redial)(connect(mapStateToProps)(PostPage))
+export default provideHooks(redial)(connect(mapStateToProps)(NewsPage))

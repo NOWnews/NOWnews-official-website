@@ -1,13 +1,13 @@
-import { LOAD_POST_REQUEST, LOAD_POST_SUCCESS, LOAD_POST_FAILURE } from '../../constants'
+import { LOAD_NEWS_REQUEST, LOAD_NEWS_SUCCESS, LOAD_NEWS_FAILURE } from '../../constants'
 
-export function loadPost (slug) {
+export function loadNews (id) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest
-    dispatch({ type: LOAD_POST_REQUEST })
-    return axios.get(`${protocol}://${host}/api/v0/posts/${slug}`)
+    dispatch({ type: LOAD_NEWS_REQUEST })
+    return axios.get(`${protocol}://${host}/news/${id}`)
       .then(res => {
         dispatch({
-          type: LOAD_POST_SUCCESS,
+          type: LOAD_NEWS_SUCCESS,
           payload: res.data,
           meta: {
             lastFetched: Date.now()
@@ -15,9 +15,9 @@ export function loadPost (slug) {
         })
       })
       .catch(error => {
-        console.error(`Error in reducer that handles ${LOAD_POST_SUCCESS}: `, error)
+        console.error(`Error in reducer that handles ${LOAD_NEWS_SUCCESS}: `, error)
         dispatch({
-          type: LOAD_POST_FAILURE,
+          type: LOAD_NEWS_FAILURE,
           payload: error,
           error: true
         })
