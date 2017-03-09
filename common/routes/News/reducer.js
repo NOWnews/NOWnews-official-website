@@ -4,8 +4,7 @@ const initialState = {
   lastFetched: null,
   isLoading: false,
   error: null,
-  title: '',
-  content: ''
+  data: {}
 }
 
 export default function currentNews (state = initialState, action) {
@@ -13,16 +12,18 @@ export default function currentNews (state = initialState, action) {
     case types.LOAD_NEWS_REQUEST:
       return { ...state,
         isLoading: true,
-        error: null}
+        error: null
+      }
     case types.LOAD_NEWS_SUCCESS:
       return { ...state,
-        title: action.payload.title,
-        content: action.payload.content,
+        data: action.payload,
         lastFetched: action.meta.lastFetched,
-        isLoading: false}
+        isLoading: false
+      }
     case types.LOAD_NEWS_FAILURE:
       return { ...state,
-        error: action.payload }
+        error: action.payload
+      }
     default:
       return state
   }

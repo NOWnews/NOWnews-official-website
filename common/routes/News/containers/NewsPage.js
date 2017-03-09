@@ -12,7 +12,9 @@ const redial = {
 
 const mapStateToProps = state => selectCurrentNews(state)
 
-const NewsPage = ({ title, content, isLoading, error }) => {
+const NewsPage = ({data, isLoading}) => {
+  console.log(data)
+  let { newsBy, MainMenu, title, ...news } = data
   return (
     <div>
       {isLoading &&
@@ -21,16 +23,15 @@ const NewsPage = ({ title, content, isLoading, error }) => {
         </div>}
       {!isLoading &&
         <div>
-          <Head />
-          <MainContent />
+          <Head newsBy={newsBy} mainMenu={MainMenu} title={title} />
+          <MainContent news={news} />
         </div>}
     </div>
   )
 }
 
 NewsPage.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string,
+  data: PropTypes.object,
   isLoading: PropTypes.bool,
   error: PropTypes.object
 }

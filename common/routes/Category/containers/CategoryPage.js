@@ -29,7 +29,7 @@ const CategoryPage = ({ newsList }) => (
 
     {!newsList.isLoading && newsList.data.length > 0 &&
       newsList.data.map((news, i) => (
-        <div className={css(styles.blockItem)}>
+        <div key={news._id} className={css(styles.blockItem)}>
           <BlockItem key={news._id} news={news} />
         </div>
       ))}

@@ -8,7 +8,7 @@ export const ListItem = ({ news }) => (
       <img className={css(styles.img)} src={news.MainPhoto ? news.MainPhoto.url : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
     </div>
     <div className={css(styles.right)}>
-      <div className={css(styles.category)}>{news.MainMenu.name}</div>
+      <div className={css(styles.category)}>{news.MainMenu && news.MainMenu.name}</div>
       <div className={css(styles.title)}>{news.shortTitle}</div>
       <div className={css(styles.time)}>{news.formatCreatedAt}</div>
     </div>
@@ -18,7 +18,6 @@ export const ListItem = ({ news }) => (
 const styles = StyleSheet.create({
   box: {
     display: 'inline-flex',
-    height: 200,
     marginTop: '1rem',
     width: '100%'
   },

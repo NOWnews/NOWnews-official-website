@@ -6,7 +6,7 @@ const ReleatedContent = ({ type }) => (
   <div className={css(styles.box)}>
     <h2 >{ type }</h2>
     <div>
-      { [1, 2, 3, 4].map((index) => <ListItem key={index} />)}
+      { [1, 2, 3, 4].map((index) => <ListItem key={index} news={{}} />)}
     </div>
   </div>
 )
