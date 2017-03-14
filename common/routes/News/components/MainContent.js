@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   content: {
     display: 'inline-flex',
-    margin: '2rem 0'
+    margin: '1rem 0'
   },
   img: {
     height: '100%',
