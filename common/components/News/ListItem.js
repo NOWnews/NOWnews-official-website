@@ -1,6 +1,6 @@
-import React from 'react'
-import { StyleSheet, css } from 'aphrodite'
-import Link from 'react-router/lib/Link'
+import React, { PropTypes } from 'react';
+import { StyleSheet, css } from 'aphrodite';
+import Link from 'react-router/lib/Link';
 
 export const ListItem = ({ news }) => (
   <Link className={css(styles.box)} to={'/news/' + news._id}>
@@ -13,7 +13,7 @@ export const ListItem = ({ news }) => (
       <div className={css(styles.time)}>{news.formatCreatedAt}</div>
     </div>
   </Link>
-)
+);
 
 const styles = StyleSheet.create({
   box: {
@@ -47,5 +47,10 @@ const styles = StyleSheet.create({
     margin: '0.5rem 0'
   }
 
-})
-export default ListItem
+});
+
+ListItem.propTypes = {
+  news: PropTypes.shape().isRequired
+};
+
+export default ListItem;

@@ -1,6 +1,6 @@
-import React from 'react'
-import Link from 'react-router/lib/Link'
-import { StyleSheet, css } from 'aphrodite'
+import React from 'react';
+import Link from 'react-router/lib/Link';
+import { StyleSheet, css } from 'aphrodite';
 
 const Menu = () => (
   <div className='container'>
@@ -26,7 +26,7 @@ const Menu = () => (
       )}
     </div>
   </div>
-)
+);
 
 const styles = StyleSheet.create({
   menu: {
@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
   activeLink: {
     color: '#000'
   }
-})
+});
 
-export default Menu
+export default Menu;

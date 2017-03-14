@@ -1,10 +1,10 @@
-import React from 'react'
-import { StyleSheet, css } from 'aphrodite'
+import React, { PropTypes } from 'react';
+import { StyleSheet, css } from 'aphrodite';
 import {
     FontSize, NewsContent, Social, Thermometer, ThermometerSm,
     ReleatedContent
-} from '../components'
-import { Ad300x250 } from '../../../components/Ad'
+} from '../components';
+import { Ad300x250 } from '../../../components/Ad';
 
 const MainContent = ({ news }) => (
   <div className={css(styles.box)}>
@@ -28,7 +28,7 @@ const MainContent = ({ news }) => (
       </div>
     </div>
   </div>
-)
+);
 
 const styles = StyleSheet.create({
   box: {
@@ -49,6 +49,10 @@ const styles = StyleSheet.create({
   rightSide: {
     width: '31%'
   }
-})
+});
 
-export default MainContent
+MainContent.propTypes = {
+  news: PropTypes.shape().isRequired
+};
+
+export default MainContent;

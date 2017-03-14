@@ -1,6 +1,6 @@
-export { default as Ad150x150 } from './Ad150x150'
-export { default as Ad200x70 } from './Ad200x70'
-export { default as Ad300x250 } from './Ad300x250'
-export { default as Ad300x600 } from './Ad300x600'
-export { default as Ad970x250 } from './Ad970x250'
-export { default as Ad970x90 } from './Ad970x90'
+export { default as Ad150x150 } from './Ad150x150';
+export { default as Ad200x70 } from './Ad200x70';
+export { default as Ad300x250 } from './Ad300x250';
+export { default as Ad300x600 } from './Ad300x600';
+export { default as Ad970x250 } from './Ad970x250';
+export { default as Ad970x90 } from './Ad970x90';

@@ -1,6 +1,6 @@
-import React from 'react'
-import Link from 'react-router/lib/Link'
-import { StyleSheet, css } from 'aphrodite'
+import React, { PropTypes } from 'react';
+import Link from 'react-router/lib/Link';
+import { StyleSheet, css } from 'aphrodite';
 
 const Head = ({ newsBy, mainMenu, title }) => (
   <div className={css(styles.box)}>
@@ -13,7 +13,7 @@ const Head = ({ newsBy, mainMenu, title }) => (
       </div>
     </div>
   </div>
-)
+);
 
 const styles = StyleSheet.create({
   author: {
@@ -34,6 +34,12 @@ const styles = StyleSheet.create({
   time: {
 
   }
-})
+});
 
-export default Head
+Head.propTypes = {
+  newsBy: PropTypes.string.isRequired,
+  mainMenu: PropTypes.shape().isRequired,
+  title: PropTypes.string.isRequired
+};
+
+export default Head;

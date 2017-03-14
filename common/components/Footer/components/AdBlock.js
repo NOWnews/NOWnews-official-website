@@ -1,13 +1,13 @@
-import React from 'react'
-import { Ad150x150 } from '../../Ad'
-import { StyleSheet, css } from 'aphrodite'
+import React from 'react';
+import { Ad150x150 } from '../../Ad';
+import { StyleSheet, css } from 'aphrodite';
 
 export const AdBlock = () => (
   <div className={css(styles.box)}>
     <Ad150x150 />
     <div className={css(styles.title)}>標題標題標題標題標題標題標題標題標題</div>
   </div>
-)
+);
 
 const styles = StyleSheet.create({
   box: {
@@ -19,5 +19,5 @@ const styles = StyleSheet.create({
     margin: '0 auto',
     width: 150
   }
-})
-export default AdBlock
+});
+export default AdBlock;

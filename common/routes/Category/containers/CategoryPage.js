@@ -1,21 +1,21 @@
-import { provideHooks } from 'redial'
-import React, { PropTypes } from 'react'
-import { loadCateogryList } from '../actions'
-import { connect } from 'react-redux'
-import BlockItem from '../../../components/News/BlockItem'
-import { StyleSheet, css } from 'aphrodite'
-import Helmet from 'react-helmet'
-import { selectNewsList } from '../reducer'
-import { Layout } from '../../../style'
-const { container } = Layout
+import { provideHooks } from 'redial';
+import React, { PropTypes } from 'react';
+import { loadCateogryList } from '../actions';
+import { connect } from 'react-redux';
+import BlockItem from '../../../components/News/BlockItem';
+import { StyleSheet, css } from 'aphrodite';
+import Helmet from 'react-helmet';
+import { selectNewsList } from '../reducer';
+import { Layout } from '../../../style';
+const { container } = Layout;
 
 const redial = {
   fetch: ({ dispatch }) => dispatch(loadCateogryList())
-}
+};
 
 const mapStateToProps = state => ({
   newsList: selectNewsList(state)
-})
+});
 
 const CategoryPage = ({ newsList }) => (
   <div className={css(styles.container)}>
@@ -34,11 +34,7 @@ const CategoryPage = ({ newsList }) => (
         </div>
       ))}
   </div>
-)
-
-CategoryPage.PropTypes = {
-  posts: PropTypes.array.isRequired
-}
+);
 
 const styles = StyleSheet.create({
   container,
@@ -52,6 +48,10 @@ const styles = StyleSheet.create({
     margin: 11.5,
     width: 300
   }
-})
+});
 
-export default provideHooks(redial)(connect(mapStateToProps)(CategoryPage))
+CategoryPage.propTypes = {
+  newsList: PropTypes.object.isRequired
+};
+
+export default provideHooks(redial)(connect(mapStateToProps)(CategoryPage));

@@ -1,9 +1,9 @@
-import React from 'react'
-import { StyleSheet, css } from 'aphrodite'
-import { Ad200x70, Ad970x90 } from '../Ad'
-import { Logo, Menu, RightSide, RealTime } from './components'
-import { Layout } from '../../style'
-const { container } = Layout
+import React from 'react';
+import { StyleSheet, css } from 'aphrodite';
+import { Ad200x70, Ad970x90 } from '../Ad';
+import { Logo, Menu, RightSide, RealTime } from './components';
+import { Layout } from '../../style';
+const { container } = Layout;
 
 export const Header = () => (
   <div className={css(styles.container)}>
@@ -17,7 +17,7 @@ export const Header = () => (
     <RealTime />
     <Ad970x90 />
   </div>
-)
+);
 
 const styles = StyleSheet.create({
   ad: {
@@ -29,5 +29,5 @@ const styles = StyleSheet.create({
     color: '#999',
     display: 'inline-flex'
   }
-})
-export default Header
+});
+export default Header;

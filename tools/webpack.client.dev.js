@@ -1,8 +1,8 @@
-const path = require('path')
-const webpack = require('webpack')
-const CONFIG = require('./webpack.base')
+const path = require('path');
+const webpack = require('webpack');
+const CONFIG = require('./webpack.base');
 
-const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH } = CONFIG
+const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH } = CONFIG;
 
 module.exports = {
   devtool: 'eval',
@@ -32,7 +32,7 @@ module.exports = {
       {
         // set up standard-loader as a preloader
         test: /\.jsx?$/,
-        loader: 'standard',
+        loader: 'eslint',
         exclude: /(node_modules)/
       }
     ],
@@ -43,14 +43,10 @@ module.exports = {
         exclude: /(node_modules|server)/,
         query: {
           cacheDirectory: true,
-          presets: ["es2015", "react", "stage-0"]
+          presets: ['es2015', 'react', 'stage-0']
         }
       }
     ]
-  },
-  standard: {
-    // config options to be passed through to standard e.g.
-    parser: 'babel-eslint'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -60,5 +56,5 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', 2),
     new webpack.NoErrorsPlugin()
-  ],
-}
+  ]
+};

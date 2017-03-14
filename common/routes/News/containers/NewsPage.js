@@ -1,20 +1,19 @@
-import { provideHooks } from 'redial'
-import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { loadNews } from '../actions'
-import { StyleSheet, css } from 'aphrodite'
-import { selectCurrentNews } from '../reducer'
-import { Head, MainContent } from '../components'
+import { provideHooks } from 'redial';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { loadNews } from '../actions';
+import { StyleSheet, css } from 'aphrodite';
+import { selectCurrentNews } from '../reducer';
+import { Head, MainContent } from '../components';
 
 const redial = {
   fetch: ({ dispatch, params: { id } }) => dispatch(loadNews(id))
-}
+};
 
-const mapStateToProps = state => selectCurrentNews(state)
+const mapStateToProps = state => selectCurrentNews(state);
 
 const NewsPage = ({data, isLoading}) => {
-  console.log(data)
-  let { newsBy, MainMenu, title, ...news } = data
+  let { newsBy, MainMenu, title, ...news } = data;
   return (
     <div>
       {isLoading &&
@@ -27,14 +26,13 @@ const NewsPage = ({data, isLoading}) => {
           <MainContent news={news} />
         </div>}
     </div>
-  )
-}
+  );
+};
 
 NewsPage.propTypes = {
   data: PropTypes.object,
-  isLoading: PropTypes.bool,
-  error: PropTypes.object
-}
+  isLoading: PropTypes.bool
+};
 
 const styles = StyleSheet.create({
   content: {
@@ -53,6 +51,6 @@ const styles = StyleSheet.create({
     margin: '0 auto 1.5rem',
     color: '#b7b7b7'
   }
-})
+});
 
-export default provideHooks(redial)(connect(mapStateToProps)(NewsPage))
+export default provideHooks(redial)(connect(mapStateToProps)(NewsPage));

@@ -1,6 +1,6 @@
-import React from 'react'
-import IndexLink from 'react-router/lib/IndexLink'
-import { StyleSheet, css } from 'aphrodite'
+import React from 'react';
+import IndexLink from 'react-router/lib/IndexLink';
+import { StyleSheet, css } from 'aphrodite';
 
 const Logo = () => (
   <div className={css(styles.box)}>
@@ -8,7 +8,7 @@ const Logo = () => (
       <img className={css(styles.img)} alt='NOWnews Logo' src='/logo.png' />
     </IndexLink>
   </div>
-)
+);
 
 const styles = StyleSheet.create({
   box: {
@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%'
   }
-})
+});
 
-export default Logo
+export default Logo;

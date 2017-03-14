@@ -1,9 +1,9 @@
-import React from 'react'
-import AdBlock from './components/AdBlock'
-import { Ad970x250 } from '../Ad'
-import { StyleSheet, css } from 'aphrodite'
-import { Layout } from '../../style'
-const { container } = Layout
+import React from 'react';
+import AdBlock from './components/AdBlock';
+import { Ad970x250 } from '../Ad';
+import { StyleSheet, css } from 'aphrodite';
+import { Layout } from '../../style';
+const { container } = Layout;
 
 export const Footer = () => (
   <div className={css(styles.container)}>
@@ -18,7 +18,7 @@ export const Footer = () => (
       </div>
     </div>
   </div>
-)
+);
 
 const styles = StyleSheet.create({
   footer: {
@@ -34,5 +34,5 @@ const styles = StyleSheet.create({
     color: '#fff',
     padding: '0 1rem'
   }
-})
-export default Footer
+});
+export default Footer;

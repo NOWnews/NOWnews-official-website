@@ -1,11 +1,11 @@
-import * as types from '../../constants'
+import * as types from '../../constants';
 
 const initialState = {
   data: [],
   lastFetched: null,
   isLoading: false,
   error: null
-}
+};
 
 export default function posts (state = initialState, action) {
   switch (action.type) {
@@ -13,20 +13,20 @@ export default function posts (state = initialState, action) {
       return { ...state,
         isLoading: true,
         error: null
-      }
+      };
     case types.LOAD_NEWSLIST_SUCCESS:
       return { ...state,
         data: action.payload,
         lastFetched: action.meta.lastFetched,
         isLoading: false
-      }
+      };
     case types.LOAD_NEWSLIST_FAILURE:
       return { ...state,
         error: action.payload
-      }
+      };
     default:
-      return state
+      return state;
   }
 }
 
-export const selectNewsList = state => state.newsList
+export const selectNewsList = state => state.newsList;

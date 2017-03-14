@@ -1,5 +1,5 @@
-if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require)
-import { injectAsyncReducer } from '../../store'
+if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
+import { injectAsyncReducer } from '../../store';
 
 export default function createRoutes (store) {
   return {
@@ -9,11 +9,11 @@ export default function createRoutes (store) {
         './containers/NewsPage',
         './reducer'
       ], (require) => {
-        let NewsPage = require('./containers/NewsPage').default
-        let postReducer = require('./reducer').default
-        injectAsyncReducer(store, 'currentNews', postReducer)
-        cb(null, NewsPage)
-      })
+        let NewsPage = require('./containers/NewsPage').default;
+        let postReducer = require('./reducer').default;
+        injectAsyncReducer(store, 'currentNews', postReducer);
+        cb(null, NewsPage);
+      });
     }
-  }
+  };
 }

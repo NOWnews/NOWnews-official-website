@@ -1,14 +1,14 @@
-import React from 'react'
-import { StyleSheet, css } from 'aphrodite'
-import Helmet from 'react-helmet'
-import Header from './Header'
-import Footer from './Footer'
+import React, { PropTypes } from 'react';
+import { StyleSheet, css } from 'aphrodite';
+import Helmet from 'react-helmet';
+import Header from './Header';
+import Footer from './Footer';
 
 const styles = StyleSheet.create({
   root: {
     color: '#000'
   }
-})
+});
 
 const App = ({ children }) => (
   <div className={css(styles.root)}>
@@ -17,6 +17,9 @@ const App = ({ children }) => (
     {children}
     <Footer />
   </div>
-)
+);
 
-export default App
+App.propTypes = {
+  children: PropTypes.shape().isRequired
+};
+export default App;

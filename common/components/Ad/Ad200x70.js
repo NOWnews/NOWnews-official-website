@@ -1,17 +1,17 @@
-import React from 'react'
-import { StyleSheet, css } from 'aphrodite'
+import React from 'react';
+import { StyleSheet, css } from 'aphrodite';
 
 const Ad200x70 = () => (
   <div className={css(styles.box)}>
     <img src='http://fakeimg.pl/200x70/' />
   </div>
-)
+);
 
 const styles = StyleSheet.create({
   box: {
     textAlign: 'center',
     width: 230
   }
-})
+});
 
-export default Ad200x70
+export default Ad200x70;

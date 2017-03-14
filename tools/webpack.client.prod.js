@@ -1,9 +1,9 @@
-const path = require('path')
-const webpack = require('webpack')
-const AssetsPlugin = require('assets-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const AssetsPlugin = require('assets-webpack-plugin');
 
-const CONFIG = require('./webpack.base')
-const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH } = CONFIG
+const CONFIG = require('./webpack.base');
+const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH } = CONFIG;
 
 module.exports = {
   devtool: false,
@@ -16,7 +16,7 @@ module.exports = {
       'redux',
       'react-redux',
       'aphrodite'
-    ],
+    ]
   },
   output: {
     filename: '[name]_[chunkhash].js',
@@ -47,7 +47,7 @@ module.exports = {
         screw_ie8: true
       }
     }),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     loaders: [
@@ -56,10 +56,10 @@ module.exports = {
         loader: 'babel',
         query: {
           cacheDirectory: true,
-          presets: ["es2015", "react", "stage-0", "react-optimize"],
+          presets: ['es2015', 'react', 'stage-0', 'react-optimize']
         },
         exclude: /(node_modules)/
       }
     ]
   }
-}
+};

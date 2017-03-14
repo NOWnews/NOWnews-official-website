@@ -1,6 +1,6 @@
-import React from 'react'
-import Link from 'react-router/lib/Link'
-import { StyleSheet, css } from 'aphrodite'
+import React from 'react';
+import Link from 'react-router/lib/Link';
+import { StyleSheet, css } from 'aphrodite';
 
 const RealTime = () => (
   <div className={css(styles.box)}>
@@ -11,7 +11,7 @@ const RealTime = () => (
     <span className={css(styles.split)}>｜</span>
     <Link className={css(styles.link)}>蝶戀花周比蒼道歉：人車與友力無關</Link>
   </div>
-)
+);
 
 const styles = StyleSheet.create({
   box: {
@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderRight: '1px solid #fff'
   }
-})
+});
 
-export default RealTime
+export default RealTime;

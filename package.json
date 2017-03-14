@@ -6,7 +6,8 @@
     "start": "cross-env NODE_ENV=development node -r \"babel-register\" ./server",
     "start:prod": "cross-env NODE_ENV=production node ./build/server.js",
     "build": "webpack -p --config ./tools/webpack.client.prod.js && webpack -p --config ./tools/webpack.server.prod.js",
-    "clean": "rm -rf build"
+    "clean": "rm -rf build",
+    "fix": "eslint common server client --fix"
   },
   "repository": {
     "type": "git",
@@ -61,10 +62,11 @@
   },
   "devDependencies": {
     "eslint": "^3.15.0",
-    "eslint-config-standard": "^6.0.0"
-  },
-  "standard": {
-    "parser": "babel-eslint"
+    "eslint-config-standard": "^6.2.1",
+    "eslint-config-standard-react": "^4.3.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^6.10.0",
+    "eslint-plugin-standard": "^2.1.1"
   },
   "engines": {
     "node": "6.2.2"
