@@ -1,18 +1,18 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadNews } from '../actions';
+import { loadNews } from '../../News/actions';
 import { StyleSheet, css } from 'aphrodite';
-import { selectCurrentNews } from '../reducer';
-import { Head, MainContent } from '../components';
+import { selectCurrentNews } from '../../News/reducer';
+import { Head, MainContent } from '../../News/components';
 
 const redial = {
-  fetch: ({ dispatch, params: { id } }) => dispatch(loadNews(`news/${id}`))
+  fetch: ({ dispatch, params: { redisKey } }) => dispatch(loadNews(`previews/${redisKey}`))
 };
 
 const mapStateToProps = state => selectCurrentNews(state);
 
-const NewsPage = ({data, isLoading}) => {
+const NewsPage = ({data = {}, isLoading}) => {
   let { newsBy, MainMenu, title, ...news } = data;
   return (
     <div>
