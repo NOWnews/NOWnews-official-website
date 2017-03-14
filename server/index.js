@@ -18,15 +18,17 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-import DefaultServerConfig from './config';
 import webpackConfig from '../tools/webpack.client.dev';
 import { compileDev, startDev } from '../tools/dx';
 import { configureStore } from '../common/store';
 import createRoutes from '../common/routes/root';
+import config from 'config';
+const DefaultServerConfig = config.get('server');
+const nodeEnv = config.get('mode');
+const webApiServer = config.get('webApiServer');
 
-export const createServer = (config) => {
-  const __PROD__ = config.nodeEnv === 'production';
-  const __TEST__ = config.nodeEnv === 'test';
+export const createServer = (configObj) => {
+  const __PROD__ = nodeEnv === 'production';
 
   const app = express();
   let assets = null;
@@ -34,7 +36,7 @@ export const createServer = (config) => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
-  if (__PROD__ || __TEST__) {
+  if (__PROD__) {
     app.use(morgan('combined'));
     app.use(helmet());
     app.use(hpp());
@@ -44,7 +46,7 @@ export const createServer = (config) => {
     }
   } else {
     app.use(morgan('dev'));
-    const compiler = compileDev((webpack(webpackConfig)), config.port);
+    const compiler = compileDev((webpack(webpackConfig)), configObj.port);
     app.use(webpackDevMiddleware(compiler, {
       quiet: true,
       watchOptions: {
@@ -55,13 +57,12 @@ export const createServer = (config) => {
   }
 
   app.use(express.static('public'));
-  app.use('/api/v0/posts', require('./api/posts'));
 
   app.get('*', (req, res) => {
     const store = configureStore({
       sourceRequest: {
         protocol: req.headers['x-forwarded-proto'] || req.protocol,
-        host: '61.67.121.150:10000' || req.headers.host
+        host: webApiServer
       }
     });
     const routes = createRoutes(store);
@@ -170,9 +171,9 @@ export const createServer = (config) => {
   // Heroku dynos automatically timeout after 30s. Set our
   // own timeout here to force sockets to close before that.
   // https://devcenter.heroku.com/articles/request-timeout
-  if (config.timeout) {
-    server.setTimeout(config.timeout, (socket) => {
-      const message = `Timeout of ${config.timeout}ms exceeded`;
+  if (DefaultServerConfig.timeout) {
+    server.setTimeout(DefaultServerConfig.timeout, (socket) => {
+      const message = `Timeout of ${DefaultServerConfig.timeout}ms exceeded`;
 
       socket.end([
         'HTTP/1.1 503 Service Unavailable',
@@ -190,14 +191,14 @@ export const createServer = (config) => {
 };
 
 export const startServer = (serverConfig) => {
-  const config = {...DefaultServerConfig, ...serverConfig};
-  const server = createServer(config);
-  server.listen(config.port, (err) => {
-    if (config.nodeEnv === 'production' || config.nodeEnv === 'test') {
+  const configObj = {...DefaultServerConfig, ...serverConfig};
+  const server = createServer(configObj);
+  server.listen(configObj.port, (err) => {
+    if (nodeEnv === 'production') {
       if (err) console.log(err);
-      console.log(`server ${config.id} listening on port ${config.port}`);
+      console.log(`server ${configObj.id} listening on port ${configObj.port}`);
     } else {
-      startDev(config.port, err);
+      startDev(configObj.port, err);
     }
   });
 };

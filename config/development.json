@@ -1,0 +1,9 @@
+{
+  "mode": "development",
+  "webApiServer": "localhost:10001",
+  "server": {
+    "webConcurrency": 1,
+    "port": 5000,
+    "timeout": 29000
+  }
+}

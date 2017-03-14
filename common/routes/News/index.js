@@ -10,8 +10,8 @@ export default function createRoutes (store) {
         './reducer'
       ], (require) => {
         let NewsPage = require('./containers/NewsPage').default;
-        let postReducer = require('./reducer').default;
-        injectAsyncReducer(store, 'currentNews', postReducer);
+        let newsReducer = require('./reducer').default;
+        injectAsyncReducer(store, 'currentNews', newsReducer);
         cb(null, NewsPage);
       });
     }
