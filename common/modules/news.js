@@ -13,6 +13,8 @@ export function loadNews (url) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWS_REQUEST });
+    // var adapter = require('axios/lib/adapters/http');
+    console.log(require('axios/lib/adapters/xhr'), 'wtf!!!?');
     return axios.get(`${protocol}://${host}/${url}`)
       .then(res => {
         dispatch({
@@ -56,4 +58,4 @@ export default function currentNews (state = initialState, action) {
   }
 }
 
-export const selectCurrentNews = state => state.currentNews;
+export const selectCurrentNews = state => state.news;
