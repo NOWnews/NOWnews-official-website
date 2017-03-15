@@ -7,10 +7,10 @@ export default function createRoutes (store) {
     getComponents (location, cb) {
       require.ensure([
         './containers/NewsPage',
-        './reducer'
+        './module'
       ], (require) => {
         let NewsPage = require('./containers/NewsPage').default;
-        let newsReducer = require('./reducer').default;
+        let newsReducer = require('./module').default;
         injectAsyncReducer(store, 'currentNews', newsReducer);
         cb(null, NewsPage);
       });

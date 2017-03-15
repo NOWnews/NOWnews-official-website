@@ -1,9 +1,8 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadNews } from '../../News/actions';
 import { StyleSheet, css } from 'aphrodite';
-import { selectCurrentNews } from '../../News/reducer';
+import { loadNews, selectCurrentNews } from '../../News/module';
 import { Head, MainContent } from '../../News/components';
 
 const redial = {

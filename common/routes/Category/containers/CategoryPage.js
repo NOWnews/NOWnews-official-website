@@ -1,11 +1,10 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
-import { loadCateogryList } from '../actions';
 import { connect } from 'react-redux';
 import BlockItem from '../../../components/News/BlockItem';
 import { StyleSheet, css } from 'aphrodite';
 import Helmet from 'react-helmet';
-import { selectNewsList } from '../reducer';
+import { selectNewsList, loadCateogryList } from '../module';
 import { Layout } from '../../../style';
 const { container } = Layout;
 

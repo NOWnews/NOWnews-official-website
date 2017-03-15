@@ -8,7 +8,6 @@ import match from 'react-router/lib/match';
 import browserHistory from 'react-router/lib/browserHistory';
 import { Provider } from 'react-redux';
 import { StyleSheet } from 'aphrodite';
-
 import { configureStore } from '../common/store';
 const initialState = window.INITIAL_STATE || {};
 // Set up Redux (note: this API requires redux@>=3.1.0):
