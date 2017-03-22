@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
-    FontSize, NewsContent, Social, Thermometer, ThermometerSm,
-    ReleatedContent
+  FontSize, NewsContent, Social, Thermometer, ThermometerSm,
+  ReleatedContent
 } from '../components';
+
 import { Ad300x250 } from '../../../components/Ad';
 
 const MainContent = ({ news }) => (
