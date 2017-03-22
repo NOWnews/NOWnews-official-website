@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "NOWnews 前台，需搭配 NOWnews-api 專案使用",
   "scripts": {
-    "start": "cross-env NODE_ENV=development node -r \"babel-register\" ./server",
+    "start": "cross-env NODE_ENV=develop node -r \"babel-register\" ./server",
     "start:prod": "cross-env NODE_ENV=production node ./build/server.js",
     "build": "webpack -p --config ./tools/webpack.client.prod.js && webpack -p --config ./tools/webpack.server.prod.js",
     "clean": "rm -rf build",
