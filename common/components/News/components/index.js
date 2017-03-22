@@ -1,6 +1,5 @@
-export Head from './Head';
 export FontSize from './FontSize';
-export NewsContent from './NewsContent';
+export Content from './Content';
 export ReleatedContent from './ReleatedContent';
 export Social from './Social';
 export ThermometerSm from './ThermometerSm';

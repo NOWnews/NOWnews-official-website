@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const NewsContent = ({ content }) => (
+const Content = ({ content }) => (
   <div className={css(styles.box)} dangerouslySetInnerHTML={{__html: content}} />
 );
 
@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
   }
 });
 
-NewsContent.propTypes = {
+Content.propTypes = {
   content: PropTypes.string.isRequired
 };
 
-export default NewsContent;
+export default Content;

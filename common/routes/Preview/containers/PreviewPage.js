@@ -3,7 +3,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { loadNews, selectCurrentNews } from '../../../modules/news';
-import { Head, MainContent } from '../../News/components';
+import Head from '../../../components/News/Head';
+import NewsContent from '../../../components/News/NewsContent';
 
 const redial = {
   fetch: ({ dispatch, params: { redisKey } }) => dispatch(loadNews(`previews/${redisKey}`))
@@ -22,7 +23,7 @@ const NewsPage = ({data = {}, isLoading}) => {
       {!isLoading &&
         <div>
           <Head newsBy={newsBy} mainMenu={MainMenu} title={title} />
-          <MainContent news={news} />
+          <NewsContent news={news} />
         </div>}
     </div>
   );
