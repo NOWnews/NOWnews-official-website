@@ -30,7 +30,6 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        // set up standard-loader as a preloader
         test: /\.jsx?$/,
         loader: 'eslint',
         exclude: /(node_modules)/
