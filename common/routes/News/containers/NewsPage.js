@@ -35,24 +35,6 @@ NewsPage.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  box: {
-    width: 900,
-    margin: '0 auto'
-  },
-  content: {
-    display: 'inline-flex',
-    margin: '1rem 0'
-  },
-  img: {
-    height: '100%',
-    width: '100%'
-  },
-  leftSide: {
-    width: '69%'
-  },
-  rightSide: {
-    width: '31%'
-  },
   title: {
     fontSize: 28,
     margin: '0 auto 1.5rem',

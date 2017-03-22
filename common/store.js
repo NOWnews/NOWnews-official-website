@@ -9,7 +9,7 @@ export function configureStore (initialState) {
       thunk.withExtraArgument({ axios })
     ),
 
-    process.env.NODE_ENV === 'development' &&
+    process.env.NODE_ENV === 'develop' &&
     typeof window === 'object' &&
     typeof window.devToolsExtension !== 'undefined'
       ? window.devToolsExtension()
@@ -18,7 +18,7 @@ export function configureStore (initialState) {
 
   store.asyncReducers = {};
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'develop') {
     if (module.hot) {
       module.hot.accept('./createReducer', () => store.replaceReducer(require('./createReducer').default));
     }

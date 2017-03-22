@@ -35,12 +35,6 @@ NewsPage.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  content: {
-    fontSize: '1rem',
-    lineHeight: '1.5',
-    margin: '1rem 0',
-    color: '#555'
-  },
   title: {
     fontSize: 28,
     margin: '0 auto 1.5rem',
