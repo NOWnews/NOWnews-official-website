@@ -1,7 +1,7 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite/no-important';
 import { loadNews, selectCurrentNews } from '../../../modules/news';
 import { Head, MainContent } from '../../News/components';
 

@@ -12,7 +12,7 @@ import ReactDOM from 'react-dom/server';
 import { createMemoryHistory, RouterContext, match } from 'react-router';
 import { Provider } from 'react-redux';
 import { trigger } from 'redial';
-import { StyleSheetServer } from 'aphrodite';
+import { StyleSheetServer } from 'aphrodite/no-important';
 import Helm from 'react-helmet'; // because we are already using helmet
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';

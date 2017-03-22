@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite/no-important';
 import Helmet from 'react-helmet';
 import Header from './Header';
 import Footer from './Footer';

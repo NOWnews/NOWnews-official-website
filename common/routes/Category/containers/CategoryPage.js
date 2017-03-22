@@ -2,7 +2,7 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import BlockItem from '../../../components/News/BlockItem';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite/no-important';
 import Helmet from 'react-helmet';
 import { selectNewsList, loadCateogryList } from '../module';
 import { Layout } from '../../../style';

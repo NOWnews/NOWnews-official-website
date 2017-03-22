@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import ListItem from '../../../components/News/ListItem';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 const ReleatedContent = ({ type }) => (
   <div className={css(styles.box)}>

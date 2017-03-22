@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 
 export const ListItem = ({ news }) => (

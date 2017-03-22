@@ -1,6 +1,6 @@
 import React from 'react';
 import IndexLink from 'react-router/lib/IndexLink';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Logo = () => (
   <div className={css(styles.box)}>

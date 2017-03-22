@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import Link from 'react-router/lib/Link';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Head = ({ newsBy = '', mainMenu, title }) => (
   <div className={css(styles.box)}>

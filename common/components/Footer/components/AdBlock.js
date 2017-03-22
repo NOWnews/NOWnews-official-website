@@ -1,6 +1,6 @@
 import React from 'react';
 import { Ad150x150 } from '../../Ad';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 export const AdBlock = () => (
   <div className={css(styles.box)}>

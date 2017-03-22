@@ -1,7 +1,7 @@
 import React from 'react';
 // import IndexLink from 'react-router/lib/IndexLink'
 // import Link from 'react-router/lib/Link'
-// import { StyleSheet, css } from 'aphrodite'
+// import { StyleSheet, css } from 'aphrodite/no-important'
 
 const Nav = () => (
   <div>

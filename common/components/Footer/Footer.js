@@ -1,7 +1,7 @@
 import React from 'react';
 import AdBlock from './components/AdBlock';
 import { Ad970x250 } from '../Ad';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite/no-important';
 import { Layout } from '../../style';
 const { container } = Layout;
 
