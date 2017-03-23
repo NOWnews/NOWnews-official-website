@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Ad200x70, Ad970x90 } from '../Ad';
 import { Logo, Menu, RightSide, RealTime } from './components';
 import { Layout } from '../../style';
 const { container } = Layout;
 
-export const Header = () => (
+export const Header = ({ menus }) => (
   <div className={css(styles.container)}>
     <div className={css(styles.header)}>
       <Logo />
@@ -13,7 +13,7 @@ export const Header = () => (
       <Ad200x70 />
       <RightSide />
     </div>
-    <Menu />
+    <Menu menus={menus.data || []} />
     <RealTime />
     <Ad970x90 />
   </div>
@@ -30,4 +30,9 @@ const styles = StyleSheet.create({
     display: 'inline-flex'
   }
 });
+
+Header.propTypes = {
+  menus: PropTypes.object.isRequired
+};
+
 export default Header;

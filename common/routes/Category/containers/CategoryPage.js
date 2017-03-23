@@ -1,24 +1,30 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import BlockItem from '../../../components/News/BlockItem';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import Helmet from 'react-helmet';
-import { selectNewsList, loadCateogryList } from '../module';
 import { Layout } from '../../../style';
+import { selectNewsList, loadCateogryList } from '../module';
+import { loadMenus, selectMenus } from '../../../modules/menus';
+import BlockItem from '../../../components/News/BlockItem';
+import Header from '../../../components/Header';
+
 const { container } = Layout;
 
 const redial = {
-  fetch: ({ dispatch }) => dispatch(loadCateogryList())
+  fetch: ({ dispatch, params: { categoryName } }) => Promise.all([
+    dispatch(loadCateogryList(categoryName)),
+    dispatch(loadMenus())
+  ])
 };
 
 const mapStateToProps = state => ({
-  newsList: selectNewsList(state)
+  newsList: selectNewsList(state),
+  menus: selectMenus(state)
 });
 
-const CategoryPage = ({ newsList }) => (
+const CategoryPage = ({ newsList, menus }) => (
   <div className={css(styles.container)}>
-    <Helmet title='NewsCategory' />
+    <Header menus={menus} />
     {newsList.isLoading &&
       <div>
         <h2 className={css(styles.title)}>Loading ...</h2>
@@ -50,6 +56,7 @@ const styles = StyleSheet.create({
 });
 
 CategoryPage.propTypes = {
+  menus: PropTypes.object.isRequired,
   newsList: PropTypes.object.isRequired
 };
 

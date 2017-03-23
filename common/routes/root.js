@@ -1,6 +1,5 @@
 // polyfill webpack require.ensure
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
-import Home from './Home';
 import App from '../components/App';
 
 export default function createRoutes (store) {
@@ -17,8 +16,10 @@ export default function createRoutes (store) {
       });
     },
 
-    indexRoute: {
-      component: Home
+    getIndexRoute (location, cb) {
+      require.ensure([], function (require) {
+        cb(null, require('./Home').default(store));
+      });
     }
   };
 

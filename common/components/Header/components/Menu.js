@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Menu = () => (
+const Menu = ({ menus }) => (
   <div className='container'>
     <div className={css(styles.menu)} >
-      { [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((index) =>
+      { menus.map((menu) =>
         <Link activeClassName={css(styles.link, styles.activeLink)}
           className={css(styles.link)}
-          key={index}
-          to='/category'>
-          即時
+          key={menu.sn}
+          target={menu.isExternal === true ? '_blank' : '_self'}
+          to={menu.url}>
+          { menu.name }
         </Link>
       )}
     </div>
     <hr />
+    {/* 子項先隱藏
     <div className={css(styles.menu)} >
       { [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12].map((index) =>
         <Link activeClassName={css(styles.link, styles.activeLink)}
@@ -25,6 +27,7 @@ const Menu = () => (
         </Link>
       )}
     </div>
+    */}
   </div>
 );
 
@@ -46,5 +49,9 @@ const styles = StyleSheet.create({
     color: '#000'
   }
 });
+
+Menu.propTypes = {
+  menus: PropTypes.array.isRequired
+};
 
 export default Menu;

@@ -3,7 +3,7 @@ import { injectAsyncReducer } from '../../store';
 
 export default function createRoutes (store) {
   return {
-    path: 'category',
+    path: 'cat/:categoryName',
     getComponents (location, cb) {
       require.ensure([
         './containers/CategoryPage',

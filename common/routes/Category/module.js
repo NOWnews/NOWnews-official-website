@@ -9,11 +9,11 @@ const initialState = {
   error: null
 };
 
-export function loadCateogryList () {
+export function loadCateogryList (categoryName) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWSLIST_REQUEST });
-    return axios.get(`${protocol}://${host}/news`)
+    return axios.get(`${protocol}://${host}/cat/${categoryName}`)
     .then(res => {
       dispatch({
         type: LOAD_NEWSLIST_SUCCESS,

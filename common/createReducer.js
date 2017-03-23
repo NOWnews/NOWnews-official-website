@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import news from './modules/news';
+import currentNews from './modules/currentNews';
+import menus from './modules/menus';
 
 const initialState = {
   host: '',
@@ -13,7 +14,8 @@ const sourceRequest = (state = initialState, action) => state;
 export default function createReducer (asyncReducers) {
   return combineReducers({
     sourceRequest,
-    news,
+    menus,
+    currentNews,
     ...asyncReducers
   });
 }

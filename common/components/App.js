@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Helmet from 'react-helmet';
-import Header from './Header';
 import Footer from './Footer';
 
 const styles = StyleSheet.create({
@@ -17,8 +16,6 @@ const App = ({ children }) => (
         {rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'}
       ]}
     />
-
-    <Header />
     {children}
     <Footer />
   </div>
