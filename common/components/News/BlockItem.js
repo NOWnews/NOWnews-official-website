@@ -7,7 +7,7 @@ export const BlockItem = ({ news }) => (
     <img className={css(styles.img)} src={news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
     <div className={css(styles.bottom)}>
       <div className={css(styles.category)}>{news.MainMenu.name || '不分類'}</div>
-      <div className={css(styles.title)}>{news.title}</div>
+      <div className={css(styles.title)}>{news.shortTitle}</div>
       <div className={css(styles.time)}>{news.formatCreatedAt}</div>
     </div>
   </Link>
@@ -28,7 +28,9 @@ const styles = StyleSheet.create({
   img: {
     height: 'auto',
     marginBottom: 5,
-    maxWidth: '100%'
+    maxWidth: '100%',
+    maxHeight: '168px',
+    width: '100%'
   },
   title: {
     margin: '5px 0'
