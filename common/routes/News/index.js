@@ -1,0 +1,15 @@
+if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
+
+export default function createRoutes (store) {
+  return {
+    path: 'news/:id',
+    getComponents (location, cb) {
+      require.ensure([
+        './containers/NewsPage'
+      ], (require) => {
+        let NewsPage = require('./containers/NewsPage').default;
+        cb(null, NewsPage);
+      });
+    }
+  };
+}
