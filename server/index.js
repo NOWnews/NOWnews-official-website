@@ -22,12 +22,12 @@ import webpackConfig from '../tools/webpack.client.dev';
 import { compileDev, startDev } from '../tools/dx';
 import { configureStore } from '../common/store';
 import createRoutes from '../common/routes/root';
-import config from 'config';
-const DefaultServerConfig = config.get('server');
-const nodeEnv = config.get('mode');
-const webApiServer = config.get('webApiServer');
+import configLib from 'config';
+const defaultServerConfig = configLib.get('server');
+const nodeEnv = configLib.get('mode');
+const webApiServer = configLib.get('webApiServer');
 
-export const createServer = (configObj) => {
+export const createServer = (config) => {
   const __PROD__ = nodeEnv === 'production';
 
   const app = express();
@@ -46,7 +46,7 @@ export const createServer = (configObj) => {
     }
   } else {
     app.use(morgan('dev'));
-    const compiler = compileDev((webpack(webpackConfig)), configObj.port);
+    const compiler = compileDev((webpack(webpackConfig)), config.port);
     app.use(webpackDevMiddleware(compiler, {
       quiet: true,
       watchOptions: {
@@ -175,9 +175,9 @@ export const createServer = (configObj) => {
   // Heroku dynos automatically timeout after 30s. Set our
   // own timeout here to force sockets to close before that.
   // https://devcenter.heroku.com/articles/request-timeout
-  if (DefaultServerConfig.timeout) {
-    server.setTimeout(DefaultServerConfig.timeout, (socket) => {
-      const message = `Timeout of ${DefaultServerConfig.timeout}ms exceeded`;
+  if (defaultServerConfig.timeout) {
+    server.setTimeout(defaultServerConfig.timeout, (socket) => {
+      const message = `Timeout of ${defaultServerConfig.timeout}ms exceeded`;
 
       socket.end([
         'HTTP/1.1 503 Service Unavailable',
@@ -195,14 +195,14 @@ export const createServer = (configObj) => {
 };
 
 export const startServer = (serverConfig) => {
-  const configObj = {...DefaultServerConfig, ...serverConfig};
-  const server = createServer(configObj);
-  server.listen(configObj.port, (err) => {
+  const config = {...defaultServerConfig, ...serverConfig};
+  const server = createServer(config);
+  server.listen(config.port, (err) => {
     if (nodeEnv === 'production') {
       if (err) console.log(err);
-      console.log(`server ${configObj.id} listening on port ${configObj.port}`);
+      console.log(`server ${config.id} listening on port ${config.port}`);
     } else {
-      startDev(configObj.port, err);
+      startDev(config.port, err);
     }
   });
 };
