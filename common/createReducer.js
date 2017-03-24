@@ -7,6 +7,7 @@ const initialState = {
   protocol: ''
 };
 
+const newsList = (state = {}, action) => state;
 const sourceRequest = (state = initialState, action) => state;
 
 // Only combine reducers needed for initial render, others will be
@@ -15,6 +16,7 @@ export default function createReducer (asyncReducers) {
   return combineReducers({
     sourceRequest,
     menus,
+    newsList,
     currentNews,
     ...asyncReducers
   });
