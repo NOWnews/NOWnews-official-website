@@ -150,6 +150,10 @@ export const createServer = (configObj) => {
                     padding: 0;
                   }
 
+                  article img {
+                    width: 100%;
+                  }
+
                 </style>
                 <style data-aphrodite>${data.css.content}</style>
               </head>

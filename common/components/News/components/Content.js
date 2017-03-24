@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Content = ({ content }) => (
-  <div className={css(styles.box)} dangerouslySetInnerHTML={{__html: content}} />
+  <article className={css(styles.box)} dangerouslySetInnerHTML={{__html: content}} />
 );
 
 const styles = StyleSheet.create({
