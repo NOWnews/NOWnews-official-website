@@ -1,17 +1,26 @@
+import moment from 'moment';
 import { provideHooks } from 'redial';
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import InfiniteScroll from 'react-infinite-scroller';
 import Head from '../../../components/News/Head';
 import Header from '../../../components/Header';
 import NewsContent from '../../../components/News/NewsContent';
+import Ad970x250 from '../../../components/Ad/Ad970x250';
+
+import { Layout } from '../../../style';
+
 import { loadNews, selectCurrentNews } from '../../../modules/currentNews';
 import { loadMenus, selectMenus } from '../../../modules/menus';
 
+const { container } = Layout;
+
 const redial = {
-  fetch: ({ dispatch, params: { id } }) => Promise.all([
-    dispatch(loadNews(`news/${id}`)),
-    dispatch(loadMenus())
+  fetch: ({ dispatch, params: { sn } }) => Promise.all([
+    dispatch(loadMenus()),
+    dispatch(loadNews(sn))
   ])
 };
 
@@ -20,30 +29,74 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const NewsPage = ({ currentNews, menus }) => {
-  let {isLoading, data: { newsBy, MainMenu, title, ...news }} = currentNews;
-  return (
-    <div>
-      <Header menus={menus} />
-      {isLoading &&
-        <div>
-          <h2 className={css(styles.loading)}>Loading....</h2>
-        </div>}
-      {!isLoading &&
-        <div>
+const mapDispatchToProps = bindActionCreators.bind(null, {
+  loadNews
+});
+
+class NewsPage extends Component {
+  constructor (props) {
+    super(props);
+    this.loadItems = this.loadItems.bind(this);
+    this.touchWindowTop = this.touchWindowTop.bind(this);
+  }
+
+  loadItems () {
+    let newsData = this.props.currentNews.data;
+    let sn = newsData[newsData.length - 1].next.sn;
+    this.props.loadNews(sn);
+  }
+
+  touchWindowTop (item, index) {
+    let { sn, startedAt } = this.props.currentNews.data[index];
+    let formatStartedAt = moment(startedAt).format('YYYYMMDD');
+    window.history.pushState(null, null, `/news/${formatStartedAt}/${sn}`);
+  }
+
+  render () {
+    let { isLoading, data, hasMore } = this.props.currentNews;
+    let items = [];
+    let totalLength = data.length;
+    data.map((item, i) => {
+      let { newsBy, MainMenu, title, ...news } = item;
+      items.push(
+        <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={MainMenu} title={title} />
-          <NewsContent news={news} />
-        </div>}
-    </div>
-  );
-};
+          <NewsContent news={news} key={1} />
+          {(totalLength - 1) !== i && <div className={css(styles.container)}><Ad970x250 /></div>}
+        </div>
+      );
+    });
+
+    return (
+      <div>
+        <Header menus={this.props.menus} />
+        {isLoading &&
+          <div>
+            <div>{items}</div>
+            <h2 className={css(styles.loading)}>Loading....</h2>
+          </div>}
+        {!isLoading &&
+          <InfiniteScroll
+            pageStart={0}
+            loader={<div>Load More ...</div>}
+            loadMore={this.loadItems}
+            hasMore={hasMore}
+            touchWindowTop={this.touchWindowTop}>
+            <div>{items}</div>
+          </InfiniteScroll>}
+      </div>
+    );
+  }
+}
 
 NewsPage.propTypes = {
   currentNews: PropTypes.object.isRequired,
+  loadNews: PropTypes.func.isRequired,
   menus: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({
+  container,
   title: {
     fontSize: 28,
     margin: '0 auto 1.5rem',
@@ -56,4 +109,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default provideHooks(redial)(connect(mapStateToProps)(NewsPage));
+export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(NewsPage));

@@ -1,17 +1,21 @@
+import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 
-export const BlockItem = ({ news }) => (
-  <Link className={css(styles.box)} to={'/news/' + news.sn}>
-    <img className={css(styles.img)} src={news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
-    <div className={css(styles.bottom)}>
-      <div className={css(styles.category)}>{news.MainMenu.name || '不分類'}</div>
-      <div className={css(styles.title)}>{news.shortTitle}</div>
-      <div className={css(styles.time)}>{news.formatCreatedAt}</div>
-    </div>
-  </Link>
-);
+export const BlockItem = ({ news }) => {
+  let formatStartedAt = moment(news.startedAt).format('YYYYMMDD');
+  return (
+    <Link className={css(styles.box)} to={`/news/${formatStartedAt}/${news.sn}`}>
+      <img className={css(styles.img)} src={news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+      <div className={css(styles.bottom)}>
+        <div className={css(styles.category)}>{news.MainMenu.name || '不分類'}</div>
+        <div className={css(styles.title)}>{news.shortTitle}</div>
+        <div className={css(styles.time)}>{news.formatCreatedAt}</div>
+      </div>
+    </Link>
+  );
+};
 
 const styles = StyleSheet.create({
   box: {

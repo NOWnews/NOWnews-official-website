@@ -1,21 +1,53 @@
 export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
 export const LOAD_NEWS_SUCCESS = 'LOAD_NEWS_SUCCESS';
 export const LOAD_NEWS_FAILURE = 'LOAD_NEWS_FAILURE';
+export const LOAD_PREVIEW_REQUEST = 'LOAD_PREVIEW_REQUEST';
+export const LOAD_PREVIEW_SUCCESS = 'LOAD_PREVIEW_SUCCESS';
+export const LOAD_PREVIEW_FAILURE = 'LOAD_PREVIEW_FAILURE';
 const initialState = {
-  lastFetched: null,
+  hasMore: false,
   isLoading: false,
+  lastFetched: null,
   error: null,
-  data: {}
+  data: []
 };
 
-export function loadNews (url) {
+export function loadNews (sn) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWS_REQUEST });
-    return axios.get(`${protocol}://${host}/${url}`)
+    return Promise.all([
+      axios.get(`${protocol}://${host}/news/${sn}`),
+      axios.get(`${protocol}://${host}/news/${sn}/nextandprev`)
+    ]).then(([news, nextandprev]) => {
+      let { next, prev } = nextandprev.data;
+      dispatch({
+        type: LOAD_NEWS_SUCCESS,
+        payload: { ...news.data, next, prev },
+        meta: {
+          lastFetched: Date.now()
+        }
+      });
+    })
+    .catch(error => {
+      console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
+      dispatch({
+        type: LOAD_NEWS_FAILURE,
+        payload: error,
+        error: true
+      });
+    });
+  };
+}
+
+export function loadPreview (redisKey) {
+  return (dispatch, getState, { axios }) => {
+    const { protocol, host } = getState().sourceRequest;
+    dispatch({ type: LOAD_PREVIEW_REQUEST });
+    return axios.get(`${protocol}://${host}/previews/${redisKey}`)
       .then(res => {
         dispatch({
-          type: LOAD_NEWS_SUCCESS,
+          type: LOAD_PREVIEW_SUCCESS,
           payload: res.data,
           meta: {
             lastFetched: Date.now()
@@ -23,9 +55,9 @@ export function loadNews (url) {
         });
       })
       .catch(error => {
-        console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
+        console.error(`Error in reducer that handles ${LOAD_PREVIEW_FAILURE}: `, error);
         dispatch({
-          type: LOAD_NEWS_FAILURE,
+          type: LOAD_PREVIEW_FAILURE,
           payload: error,
           error: true
         });
@@ -36,19 +68,32 @@ export function loadNews (url) {
 export default function currentNews (state = initialState, action) {
   switch (action.type) {
     case LOAD_NEWS_REQUEST:
-      return { ...state,
-        isLoading: true,
-        error: null
+    case LOAD_PREVIEW_REQUEST:
+      return {
+        ...state,
+        error: null,
+        isLoading: true
       };
     case LOAD_NEWS_SUCCESS:
-      return { ...state,
-        data: action.payload,
-        lastFetched: action.meta.lastFetched,
-        isLoading: false
+      return {
+        ...state,
+        data: [...state.data, action.payload],
+        hasMore: !!action.payload.next.sn,
+        isLoading: false,
+        lastFetched: action.meta.lastFetched
       };
     case LOAD_NEWS_FAILURE:
-      return { ...state,
+    case LOAD_PREVIEW_FAILURE:
+      return {
+        ...state,
         error: action.payload
+      };
+    case LOAD_PREVIEW_SUCCESS:
+      return {
+        ...state,
+        data: [action.payload],
+        isLoading: false,
+        lastFetched: action.meta.lastFetched
       };
     default:
       return state;
