@@ -6,7 +6,7 @@ import { Layout } from '../../../style';
 import { selectNewsList, loadCateogryList } from '../module';
 import { loadMenus, selectMenus } from '../../../modules/menus';
 import BlockItem from '../../../components/News/BlockItem';
-import ClearFloat from '../../../components/ClearFloat';
+import ClearFix from '../../../components/ClearFix';
 import Header from '../../../components/Header';
 
 const { container } = Layout;
@@ -39,7 +39,7 @@ const CategoryPage = ({ newsList, menus }) => (
           <BlockItem key={news._id} news={news} />
         </div>
       ))}
-    <ClearFloat />
+    <ClearFix />
   </div>
 );
 

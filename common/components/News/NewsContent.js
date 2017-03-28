@@ -5,7 +5,7 @@ import {
   ReleatedContent, RecommendAds
 } from './components';
 
-import ClearFloat from '../ClearFloat';
+import ClearFix from '../ClearFix';
 
 import { Ad300x250 } from '../Ad';
 
@@ -30,7 +30,7 @@ const NewsContent = ({ news }) => (
         <Ad300x250 />
         <Ad300x250 />
       </div>
-      <ClearFloat />
+      <ClearFix />
     </div>
   </div>
 );

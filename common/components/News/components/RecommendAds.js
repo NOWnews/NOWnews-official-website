@@ -1,7 +1,7 @@
 import React from 'react';
 import Ad200x112 from '../../../components/Ad/Ad200x112';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import ClearFloat from '../../../components/ClearFloat';
+import ClearFix from '../../../components/ClearFix';
 
 const RecommendAds = () => {
   var items = [];
@@ -20,7 +20,7 @@ const RecommendAds = () => {
       <h2>NOWnews 推薦</h2>
       <div>
         { items }
-        <ClearFloat />
+        <ClearFix />
       </div>
     </div>
   );
