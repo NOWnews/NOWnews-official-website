@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
     marginTop: '0.4rem'
   },
   left: {
-    width: '25%'
+    width: 170
   },
   img: {
-    height: 100,
-    maxHeight: 100,
+    height: 95,
+    maxHeight: 95,
     width: '100%'
   },
   right: {

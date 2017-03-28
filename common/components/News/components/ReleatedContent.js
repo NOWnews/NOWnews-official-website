@@ -11,7 +11,7 @@ const ReleatedContent = ({ list, type }) => {
     formatStartedAt: new Date(),
     MainPhoto: null,
     sn: 999999,
-    shortTitle: ' 一旦過敏被誘發 寶寶皮膚紅腫愛哭鬧'
+    shortTitle: '一旦過敏被誘發 寶寶皮膚紅腫愛哭鬧'
   };
 
   var randomIndex = Math.floor((Math.random() * 3));
@@ -31,7 +31,7 @@ const ReleatedContent = ({ list, type }) => {
 
   return (
     <div className={css(styles.box)}>
-      <h2 >{ type }</h2>
+      <h2>{ type }</h2>
       <div>{ items }</div>
     </div>
   );
@@ -39,7 +39,7 @@ const ReleatedContent = ({ list, type }) => {
 
 const styles = StyleSheet.create({
   box: {
-    marginTop: '1rem'
+    margin: '1rem 0'
   }
 });
 
