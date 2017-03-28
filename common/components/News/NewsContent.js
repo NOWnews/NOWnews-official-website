@@ -16,8 +16,8 @@ const NewsContent = ({ news }) => (
         <Content content={news.content} />
         <Social />
         <ThermometerSm />
-        <ReleatedContent type='相關新聞' />
-        <ReleatedContent type='你可能會喜歡' />
+        <ReleatedContent type='相關新聞' list={news.relations} />
+        <ReleatedContent type='你可能會喜歡' list={news.relations} />
       </div>
       <div className={css(styles.rightSide)}>
         <Social />

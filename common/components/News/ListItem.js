@@ -2,15 +2,15 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 
-export const ListItem = ({ news }) => (
-  <Link className={css(styles.box)} to={'/news/' + news._id}>
+export const ListItem = ({ category, photo, time, title, url }) => (
+  <Link className={css(styles.box)} to={url}>
     <div className={css(styles.left)}>
-      <img className={css(styles.img)} src={news.MainPhoto ? news.MainPhoto.url : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+      <img className={css(styles.img)} src={photo ? photo.url : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
     </div>
     <div className={css(styles.right)}>
-      <div className={css(styles.category)}>{news.MainMenu && news.MainMenu.name}</div>
-      <div className={css(styles.title)}>{news.shortTitle}</div>
-      <div className={css(styles.time)}>{news.formatCreatedAt}</div>
+      <div className={css(styles.category)}>{category}</div>
+      <div className={css(styles.title)}>{title}</div>
+      <div className={css(styles.time)}>{time}</div>
     </div>
   </Link>
 );
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
   box: {
     display: 'inline-flex',
     marginTop: '1rem',
+    textDecoration: 'none',
     width: '100%'
   },
   category: {
@@ -50,7 +51,11 @@ const styles = StyleSheet.create({
 });
 
 ListItem.propTypes = {
-  news: PropTypes.shape().isRequired
+  category: PropTypes.string.isRequired,
+  photo: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired
 };
 
 export default ListItem;
