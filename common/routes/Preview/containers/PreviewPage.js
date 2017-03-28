@@ -3,14 +3,14 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { loadMenus, selectMenus } from '../../../modules/menus';
-import { loadNews, selectCurrentNews } from '../../../modules/currentNews';
+import { loadPreview, selectCurrentNews } from '../../../modules/currentNews';
 import Head from '../../../components/News/Head';
 import Header from '../../../components/Header';
 import NewsContent from '../../../components/News/NewsContent';
 
 const redial = {
   fetch: ({ dispatch, params: { redisKey } }) => Promise.all([
-    dispatch(loadNews(`previews/${redisKey}`)),
+    dispatch(loadPreview(redisKey)),
     dispatch(loadMenus())
   ])
 };
@@ -20,8 +20,8 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const NewsPage = ({ currentNews, menus }) => {
-  let {isLoading, data: { newsBy, MainMenu, title, ...news }} = currentNews;
+const PreviewPage = ({ currentNews, menus }) => {
+  let {isLoading, data: [{ newsBy, MainMenu, title, ...news }]} = currentNews;
   return (
     <div>
       <Header menus={menus} />
@@ -38,7 +38,7 @@ const NewsPage = ({ currentNews, menus }) => {
   );
 };
 
-NewsPage.propTypes = {
+PreviewPage.propTypes = {
   currentNews: PropTypes.object.isRequired,
   menus: PropTypes.object.isRequired
 };
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default provideHooks(redial)(connect(mapStateToProps)(NewsPage));
+export default provideHooks(redial)(connect(mapStateToProps)(PreviewPage));
