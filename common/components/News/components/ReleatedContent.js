@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import ListItem from '../../../components/News/ListItem';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const ReleatedContent = ({ list, type }) => {
+const ReleatedContent = ({ list, sn, type }) => {
   var cloneList = [...list];
   var items = [];
   // 暫時廣告資料
@@ -14,8 +14,8 @@ const ReleatedContent = ({ list, type }) => {
     shortTitle: '一旦過敏被誘發 寶寶皮膚紅腫愛哭鬧'
   };
 
-  var randomIndex = Math.floor((Math.random() * 3));
-  cloneList.splice(randomIndex, 0, fakeSponsorNews);
+  // 將廣告有規律的安插在 array 裡面。
+  cloneList.splice(sn % 3, 0, fakeSponsorNews);
   cloneList.map((news) => {
     let { sn, MainMenu, MainPhoto, shortTitle, formatStartedAt } = news;
     items.push(
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
 
 ReleatedContent.propTypes = {
   list: PropTypes.array.isRequired,
+  sn: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired
 };
 
