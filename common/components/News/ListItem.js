@@ -10,7 +10,8 @@ export const ListItem = ({ category, photo, time, title, url }) => (
     <div className={css(styles.right)}>
       <div className={css(styles.category)}>{category}</div>
       <div className={css(styles.title)}>{title}</div>
-      <div className={css(styles.time)}>{time}</div>
+      <img src='/icons/whiteClock.png' />
+      <span className={css(styles.time)}>{time}</span>
     </div>
   </Link>
 );
@@ -24,30 +25,34 @@ const styles = StyleSheet.create({
   },
   category: {
     color: '#1976d2',
-    fontSize: '13px',
-    marginTop: '1rem'
+    fontSize: '14px',
+    marginTop: '0.4rem'
   },
   left: {
     width: '25%'
   },
   img: {
-    maxWidth: '100%',
-    height: 'auto'
+    height: 100,
+    maxHeight: 100,
+    width: '100%'
   },
   right: {
     width: '65%',
     padding: '0.5rem 0 0.5rem 1rem'
   },
   title: {
-    margin: '0.5rem 0',
-    fontSize: '16px'
+    color: '#000',
+    fontSize: '18px',
+    margin: '5px 0'
   },
   time: {
     color: '#888',
     fontSize: '13px',
-    margin: '0.5rem 0'
+    marginLeft: 5,
+    marginTop: 5,
+    position: 'relative',
+    top: '-2px'
   }
-
 });
 
 ListItem.propTypes = {

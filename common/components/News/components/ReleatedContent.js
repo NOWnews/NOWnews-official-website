@@ -21,7 +21,7 @@ const ReleatedContent = ({ list, type }) => {
     items.push(
       <ListItem
         key={sn}
-        category={MainMenu && MainMenu.name || 'Sponsor'}
+        category={MainMenu && MainMenu.name || 'Sponsored'}
         photo={MainPhoto}
         title={shortTitle}
         time={moment(formatStartedAt).format('YYYY/MM/DD')}

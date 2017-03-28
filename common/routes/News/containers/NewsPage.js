@@ -61,7 +61,7 @@ class NewsPage extends Component {
       items.push(
         <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={MainMenu} title={title} />
-          <NewsContent news={news} key={1} />
+          <NewsContent news={news} />
           {(totalLength - 1) !== i && <div className={css(styles.container)}><Ad970x250 /></div>}
         </div>
       );

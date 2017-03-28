@@ -1,18 +1,19 @@
+import moment from 'moment';
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Head = ({ newsBy = '', mainMenu, title }) => (
+const Head = ({ newsBy = '', mainMenu, time, title }) => (
   <div className={css(styles.box)}>
     <div className={css(styles.content)}>
       <Link className={css(styles.category)}>{ mainMenu.name || '不分類' }</Link>
       <h1 className={css(styles.title)}>{ title }</h1>
-      <div>
-        <FontAwesome name='user-circle' size='2x' />
+      <div className={css(styles.authorArea)}>
+        <FontAwesome name='user-circle' size='2x' style={{ position: 'relative', top: '4px' }} />
         <span className={css(styles.author)}>{ newsBy }</span>
-        <FontAwesome name='clock-o' />
-        <span className={css(styles.time)}>2017/1/1 09:45</span>
+        <img className={css(styles.timeIcon)}src='/icons/grayClock.png' />
+        <span>{moment(time).format('YYYY/MM/DD HH:MM')}</span>
       </div>
     </div>
   </div>
@@ -20,22 +21,28 @@ const Head = ({ newsBy = '', mainMenu, title }) => (
 
 const styles = StyleSheet.create({
   author: {
-    marginLeft: 5
+    marginLeft: 5,
+    marginRight: 15
+  },
+  authorArea: {
+    color: '#747576'
   },
   box: {
     backgroundColor: '#F1F2F3'
   },
   category: {
     color: '#1886FB',
-    fontSize: '13px'
+    fontSize: '20px'
   },
   content: {
     margin: '1rem auto',
     padding: '2rem 0',
     width: 900
   },
-  time: {
-    marginLeft: 5
+  timeIcon: {
+    marginRight: 5,
+    position: 'relative',
+    top: 5
   },
   title: {
     margin: '5px 0'
@@ -44,7 +51,8 @@ const styles = StyleSheet.create({
 
 Head.propTypes = {
   newsBy: PropTypes.string.isRequired,
-  mainMenu: PropTypes.shape().isRequired,
+  mainMenu: PropTypes.object.isRequired,
+  time: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 };
 
