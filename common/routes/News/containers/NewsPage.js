@@ -61,7 +61,7 @@ class NewsPage extends Component {
       items.push(
         <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={MainMenu} title={title} />
-          <NewsContent news={news} key={1} />
+          <NewsContent news={news} />
           {(totalLength - 1) !== i && <div className={css(styles.container)}><Ad970x250 /></div>}
         </div>
       );
@@ -81,6 +81,8 @@ class NewsPage extends Component {
             loader={<div>Load More ...</div>}
             loadMore={this.loadItems}
             hasMore={hasMore}
+            touchRangeForStart={50}
+            touchRangeForEnd={-20}
             touchWindowTop={this.touchWindowTop}>
             <div>{items}</div>
           </InfiniteScroll>}

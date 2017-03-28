@@ -15,15 +15,17 @@ const initialState = {
 export function loadNews (sn) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
+    const apiServ = `${protocol}://${host}`;
     dispatch({ type: LOAD_NEWS_REQUEST });
     return Promise.all([
-      axios.get(`${protocol}://${host}/news/${sn}`),
-      axios.get(`${protocol}://${host}/news/${sn}/nextandprev`)
-    ]).then(([news, nextandprev]) => {
+      axios.get(`${apiServ}/news/${sn}`),
+      axios.get(`${apiServ}/news/${sn}/nextandprev`),
+      axios.get(`${apiServ}/news/${sn}/relations`)
+    ]).then(([news, nextandprev, relations]) => {
       let { next, prev } = nextandprev.data;
       dispatch({
         type: LOAD_NEWS_SUCCESS,
-        payload: { ...news.data, next, prev },
+        payload: { ...news.data, next, prev, relations: relations.data },
         meta: {
           lastFetched: Date.now()
         }

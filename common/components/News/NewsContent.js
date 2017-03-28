@@ -2,8 +2,10 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
   FontSize, Content, Social, Thermometer, ThermometerSm,
-  ReleatedContent
+  ReleatedContent, RecommendAds
 } from './components';
+
+import ClearFix from '../ClearFix';
 
 import { Ad300x250 } from '../Ad';
 
@@ -16,8 +18,9 @@ const NewsContent = ({ news }) => (
         <Content content={news.content} />
         <Social />
         <ThermometerSm />
-        <ReleatedContent type='相關新聞' />
-        <ReleatedContent type='你可能會喜歡' />
+        <ReleatedContent type='相關新聞' list={news.relations} sn={news.sn} />
+        <ReleatedContent type='你可能會喜歡' list={news.relations} sn={news.sn} />
+        <RecommendAds />
       </div>
       <div className={css(styles.rightSide)}>
         <Social />
@@ -27,17 +30,17 @@ const NewsContent = ({ news }) => (
         <Ad300x250 />
         <Ad300x250 />
       </div>
+      <ClearFix />
     </div>
   </div>
 );
 
 const styles = StyleSheet.create({
   box: {
-    width: 900,
+    width: 970,
     margin: '0 auto'
   },
   content: {
-    display: 'inline-flex',
     margin: '1rem 0'
   },
   img: {
@@ -45,10 +48,12 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   leftSide: {
-    width: '69%'
+    float: 'left',
+    width: 670
   },
   rightSide: {
-    width: '31%'
+    float: 'left',
+    width: 300
   }
 });
 
