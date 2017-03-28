@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
+import ClearFloat from '../ClearFloat';
 
 export const ListItem = ({ category, photo, time, title, url }) => (
   <Link className={css(styles.box)} to={url}>
@@ -13,12 +14,13 @@ export const ListItem = ({ category, photo, time, title, url }) => (
       <img src='/icons/whiteClock.png' />
       <span className={css(styles.time)}>{time}</span>
     </div>
+    <ClearFloat />
   </Link>
 );
 
 const styles = StyleSheet.create({
   box: {
-    display: 'inline-flex',
+    display: 'block',
     marginTop: '1rem',
     textDecoration: 'none',
     width: '100%'
@@ -29,6 +31,7 @@ const styles = StyleSheet.create({
     marginTop: '0.4rem'
   },
   left: {
+    float: 'left',
     width: 170
   },
   img: {
@@ -37,7 +40,8 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   right: {
-    width: '65%',
+    float: 'right',
+    width: 500,
     padding: '0.5rem 0 0.5rem 1rem'
   },
   title: {

@@ -5,6 +5,8 @@ import {
   ReleatedContent, RecommendAds
 } from './components';
 
+import ClearFloat from '../ClearFloat';
+
 import { Ad300x250 } from '../Ad';
 
 const NewsContent = ({ news }) => (
@@ -28,17 +30,17 @@ const NewsContent = ({ news }) => (
         <Ad300x250 />
         <Ad300x250 />
       </div>
+      <ClearFloat />
     </div>
   </div>
 );
 
 const styles = StyleSheet.create({
   box: {
-    width: 900,
+    width: 970,
     margin: '0 auto'
   },
   content: {
-    display: 'inline-flex',
     margin: '1rem 0'
   },
   img: {
@@ -46,9 +48,11 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   leftSide: {
+    float: 'left',
     width: 670
   },
   rightSide: {
+    float: 'left',
     width: 300
   }
 });
