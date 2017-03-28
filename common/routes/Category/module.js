@@ -32,7 +32,7 @@ export function loadCateogryList (categoryName) {
   };
 }
 
-export default function posts (state = initialState, action) {
+export default function categoryPage (state = initialState, action) {
   switch (action.type) {
     case LOAD_NEWSLIST_REQUEST:
       return { ...state,
@@ -54,4 +54,4 @@ export default function posts (state = initialState, action) {
   }
 }
 
-export const selectNewsList = state => state.newsList;
+export const selectCategoryPage = state => state.categoryPage;

@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Layout } from '../../../style';
-import { selectNewsList, loadCateogryList } from '../module';
+import { selectCategoryPage, loadCateogryList } from '../module';
 import { loadMenus, selectMenus } from '../../../modules/menus';
 import BlockItem from '../../../components/News/BlockItem';
 import ClearFix from '../../../components/ClearFix';
@@ -19,22 +19,22 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
-  newsList: selectNewsList(state),
+  categoryPage: selectCategoryPage(state),
   menus: selectMenus(state)
 });
 
-const CategoryPage = ({ newsList, menus }) => (
+const CategoryPage = ({ categoryPage, menus }) => (
   <div className={css(styles.container)}>
     <Header menus={menus} />
-    {newsList.isLoading &&
+    {categoryPage.isLoading &&
       <div>
         <h2 className={css(styles.title)}>Loading ...</h2>
       </div>}
-    {!newsList.isLoading && newsList.data.length === 0 &&
+    {!categoryPage.isLoading && categoryPage.data.length === 0 &&
       <div>查無相關新聞 ... </div>}
 
-    {!newsList.isLoading && newsList.data.length > 0 &&
-      newsList.data.map((news, i) => (
+    {!categoryPage.isLoading && categoryPage.data.length > 0 &&
+      categoryPage.data.map((news, i) => (
         <div key={news._id} className={css(styles.blockItem)}>
           <BlockItem key={news._id} news={news} />
         </div>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 
 CategoryPage.propTypes = {
   menus: PropTypes.object.isRequired,
-  newsList: PropTypes.object.isRequired
+  categoryPage: PropTypes.object.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps)(CategoryPage));
