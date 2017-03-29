@@ -6,7 +6,7 @@ import ClearFix from '../../../components/ClearFix';
 
 const BlockItems = ({ newsList }) => (
   <div>
-    {newsList.map((news, i) => (
+    {newsList.map((news) => (
       <div key={news.sn} className={css(styles.blockItem)}>
         <BlockItem key={news.sn} news={news} />
       </div>

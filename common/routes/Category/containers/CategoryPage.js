@@ -8,6 +8,7 @@ import { loadMenus, selectMenus } from '../../../modules/menus';
 import Header from '../../../components/Header';
 import { Slide } from '../../../components/News';
 import { BlockItems, HotNews } from '../components';
+import ClearFix from '../../../components/ClearFix';
 
 const { container } = Layout;
 
@@ -28,15 +29,18 @@ const CategoryPage = ({ categoryPage, menus }) => (
     <Header menus={menus} />
     {categoryPage.isLoading &&
       <div>
-        <h2 className={css(styles.title)}>Loading ...</h2>
+        <h2>Loading ...</h2>
       </div>}
     {!categoryPage.isLoading && categoryPage.data.length === 0 &&
       <div>查無相關新聞 ... </div>}
 
     {!categoryPage.isLoading && categoryPage.data.length > 0 &&
       <div>
-        <Slide />
-        <HotNews newsList={categoryPage.data} />
+        <div className={css(styles.slideAndHot)}>
+          <Slide />
+          <HotNews newsList={categoryPage.data} />
+          <ClearFix />
+        </div>
         <BlockItems newsList={categoryPage.data} />
       </div>
     }
@@ -45,12 +49,9 @@ const CategoryPage = ({ categoryPage, menus }) => (
 
 const styles = StyleSheet.create({
   container,
-  title: {
-    fontSize: 28,
-    margin: '0 auto 1.5rem',
-    color: '#b7b7b7'
+  slideAndHot: {
+    marginTop: 10
   }
-
 });
 
 CategoryPage.propTypes = {
