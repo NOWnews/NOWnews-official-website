@@ -5,9 +5,9 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { Layout } from '../../../style';
 import { selectCategoryPage, loadCateogryList } from '../module';
 import { loadMenus, selectMenus } from '../../../modules/menus';
-import BlockItem from '../../../components/News/BlockItem';
-import ClearFix from '../../../components/ClearFix';
 import Header from '../../../components/Header';
+import { Slide } from '../../../components/News';
+import { BlockItems, HotNews } from '../components';
 
 const { container } = Layout;
 
@@ -34,12 +34,12 @@ const CategoryPage = ({ categoryPage, menus }) => (
       <div>查無相關新聞 ... </div>}
 
     {!categoryPage.isLoading && categoryPage.data.length > 0 &&
-      categoryPage.data.map((news, i) => (
-        <div key={news._id} className={css(styles.blockItem)}>
-          <BlockItem key={news._id} news={news} />
-        </div>
-      ))}
-    <ClearFix />
+      <div>
+        <Slide />
+        <HotNews newsList={categoryPage.data} />
+        <BlockItems newsList={categoryPage.data} />
+      </div>
+    }
   </div>
 );
 
@@ -49,12 +49,8 @@ const styles = StyleSheet.create({
     fontSize: 28,
     margin: '0 auto 1.5rem',
     color: '#b7b7b7'
-  },
-  blockItem: {
-    float: 'left',
-    margin: 11.5,
-    width: 300
   }
+
 });
 
 CategoryPage.propTypes = {
