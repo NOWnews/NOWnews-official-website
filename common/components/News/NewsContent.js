@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
   FontSize, Content, Social, Thermometer, ThermometerSm,
-  ReleatedContent, RecommendAds
+  RelatedContent, RecommendAds
 } from './components';
 
-import ClearFix from '../ClearFix';
+import { ClearFix } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
@@ -18,8 +18,8 @@ const NewsContent = ({ news }) => (
         <Content content={news.content} />
         <Social />
         <ThermometerSm />
-        <ReleatedContent type='相關新聞' list={news.relations} sn={news.sn} />
-        <ReleatedContent type='你可能會喜歡' list={news.relations} sn={news.sn} />
+        <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
+        <RelatedContent type='你可能會喜歡' list={news.relations} sn={news.sn} />
         <RecommendAds />
       </div>
       <div className={css(styles.rightSide)}>

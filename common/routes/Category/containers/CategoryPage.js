@@ -2,14 +2,12 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { Layout } from '../../../style';
-import { selectNewsList, loadCateogryList } from '../module';
+import { selectCategoryPage, loadCateogryList } from '../module';
 import { loadMenus, selectMenus } from '../../../modules/menus';
-import BlockItem from '../../../components/News/BlockItem';
-import ClearFix from '../../../components/ClearFix';
 import Header from '../../../components/Header';
-
-const { container } = Layout;
+import { Slide } from '../../../components/News';
+import { BlockItems, HotNews } from '../components';
+import { ClearFix, Container } from '../../../components/Layout';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName } }) => Promise.all([
@@ -19,47 +17,42 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
-  newsList: selectNewsList(state),
+  categoryPage: selectCategoryPage(state),
   menus: selectMenus(state)
 });
 
-const CategoryPage = ({ newsList, menus }) => (
-  <div className={css(styles.container)}>
+const CategoryPage = ({ categoryPage, menus }) => (
+  <Container>
     <Header menus={menus} />
-    {newsList.isLoading &&
+    {categoryPage.isLoading &&
       <div>
-        <h2 className={css(styles.title)}>Loading ...</h2>
+        <h2>Loading ...</h2>
       </div>}
-    {!newsList.isLoading && newsList.data.length === 0 &&
+    {!categoryPage.isLoading && categoryPage.data.length === 0 &&
       <div>查無相關新聞 ... </div>}
 
-    {!newsList.isLoading && newsList.data.length > 0 &&
-      newsList.data.map((news, i) => (
-        <div key={news._id} className={css(styles.blockItem)}>
-          <BlockItem key={news._id} news={news} />
+    {!categoryPage.isLoading && categoryPage.data.length > 0 &&
+      <div>
+        <div className={css(styles.slideAndHot)}>
+          <Slide />
+          <HotNews newsList={categoryPage.data} />
+          <ClearFix />
         </div>
-      ))}
-    <ClearFix />
-  </div>
+        <BlockItems newsList={categoryPage.data} />
+      </div>
+    }
+  </Container>
 );
 
 const styles = StyleSheet.create({
-  container,
-  title: {
-    fontSize: 28,
-    margin: '0 auto 1.5rem',
-    color: '#b7b7b7'
-  },
-  blockItem: {
-    float: 'left',
-    margin: 11.5,
-    width: 300
+  slideAndHot: {
+    marginTop: 10
   }
 });
 
 CategoryPage.propTypes = {
   menus: PropTypes.object.isRequired,
-  newsList: PropTypes.object.isRequired
+  categoryPage: PropTypes.object.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps)(CategoryPage));

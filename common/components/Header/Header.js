@@ -2,11 +2,10 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Ad200x70, Ad970x90 } from '../Ad';
 import { Logo, Menu, RightSide, RealTime } from './components';
-import { Layout } from '../../style';
-const { container } = Layout;
+import { Container } from '../Layout';
 
 export const Header = ({ menus }) => (
-  <div className={css(styles.container)}>
+  <Container>
     <div className={css(styles.header)}>
       <Logo />
       <Ad200x70 />
@@ -16,7 +15,7 @@ export const Header = ({ menus }) => (
     <Menu menus={menus.data || []} />
     <RealTime />
     <Ad970x90 />
-  </div>
+  </Container>
 );
 
 const styles = StyleSheet.create({
@@ -24,7 +23,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 230
   },
-  container,
   header: {
     color: '#999',
     display: 'inline-flex'

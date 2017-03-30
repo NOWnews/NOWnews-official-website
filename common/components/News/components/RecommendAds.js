@@ -1,7 +1,7 @@
 import React from 'react';
-import Ad200x112 from '../../../components/Ad/Ad200x112';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import ClearFix from '../../../components/ClearFix';
+import { Ad200x112 } from '../../../components/Ad';
+import { ClearFix } from '../../../components/Layout';
 
 const RecommendAds = () => {
   var items = [];

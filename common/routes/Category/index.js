@@ -11,7 +11,7 @@ export default function createRoutes (store) {
       ], (require) => {
         let CategoryPage = require('./containers/CategoryPage').default;
         let categoryReducer = require('./module').default;
-        injectAsyncReducer(store, 'newsList', categoryReducer);
+        injectAsyncReducer(store, 'categoryPage', categoryReducer);
         cb(null, CategoryPage);
       });
     }

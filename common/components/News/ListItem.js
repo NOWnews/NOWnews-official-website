@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
-import ClearFix from '../ClearFix';
+import { ClearFix } from '../Layout';
 
-export const ListItem = ({ category, photo, time, title, url }) => (
+export const ListItem = ({ category, photo = {}, time, title, url }) => (
   <Link className={css(styles.box)} to={url}>
     <div className={css(styles.left)}>
-      <img className={css(styles.img)} src={photo ? photo.url : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+      <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
     </div>
     <div className={css(styles.right)}>
       <div className={css(styles.category)}>{category}</div>

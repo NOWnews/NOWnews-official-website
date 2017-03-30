@@ -5,17 +5,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import InfiniteScroll from 'react-infinite-scroller';
-import Head from '../../../components/News/Head';
 import Header from '../../../components/Header';
-import NewsContent from '../../../components/News/NewsContent';
-import Ad970x250 from '../../../components/Ad/Ad970x250';
-
-import { Layout } from '../../../style';
+import { Ad970x250 } from '../../../components/Ad';
+import { Container } from '../../../components/Layout';
+import { Head, NewsContent } from '../../../components/News';
 
 import { loadNews, selectCurrentNews } from '../../../modules/currentNews';
 import { loadMenus, selectMenus } from '../../../modules/menus';
-
-const { container } = Layout;
 
 const redial = {
   fetch: ({ dispatch, params: { sn } }) => Promise.all([
@@ -57,12 +53,12 @@ class NewsPage extends Component {
     let items = [];
     let totalLength = data.length;
     data.map((item, i) => {
-      let { newsBy, MainMenu, title, ...news } = item;
+      let { formatStartedAt, newsBy, MainMenu, title, ...news } = item;
       items.push(
         <div key={news.sn}>
-          <Head newsBy={newsBy} mainMenu={MainMenu} title={title} />
+          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
           <NewsContent news={news} />
-          {(totalLength - 1) !== i && <div className={css(styles.container)}><Ad970x250 /></div>}
+          {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
         </div>
       );
     });
@@ -98,7 +94,6 @@ NewsPage.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  container,
   title: {
     fontSize: 28,
     margin: '0 auto 1.5rem',
