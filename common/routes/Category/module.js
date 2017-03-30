@@ -25,7 +25,7 @@ export function loadCateogryList (categoryName, page = 1) {
     dispatch({ type: LOAD_NEWSLIST_REQUEST });
     return Promise.all([
       axios.get(`${protocol}://${host}/cat/${categoryName}`),
-      axios.get(`${protocol}://${host}/cat/${categoryName}`) // hot 那邊還沒上先用 cat
+      axios.get(`${protocol}://${host}/hot/${categoryName}`)
     ]).then(([categoryNewsList, hotNewsList]) => {
       dispatch({
         type: LOAD_NEWSLIST_SUCCESS,
