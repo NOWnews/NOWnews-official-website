@@ -2,9 +2,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
-// import moment from 'moment';
 import Header from '../../../components/Header';
-import BlockItems from '../components/BlockItems';
+import { BlockItems } from '../components';
 import { Container, RightSide, LeftSide, ClearFix } from '../../../components/Layout';
 import { Ad300x250, Ad300x600 } from '../../../components/Ad';
 
@@ -69,8 +68,12 @@ const HomePage = ({ menus, homePage }) => (
     </div>
     <div>影音區塊</div>
     <LeftSide>
+      <hr />
       <BlockItems newsList={homePage.data.slice(0, 4)} />
       <BlockItems newsList={homePage.data.slice(0, 4)} />
+      <div className={css(styles.seeMoreBlock)}>
+        <span className={css(styles.seeMoreText)}>看更多專題</span>
+      </div>
     </LeftSide>
     <RightSide>
       <Ad300x600 />
