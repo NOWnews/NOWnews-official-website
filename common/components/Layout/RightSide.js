@@ -9,7 +9,7 @@ const RightSide = ({ children }) => (
 
 const styles = StyleSheet.create({
   rightSide: {
-    float: 'left',
+    float: 'right',
     width: 300
   }
 });

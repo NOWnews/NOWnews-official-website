@@ -9,15 +9,16 @@ const initialState = {
   error: null
 };
 
-export const loadCateogryList = (categoryName) => {
+export function loadInstantList () {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWSLIST_REQUEST });
+    /* TODO 先暫時用 indexpage 當 api 代替 */
     return axios.get(`${protocol}://${host}/indexpage`)
     .then(res => {
       dispatch({
         type: LOAD_NEWSLIST_SUCCESS,
-        payload: res.data.newsList,
+        payload: res.data.carousels,
         meta: {
           lastFetched: Date.now()
         }
@@ -32,7 +33,7 @@ export const loadCateogryList = (categoryName) => {
   };
 }
 
-export default function posts (state = initialState, action) {
+export default function instantPage (state = initialState, action) {
   switch (action.type) {
     case LOAD_NEWSLIST_REQUEST:
       return {
@@ -57,4 +58,4 @@ export default function posts (state = initialState, action) {
   }
 }
 
-export const selectNewsList = state => state.newsList;
+export const selectInstantPage = state => state.instantPage;

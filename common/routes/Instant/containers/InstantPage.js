@@ -2,39 +2,73 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import Header from '../../../components/Header';
-import Header from '../../../components/Header';
+import moment from 'moment';
+import { selectInstantPage, loadInstantList } from '../module';
+
 import { loadMenus, selectMenus } from '../../../modules/menus';
 
+import Header from '../../../components/Header';
+import ListItem from '../../../components/News/ListItem';
+import { Container, RightSide, LeftSide, ClearFix } from '../../../components/Layout';
+import Pagination from '../../../components/Pagination';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
+    dispatch(loadInstantList()),
     dispatch(loadMenus())
   ])
 };
 
 const mapStateToProps = state => ({
+  instantPage: selectInstantPage(state),
   menus: selectMenus(state)
 });
 
-const InstantPage = ({ menus }) => (
-  <div className={css(styles.aaa)}>
+const InstantPage = ({ menus, instantPage }) => (
+  <Container>
     <Header menus={menus} />
-  </div>
+    <p className={css(styles.aaa)}>Header</p>
+    <LeftSide>
+      {instantPage.isLoading &&
+        <div>
+          <h2>Loading ...</h2>
+        </div>}
+      {!instantPage.isLoading && instantPage.data.length === 0 &&
+        <div>查無相關新聞 ... </div>}
+      {!instantPage.isLoading && instantPage.data.length > 0 &&
+        <div>
+          {instantPage.data.map((value, i) => (
+            <ListItem
+              key={value.sn}
+              category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
+              photo={value.MainPhoto}
+              title={value.shortTitle}
+              time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
+              url={`/news/${moment(value.formatStartedAt).format('YYYYMMDD')}/${value.sn}`} />
+          ))}
+        </div>
+      }
+    </LeftSide>
+    <RightSide>
+      <p>300x250 </p>
+      <p>專題 </p>
+      <p>最新影音 </p>
+      <p>300x250 </p>
+    </RightSide>
+    <ClearFix />
+    <Pagination />
+  </Container>
 );
 
 const styles = StyleSheet.create({
-  // container,
-  body: {
-    background: '#fff'
-  },
   aaa: {
 
   }
 });
 
 InstantPage.propTypes = {
-  menus: PropTypes.object.isRequired
+  menus: PropTypes.object.isRequired,
+  instantPage: PropTypes.object.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps)(InstantPage));
