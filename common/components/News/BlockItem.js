@@ -11,7 +11,8 @@ export const BlockItem = ({ news }) => {
       <div className={css(styles.bottom)}>
         <div className={css(styles.category)}>{news.MainMenu.name || '不分類'}</div>
         <div className={css(styles.title)}>{news.shortTitle}</div>
-        <div className={css(styles.time)}>{news.formatCreatedAt}</div>
+        <img src='/icons/whiteClock.png' />
+        <span className={css(styles.time)}>{news.formatCreatedAt}</span>
       </div>
     </Link>
   );
@@ -41,7 +42,11 @@ const styles = StyleSheet.create({
   },
   time: {
     color: '#888',
-    fontSize: '13px'
+    fontSize: '13px',
+    marginLeft: 5,
+    marginTop: 5,
+    position: 'relative',
+    top: '-2px'
   }
 });
 

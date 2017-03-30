@@ -17,15 +17,15 @@ const HotNews = ({ newsList }) => (
 
 const styles = StyleSheet.create({
   box: {
-    float: 'left',
+    float: 'right',
     width: 300
   },
   head: {
     backgroundColor: '#AD6116',
     color: '#ffffff',
     fontSize: 16,
-    height: 30,
-    lineHeight: '30px',
+    height: 40,
+    lineHeight: '40px',
     textAlign: 'center'
   },
   item: {
@@ -33,14 +33,14 @@ const styles = StyleSheet.create({
     borderTop: '1px solid #DFE1E2',
     color: '#515253',
     fontSize: 13,
-    height: 40,
-    lineHeight: '40px',
+    height: 50,
+    lineHeight: '50px',
     paddingLeft: 30
   }
 });
 
 HotNews.propTypes = {
-  newsList: PropTypes.array.isRequired
+  newsList: PropTypes.any.isRequired
 };
 
 export default HotNews;

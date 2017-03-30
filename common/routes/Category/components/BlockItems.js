@@ -1,24 +1,41 @@
 import React, { PropTypes } from 'react';
-// import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
 import { ClearFix } from '../../../components/Layout';
+import { Ad300x250 } from '../../../components/Ad';
 
-const BlockItems = ({ newsList }) => (
-  <div>
-    {newsList.map((news) => (
+const BlockItems = ({ newsList }) => {
+  var items = [];
+
+  newsList.map((news, key) => {
+    items.push(
       <div key={news.sn} className={css(styles.blockItem)}>
         <BlockItem key={news.sn} news={news} />
       </div>
-    ))}
-    <ClearFix />
-  </div>
-);
+    );
+
+    if (key === 1 || key === 6) {
+      items.push(<Ad300x250 key={`Ad${key}`} className={css(styles.blockItem)} />);
+    }
+  });
+
+  return (
+    <div className={css(styles.box)}>
+      { items }
+      <ClearFix />
+    </div>
+  );
+};
 
 const styles = StyleSheet.create({
+  box: {
+    marginTop: 25
+  },
   blockItem: {
     float: 'left',
-    margin: 11.5,
+    height: 250,
+    marginBottom: 30,
+    marginRight: 70 / 2,
     width: 300
   }
 });

@@ -53,6 +53,7 @@
     "react-infinite-scroller": "git+https://github.com/esbb48/react-infinite-scroller.git#touchWindowTop",
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
+    "react-slick": "^0.14.7",
     "redial": "^0.4.1",
     "redux": "^3.3.1",
     "redux-thunk": "^2.1.0",
