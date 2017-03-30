@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 Slide.propTypes = {
-  newsList: PropTypes.array
+  newsList: PropTypes.array.isRequired
 };
 
 export default Slide;

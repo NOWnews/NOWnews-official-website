@@ -3,22 +3,29 @@ export const LOAD_NEWSLIST_SUCCESS = 'LOAD_NEWSLIST_SUCCESS';
 export const LOAD_NEWSLIST_FAILURE = 'LOAD_NEWSLIST_FAILURE';
 
 const initialState = {
-  newsList: [],
-  pageData: {},
-  lastFetched: null,
+  error: null,
+  hotNewsList: [],
   isLoading: false,
-  error: null
+  lastFetched: null,
+  newsList: [],
+  pageData: {}
 };
 
 export function loadCateogryList (categoryName, page = 1) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWSLIST_REQUEST });
-    return axios.get(`${protocol}://${host}/cat/${categoryName}?limit=20&page=${page}`)
-    .then(res => {
+    return Promise.all([
+      axios.get(`${protocol}://${host}/cat/${categoryName}`),
+      axios.get(`${protocol}://${host}/cat/${categoryName}`) // hot 那邊還沒上先用 cat
+    ]).then(([categoryNewsList, hotNewsList]) => {
       dispatch({
         type: LOAD_NEWSLIST_SUCCESS,
-        payload: res.data,
+        payload: {
+          hotNewsList: hotNewsList.data,
+          newsList: categoryNewsList.data.newsList,
+          pageData: categoryNewsList.data.pageData
+        },
         meta: {
           lastFetched: Date.now()
         }
@@ -36,20 +43,24 @@ export function loadCateogryList (categoryName, page = 1) {
 export default function categoryPage (state = initialState, action) {
   switch (action.type) {
     case LOAD_NEWSLIST_REQUEST:
-      return { ...state,
+      return {
+        ...state,
         isLoading: true,
         error: null
       };
     case LOAD_NEWSLIST_SUCCESS:
-      let { newsList, pageData } = action.payload;
-      return { ...state,
+      let { hotNewsList, newsList, pageData } = action.payload;
+      return {
+        ...state,
         newsList,
         pageData,
+        hotNewsList,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
     case LOAD_NEWSLIST_FAILURE:
-      return { ...state,
+      return {
+        ...state,
         error: action.payload
       };
     default:

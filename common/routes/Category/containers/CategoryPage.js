@@ -22,33 +22,39 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const CategoryPage = ({ categoryPage, menus }) => (
-  <Container>
-    <Header menus={menus} />
-    {categoryPage.isLoading &&
-      <div>
-        <h2>Loading ...</h2>
-      </div>}
-    {!categoryPage.isLoading && categoryPage.newsList.length === 0 &&
-      <div>查無相關新聞 ... </div>}
+const CategoryPage = ({ categoryPage, menus }) => {
+  let originList = categoryPage.newsList;
+  let slideData = originList.slice(0, 5);
+  let blockData = originList.slice(5, 10);
+  return (
+    <Container>
+      <Header menus={menus} />
+      {categoryPage.isLoading &&
+        <div>
+          <h2>Loading ...</h2>
+        </div>}
+      {!categoryPage.isLoading && originList.length === 0 &&
+        <div>查無相關新聞 ... </div>}
 
-    {!categoryPage.isLoading && categoryPage.newsList.length > 0 &&
-      <div>
-        <div className={css(styles.slideAndHot)}>
-          <Slide />
-          <HotNews newsList={categoryPage.newsList} />
-          <ClearFix />
+      {!categoryPage.isLoading && originList.length > 0 &&
+        <div>
+          <div className={css(styles.slideAndHot)}>
+            <Slide newsList={slideData} />
+            <HotNews newsList={categoryPage.hotNewsList} />
+            <ClearFix />
+          </div>
+          <BlockItems newsList={blockData} />
+          <Pagination {...categoryPage.pageData} />
         </div>
-        <BlockItems newsList={categoryPage.newsList} />
-        <Pagination {...categoryPage.pageData} />
-      </div>
-    }
-  </Container>
-);
+
+      }
+    </Container>
+  );
+};
 
 const styles = StyleSheet.create({
   slideAndHot: {
-    marginTop: 10
+    margin: '10px 0'
   }
 });
 
