@@ -1,23 +1,39 @@
+export const CHANGE_SLIDE_INDEX = 'CHANGE_SLIDE_INDEX';
 export const LOAD_NEWSLIST_REQUEST = 'LOAD_NEWSLIST_REQUEST';
 export const LOAD_NEWSLIST_SUCCESS = 'LOAD_NEWSLIST_SUCCESS';
 export const LOAD_NEWSLIST_FAILURE = 'LOAD_NEWSLIST_FAILURE';
 
 const initialState = {
-  data: [],
-  lastFetched: null,
+  error: null,
+  hotNewsList: [],
   isLoading: false,
-  error: null
+  lastFetched: null,
+  newsList: [],
+  slideIndex: 0,
+  pageData: {}
 };
 
-export function loadCateogryList (categoryName) {
+export function changeSlideIndex (newSlideIndex) {
+  return (dispatch, getState, { axios }) => {
+    dispatch({ type: CHANGE_SLIDE_INDEX, payload: newSlideIndex });
+  };
+}
+
+export function loadCateogryList (categoryName, page = 1) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWSLIST_REQUEST });
-    return axios.get(`${protocol}://${host}/cat/${categoryName}`)
-    .then(res => {
+    return Promise.all([
+      axios.get(`${protocol}://${host}/cat/${categoryName}`),
+      axios.get(`${protocol}://${host}/hot/${categoryName}`)
+    ]).then(([categoryNewsList, hotNewsList]) => {
       dispatch({
         type: LOAD_NEWSLIST_SUCCESS,
-        payload: res.data.newsList,
+        payload: {
+          hotNewsList: hotNewsList.data,
+          newsList: categoryNewsList.data.newsList,
+          pageData: categoryNewsList.data.pageData
+        },
         meta: {
           lastFetched: Date.now()
         }
@@ -34,19 +50,31 @@ export function loadCateogryList (categoryName) {
 
 export default function categoryPage (state = initialState, action) {
   switch (action.type) {
+    case CHANGE_SLIDE_INDEX:
+      return {
+        ...state,
+        slideIndex: action.payload
+      };
     case LOAD_NEWSLIST_REQUEST:
-      return { ...state,
+      return {
+        ...state,
         isLoading: true,
         error: null
       };
     case LOAD_NEWSLIST_SUCCESS:
-      return { ...state,
-        data: action.payload,
+      let { hotNewsList, newsList, pageData } = action.payload;
+      return {
+        ...state,
+        newsList,
+        pageData,
+        hotNewsList,
         lastFetched: action.meta.lastFetched,
-        isLoading: false
+        isLoading: false,
+        slideIndex: 0
       };
     case LOAD_NEWSLIST_FAILURE:
-      return { ...state,
+      return {
+        ...state,
         error: action.payload
       };
     default:
