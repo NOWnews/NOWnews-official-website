@@ -11,8 +11,8 @@ import { BlockItems, HotNews } from '../components';
 import { ClearFix, Container } from '../../../components/Layout';
 
 const redial = {
-  fetch: ({ dispatch, params: { categoryName } }) => Promise.all([
-    dispatch(loadCateogryList(categoryName)),
+  fetch: ({ dispatch, params: { categoryName }, query: { page } }) => Promise.all([
+    dispatch(loadCateogryList(categoryName, page)),
     dispatch(loadMenus())
   ])
 };

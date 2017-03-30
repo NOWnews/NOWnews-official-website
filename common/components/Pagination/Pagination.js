@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 export const Pagination = ({ currentPage, hasPrev, hasNext, nextPage, prevPage, totalPage }) => {
   let index = 1;
   let max = 10;
-  var pages = [];
+  let pages = [];
 
   // 當在倒數幾頁的時候就不能使用最大值 10 筆，要依據 totalPage 除 10 的餘數
   let totalDeciles = Math.floor(totalPage / 10);
