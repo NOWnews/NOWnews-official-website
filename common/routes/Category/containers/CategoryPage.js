@@ -2,15 +2,13 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { Layout } from '../../../style';
 import { selectCategoryPage, loadCateogryList } from '../module';
 import { loadMenus, selectMenus } from '../../../modules/menus';
 import Header from '../../../components/Header';
 import { Slide } from '../../../components/News';
 import { BlockItems, HotNews } from '../components';
 import ClearFix from '../../../components/ClearFix';
-
-const { container } = Layout;
+import { Container } from '../../../components/Layout';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName } }) => Promise.all([
@@ -25,7 +23,7 @@ const mapStateToProps = state => ({
 });
 
 const CategoryPage = ({ categoryPage, menus }) => (
-  <div className={css(styles.container)}>
+  <Container>
     <Header menus={menus} />
     {categoryPage.isLoading &&
       <div>
@@ -44,11 +42,10 @@ const CategoryPage = ({ categoryPage, menus }) => (
         <BlockItems newsList={categoryPage.data} />
       </div>
     }
-  </div>
+  </Container>
 );
 
 const styles = StyleSheet.create({
-  container,
   slideAndHot: {
     marginTop: 10
   }
