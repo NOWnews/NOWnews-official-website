@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { Component, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
@@ -33,9 +34,9 @@ class Slide extends Component {
     return (
       <div className={css(styles.box)}>
         <Slider {...settings}>
-          {newsList.map((news) => (
-            <Link key={news.sn}>
-              <img className={css(styles.img)} src={news.MainPhoto.url} />
+          {newsList.map(({ MainPhoto, sn, startedAt }) => (
+            <Link key={sn} to={`/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`}>
+              <img className={css(styles.img)} src={MainPhoto.url} />
             </Link>
           ))}
         </Slider>
