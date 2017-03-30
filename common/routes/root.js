@@ -11,7 +11,8 @@ export default function createRoutes (store) {
         cb(null, [
           require('./Category').default(store), // no need to modify store, no reducer
           require('./News').default(store),
-          require('./Preview').default(store)
+          require('./Preview').default(store),
+          require('./Instant').default(store)
         ]);
       });
     },

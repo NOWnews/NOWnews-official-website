@@ -1,6 +1,6 @@
 ## About
 
-This project use [bodyno/react-starter-kit@0.2.0](https://github.com/bodyno/react-starter-kit) to be the file structure.
+This project use [jaredpalmer/react-production-starter@0.2.0](https://github.com/jaredpalmer/react-production-starter) to be the file structure.
 
 ## COMMAND LINE
 
