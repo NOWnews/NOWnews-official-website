@@ -138,7 +138,7 @@ export const createServer = (config) => {
 
                   body {
                     font-size: 1rem;
-                    background-color: #fff;
+                    background-color: #ffffff;
                     color: #555;
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
@@ -152,6 +152,41 @@ export const createServer = (config) => {
 
                   article img {
                     width: 100%;
+                  }
+
+                  .custom-slick-dot {
+                    width: 100%;
+                    list-style: none;
+                    text-align: right;
+                    position: absolute;
+                    padding: 0;
+                    margin: 0;
+                    display: block;
+                    right: 25px;
+                    bottom: 10px;
+                  }
+
+                  .custom-slick-dot li {
+                    position: relative;
+                    display: inline-block;
+                    margin: 0 5px;
+                    padding: 0;
+                    cursor: pointer;
+                  }
+
+                  .custom-slick-dot li button {
+                    outline: 0;
+                    cursor: pointer;
+                    border: 1px solid #ffffff;
+                    border-radius: 50%;
+                    color: transparent;
+                    background: transparent;
+                    height: 14px;
+                    width: 10px;
+                  }
+
+                  .custom-slick-dot li.slick-active button {
+                    background: #ffffff;
                   }
 
                 </style>

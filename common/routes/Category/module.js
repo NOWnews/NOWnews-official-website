@@ -1,3 +1,4 @@
+export const CHANGE_SLIDE_INDEX = 'CHANGE_SLIDE_INDEX';
 export const LOAD_NEWSLIST_REQUEST = 'LOAD_NEWSLIST_REQUEST';
 export const LOAD_NEWSLIST_SUCCESS = 'LOAD_NEWSLIST_SUCCESS';
 export const LOAD_NEWSLIST_FAILURE = 'LOAD_NEWSLIST_FAILURE';
@@ -8,8 +9,15 @@ const initialState = {
   isLoading: false,
   lastFetched: null,
   newsList: [],
+  slideIndex: 0,
   pageData: {}
 };
+
+export function changeSlideIndex (newSlideIndex) {
+  return (dispatch, getState, { axios }) => {
+    dispatch({ type: CHANGE_SLIDE_INDEX, payload: newSlideIndex });
+  };
+}
 
 export function loadCateogryList (categoryName, page = 1) {
   return (dispatch, getState, { axios }) => {
@@ -42,6 +50,11 @@ export function loadCateogryList (categoryName, page = 1) {
 
 export default function categoryPage (state = initialState, action) {
   switch (action.type) {
+    case CHANGE_SLIDE_INDEX:
+      return {
+        ...state,
+        slideIndex: action.payload
+      };
     case LOAD_NEWSLIST_REQUEST:
       return {
         ...state,
@@ -56,7 +69,8 @@ export default function categoryPage (state = initialState, action) {
         pageData,
         hotNewsList,
         lastFetched: action.meta.lastFetched,
-        isLoading: false
+        isLoading: false,
+        slideIndex: 0
       };
     case LOAD_NEWSLIST_FAILURE:
       return {
