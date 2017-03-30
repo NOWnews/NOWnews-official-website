@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 // import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
-import ClearFix from '../../../components/ClearFix';
+import { ClearFix } from '../../../components/Layout';
 
 const BlockItems = ({ newsList }) => (
   <div>

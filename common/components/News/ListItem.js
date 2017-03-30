@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
-import ClearFix from '../ClearFix';
+import { ClearFix } from '../Layout';
 
 export const ListItem = ({ category, photo, time, title, url }) => (
   <Link className={css(styles.box)} to={url}>

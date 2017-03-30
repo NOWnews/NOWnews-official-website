@@ -7,8 +7,7 @@ import { loadMenus, selectMenus } from '../../../modules/menus';
 import Header from '../../../components/Header';
 import { Slide } from '../../../components/News';
 import { BlockItems, HotNews } from '../components';
-import ClearFix from '../../../components/ClearFix';
-import { Container } from '../../../components/Layout';
+import { ClearFix, Container } from '../../../components/Layout';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName } }) => Promise.all([

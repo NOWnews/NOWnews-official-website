@@ -5,7 +5,7 @@ import {
   ReleatedContent, RecommendAds
 } from './components';
 
-import ClearFix from '../ClearFix';
+import { ClearFix } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
