@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
@@ -5,8 +6,9 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 const HotNews = ({ newsList }) => (
   <div className={css(styles.box)}>
     <div className={css(styles.head)}>熱門</div>
-    {[0, 1, 2, 3, 4, 5].map(({ sn, shortTitle }, i) => (
-      <Link to={sn} key={i}>
+    {newsList.map(({ shortTitle, sn, startedAt }) => (
+      <Link key={sn}
+        to={`/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`}>
         <div className={css(styles.item)}>
           { shortTitle }
         </div>
