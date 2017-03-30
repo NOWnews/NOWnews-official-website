@@ -53,10 +53,10 @@ class NewsPage extends Component {
     let items = [];
     let totalLength = data.length;
     data.map((item, i) => {
-      let { newsBy, MainMenu, title, ...news } = item;
+      let { formatStartedAt, newsBy, MainMenu, title, ...news } = item;
       items.push(
         <div key={news.sn}>
-          <Head newsBy={newsBy} mainMenu={MainMenu} title={title} />
+          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
           <NewsContent news={news} />
           {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
         </div>

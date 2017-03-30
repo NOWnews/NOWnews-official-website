@@ -3,13 +3,13 @@ import React, { PropTypes } from 'react';
 import ListItem from '../../../components/News/ListItem';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const ReleatedContent = ({ list, sn, type }) => {
+const RelatedContent = ({ list, sn, type }) => {
   var cloneList = [...list];
   var items = [];
   // 暫時廣告資料
   var fakeSponsorNews = {
     formatStartedAt: new Date(),
-    MainPhoto: null,
+    MainPhoto: {},
     sn: 999999,
     shortTitle: '一旦過敏被誘發 寶寶皮膚紅腫愛哭鬧'
   };
@@ -43,10 +43,10 @@ const styles = StyleSheet.create({
   }
 });
 
-ReleatedContent.propTypes = {
+RelatedContent.propTypes = {
   list: PropTypes.array.isRequired,
   sn: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired
 };
 
-export default ReleatedContent;
+export default RelatedContent;

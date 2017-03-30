@@ -5,8 +5,8 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 const HotNews = ({ newsList }) => (
   <div className={css(styles.box)}>
     <div className={css(styles.head)}>熱門</div>
-    {newsList.map(({ sn, shortTitle }) => (
-      <Link to={sn} key={sn}>
+    {[0, 1, 2, 3, 4, 5].map(({ sn, shortTitle }, i) => (
+      <Link to={sn} key={i}>
         <div className={css(styles.item)}>
           { shortTitle }
         </div>
@@ -14,10 +14,6 @@ const HotNews = ({ newsList }) => (
     ))}
   </div>
 );
-
-// const liDomCommonStyle = {
-//   listStyle: 'none'
-// };
 
 const styles = StyleSheet.create({
   box: {

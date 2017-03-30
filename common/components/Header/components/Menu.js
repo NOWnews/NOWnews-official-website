@@ -3,7 +3,7 @@ import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Menu = ({ menus }) => (
-  <div className='container'>
+  <div>
     <div className={css(styles.menu)} >
       { menus.map((menu) =>
         <Link activeClassName={css(styles.link, styles.activeLink)}
