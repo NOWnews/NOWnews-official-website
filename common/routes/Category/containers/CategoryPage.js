@@ -5,6 +5,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { selectCategoryPage, loadCateogryList } from '../module';
 import { loadMenus, selectMenus } from '../../../modules/menus';
 import Header from '../../../components/Header';
+import Pagination from '../../../components/Pagination';
 import { Slide } from '../../../components/News';
 import { BlockItems, HotNews } from '../components';
 import { ClearFix, Container } from '../../../components/Layout';
@@ -28,17 +29,18 @@ const CategoryPage = ({ categoryPage, menus }) => (
       <div>
         <h2>Loading ...</h2>
       </div>}
-    {!categoryPage.isLoading && categoryPage.data.length === 0 &&
+    {!categoryPage.isLoading && categoryPage.newsList.length === 0 &&
       <div>查無相關新聞 ... </div>}
 
-    {!categoryPage.isLoading && categoryPage.data.length > 0 &&
+    {!categoryPage.isLoading && categoryPage.newsList.length > 0 &&
       <div>
         <div className={css(styles.slideAndHot)}>
           <Slide />
-          <HotNews newsList={categoryPage.data} />
+          <HotNews newsList={categoryPage.newsList} />
           <ClearFix />
         </div>
-        <BlockItems newsList={categoryPage.data} />
+        <BlockItems newsList={categoryPage.newsList} />
+        <Pagination {...categoryPage.pageData} />
       </div>
     }
   </Container>
