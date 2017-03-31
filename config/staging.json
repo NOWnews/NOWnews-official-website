@@ -1,6 +1,6 @@
 {
   "mode": "staging",
-  "webApiServer": "61.67.121.157:10001",
+  "webApiServer": "61.67.121.153:10001",
   "server": {
     "webConcurrency": 1,
     "port": 5000,
