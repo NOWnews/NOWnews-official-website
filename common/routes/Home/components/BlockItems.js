@@ -1,19 +1,31 @@
+import moment from 'moment';
 import React, { PropTypes } from 'react';
-// import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
 import { ClearFix } from '../../../components/Layout';
 
-const BlockItems = ({ newsList }) => (
-  <div>
-    {newsList.map((news) => (
-      <div key={news.sn} className={css(styles.blockItem)}>
-        <BlockItem key={news.sn} news={news} />
+const BlockItems = ({ newsList }) => {
+  let items = [];
+  newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }) => {
+    items.push(
+      <div key={sn} className={css(styles.blockItem)}>
+        <BlockItem key={sn}
+          category={MainMenu && MainMenu.name || 'Sponsored'}
+          photo={MainPhoto}
+          title={shortTitle}
+          time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
       </div>
-    ))}
-    <ClearFix />
-  </div>
-);
+    );
+  });
+
+  return (
+    <div>
+      { items }
+      <ClearFix />
+    </div>
+  );
+};
 
 const styles = StyleSheet.create({
   blockItem: {

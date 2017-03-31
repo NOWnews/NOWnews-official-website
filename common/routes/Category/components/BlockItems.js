@@ -8,9 +8,16 @@ const BlockItems = ({ newsList }) => {
   var items = [];
 
   newsList.map((news, key) => {
+    let { category, photo = {}, sn, time, title, url } = news;
     items.push(
-      <div key={news.sn} className={css(styles.blockItem)}>
-        <BlockItem key={news.sn} news={news} />
+      <div key={sn} className={css(styles.blockItem)}>
+        <BlockItem
+          category={category}
+          key={sn}
+          photo={photo}
+          title={title}
+          time={time}
+          url={url} />
       </div>
     );
 
