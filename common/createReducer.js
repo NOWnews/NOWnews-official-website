@@ -7,15 +7,16 @@ const initialState = {
   protocol: ''
 };
 
-const categoryPage = (state = {}, action) => state;
+const defaultState = (state = {}, action) => state;
 const sourceRequest = (state = initialState, action) => state;
 
 // Only combine reducers needed for initial render, others will be
 // added async
 export default function createReducer (asyncReducers) {
   return combineReducers({
-    categoryPage,
+    categoryPage: defaultState,
     currentNews,
+    homePage: defaultState,
     menus,
     sourceRequest,
     ...asyncReducers

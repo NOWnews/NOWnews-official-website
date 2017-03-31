@@ -4,10 +4,10 @@ import ListItem from '../../../components/News/ListItem';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
 const RelatedContent = ({ list, sn, type }) => {
-  var cloneList = [...list];
-  var items = [];
+  let cloneList = [...list];
+  let items = [];
   // 暫時廣告資料
-  var fakeSponsorNews = {
+  let fakeSponsorNews = {
     formatStartedAt: new Date(),
     MainPhoto: {},
     sn: 999999,

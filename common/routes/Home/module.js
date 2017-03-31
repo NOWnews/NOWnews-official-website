@@ -3,29 +3,21 @@ export const LOAD_NEWSLIST_SUCCESS = 'LOAD_NEWSLIST_SUCCESS';
 export const LOAD_NEWSLIST_FAILURE = 'LOAD_NEWSLIST_FAILURE';
 
 const initialState = {
-  error: null,
-  hotNewsList: [],
-  isLoading: false,
+  data: [],
   lastFetched: null,
-  newsList: [],
-  pageData: {}
+  isLoading: false,
+  error: null
 };
 
-export function loadCateogryList (categoryName, page = 1) {
+export function loadHomeList () {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWSLIST_REQUEST });
-    return Promise.all([
-      axios.get(`${protocol}://${host}/cat/${categoryName}`),
-      axios.get(`${protocol}://${host}/hot/${categoryName}`)
-    ]).then(([categoryNewsList, hotNewsList]) => {
+    return axios.get(`${protocol}://${host}/indexpage`)
+    .then(res => {
       dispatch({
         type: LOAD_NEWSLIST_SUCCESS,
-        payload: {
-          hotNewsList: hotNewsList.data,
-          newsList: categoryNewsList.data.newsList,
-          pageData: categoryNewsList.data.pageData
-        },
+        payload: res.data.carousels,
         meta: {
           lastFetched: Date.now()
         }
@@ -40,7 +32,7 @@ export function loadCateogryList (categoryName, page = 1) {
   };
 }
 
-export default function categoryPage (state = initialState, action) {
+export default function homePage (state = initialState, action) {
   switch (action.type) {
     case LOAD_NEWSLIST_REQUEST:
       return {
@@ -49,12 +41,9 @@ export default function categoryPage (state = initialState, action) {
         error: null
       };
     case LOAD_NEWSLIST_SUCCESS:
-      let { hotNewsList, newsList, pageData } = action.payload;
       return {
         ...state,
-        newsList,
-        pageData,
-        hotNewsList,
+        data: action.payload,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
@@ -68,4 +57,4 @@ export default function categoryPage (state = initialState, action) {
   }
 }
 
-export const selectCategoryPage = state => state.categoryPage;
+export const selectHomePage = state => state.homePage;

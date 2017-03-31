@@ -7,15 +7,18 @@ import Slider from 'react-slick';
 class Slide extends Component {
   constructor (props) {
     super(props);
+    this.state = {
+      slideIndex: 0
+    };
     this.changeSlideIndex = this.changeSlideIndex.bind(this);
   }
 
   changeSlideIndex (index) {
-    this.props.changeSlideIndex(index);
+    this.setState({ slideIndex: index });
   }
 
   render () {
-    let { newsList, slideIndex } = this.props;
+    let { newsList } = this.props;
 
     let settings = {
       arrows: false,
@@ -40,7 +43,7 @@ class Slide extends Component {
             </Link>
           ))}
         </Slider>
-        <span className={css(styles.title)}>{ newsList[slideIndex].shortTitle }</span>
+        <span className={css(styles.title)}>{ newsList[this.state.slideIndex].shortTitle }</span>
       </div>
     );
   }
@@ -68,9 +71,7 @@ const styles = StyleSheet.create({
 });
 
 Slide.propTypes = {
-  changeSlideIndex: PropTypes.any.isRequired,
-  newsList: PropTypes.array.isRequired,
-  slideIndex: PropTypes.number.isRequired
+  newsList: PropTypes.array.isRequired
 };
 
 export default Slide;

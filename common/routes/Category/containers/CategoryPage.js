@@ -1,9 +1,8 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { changeSlideIndex, selectCategoryPage, loadCateogryList } from '../module';
+import { selectCategoryPage, loadCateogryList } from '../module';
 import { loadMenus, selectMenus } from '../../../modules/menus';
 import Header from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
@@ -23,11 +22,7 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const mapDispatchToProps = bindActionCreators.bind(null, {
-  changeSlideIndex
-});
-
-const CategoryPage = ({ categoryPage, changeSlideIndex, menus }) => {
+const CategoryPage = ({ categoryPage, menus }) => {
   let originList = categoryPage.newsList;
   let slideData = originList.slice(0, 5);
   let blockData = originList.slice(5, 10);
@@ -44,7 +39,7 @@ const CategoryPage = ({ categoryPage, changeSlideIndex, menus }) => {
       {!categoryPage.isLoading && originList.length > 0 &&
         <div>
           <div className={css(styles.slideAndHot)}>
-            <Slide newsList={slideData} slideIndex={categoryPage.slideIndex} changeSlideIndex={changeSlideIndex} />
+            <Slide newsList={slideData} />
             <HotNews newsList={categoryPage.hotNewsList} />
             <ClearFix />
           </div>
@@ -65,8 +60,7 @@ const styles = StyleSheet.create({
 
 CategoryPage.propTypes = {
   categoryPage: PropTypes.object.isRequired,
-  changeSlideIndex: PropTypes.any.isRequired,
   menus: PropTypes.object.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(CategoryPage));
+export default provideHooks(redial)(connect(mapStateToProps)(CategoryPage));

@@ -1,33 +1,26 @@
+import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
 import { ClearFix } from '../../../components/Layout';
-import { Ad300x250 } from '../../../components/Ad';
 
 const BlockItems = ({ newsList }) => {
-  var items = [];
-
-  newsList.map((news, key) => {
-    let { category, photo = {}, sn, time, title, url } = news;
+  let items = [];
+  newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
-        <BlockItem
-          category={category}
-          key={sn}
-          photo={photo}
-          title={title}
-          time={time}
-          url={url} />
+        <BlockItem key={sn}
+          category={MainMenu && MainMenu.name || 'Sponsored'}
+          photo={MainPhoto}
+          title={shortTitle}
+          time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
       </div>
     );
-
-    if (key === 1 || key === 6) {
-      items.push(<Ad300x250 key={`Ad${key}`} className={css(styles.blockItem)} />);
-    }
   });
 
   return (
-    <div className={css(styles.box)}>
+    <div>
       { items }
       <ClearFix />
     </div>
@@ -35,14 +28,9 @@ const BlockItems = ({ newsList }) => {
 };
 
 const styles = StyleSheet.create({
-  box: {
-    marginTop: 25
-  },
   blockItem: {
     float: 'left',
-    height: 250,
-    marginBottom: 30,
-    marginRight: 70 / 2,
+    margin: 11.5,
     width: 300
   }
 });

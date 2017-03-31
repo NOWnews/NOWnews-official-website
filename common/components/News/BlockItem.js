@@ -1,18 +1,16 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 
-export const BlockItem = ({ news }) => {
-  let formatStartedAt = moment(news.startedAt).format('YYYYMMDD');
+export const BlockItem = ({ category, photo = {}, time, title, url }) => {
   return (
-    <Link className={css(styles.box)} to={`/news/${formatStartedAt}/${news.sn}`}>
-      <img className={css(styles.img)} src={news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+    <Link className={css(styles.box)} to={url}>
+      <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
       <div className={css(styles.bottom)}>
-        <div className={css(styles.category)}>{news.MainMenu.name || '不分類'}</div>
-        <div className={css(styles.title)}>{news.shortTitle}</div>
+        <div className={css(styles.category)}>{category}</div>
+        <div className={css(styles.title)}>{title}</div>
         <img src='/icons/whiteClock.png' />
-        <span className={css(styles.time)}>{news.formatCreatedAt}</span>
+        <span className={css(styles.time)}>{time}</span>
       </div>
     </Link>
   );
@@ -51,7 +49,11 @@ const styles = StyleSheet.create({
 });
 
 BlockItem.propTypes = {
-  news: PropTypes.shape().isRequired
+  category: PropTypes.string.isRequired,
+  photo: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired
 };
 
 export default BlockItem;
