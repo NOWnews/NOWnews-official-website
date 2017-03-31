@@ -1,6 +1,6 @@
 {
   "mode": "production",
-  "webApiServer": "61.67.121.56:10001",
+  "webApiServer": "61.67.121.157:10001",
   "server": {
     "webConcurrency": 1,
     "port": 5000,
