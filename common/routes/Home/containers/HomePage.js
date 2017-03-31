@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Header from '../../../components/Header';
-import { BlockItems } from '../components';
+import { BlockItems, SlideRight } from '../components';
 import { Container, RightSide, LeftSide, ClearFix, Margin10 } from '../../../components/Layout';
-import { Ad300x250, Ad300x600 } from '../../../components/Ad';
+import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
+import { Ad300x250, Ad300x600 } from '../../../components/Ad';
 
 import { loadMenus, selectMenus } from '../../../modules/menus';
 import { selectHomePage, loadHomeList } from '../module';
@@ -26,8 +27,11 @@ const mapStateToProps = state => ({
 const HomePage = ({ menus, homePage }) => (
   <Container>
     <Header menus={menus} />
-    <div> 首頁輪播 </div>
-    <div className={css(styles.body)}>首頁內容</div>
+    <div className={css(styles.slideArea)}>
+      <Slide newsList={homePage.data.slice(0, 5)} />
+      <SlideRight newsList={homePage.data.slice(0, 5)} />
+      <ClearFix />
+    </div>
     <LeftSide>
       {homePage.isLoading &&
         <div>
@@ -115,12 +119,15 @@ const styles = StyleSheet.create({
     padding: '6px 17px',
     borderRadius: 30,
     fontSize: 22
+  },
+  slideArea: {
+    marginTop: 10
   }
 });
 
 HomePage.propTypes = {
-  menus: PropTypes.object.isRequired,
-  homePage: PropTypes.object.isRequired
+  homePage: PropTypes.object.isRequired,
+  menus: PropTypes.object.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps)(HomePage));
