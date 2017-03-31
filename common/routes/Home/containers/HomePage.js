@@ -4,8 +4,9 @@ import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Header from '../../../components/Header';
 import { BlockItems } from '../components';
-import { Container, RightSide, LeftSide, ClearFix } from '../../../components/Layout';
+import { Container, RightSide, LeftSide, ClearFix, Margin10 } from '../../../components/Layout';
 import { Ad300x250, Ad300x600 } from '../../../components/Ad';
+import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
 
 import { loadMenus, selectMenus } from '../../../modules/menus';
 import { selectHomePage, loadHomeList } from '../module';
@@ -44,8 +45,12 @@ const HomePage = ({ menus, homePage }) => (
       </div>
     </LeftSide>
     <RightSide>
-      <Ad300x250 />
-      <Ad300x250 />
+      <Margin10>
+        <Ad300x250 />
+      </Margin10>
+      <Margin10>
+        <Ad300x250 />
+      </Margin10>
     </RightSide>
     <ClearFix />
     <hr />
@@ -76,8 +81,18 @@ const HomePage = ({ menus, homePage }) => (
       </div>
     </LeftSide>
     <RightSide>
-      <Ad300x600 />
-      <Ad300x250 />
+      <Margin10>
+        <Ad300x600 />
+      </Margin10>
+      <Margin10>
+        <Ad300x250 />
+      </Margin10>
+      <Margin10>
+        <AppleStyle />
+      </Margin10>
+      <Margin10>
+        <AndroidStyle />
+      </Margin10>
     </RightSide>
     <ClearFix />
   </Container>
