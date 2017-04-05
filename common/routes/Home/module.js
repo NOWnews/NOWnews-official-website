@@ -3,7 +3,10 @@ export const LOAD_NEWSLIST_SUCCESS = 'LOAD_NEWSLIST_SUCCESS';
 export const LOAD_NEWSLIST_FAILURE = 'LOAD_NEWSLIST_FAILURE';
 
 const initialState = {
-  data: [],
+  carousels: [],
+  videos: [],
+  specialChannels: [],
+  specialTopics: [],
   lastFetched: null,
   isLoading: false,
   error: null
@@ -17,7 +20,7 @@ export function loadHomeList () {
     .then(res => {
       dispatch({
         type: LOAD_NEWSLIST_SUCCESS,
-        payload: res.data.carousels,
+        payload: res.data,
         meta: {
           lastFetched: Date.now()
         }
@@ -41,9 +44,13 @@ export default function homePage (state = initialState, action) {
         error: null
       };
     case LOAD_NEWSLIST_SUCCESS:
+      let { carousels, specialChannels, specialTopics, videos } = action.payload;
       return {
         ...state,
-        data: action.payload,
+        carousels,
+        videos,
+        specialChannels,
+        specialTopics,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };

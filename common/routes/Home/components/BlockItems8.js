@@ -1,20 +1,16 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { BlockItem4 } from '../../../components/News';
+import { BlockItem8 } from '../../../components/News';
 import { ClearFix } from '../../../components/Layout';
 
 const BlockItems = ({ newsList }) => {
   let items = [];
-  newsList.map(({ sn, MainPhoto, title, formatStartedAt }) => {
+  newsList.map(({ sn, MainPhoto, title }) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
-        <BlockItem4 key={sn}
-          category={'專題'}
+        <BlockItem8 key={sn}
           photo={MainPhoto}
-          title={title}
-          time={moment(formatStartedAt).format('YYYY/MM/DD')}
-          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
+          title={title} />
       </div>
     );
   });
@@ -30,8 +26,8 @@ const BlockItems = ({ newsList }) => {
 const styles = StyleSheet.create({
   blockItem: {
     float: 'left',
-    margin: '25px 11.5px',
-    width: 300,
+    margin: '10px 11.5px',
+    width: 306,
     position: 'relative'
   }
 });

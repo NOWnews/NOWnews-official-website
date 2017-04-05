@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Header from '../../../components/Header';
-import { BlockItems, BlockItems4, SlideRight } from '../components';
+import { BlockItems, BlockItems4, BlockItems8, SlideRight } from '../components';
 import { Container, RightSide, LeftSide, ClearFix, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
@@ -30,15 +30,15 @@ const HomePage = ({ menus, homePage }) => (
       <div>
         <h2>Loading ...</h2>
       </div>}
-    {!homePage.isLoading && homePage.data.length === 0 &&
+    {!homePage.isLoading && homePage.carousels.length === 0 &&
       <div>查無相關新聞 ... </div>}
-    {!homePage.isLoading && homePage.data.length > 0 &&
+    {!homePage.isLoading && homePage.carousels.length > 0 &&
       <div>
         <Container>
           <Header menus={menus} />
           <div className={css(styles.slideArea)}>
-            <Slide newsList={homePage.data.slice(0, 5)} />
-            <SlideRight newsList={homePage.data.slice(0, 5)} />
+            <Slide newsList={homePage.carousels.slice(0, 5)} />
+            <SlideRight newsList={homePage.carousels.slice(0, 5)} />
             <ClearFix />
           </div>
         </Container>
@@ -46,7 +46,7 @@ const HomePage = ({ menus, homePage }) => (
           <Container>
             <LeftSide>
               <div className={css(styles.blockItem)}>
-                <BlockItems4 newsList={homePage.data.slice(0, 4)} />
+                <BlockItems4 newsList={homePage.specialTopics.slice(0, 4)} />
               </div>
               <div className={css(styles.seeMoreBlock)}>
                 <span className={css(styles.seeMoreText)}>看更多專題</span>
@@ -64,22 +64,33 @@ const HomePage = ({ menus, homePage }) => (
           </Container>
         </div>
         <Container>
-
-          <hr />
-          <div className={css(styles.blockItem)}>
-            <BlockItems newsList={homePage.data.slice(0, 9)} />
-          </div>
-          <ClearFix />
-          <div className={css(styles.seeMoreBlock)}>
-            <span className={css(styles.seeMoreText)}>看更多地區新聞</span>
-          </div>
-          <div>影音區塊</div>
-          <LeftSide>
-            <hr />
-            <BlockItems newsList={homePage.data.slice(0, 4)} />
-            <BlockItems newsList={homePage.data.slice(0, 4)} />
+          <div className={css(styles.mainBlock)}>
+            <div className={css(styles.mainBlockTop)}>
+              <img className={css(styles.mainBlockTopIcon)} src='/icons/instant.png' />
+              <img className={css(styles.mainBlockTopIcon)} src='/icons/favorite.png' />
+              <img className={css(styles.mainBlockTopIcon)} src='/icons/lbs_active.png' />
+              <span className={css(styles.mapTitle)}>台北市</span>
+            </div>
+            <div className={css(styles.blockItem)}>
+              <BlockItems newsList={homePage.carousels.slice(0, 9)} />
+            </div>
+            <ClearFix />
             <div className={css(styles.seeMoreBlock)}>
-              <span className={css(styles.seeMoreText)}>看更多特輯</span>
+              <span className={css(styles.seeMoreText)}>看更多地區新聞</span>
+            </div>
+          </div>
+        </Container>
+        <Container>
+          <LeftSide>
+            <div className={css(styles.specialChannelsBox)}>
+              <div className={css(styles.specialChannelsTitle)}>
+                <h1 className={css(styles.specialChannelsTitleText)}>精選特輯</h1>
+                <hr className={css(styles.specialChannelsTitleLine)} />
+              </div>
+              <BlockItems8 newsList={homePage.specialChannels.slice(0, 8)} />
+              <div className={css(styles.seeMoreBlock)}>
+                <span className={css(styles.seeMoreText)}>看更多特輯</span>
+              </div>
             </div>
           </LeftSide>
           <RightSide>
@@ -112,7 +123,8 @@ const styles = StyleSheet.create({
   bg: {
     background: 'url(/bg/bg-home.png)',
     backgroundSize: 7,
-    marginTop: '-25px'
+    marginTop: '-25px',
+    paddingBottom: '100px'
   },
   seeMoreBlock: {
     textAlign: 'center',
@@ -127,6 +139,47 @@ const styles = StyleSheet.create({
   },
   slideArea: {
     marginTop: 10
+  },
+  specialChannelsTitle: {
+    position: 'relative'
+  },
+  specialChannelsTitleText: {
+    fontSize: '40px',
+    fontWeight: 'inherit'
+  },
+  specialChannelsTitleLine: {
+    position: 'absolute',
+    top: '32px',
+    width: '480px',
+    right: '15px'
+  },
+  specialChannelsBox: {
+    background: 'url(/bg/bg-home2.png)',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '97% 98%'
+  },
+  mainBlock: {
+    background: 'url(/bg/bg-home1.png)',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 96%',
+    backgroundPositionY: '35px',
+    marginTop: '-60px'
+  },
+  mainBlockTop: {
+    position: 'relative',
+    textAlign: 'center',
+    paddingBottom: '10px'
+  },
+  mainBlockTopIcon: {
+    width: '90px',
+    margin: '0 10px'
+  },
+  mapTitle: {
+    position: 'absolute',
+    fontSize: '40px',
+    fontWeight: 'bold',
+    lineHeight: '90px',
+    color: '#0080ff'
   }
 });
 

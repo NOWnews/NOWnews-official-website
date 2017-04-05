@@ -46,7 +46,11 @@ const styles = StyleSheet.create({
   },
   title: {
     margin: '5px 0',
-    color: '#fff'
+    color: '#fff',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    width: '275px'
   },
   time: {
     fontSize: 13,
