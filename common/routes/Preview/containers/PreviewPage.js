@@ -21,7 +21,10 @@ const mapStateToProps = state => ({
 });
 
 const PreviewPage = ({ currentNews, menus }) => {
-  let {isLoading, data: [{ newsBy, MainMenu, title, ...news }]} = currentNews;
+  let {isLoading, data} = currentNews;
+  let [{ formatStartedAt, newsBy, MainMenu, title, ...news }] = data;
+  news.relations = [];
+
   return (
     <div>
       <Header menus={menus} />
@@ -31,7 +34,7 @@ const PreviewPage = ({ currentNews, menus }) => {
         </div>}
       {!isLoading &&
         <div>
-          <Head newsBy={newsBy} mainMenu={MainMenu} title={title} />
+          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
           <NewsContent news={news} />
         </div>}
     </div>
