@@ -1,52 +1,31 @@
 import moment from 'moment';
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import Slider from 'react-slick';
+import { Carousel } from 'react-responsive-carousel';
 
-class Slide extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      slideIndex: 0
-    };
-    this.changeSlideIndex = this.changeSlideIndex.bind(this);
-  }
+export const Slide = ({ newsList }) => {
+  let settings = {
+    axis: 'horizontal',
+    autoPlay: true,
+    emulateTouch: true,
+    showArrows: false,
+    showStatus: false,
+    showThumbs: false,
+    width: '600px'
+  };
 
-  changeSlideIndex (index) {
-    this.setState({ slideIndex: index });
-  }
-
-  render () {
-    let { newsList } = this.props;
-
-    let settings = {
-      arrows: false,
-      autoplay: false,
-      dots: true,
-      infinite: true,
-      speed: 500,
-      dotsClass: 'custom-slick-dot',
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      beforeChange: (prev, next) => {
-        this.changeSlideIndex(next);
-      }
-    };
-
-    return (
-      <div className={css(styles.box)}>
-        <Slider {...settings}>
-          {newsList.map(({ MainPhoto, sn, startedAt }) => (
-            <Link key={sn} to={`/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`}>
-              <img className={css(styles.img)} src={MainPhoto.url} />
-            </Link>
-          ))}
-        </Slider>
-        <span className={css(styles.title)}>{ newsList[this.state.slideIndex].shortTitle }</span>
-      </div>
-    );
-  }
+  return (
+    <Carousel className={css(styles.box)} {...settings}>
+      {newsList.map(({ MainPhoto, shortTitle, sn, startedAt }) => (
+        <Link
+          alt={shortTitle}
+          key={sn} to={`/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`}>
+          <img className={css(styles.img)} src={MainPhoto.url} />
+        </Link>
+      ))}
+    </Carousel>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -58,15 +37,6 @@ const styles = StyleSheet.create({
   img: {
     height: 337.5,
     width: 600
-  },
-  title: {
-    backgroundColor: '#ffffff',
-    bottom: 0,
-    fontSize: 25,
-    left: -55,
-    padding: 5,
-    position: 'relative',
-    top: -55
   }
 });
 
