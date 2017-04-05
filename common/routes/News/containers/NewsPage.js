@@ -39,7 +39,8 @@ class NewsPage extends Component {
   loadItems () {
     let newsData = this.props.currentNews.data;
     let sn = newsData[newsData.length - 1].next.sn;
-    this.props.loadNews(sn);
+    let isLoadMore = true;
+    this.props.loadNews(sn, isLoadMore);
   }
 
   touchWindowTop (item, index) {
