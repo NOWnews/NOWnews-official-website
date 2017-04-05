@@ -77,8 +77,6 @@ class NewsPage extends Component {
             loader={<div>Load More ...</div>}
             loadMore={this.loadItems}
             hasMore={hasMore}
-            touchRangeForStart={50}
-            touchRangeForEnd={-20}
             touchWindowTop={this.touchWindowTop}>
             <div>{items}</div>
           </InfiniteScroll>}
