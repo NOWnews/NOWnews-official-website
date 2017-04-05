@@ -18,10 +18,10 @@ export const Slide = ({ newsList }) => {
   return (
     <Carousel className={css(styles.box)} {...settings}>
       {newsList.map(({ MainPhoto, shortTitle, sn, startedAt }) => (
-        <Link
+        <Link className={css(styles.ahref)} style={{backgroundImage: `url(${MainPhoto.url})`}}
           alt={shortTitle}
           key={sn} to={`/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`}>
-          <img className={css(styles.img)} src={MainPhoto.url} />
+          { /* <img className={css(styles.img)} src={MainPhoto.url} /> */ }
         </Link>
       ))}
     </Carousel>
@@ -33,6 +33,14 @@ const styles = StyleSheet.create({
     float: 'left',
     paddingLeft: 55,
     width: 670
+  },
+  ahref: {
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    display: 'inline-block',
+    backgroundPosition: 'center center',
+    width: '100%',
+    height: '337.5px'
   },
   img: {
     height: 337.5,

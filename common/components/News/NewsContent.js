@@ -11,7 +11,10 @@ import { Ad300x250 } from '../Ad';
 
 const NewsContent = ({ news }) => (
   <div className={css(styles.box)}>
-    <img className={css(styles.img)} src={news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+    <div className={css(styles.contentdiv)}>
+      <span className={css(styles.contentimag)} style={{backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`}} />
+    </div>
+    { /* <img className={css(styles.img)} src={news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} /> */ }
     <span>{news.MainPhoto && news.MainPhoto.desc}</span>
     <div className={css(styles.content)}>
       <div className={css(styles.leftSide)}>
@@ -54,6 +57,18 @@ const styles = StyleSheet.create({
   rightSide: {
     float: 'left',
     width: 300
+  },
+  contentimag: {
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    display: 'inline-block',
+    backgroundPosition: 'center center',
+    width: '100%',
+    height: '545px'
+  },
+  contentdiv: {
+    background: '#f1f2f3',
+    height: '545px'
   }
 });
 
