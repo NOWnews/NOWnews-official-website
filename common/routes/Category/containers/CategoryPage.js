@@ -40,7 +40,7 @@ const CategoryPage = ({ categoryPage, menus }) => {
         <div>
           <div className={css(styles.slideAndHot)}>
             <Slide newsList={slideData} />
-            <HotNews newsList={categoryPage.hotNewsList} />
+            <HotNews newsList={categoryPage.hotNewsList.slice(0, 6)} />
             <ClearFix />
           </div>
           <BlockItems newsList={blockData} />
