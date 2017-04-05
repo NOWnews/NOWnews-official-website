@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    lineHeight: '190px'
+    lineHeight: '190px',
+    letterSpacing: '2px'
   }
 });
 
