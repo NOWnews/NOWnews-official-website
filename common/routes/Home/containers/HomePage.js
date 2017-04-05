@@ -26,86 +26,79 @@ const mapStateToProps = state => ({
 
 const HomePage = ({ menus, homePage }) => (
   <div>
-    <Container>
-      <Header menus={menus} />
-      <div className={css(styles.slideArea)}>
-        <Slide newsList={homePage.data.slice(0, 5)} />
-        <SlideRight newsList={homePage.data.slice(0, 5)} />
-        <ClearFix />
-      </div>
-    </Container>
-    <div className={css(styles.bg)}>
-      <Container>
-        <LeftSide>
-          {homePage.isLoading &&
-            <div>
-              <h2>Loading ...</h2>
-            </div>}
-          {!homePage.isLoading && homePage.data.length === 0 &&
-            <div>查無相關新聞 ... </div>}
-          {!homePage.isLoading && homePage.data.length > 0 &&
-            <div className={css(styles.blockItem)}>
-              <BlockItems4 newsList={homePage.data.slice(0, 4)} />
-            </div>
-          }
-          <div className={css(styles.seeMoreBlock)}>
-            <span className={css(styles.seeMoreText)}>看更多專題</span>
+    {homePage.isLoading &&
+      <div>
+        <h2>Loading ...</h2>
+      </div>}
+    {!homePage.isLoading && homePage.data.length === 0 &&
+      <div>查無相關新聞 ... </div>}
+    {!homePage.isLoading && homePage.data.length > 0 &&
+      <div>
+        <Container>
+          <Header menus={menus} />
+          <div className={css(styles.slideArea)}>
+            <Slide newsList={homePage.data.slice(0, 5)} />
+            <SlideRight newsList={homePage.data.slice(0, 5)} />
+            <ClearFix />
           </div>
-        </LeftSide>
-        <RightSide>
-          <Margin10>
-            <Ad300x250 />
-          </Margin10>
-          <Margin10>
-            <Ad300x250 />
-          </Margin10>
-        </RightSide>
-        <ClearFix />
-      </Container>
-    </div>
-    <Container>
+        </Container>
+        <div className={css(styles.bg)}>
+          <Container>
+            <LeftSide>
+              <div className={css(styles.blockItem)}>
+                <BlockItems4 newsList={homePage.data.slice(0, 4)} />
+              </div>
+              <div className={css(styles.seeMoreBlock)}>
+                <span className={css(styles.seeMoreText)}>看更多專題</span>
+              </div>
+            </LeftSide>
+            <RightSide>
+              <Margin10>
+                <Ad300x250 />
+              </Margin10>
+              <Margin10>
+                <Ad300x250 />
+              </Margin10>
+            </RightSide>
+            <ClearFix />
+          </Container>
+        </div>
+        <Container>
 
-      <hr />
-      {homePage.isLoading &&
-        <div>
-          <h2>Loading ...</h2>
-        </div>}
-      {!homePage.isLoading && homePage.data.length === 0 &&
-        <div>查無相關新聞 ... </div>}
-      {!homePage.isLoading && homePage.data.length > 0 &&
-        <div className={css(styles.blockItem)}>
-          <BlockItems newsList={homePage.data.slice(0, 9)} />
-        </div>
-      }
-      <ClearFix />
-      <div className={css(styles.seeMoreBlock)}>
-        <span className={css(styles.seeMoreText)}>看更多地區新聞</span>
-      </div>
-      <div>影音區塊</div>
-      <LeftSide>
-        <hr />
-        <BlockItems newsList={homePage.data.slice(0, 4)} />
-        <BlockItems newsList={homePage.data.slice(0, 4)} />
-        <div className={css(styles.seeMoreBlock)}>
-          <span className={css(styles.seeMoreText)}>看更多特輯</span>
-        </div>
-      </LeftSide>
-      <RightSide>
-        <Margin10>
-          <Ad300x600 />
-        </Margin10>
-        <Margin10>
-          <Ad300x250 />
-        </Margin10>
-        <Margin10>
-          <AppleStyle />
-        </Margin10>
-        <Margin10>
-          <AndroidStyle />
-        </Margin10>
-      </RightSide>
-      <ClearFix />
-    </Container>
+          <hr />
+          <div className={css(styles.blockItem)}>
+            <BlockItems newsList={homePage.data.slice(0, 9)} />
+          </div>
+          <ClearFix />
+          <div className={css(styles.seeMoreBlock)}>
+            <span className={css(styles.seeMoreText)}>看更多地區新聞</span>
+          </div>
+          <div>影音區塊</div>
+          <LeftSide>
+            <hr />
+            <BlockItems newsList={homePage.data.slice(0, 4)} />
+            <BlockItems newsList={homePage.data.slice(0, 4)} />
+            <div className={css(styles.seeMoreBlock)}>
+              <span className={css(styles.seeMoreText)}>看更多特輯</span>
+            </div>
+          </LeftSide>
+          <RightSide>
+            <Margin10>
+              <Ad300x600 />
+            </Margin10>
+            <Margin10>
+              <Ad300x250 />
+            </Margin10>
+            <Margin10>
+              <AppleStyle />
+            </Margin10>
+            <Margin10>
+              <AndroidStyle />
+            </Margin10>
+          </RightSide>
+          <ClearFix />
+        </Container>
+      </div>}
   </div>
 );
 
