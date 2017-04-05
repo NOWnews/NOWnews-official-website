@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     fontSize: '13px'
   },
   img: {
-    height: 'auto',
+    height: '168px',
     marginBottom: 5,
     maxWidth: '100%',
     maxHeight: '168px',
