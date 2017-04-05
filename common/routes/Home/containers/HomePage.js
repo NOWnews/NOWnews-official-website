@@ -64,15 +64,23 @@ const HomePage = ({ menus, homePage }) => (
           </Container>
         </div>
         <Container>
-
-          <hr />
-          <div className={css(styles.blockItem)}>
-            <BlockItems newsList={homePage.carousels.slice(0, 9)} />
+          <div className={css(styles.mainBlock)}>
+            <div className={css(styles.mainBlockTop)}>
+              <img className={css(styles.mainBlockTopIcon)} src='/icons/instant.png' />
+              <img className={css(styles.mainBlockTopIcon)} src='/icons/favorite.png' />
+              <img className={css(styles.mainBlockTopIcon)} src='/icons/lbs_active.png' />
+              <span className={css(styles.mapTitle)}>台北市</span>
+            </div>
+            <div className={css(styles.blockItem)}>
+              <BlockItems newsList={homePage.carousels.slice(0, 9)} />
+            </div>
+            <ClearFix />
+            <div className={css(styles.seeMoreBlock)}>
+              <span className={css(styles.seeMoreText)}>看更多地區新聞</span>
+            </div>
           </div>
-          <ClearFix />
-          <div className={css(styles.seeMoreBlock)}>
-            <span className={css(styles.seeMoreText)}>看更多地區新聞</span>
-          </div>
+        </Container>
+        <Container>
           <LeftSide>
             <div className={css(styles.specialChannelsBox)}>
               <div className={css(styles.specialChannelsTitle)}>
@@ -115,7 +123,8 @@ const styles = StyleSheet.create({
   bg: {
     background: 'url(/bg/bg-home.png)',
     backgroundSize: 7,
-    marginTop: '-25px'
+    marginTop: '-25px',
+    paddingBottom: '100px'
   },
   seeMoreBlock: {
     textAlign: 'center',
@@ -148,6 +157,29 @@ const styles = StyleSheet.create({
     background: 'url(/bg/bg-home2.png)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '97% 98%'
+  },
+  mainBlock: {
+    background: 'url(/bg/bg-home1.png)',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 96%',
+    backgroundPositionY: '35px',
+    marginTop: '-60px'
+  },
+  mainBlockTop: {
+    position: 'relative',
+    textAlign: 'center',
+    paddingBottom: '10px'
+  },
+  mainBlockTopIcon: {
+    width: '90px',
+    margin: '0 10px'
+  },
+  mapTitle: {
+    position: 'absolute',
+    fontSize: '40px',
+    fontWeight: 'bold',
+    lineHeight: '90px',
+    color: '#0080ff'
   }
 });
 
