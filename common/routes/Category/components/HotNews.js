@@ -7,7 +7,7 @@ const HotNews = ({ newsList }) => (
   <div className={css(styles.box)}>
     <div className={css(styles.head)}>熱門</div>
     {newsList.map(({ shortTitle, sn, startedAt }) => (
-      <Link key={sn}
+      <Link className={css(styles.link)} key={sn}
         to={`/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`}>
         <div className={css(styles.item)}>
           { shortTitle }
@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
     height: 50,
     lineHeight: '50px',
     paddingLeft: 30
+  },
+  link: {
+    textDecoration: 'none'
   }
 });
 

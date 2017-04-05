@@ -1,5 +1,6 @@
 export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
 export const LOAD_NEWS_SUCCESS = 'LOAD_NEWS_SUCCESS';
+export const LOAD_MORE_NEWS_SUCCESS = 'LOAD_MORE_NEWS_SUCCESS';
 export const LOAD_NEWS_FAILURE = 'LOAD_NEWS_FAILURE';
 export const LOAD_PREVIEW_REQUEST = 'LOAD_PREVIEW_REQUEST';
 export const LOAD_PREVIEW_SUCCESS = 'LOAD_PREVIEW_SUCCESS';
@@ -12,7 +13,7 @@ const initialState = {
   data: []
 };
 
-export function loadNews (sn) {
+export function loadNews (sn, isLoadMore = false) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     const apiServ = `${protocol}://${host}`;
@@ -24,7 +25,7 @@ export function loadNews (sn) {
     ]).then(([news, nextandprev, relations]) => {
       let { next, prev } = nextandprev.data;
       dispatch({
-        type: LOAD_NEWS_SUCCESS,
+        type: isLoadMore ? LOAD_MORE_NEWS_SUCCESS : LOAD_NEWS_SUCCESS,
         payload: { ...news.data, next, prev, relations: relations.data },
         meta: {
           lastFetched: Date.now()
@@ -75,10 +76,18 @@ export default function currentNews (state = initialState, action) {
         error: null,
         isLoading: true
       };
-    case LOAD_NEWS_SUCCESS:
+    case LOAD_MORE_NEWS_SUCCESS:
       return {
         ...state,
         data: [...state.data, action.payload],
+        hasMore: !!action.payload.next.sn,
+        isLoading: false,
+        lastFetched: action.meta.lastFetched
+      };
+    case LOAD_NEWS_SUCCESS:
+      return {
+        ...state,
+        data: [action.payload],
         hasMore: !!action.payload.next.sn,
         isLoading: false,
         lastFetched: action.meta.lastFetched
