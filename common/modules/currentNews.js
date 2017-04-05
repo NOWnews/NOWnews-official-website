@@ -5,6 +5,8 @@ export const LOAD_NEWS_FAILURE = 'LOAD_NEWS_FAILURE';
 export const LOAD_PREVIEW_REQUEST = 'LOAD_PREVIEW_REQUEST';
 export const LOAD_PREVIEW_SUCCESS = 'LOAD_PREVIEW_SUCCESS';
 export const LOAD_PREVIEW_FAILURE = 'LOAD_PREVIEW_FAILURE';
+const canUseDOM = !!(typeof window !== 'undefined' && window.document);
+
 const initialState = {
   hasMore: false,
   isLoading: false,
@@ -24,6 +26,10 @@ export function loadNews (sn, isLoadMore = false) {
       axios.get(`${apiServ}/news/${sn}/relations`)
     ]).then(([news, nextandprev, relations]) => {
       let { next, prev } = nextandprev.data;
+      // If it's first time loading then scrollTop to zero.
+      if (canUseDOM && !isLoadMore) {
+        window.document.body.scrollTop = 0;
+      }
       dispatch({
         type: isLoadMore ? LOAD_MORE_NEWS_SUCCESS : LOAD_NEWS_SUCCESS,
         payload: { ...news.data, next, prev, relations: relations.data },
