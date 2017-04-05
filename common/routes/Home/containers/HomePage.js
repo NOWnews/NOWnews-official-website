@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Header from '../../../components/Header';
-import { BlockItems, BlockItems4, SlideRight } from '../components';
+import { BlockItems, BlockItems4, BlockItems8, SlideRight } from '../components';
 import { Container, RightSide, LeftSide, ClearFix, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
@@ -30,15 +30,15 @@ const HomePage = ({ menus, homePage }) => (
       <div>
         <h2>Loading ...</h2>
       </div>}
-    {!homePage.isLoading && homePage.data.length === 0 &&
+    {!homePage.isLoading && homePage.carousels.length === 0 &&
       <div>查無相關新聞 ... </div>}
-    {!homePage.isLoading && homePage.data.length > 0 &&
+    {!homePage.isLoading && homePage.carousels.length > 0 &&
       <div>
         <Container>
           <Header menus={menus} />
           <div className={css(styles.slideArea)}>
-            <Slide newsList={homePage.data.slice(0, 5)} />
-            <SlideRight newsList={homePage.data.slice(0, 5)} />
+            <Slide newsList={homePage.carousels.slice(0, 5)} />
+            <SlideRight newsList={homePage.carousels.slice(0, 5)} />
             <ClearFix />
           </div>
         </Container>
@@ -46,7 +46,7 @@ const HomePage = ({ menus, homePage }) => (
           <Container>
             <LeftSide>
               <div className={css(styles.blockItem)}>
-                <BlockItems4 newsList={homePage.data.slice(0, 4)} />
+                <BlockItems4 newsList={homePage.specialTopics.slice(0, 4)} />
               </div>
               <div className={css(styles.seeMoreBlock)}>
                 <span className={css(styles.seeMoreText)}>看更多專題</span>
@@ -67,7 +67,7 @@ const HomePage = ({ menus, homePage }) => (
 
           <hr />
           <div className={css(styles.blockItem)}>
-            <BlockItems newsList={homePage.data.slice(0, 9)} />
+            <BlockItems newsList={homePage.carousels.slice(0, 9)} />
           </div>
           <ClearFix />
           <div className={css(styles.seeMoreBlock)}>
@@ -76,8 +76,7 @@ const HomePage = ({ menus, homePage }) => (
           <div>影音區塊</div>
           <LeftSide>
             <hr />
-            <BlockItems newsList={homePage.data.slice(0, 4)} />
-            <BlockItems newsList={homePage.data.slice(0, 4)} />
+            <BlockItems8 newsList={homePage.specialChannels.slice(0, 8)} />
             <div className={css(styles.seeMoreBlock)}>
               <span className={css(styles.seeMoreText)}>看更多特輯</span>
             </div>
