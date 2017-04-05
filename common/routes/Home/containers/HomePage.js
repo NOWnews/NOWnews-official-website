@@ -73,12 +73,16 @@ const HomePage = ({ menus, homePage }) => (
           <div className={css(styles.seeMoreBlock)}>
             <span className={css(styles.seeMoreText)}>看更多地區新聞</span>
           </div>
-          <div>影音區塊</div>
           <LeftSide>
-            <hr />
-            <BlockItems8 newsList={homePage.specialChannels.slice(0, 8)} />
-            <div className={css(styles.seeMoreBlock)}>
-              <span className={css(styles.seeMoreText)}>看更多特輯</span>
+            <div className={css(styles.specialChannelsBox)}>
+              <div className={css(styles.specialChannelsTitle)}>
+                <h1 className={css(styles.specialChannelsTitleText)}>精選特輯</h1>
+                <hr className={css(styles.specialChannelsTitleLine)} />
+              </div>
+              <BlockItems8 newsList={homePage.specialChannels.slice(0, 8)} />
+              <div className={css(styles.seeMoreBlock)}>
+                <span className={css(styles.seeMoreText)}>看更多特輯</span>
+              </div>
             </div>
           </LeftSide>
           <RightSide>
@@ -126,6 +130,24 @@ const styles = StyleSheet.create({
   },
   slideArea: {
     marginTop: 10
+  },
+  specialChannelsTitle: {
+    position: 'relative'
+  },
+  specialChannelsTitleText: {
+    fontSize: '40px',
+    fontWeight: 'inherit'
+  },
+  specialChannelsTitleLine: {
+    position: 'absolute',
+    top: '32px',
+    width: '480px',
+    right: '15px'
+  },
+  specialChannelsBox: {
+    background: 'url(/bg/bg-home2.png)',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '97% 98%'
   }
 });
 

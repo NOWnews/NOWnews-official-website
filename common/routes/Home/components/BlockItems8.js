@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   blockItem: {
     float: 'left',
     margin: '10px 11.5px',
-    width: 300,
+    width: 306,
     position: 'relative'
   }
 });
