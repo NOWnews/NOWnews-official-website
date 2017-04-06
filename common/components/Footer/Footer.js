@@ -51,9 +51,9 @@ export const Footer = () => {
               </Link>
             )}
             <Link className={css(styles.groupTitle)}
-              target='_blank' to='info/about'>About NOWnews</Link>
+              target='_blank' to='/info/about'>About NOWnews</Link>
             <Link className={css(styles.groupTitle)}
-              target='_blank' to='info/partner'>合作夥伴</Link>
+              target='_blank' to='/info/partner'>合作夥伴</Link>
           </FloatLeft>
 
           {/* Contact Us */}
@@ -88,11 +88,11 @@ export const Footer = () => {
           </FloatLeft>
           <FloatRight>
             <Link className={css(styles.annoucneLink)}
-              target='_blank' to='info/disclaimer'>免責聲明</Link>
+              target='_blank' to='/info/disclaimer'>免責聲明</Link>
             <Link className={css(styles.annoucneLink)}
-              target='_blank' to='info/privacy'>隱私權聲明</Link>
+              target='_blank' to='/info/privacy'>隱私權聲明</Link>
             <Link className={css(styles.annoucneLink)}
-              target='_blank' to='info/copyright'>著作權聲明</Link>
+              target='_blank' to='/info/copyright'>著作權聲明</Link>
           </FloatRight>
           <ClearFix />
         </div>
