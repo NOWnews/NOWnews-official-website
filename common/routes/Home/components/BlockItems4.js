@@ -6,7 +6,7 @@ import { ClearFix } from '../../../components/Layout';
 
 const BlockItems = ({ newsList }) => {
   let items = [];
-  newsList.map(({ sn, MainPhoto, title, formatStartedAt }) => {
+  newsList.map(({ formatStartedAt, MainPhoto, sn, title, url }) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem4 key={sn}
@@ -14,7 +14,7 @@ const BlockItems = ({ newsList }) => {
           photo={MainPhoto}
           title={title}
           time={moment(formatStartedAt).format('YYYY/MM/DD')}
-          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
+          url={url} />
       </div>
     );
   });
