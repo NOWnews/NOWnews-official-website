@@ -1,36 +1,170 @@
 import React from 'react';
+import Link from 'react-router/lib/Link';
+import { StyleSheet, css } from 'aphrodite/no-important';
 import AdBlock from './components/AdBlock';
 import { Ad970x250 } from '../Ad';
-import { StyleSheet, css } from 'aphrodite/no-important';
-import { Container } from '../Layout';
+import { ClearFix, Container, FloatLeft, FloatRight } from '../Layout';
 
-export const Footer = () => (
-  <Container>
-    <Ad970x250 />
-    <div className={css(styles.footer)}>
-      <div className={css(styles.adBlocks)}>
-        { [1, 2, 3, 4, 5].map((index) => <AdBlock key={index} />)}
-      </div>
-      <hr />
-      <div className={css(styles.announce)}>
-        Copyright sdfs© 2017 NOWnwes 今日新聞 免責聲明 | 隱私權聲明 | 著作權聲明
-      </div>
-    </div>
-  </Container>
-);
+export const Footer = () => {
+  const moreList = [
+    { title: '立院直播', url: '' },
+    { title: '購屋通', url: '' },
+    { title: '名家論壇', url: '' },
+    { title: '飆網超省', url: '' },
+    { title: '公益行善', url: '' },
+    { title: '色區', url: '' }
+  ];
+  const socialList = [
+    { icon: 'FB', url: '' },
+    { icon: 'IG', url: '' },
+    { icon: 'weibo', url: '' },
+    { icon: 'G+', url: '' },
+    { icon: 'twitter', url: '' }
+  ];
 
+  return (
+    <Container>
+      <Ad970x250 />
+      <div className={css(styles.footer)}>
+        <div className={css(styles.adBlocks)}>
+          { [1, 2, 3, 4, 5].map((index) => <AdBlock key={index} />)}
+        </div>
+        <hr className={css(styles.hr)} />
+        <div className={css(styles.announce)}>
+
+          {/* More NOWnews */}
+          <FloatLeft style={{ width: '25%' }}>
+            <label className={css(styles.groupTitle)}>More NOWnews</label>
+            <div style={{ width: 200 }}>
+              { moreList.map(({ title, url }, i) =>
+                <Link className={css(styles.moreLink)} key={i} target='_blank' to={url}>{ title }</Link>
+              )}
+            </div>
+          </FloatLeft>
+
+          {/* Follow, About, Partner */}
+          <FloatLeft style={{ width: '25%' }}>
+            <label className={css(styles.groupTitle)}>Follow Us</label>
+            { socialList.map(({ icon, url }) =>
+              <Link className={css(styles.btnSocial)} key={icon} target='_blank' to={url}>
+                <img src={`/social/${icon}.png`} alt={icon} />
+              </Link>
+            )}
+            <Link className={css(styles.groupTitle)}
+              target='_blank' to='/info/about'>About NOWnews</Link>
+            <Link className={css(styles.groupTitle)}
+              target='_blank' to='/info/partner'>合作夥伴</Link>
+          </FloatLeft>
+
+          {/* Contact Us */}
+          <FloatLeft style={{ width: '35%' }}>
+            <label className={css(styles.groupTitle)}>Contact Us</label>
+            <div className={css(styles.btnEmail)}>
+              <a href='mailto:someone@nownews.com' target='_top'>
+                <img src='/icons/email.png' />
+              </a>
+            </div>
+            <p className={css(styles.contactInfo)}>T: +886 2 8797 8775</p>
+            <p className={css(styles.contactInfo)}>F: +886 2 8797 8339</p>
+            <p className={css(styles.contactInfo)}>11493 台北市內湖區堤頂大道二段 407 巷 32 號 4 樓</p>
+          </FloatLeft>
+
+          {/* Member, Download App */}
+          <FloatRight style={{ textAlign: 'right', width: '15%' }}>
+            <Link className={css(styles.btnMember)} to='/'>加入會員</Link>
+            <Link to='https://itunes.apple.com/tw/app/nownews-v1/id388356807?mt=8'>
+              <img src='/app/dark_ios.png' />
+            </Link>
+            <Link to='https://play.google.com/store/apps/details?id=com.nownews&hl=zh_TW'>
+              <img src='/app/dark_android.png' />
+            </Link>
+          </FloatRight>
+          <ClearFix />
+        </div>
+        <hr className={css(styles.hr)} />
+        <div className={css(styles.announce)}>
+          <FloatLeft>
+            今日傳媒(股)公司版權所有，非經授權，不許轉載本網站內容 © 2017 NOWnews.com. All Rights Reserved.
+          </FloatLeft>
+          <FloatRight>
+            <Link className={css(styles.annoucneLink)}
+              target='_blank' to='/info/disclaimer'>免責聲明</Link>
+            <Link className={css(styles.annoucneLink)}
+              target='_blank' to='/info/privacy'>隱私權聲明</Link>
+            <Link className={css(styles.annoucneLink)}
+              target='_blank' to='/info/copyright'>著作權聲明</Link>
+          </FloatRight>
+          <ClearFix />
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+const mainGray = '#98999A';
 const styles = StyleSheet.create({
-  footer: {
-    backgroundColor: '#424344',
-    marginTop: '1rem',
-    padding: '1rem 0'
-  },
   adBlocks: {
     display: 'inline-flex'
   },
   announce: {
-    color: '#fff',
-    padding: '0 1rem'
+    color: mainGray,
+    fontSize: 12,
+    padding: '5px 22px'
+  },
+  annoucneLink: {
+    color: mainGray,
+    marginLeft: 15,
+    textDecoration: 'none'
+  },
+  btnEmail: {
+    margin: '8px 0'
+  },
+  btnMember: {
+    background: '#CBCCCD',
+    color: '#000000',
+    display: 'block',
+    float: 'right',
+    fontSize: 20,
+    height: 30,
+    lineHeight: '30px',
+    marginBottom: 10,
+    textAlign: 'center',
+    textDecoration: 'none',
+    width: 116
+  },
+  btnSocial: {
+    marginRight: 8
+  },
+  contactInfo: {
+    margin: '3px 0'
+  },
+  footer: {
+    backgroundColor: '#323334',
+    marginTop: '1rem',
+    padding: '1rem 0'
+  },
+  groupTitle: {
+    color: mainGray,
+    display: 'block',
+    fontWeight: 'bold',
+    fontSize: 16,
+    margin: '8px 0',
+    textDecorationColor: mainGray
+  },
+  hr: {
+    backgroundColor: mainGray,
+    border: 0,
+    height: 1,
+    width: '97%'
+  },
+  moreLink: {
+    color: '#CBCCCD',
+    display: 'inline-block',
+    fontWeight: 'bold',
+    fontSize: 14,
+    paddingBottom: 3,
+    textDecoration: 'none',
+    width: 80
   }
 });
 export default Footer;
