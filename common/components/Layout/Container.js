@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Container = ({ children, className }) => (
+const Container = ({ children, className = '' }) => (
   <div className={`${className} ${css(styles.container)}`} >
     { children }
   </div>

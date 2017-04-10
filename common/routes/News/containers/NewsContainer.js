@@ -50,7 +50,7 @@ class NewsPage extends Component {
   }
 
   render () {
-    let { isLoading, data, hasMore } = this.props.currentNews;
+    let { isLoading, data = [], hasMore } = this.props.currentNews;
     let items = [];
     let totalLength = data.length;
     data.map((item, i) => {
