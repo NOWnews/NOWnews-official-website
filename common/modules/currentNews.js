@@ -1,3 +1,4 @@
+import { callApi as pvCallApi } from '../../lib/track/pageview';
 export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
 export const LOAD_NEWS_SUCCESS = 'LOAD_NEWS_SUCCESS';
 export const LOAD_MORE_NEWS_SUCCESS = 'LOAD_MORE_NEWS_SUCCESS';
@@ -26,17 +27,27 @@ export function loadNews (sn, isLoadMore = false) {
       axios.get(`${apiServ}/news/${sn}/relations`)
     ]).then(([news, nextandprev, relations]) => {
       let { next, prev } = nextandprev.data;
+      let result = news.data;
+
       // If it's first time loading then scrollTop to zero.
       if (canUseDOM && !isLoadMore) {
         window.document.body.scrollTop = 0;
       }
+
       dispatch({
         type: isLoadMore ? LOAD_MORE_NEWS_SUCCESS : LOAD_NEWS_SUCCESS,
-        payload: { ...news.data, next, prev, relations: relations.data },
+        payload: { ...result, next, prev, relations: relations.data },
         meta: {
           lastFetched: Date.now()
         }
       });
+
+      if (isLoadMore) {
+        const { pathname, search } = window.location;
+        let menuId = result.MainMenu.id;
+        let newsId = result.id;
+        pvCallApi(apiServ, menuId, newsId, pathname, search);
+      }
     }).catch(error => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
