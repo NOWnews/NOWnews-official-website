@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Container = ({ children }) => (
-  <div className={css(styles.container)} >
+const Container = ({ children, className }) => (
+  <div className={`${className} ${css(styles.container)}`} >
     { children }
   </div>
 );
@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
 });
 
 Container.propTypes = {
-  children: PropTypes.any.isRequired
+  children: PropTypes.any.isRequired,
+  className: PropTypes.string
 };
 
 export default Container;
