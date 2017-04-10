@@ -5,10 +5,10 @@ export default function createRoutes (store) {
     path: 'news/:date/:sn',
     getComponents (location, cb) {
       require.ensure([
-        './containers/NewsPage'
+        './containers/NewsContainer'
       ], (require) => {
-        let NewsPage = require('./containers/NewsPage').default;
-        cb(null, NewsPage);
+        let NewsContainer = require('./containers/NewsContainer').default;
+        cb(null, NewsContainer);
       });
     }
   };

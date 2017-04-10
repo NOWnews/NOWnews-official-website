@@ -6,10 +6,10 @@ export default function createRoutes (store) {
     path: 'preview/:redisKey',
     getComponents (location, cb) {
       require.ensure([
-        './containers/PreviewPage'
+        './containers/PreviewContainer'
       ], (require) => {
-        let PreviewPage = require('./containers/PreviewPage').default;
-        cb(null, PreviewPage);
+        let PreviewContainer = require('./containers/PreviewContainer').default;
+        cb(null, PreviewContainer);
       });
     }
   };

@@ -6,12 +6,12 @@ export default function createRoutes (store) {
     path: 'instant',
     getComponents (location, cb) {
       require.ensure([
-        './containers/InstantPage'
+        './containers/InstantContainer'
       ], (require) => {
-        let InstantPage = require('./containers/InstantPage').default;
+        let InstantContainer = require('./containers/InstantContainer').default;
         let instantReducer = require('./module').default;
         injectAsyncReducer(store, 'instantPage', instantReducer);
-        cb(null, InstantPage);
+        cb(null, InstantContainer);
       });
     }
   };
