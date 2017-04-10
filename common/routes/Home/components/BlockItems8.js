@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem8 } from '../../../components/News';
-import { ClearFix } from '../../../components/Layout';
 
 const BlockItems = ({ newsList }) => {
   let items = [];
@@ -16,9 +15,8 @@ const BlockItems = ({ newsList }) => {
   });
 
   return (
-    <div>
+    <div className='clearfix'>
       { items }
-      <ClearFix />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import AdBlock from './components/AdBlock';
 import { Ad970x250 } from '../Ad';
-import { ClearFix, Container, FloatLeft, FloatRight } from '../Layout';
+import { Container } from '../Layout';
 
 export const Footer = () => {
   const moreList = [
@@ -30,20 +30,20 @@ export const Footer = () => {
           { [1, 2, 3, 4, 5].map((index) => <AdBlock key={index} />)}
         </div>
         <hr className={css(styles.hr)} />
-        <div className={css(styles.announce)}>
+        <div className={`clearfix ${css(styles.announce)}`}>
 
           {/* More NOWnews */}
-          <FloatLeft style={{ width: '25%' }}>
+          <div className='left' style={{ width: '25%' }}>
             <label className={css(styles.groupTitle)}>More NOWnews</label>
             <div style={{ width: 200 }}>
               { moreList.map(({ title, url }, i) =>
                 <Link className={css(styles.moreLink)} key={i} target='_blank' to={url}>{ title }</Link>
               )}
             </div>
-          </FloatLeft>
+          </div>
 
           {/* Follow, About, Partner */}
-          <FloatLeft style={{ width: '25%' }}>
+          <div className='left' style={{ width: '25%' }}>
             <label className={css(styles.groupTitle)}>Follow Us</label>
             { socialList.map(({ icon, url }) =>
               <Link className={css(styles.btnSocial)} key={icon} target='_blank' to={url}>
@@ -54,10 +54,10 @@ export const Footer = () => {
               target='_blank' to='/info/about'>About NOWnews</Link>
             <Link className={css(styles.groupTitle)}
               target='_blank' to='/info/partner'>合作夥伴</Link>
-          </FloatLeft>
+          </div>
 
           {/* Contact Us */}
-          <FloatLeft style={{ width: '35%' }}>
+          <div className='left' style={{ width: '35%' }}>
             <label className={css(styles.groupTitle)}>Contact Us</label>
             <div className={css(styles.btnEmail)}>
               <a href='mailto:someone@nownews.com' target='_top'>
@@ -67,10 +67,10 @@ export const Footer = () => {
             <p className={css(styles.contactInfo)}>T: +886 2 8797 8775</p>
             <p className={css(styles.contactInfo)}>F: +886 2 8797 8339</p>
             <p className={css(styles.contactInfo)}>11493 台北市內湖區堤頂大道二段 407 巷 32 號 4 樓</p>
-          </FloatLeft>
+          </div>
 
           {/* Member, Download App */}
-          <FloatRight style={{ textAlign: 'right', width: '15%' }}>
+          <div className='right' style={{ textAlign: 'right', width: '15%' }}>
             <Link className={css(styles.btnMember)} to='/'>加入會員</Link>
             <Link to='https://itunes.apple.com/tw/app/nownews-v1/id388356807?mt=8'>
               <img src='/app/dark_ios.png' />
@@ -78,23 +78,21 @@ export const Footer = () => {
             <Link to='https://play.google.com/store/apps/details?id=com.nownews&hl=zh_TW'>
               <img src='/app/dark_android.png' />
             </Link>
-          </FloatRight>
-          <ClearFix />
+          </div>
         </div>
         <hr className={css(styles.hr)} />
-        <div className={css(styles.announce)}>
-          <FloatLeft>
+        <div className={`clearfix ${css(styles.announce)}`}>
+          <div>
             今日傳媒(股)公司版權所有，非經授權，不許轉載本網站內容 © 2017 NOWnews.com. All Rights Reserved.
-          </FloatLeft>
-          <FloatRight>
+          </div>
+          <div className='right'>
             <Link className={css(styles.annoucneLink)}
               target='_blank' to='/info/disclaimer'>免責聲明</Link>
             <Link className={css(styles.annoucneLink)}
               target='_blank' to='/info/privacy'>隱私權聲明</Link>
             <Link className={css(styles.annoucneLink)}
               target='_blank' to='/info/copyright'>著作權聲明</Link>
-          </FloatRight>
-          <ClearFix />
+          </div>
         </div>
       </div>
     </Container>

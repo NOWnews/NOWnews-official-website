@@ -2,8 +2,7 @@ import React from 'react';
 // import { StyleSheet, css } from 'aphrodite/no-important'
 
 const ThermometerSm = () => (
-  <div>ThermometerSm
-  </div>
+  <div>ThermometerSm</div>
 );
 
 // const styles = StyleSheet.create({

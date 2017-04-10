@@ -2,9 +2,10 @@ import moment from 'moment';
 import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { RightSide } from '../../../components/Layout';
 
 const HotNews = ({ newsList }) => (
-  <div className={css(styles.box)}>
+  <RightSide>
     <div className={css(styles.head)}>熱門</div>
     {newsList.map(({ shortTitle, sn, startedAt }) => (
       <Link className={css(styles.link)} key={sn}
@@ -14,14 +15,10 @@ const HotNews = ({ newsList }) => (
         </div>
       </Link>
     ))}
-  </div>
+  </RightSide>
 );
 
 const styles = StyleSheet.create({
-  box: {
-    float: 'right',
-    width: 300
-  },
   head: {
     backgroundColor: '#AD6116',
     color: '#ffffff',

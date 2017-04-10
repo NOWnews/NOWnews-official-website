@@ -4,7 +4,7 @@ import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Header from '../../../components/Header';
 import { BlockItems, BlockItems4, BlockItems8, SlideRight } from '../components';
-import { Container, RightSide, LeftSide, ClearFix, Margin10 } from '../../../components/Layout';
+import { Container, RightSide, LeftSide, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
 import { Ad300x250, Ad300x600 } from '../../../components/Ad';
@@ -36,14 +36,13 @@ const HomePage = ({ menus, homePage }) => (
       <div>
         <Container>
           <Header menus={menus} />
-          <div className={css(styles.slideArea)}>
+          <div className={`clearfix ${css(styles.slideArea)}`}>
             <Slide newsList={homePage.carousels.slice(0, 5)} />
             <SlideRight newsList={homePage.carousels.slice(0, 5)} />
-            <ClearFix />
           </div>
         </Container>
         <div className={css(styles.bg)}>
-          <Container>
+          <Container className='clearfix'>
             <LeftSide>
               <div className={css(styles.blockItem)}>
                 <BlockItems4 newsList={homePage.specialTopics.slice(0, 4)} />
@@ -60,7 +59,6 @@ const HomePage = ({ menus, homePage }) => (
                 <Ad300x250 />
               </Margin10>
             </RightSide>
-            <ClearFix />
           </Container>
         </div>
         <Container>
@@ -74,13 +72,13 @@ const HomePage = ({ menus, homePage }) => (
             <div className={css(styles.blockItem)}>
               <BlockItems newsList={homePage.carousels.slice(0, 9)} />
             </div>
-            <ClearFix />
+            <div className='clearfix' />
             <div className={css(styles.seeMoreBlock)}>
               <span className={css(styles.seeMoreText)}>看更多地區新聞</span>
             </div>
           </div>
         </Container>
-        <Container>
+        <Container className='clearfix'>
           <LeftSide>
             <div className={css(styles.specialChannelsBox)}>
               <div className={css(styles.specialChannelsTitle)}>
@@ -107,7 +105,6 @@ const HomePage = ({ menus, homePage }) => (
               <AndroidStyle />
             </Margin10>
           </RightSide>
-          <ClearFix />
         </Container>
       </div>}
   </div>
