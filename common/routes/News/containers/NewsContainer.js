@@ -10,7 +10,7 @@ import { Ad970x250 } from '../../../components/Ad';
 import { Container } from '../../../components/Layout';
 import { Head, NewsContent } from '../../../components/News';
 
-import { loadNews, selectCurrentNews } from '../../../modules/currentNews';
+import { loadNews, selectCurrentNews } from '../module';
 import { loadMenus, selectMenus } from '../../../modules/menus';
 
 const redial = {

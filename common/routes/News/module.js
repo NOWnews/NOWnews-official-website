@@ -1,4 +1,4 @@
-import { callApi as pvCallApi } from '../../lib/track/pageview';
+import { callApi as pvCallApi } from '../../../lib/track/pageview';
 export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
 export const LOAD_NEWS_SUCCESS = 'LOAD_NEWS_SUCCESS';
 export const LOAD_MORE_NEWS_SUCCESS = 'LOAD_MORE_NEWS_SUCCESS';
