@@ -6,12 +6,12 @@ export default function createRoutes (store) {
     path: '',
     getComponents (location, cb) {
       require.ensure([
-        './containers/HomePage'
+        './containers/HomeContainer'
       ], (require) => {
-        let HomePage = require('./containers/HomePage').default;
+        let HomeContainer = require('./containers/HomeContainer').default;
         let homeReducer = require('./module').default;
         injectAsyncReducer(store, 'homePage', homeReducer);
-        cb(null, HomePage);
+        cb(null, HomeContainer);
       });
     }
   };

@@ -6,13 +6,13 @@ export default function createRoutes (store) {
     path: 'cat/:categoryName',
     getComponents (location, cb) {
       require.ensure([
-        './containers/CategoryPage',
+        './containers/CategoryContainer',
         './module'
       ], (require) => {
-        let CategoryPage = require('./containers/CategoryPage').default;
+        let CategoryContainer = require('./containers/CategoryContainer').default;
         let categoryReducer = require('./module').default;
         injectAsyncReducer(store, 'categoryPage', categoryReducer);
-        cb(null, CategoryPage);
+        cb(null, CategoryContainer);
       });
     }
   };

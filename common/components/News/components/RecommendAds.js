@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Ad200x112 } from '../../../components/Ad';
-import { ClearFix } from '../../../components/Layout';
 
 const RecommendAds = () => {
   var items = [];
@@ -18,9 +17,8 @@ const RecommendAds = () => {
   return (
     <div>
       <h2>NOWnews 推薦</h2>
-      <div>
+      <div className='clearfix'>
         { items }
-        <ClearFix />
       </div>
     </div>
   );

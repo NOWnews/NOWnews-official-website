@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import currentNews from './modules/currentNews';
 import menus from './modules/menus';
 
 const initialState = {
@@ -15,7 +14,7 @@ const sourceRequest = (state = initialState, action) => state;
 export default function createReducer (asyncReducers) {
   return combineReducers({
     categoryPage: defaultState,
-    currentNews,
+    currentNews: defaultState,
     homePage: defaultState,
     menus,
     sourceRequest,

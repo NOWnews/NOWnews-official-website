@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { loadMenus, selectMenus } from '../../../modules/menus';
-import { loadPreview, selectCurrentNews } from '../../../modules/currentNews';
+import { loadPreview, selectCurrentNews } from '../../News/module';
 import Head from '../../../components/News/Head';
 import Header from '../../../components/Header';
 import NewsContent from '../../../components/News/NewsContent';

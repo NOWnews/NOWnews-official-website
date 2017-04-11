@@ -2,7 +2,6 @@ import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
-import { ClearFix } from '../../../components/Layout';
 import { Ad300x250 } from '../../../components/Ad';
 
 const BlockItems = ({ newsList }) => {
@@ -27,9 +26,8 @@ const BlockItems = ({ newsList }) => {
   });
 
   return (
-    <div className={css(styles.box)}>
+    <div className={`clearfix ${css(styles.box)}`}>
       { items }
-      <ClearFix />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
-import { StyleSheet, css } from 'aphrodite/no-important';
+// import { StyleSheet, css } from 'aphrodite/no-important';
 import moment from 'moment';
 import { selectInstantPage, loadInstantList } from '../module';
 
@@ -9,7 +9,7 @@ import { loadMenus, selectMenus } from '../../../modules/menus';
 
 import Header from '../../../components/Header';
 import ListItem from '../../../components/News/ListItem';
-import { Container, RightSide, LeftSide, ClearFix } from '../../../components/Layout';
+import { Container, RightSide, LeftSide } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';
 
 const redial = {
@@ -25,9 +25,9 @@ const mapStateToProps = state => ({
 });
 
 const InstantPage = ({ menus, instantPage }) => (
-  <Container>
+  <Container className='clearfix'>
     <Header menus={menus} />
-    <p className={css(styles.aaa)}>Header</p>
+    <p>Header</p>
     <LeftSide>
       {instantPage.isLoading &&
         <div>
@@ -55,16 +55,9 @@ const InstantPage = ({ menus, instantPage }) => (
       <p>最新影音 </p>
       <p>300x250 </p>
     </RightSide>
-    <ClearFix />
     <Pagination />
   </Container>
 );
-
-const styles = StyleSheet.create({
-  aaa: {
-
-  }
-});
 
 InstantPage.propTypes = {
   menus: PropTypes.object.isRequired,

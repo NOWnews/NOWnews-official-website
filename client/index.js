@@ -1,6 +1,5 @@
 import 'babel-polyfill';
 import { trigger } from 'redial';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from 'react-router/lib/Router';
@@ -9,6 +8,8 @@ import browserHistory from 'react-router/lib/browserHistory';
 import { Provider } from 'react-redux';
 import { StyleSheet } from 'aphrodite/no-important';
 import { configureStore } from '../common/store';
+import * as pageview from '../lib/track/pageview';
+
 const initialState = window.INITIAL_STATE || {};
 // Set up Redux (note: this API requires redux@>=3.1.0):
 const store = configureStore(initialState);
@@ -25,6 +26,11 @@ const render = () => {
   // We need to have a root route for HMR to work.
   const createRoutes = require('../common/routes/root').default;
   const routes = createRoutes(store);
+  const track = () => {
+    const { sourceRequest: { protocol, host }, ...state } = store.getState();
+    const apiServ = `${protocol}://${host}`;
+    pageview.init(apiServ, pathname, search, state);
+  };
 
   // Pull child routes using match. Adjust Router for vanilla webpack HMR,
   // in development using a new key every time there is an edit.
@@ -32,9 +38,10 @@ const render = () => {
     // Render app with Redux and router context to container element.
     // We need to have a random in development because of `match`'s dependency on
     // `routes.` Normally, we would want just one file from which we require `routes` from.
-    ReactDOM.render(
+
+    return ReactDOM.render(
       <Provider store={store}>
-        <Router routes={routes} history={browserHistory} key={Math.random()} />
+        <Router routes={routes} history={browserHistory} onUpdate={track} key={Math.random()} />
       </Provider>,
       container
     );
