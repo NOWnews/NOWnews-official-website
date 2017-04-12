@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Ad200x70, Ad970x90 } from '../Ad';
-import { Logo, Menu, RightSide, RealTime } from './components';
+import { InstantBar, Logo, Menu, RightSide } from './components';
 import { Container } from '../Layout';
 
 export const Header = ({ menus }) => (
@@ -13,7 +13,7 @@ export const Header = ({ menus }) => (
       <RightSide />
     </div>
     <Menu menus={menus.data || []} />
-    <RealTime />
+    <InstantBar />
     <Ad970x90 />
   </Container>
 );
