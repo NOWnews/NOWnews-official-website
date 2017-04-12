@@ -13,7 +13,7 @@ const Logo = () => (
 const styles = StyleSheet.create({
   box: {
     height: 70,
-    width: 295,
+    width: 250,
     paddingRight: '1rem'
   },
   img: {
