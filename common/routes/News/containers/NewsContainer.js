@@ -8,7 +8,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import Header from '../../../components/Header';
 import { Ad970x250 } from '../../../components/Ad';
 import { Container } from '../../../components/Layout';
-import { Head, NewsContent } from '../../../components/News';
+import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 
 import { loadNews, selectCurrentNews } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
@@ -54,11 +54,13 @@ class NewsPage extends Component {
     let items = [];
     let totalLength = data.length;
     data.map((item, i) => {
-      let { formatStartedAt, newsBy, MainMenu, title, ...news } = item;
+      let { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
       items.push(
         <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
-          <NewsContent news={news} />
+          { type === 'NEWS' && <ContentForNews news={news} /> }
+          { type === 'PHOTO' && <ContentForPhoto news={news} /> }
+          { type === 'VIDEO' && <ContentForVideo news={news} /> }
           {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
         </div>
       );

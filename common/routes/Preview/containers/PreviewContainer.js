@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { loadHeader, selectMenus } from '../../../modules/header';
 import { loadPreview, selectCurrentNews } from '../../News/module';
-import Head from '../../../components/News/Head';
 import Header from '../../../components/Header';
-import NewsContent from '../../../components/News/NewsContent';
+import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 
 const redial = {
   fetch: ({ dispatch, params: { redisKey } }) => Promise.all([
@@ -22,7 +21,7 @@ const mapStateToProps = state => ({
 
 const PreviewPage = ({ currentNews, menus }) => {
   let {isLoading, data} = currentNews;
-  let [{ formatStartedAt, newsBy, MainMenu, title, ...news }] = data;
+  let [{ formatStartedAt, newsBy, MainMenu, title, type, ...news }] = data;
   news.relations = [];
 
   return (
@@ -35,7 +34,9 @@ const PreviewPage = ({ currentNews, menus }) => {
       {!isLoading &&
         <div>
           <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
-          <NewsContent news={news} />
+          { type === 'NEWS' && <ContentForNews news={news} /> }
+          { type === 'PHOTO' && <ContentForPhoto news={news} /> }
+          { type === 'VIDEO' && <ContentForVideo news={news} /> }
         </div>}
     </div>
   );

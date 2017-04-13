@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
-  Content, FontSize, RecommendAds, RelatedContent, Social,
-  Tags, Thermometer, ThermometerSm
-} from './components';
-import { PersonalRightSide, SpecialTopicNav } from '../News';
+  Content, FontSize, Social, Tags, Thermometer,
+  ThermometerSm
+} from './NewsContent';
+import { PersonalRightSide } from '../News';
 
 import { Container, LeftSide, RightSide } from '../Layout';
 
@@ -22,9 +22,6 @@ const NewsContent = ({ news }) => (
         <Tags tags={news.Tags} />
         <Social />
         <ThermometerSm />
-        <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
-        <RelatedContent type='你可能會喜歡' list={news.relations} sn={news.sn} />
-        <RecommendAds />
       </LeftSide>
       <RightSide>
         <Social />
@@ -32,9 +29,6 @@ const NewsContent = ({ news }) => (
         <Ad300x250 />
         <Thermometer />
         <PersonalRightSide newsList={[news, news, news, news, news]} />
-        <Ad300x250 />
-        <SpecialTopicNav list={[1, 2, 3, 4, 5, 6]} />
-        <Ad300x250 />
       </RightSide>
     </div>
   </Container>
