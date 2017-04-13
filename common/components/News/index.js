@@ -3,5 +3,8 @@ export BlockItem4 from './BlockItem4';
 export BlockItem8 from './BlockItem8';
 export Head from './Head';
 export ListItem from './ListItem';
+export ListItemSm from './ListItemSm';
 export NewsContent from './NewsContent';
+export PersonalRightSide from './PersonalRightSide';
 export Slide from './Slide';
+export SpecialTopicNav from './SpecialTopicNav';

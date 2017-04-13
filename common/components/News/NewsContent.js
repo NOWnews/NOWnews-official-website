@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
-  FontSize, Content, Social, Thermometer, ThermometerSm,
-  RelatedContent, RecommendAds
+  Content, FontSize, RecommendAds, RelatedContent, Social,
+  Tags, Thermometer, ThermometerSm
 } from './components';
+import { PersonalRightSide, SpecialTopicNav } from '../News';
 
 import { Container, LeftSide, RightSide } from '../Layout';
 
@@ -11,13 +12,14 @@ import { Ad300x250 } from '../Ad';
 
 const NewsContent = ({ news }) => (
   <Container>
-    <div className={css(styles.contentdiv)}>
+    <div className={css(styles.contentDiv)}>
       <span className={css(styles.contentImg)} style={{backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`}} />
     </div>
     <span>{news.MainPhoto && news.MainPhoto.desc}</span>
     <div className={`clearfix ${css(styles.content)}`}>
       <LeftSide>
         <Content content={news.content} />
+        <Tags tags={news.Tags} />
         <Social />
         <ThermometerSm />
         <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
@@ -29,7 +31,9 @@ const NewsContent = ({ news }) => (
         <FontSize />
         <Ad300x250 />
         <Thermometer />
+        <PersonalRightSide newsList={[news, news, news, news, news]} />
         <Ad300x250 />
+        <SpecialTopicNav list={[1, 2, 3, 4, 5, 6]} />
         <Ad300x250 />
       </RightSide>
     </div>
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '545px'
   },
-  contentdiv: {
+  contentDiv: {
     background: '#f1f2f3',
     height: '545px'
   }
