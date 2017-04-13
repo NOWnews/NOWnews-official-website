@@ -10,7 +10,7 @@ import { Container, LeftSide, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const NewsContent = ({ news }) => (
+const ContentForVideo = ({ news }) => (
   <Container>
     <div className={css(styles.contentDiv)}>
       <span className={css(styles.contentImg)} style={{backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`}} />
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
   }
 });
 
-NewsContent.propTypes = {
+ContentForVideo.propTypes = {
   news: PropTypes.shape().isRequired
 };
 
-export default NewsContent;
+export default ContentForVideo;

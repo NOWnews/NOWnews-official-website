@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { Carousel } from 'react-responsive-carousel';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
   Tags, Thermometer, ThermometerSm
@@ -10,35 +11,53 @@ import { Container, LeftSide, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const NewsContent = ({ news }) => (
-  <Container>
-    <div className={css(styles.contentDiv)}>
-      <span className={css(styles.contentImg)} style={{backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`}} />
-    </div>
-    <span>{news.MainPhoto && news.MainPhoto.desc}</span>
-    <div className={`clearfix ${css(styles.content)}`}>
-      <LeftSide>
-        <Content content={news.content} />
-        <Tags tags={news.Tags} />
-        <Social />
-        <ThermometerSm />
-        <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
-        <RelatedContent type='你可能會喜歡' list={news.relations} sn={news.sn} />
-        <RecommendAds />
-      </LeftSide>
-      <RightSide>
-        <Social />
-        <FontSize />
-        <Ad300x250 />
-        <Thermometer />
-        <PersonalRightSide newsList={[news, news, news, news, news]} />
-        <Ad300x250 />
-        <SpecialTopicNav list={[1, 2, 3, 4, 5, 6]} />
-        <Ad300x250 />
-      </RightSide>
-    </div>
-  </Container>
-);
+const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news } }) => {
+  let settings = {
+    axis: 'horizontal',
+    autoPlay: true,
+    emulateTouch: true,
+    showArrows: true,
+    showStatus: false,
+    showThumbs: true,
+    showIndicators: false
+  };
+  let photoList = [MainPhoto, ...Photos];
+  return (
+    <Container>
+      <div className={css(styles.contentDiv)}>
+        <Carousel {...settings}>
+          {photoList.map(({ desc, sn, url }) => (
+            <div>
+              <img key={sn} src={url} />
+              <p className='legend'>{desc}</p>
+            </div>
+          ))}
+        </Carousel>
+      </div>
+      <div className={`clearfix ${css(styles.content)}`}>
+        <LeftSide>
+          <Content content={news.content} />
+          <Tags tags={news.Tags} />
+          <Social />
+          <ThermometerSm />
+          <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
+          <RelatedContent type='你可能會喜歡' list={news.relations} sn={news.sn} />
+          <RecommendAds />
+        </LeftSide>
+        <RightSide>
+          <Social />
+          <FontSize />
+          <Ad300x250 />
+          <Thermometer />
+          <PersonalRightSide newsList={[news, news, news, news, news]} />
+          <Ad300x250 />
+          <SpecialTopicNav list={[1, 2, 3, 4, 5, 6]} />
+          <Ad300x250 />
+        </RightSide>
+      </div>
+    </Container>
+  );
+};
 
 const styles = StyleSheet.create({
   content: {
@@ -50,16 +69,17 @@ const styles = StyleSheet.create({
     display: 'inline-block',
     backgroundPosition: 'center center',
     width: '100%',
-    height: '545px'
+    height: 545
   },
   contentDiv: {
     background: '#f1f2f3',
-    height: '545px'
+    height: 545,
+    marginBottom: 60
   }
 });
 
-NewsContent.propTypes = {
+ContentForPhoto.propTypes = {
   news: PropTypes.shape().isRequired
 };
 
-export default NewsContent;
+export default ContentForPhoto;
