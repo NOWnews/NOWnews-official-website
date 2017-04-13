@@ -1,27 +1,27 @@
 import React, { PropTypes } from 'react';
-import { StyleSheet, css } from 'aphrodite/no-important';
 import {
-  Content, FontSize, Social, Tags, Thermometer,
-  ThermometerSm
+  Content, FontSize, HotVideoBlocks, Social, Tags,
+  Thermometer, ThermometerSm
 } from './NewsContent';
 import { PersonalRightSide } from '../News';
 
-import { Container, LeftSide, RightSide } from '../Layout';
+import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
 const ContentForVideo = ({ news }) => (
   <Container>
-    <div className={css(styles.contentDiv)}>
-      <span className={css(styles.contentImg)} style={{backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`}} />
-    </div>
-    <span>{news.MainPhoto && news.MainPhoto.desc}</span>
-    <div className={`clearfix ${css(styles.content)}`}>
+    <video width='100%' height='545' controls>
+      <source src='{{news.MainVideo.url}}' type='video/mp4' />
+    </video>
+    <span>{news.MainVideo && news.MainVideo.desc}</span>
+    <Margin10 className='clearfix'>
       <LeftSide>
         <Content content={news.content} />
         <Tags tags={news.Tags} />
         <Social />
         <ThermometerSm />
+        <HotVideoBlocks list={[news, news, news, news, news, news]} />
       </LeftSide>
       <RightSide>
         <Social />
@@ -30,27 +30,9 @@ const ContentForVideo = ({ news }) => (
         <Thermometer />
         <PersonalRightSide newsList={[news, news, news, news, news]} />
       </RightSide>
-    </div>
+    </Margin10>
   </Container>
 );
-
-const styles = StyleSheet.create({
-  content: {
-    margin: '1rem 0'
-  },
-  contentImg: {
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-    display: 'inline-block',
-    backgroundPosition: 'center center',
-    width: '100%',
-    height: '545px'
-  },
-  contentDiv: {
-    background: '#f1f2f3',
-    height: '545px'
-  }
-});
 
 ContentForVideo.propTypes = {
   news: PropTypes.shape().isRequired

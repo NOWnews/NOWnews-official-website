@@ -31,7 +31,7 @@ const ContentForNews = ({ news }) => (
         <FontSize />
         <Ad300x250 />
         <Thermometer />
-        <PersonalRightSide newsList={[news, news, news, news, news]} />
+        <PersonalRightSide newsList={[news]} />
         <Ad300x250 />
         <SpecialTopicNav list={[1, 2, 3, 4, 5, 6]} />
         <Ad300x250 />
