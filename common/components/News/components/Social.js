@@ -1,5 +1,5 @@
 import React from 'react';
-// import { StyleSheet, css } from 'aphrodite/no-important'
+// import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Social = () => (
   <div>Social
@@ -7,6 +7,6 @@ const Social = () => (
 );
 
 // const styles = StyleSheet.create({
-// })
+// });
 
 export default Social;
