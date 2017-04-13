@@ -5,9 +5,9 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Nav = () => {
   const socialList = [
-    { icon: 'FB', url: '' },
-    { icon: 'IG', url: '' },
-    { icon: 'weibo', url: '' }
+    { icon: 'FB', url: 'https://facebook.com/nownews' },
+    { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
+    { icon: 'weibo', url: 'http://tw.weibo.com/nownews' }
   ];
   return (
     <div className={`right ${css(styles.box)}`}>

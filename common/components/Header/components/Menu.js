@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Menu = ({ menus, t, currentMainMenu, currentChildMenu }) => {
+const Menu = ({ menus, currentMainMenu, currentChildMenu }) => {
   let childMenus = [];
   let mainMenuDoms = [];
 
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
 });
 
 Menu.propTypes = {
-  t: PropTypes.string,
   currentMainMenu: PropTypes.string,
   currentChildMenu: PropTypes.string,
   menus: PropTypes.array.isRequired

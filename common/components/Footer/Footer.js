@@ -15,11 +15,11 @@ export const Footer = () => {
     { title: '色區', url: '' }
   ];
   const socialList = [
-    { icon: 'FB', url: '' },
-    { icon: 'IG', url: '' },
-    { icon: 'weibo', url: '' },
-    { icon: 'G+', url: '' },
-    { icon: 'twitter', url: '' }
+    { icon: 'FB', url: 'https://facebook.com/nownews' },
+    { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
+    { icon: 'weibo', url: 'http://tw.weibo.com/nownews' },
+    { icon: 'G+', url: 'https://plus.google.com/+nownews' },
+    { icon: 'twitter', url: 'https://twitter.com/NOWnews_TW' }
   ];
 
   return (

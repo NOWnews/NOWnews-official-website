@@ -5,9 +5,8 @@ import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
 
 const PersonalRightSide = ({ newsList }) => {
-  let items = [];
-  newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
-    items.push(
+  let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
+    return (
       <div key={key} className={css(styles.blockItem)}>
         <ListItemSm
           category={MainMenu && MainMenu.name || '未分類'}

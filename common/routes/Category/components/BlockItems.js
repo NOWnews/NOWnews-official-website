@@ -5,9 +5,9 @@ import { BlockItem } from '../../../components/News';
 import { Ad300x250 } from '../../../components/Ad';
 
 const BlockItems = ({ newsList }) => {
-  var items = [];
+  let items = [];
 
-  newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
+  newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem
