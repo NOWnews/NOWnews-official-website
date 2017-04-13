@@ -9,13 +9,13 @@ import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
 import { Ad300x250, Ad300x600 } from '../../../components/Ad';
 
-import { loadMenus, selectMenus } from '../../../modules/menus';
+import { loadHeader, selectMenus } from '../../../modules/header';
 import { selectHomePage, loadHomeList } from '../module';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
     dispatch(loadHomeList()),
-    dispatch(loadMenus())
+    dispatch(loadHeader())
   ])
 };
 
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
 
 HomePage.propTypes = {
   homePage: PropTypes.object.isRequired,
-  menus: PropTypes.object.isRequired
+  menus: PropTypes.array.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps)(HomePage));

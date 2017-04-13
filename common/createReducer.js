@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import menus from './modules/menus';
+import header from './modules/header';
 
 const initialState = {
   host: '',
@@ -16,7 +16,7 @@ export default function createReducer (asyncReducers) {
     categoryPage: defaultState,
     currentNews: defaultState,
     homePage: defaultState,
-    menus,
+    header,
     sourceRequest,
     ...asyncReducers
   });

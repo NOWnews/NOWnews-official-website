@@ -4,9 +4,8 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem4 } from '../../../components/News';
 
 const BlockItems = ({ newsList }) => {
-  let items = [];
-  newsList.map(({ formatStartedAt, MainPhoto, sn, title, url }) => {
-    items.push(
+  let items = newsList.map(({ formatStartedAt, MainPhoto, sn, title, url }) => {
+    return (
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem4 key={sn}
           category={'專題'}

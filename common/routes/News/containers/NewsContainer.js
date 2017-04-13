@@ -11,11 +11,11 @@ import { Container } from '../../../components/Layout';
 import { Head, NewsContent } from '../../../components/News';
 
 import { loadNews, selectCurrentNews } from '../module';
-import { loadMenus, selectMenus } from '../../../modules/menus';
+import { loadHeader, selectMenus } from '../../../modules/header';
 
 const redial = {
   fetch: ({ dispatch, params: { sn } }) => Promise.all([
-    dispatch(loadMenus()),
+    dispatch(loadHeader()),
     dispatch(loadNews(sn))
   ])
 };
@@ -66,7 +66,7 @@ class NewsPage extends Component {
 
     return (
       <div>
-        <Header menus={this.props.menus} />
+        <Header menus={this.props.menus} currentMainMenu={data[0] && data[0].MainMenu.id} />
         {isLoading &&
           <div>
             <div>{items}</div>
@@ -89,7 +89,7 @@ class NewsPage extends Component {
 NewsPage.propTypes = {
   currentNews: PropTypes.object.isRequired,
   loadNews: PropTypes.func.isRequired,
-  menus: PropTypes.object.isRequired
+  menus: PropTypes.array.isRequired
 };
 
 const styles = StyleSheet.create({

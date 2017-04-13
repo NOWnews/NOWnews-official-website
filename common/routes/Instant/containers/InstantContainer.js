@@ -5,7 +5,7 @@ import { provideHooks } from 'redial';
 import moment from 'moment';
 import { selectInstantPage, loadInstantList } from '../module';
 
-import { loadMenus, selectMenus } from '../../../modules/menus';
+import { loadHeader, selectMenus } from '../../../modules/header';
 
 import Header from '../../../components/Header';
 import ListItem from '../../../components/News/ListItem';
@@ -15,7 +15,7 @@ import Pagination from '../../../components/Pagination';
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
     dispatch(loadInstantList()),
-    dispatch(loadMenus())
+    dispatch(loadHeader())
   ])
 };
 
@@ -60,7 +60,7 @@ const InstantPage = ({ menus, instantPage }) => (
 );
 
 InstantPage.propTypes = {
-  menus: PropTypes.object.isRequired,
+  menus: PropTypes.array.isRequired,
   instantPage: PropTypes.object.isRequired
 };
 

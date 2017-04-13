@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const RealTime = () => (
+const InstantBar = () => (
   <div className={css(styles.box)}>
     <span className={css(styles.text)}>即時跑馬燈</span>
     <Link className={css(styles.link)}>蝶戀花父子鞠躬道歉  承諾絕不逃避</Link>
@@ -13,19 +13,20 @@ const RealTime = () => (
   </div>
 );
 
+const lineHeight = 44;
 const styles = StyleSheet.create({
   box: {
-    backgroundColor: '#0080FF',
+    backgroundImage: 'url("/bg/bg-header-instant-bar.png")',
     color: '#fff',
     display: 'inline-flex',
-    height: 50,
+    height: lineHeight,
     margin: '0.5rem 0 1rem 0'
 
   },
   link: {
     width: 272.5,
-    height: 50,
-    lineHeight: '50px',
+    height: lineHeight,
+    lineHeight: `${lineHeight}px`,
     textAlign: 'center',
     textDecoration: 'none',
     fontWeight: 'bold',
@@ -35,16 +36,16 @@ const styles = StyleSheet.create({
     }
   },
   split: {
-    height: 50,
-    lineHeight: '50px'
+    height: lineHeight,
+    lineHeight: `${lineHeight}px`
   },
   text: {
-    height: 50,
-    lineHeight: '50px',
+    height: lineHeight,
+    lineHeight: `${lineHeight}px`,
     width: 120,
     textAlign: 'center',
     borderRight: '1px solid #fff'
   }
 });
 
-export default RealTime;
+export default InstantBar;

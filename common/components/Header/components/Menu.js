@@ -2,34 +2,52 @@ import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Menu = ({ menus }) => (
-  <div>
-    <div className={css(styles.menu)} >
-      { menus.map((menu) =>
-        <Link activeClassName={css(styles.link, styles.activeLink)}
-          className={css(styles.link)}
-          key={menu.sn}
-          target={menu.isExternal === true ? '_blank' : '_self'}
-          to={menu.url}>
-          { menu.name }
-        </Link>
-      )}
+const Menu = ({ menus, currentMainMenu, currentChildMenu }) => {
+  let childMenus = [];
+  let mainMenuDoms = [];
+
+  menus.map(({ _id, child, isExternal, name, sn, url }) => {
+    let isCurrentMainMenu = false;
+
+    if (_id === currentMainMenu) {
+      childMenus = child || [];
+      isCurrentMainMenu = true;
+    }
+
+    let linkClass = css(
+      styles.link,
+      (isCurrentMainMenu) && styles.active
+    );
+
+    mainMenuDoms.push(
+      <Link
+        className={linkClass}
+        key={sn}
+        target={isExternal === true ? '_blank' : '_self'}
+        to={url}>
+        { name }
+      </Link>
+    );
+  });
+
+  return (
+    <div>
+      <div className={css(styles.menu)}>{ mainMenuDoms }</div>
+      <hr />
+      <div className={css(styles.menu)}>
+        { childMenus.map(({ sn, isExternal, url, name }) =>
+          <Link
+            className={css(styles.link)}
+            key={sn}
+            target={isExternal === true ? '_blank' : '_self'}
+            to={url}>
+            { name }
+          </Link>
+        )}
+      </div>
     </div>
-    <hr />
-    {/* 子項先隱藏
-    <div className={css(styles.menu)} >
-      { [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12].map((index) =>
-        <Link activeClassName={css(styles.link, styles.activeLink)}
-          className={css(styles.link)}
-          key={index}
-          to='/category'>
-          軍事新聞
-        </Link>
-      )}
-    </div>
-    */}
-  </div>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   menu: {
@@ -45,12 +63,14 @@ const styles = StyleSheet.create({
       opacity: 0.6
     }
   },
-  activeLink: {
-    color: '#000'
+  active: {
+    color: '#1886FB'
   }
 });
 
 Menu.propTypes = {
+  currentMainMenu: PropTypes.string,
+  currentChildMenu: PropTypes.string,
   menus: PropTypes.array.isRequired
 };
 
