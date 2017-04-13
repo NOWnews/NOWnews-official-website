@@ -2,7 +2,7 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { loadMenus, selectMenus } from '../../../modules/menus';
+import { loadHeader, selectMenus } from '../../../modules/header';
 import { loadPreview, selectCurrentNews } from '../../News/module';
 import Head from '../../../components/News/Head';
 import Header from '../../../components/Header';
@@ -11,7 +11,7 @@ import NewsContent from '../../../components/News/NewsContent';
 const redial = {
   fetch: ({ dispatch, params: { redisKey } }) => Promise.all([
     dispatch(loadPreview(redisKey)),
-    dispatch(loadMenus())
+    dispatch(loadHeader())
   ])
 };
 
@@ -43,7 +43,7 @@ const PreviewPage = ({ currentNews, menus }) => {
 
 PreviewPage.propTypes = {
   currentNews: PropTypes.object.isRequired,
-  menus: PropTypes.object.isRequired
+  menus: PropTypes.array.isRequired
 };
 
 const styles = StyleSheet.create({

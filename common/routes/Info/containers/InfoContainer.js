@@ -1,14 +1,14 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadMenus, selectMenus } from '../../../modules/menus';
+import { loadHeader, selectMenus } from '../../../modules/header';
 import Header from '../../../components/Header';
 import { Container } from '../../../components/Layout';
 import * as Components from '../components';
 
 const redial = {
   fetch: ({ dispatch, params: { type } }) => Promise.all([
-    dispatch(loadMenus())
+    dispatch(loadHeader())
   ])
 };
 
@@ -29,7 +29,7 @@ const InfoContainer = ({ menus, location: { pathname } }) => {
 };
 
 InfoContainer.propTypes = {
-  menus: PropTypes.object.isRequired,
+  menus: PropTypes.array.isRequired,
   location: PropTypes.object.isRequired
 };
 
