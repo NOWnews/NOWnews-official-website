@@ -23,12 +23,12 @@ const mapStateToProps = state => ({
 });
 
 const CategoryPage = ({ categoryPage, menus }) => {
-  let originList = categoryPage.newsList;
+  let originList = categoryPage.newsList || [];
   let slideData = originList.slice(0, 5);
   let blockData = originList.slice(5, 10);
   return (
     <Container>
-      <Header menus={menus} currentMainMenu={originList && originList[0].MainMenu.id} />
+      <Header menus={menus} currentMainMenu={originList[0] && originList[0].MainMenu.id} />
       {categoryPage.isLoading &&
         <div>
           <h2>Loading ...</h2>
