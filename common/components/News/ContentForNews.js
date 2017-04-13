@@ -6,7 +6,7 @@ import {
 } from './NewsContent';
 import { PersonalRightSide, SpecialTopicNav } from '../News';
 
-import { Container, LeftSide, RightSide } from '../Layout';
+import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
@@ -16,7 +16,7 @@ const ContentForNews = ({ news }) => (
       <span className={css(styles.contentImg)} style={{backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`}} />
     </div>
     <span>{news.MainPhoto && news.MainPhoto.desc}</span>
-    <div className={`clearfix ${css(styles.content)}`}>
+    <Margin10 className='clearfix'>
       <LeftSide>
         <Content content={news.content} />
         <Tags tags={news.Tags} />
@@ -36,14 +36,11 @@ const ContentForNews = ({ news }) => (
         <SpecialTopicNav list={[1, 2, 3, 4, 5, 6]} />
         <Ad300x250 />
       </RightSide>
-    </div>
+    </Margin10>
   </Container>
 );
 
 const styles = StyleSheet.create({
-  content: {
-    margin: '1rem 0'
-  },
   contentImg: {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',

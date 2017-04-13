@@ -7,7 +7,7 @@ import {
 } from './NewsContent';
 import { PersonalRightSide, SpecialTopicNav } from '../News';
 
-import { Container, LeftSide, RightSide } from '../Layout';
+import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
@@ -34,7 +34,7 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news } }) => {
           ))}
         </Carousel>
       </div>
-      <div className={`clearfix ${css(styles.content)}`}>
+      <Margin10 className='clearfix'>
         <LeftSide>
           <Content content={news.content} />
           <Tags tags={news.Tags} />
@@ -54,7 +54,7 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news } }) => {
           <SpecialTopicNav list={[1, 2, 3, 4, 5, 6]} />
           <Ad300x250 />
         </RightSide>
-      </div>
+      </Margin10>
     </Container>
   );
 };
