@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { PropTypes } from 'react';
 import ListItem from '../../../components/News/ListItem';
-import { StyleSheet, css } from 'aphrodite/no-important';
+import { Margin10 } from '../../../components/Layout';
 
 const RelatedContent = ({ list, sn, type }) => {
   let cloneList = [...list];
@@ -30,18 +30,12 @@ const RelatedContent = ({ list, sn, type }) => {
   });
 
   return (
-    <div className={css(styles.box)}>
+    <Margin10>
       <h2>{ type }</h2>
       <div>{ items }</div>
-    </div>
+    </Margin10>
   );
 };
-
-const styles = StyleSheet.create({
-  box: {
-    margin: '1rem 0'
-  }
-});
 
 RelatedContent.propTypes = {
   list: PropTypes.array.isRequired,

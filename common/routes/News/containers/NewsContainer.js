@@ -8,9 +8,9 @@ import InfiniteScroll from 'react-infinite-scroller';
 import Header from '../../../components/Header';
 import { Ad970x250 } from '../../../components/Ad';
 import { Container } from '../../../components/Layout';
-import { Head, NewsContent } from '../../../components/News';
+import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 
-import { loadNews, selectCurrentNews } from '../module';
+import { changeFontSize, loadNews, selectCurrentNews } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
 
 const redial = {
@@ -26,6 +26,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
+  changeFontSize,
   loadNews
 });
 
@@ -50,15 +51,24 @@ class NewsPage extends Component {
   }
 
   render () {
-    let { isLoading, data = [], hasMore } = this.props.currentNews;
+    let { isLoading, data = [], hasMore, fontSize } = this.props.currentNews;
     let items = [];
     let totalLength = data.length;
     data.map((item, i) => {
-      let { formatStartedAt, newsBy, MainMenu, title, ...news } = item;
+      let { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
+
+      let contentProps = {
+        news,
+        changeFontSize: this.props.changeFontSize,
+        fontSize
+      };
+
       items.push(
         <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
-          <NewsContent news={news} />
+          { type === 'NEWS' && <ContentForNews {...contentProps} /> }
+          { type === 'PHOTO' && <ContentForPhoto {...contentProps} /> }
+          { type === 'VIDEO' && <ContentForVideo {...contentProps} /> }
           {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
         </div>
       );
@@ -87,6 +97,7 @@ class NewsPage extends Component {
 }
 
 NewsPage.propTypes = {
+  changeFontSize: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
   loadNews: PropTypes.func.isRequired,
   menus: PropTypes.array.isRequired

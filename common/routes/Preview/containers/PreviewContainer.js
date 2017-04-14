@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { loadHeader, selectMenus } from '../../../modules/header';
 import { loadPreview, selectCurrentNews } from '../../News/module';
-import Head from '../../../components/News/Head';
 import Header from '../../../components/Header';
-import NewsContent from '../../../components/News/NewsContent';
+import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 
 const redial = {
   fetch: ({ dispatch, params: { redisKey } }) => Promise.all([
@@ -20,11 +19,15 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const PreviewPage = ({ currentNews, menus }) => {
-  let {isLoading, data} = currentNews;
-  let [{ formatStartedAt, newsBy, MainMenu, title, ...news }] = data;
+const PreviewPage = ({ currentNews, menus, changeFontSize }) => {
+  let {isLoading, data, fontSize} = currentNews;
+  let [{ formatStartedAt, newsBy, MainMenu, title, type, ...news }] = data;
+  let contentProps = {
+    news,
+    changeFontSize,
+    fontSize
+  };
   news.relations = [];
-
   return (
     <div>
       <Header menus={menus} />
@@ -35,13 +38,16 @@ const PreviewPage = ({ currentNews, menus }) => {
       {!isLoading &&
         <div>
           <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
-          <NewsContent news={news} />
+          { type === 'NEWS' && <ContentForNews {...contentProps} /> }
+          { type === 'PHOTO' && <ContentForPhoto {...contentProps} /> }
+          { type === 'VIDEO' && <ContentForVideo {...contentProps} /> }
         </div>}
     </div>
   );
 };
 
 PreviewPage.propTypes = {
+  changeFontSize: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };

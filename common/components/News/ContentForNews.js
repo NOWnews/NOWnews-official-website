@@ -3,22 +3,26 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
   Tags, Thermometer, ThermometerSm
-} from './components';
+} from './NewsContent';
 import { PersonalRightSide, SpecialTopicNav } from '../News';
 
-import { Container, LeftSide, RightSide } from '../Layout';
+import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const NewsContent = ({ news }) => (
+const ContentForNews = ({ news, changeFontSize, fontSize }) => (
   <Container>
     <div className={css(styles.contentDiv)}>
-      <span className={css(styles.contentImg)} style={{backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`}} />
+      <span className={css(styles.contentImg)}
+        style={{
+          backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`,
+          fontSize
+        }} />
     </div>
     <span>{news.MainPhoto && news.MainPhoto.desc}</span>
-    <div className={`clearfix ${css(styles.content)}`}>
+    <Margin10 className='clearfix'>
       <LeftSide>
-        <Content content={news.content} />
+        <Content content={news.content} fontSize={fontSize} />
         <Tags tags={news.Tags} />
         <Social />
         <ThermometerSm />
@@ -28,22 +32,19 @@ const NewsContent = ({ news }) => (
       </LeftSide>
       <RightSide>
         <Social />
-        <FontSize />
+        <FontSize changeFontSize={changeFontSize} />
         <Ad300x250 />
         <Thermometer />
-        <PersonalRightSide newsList={[news, news, news, news, news]} />
+        <PersonalRightSide newsList={[news]} />
         <Ad300x250 />
         <SpecialTopicNav list={[1, 2, 3, 4, 5, 6]} />
         <Ad300x250 />
       </RightSide>
-    </div>
+    </Margin10>
   </Container>
 );
 
 const styles = StyleSheet.create({
-  content: {
-    margin: '1rem 0'
-  },
   contentImg: {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
@@ -58,8 +59,10 @@ const styles = StyleSheet.create({
   }
 });
 
-NewsContent.propTypes = {
-  news: PropTypes.shape().isRequired
+ContentForNews.propTypes = {
+  changeFontSize: PropTypes.func.isRequired,
+  fontSize: PropTypes.number.isRequired,
+  news: PropTypes.object.isRequired
 };
 
-export default NewsContent;
+export default ContentForNews;

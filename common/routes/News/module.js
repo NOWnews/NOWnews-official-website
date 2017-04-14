@@ -1,4 +1,6 @@
+import isomorphicCookie from 'isomorphic-cookie';
 import { callApi as pvCallApi } from '../../../lib/track/pageview';
+export const CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE';
 export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
 export const LOAD_NEWS_SUCCESS = 'LOAD_NEWS_SUCCESS';
 export const LOAD_MORE_NEWS_SUCCESS = 'LOAD_MORE_NEWS_SUCCESS';
@@ -9,14 +11,22 @@ export const LOAD_PREVIEW_FAILURE = 'LOAD_PREVIEW_FAILURE';
 const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 
 const initialState = {
+  data: [],
+  error: null,
+  fontSize: isomorphicCookie.load('fontSize') || 16,
   hasMore: false,
   isLoading: false,
-  lastFetched: null,
-  error: null,
-  data: []
+  lastFetched: null
 };
 
-export function loadNews (sn, isLoadMore = false) {
+export const changeFontSize = (fontSize) => {
+  return (dispatch) => {
+    isomorphicCookie.save('fontSize', fontSize, { secure: false });
+    dispatch({ type: CHANGE_FONT_SIZE, fontSize });
+  };
+};
+
+export const loadNews = (sn, isLoadMore = false) => {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     const apiServ = `${protocol}://${host}`;
@@ -42,6 +52,7 @@ export function loadNews (sn, isLoadMore = false) {
         }
       });
 
+      // 內文無限下滑時，載入新的新聞也要累積 PV 數
       if (isLoadMore) {
         const { pathname, search } = window.location;
         let menuId = result.MainMenu.id;
@@ -57,9 +68,9 @@ export function loadNews (sn, isLoadMore = false) {
       });
     });
   };
-}
+};
 
-export function loadPreview (redisKey) {
+export const loadPreview = (redisKey) => {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_PREVIEW_REQUEST });
@@ -82,10 +93,17 @@ export function loadPreview (redisKey) {
         });
       });
   };
-}
+};
 
 export default function currentNews (state = initialState, action) {
+  // 暫時解，初始化時有時 fontSize 會變成 undefined
+  state.fontSize = isomorphicCookie.load('fontSize') || 16;
   switch (action.type) {
+    case CHANGE_FONT_SIZE:
+      return {
+        ...state,
+        fontSize: action.fontSize
+      };
     case LOAD_NEWS_REQUEST:
     case LOAD_PREVIEW_REQUEST:
       return {
