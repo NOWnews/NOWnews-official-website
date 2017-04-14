@@ -10,15 +10,19 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForNews = ({ news }) => (
+const ContentForNews = ({ news, changeFontSize, fontSize }) => (
   <Container>
     <div className={css(styles.contentDiv)}>
-      <span className={css(styles.contentImg)} style={{backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`}} />
+      <span className={css(styles.contentImg)}
+        style={{
+          backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`,
+          fontSize
+        }} />
     </div>
     <span>{news.MainPhoto && news.MainPhoto.desc}</span>
     <Margin10 className='clearfix'>
       <LeftSide>
-        <Content content={news.content} />
+        <Content content={news.content} fontSize={fontSize} />
         <Tags tags={news.Tags} />
         <Social />
         <ThermometerSm />
@@ -28,7 +32,7 @@ const ContentForNews = ({ news }) => (
       </LeftSide>
       <RightSide>
         <Social />
-        <FontSize />
+        <FontSize changeFontSize={changeFontSize} />
         <Ad300x250 />
         <Thermometer />
         <PersonalRightSide newsList={[news]} />
@@ -56,7 +60,9 @@ const styles = StyleSheet.create({
 });
 
 ContentForNews.propTypes = {
-  news: PropTypes.shape().isRequired
+  changeFontSize: PropTypes.func.isRequired,
+  fontSize: PropTypes.number.isRequired,
+  news: PropTypes.object.isRequired
 };
 
 export default ContentForNews;

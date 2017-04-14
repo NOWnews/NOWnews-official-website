@@ -19,11 +19,15 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const PreviewPage = ({ currentNews, menus }) => {
-  let {isLoading, data} = currentNews;
+const PreviewPage = ({ currentNews, menus, changeFontSize }) => {
+  let {isLoading, data, fontSize} = currentNews;
   let [{ formatStartedAt, newsBy, MainMenu, title, type, ...news }] = data;
+  let contentProps = {
+    news,
+    changeFontSize,
+    fontSize
+  };
   news.relations = [];
-
   return (
     <div>
       <Header menus={menus} />
@@ -34,15 +38,16 @@ const PreviewPage = ({ currentNews, menus }) => {
       {!isLoading &&
         <div>
           <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
-          { type === 'NEWS' && <ContentForNews news={news} /> }
-          { type === 'PHOTO' && <ContentForPhoto news={news} /> }
-          { type === 'VIDEO' && <ContentForVideo news={news} /> }
+          { type === 'NEWS' && <ContentForNews {...contentProps} /> }
+          { type === 'PHOTO' && <ContentForPhoto {...contentProps} /> }
+          { type === 'VIDEO' && <ContentForVideo {...contentProps} /> }
         </div>}
     </div>
   );
 };
 
 PreviewPage.propTypes = {
+  changeFontSize: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };

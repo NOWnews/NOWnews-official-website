@@ -11,7 +11,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news } }) => {
+const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize }) => {
   let settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -36,7 +36,7 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news } }) => {
       </div>
       <Margin10 className='clearfix'>
         <LeftSide>
-          <Content content={news.content} />
+          <Content content={news.content} fontSize={fontSize} />
           <Tags tags={news.Tags} />
           <Social />
           <ThermometerSm />
@@ -46,7 +46,7 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news } }) => {
         </LeftSide>
         <RightSide>
           <Social />
-          <FontSize />
+          <FontSize changeFontSize={changeFontSize} />
           <Ad300x250 />
           <Thermometer />
           <PersonalRightSide newsList={[news, news, news, news, news]} />
@@ -79,7 +79,9 @@ const styles = StyleSheet.create({
 });
 
 ContentForPhoto.propTypes = {
-  news: PropTypes.shape().isRequired
+  changeFontSize: PropTypes.func.isRequired,
+  fontSize: PropTypes.number.isRequired,
+  news: PropTypes.object.isRequired
 };
 
 export default ContentForPhoto;

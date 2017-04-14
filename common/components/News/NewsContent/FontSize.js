@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
 
-const FontSize = () => (
-  <Margin10>
-    <hr className={css(styles.dottedLine)} />
-    <button className={css(styles.btn)}>大</button>
-    <button className={css(styles.btn)}>中</button>
-    <button className={css(styles.btn)}>小</button>
-  </Margin10>
-);
+class FontSize extends Component {
+  constructor (props) {
+    super(props);
+    this.changeFontSize = this.changeFontSize.bind(this);
+  }
+
+  changeFontSize (fontSize) {
+    this.props.changeFontSize(fontSize);
+  }
+
+  render () {
+    return (
+      <Margin10>
+        <hr className={css(styles.dottedLine)} />
+        <button className={css(styles.btn)} onClick={() => this.changeFontSize(24)}>大</button>
+        <button className={css(styles.btn)} onClick={() => this.changeFontSize(20)}>中</button>
+        <button className={css(styles.btn)} onClick={() => this.changeFontSize(16)}>小</button>
+      </Margin10>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   btn: {
@@ -31,4 +44,9 @@ const styles = StyleSheet.create({
   }
 });
 
+FontSize.propTypes = {
+  changeFontSize: PropTypes.func.isRequired
+};
+
 export default FontSize;
+
