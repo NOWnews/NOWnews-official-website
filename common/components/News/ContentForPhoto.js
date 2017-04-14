@@ -27,9 +27,9 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
       <div className={css(styles.contentDiv)}>
         <Carousel {...settings}>
           {photoList.map(({ desc, sn, url }) => (
-            <div>
+            <div className={css(styles.contentImg)}>
               <img key={sn} src={url} />
-              <p className='legend'>{desc}</p>
+              <p className={css(styles.imgDesc)}>{desc}</p>
             </div>
           ))}
         </Carousel>
@@ -75,6 +75,16 @@ const styles = StyleSheet.create({
     background: '#f1f2f3',
     height: 545,
     marginBottom: 60
+  },
+  imgDesc: {
+    backgroundImage: 'url("/bg/bg-photo-news-desc.png")',
+    bottom: 0,
+    color: '#ffffff',
+    fontSize: 16,
+    height: 60,
+    lineHeight: '60px',
+    position: 'absolute',
+    width: '100%'
   }
 });
 
