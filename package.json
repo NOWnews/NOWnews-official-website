@@ -42,6 +42,7 @@
     "helmet": "^2.0.0",
     "history": "^4.0.0",
     "hpp": "^0.2.0",
+    "isomorphic-cookie": "^1.2.1",
     "json-loader": "^0.5.4",
     "moment": "^2.18.1",
     "morgan": "^1.6.1",
