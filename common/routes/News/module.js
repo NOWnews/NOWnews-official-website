@@ -13,7 +13,6 @@ const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 const initialState = {
   data: [],
   error: null,
-  a: '123',
   fontSize: isomorphicCookie.load('fontSize') || 16,
   hasMore: false,
   isLoading: false,
