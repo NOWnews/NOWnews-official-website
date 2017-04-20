@@ -1,13 +1,13 @@
 import isomorphicCookie from 'isomorphic-cookie';
 import { callApi as pvCallApi } from '../../../lib/track/pageview';
-export const CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE';
-export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
-export const LOAD_NEWS_SUCCESS = 'LOAD_NEWS_SUCCESS';
-export const LOAD_MORE_NEWS_SUCCESS = 'LOAD_MORE_NEWS_SUCCESS';
-export const LOAD_NEWS_FAILURE = 'LOAD_NEWS_FAILURE';
-export const LOAD_PREVIEW_REQUEST = 'LOAD_PREVIEW_REQUEST';
-export const LOAD_PREVIEW_SUCCESS = 'LOAD_PREVIEW_SUCCESS';
-export const LOAD_PREVIEW_FAILURE = 'LOAD_PREVIEW_FAILURE';
+export const CHANGE_FONT_SIZE = Symbol('CHANGE_FONT_SIZE');
+export const LOAD_NEWS_REQUEST = Symbol('LOAD_NEWS_REQUEST');
+export const LOAD_NEWS_SUCCESS = Symbol('LOAD_NEWS_SUCCESS');
+export const LOAD_MORE_NEWS_SUCCESS = Symbol('LOAD_MORE_NEWS_SUCCESS');
+export const LOAD_NEWS_FAILURE = Symbol('LOAD_NEWS_FAILURE');
+export const LOAD_PREVIEW_REQUEST = Symbol('LOAD_PREVIEW_REQUEST');
+export const LOAD_PREVIEW_SUCCESS = Symbol('LOAD_PREVIEW_SUCCESS');
+export const LOAD_PREVIEW_FAILURE = Symbol('LOAD_PREVIEW_FAILURE');
 const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 
 const initialState = {
