@@ -16,6 +16,7 @@ const initialState = {
   fontSize: isomorphicCookie.load('fontSize') || 16,
   hasMore: false,
   isLoading: false,
+  isSSRAndInit: false,
   lastFetched: null
 };
 
@@ -28,9 +29,16 @@ export const changeFontSize = (fontSize) => {
 
 export const loadNews = (sn, isLoadMore = false) => {
   return (dispatch, getState, { axios }) => {
-    const { protocol, host } = getState().sourceRequest;
+    const state = getState();
+    const { protocol, host } = state.sourceRequest;
     const apiServ = `${protocol}://${host}`;
     dispatch({ type: LOAD_NEWS_REQUEST });
+
+    // 第一次載入或者 第一次 SSR 完的呼叫，都將 scroll 置頂
+    if (canUseDOM && (!isLoadMore || state.currentNews.isSSRAndInit)) {
+      window.document.body.scrollTop = 0;
+    }
+
     return Promise.all([
       axios.get(`${apiServ}/news/${sn}`),
       axios.get(`${apiServ}/news/${sn}/nextandprev`),
@@ -38,11 +46,6 @@ export const loadNews = (sn, isLoadMore = false) => {
     ]).then(([news, nextandprev, relations]) => {
       let { next, prev } = nextandprev.data;
       let result = news.data;
-
-      // If it's first time loading then scrollTop to zero.
-      if (canUseDOM && !isLoadMore) {
-        window.document.body.scrollTop = 0;
-      }
 
       dispatch({
         type: isLoadMore ? LOAD_MORE_NEWS_SUCCESS : LOAD_NEWS_SUCCESS,
@@ -117,6 +120,7 @@ export default function currentNews (state = initialState, action) {
         data: [...state.data, action.payload],
         hasMore: !!action.payload.next.sn,
         isLoading: false,
+        isSSRAndInit: false,
         lastFetched: action.meta.lastFetched
       };
     case LOAD_NEWS_SUCCESS:
@@ -125,6 +129,7 @@ export default function currentNews (state = initialState, action) {
         data: [action.payload],
         hasMore: !!action.payload.next.sn,
         isLoading: false,
+        isSSRAndInit: !canUseDOM,
         lastFetched: action.meta.lastFetched
       };
     case LOAD_NEWS_FAILURE:
