@@ -17,7 +17,6 @@ export default function createRoutes (store) {
         ]);
       });
     },
-
     getIndexRoute (location, cb) {
       require.ensure([], function (require) {
         cb(null, require('./Home').default(store));
