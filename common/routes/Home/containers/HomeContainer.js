@@ -61,8 +61,8 @@ const HomePage = ({ menus, homePage }) => (
             </RightSide>
           </Container>
         </div>
-        <Container>
-          <div className={css(styles.mainBlock)}>
+        <div className={css(styles.mainBlock)}>
+          <Container>
             <div className={css(styles.mainBlockTop)}>
               <img className={css(styles.mainBlockTopIcon)} src='/icons/instant.png' />
               <img className={css(styles.mainBlockTopIcon)} src='/icons/favorite.png' />
@@ -76,36 +76,38 @@ const HomePage = ({ menus, homePage }) => (
             <div className={css(styles.seeMoreBlock)}>
               <span className={css(styles.seeMoreText)}>看更多地區新聞</span>
             </div>
-          </div>
-        </Container>
-        <Container className='clearfix'>
-          <LeftSide>
-            <div className={css(styles.specialChannelsBox)}>
-              <div className={css(styles.specialChannelsTitle)}>
-                <h1 className={css(styles.specialChannelsTitleText)}>精選特輯</h1>
-                <hr className={css(styles.specialChannelsTitleLine)} />
+          </Container>
+        </div>
+        <div className={css(styles.specialChannelsBox)}>
+          <Container className='clearfix'>
+            <LeftSide>
+              <div>
+                <div className={css(styles.specialChannelsTitle)}>
+                  <h1 className={css(styles.specialChannelsTitleText)}>精選特輯</h1>
+                  <hr className={css(styles.specialChannelsTitleLine)} />
+                </div>
+                <BlockItems8 newsList={homePage.specialChannels.slice(0, 8)} />
+                <div className={css(styles.seeMoreBlock)}>
+                  <span className={css(styles.seeMoreText)}>看更多特輯</span>
+                </div>
               </div>
-              <BlockItems8 newsList={homePage.specialChannels.slice(0, 8)} />
-              <div className={css(styles.seeMoreBlock)}>
-                <span className={css(styles.seeMoreText)}>看更多特輯</span>
-              </div>
-            </div>
-          </LeftSide>
-          <RightSide>
-            <Margin10>
-              <Ad300x600 />
-            </Margin10>
-            <Margin10>
-              <Ad300x250 />
-            </Margin10>
-            <Margin10>
-              <AppleStyle />
-            </Margin10>
-            <Margin10>
-              <AndroidStyle />
-            </Margin10>
-          </RightSide>
-        </Container>
+            </LeftSide>
+            <RightSide>
+              <Margin10>
+                <Ad300x600 />
+              </Margin10>
+              <Margin10>
+                <Ad300x250 />
+              </Margin10>
+              <Margin10>
+                <AppleStyle />
+              </Margin10>
+              <Margin10>
+                <AndroidStyle />
+              </Margin10>
+            </RightSide>
+          </Container>
+        </div>
       </div>}
   </div>
 );
@@ -118,9 +120,9 @@ const styles = StyleSheet.create({
 
   },
   bg: {
-    background: 'url(/bg/bg-home.png)',
-    backgroundSize: 7,
-    marginTop: '-25px',
+    background: 'url(/bg/bg-home-dot.png)',
+    backgroundSize: 5,
+    marginTop: '-36.5px',
     paddingBottom: '100px'
   },
   seeMoreBlock: {
@@ -153,14 +155,15 @@ const styles = StyleSheet.create({
   specialChannelsBox: {
     background: 'url(/bg/bg-home2.png)',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '97% 98%'
+    backgroundSize: 'calc(((100% - 970px)/2) + 648px) 98%'
   },
   mainBlock: {
     background: 'url(/bg/bg-home1.png)',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 96%',
-    backgroundPositionY: '35px',
-    marginTop: '-60px'
+    backgroundSize: '100% 95%',
+    backgroundPositionY: '45px',
+    marginBottom: 10,
+    marginTop: '-80px'
   },
   mainBlockTop: {
     position: 'relative',
