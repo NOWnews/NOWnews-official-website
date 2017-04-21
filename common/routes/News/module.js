@@ -34,8 +34,8 @@ export const loadNews = (sn, isLoadMore = false) => {
     const apiServ = `${protocol}://${host}`;
     dispatch({ type: LOAD_NEWS_REQUEST });
 
-    // 第一次載入或者 第一次 SSR 完的呼叫，都將 scroll 置頂
-    if (canUseDOM && (!isLoadMore || state.currentNews.isSSRAndInit)) {
+    // 第一次 SPA 完將 scroll 置頂
+    if (canUseDOM && !isLoadMore) {
       window.document.body.scrollTop = 0;
     }
 
