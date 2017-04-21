@@ -51,6 +51,11 @@ const render = () => {
     // Match routes based on location object:
     match({ routes, location }, (error, redirectLocation, renderProps) => {
       if (error) console.log(error);
+
+      if (!renderProps) {
+        window.location = '/';
+      }
+
       // Get array of route handler components:
       const { components } = renderProps;
 

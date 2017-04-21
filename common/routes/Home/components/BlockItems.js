@@ -26,8 +26,10 @@ const BlockItems = ({ newsList }) => {
 
 const styles = StyleSheet.create({
   blockItem: {
+    background: '#ffffff',
     float: 'left',
     margin: 11.5,
+    paddingBottom: 10,
     width: 300
   }
 });

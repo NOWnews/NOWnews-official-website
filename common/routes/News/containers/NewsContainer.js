@@ -37,6 +37,15 @@ class NewsPage extends Component {
     this.touchWindowTop = this.touchWindowTop.bind(this);
   }
 
+  componentDidMount () {
+    // 第一次 SSR 完將 scroll 置頂
+    if (this.props.currentNews.isSSRAndInit) {
+      setTimeout(function () {
+        window.document.body.scrollTop = 0;
+      }, 100);
+    }
+  }
+
   loadItems () {
     let newsData = this.props.currentNews.data;
     let sn = newsData[newsData.length - 1].next.sn;

@@ -76,7 +76,7 @@ export const createServer = (config) => {
       }
 
       if (!renderProps) {
-        return res.status(404).send('Not found');
+        return res.redirect('/');
       }
 
       const { components } = renderProps;
