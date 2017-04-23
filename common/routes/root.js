@@ -1,7 +1,6 @@
 // polyfill webpack require.ensure
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
 import App from '../components/App';
-
 export default function createRoutes (store) {
   const root = {
     path: '/',
@@ -10,10 +9,11 @@ export default function createRoutes (store) {
       require.ensure([], (require) => {
         cb(null, [
           require('./Category').default(store), // no need to modify store, no reducer
+          require('./Info').default(store),
+          require('./Instant').default(store),
           require('./News').default(store),
           require('./Preview').default(store),
-          require('./Instant').default(store),
-          require('./Info').default(store)
+          require('./Search').default(store)
         ]);
       });
     },

@@ -16,6 +16,7 @@ export default function createReducer (asyncReducers) {
     categoryPage: defaultState,
     currentNews: defaultState,
     homePage: defaultState,
+    searchPage: defaultState,
     header,
     sourceRequest,
     ...asyncReducers
