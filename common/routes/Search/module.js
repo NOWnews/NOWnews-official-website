@@ -1,7 +1,7 @@
-export const LOAD_SEARCHPAGE_REQUEST = Symbol('LOAD_SEARCHPAGE_REQUEST');
-export const LOAD_SEARCHPAGE_SUCCESS = Symbol('LOAD_SEARCHPAGE_SUCCESS');
-export const LOAD_SEARCHPAGE_FAILURE = Symbol('LOAD_SEARCHPAGE_FAILURE');
-export const PASS_SEARCHPAGE_REQUEST = Symbol('PASS_SEARCHPAGE_REQUEST');
+export const LOAD_SEARCH_REQUEST = Symbol('LOAD_SEARCH_REQUEST');
+export const LOAD_SEARCH_SUCCESS = Symbol('LOAD_SEARCH_SUCCESS');
+export const LOAD_SEARCH_FAILURE = Symbol('LOAD_SEARCH_FAILURE');
+export const PASS_SEARCH_REQUEST = Symbol('PASS_SEARCH_REQUEST');
 
 export const initialState = {
   error: null,
@@ -16,9 +16,9 @@ export const initialState = {
 
 export function loadSearchList ({ keyword = '', page, timeRange }) {
   return (dispatch, getState, { axios }) => {
-    dispatch({ type: LOAD_SEARCHPAGE_REQUEST, keyword, timeRange });
+    dispatch({ type: LOAD_SEARCH_REQUEST, keyword, timeRange });
     if (!keyword) {
-      dispatch({ type: PASS_SEARCHPAGE_REQUEST });
+      dispatch({ type: PASS_SEARCH_REQUEST });
       return Promise.resolve();
     }
 
@@ -26,7 +26,7 @@ export function loadSearchList ({ keyword = '', page, timeRange }) {
     return axios.get(`${protocol}://${host}/search/${keyword}?page=${page}`)
     .then(res => {
       dispatch({
-        type: LOAD_SEARCHPAGE_SUCCESS,
+        type: LOAD_SEARCH_SUCCESS,
         payload: res.data,
         meta: {
           lastFetched: Date.now()
@@ -34,7 +34,7 @@ export function loadSearchList ({ keyword = '', page, timeRange }) {
       });
     }).catch(error => {
       dispatch({
-        type: LOAD_SEARCHPAGE_FAILURE,
+        type: LOAD_SEARCH_FAILURE,
         payload: error,
         error: true
       });
@@ -44,7 +44,7 @@ export function loadSearchList ({ keyword = '', page, timeRange }) {
 
 export default function searchPage (state = initialState, action) {
   switch (action.type) {
-    case LOAD_SEARCHPAGE_REQUEST:
+    case LOAD_SEARCH_REQUEST:
       return {
         ...state,
         keyword: action.keyword,
@@ -52,7 +52,7 @@ export default function searchPage (state = initialState, action) {
         isLoading: true,
         error: null
       };
-    case LOAD_SEARCHPAGE_SUCCESS:
+    case LOAD_SEARCH_SUCCESS:
       let { newsList, pageData } = action.payload;
       return {
         ...state,
@@ -61,12 +61,12 @@ export default function searchPage (state = initialState, action) {
         isLoading: false,
         pageData
       };
-    case LOAD_SEARCHPAGE_FAILURE:
+    case LOAD_SEARCH_FAILURE:
       return {
         ...state,
         error: action.payload
       };
-    case PASS_SEARCHPAGE_REQUEST:
+    case PASS_SEARCH_REQUEST:
       return {
         ...state,
         isLoading: false,

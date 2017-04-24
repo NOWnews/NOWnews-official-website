@@ -20,7 +20,7 @@ export function loadHeader (url) {
     ]).then(([menus]) => {
       dispatch({
         type: LOAD_HEADER_SUCCESS,
-        menus: menus.data,
+        payload: menus.data,
         meta: {
           lastFetched: Date.now()
         }
@@ -48,7 +48,7 @@ export default function header (state = initialState, action) {
     case LOAD_HEADER_SUCCESS:
       return {
         ...state,
-        menus: action.menus,
+        menus: action.payload,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
