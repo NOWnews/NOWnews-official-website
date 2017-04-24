@@ -16,8 +16,8 @@ import Pagination from '../../../components/Pagination';
 import { TimeAndKeywordArea } from '../components';
 
 const redial = {
-  fetch: ({ dispatch }) => Promise.all([
-    dispatch(loadSearchList()),
+  fetch: ({ dispatch, query }) => Promise.all([
+    dispatch(loadSearchList(query)),
     dispatch(loadHeader())
   ])
 };
@@ -27,40 +27,44 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const SearchPage = ({ menus, searchPage }) => (
+const SearchPage = ({menus, searchPage: { isLoading, list, hotKeywords, pageData, keyword, timeRange }}) => (
   <Container>
     <Header menus={menus} />
-    <Margin10 className='center'>
-      <input type='text' placeholder='搜尋'
-        className={`input ${css(styles.searchInput)}`} />
-      <FontAwesome name='search' style={{fontSize: 20}}
-        className={css(styles.searchIcon)} />
-    </Margin10>
-    <Margin10 className='clearfix'>
-      <TimeAndKeywordArea />
-      <div className='left'>
-        {searchPage.isLoading &&
-          <div>
-            <h2>Loading ...</h2>
-          </div>}
-        {!searchPage.isLoading && searchPage.list.length === 0 &&
-          <div>查無相關新聞 ... </div>}
-        {!searchPage.isLoading && searchPage.list.length > 0 &&
-          <div>
-            {searchPage.list.map((value, i) => (
-              <ListItem
-                key={value.sn}
-                category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
-                photo={value.MainPhoto}
-                title={value.title}
-                time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
-                url={`/news/${moment(value.formatStartedAt).format('YYYYMMDD')}/${value.sn}`} />
-            ))}
-          </div>
-        }
-      </div>
-    </Margin10>
-    <Pagination {...searchPage.pageData} />
+    <form method='get'>
+      <Margin10 className='center'>
+        <input type='text' name='keyword' placeholder='搜尋'
+          className={`input ${css(styles.searchInput)}`} defaultValue={keyword} />
+        <button type='submit' className={css(styles.submitButton)}>
+          <FontAwesome name='search' style={{fontSize: 20}}
+            className={css(styles.searchIcon)} />
+        </button>
+      </Margin10>
+      <Margin10 className='clearfix'>
+        <TimeAndKeywordArea hotKeywords={hotKeywords} keyword={keyword} timeRange={timeRange} />
+        <div className='left'>
+          {isLoading &&
+            <div>
+              <h2>Loading ...</h2>
+            </div>}
+          {!isLoading && list.length === 0 &&
+            <div>查無相關新聞 ... </div>}
+          {!isLoading && list.length > 0 &&
+            <div>
+              {list.map((value, i) => (
+                <ListItem
+                  key={value.sn}
+                  category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
+                  photo={value.MainPhoto}
+                  title={value.title}
+                  time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
+                  url={`/news/${moment(value.formatStartedAt).format('YYYYMMDD')}/${value.sn}`} />
+              ))}
+            </div>
+          }
+        </div>
+      </Margin10>
+    </form>
+    <Pagination {...pageData} />
   </Container>
 );
 
@@ -75,10 +79,13 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     width: '60%'
   },
-  searchIcon: {
-    position: 'relative',
+  submitButton: {
+    border: 0,
+    background: 'transparent',
     cursor: 'pointer',
-    right: 30
+    outline: 'none',
+    right: 40,
+    position: 'relative'
   }
 });
 

@@ -1,23 +1,29 @@
 export const LOAD_SEARCHPAGE_REQUEST = Symbol('LOAD_SEARCHPAGE_REQUEST');
 export const LOAD_SEARCHPAGE_SUCCESS = Symbol('LOAD_SEARCHPAGE_SUCCESS');
 export const LOAD_SEARCHPAGE_FAILURE = Symbol('LOAD_SEARCHPAGE_FAILURE');
+export const PASS_SEARCHPAGE_REQUEST = Symbol('PASS_SEARCHPAGE_REQUEST');
 
-const initialState = {
+export const initialState = {
   error: null,
-  hotKeyword: [],
+  hotKeywords: [],
   isLoading: false,
   lastFetched: null,
   list: [],
-  pageData: {}
-  // queryString: '',
-  // queryTime: ''
+  pageData: {},
+  keyword: '',
+  timeRange: ''
 };
 
-export function loadSearchList () {
+export function loadSearchList ({ keyword = '', page, timeRange }) {
   return (dispatch, getState, { axios }) => {
+    dispatch({ type: LOAD_SEARCHPAGE_REQUEST, keyword, timeRange });
+    if (!keyword) {
+      dispatch({ type: PASS_SEARCHPAGE_REQUEST });
+      return Promise.resolve();
+    }
+
     const { protocol, host } = getState().sourceRequest;
-    dispatch({ type: LOAD_SEARCHPAGE_REQUEST });
-    return axios.get(`${protocol}://${host}/search/123`)
+    return axios.get(`${protocol}://${host}/search/${keyword}?page=${page}`)
     .then(res => {
       dispatch({
         type: LOAD_SEARCHPAGE_SUCCESS,
@@ -41,6 +47,8 @@ export default function searchPage (state = initialState, action) {
     case LOAD_SEARCHPAGE_REQUEST:
       return {
         ...state,
+        keyword: action.keyword,
+        timeRange: action.timeRange,
         isLoading: true,
         error: null
       };
@@ -57,6 +65,12 @@ export default function searchPage (state = initialState, action) {
       return {
         ...state,
         error: action.payload
+      };
+    case PASS_SEARCHPAGE_REQUEST:
+      return {
+        ...state,
+        isLoading: false,
+        list: []
       };
     default:
       return state;
