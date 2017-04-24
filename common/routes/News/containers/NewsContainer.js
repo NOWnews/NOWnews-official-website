@@ -3,11 +3,10 @@ import { provideHooks } from 'redial';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { StyleSheet, css } from 'aphrodite/no-important';
 import InfiniteScroll from 'react-infinite-scroller';
 import Header from '../../../components/Header';
 import { Ad970x250 } from '../../../components/Ad';
-import { Container } from '../../../components/Layout';
+import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 
 import { changeFontSize, loadNews, selectCurrentNews } from '../module';
@@ -89,7 +88,7 @@ class NewsPage extends Component {
         {isLoading &&
           <div>
             <div>{items}</div>
-            <h2 className={css(styles.loading)}>Loading....</h2>
+            <Loading />
           </div>}
         {!isLoading &&
           <InfiniteScroll
@@ -111,18 +110,5 @@ NewsPage.propTypes = {
   loadNews: PropTypes.func.isRequired,
   menus: PropTypes.array.isRequired
 };
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 28,
-    margin: '0 auto 1.5rem',
-    color: '#000'
-  },
-  loading: {
-    fontSize: 28,
-    margin: '0 auto 1.5rem',
-    color: '#b7b7b7'
-  }
-});
 
 export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(NewsPage));

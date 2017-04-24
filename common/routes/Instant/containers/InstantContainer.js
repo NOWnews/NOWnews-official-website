@@ -9,7 +9,7 @@ import { loadHeader, selectMenus } from '../../../modules/header';
 
 import Header from '../../../components/Header';
 import ListItem from '../../../components/News/ListItem';
-import { Container, RightSide, LeftSide } from '../../../components/Layout';
+import { Container, RightSide, LeftSide, Loading, NotFound } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';
 
 const redial = {
@@ -29,12 +29,8 @@ const InstantPage = ({ menus, instantPage }) => (
     <Header menus={menus} />
     <p>Header</p>
     <LeftSide>
-      {instantPage.isLoading &&
-        <div>
-          <h2>Loading ...</h2>
-        </div>}
-      {!instantPage.isLoading && instantPage.data.length === 0 &&
-        <div>查無相關新聞 ... </div>}
+      {instantPage.isLoading && <Loading />}
+      {!instantPage.isLoading && instantPage.data.length === 0 && <NotFound />}
       {!instantPage.isLoading && instantPage.data.length > 0 &&
         <div>
           {instantPage.data.map((value, i) => (

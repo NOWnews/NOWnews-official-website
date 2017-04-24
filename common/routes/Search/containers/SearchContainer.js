@@ -10,7 +10,7 @@ import { loadHeader, selectMenus } from '../../../modules/header';
 
 import Header from '../../../components/Header';
 import ListItem from '../../../components/News/ListItem';
-import { Container, Margin10 } from '../../../components/Layout';
+import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';
 
 import { TimeAndKeywordArea } from '../components';
@@ -42,12 +42,8 @@ const SearchPage = ({menus, searchPage: { isLoading, list, hotKeywords, pageData
       <Margin10 className='clearfix'>
         <TimeAndKeywordArea hotKeywords={hotKeywords} keyword={keyword} timeRange={timeRange} />
         <div className='left'>
-          {isLoading &&
-            <div>
-              <h2>Loading ...</h2>
-            </div>}
-          {!isLoading && list.length === 0 &&
-            <div>查無相關新聞 ... </div>}
+          {isLoading && <Loading /> }
+          {!isLoading && list.length === 0 && <NotFound />}
           {!isLoading && list.length > 0 &&
             <div>
               {list.map((value, i) => (
