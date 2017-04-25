@@ -1,28 +1,23 @@
 import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { BlockItem } from '../../../components/News';
-import { Ad300x250 } from '../../../components/Ad';
+import { BlockTopicItem } from '../../../components/News';
 
-const BlockItems = ({ newsList }) => {
+const BlockItems = ({ topics }) => {
   let items = [];
 
-  newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
+  topics.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, url }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
-        <BlockItem
-          category={MainMenu && MainMenu.name || 'Sponsored'}
+        <BlockTopicItem
+          category='專題'
           key={sn}
           photo={MainPhoto}
           title={shortTitle}
           time={moment(formatStartedAt).format('YYYY/MM/DD')}
-          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
+          url={url || ''} />
       </div>
     );
-
-    if (key === 1 || key === 6) {
-      items.push(<Ad300x250 key={`Ad${key}`} className={css(styles.blockItem)} />);
-    }
   });
 
   return (
@@ -38,12 +33,13 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginLeft: 11.5,
     marginRight: 11.5,
+    position: 'relative',
     width: 300
   }
 });
 
 BlockItems.propTypes = {
-  newsList: PropTypes.array.isRequired
+  topics: PropTypes.array.isRequired
 };
 
 export default BlockItems;

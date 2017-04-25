@@ -1,14 +1,13 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, css } from 'aphrodite/no-important';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
 import Header from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { Slide } from '../../../components/News';
 import { BlockItems, HotNews } from '../components';
-import { Container, Loading, NotFound } from '../../../components/Layout';
+import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName }, query: { page } }) => Promise.all([
@@ -33,10 +32,10 @@ const CategoryPage = ({ categoryPage, menus }) => {
       {!categoryPage.isLoading && originList.length === 0 && <NotFound />}
       {!categoryPage.isLoading && originList.length > 0 &&
         <div>
-          <div className={`clearfix ${css(styles.slideAndHot)}`}>
+          <Margin10 className='clearfix'>
             <Slide list={slideData} />
             <HotNews newsList={categoryPage.hotNewsList.slice(0, 6)} />
-          </div>
+          </Margin10>
           <BlockItems newsList={blockData} />
           <Pagination {...categoryPage.pageData} />
         </div>
@@ -45,12 +44,6 @@ const CategoryPage = ({ categoryPage, menus }) => {
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  slideAndHot: {
-    margin: '10px 0'
-  }
-});
 
 CategoryPage.propTypes = {
   categoryPage: PropTypes.object.isRequired,

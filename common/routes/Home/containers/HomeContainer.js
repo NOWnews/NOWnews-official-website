@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Link from 'react-router/lib/Link';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Header from '../../../components/Header';
@@ -33,7 +34,7 @@ const HomePage = ({ menus, homePage }) => (
         <Container>
           <Header menus={menus} />
           <div className={`clearfix ${css(styles.slideArea)}`}>
-            <Slide newsList={homePage.carousels.slice(0, 5)} />
+            <Slide list={homePage.carousels.slice(0, 5)} />
             <SlideRight newsList={homePage.carousels.slice(0, 5)} />
           </div>
         </Container>
@@ -44,7 +45,7 @@ const HomePage = ({ menus, homePage }) => (
                 <BlockItems4 newsList={homePage.specialTopics.slice(0, 4)} />
               </div>
               <div className={css(styles.seeMoreBlock)}>
-                <span className={css(styles.seeMoreText)}>看更多專題</span>
+                <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
               </div>
             </LeftSide>
             <RightSide>
@@ -70,7 +71,7 @@ const HomePage = ({ menus, homePage }) => (
             </div>
             <div className='clearfix' />
             <div className={css(styles.seeMoreBlock)}>
-              <span className={css(styles.seeMoreText)}>看更多地區新聞</span>
+              <Link className={css(styles.seeMoreLink)} to=''>看更多地區新聞</Link>
             </div>
           </Container>
         </div>
@@ -84,7 +85,7 @@ const HomePage = ({ menus, homePage }) => (
                 </div>
                 <BlockItems8 newsList={homePage.specialChannels.slice(0, 8)} />
                 <div className={css(styles.seeMoreBlock)}>
-                  <span className={css(styles.seeMoreText)}>看更多特輯</span>
+                  <span className={css(styles.seeMoreLink)}>看更多特輯</span>
                 </div>
               </div>
             </LeftSide>
@@ -125,12 +126,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: '25px 0'
   },
-  seeMoreText: {
+  seeMoreLink: {
     color: '#222',
     border: '1px solid #222',
     padding: '6px 17px',
     borderRadius: 30,
-    fontSize: 26
+    fontSize: 26,
+    textDecoration: 'none'
   },
   slideArea: {
     marginTop: 10
