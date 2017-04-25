@@ -1,50 +1,73 @@
-import React, { PropTypes } from 'react';
-import Link from 'react-router/lib/Link';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const TimeAndKeywordArea = ({ hotKeywords = [], keyword, timeRange }) => {
-  let definedTimeOptions = [
-    { value: 'lastWeek', text: '過去一週' },
-    { value: 'lastMonth', text: '過去一個月' },
-    { value: 'lastYear', text: '過去一年' }
-  ];
-  let timeOptions = definedTimeOptions.map(({ value, text }) => {
-    let className = (value === timeRange) ? css(styles.activeLink) : '';
+class TimeAndKeywordArea extends Component {
+
+  constructor (props) {
+    super(props);
+    this.setKeyword = this.setKeyword.bind(this);
+    this.setTimeRange = this.setTimeRange.bind(this);
+  }
+
+  setTimeRange (timeRange) {
+    let { keyword } = this.props;
+    window.history.pushState(null, null, `/search?keyword=${keyword}&timeRange=${timeRange}`);
+    this.props.loadSearchList({ keyword, timeRange });
+  }
+
+  setKeyword (keyword) {
+    window.history.pushState(null, null, `/search?keyword=${keyword}`);
+    this.props.loadSearchList({ keyword, timeRange: '' });
+  }
+
+  render () {
+    let { hotKeywords = [], timeRange } = this.props;
+
+    let definedTimeOptions = [
+      { value: 'lastWeek', text: '過去一週' },
+      { value: 'lastMonth', text: '過去一個月' },
+      { value: 'lastYear', text: '過去一年' }
+    ];
+
+    // tempData
+    hotKeywords = ['不要不要', '藍軍教父', '谷阿莫'];
+
+    let timeOptions = definedTimeOptions.map(({ value, text }) => {
+      let className = (value === timeRange) ? css(styles.active) : '';
+      return (
+        <li key={value} className={`${className} ${css(styles.groupItem)}`}
+          onClick={() => { this.setTimeRange(value); }}>
+          <i className={css(styles.sequare)}>■</i>
+          {text}
+        </li>
+      );
+    });
     return (
-      <li key={value} className={css(styles.groupItem)}>
-        <Link className={`${className} ${css(styles.groupItemLink)}`}
-          to={`search?timeRange=${value}&keyword=${keyword}`}>
-          <i className={css(styles.sequare)}>■</i> {text}
-        </Link>
-      </li>
-    );
-  });
-  return (
-    <div className={`left ${css(styles.leftArea)}`}>
-      <label className={css(styles.groupTitle)}>時間搜尋</label>
-      <hr className={css(styles.dottedLine)} />
-      <ul className={css(styles.groupBox)}>
-        { timeOptions }
-      </ul>
-      <br />
-      <label className={css(styles.groupTitle)}>熱門搜尋</label>
-      <hr className={css(styles.dottedLine)} />
-      <ul className={css(styles.groupBox)}>
-        {hotKeywords.map((text, key) =>
-          <li key={key} className={css(styles.groupItem)}>
-            <Link className={css(styles.groupItemLink)}
-              to={`search?timeRange=${timeRange}&keyword=${text}`}>
-              <i className={css(styles.sequare)}>■</i> {text}
-            </Link>
-          </li>
+      <div className={`left ${css(styles.leftArea)}`}>
+        <label className={css(styles.groupTitle)}>時間搜尋</label>
+        <hr className={css(styles.dottedLine)} />
+        <ul className={css(styles.groupBox)}>
+          { timeOptions }
+        </ul>
+        <br />
+        <label className={css(styles.groupTitle)}>熱門搜尋</label>
+        <hr className={css(styles.dottedLine)} />
+        <ul className={css(styles.groupBox)}>
+          {hotKeywords.map((word, key) =>
+            <li key={key} className={css(styles.groupItem)}
+              onClick={() => { this.setKeyword(word); }}>
+              <i className={css(styles.sequare)}>■ </i>
+              {word}
+            </li>
         )}
-      </ul>
-    </div>
-  );
+        </ul>
+      </div>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
-  activeLink: {
+  active: {
     color: '#1884FB'
   },
   dottedLine: {
@@ -67,10 +90,6 @@ const styles = StyleSheet.create({
   groupTitle: {
     fontSize: 18
   },
-  groupItemLink: {
-    color: '#78797A',
-    textDecoration: 'none'
-  },
   sequare: {
     fontSize: 18
   }
@@ -79,6 +98,7 @@ const styles = StyleSheet.create({
 TimeAndKeywordArea.propTypes = {
   hotKeywords: PropTypes.array,
   keyword: PropTypes.string,
+  loadSearchList: PropTypes.func.isRequired,
   timeRange: PropTypes.string
 };
 

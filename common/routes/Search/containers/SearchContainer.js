@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
+import { bindActionCreators } from 'redux';
 import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import moment from 'moment';
@@ -27,42 +28,66 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const SearchPage = ({menus, searchPage: { isLoading, list, hotKeywords, pageData, keyword, timeRange }}) => (
-  <Container>
-    <Header menus={menus} />
-    <form method='get'>
-      <Margin10 className='center'>
-        <input type='text' name='keyword' placeholder='搜尋'
-          className={`input ${css(styles.searchInput)}`} defaultValue={keyword} />
-        <button type='submit' className={css(styles.submitButton)}>
-          <FontAwesome name='search' style={{fontSize: 20}}
-            className={css(styles.searchIcon)} />
-        </button>
-      </Margin10>
-      <Margin10 className='clearfix'>
-        <TimeAndKeywordArea hotKeywords={hotKeywords} keyword={keyword} timeRange={timeRange} />
-        <div className='left'>
-          {isLoading && <Loading /> }
-          {!isLoading && list.length === 0 && <NotFound />}
-          {!isLoading && list.length > 0 &&
-            <div>
-              {list.map((value, i) => (
-                <ListItem
-                  key={value.sn}
-                  category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
-                  photo={value.MainPhoto}
-                  title={value.title}
-                  time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
-                  url={`/news/${moment(value.formatStartedAt).format('YYYYMMDD')}/${value.sn}`} />
-              ))}
-            </div>
-          }
-        </div>
-      </Margin10>
-    </form>
-    <Pagination {...pageData} />
-  </Container>
-);
+const mapDispatchToProps = bindActionCreators.bind(null, {
+  loadSearchList
+});
+
+class SearchPage extends Component {
+  constructor (props) {
+    super(props);
+    this.submitForm = this.submitForm.bind(this);
+  }
+
+  submitForm () {
+    let { timeRange, pageData: { currentPage: page } } = this.props.searchPage;
+    let keyword = this.searchInput.value;
+    this.props.loadSearchList({ keyword, page, timeRange });
+  }
+
+  render () {
+    let { loadSearchList, menus, searchPage } = this.props;
+    let { isLoading, list, hotKeywords, pageData, keyword, timeRange } = searchPage;
+
+    return (
+      <Container>
+        <Header menus={menus} />
+        <Margin10 className='center'>
+          <input type='hidden' name='timeRange' value={timeRange} />
+          <input type='text' key={keyword} name='keyword' placeholder='搜尋'
+            ref={ref => { this.searchInput = ref; }}
+            className={`input ${css(styles.searchInput)}`} defaultValue={keyword} />
+          <button type='submit' className={css(styles.submitButton)}
+            onClick={this.submitForm}>
+            <FontAwesome name='search' style={{fontSize: 20}}
+              className={css(styles.searchIcon)} />
+          </button>
+        </Margin10>
+        <Margin10 className='clearfix'>
+          <TimeAndKeywordArea loadSearchList={loadSearchList}
+            hotKeywords={hotKeywords} keyword={keyword} timeRange={timeRange} />
+          <div className='left'>
+            {isLoading && <Loading /> }
+            {!isLoading && list.length === 0 && <NotFound />}
+            {!isLoading && list.length > 0 &&
+              <div>
+                {list.map((value, i) => (
+                  <ListItem
+                    key={value.sn}
+                    category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
+                    photo={value.MainPhoto}
+                    title={value.title}
+                    time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
+                    url={`/news/${moment(value.formatStartedAt).format('YYYYMMDD')}/${value.sn}`} />
+                ))}
+              </div>
+            }
+          </div>
+        </Margin10>
+        <Pagination {...pageData} />
+      </Container>
+    );
+  }
+};
 
 const styles = StyleSheet.create({
   searchInput: {
@@ -86,8 +111,9 @@ const styles = StyleSheet.create({
 });
 
 SearchPage.propTypes = {
+  loadSearchList: PropTypes.func.isRequired,
   menus: PropTypes.array.isRequired,
   searchPage: PropTypes.object.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps)(SearchPage));
+export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(SearchPage));
