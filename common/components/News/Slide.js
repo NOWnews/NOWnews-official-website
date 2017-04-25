@@ -4,7 +4,7 @@ import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 
-export const Slide = ({ newsList }) => {
+export const Slide = ({ list }) => {
   let settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -17,13 +17,19 @@ export const Slide = ({ newsList }) => {
 
   return (
     <Carousel className={css(styles.box)} {...settings}>
-      {newsList.map(({ MainPhoto, shortTitle, sn, startedAt }) => (
-        <Link className={css(styles.ahref)} style={{backgroundImage: `url(${MainPhoto.url})`}}
-          alt={shortTitle}
-          key={sn} to={`/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`}>
-          { /* <img className={css(styles.img)} src={MainPhoto.url} /> */ }
-        </Link>
-      ))}
+      {list.map(({ MainPhoto, shortTitle, sn, startedAt, url }) => {
+        if (!url) {
+          url = `/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`;
+        }
+
+        return (
+          <Link className={css(styles.ahref)} style={{backgroundImage: `url(${MainPhoto.url})`}}
+            alt={shortTitle}
+            key={sn} to={url}>
+            { /* <img className={css(styles.img)} src={MainPhoto.url} /> */ }
+          </Link>
+        );
+      })}
     </Carousel>
   );
 };
@@ -49,7 +55,7 @@ const styles = StyleSheet.create({
 });
 
 Slide.propTypes = {
-  newsList: PropTypes.array.isRequired
+  list: PropTypes.array.isRequired
 };
 
 export default Slide;
