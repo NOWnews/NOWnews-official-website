@@ -13,7 +13,8 @@ export default function createRoutes (store) {
           require('./Instant').default(store),
           require('./News').default(store),
           require('./Preview').default(store),
-          require('./Search').default(store)
+          require('./Search').default(store),
+          require('./Topic').default(store)
         ]);
       });
     },

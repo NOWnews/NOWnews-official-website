@@ -3,16 +3,19 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockTopicItem } from '../../../components/News';
 
-const BlockItems = ({ newsList }) => {
-  let items = newsList.map(({ formatStartedAt, MainPhoto, sn, title, url }) => {
-    return (
+const BlockItems = ({ topics }) => {
+  let items = [];
+
+  topics.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, url }, key) => {
+    items.push(
       <div key={sn} className={css(styles.blockItem)}>
-        <BlockTopicItem key={sn}
+        <BlockTopicItem
           category='專題'
+          key={sn}
           photo={MainPhoto}
-          title={title}
+          title={shortTitle}
           time={moment(formatStartedAt).format('YYYY/MM/DD')}
-          url={url} />
+          url={url || ''} />
       </div>
     );
   });
@@ -27,14 +30,16 @@ const BlockItems = ({ newsList }) => {
 const styles = StyleSheet.create({
   blockItem: {
     float: 'left',
-    margin: '25px 11.5px',
-    width: 300,
-    position: 'relative'
+    marginBottom: 30,
+    marginLeft: 11.5,
+    marginRight: 11.5,
+    position: 'relative',
+    width: 300
   }
 });
 
 BlockItems.propTypes = {
-  newsList: PropTypes.array.isRequired
+  topics: PropTypes.array.isRequired
 };
 
 export default BlockItems;

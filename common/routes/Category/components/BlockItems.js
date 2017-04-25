@@ -26,21 +26,18 @@ const BlockItems = ({ newsList }) => {
   });
 
   return (
-    <div className={`clearfix ${css(styles.box)}`}>
+    <div className='clearfix'>
       { items }
     </div>
   );
 };
 
 const styles = StyleSheet.create({
-  box: {
-    marginTop: 25
-  },
   blockItem: {
     float: 'left',
-    height: 250,
     marginBottom: 30,
-    marginRight: 70 / 2,
+    marginLeft: 11.5,
+    marginRight: 11.5,
     width: 300
   }
 });

@@ -11,12 +11,12 @@ const initialState = {
   pageData: {}
 };
 
-export function loadCateogryList (categoryName, page = 1) {
+export function loadCategoryList (categoryName, page = 1) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_CATEGORY_REQUEST });
     return Promise.all([
-      axios.get(`${protocol}://${host}/cat/${categoryName}`),
+      axios.get(`${protocol}://${host}/cat/${categoryName}?page=${page}`),
       axios.get(`${protocol}://${host}/hot/${categoryName}`)
     ]).then(([categoryNewsList, hotNewsList]) => {
       dispatch({
