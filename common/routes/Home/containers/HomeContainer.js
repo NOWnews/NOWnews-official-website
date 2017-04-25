@@ -4,7 +4,7 @@ import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Header from '../../../components/Header';
 import { BlockItems, BlockItems4, BlockItems8, SlideRight } from '../components';
-import { Container, RightSide, LeftSide, Margin10 } from '../../../components/Layout';
+import { Container, RightSide, LeftSide, Loading, Margin10, NotFound } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
 import { Ad300x250, Ad300x600 } from '../../../components/Ad';
@@ -26,12 +26,8 @@ const mapStateToProps = state => ({
 
 const HomePage = ({ menus, homePage }) => (
   <div>
-    {homePage.isLoading &&
-      <div>
-        <h2>Loading ...</h2>
-      </div>}
-    {!homePage.isLoading && homePage.carousels.length === 0 &&
-      <div>查無相關新聞 ... </div>}
+    {homePage.isLoading && <Loading />}
+    {!homePage.isLoading && homePage.carousels.length === 0 && <NotFound />}
     {!homePage.isLoading && homePage.carousels.length > 0 &&
       <div>
         <Container>

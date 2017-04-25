@@ -1,6 +1,6 @@
-export const LOAD_NEWSLIST_REQUEST = Symbol('LOAD_NEWSLIST_REQUEST');
-export const LOAD_NEWSLIST_SUCCESS = Symbol('LOAD_NEWSLIST_SUCCESS');
-export const LOAD_NEWSLIST_FAILURE = Symbol('LOAD_NEWSLIST_FAILURE');
+export const LOAD_INSTANT_REQUEST = Symbol('LOAD_INSTANT_REQUEST');
+export const LOAD_INSTANT_SUCCESS = Symbol('LOAD_INSTANT_SUCCESS');
+export const LOAD_INSTANT_FAILURE = Symbol('LOAD_INSTANT_FAILURE');
 
 const initialState = {
   data: [],
@@ -12,12 +12,12 @@ const initialState = {
 export function loadInstantList () {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
-    dispatch({ type: LOAD_NEWSLIST_REQUEST });
+    dispatch({ type: LOAD_INSTANT_REQUEST });
     /* TODO 先暫時用 indexpage 當 api 代替 */
     return axios.get(`${protocol}://${host}/indexpage`)
     .then(res => {
       dispatch({
-        type: LOAD_NEWSLIST_SUCCESS,
+        type: LOAD_INSTANT_SUCCESS,
         payload: res.data.carousels,
         meta: {
           lastFetched: Date.now()
@@ -25,7 +25,7 @@ export function loadInstantList () {
       });
     }).catch(error => {
       dispatch({
-        type: LOAD_NEWSLIST_FAILURE,
+        type: LOAD_INSTANT_FAILURE,
         payload: error,
         error: true
       });
@@ -35,20 +35,20 @@ export function loadInstantList () {
 
 export default function instantPage (state = initialState, action) {
   switch (action.type) {
-    case LOAD_NEWSLIST_REQUEST:
+    case LOAD_INSTANT_REQUEST:
       return {
         ...state,
         isLoading: true,
         error: null
       };
-    case LOAD_NEWSLIST_SUCCESS:
+    case LOAD_INSTANT_SUCCESS:
       return {
         ...state,
         data: action.payload,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
-    case LOAD_NEWSLIST_FAILURE:
+    case LOAD_INSTANT_FAILURE:
       return {
         ...state,
         error: action.payload

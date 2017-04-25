@@ -12,7 +12,7 @@ export function configureStore (initialState) {
     process.env.NODE_ENV === 'develop' &&
     typeof window === 'object' &&
     typeof window.devToolsExtension !== 'undefined'
-      ? window.devToolsExtension()
+      ? window.devToolsExtension({serialize: true})
       : f => f
   ));
 

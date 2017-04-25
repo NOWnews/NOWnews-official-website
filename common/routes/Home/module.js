@@ -1,6 +1,6 @@
-export const LOAD_NEWSLIST_REQUEST = Symbol('LOAD_NEWSLIST_REQUEST');
-export const LOAD_NEWSLIST_SUCCESS = Symbol('LOAD_NEWSLIST_SUCCESS');
-export const LOAD_NEWSLIST_FAILURE = Symbol('LOAD_NEWSLIST_FAILURE');
+export const LOAD_INDEX_REQUEST = Symbol('LOAD_INDEX_REQUEST');
+export const LOAD_INDEX_SUCCESS = Symbol('LOAD_INDEX_SUCCESS');
+export const LOAD_INDEX_FAILURE = Symbol('LOAD_INDEX_FAILURE');
 
 const initialState = {
   carousels: [],
@@ -15,11 +15,11 @@ const initialState = {
 export function loadHomeList () {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
-    dispatch({ type: LOAD_NEWSLIST_REQUEST });
+    dispatch({ type: LOAD_INDEX_REQUEST });
     return axios.get(`${protocol}://${host}/indexpage`)
     .then(res => {
       dispatch({
-        type: LOAD_NEWSLIST_SUCCESS,
+        type: LOAD_INDEX_SUCCESS,
         payload: res.data,
         meta: {
           lastFetched: Date.now()
@@ -27,7 +27,7 @@ export function loadHomeList () {
       });
     }).catch(error => {
       dispatch({
-        type: LOAD_NEWSLIST_FAILURE,
+        type: LOAD_INDEX_FAILURE,
         payload: error,
         error: true
       });
@@ -37,13 +37,13 @@ export function loadHomeList () {
 
 export default function homePage (state = initialState, action) {
   switch (action.type) {
-    case LOAD_NEWSLIST_REQUEST:
+    case LOAD_INDEX_REQUEST:
       return {
         ...state,
         isLoading: true,
         error: null
       };
-    case LOAD_NEWSLIST_SUCCESS:
+    case LOAD_INDEX_SUCCESS:
       let { carousels, specialChannels, specialTopics, videos } = action.payload;
       return {
         ...state,
@@ -54,7 +54,7 @@ export default function homePage (state = initialState, action) {
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
-    case LOAD_NEWSLIST_FAILURE:
+    case LOAD_INDEX_FAILURE:
       return {
         ...state,
         error: action.payload

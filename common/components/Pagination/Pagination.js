@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-export const Pagination = ({ currentPage, hasPrev, hasNext, nextPage, prevPage, totalPage }) => {
+export const Pagination = ({ currentPage = 1, hasPrev = false, hasNext = false, nextPage = 0, prevPage = 0, totalPage = 1 }) => {
   let index = 1;
   let max = 10;
   let pages = [];
@@ -65,12 +65,12 @@ const styles = StyleSheet.create({
 });
 
 Pagination.propTypes = {
-  currentPage: PropTypes.number.isRequired,
-  hasNext: PropTypes.bool.isRequired,
-  hasPrev: PropTypes.bool.isRequired,
-  nextPage: PropTypes.number.isRequired,
-  prevPage: PropTypes.number.isRequired,
-  totalPage: PropTypes.number.isRequired
+  currentPage: PropTypes.number,
+  hasNext: PropTypes.bool,
+  hasPrev: PropTypes.bool,
+  nextPage: PropTypes.number,
+  prevPage: PropTypes.number,
+  totalPage: PropTypes.number
 };
 
 export default Pagination;

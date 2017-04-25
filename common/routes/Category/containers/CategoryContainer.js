@@ -8,7 +8,7 @@ import Header from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { Slide } from '../../../components/News';
 import { BlockItems, HotNews } from '../components';
-import { Container } from '../../../components/Layout';
+import { Container, Loading, NotFound } from '../../../components/Layout';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName }, query: { page } }) => Promise.all([
@@ -29,13 +29,8 @@ const CategoryPage = ({ categoryPage, menus }) => {
   return (
     <Container>
       <Header menus={menus} currentMainMenu={originList[0] && originList[0].MainMenu.id} />
-      {categoryPage.isLoading &&
-        <div>
-          <h2>Loading ...</h2>
-        </div>}
-      {!categoryPage.isLoading && originList.length === 0 &&
-        <div>查無相關新聞 ... </div>}
-
+      {categoryPage.isLoading && <Loading />}
+      {!categoryPage.isLoading && originList.length === 0 && <NotFound />}
       {!categoryPage.isLoading && originList.length > 0 &&
         <div>
           <div className={`clearfix ${css(styles.slideAndHot)}`}>
