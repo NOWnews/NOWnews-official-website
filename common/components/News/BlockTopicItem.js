@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 
-export const BlockItem = ({ category, photo = {}, time, title, url }) => {
+export const BlockTopicItem = ({ category, photo = {}, time, title, url }) => {
   return (
     <Link className={css(styles.box)} to={url}>
       <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   }
 });
 
-BlockItem.propTypes = {
+BlockTopicItem.propTypes = {
   category: PropTypes.string.isRequired,
   photo: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
@@ -71,4 +71,4 @@ BlockItem.propTypes = {
   url: PropTypes.string.isRequired
 };
 
-export default BlockItem;
+export default BlockTopicItem;

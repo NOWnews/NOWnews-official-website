@@ -1,6 +1,6 @@
 export BlockItem from './BlockItem';
-export BlockItem4 from './BlockItem4';
 export BlockItem8 from './BlockItem8';
+export BlockTopicItem from './BlockTopicItem';
 export ContentForNews from './ContentForNews';
 export ContentForPhoto from './ContentForPhoto';
 export ContentForVideo from './ContentForVideo';

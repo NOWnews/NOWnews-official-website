@@ -36,6 +36,7 @@ NODE_ENV=develop pm2 start ./build/server.js --name 'official-web-develop'
 │   └── /index.js               # 前端啟動相關 script
 ├── /common/                    # 主要 React 程式放在這
 │   ├── /components/            # 共用元件（記得開頭要大寫）
+│   │   ├── /Layout/            # Container、Loading，等都放在這邊 依據相關性分類，例如：Ad、Footer、Header ...。
 │   │   ├── /.../               # 依據相關性分類，例如：Ad、Footer、Header ...。
 │   │   └── /App.js             # 基底 Layout
 │   │
@@ -50,7 +51,7 @@ NODE_ENV=develop pm2 start ./build/server.js --name 'official-web-develop'
 │   │
 │   ├── /createReducer.js       # 整合所有 module
 │   ├── /store.js               # 整合 store 與 createReducer
-│   └── /style.js               # 全域 style
+│   └── /style.js               # 全域 style (目前沒有使用先移除)
 │
 ├── /config/                    # 各環境相關值設定
 ├── /node_modules/              # npm 第三方套件
