@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import FontAwesome from 'react-fontawesome';
-// import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
 
@@ -35,9 +34,9 @@ class ChannelSelecter extends Component {
 
     let items = channels.map(({ sn, title = '今日整點報' }, key) => {
       sn = key; // temp
-      let isActive = (sn === selectedChannel.sn) ? css(styles.activeLink) : '';
+      let isActive = (sn === selectedChannel.sn) ? css(styles.activeItem) : '';
       return (
-        <span key={sn} className={`${css(styles.channelLink)} ${isActive}`}
+        <span key={sn} className={`${css(styles.channelItem)} ${isActive}`}
           onClick={() => { this.switchChannel(sn); }}>
           {title}
         </span>
@@ -59,7 +58,7 @@ class ChannelSelecter extends Component {
 };
 
 const styles = StyleSheet.create({
-  activeLink: {
+  activeItem: {
     color: '#1886FB'
   },
   channelsBox: {
@@ -71,11 +70,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 970
   },
-  channelLink: {
+  channelItem: {
     color: '#000000',
     float: 'left',
     padding: '8px 0',
-    textDecoration: 'none',
     width: 155,
     ':hover': {
       opacity: 0.6
