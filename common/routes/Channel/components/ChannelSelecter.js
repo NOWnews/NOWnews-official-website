@@ -1,37 +1,61 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import FontAwesome from 'react-fontawesome';
-import Link from 'react-router/lib/Link';
+// import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
 
-const ChannelSelecter = ({ channels, selectedChannel }) => {
-  // temp Data
-  channels = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-  ];
+class ChannelSelecter extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      isOpen: false
+    };
+    this.switchOpenStatus = this.switchOpenStatus.bind(this);
+    this.switchChannel = this.switchChannel.bind(this);
+  }
 
-  let items = channels.map(({ sn, title = '今日整點報' }, key) => {
-    let isActive = (key === selectedChannel.sn) ? css(styles.activeLink) : '';
+  switchOpenStatus () {
+    this.setState({isOpen: !this.state.isOpen});
+  }
+
+  switchChannel (sn) {
+    this.setState({isOpen: false});
+    window.history.pushState(null, null, `/channel/${sn}`);
+    this.props.loadChannelData(sn);
+  }
+
+  render () {
+    let { channels, selectedChannel } = this.props;
+    // temp Data
+    channels = [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    ];
+
+    let items = channels.map(({ sn, title = '今日整點報' }, key) => {
+      sn = key; // temp
+      let isActive = (sn === selectedChannel.sn) ? css(styles.activeLink) : '';
+      return (
+        <span key={sn} className={`${css(styles.channelLink)} ${isActive}`}
+          onClick={() => { this.switchChannel(sn); }}>
+          {title}
+        </span>
+      );
+    });
+    let iconRotate = (this.state.isOpen) ? 'fa-rotate-270' : 'fa-rotate-90';
+    let isOpen = (this.state.isOpen) ? '' : 'hide';
     return (
-      <Link key={key} className={`${css(styles.channelLink)} ${isActive}`}
-        to={`/channel/${sn}`}>
-        {title}
-      </Link>
+      <Margin10 className='center'>
+        <button className={css(styles.selecter)} onClick={this.switchOpenStatus}>
+          <span className={css(styles.selType)}>特輯</span>
+          <span className={css(styles.selTitle)}>{ selectedChannel.title }</span>
+          <FontAwesome name='play' className={`${iconRotate} ${css(styles.selIcon)}`} size='2x' />
+        </button>
+        <div className={`clearfix ${isOpen} ${css(styles.channelsBox)}`}>{ items }</div>
+      </Margin10>
     );
-  });
-
-  return (
-    <Margin10 className='center'>
-      <button className={css(styles.selecter)}>
-        <span className={css(styles.selType)}>特輯</span>
-        <span className={css(styles.selTitle)}>{ selectedChannel.title }</span>
-        <FontAwesome name='play' className={`fa-rotate-90 ${css(styles.selIcon)}`} size='2x' />
-      </button>
-      <div className={`clearfix ${css(styles.channelsBox)}`}>{ items }</div>
-    </Margin10>
-  );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -50,7 +74,7 @@ const styles = StyleSheet.create({
   channelLink: {
     color: '#000000',
     float: 'left',
-    padding: '5px 0',
+    padding: '8px 0',
     textDecoration: 'none',
     width: 155,
     ':hover': {
@@ -88,6 +112,7 @@ const styles = StyleSheet.create({
 
 ChannelSelecter.propTypes = {
   channels: PropTypes.array.isRequired,
+  loadChannelData: PropTypes.func.isRequired,
   selectedChannel: PropTypes.object.isRequired
 };
 
