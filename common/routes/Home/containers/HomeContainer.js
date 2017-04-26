@@ -85,7 +85,7 @@ const HomePage = ({ menus, homePage }) => (
                 </div>
                 <BlockItems8 newsList={homePage.specialChannels.slice(0, 8)} />
                 <div className={css(styles.seeMoreBlock)}>
-                  <span className={css(styles.seeMoreLink)}>看更多特輯</span>
+                  <Link className={css(styles.seeMoreLink)} to={`channel/${homePage.specialChannels[0].sn}`}>看更多特輯</Link>
                 </div>
               </div>
             </LeftSide>
