@@ -1,8 +1,9 @@
 import React from 'react';
 
+// <img src='http://fakeimg.pl/300x600/' />
 const Ad300x600 = () => (
   <div>
-    <img src='http://fakeimg.pl/300x600/' />
+    <img src='/ad/300600.jpg' />
   </div>
 );
 
