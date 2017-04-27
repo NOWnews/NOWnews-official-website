@@ -1,15 +1,17 @@
 export const LOAD_INDEX_REQUEST = Symbol('LOAD_INDEX_REQUEST');
 export const LOAD_INDEX_SUCCESS = Symbol('LOAD_INDEX_SUCCESS');
 export const LOAD_INDEX_FAILURE = Symbol('LOAD_INDEX_FAILURE');
+export const SWITCH_TRIPLET_TYPE = Symbol('SWITCH_TRIPLET_TYPE');
 
 const initialState = {
   carousels: [],
-  videos: [],
+  error: null,
+  isLoading: false,
+  lastFetched: null,
   specialChannels: [],
   specialTopics: [],
-  lastFetched: null,
-  isLoading: false,
-  error: null
+  tripletType: 'instant',
+  videos: []
 };
 
 export function loadHomeList () {
@@ -32,6 +34,12 @@ export function loadHomeList () {
         error: true
       });
     });
+  };
+}
+
+export function switchTripletType (type) {
+  return (dispatch) => {
+    dispatch({ type: SWITCH_TRIPLET_TYPE, payload: type });
   };
 }
 
@@ -58,6 +66,11 @@ export default function homePage (state = initialState, action) {
       return {
         ...state,
         error: action.payload
+      };
+    case SWITCH_TRIPLET_TYPE:
+      return {
+        ...state,
+        tripletType: action.payload
       };
     default:
       return state;
