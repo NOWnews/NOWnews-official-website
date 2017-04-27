@@ -17,8 +17,8 @@ const TripletHead = ({ active, city }) => {
       <div className={css(styles.background)} />
       <div className={css(styles.switchIcons)}>
         {linkIcons}
+        {city && <span className={css(styles.mapTitle)}>{city}</span>}
       </div>
-      {city && <div className={css(styles.mapTitle)}>{city}</div>}
     </Margin10>
   );
 };
@@ -38,11 +38,10 @@ const styles = StyleSheet.create({
   },
   mapTitle: {
     color: '#0080ff',
-    fontSize: '20px',
+    fontSize: 40,
     fontWeight: 'bold',
-    lineHeight: '20px',
-    margin: '5px 30px',
-    textAlign: 'right'
+    position: 'absolute',
+    top: 27
   },
   switchIconArea: {
     height: 140

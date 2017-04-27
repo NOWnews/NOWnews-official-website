@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 const LBSContainer = ({ menus, LBSPage }) => (
   <div>
     <Header menus={menus} />
-    <TripletHead active='lbs' />
+    <TripletHead active='lbs' city='台北市' />
     <Container>
       {LBSPage.isLoading && <Loading />}
       {!LBSPage.isLoading && LBSPage.newsList.length === 0 && <NotFound />}
