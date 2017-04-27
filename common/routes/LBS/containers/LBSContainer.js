@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const LBSPage = ({ menus, LBSPage }) => (
+const LBSContainer = ({ menus, LBSPage }) => (
   <div>
     <Header menus={menus} />
     <TripletHead active='lbs' />
@@ -35,9 +35,9 @@ const LBSPage = ({ menus, LBSPage }) => (
   </div>
 );
 
-LBSPage.propTypes = {
+LBSContainer.propTypes = {
   menus: PropTypes.array.isRequired,
   LBSPage: PropTypes.object.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps)(LBSPage));
+export default provideHooks(redial)(connect(mapStateToProps)(LBSContainer));

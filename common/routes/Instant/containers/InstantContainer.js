@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const InstantPage = ({ menus, instantPage }) => (
+const InstantContainer = ({ menus, instantPage }) => (
   <div>
     <Header menus={menus} />
     <TripletHead active='instant' />
@@ -61,9 +61,9 @@ const InstantPage = ({ menus, instantPage }) => (
   </div>
 );
 
-InstantPage.propTypes = {
+InstantContainer.propTypes = {
   menus: PropTypes.array.isRequired,
   instantPage: PropTypes.object.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps)(InstantPage));
+export default provideHooks(redial)(connect(mapStateToProps)(InstantContainer));

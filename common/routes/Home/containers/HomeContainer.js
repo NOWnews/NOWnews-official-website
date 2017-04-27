@@ -71,7 +71,7 @@ const HomePage = ({ menus, homePage }) => (
             </div>
             <div className='clearfix' />
             <div className={css(styles.seeMoreBlock)}>
-              <Link className={css(styles.seeMoreLink)} to=''>看更多地區新聞</Link>
+              <Link className={css(styles.seeMoreLink)} to='lbs'>看更多地區新聞</Link>
             </div>
           </Container>
         </div>
