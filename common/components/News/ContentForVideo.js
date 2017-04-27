@@ -3,7 +3,7 @@ import {
   Content, FontSize, HotVideoBlocks, Social, Tags,
   Thermometer, ThermometerSm
 } from './NewsContent';
-import { PersonalRightSide } from '../News';
+import { TripletNav } from '../News';
 
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
@@ -28,7 +28,7 @@ const ContentForVideo = ({ news, changeFontSize, fontSize }) => (
         <FontSize changeFontSize={changeFontSize} />
         <Ad300x250 />
         <Thermometer />
-        <PersonalRightSide newsList={[news, news, news, news, news]} />
+        <TripletNav newsList={[news, news, news, news, news]} />
       </RightSide>
     </Margin10>
   </Container>

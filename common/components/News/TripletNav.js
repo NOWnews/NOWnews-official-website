@@ -4,10 +4,10 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
 
-const PersonalRightSide = ({ newsList }) => {
+const TripletNav = ({ newsList }) => {
   let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
     return (
-      <div key={key} className={css(styles.blockItem)}>
+      <div key={key}>
         <ListItemSm
           category={MainMenu && MainMenu.name || '未分類'}
           photo={MainPhoto}
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
   }
 });
 
-PersonalRightSide.propTypes = {
+TripletNav.propTypes = {
   newsList: PropTypes.array.isRequired
 };
 
-export default PersonalRightSide;
+export default TripletNav;

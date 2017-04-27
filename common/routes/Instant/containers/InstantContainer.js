@@ -8,8 +8,9 @@ import { selectInstantPage, loadInstantList } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
 
 import Header from '../../../components/Header';
-import ListItem from '../../../components/News/ListItem';
-import { Container, RightSide, LeftSide, Loading, NotFound } from '../../../components/Layout';
+import { LatestVideoNav, ListItem, SpecialTopicNav, TripletHead } from '../../../components/News';
+import { Ad300x250 } from '../../../components/Ad';
+import { Container, RightSide, LeftSide, Loading, Margin10, NotFound } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';
 
 const redial = {
@@ -25,34 +26,38 @@ const mapStateToProps = state => ({
 });
 
 const InstantPage = ({ menus, instantPage }) => (
-  <Container className='clearfix'>
+  <div>
     <Header menus={menus} />
-    <p>Header</p>
-    <LeftSide>
-      {instantPage.isLoading && <Loading />}
-      {!instantPage.isLoading && instantPage.data.length === 0 && <NotFound />}
-      {!instantPage.isLoading && instantPage.data.length > 0 &&
-        <div>
-          {instantPage.data.map((value, i) => (
-            <ListItem
-              key={value.sn}
-              category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
-              photo={value.MainPhoto}
-              title={value.shortTitle}
-              time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
-              url={`/news/${moment(value.formatStartedAt).format('YYYYMMDD')}/${value.sn}`} />
-          ))}
-        </div>
-      }
-    </LeftSide>
-    <RightSide>
-      <p>300x250 </p>
-      <p>專題 </p>
-      <p>最新影音 </p>
-      <p>300x250 </p>
-    </RightSide>
-    <Pagination />
-  </Container>
+    <TripletHead active='instant' />
+    <Container>
+      <Margin10 className='clearfix'>
+        <LeftSide>
+          {instantPage.isLoading && <Loading />}
+          {!instantPage.isLoading && instantPage.data.length === 0 && <NotFound />}
+          {!instantPage.isLoading && instantPage.data.length > 0 &&
+            <div>
+              {instantPage.data.map((value, i) => (
+                <ListItem
+                  key={value.sn}
+                  category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
+                  photo={value.MainPhoto}
+                  title={value.title}
+                  time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
+                  url={`/news/${moment(value.formatStartedAt).format('YYYYMMDD')}/${value.sn}`} />
+              ))}
+            </div>
+          }
+        </LeftSide>
+        <RightSide>
+          <Ad300x250 />
+          <SpecialTopicNav list={instantPage.data.slice(0, 6)} />
+          <LatestVideoNav list={instantPage.data.slice(0, 4)} />
+          <Ad300x250 />
+        </RightSide>
+      </Margin10>
+      <Pagination />
+    </Container>
+  </div>
 );
 
 InstantPage.propTypes = {

@@ -4,7 +4,7 @@ import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
   Tags, Thermometer, ThermometerSm
 } from './NewsContent';
-import { PersonalRightSide, SpecialTopicNav } from '../News';
+import { SpecialTopicNav, TripletNav } from '../News';
 
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
@@ -35,7 +35,7 @@ const ContentForNews = ({ news, changeFontSize, fontSize }) => (
         <FontSize changeFontSize={changeFontSize} />
         <Ad300x250 />
         <Thermometer />
-        <PersonalRightSide newsList={[news]} />
+        <TripletNav newsList={[news]} />
         <Ad300x250 />
         <SpecialTopicNav list={[1, 2, 3, 4, 5, 6]} />
         <Ad300x250 />
