@@ -3,10 +3,13 @@ export const LOAD_INSTANT_SUCCESS = Symbol('LOAD_INSTANT_SUCCESS');
 export const LOAD_INSTANT_FAILURE = Symbol('LOAD_INSTANT_FAILURE');
 
 const initialState = {
-  data: [],
-  lastFetched: null,
+  error: null,
   isLoading: false,
-  error: null
+  lastFetched: null,
+  newsList: [],
+  pageData: {},
+  topics: [],
+  videos: []
 };
 
 export function loadInstantList () {
@@ -44,7 +47,7 @@ export default function instantPage (state = initialState, action) {
     case LOAD_INSTANT_SUCCESS:
       return {
         ...state,
-        data: action.payload,
+        newsList: action.payload,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };

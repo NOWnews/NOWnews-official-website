@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
-// import { StyleSheet, css } from 'aphrodite/no-important';
 import moment from 'moment';
 import { selectInstantPage, loadInstantList } from '../module';
 
@@ -33,10 +32,10 @@ const InstantPage = ({ menus, instantPage }) => (
       <Margin10 className='clearfix'>
         <LeftSide>
           {instantPage.isLoading && <Loading />}
-          {!instantPage.isLoading && instantPage.data.length === 0 && <NotFound />}
-          {!instantPage.isLoading && instantPage.data.length > 0 &&
+          {!instantPage.isLoading && instantPage.newsList.length === 0 && <NotFound />}
+          {!instantPage.isLoading && instantPage.newsList.length > 0 &&
             <div>
-              {instantPage.data.map((value, i) => (
+              {instantPage.newsList.map((value, i) => (
                 <ListItem
                   key={value.sn}
                   category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
@@ -47,15 +46,17 @@ const InstantPage = ({ menus, instantPage }) => (
               ))}
             </div>
           }
+          <Margin10>
+            <Pagination {...instantPage.pageData} />
+          </Margin10>
         </LeftSide>
         <RightSide>
           <Ad300x250 />
-          <SpecialTopicNav list={instantPage.data.slice(0, 6)} />
-          <LatestVideoNav list={instantPage.data.slice(0, 4)} />
+          <SpecialTopicNav list={instantPage.topics.slice(0, 6)} />
+          <LatestVideoNav list={instantPage.videos.slice(0, 4)} />
           <Ad300x250 />
         </RightSide>
       </Margin10>
-      <Pagination />
     </Container>
   </div>
 );
