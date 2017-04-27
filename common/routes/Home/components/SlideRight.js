@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
     width: 300
   },
   item: {
-    backgroundColor: 'rgba(30, 36, 37, 0.6)',
-    borderTop: '3px solid #DFE1E2',
+    backgroundColor: 'rgba(0, 0, 0, 0.65)',
+    borderTop: '1px solid #ffffff',
     color: '#ffffff',
-    fontSize: 15,
+    fontSize: 17,
     height: 68,
-    lineHeight: '67px',
-    paddingLeft: 30
+    lineHeight: '68px',
+    paddingLeft: 28
   },
   link: {
     textDecoration: 'none',
