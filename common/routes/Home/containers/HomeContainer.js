@@ -194,8 +194,12 @@ const styles = StyleSheet.create({
     paddingBottom: '10px'
   },
   tripletBlockTopIcon: {
+    cursor: 'pointer',
     width: '90px',
-    margin: '0 10px'
+    margin: '0 10px',
+    ':hover': {
+      opacity: 0.9
+    }
   },
   mapTitle: {
     position: 'absolute',
