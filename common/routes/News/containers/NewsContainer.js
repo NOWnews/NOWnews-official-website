@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
-import Header from '../../../components/Header';
+import { Header } from '../../../components/Header';
 import { Ad970x250 } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
@@ -29,7 +29,7 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   loadNews
 });
 
-class NewsPage extends Component {
+class NewsContainer extends Component {
   constructor (props) {
     super(props);
     this.loadItems = this.loadItems.bind(this);
@@ -46,32 +46,30 @@ class NewsPage extends Component {
   }
 
   loadItems () {
-    let newsData = this.props.currentNews.data;
-    let sn = newsData[newsData.length - 1].next.sn;
-    let isLoadMore = true;
+    const newsData = this.props.currentNews.data;
+    const sn = newsData[newsData.length - 1].next.sn;
+    const isLoadMore = true;
     this.props.loadNews(sn, isLoadMore);
   }
 
   touchWindowTop (item, index) {
-    let { sn, startedAt } = this.props.currentNews.data[index];
-    let formatStartedAt = moment(startedAt).format('YYYYMMDD');
+    const { sn, startedAt } = this.props.currentNews.data[index];
+    const formatStartedAt = moment(startedAt).format('YYYYMMDD');
     window.history.pushState(null, null, `/news/${formatStartedAt}/${sn}`);
   }
 
   render () {
-    let { isLoading, data = [], hasMore, fontSize } = this.props.currentNews;
-    let items = [];
-    let totalLength = data.length;
-    data.map((item, i) => {
-      let { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
-
-      let contentProps = {
+    const { isLoading, data = [], hasMore, fontSize } = this.props.currentNews;
+    const totalLength = data.length;
+    const items = data.map((item, i) => {
+      const { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
+      const contentProps = {
         news,
         changeFontSize: this.props.changeFontSize,
         fontSize
       };
 
-      items.push(
+      return (
         <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
           { type === 'NEWS' && <ContentForNews {...contentProps} /> }
@@ -104,11 +102,11 @@ class NewsPage extends Component {
   }
 }
 
-NewsPage.propTypes = {
+NewsContainer.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
   loadNews: PropTypes.func.isRequired,
   menus: PropTypes.array.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(NewsPage));
+export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(NewsContainer));

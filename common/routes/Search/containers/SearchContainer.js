@@ -9,7 +9,7 @@ import { selectSearchPage, loadSearchList } from '../module';
 
 import { loadHeader, selectMenus } from '../../../modules/header';
 
-import Header from '../../../components/Header';
+import { Header } from '../../../components/Header';
 import ListItem from '../../../components/News/ListItem';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';

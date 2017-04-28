@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 });
 
 BlockItems12.propTypes = {
-  hasAd: PropTypes.boolean,
+  hasAd: PropTypes.bool,
   newsList: PropTypes.array.isRequired,
   page: PropTypes.object.isRequired
 };

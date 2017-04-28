@@ -1,3 +1,2 @@
-import Header from './Header';
-
-export default Header;
+export Header from './Header';
+export DynamicHeader from './DynamicHeader';

@@ -6,7 +6,7 @@ import { selectInstantPage, loadInstantList } from '../module';
 
 import { loadHeader, selectMenus } from '../../../modules/header';
 
-import Header from '../../../components/Header';
+import { Header } from '../../../components/Header';
 import { LatestVideoNav, ListItem, SpecialTopicNav, TripletHead } from '../../../components/News';
 import { Ad300x250 } from '../../../components/Ad';
 import { Container, RightSide, LeftSide, Loading, Margin10, NotFound } from '../../../components/Layout';

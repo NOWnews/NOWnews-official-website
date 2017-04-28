@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectTopicPage, loadTopics } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
-import Header from '../../../components/Header';
+import { Header } from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { Slide } from '../../../components/News';
 import { BlockItems, HotTopics } from '../components';
