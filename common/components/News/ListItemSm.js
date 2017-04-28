@@ -8,7 +8,7 @@ export const ListItemSm = ({ category, photo = {}, time, title, url }) => (
       <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
     </div>
     <div className={`right ${css(styles.right)}`}>
-      <div className={css(styles.category)}>{category}</div>
+      {category && <div className={css(styles.category)}>{category}</div>}
       <div className={css(styles.title)}>{title}</div>
       <img src='/icons/whiteClock.png' />
       <span className={css(styles.time)}>{time}</span>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 });
 
 ListItemSm.propTypes = {
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   photo: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,

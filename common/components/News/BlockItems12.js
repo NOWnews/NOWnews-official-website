@@ -1,10 +1,11 @@
 import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { BlockItem } from '../../../components/News';
-import { Ad300x250 } from '../../../components/Ad';
+import BlockItem from './BlockItem';
+import { Ad300x250 } from '../Ad';
+import Pagination from '../Pagination';
 
-const BlockItems = ({ newsList }) => {
+const BlockItems12 = ({ hasAd = true, newsList, page }) => {
   let items = [];
 
   newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
@@ -20,7 +21,7 @@ const BlockItems = ({ newsList }) => {
       </div>
     );
 
-    if (key === 1 || key === 6) {
+    if (hasAd && (key === 1 || key === 6)) {
       items.push(<Ad300x250 key={`Ad${key}`} className={css(styles.blockItem)} />);
     }
   });
@@ -28,6 +29,7 @@ const BlockItems = ({ newsList }) => {
   return (
     <div className='clearfix'>
       { items }
+      <Pagination {...page} />
     </div>
   );
 };
@@ -42,8 +44,10 @@ const styles = StyleSheet.create({
   }
 });
 
-BlockItems.propTypes = {
-  newsList: PropTypes.array.isRequired
+BlockItems12.propTypes = {
+  hasAd: PropTypes.boolean,
+  newsList: PropTypes.array.isRequired,
+  page: PropTypes.object.isRequired
 };
 
-export default BlockItems;
+export default BlockItems12;

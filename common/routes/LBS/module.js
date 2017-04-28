@@ -1,26 +1,24 @@
-export const LOAD_INSTANT_REQUEST = Symbol('LOAD_INSTANT_REQUEST');
-export const LOAD_INSTANT_SUCCESS = Symbol('LOAD_INSTANT_SUCCESS');
-export const LOAD_INSTANT_FAILURE = Symbol('LOAD_INSTANT_FAILURE');
+export const LOAD_LBS_REQUEST = Symbol('LOAD_LBS_REQUEST');
+export const LOAD_LBS_SUCCESS = Symbol('LOAD_LBS_SUCCESS');
+export const LOAD_LBS_FAILURE = Symbol('LOAD_LBS_FAILURE');
 
 const initialState = {
   error: null,
   isLoading: false,
   lastFetched: null,
   newsList: [],
-  pageData: {},
-  topics: [],
-  videos: []
+  pageData: {}
 };
 
-export function loadInstantList () {
+export function loadLBSList () {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
-    dispatch({ type: LOAD_INSTANT_REQUEST });
+    dispatch({ type: LOAD_LBS_REQUEST });
     /* TODO 先暫時用 indexpage 當 api 代替 */
     return axios.get(`${protocol}://${host}/indexpage`)
     .then(res => {
       dispatch({
-        type: LOAD_INSTANT_SUCCESS,
+        type: LOAD_LBS_SUCCESS,
         payload: res.data.carousels,
         meta: {
           lastFetched: Date.now()
@@ -28,7 +26,7 @@ export function loadInstantList () {
       });
     }).catch(error => {
       dispatch({
-        type: LOAD_INSTANT_FAILURE,
+        type: LOAD_LBS_FAILURE,
         payload: error,
         error: true
       });
@@ -36,29 +34,31 @@ export function loadInstantList () {
   };
 }
 
-export default function instantPage (state = initialState, action) {
+export default function LBSPage (state = initialState, action) {
   switch (action.type) {
-    case LOAD_INSTANT_REQUEST:
+    case LOAD_LBS_REQUEST:
       return {
         ...state,
         isLoading: true,
         error: null
       };
-    case LOAD_INSTANT_SUCCESS:
+    case LOAD_LBS_SUCCESS:
       return {
         ...state,
         newsList: action.payload,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
-    case LOAD_INSTANT_FAILURE:
+    case LOAD_LBS_FAILURE:
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
+        isLoading: false,
+        newsList: []
       };
     default:
       return state;
   }
 }
 
-export const selectInstantPage = state => state.instantPage;
+export const selectLBSPage = state => state.LBSPage;
