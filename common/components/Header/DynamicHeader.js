@@ -4,12 +4,12 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { Logo } from './components';
 
 const DynamicHeader = ({ currentMainMenu, menus, newsTitle }) => {
-  let mainMenuDoms = [];
+  const mainMenuDoms = [];
 
   menus.map(({ _id, child, isExternal, name, sn, url }) => {
-    let isCurrentMainMenu = (_id === currentMainMenu);
+    const isCurrentMainMenu = (_id === currentMainMenu);
 
-    let linkClass = css(
+    const linkClass = css(
       styles.link,
       (isCurrentMainMenu) && styles.active
     );

@@ -9,6 +9,7 @@ export const LOAD_NEWS_FAILURE = Symbol('LOAD_NEWS_FAILURE');
 export const LOAD_PREVIEW_REQUEST = Symbol('LOAD_PREVIEW_REQUEST');
 export const LOAD_PREVIEW_SUCCESS = Symbol('LOAD_PREVIEW_SUCCESS');
 export const LOAD_PREVIEW_FAILURE = Symbol('LOAD_PREVIEW_FAILURE');
+export const SHOW_DYNAMIC_HEADER = Symbol('SHOW_DYNAMIC_HEADER');
 const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 
 const initialState = {
@@ -19,19 +20,20 @@ const initialState = {
   isLoading: false,
   isSSRAndInit: false,
   lastFetched: null,
-  newsTitle: ''
+  newsTitle: '',
+  showDynamicHeader: false
 };
 
 export const changeFontSize = (fontSize) => {
   return (dispatch) => {
     isomorphicCookie.save('fontSize', fontSize, { secure: false });
-    dispatch({ type: CHANGE_FONT_SIZE, fontSize });
+    dispatch({ type: CHANGE_FONT_SIZE, payload: fontSize });
   };
 };
 
 export const changeNewsTitle = (newsTitle) => {
   return (dispatch) => {
-    dispatch({ type: CHANGE_NEWS_TITLE, newsTitle });
+    dispatch({ type: CHANGE_NEWS_TITLE, payload: newsTitle });
   };
 };
 
@@ -106,6 +108,12 @@ export const loadPreview = (redisKey) => {
   };
 };
 
+export const showDynamicHeader = (showHeader) => {
+  return (dispatch) => {
+    dispatch({ type: SHOW_DYNAMIC_HEADER, payload: showHeader });
+  };
+};
+
 export default function currentNews (state = initialState, action) {
   // 暫時解，初始化時有時 fontSize 會變成 undefined
   state.fontSize = isomorphicCookie.load('fontSize') || 16;
@@ -113,12 +121,12 @@ export default function currentNews (state = initialState, action) {
     case CHANGE_FONT_SIZE:
       return {
         ...state,
-        fontSize: action.fontSize
+        fontSize: action.payload
       };
     case CHANGE_NEWS_TITLE:
       return {
         ...state,
-        newsTitle: action.newsTitle
+        newsTitle: action.payload
       };
     case LOAD_NEWS_REQUEST:
     case LOAD_PREVIEW_REQUEST:
@@ -158,6 +166,11 @@ export default function currentNews (state = initialState, action) {
         data: [action.payload],
         isLoading: false,
         lastFetched: action.meta.lastFetched
+      };
+    case SHOW_DYNAMIC_HEADER:
+      return {
+        ...state,
+        showDynamicHeader: action.payload
       };
     default:
       return state;
