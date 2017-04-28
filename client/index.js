@@ -29,6 +29,7 @@ const render = () => {
   const track = () => {
     const { sourceRequest: { protocol, host }, ...state } = store.getState();
     const apiServ = `${protocol}://${host}`;
+    window.document.body.scrollTop = 0;
     pageview.init(apiServ, pathname, search, state);
   };
 
