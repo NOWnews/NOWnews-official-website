@@ -1,6 +1,7 @@
 import isomorphicCookie from 'isomorphic-cookie';
 import { callApi as pvCallApi } from '../../../lib/track/pageview';
 export const CHANGE_FONT_SIZE = Symbol('CHANGE_FONT_SIZE');
+export const CHANGE_NEWS_TITLE = Symbol('CHANGE_NEWS_TITLE');
 export const LOAD_NEWS_REQUEST = Symbol('LOAD_NEWS_REQUEST');
 export const LOAD_NEWS_SUCCESS = Symbol('LOAD_NEWS_SUCCESS');
 export const LOAD_MORE_NEWS_SUCCESS = Symbol('LOAD_MORE_NEWS_SUCCESS');
@@ -17,13 +18,20 @@ const initialState = {
   hasMore: false,
   isLoading: false,
   isSSRAndInit: false,
-  lastFetched: null
+  lastFetched: null,
+  newsTitle: ''
 };
 
 export const changeFontSize = (fontSize) => {
   return (dispatch) => {
     isomorphicCookie.save('fontSize', fontSize, { secure: false });
     dispatch({ type: CHANGE_FONT_SIZE, fontSize });
+  };
+};
+
+export const changeNewsTitle = (newsTitle) => {
+  return (dispatch) => {
+    dispatch({ type: CHANGE_NEWS_TITLE, newsTitle });
   };
 };
 
@@ -107,6 +115,11 @@ export default function currentNews (state = initialState, action) {
         ...state,
         fontSize: action.fontSize
       };
+    case CHANGE_NEWS_TITLE:
+      return {
+        ...state,
+        newsTitle: action.newsTitle
+      };
     case LOAD_NEWS_REQUEST:
     case LOAD_PREVIEW_REQUEST:
       return {
@@ -130,7 +143,8 @@ export default function currentNews (state = initialState, action) {
         hasMore: !!action.payload.next.sn,
         isLoading: false,
         isSSRAndInit: !canUseDOM,
-        lastFetched: action.meta.lastFetched
+        lastFetched: action.meta.lastFetched,
+        newsTitle: action.payload.title
       };
     case LOAD_NEWS_FAILURE:
     case LOAD_PREVIEW_FAILURE:

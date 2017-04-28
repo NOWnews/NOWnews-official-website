@@ -4,12 +4,12 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
-import { Header } from '../../../components/Header';
+import { DynamicHeader, Header } from '../../../components/Header';
 import { Ad970x250 } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 
-import { changeFontSize, loadNews, selectCurrentNews } from '../module';
+import { changeFontSize, changeNewsTitle, loadNews, selectCurrentNews } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
 
 const redial = {
@@ -26,6 +26,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
   changeFontSize,
+  changeNewsTitle,
   loadNews
 });
 
@@ -53,13 +54,18 @@ class NewsContainer extends Component {
   }
 
   touchWindowTop (item, index) {
-    const { sn, startedAt } = this.props.currentNews.data[index];
-    const formatStartedAt = moment(startedAt).format('YYYYMMDD');
-    window.history.pushState(null, null, `/news/${formatStartedAt}/${sn}`);
+    const { sn, startedAt, title } = this.props.currentNews.data[index];
+    const originalSn = window.location.pathname.split('/')[3];
+    if (parseInt(originalSn, 10) !== sn) {
+      const formatStartedAt = moment(startedAt).format('YYYYMMDD');
+      window.history.pushState(null, null, `/news/${formatStartedAt}/${sn}`);
+      this.props.changeNewsTitle(title);
+    }
   }
 
   render () {
-    const { isLoading, data = [], hasMore, fontSize } = this.props.currentNews;
+    const { isLoading, data = [], hasMore, fontSize, newsTitle } = this.props.currentNews;
+    const currentMainMenu = data[0] && data[0].MainMenu.id;
     const totalLength = data.length;
     const items = data.map((item, i) => {
       const { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
@@ -82,7 +88,8 @@ class NewsContainer extends Component {
 
     return (
       <div>
-        <Header menus={this.props.menus} currentMainMenu={data[0] && data[0].MainMenu.id} />
+        <Header menus={this.props.menus} currentMainMenu={currentMainMenu} />
+        <DynamicHeader menus={this.props.menus} currentMainMenu={currentMainMenu} newsTitle={newsTitle} />
         {isLoading &&
           <div>
             <div>{items}</div>
@@ -104,6 +111,7 @@ class NewsContainer extends Component {
 
 NewsContainer.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
+  changeNewsTitle: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
   loadNews: PropTypes.func.isRequired,
   menus: PropTypes.array.isRequired

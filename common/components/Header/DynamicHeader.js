@@ -3,7 +3,7 @@ import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Logo } from './components';
 
-const DynamicHeader = ({ currentMainMenu, menus, newsTitle = '123' }) => {
+const DynamicHeader = ({ currentMainMenu, menus, newsTitle }) => {
   let mainMenuDoms = [];
 
   menus.map(({ _id, child, isExternal, name, sn, url }) => {
