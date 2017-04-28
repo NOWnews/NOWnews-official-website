@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
 import Header from '../../../components/Header';
-import Pagination from '../../../components/Pagination';
-import { Slide } from '../../../components/News';
-import { BlockItems, HotNews } from '../components';
+import { BlockItems12, Slide } from '../../../components/News';
+import { HotNews } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
 
 const redial = {
@@ -36,10 +35,8 @@ const CategoryPage = ({ categoryPage, menus }) => {
             <Slide list={slideData} />
             <HotNews newsList={categoryPage.hotNewsList.slice(0, 6)} />
           </Margin10>
-          <BlockItems newsList={blockData} />
-          <Pagination {...categoryPage.pageData} />
+          <BlockItems12 newsList={blockData} page={categoryPage.pageData} />
         </div>
-
       }
     </Container>
   );
