@@ -17,14 +17,14 @@ export const Slide = ({ list }) => {
 
   return (
     <Carousel className={css(styles.box)} {...settings}>
-      {list.map(({ MainPhoto, shortTitle, sn, startedAt, url }) => {
+      {list.map(({ MainPhoto, shortTitle, sn, startedAt, title, url }) => {
         if (!url) {
           url = `/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`;
         }
 
         return (
           <Link className={css(styles.ahref)} style={{backgroundImage: `url(${MainPhoto.url})`}}
-            alt={shortTitle}
+            alt={shortTitle || title}
             key={sn} to={url}>
             { /* <img className={css(styles.img)} src={MainPhoto.url} /> */ }
           </Link>
