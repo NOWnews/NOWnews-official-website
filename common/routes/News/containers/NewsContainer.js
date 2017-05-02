@@ -4,11 +4,11 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
-import { DynamicHeader, Header } from '../../../components/Header';
+import { FixedHeader, Header } from '../../../components/Header';
 import { Ad970x250 } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
-import { changeFontSize, changeNewsTitle, loadNews, selectCurrentNews, showDynamicHeader } from '../module';
+import { changeFontSize, changeNewsTitle, loadNews, selectCurrentNews, showFixedHeader } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
 
 const redial = {
@@ -27,7 +27,7 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   changeFontSize,
   changeNewsTitle,
   loadNews,
-  showDynamicHeader
+  showFixedHeader
 });
 
 class NewsContainer extends Component {
@@ -56,10 +56,10 @@ class NewsContainer extends Component {
   }
 
   scrollListener () {
-    if (this.props.currentNews.showDynamicHeader && window.scrollY < 200) {
-      this.props.showDynamicHeader(false);
-    } else if (!this.props.currentNews.showDynamicHeader && window.scrollY > 200) {
-      this.props.showDynamicHeader(true);
+    if (this.props.currentNews.showFixedHeader && window.scrollY < 200) {
+      this.props.showFixedHeader(false);
+    } else if (!this.props.currentNews.showFixedHeader && window.scrollY > 200) {
+      this.props.showFixedHeader(true);
     }
   }
 
@@ -74,7 +74,7 @@ class NewsContainer extends Component {
   }
 
   render () {
-    const { isLoading, data = [], hasMore, fontSize, newsTitle, showDynamicHeader } = this.props.currentNews;
+    const { isLoading, data = [], hasMore, fontSize, newsTitle, showFixedHeader } = this.props.currentNews;
     const currentMainMenu = data[0] && data[0].MainMenu.id;
     const totalLength = data.length;
     const items = data.map((item, i) => {
@@ -99,7 +99,7 @@ class NewsContainer extends Component {
     return (
       <div>
         <Header menus={this.props.menus} currentMainMenu={currentMainMenu} />
-        {showDynamicHeader && <DynamicHeader menus={this.props.menus}
+        {showFixedHeader && <FixedHeader menus={this.props.menus}
           currentMainMenu={currentMainMenu} newsTitle={newsTitle} />}
         {isLoading &&
           <div>
@@ -126,7 +126,7 @@ NewsContainer.propTypes = {
   currentNews: PropTypes.object.isRequired,
   loadNews: PropTypes.func.isRequired,
   menus: PropTypes.array.isRequired,
-  showDynamicHeader: PropTypes.func.isRequired
+  showFixedHeader: PropTypes.func.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(NewsContainer));

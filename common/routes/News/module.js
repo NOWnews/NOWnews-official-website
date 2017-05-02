@@ -9,7 +9,7 @@ export const LOAD_NEWS_FAILURE = Symbol('LOAD_NEWS_FAILURE');
 export const LOAD_PREVIEW_REQUEST = Symbol('LOAD_PREVIEW_REQUEST');
 export const LOAD_PREVIEW_SUCCESS = Symbol('LOAD_PREVIEW_SUCCESS');
 export const LOAD_PREVIEW_FAILURE = Symbol('LOAD_PREVIEW_FAILURE');
-export const SHOW_DYNAMIC_HEADER = Symbol('SHOW_DYNAMIC_HEADER');
+export const SHOW_FIXED_HEADER = Symbol('SHOW_FIXED_HEADER');
 const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 
 const initialState = {
@@ -21,7 +21,7 @@ const initialState = {
   isSSRAndInit: false,
   lastFetched: null,
   newsTitle: '',
-  showDynamicHeader: false
+  showFixedHeader: false
 };
 
 export const changeFontSize = (fontSize) => {
@@ -108,9 +108,9 @@ export const loadPreview = (redisKey) => {
   };
 };
 
-export const showDynamicHeader = (showHeader) => {
+export const showFixedHeader = (showHeader) => {
   return (dispatch) => {
-    dispatch({ type: SHOW_DYNAMIC_HEADER, payload: showHeader });
+    dispatch({ type: SHOW_FIXED_HEADER, payload: showHeader });
   };
 };
 
@@ -167,10 +167,10 @@ export default function currentNews (state = initialState, action) {
         isLoading: false,
         lastFetched: action.meta.lastFetched
       };
-    case SHOW_DYNAMIC_HEADER:
+    case SHOW_FIXED_HEADER:
       return {
         ...state,
-        showDynamicHeader: action.payload
+        showFixedHeader: action.payload
       };
     default:
       return state;
