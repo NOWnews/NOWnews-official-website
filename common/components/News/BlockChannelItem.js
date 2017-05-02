@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 
-export const BlockItem = ({ photo = {}, title }) => {
+export const BlockChannelItem = ({ photo = {}, sn, title }) => {
   return (
-    <Link className={css(styles.box)} to={'/'}>
+    <Link className={css(styles.box)} to={`/channel/${sn}`}>
       <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
       <div className={css(styles.bottom)}>
         <div className={css(styles.title)}>{title}</div>
@@ -40,9 +40,10 @@ const styles = StyleSheet.create({
   }
 });
 
-BlockItem.propTypes = {
+BlockChannelItem.propTypes = {
   photo: PropTypes.object.isRequired,
+  sn: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 };
 
-export default BlockItem;
+export default BlockChannelItem;

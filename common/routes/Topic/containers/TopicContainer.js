@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const TopicPage = ({ topicPage, menus }) => {
+const TopicContainer = ({ topicPage, menus }) => {
   let origins = topicPage.topics || [];
   let slideData = origins.slice(0, 5);
   let blockData = origins.slice(5, 10);
@@ -45,9 +45,9 @@ const TopicPage = ({ topicPage, menus }) => {
   );
 };
 
-TopicPage.propTypes = {
+TopicContainer.propTypes = {
   topicPage: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps)(TopicPage));
+export default provideHooks(redial)(connect(mapStateToProps)(TopicContainer));

@@ -1,5 +1,5 @@
+export BlockChannelItem from './BlockChannelItem';
 export BlockItem from './BlockItem';
-export BlockItem8 from './BlockItem8';
 export BlockItems12 from './BlockItems12';
 export BlockTopicItem from './BlockTopicItem';
 export ContentForNews from './ContentForNews';
