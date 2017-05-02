@@ -19,21 +19,17 @@ export function loadChannelData (sn, page = 1) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_CHANNEL_REQUEST });
-    // 暫時的
-    let sn = 'sport';
     return Promise.all([
-      axios.get(`${protocol}://${host}/cat/${sn}?page=${page}`)
-    ]).then(([channelData]) => {
+      axios.get(`${protocol}://${host}/specialchannels`),
+      axios.get(`${protocol}://${host}/specialchannels/${sn}?page=${page}`)
+    ]).then(([specialchannels, channelData]) => {
+      let { pageData, ...channel } = channelData.data;
       dispatch({
         type: LOAD_CHANNEL_SUCCESS,
         payload: {
-          channels: [],
-          selectedChannel: {
-            sn: 1,
-            title: '今日整點報',
-            newsList: channelData.data.newsList
-          },
-          pageData: channelData.data.pageData
+          channels: specialchannels.data.specialChannels,
+          selectedChannel: channel,
+          pageData: pageData
         },
         meta: {
           lastFetched: Date.now()
