@@ -1,6 +1,7 @@
 import isomorphicCookie from 'isomorphic-cookie';
 import { callApi as pvCallApi } from '../../../lib/track/pageview';
 export const CHANGE_FONT_SIZE = Symbol('CHANGE_FONT_SIZE');
+export const CHANGE_NEWS_TITLE = Symbol('CHANGE_NEWS_TITLE');
 export const LOAD_NEWS_REQUEST = Symbol('LOAD_NEWS_REQUEST');
 export const LOAD_NEWS_SUCCESS = Symbol('LOAD_NEWS_SUCCESS');
 export const LOAD_MORE_NEWS_SUCCESS = Symbol('LOAD_MORE_NEWS_SUCCESS');
@@ -8,6 +9,7 @@ export const LOAD_NEWS_FAILURE = Symbol('LOAD_NEWS_FAILURE');
 export const LOAD_PREVIEW_REQUEST = Symbol('LOAD_PREVIEW_REQUEST');
 export const LOAD_PREVIEW_SUCCESS = Symbol('LOAD_PREVIEW_SUCCESS');
 export const LOAD_PREVIEW_FAILURE = Symbol('LOAD_PREVIEW_FAILURE');
+export const SHOW_FIXED_HEADER = Symbol('SHOW_FIXED_HEADER');
 const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 
 const initialState = {
@@ -17,13 +19,21 @@ const initialState = {
   hasMore: false,
   isLoading: false,
   isSSRAndInit: false,
-  lastFetched: null
+  lastFetched: null,
+  newsTitle: '',
+  showFixedHeader: false
 };
 
 export const changeFontSize = (fontSize) => {
   return (dispatch) => {
     isomorphicCookie.save('fontSize', fontSize, { secure: false });
-    dispatch({ type: CHANGE_FONT_SIZE, fontSize });
+    dispatch({ type: CHANGE_FONT_SIZE, payload: fontSize });
+  };
+};
+
+export const changeNewsTitle = (newsTitle) => {
+  return (dispatch) => {
+    dispatch({ type: CHANGE_NEWS_TITLE, payload: newsTitle });
   };
 };
 
@@ -98,6 +108,12 @@ export const loadPreview = (redisKey) => {
   };
 };
 
+export const showFixedHeader = (showHeader) => {
+  return (dispatch) => {
+    dispatch({ type: SHOW_FIXED_HEADER, payload: showHeader });
+  };
+};
+
 export default function currentNews (state = initialState, action) {
   // 暫時解，初始化時有時 fontSize 會變成 undefined
   state.fontSize = isomorphicCookie.load('fontSize') || 16;
@@ -105,7 +121,12 @@ export default function currentNews (state = initialState, action) {
     case CHANGE_FONT_SIZE:
       return {
         ...state,
-        fontSize: action.fontSize
+        fontSize: action.payload
+      };
+    case CHANGE_NEWS_TITLE:
+      return {
+        ...state,
+        newsTitle: action.payload
       };
     case LOAD_NEWS_REQUEST:
     case LOAD_PREVIEW_REQUEST:
@@ -130,7 +151,8 @@ export default function currentNews (state = initialState, action) {
         hasMore: !!action.payload.next.sn,
         isLoading: false,
         isSSRAndInit: !canUseDOM,
-        lastFetched: action.meta.lastFetched
+        lastFetched: action.meta.lastFetched,
+        newsTitle: action.payload.title
       };
     case LOAD_NEWS_FAILURE:
     case LOAD_PREVIEW_FAILURE:
@@ -144,6 +166,11 @@ export default function currentNews (state = initialState, action) {
         data: [action.payload],
         isLoading: false,
         lastFetched: action.meta.lastFetched
+      };
+    case SHOW_FIXED_HEADER:
+      return {
+        ...state,
+        showFixedHeader: action.payload
       };
     default:
       return state;

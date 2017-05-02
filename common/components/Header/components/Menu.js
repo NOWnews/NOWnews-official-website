@@ -33,7 +33,7 @@ const Menu = ({ menus, currentMainMenu, currentChildMenu }) => {
   return (
     <div>
       <div className={css(styles.menu)}>{ mainMenuDoms }</div>
-      <hr />
+      {childMenus.length > 0 && <hr />}
       <div className={css(styles.menu)}>
         { childMenus.map(({ sn, isExternal, url, name }) =>
           <Link

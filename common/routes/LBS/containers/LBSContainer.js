@@ -5,7 +5,7 @@ import { selectLBSPage, loadLBSList } from '../module';
 
 import { loadHeader, selectMenus } from '../../../modules/header';
 
-import Header from '../../../components/Header';
+import { Header } from '../../../components/Header';
 import { BlockItems12, TripletHead } from '../../../components/News';
 import { Container, Loading, NotFound } from '../../../components/Layout';
 

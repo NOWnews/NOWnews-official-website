@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
-import Header from '../../../components/Header';
+import { Header } from '../../../components/Header';
 import { BlockItems12, Slide } from '../../../components/News';
 import { HotNews } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';

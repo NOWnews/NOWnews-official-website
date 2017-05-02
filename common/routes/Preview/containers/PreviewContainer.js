@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { loadHeader, selectMenus } from '../../../modules/header';
 import { loadPreview, selectCurrentNews } from '../../News/module';
-import Header from '../../../components/Header';
+import { Header } from '../../../components/Header';
 import { Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 

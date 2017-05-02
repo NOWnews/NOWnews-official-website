@@ -2,7 +2,7 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { loadHeader, selectMenus } from '../../../modules/header';
-import Header from '../../../components/Header';
+import { Header } from '../../../components/Header';
 import { Container } from '../../../components/Layout';
 import * as Components from '../components';
 

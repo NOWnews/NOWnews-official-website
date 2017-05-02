@@ -1,3 +1,2 @@
-import Header from './Header';
-
-export default Header;
+export Header from './Header';
+export FixedHeader from './FixedHeader';

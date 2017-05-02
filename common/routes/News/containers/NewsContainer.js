@@ -4,12 +4,11 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
-import Header from '../../../components/Header';
+import { FixedHeader, Header } from '../../../components/Header';
 import { Ad970x250 } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
-
-import { changeFontSize, loadNews, selectCurrentNews } from '../module';
+import { changeFontSize, changeNewsTitle, loadNews, selectCurrentNews, showFixedHeader } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
 
 const redial = {
@@ -26,14 +25,17 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
   changeFontSize,
-  loadNews
+  changeNewsTitle,
+  loadNews,
+  showFixedHeader
 });
 
-class NewsPage extends Component {
+class NewsContainer extends Component {
   constructor (props) {
     super(props);
     this.loadItems = this.loadItems.bind(this);
     this.touchWindowTop = this.touchWindowTop.bind(this);
+    this.scrollListener = this.scrollListener.bind(this);
   }
 
   componentDidMount () {
@@ -43,35 +45,47 @@ class NewsPage extends Component {
         window.document.body.scrollTop = 0;
       }, 100);
     }
+    window.addEventListener('scroll', this.scrollListener);
   }
 
   loadItems () {
-    let newsData = this.props.currentNews.data;
-    let sn = newsData[newsData.length - 1].next.sn;
-    let isLoadMore = true;
+    const newsData = this.props.currentNews.data;
+    const sn = newsData[newsData.length - 1].next.sn;
+    const isLoadMore = true;
     this.props.loadNews(sn, isLoadMore);
   }
 
+  scrollListener () {
+    if (this.props.currentNews.showFixedHeader && window.scrollY < 200) {
+      this.props.showFixedHeader(false);
+    } else if (!this.props.currentNews.showFixedHeader && window.scrollY > 200) {
+      this.props.showFixedHeader(true);
+    }
+  }
+
   touchWindowTop (item, index) {
-    let { sn, startedAt } = this.props.currentNews.data[index];
-    let formatStartedAt = moment(startedAt).format('YYYYMMDD');
-    window.history.pushState(null, null, `/news/${formatStartedAt}/${sn}`);
+    const { sn, startedAt, title } = this.props.currentNews.data[index];
+    const originalSn = window.location.pathname.split('/')[3];
+    if (parseInt(originalSn, 10) !== sn) {
+      const formatStartedAt = moment(startedAt).format('YYYYMMDD');
+      window.history.pushState(null, null, `/news/${formatStartedAt}/${sn}`);
+      this.props.changeNewsTitle(title);
+    }
   }
 
   render () {
-    let { isLoading, data = [], hasMore, fontSize } = this.props.currentNews;
-    let items = [];
-    let totalLength = data.length;
-    data.map((item, i) => {
-      let { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
-
-      let contentProps = {
+    const { isLoading, data = [], hasMore, fontSize, newsTitle, showFixedHeader } = this.props.currentNews;
+    const currentMainMenu = data[0] && data[0].MainMenu.id;
+    const totalLength = data.length;
+    const items = data.map((item, i) => {
+      const { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
+      const contentProps = {
         news,
         changeFontSize: this.props.changeFontSize,
         fontSize
       };
 
-      items.push(
+      return (
         <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
           { type === 'NEWS' && <ContentForNews {...contentProps} /> }
@@ -84,7 +98,9 @@ class NewsPage extends Component {
 
     return (
       <div>
-        <Header menus={this.props.menus} currentMainMenu={data[0] && data[0].MainMenu.id} />
+        <Header menus={this.props.menus} currentMainMenu={currentMainMenu} />
+        {showFixedHeader && <FixedHeader menus={this.props.menus}
+          currentMainMenu={currentMainMenu} newsTitle={newsTitle} />}
         {isLoading &&
           <div>
             <div>{items}</div>
@@ -104,11 +120,13 @@ class NewsPage extends Component {
   }
 }
 
-NewsPage.propTypes = {
+NewsContainer.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
+  changeNewsTitle: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
   loadNews: PropTypes.func.isRequired,
-  menus: PropTypes.array.isRequired
+  menus: PropTypes.array.isRequired,
+  showFixedHeader: PropTypes.func.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(NewsPage));
+export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(NewsContainer));
