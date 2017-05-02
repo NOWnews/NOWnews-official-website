@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { BlockItem8 } from '../../../components/News';
+import { BlockChannelItem } from '../../../components/News';
 
-const BlockItems = ({ newsList }) => {
-  let items = newsList.map(({ sn, MainPhoto, title }) => {
+const BlockItems = ({ channels }) => {
+  let items = channels.map(({ MainPhoto, sn, title }) => {
     return (
       <div key={sn} className={css(styles.blockItem)}>
-        <BlockItem8 key={sn}
+        <BlockChannelItem key={sn}
           photo={MainPhoto}
+          sn={sn}
           title={title} />
       </div>
     );
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
 });
 
 BlockItems.propTypes = {
-  newsList: PropTypes.array.isRequired
+  channels: PropTypes.array.isRequired
 };
 
 export default BlockItems;

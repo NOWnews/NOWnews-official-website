@@ -25,15 +25,8 @@ class ChannelSelecter extends Component {
 
   render () {
     let { channels, selectedChannel } = this.props;
-    // temp Data
-    channels = [
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-    ];
 
-    let items = channels.map(({ sn, title = '今日整點報' }, key) => {
-      sn = key; // temp
+    let items = channels.map(({ sn, title }) => {
       let isActive = (sn === selectedChannel.sn) ? css(styles.activeItem) : '';
       return (
         <span key={sn} className={`${css(styles.channelItem)} ${isActive}`}

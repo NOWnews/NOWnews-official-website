@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectChannelPage, loadChannelData } from '../module';
 import { loadHeader, selectMenus } from '../../../modules/header';
-import Header from '../../../components/Header';
+import { Header } from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { ChannelSelecter, BlockItems } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
@@ -25,7 +25,7 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   loadChannelData
 });
 
-const ChannelPage = ({ channelPage, loadChannelData, menus }) => {
+const ChannelContainer = ({ channelPage, loadChannelData, menus }) => {
   let { channels, isLoading, pageData, selectedChannel } = channelPage;
   let { newsList = [], ...channel } = selectedChannel;
   return (
@@ -45,10 +45,10 @@ const ChannelPage = ({ channelPage, loadChannelData, menus }) => {
   );
 };
 
-ChannelPage.propTypes = {
+ChannelContainer.propTypes = {
   channelPage: PropTypes.object.isRequired,
   loadChannelData: PropTypes.func.isRequired,
   menus: PropTypes.array.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(ChannelPage));
+export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(ChannelContainer));
