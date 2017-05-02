@@ -3,7 +3,7 @@ import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Logo } from './components';
 
-const DynamicHeader = ({ currentMainMenu, menus, newsTitle }) => {
+const FixedHeader = ({ currentMainMenu, menus, newsTitle }) => {
   const mainMenuDoms = [];
 
   menus.map(({ _id, child, isExternal, name, sn, url }) => {
@@ -79,10 +79,10 @@ const styles = StyleSheet.create({
   }
 });
 
-DynamicHeader.propTypes = {
+FixedHeader.propTypes = {
   currentMainMenu: PropTypes.string,
   menus: PropTypes.array.isRequired,
   newsTitle: PropTypes.string.isRequired
 };
 
-export default DynamicHeader;
+export default FixedHeader;
