@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 
 BlockChannelItem.propTypes = {
   photo: PropTypes.object.isRequired,
-  sn: PropTypes.string.isRequired,
+  sn: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired
 };
 

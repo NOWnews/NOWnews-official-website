@@ -1,2 +1,2 @@
 export BlockItems from './BlockItems';
-export HotTopics from './HotTopics';
+export TopicRight from './TopicRight';
