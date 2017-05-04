@@ -1,11 +1,13 @@
 import React from 'react';
-// import { StyleSheet, css } from 'aphrodite/no-important';
+import Container from './Container';
 
 const Loading = () => (
-  <div>Loading ... </div>
+  <Container className='center'>
+    <div>
+      <img alt='Loading' src='/others/loading.gif' />
+    </div>
+    <span className='h3'>載入中 ... </span>
+  </Container>
 );
-
-// const styles = StyleSheet.create({
-// });
 
 export default Loading;
