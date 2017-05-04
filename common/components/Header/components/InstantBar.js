@@ -1,17 +1,56 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const InstantBar = () => (
-  <div className={css(styles.box)}>
-    <span className={css(styles.text)}>即時跑馬燈</span>
-    <Link className={css(styles.link)}>蝶戀花父子鞠躬道歉  承諾絕不逃避</Link>
-    <span className={css(styles.split)}>｜</span>
-    <Link className={css(styles.link)}>美女主播痛批工時制度  力挺司機</Link>
-    <span className={css(styles.split)}>｜</span>
-    <Link className={css(styles.link)}>蝶戀花周比蒼道歉：人車與友力無關</Link>
-  </div>
-);
+class InstantBar extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      index: 0
+    };
+    this.updateIndex = this.updateIndex.bind(this);
+  }
+
+  componentDidMount () {
+    this.interval = setInterval(this.updateIndex, 3000);
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.interval);
+  }
+
+  updateIndex () {
+    const { index } = this.state;
+    const nextIndex = (index === 2) ? 0 : index + 1;
+    this.setState({index: nextIndex});
+  }
+
+  render () {
+    const { index } = this.state;
+    const list = [
+      '蝶戀花父子鞠躬道歉  承諾絕不逃避', '蝶戀花父子鞠躬道歉  承諾絕不逃避', '蝶戀花父子鞠躬道歉  承諾絕不逃避',
+      '美女主播痛批工時制度  力挺司機', '美女主播痛批工時制度  力挺司機', '美女主播痛批工時制度  力挺司機',
+      '蝶戀花周比蒼道歉：人車與友力無關', '蝶戀花周比蒼道歉：人車與友力無關', '蝶戀花周比蒼道歉：人車與友力無關'
+    ];
+
+    return (
+      <div className={css(styles.box)}>
+        <span className={css(styles.text)}>即時跑馬燈</span>
+        <Link key={index * 3} className={css(styles.link)}>
+          <span>{list[index * 3]}</span>
+        </Link>
+        <span className={css(styles.split)}>｜</span>
+        <Link key={index * 3 + 1} className={css(styles.link)}>
+          <span>{list[index * 3 + 1]}</span>
+        </Link>
+        <span className={css(styles.split)}>｜</span>
+        <Link key={index * 3 + 2} className={css(styles.link)}>
+          <span>{list[index * 3 + 2]}</span>
+        </Link>
+      </div>
+    );
+  }
+}
 
 const lineHeight = 44;
 const styles = StyleSheet.create({
@@ -47,5 +86,9 @@ const styles = StyleSheet.create({
     borderRight: '1px solid #fff'
   }
 });
+
+InstantBar.propTypes = {
+  list: PropTypes.array
+};
 
 export default InstantBar;
