@@ -9,7 +9,7 @@ const Margin10 = ({ children, className = '' }) => (
 
 const styles = StyleSheet.create({
   margin10: {
-    padding: '10px 0'
+    margin: '10px 0'
   }
 });
 
