@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     ':hover': {
       color: '#0080FF'
     }
-
   }
 });
 

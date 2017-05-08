@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
+import FontAwesome from 'react-fontawesome';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Logo } from './components';
+import { Container } from '../Layout';
 
 const FixedHeader = ({ currentMainMenu, menus, newsTitle }) => {
   const mainMenuDoms = [];
@@ -27,31 +29,45 @@ const FixedHeader = ({ currentMainMenu, menus, newsTitle }) => {
 
   return (
     <div className={css(styles.header)}>
-      <div className={css(styles.firstRow)}>
-        <Logo />
+      <Container className={css(styles.firstRow)}>
+        <Logo customClass={css(styles.logo)} />
         <div className={css(styles.menu)}>{ mainMenuDoms }</div>
+        <div className={css(styles.icons)}>
+          <Link className={css(styles.iconLink)} to='/search'>
+            <FontAwesome name='search' size='2x' />
+          </Link>
+          <Link className={css(styles.iconLink)} to='/user'>
+            <FontAwesome name='user-circle-o' size='2x' />
+          </Link>
+        </div>
+      </Container>
+      <div className={css(styles.newsTitle)}>
+        <Container>{ newsTitle }</Container>
       </div>
-      <div className={css(styles.newsTitle)}>{ newsTitle }</div>
     </div>
   );
 };
 
+const firstRowHeight = 70;
 const styles = StyleSheet.create({
   header: {
     background: '#ffffff',
-    minWidth: 970,
     position: 'fixed',
     top: 0,
     width: '100%',
     zIndex: 9999
   },
   firstRow: {
-    margin: '0rem 2rem',
     color: '#999',
-    display: 'inline-flex'
+    height: firstRowHeight,
+    position: 'relative'
   },
   menu: {
-    width: '100%'
+    display: 'inline-block',
+    height: firstRowHeight,
+    lineHeight: `${firstRowHeight}px`,
+    position: 'relative',
+    top: -10
   },
   newsTitle: {
     background: '#F1F2F3',
@@ -65,8 +81,8 @@ const styles = StyleSheet.create({
   link: {
     color: '#000',
     display: 'inline-block',
-    height: 70,
-    lineHeight: '70px',
+    height: firstRowHeight,
+    lineHeight: `${firstRowHeight}px`,
     marginLeft: 15,
     textDecoration: 'none',
     transition: '.2s opacity ease',
@@ -74,8 +90,29 @@ const styles = StyleSheet.create({
       opacity: 0.6
     }
   },
+  logo: {
+    display: 'inline-block',
+    height: 'auto',
+    minWidth: 151,
+    paddingRight: 0,
+    paddingTop: 15,
+    width: 151
+  },
   active: {
     color: '#1886FB'
+  },
+  icons: {
+    position: 'absolute',
+    right: 0,
+    top: 19
+  },
+  iconLink: {
+    color: '#999999',
+    marginRight: 10,
+    textDecoration: 'none',
+    ':hover': {
+      color: '#0080FF'
+    }
   }
 });
 
