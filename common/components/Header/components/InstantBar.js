@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 class InstantBar extends Component {
   constructor (props) {
@@ -33,20 +34,48 @@ class InstantBar extends Component {
       '蝶戀花周比蒼道歉：人車與友力無關', '蝶戀花周比蒼道歉：人車與友力無關', '蝶戀花周比蒼道歉：人車與友力無關'
     ];
 
+    const customTransitionStyle = `
+    .item-enter {
+        display: none;
+    }
+    .item-enter.item-enter-active {
+      transform: rotateX(-180deg);
+      transition: all 600ms ease-in;
+      backfaceVisibility: 'hidden';
+    }
+    .item-leave.item-leave-active {
+      transform: rotateX(-180deg);
+      transition: all 500ms ease-in;
+    }`;
+
+    const transitionConfig = {
+      transitionAppear: false,
+      transitionEnterTimeout: 500,
+      transitionLeaveTimeout: 500,
+      transitionName: 'item'
+    };
+
     return (
       <div className={css(styles.box)}>
+        <style dangerouslySetInnerHTML={{__html: customTransitionStyle}} />
         <span className={css(styles.text)}>即時跑馬燈</span>
-        <Link key={index * 3} className={css(styles.link)}>
-          <span>{list[index * 3]}</span>
-        </Link>
+        <CSSTransitionGroup {...transitionConfig}>
+          <Link key={index * 3} className={css(styles.link)}>
+            <span>{list[index * 3]}</span>
+          </Link>
+        </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
-        <Link key={index * 3 + 1} className={css(styles.link)}>
-          <span>{list[index * 3 + 1]}</span>
-        </Link>
+        <CSSTransitionGroup {...transitionConfig}>
+          <Link key={index * 3 + 1} className={css(styles.link)}>
+            <span>{list[index * 3 + 1]}</span>
+          </Link>
+        </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
-        <Link key={index * 3 + 2} className={css(styles.link)}>
-          <span>{list[index * 3 + 2]}</span>
-        </Link>
+        <CSSTransitionGroup {...transitionConfig}>
+          <Link key={index * 3 + 2} className={css(styles.link)}>
+            <span>{list[index * 3 + 2]}</span>
+          </Link>
+        </CSSTransitionGroup>
       </div>
     );
   }
@@ -59,10 +88,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     display: 'inline-flex',
     height: lineHeight,
-    margin: '0.5rem 0 1rem 0'
-
+    margin: '0.5rem 0 1rem 0',
+    width: 970
   },
   link: {
+    display: 'inline-block',
     width: 272.5,
     height: lineHeight,
     lineHeight: `${lineHeight}px`,
@@ -70,6 +100,7 @@ const styles = StyleSheet.create({
     textDecoration: 'none',
     fontWeight: 'bold',
     transition: '.2s opacity ease',
+    transformStyle: 'preserve-3d',
     ':hover': {
       opacity: 0.6
     }
