@@ -19,7 +19,7 @@ const ContentForNews = ({ news, changeFontSize, fontSize }) => (
           fontSize
         }} />
     </div>
-    <span>{news.MainPhoto && news.MainPhoto.desc}</span>
+    <i>{news.MainPhoto && news.MainPhoto.desc}</i>
     <Margin10 className='clearfix'>
       <LeftSide>
         <Content content={news.content} fontSize={fontSize} />
