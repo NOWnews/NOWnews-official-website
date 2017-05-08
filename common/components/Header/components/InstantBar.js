@@ -36,14 +36,10 @@ class InstantBar extends Component {
 
     const customTransitionStyle = `
     .item-enter {
-        display: none;
-    }
-    .item-enter.item-enter-active {
-      transform: rotateX(-180deg);
-      transition: all 600ms ease-in;
-      backfaceVisibility: 'hidden';
+      display: none;
     }
     .item-leave.item-leave-active {
+      opacity: 0.5;
       transform: rotateX(-180deg);
       transition: all 500ms ease-in;
     }`;
