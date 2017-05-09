@@ -55,8 +55,9 @@ class VideoBlock extends Component {
         </div>
         <FontAwesome className={css(styles.iconLeft)} name='chevron-left' size='2x'
           onClick={this.prev} />
-        <Margin10 className={`clearfix ${css(styles.thumbsWrapper)}`}>
-          <div style={{width: thumbs.length * 250, transitionDuration: '350ms', transform: `translate3d(${this.state.positionIndex * -242.5}px, 0px, 0px)`}}>
+        <Margin10 className={css(styles.thumbsWrapper)}>
+          <div className='clearfix'
+            style={{width: thumbs.length * 250, transitionDuration: '350ms', transform: `translate3d(${this.state.positionIndex * -242.5}px, 0px, 0px)`}}>
             {thumbs}
           </div>
         </Margin10>
