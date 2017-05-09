@@ -7,7 +7,7 @@ const Tags = ({ tags }) => (
   <Margin10>
     關鍵字
     {tags.map(({ sn, name }) =>
-      <Link className={css(styles.tag)} key={sn} to={''}>{ name }</Link>
+      <Link className={css(styles.tag)} key={sn} to={`/search?keyword=${name}`}>{ name }</Link>
     )}
   </Margin10>
 );

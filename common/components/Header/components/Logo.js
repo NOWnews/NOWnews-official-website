@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import IndexLink from 'react-router/lib/IndexLink';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Logo = () => (
-  <div className={css(styles.box)}>
+const Logo = ({ customClass = '' }) => (
+  <div className={`${css(styles.defaultBox)} ${customClass}`}>
     <IndexLink to='/'>
       <img className={css(styles.img)} alt='NOWnews Logo' src='/logo.png' />
     </IndexLink>
@@ -11,7 +11,7 @@ const Logo = () => (
 );
 
 const styles = StyleSheet.create({
-  box: {
+  defaultBox: {
     height: 70,
     minWidth: 250,
     width: 250,
@@ -22,5 +22,9 @@ const styles = StyleSheet.create({
     width: '100%'
   }
 });
+
+Logo.propTypes = {
+  customClass: PropTypes.string
+};
 
 export default Logo;

@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
-import { BlockItems, BlockItems4, BlockItems8, SlideRight } from '../components';
+import { BlockItems, BlockItems4, BlockItems8, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10, NotFound } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
@@ -61,8 +61,8 @@ class HomeContainer extends Component {
         {!isLoading && carousels.length === 0 && <NotFound />}
         {!isLoading && carousels.length > 0 &&
           <div>
+            <Header menus={menus} />
             <Container>
-              <Header menus={menus} />
               <div className={`clearfix ${css(styles.slideArea)}`}>
                 <Slide list={carousels.slice(0, 5)} />
                 <SlideRight newsList={carousels.slice(0, 5)} />
@@ -97,6 +97,16 @@ class HomeContainer extends Component {
                 <div className={css(styles.seeMoreBlock)}>
                   <Link className={css(styles.seeMoreLink)} to={tripletType}>
                     看更多{seeMoreTextDefined[tripletType]}新聞
+                  </Link>
+                </div>
+              </Container>
+            </div>
+            <div className={css(styles.videoBlock)}>
+              <Container className={css(styles.videoContaienr)}>
+                <VideoBlock list={carousels} />
+                <div className={css(styles.seeMoreBlock)}>
+                  <Link className={css(styles.seeMoreLink, styles.white)} to={''}>
+                    看更多影音
                   </Link>
                 </div>
               </Container>
@@ -146,6 +156,10 @@ const styles = StyleSheet.create({
     backgroundSize: 5,
     marginTop: '-36.5px',
     paddingBottom: '100px'
+  },
+  white: {
+    borderColor: '#ffffff',
+    color: '#ffffff'
   },
   seeMoreBlock: {
     textAlign: 'center',
@@ -200,6 +214,16 @@ const styles = StyleSheet.create({
     ':hover': {
       opacity: 0.9
     }
+  },
+  videoBlock: {
+    background: '#323334',
+    height: 770,
+    marginBottom: 30,
+    marginTop: 70
+  },
+  videoContaienr: {
+    position: 'relative',
+    top: -40
   },
   mapTitle: {
     position: 'absolute',
