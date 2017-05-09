@@ -10,7 +10,7 @@ const Ad200x70 = () => (
 const styles = StyleSheet.create({
   box: {
     textAlign: 'center',
-    width: 230
+    width: 225
   }
 });
 

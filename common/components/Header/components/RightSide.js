@@ -5,12 +5,12 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Nav = () => {
   const socialList = [
-    { icon: 'FB', url: 'https://facebook.com/nownews' },
+    { icon: 'weibo', url: 'http://tw.weibo.com/nownews' },
     { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
-    { icon: 'weibo', url: 'http://tw.weibo.com/nownews' }
+    { icon: 'FB', url: 'https://facebook.com/nownews' }
   ];
   return (
-    <div className={`right ${css(styles.box)}`}>
+    <div className={`clearfix ${css(styles.box)}`}>
       <Link className={css(styles.link)} to='/search'>
         <FontAwesome name='search' size='2x' />
       </Link>
@@ -19,7 +19,7 @@ const Nav = () => {
         <div className={css(styles.account)}>Account</div>
       </Link>
       {socialList.map(({ icon, url }) =>
-        <Link className={css(styles.btnSocial)} key={icon} target='_blank' to={url}>
+        <Link className={`right ${css(styles.btnSocial)}`} key={icon} target='_blank' to={url}>
           <img src={`/social/${icon}.png`} alt={icon} />
         </Link>
       )}
@@ -38,14 +38,15 @@ const styles = StyleSheet.create({
     top: -7.5
   },
   box: {
-    margin: 'auto 0 auto 10px'
+    margin: 'auto 0 auto 10px',
+    width: 270
   },
   btnSocial: {
-    marginLeft: 10
+    marginRight: 10
   },
   link: {
     color: '#999999',
-    marginRight: 13,
+    marginLeft: 10,
     textDecoration: 'none',
     ':hover': {
       color: '#0080FF'
