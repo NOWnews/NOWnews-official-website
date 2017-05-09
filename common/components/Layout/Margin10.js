@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Margin10 = ({ children, className = '' }) => (
-  <div className={`${className} ${css(styles.margin10)}`} >
+  <div className={`${className} ${css(styles.margin10)}`}>
     { children }
   </div>
 );

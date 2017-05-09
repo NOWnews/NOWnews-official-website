@@ -33,18 +33,13 @@ class VideoBlock extends Component {
   }
 
   render () {
-    let thumbs = [];
-    this.props.list.forEach(({ sn, MainPhoto, shortTitle }, index) => {
-      if (index < this.state.positionIndex) {
-        return;
-      }
-
-      let thumbTitleClass = css(
+    const thumbs = this.props.list.map(({ sn, MainPhoto, shortTitle }, index) => {
+      const thumbTitleClass = css(
         styles.thumbTitle,
         (index === this.state.selectedIndex) ? styles.active : ''
       );
 
-      thumbs.push(
+      return (
         <div className={`left ${css(styles.thumb)}`} key={sn} onClick={() => this.onSelectThumb(index)}>
           <img src={MainPhoto && MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'}
             alt={shortTitle} className={css(styles.img)} />
@@ -54,19 +49,19 @@ class VideoBlock extends Component {
     });
 
     return (
-      <Margin10>
+      <Margin10 className='relative'>
         <div>
           <iframe width='970' height='500' src='https://www.youtube.com/embed/5Xvud7uqWNw' />
         </div>
-        <Margin10 className='relative'>
-          <FontAwesome className={css(styles.iconLeft)} name='chevron-left' size='2x'
-            onClick={this.prev} />
-          <div className={`clearfix ${css(styles.thumbsWrapper)}`}>
+        <FontAwesome className={css(styles.iconLeft)} name='chevron-left' size='2x'
+          onClick={this.prev} />
+        <Margin10 className={`clearfix ${css(styles.thumbsWrapper)}`}>
+          <div style={{width: thumbs.length * 250, transitionDuration: '350ms', transform: `translate3d(${this.state.positionIndex * -242.5}px, 0px, 0px)`}}>
             {thumbs}
           </div>
-          <FontAwesome className={css(styles.iconRight)} name='chevron-right' size='2x'
-            onClick={this.next} />
         </Margin10>
+        <FontAwesome className={css(styles.iconRight)} name='chevron-right' size='2x'
+          onClick={this.next} />
       </Margin10>
     );
   }
@@ -75,13 +70,13 @@ class VideoBlock extends Component {
 const iconStyles = {
   background: '#000000',
   borderRadius: '50%',
+  bottom: 90,
   color: '#ffffff',
   cursor: 'pointer',
   height: 50,
   opacity: 0.9,
   padding: '8px 15px 0 15px',
   position: 'absolute',
-  top: 40,
   zIndex: 10
 };
 
@@ -112,9 +107,9 @@ const styles = StyleSheet.create({
   thumb: {
     background: '#000000',
     cursor: 'pointer',
-    width: 230,
+    width: 235,
     height: 190,
-    margin: 5,
+    marginRight: 8,
     ':hover': {
       opacity: 0.8
     }
