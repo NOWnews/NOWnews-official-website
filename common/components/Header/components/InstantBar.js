@@ -29,24 +29,30 @@ class InstantBar extends Component {
   render () {
     const { index } = this.state;
     const list = [
-      '蝶戀花父子鞠躬道歉  承諾絕不逃避', '蝶戀花父子鞠躬道歉  承諾絕不逃避', '蝶戀花父子鞠躬道歉  承諾絕不逃避',
+      '年金改革圍城　至少11起攻擊事件', '年金改革圍城　至少11起攻擊事件', '年金改革圍城　至少11起攻擊事件',
       '美女主播痛批工時制度  力挺司機', '美女主播痛批工時制度  力挺司機', '美女主播痛批工時制度  力挺司機',
       '蝶戀花周比蒼道歉：人車與友力無關', '蝶戀花周比蒼道歉：人車與友力無關', '蝶戀花周比蒼道歉：人車與友力無關'
     ];
 
     const customTransitionStyle = `
     .item-enter {
-      display: none;
+      opacity: 0.8;
+      transform: rotateX(-90deg);
+    }
+    .item-enter.item-enter-active {
+      transform: rotateX(0deg);
+      opacity: 1;
+      transition: all 500ms ease-in 500ms;
     }
     .item-leave.item-leave-active {
-      opacity: 0.5;
-      transform: rotateX(-180deg);
+      transform: rotateX(90deg);
       transition: all 500ms ease-in;
     }`;
 
     const transitionConfig = {
+      className: css(styles.linkWrapper),
       transitionAppear: false,
-      transitionEnterTimeout: 500,
+      transitionEnterTimeout: 1000,
       transitionLeaveTimeout: 500,
       transitionName: 'item'
     };
@@ -87,16 +93,22 @@ const styles = StyleSheet.create({
     margin: '0.5rem 0 1rem 0',
     width: 970
   },
-  link: {
-    display: 'inline-block',
+  linkWrapper: {
     width: 272.5,
+    position: 'relative'
+  },
+  link: {
+    backfaceVisibility: 'hidden',
+    position: 'absolute',
+    display: 'inline-block',
+    fontWeight: 'bold',
     height: lineHeight,
     lineHeight: `${lineHeight}px`,
-    textAlign: 'center',
     textDecoration: 'none',
-    fontWeight: 'bold',
+    textAlign: 'center',
     transition: '.2s opacity ease',
     transformStyle: 'preserve-3d',
+    width: '100%',
     ':hover': {
       opacity: 0.6
     }
