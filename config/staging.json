@@ -1,6 +1,7 @@
 {
   "mode": "staging",
   "webApiServer": "107.167.181.83:10001",
+  "isProdMode": true,
   "server": {
     "webConcurrency": 1,
     "port": 5000,

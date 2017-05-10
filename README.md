@@ -22,10 +22,9 @@ npm run start:prod
 
 ```
 npm run build
-NODE_ENV=develop pm2 start ./build/server.js --name 'official-web-develop'
+env NODE_ENV=staging pm2 start ./build/server.js --name 'official-web-staging'
 ```
 > NOTE: 依據你的 NODE_ENV 切換
-
 
 ## Structure
 

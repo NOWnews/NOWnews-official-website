@@ -24,11 +24,11 @@ import { configureStore } from '../common/store';
 import createRoutes from '../common/routes/root';
 import configLib from 'config';
 const defaultServerConfig = configLib.get('server');
-const nodeEnv = configLib.get('mode');
+const isProdMode = configLib.get('isProdMode');
 const webApiServer = configLib.get('webApiServer');
 
 export const createServer = (config) => {
-  const __PROD__ = nodeEnv === 'production';
+  const __PROD__ = isProdMode;
 
   const app = express();
   let assets = null;
@@ -198,7 +198,7 @@ export const startServer = (serverConfig) => {
   const config = {...defaultServerConfig, ...serverConfig};
   const server = createServer(config);
   server.listen(config.port, (err) => {
-    if (nodeEnv === 'production') {
+    if (isProdMode) {
       if (err) console.log(err);
       console.log(`server ${config.id} listening on port ${config.port}`);
     } else {
