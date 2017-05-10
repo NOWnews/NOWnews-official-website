@@ -13,7 +13,7 @@ export default function createRoutes (store) {
         let channelReducer = require('./module').default;
         injectAsyncReducer(store, 'channelPage', channelReducer);
         cb(null, ChannelContainer);
-      });
+      }, 'channelPage');
     }
   };
 }

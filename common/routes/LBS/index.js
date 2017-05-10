@@ -12,7 +12,7 @@ export default function createRoutes (store) {
         let LBSReducer = require('./module').default;
         injectAsyncReducer(store, 'LBSPage', LBSReducer);
         cb(null, LBSContainer);
-      });
+      }, 'LBSPage');
     }
   };
 }

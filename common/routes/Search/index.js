@@ -12,7 +12,8 @@ export default function createRoutes (store) {
         let searchReducer = require('./module').default;
         injectAsyncReducer(store, 'searchPage', searchReducer);
         cb(null, SearchContainer);
-      });
+      }, 'searchPage');
+
     }
   };
 }

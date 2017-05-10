@@ -13,7 +13,7 @@ export default function createRoutes (store) {
         let categoryReducer = require('./module').default;
         injectAsyncReducer(store, 'categoryPage', categoryReducer);
         cb(null, CategoryContainer);
-      });
+      }, 'categoryPage');
     }
   };
 }

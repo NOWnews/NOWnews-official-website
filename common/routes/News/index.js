@@ -12,7 +12,7 @@ export default function createRoutes (store) {
         let newsReducer = require('./module').default;
         injectAsyncReducer(store, 'currentNews', newsReducer);
         cb(null, NewsContainer);
-      });
+      }, 'newsPage');
     }
   };
 }

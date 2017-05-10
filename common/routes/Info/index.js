@@ -9,7 +9,7 @@ export default function createRoutes (store) {
       ], (require) => {
         let InfoContainer = require('./containers/InfoContainer').default;
         cb(null, InfoContainer);
-      });
+      }, 'infoPage');
     }
   };
 }
