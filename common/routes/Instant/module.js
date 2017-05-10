@@ -1,6 +1,6 @@
-export const LOAD_INSTANT_REQUEST = Symbol('LOAD_INSTANT_REQUEST');
-export const LOAD_INSTANT_SUCCESS = Symbol('LOAD_INSTANT_SUCCESS');
-export const LOAD_INSTANT_FAILURE = Symbol('LOAD_INSTANT_FAILURE');
+export const LOAD_INSTANT_REQUEST = 'LOAD_INSTANT_REQUEST';
+export const LOAD_INSTANT_SUCCESS = 'LOAD_INSTANT_SUCCESS';
+export const LOAD_INSTANT_FAILURE = 'LOAD_INSTANT_FAILURE';
 
 const initialState = {
   error: null,

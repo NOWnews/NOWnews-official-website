@@ -1,6 +1,6 @@
-export const LOAD_TOPIC_REQUEST = Symbol('LOAD_TOPIC_REQUEST');
-export const LOAD_TOPIC_SUCCESS = Symbol('LOAD_TOPIC_SUCCESS');
-export const LOAD_TOPIC_FAILURE = Symbol('LOAD_TOPIC_FAILURE');
+export const LOAD_TOPIC_REQUEST = 'LOAD_TOPIC_REQUEST';
+export const LOAD_TOPIC_SUCCESS = 'LOAD_TOPIC_SUCCESS';
+export const LOAD_TOPIC_FAILURE = 'LOAD_TOPIC_FAILURE';
 
 const initialState = {
   error: null,

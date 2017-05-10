@@ -1,6 +1,6 @@
-export const LOAD_LBS_REQUEST = Symbol('LOAD_LBS_REQUEST');
-export const LOAD_LBS_SUCCESS = Symbol('LOAD_LBS_SUCCESS');
-export const LOAD_LBS_FAILURE = Symbol('LOAD_LBS_FAILURE');
+export const LOAD_LBS_REQUEST = 'LOAD_LBS_REQUEST';
+export const LOAD_LBS_SUCCESS = 'LOAD_LBS_SUCCESS';
+export const LOAD_LBS_FAILURE = 'LOAD_LBS_FAILURE';
 
 const initialState = {
   error: null,

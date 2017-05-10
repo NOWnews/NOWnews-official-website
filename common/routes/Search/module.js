@@ -1,7 +1,7 @@
-export const LOAD_SEARCH_REQUEST = Symbol('LOAD_SEARCH_REQUEST');
-export const LOAD_SEARCH_SUCCESS = Symbol('LOAD_SEARCH_SUCCESS');
-export const LOAD_SEARCH_FAILURE = Symbol('LOAD_SEARCH_FAILURE');
-export const PASS_SEARCH_REQUEST = Symbol('PASS_SEARCH_REQUEST');
+export const LOAD_SEARCH_REQUEST = 'LOAD_SEARCH_REQUEST';
+export const LOAD_SEARCH_SUCCESS = 'LOAD_SEARCH_SUCCESS';
+export const LOAD_SEARCH_FAILURE = 'LOAD_SEARCH_FAILURE';
+export const PASS_SEARCH_REQUEST = 'PASS_SEARCH_REQUEST';
 
 export const initialState = {
   error: null,
