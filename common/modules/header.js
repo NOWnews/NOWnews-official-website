@@ -54,7 +54,8 @@ export default function header (state = initialState, action) {
       };
     case LOAD_HEADER_FAILURE:
       return { ...state,
-        error: action.payload
+        error: action.payload,
+        isLoading: false
       };
     default:
       return state;
