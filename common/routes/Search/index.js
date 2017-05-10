@@ -13,7 +13,6 @@ export default function createRoutes (store) {
         injectAsyncReducer(store, 'searchPage', searchReducer);
         cb(null, SearchContainer);
       }, 'searchPage');
-
     }
   };
 }
