@@ -12,7 +12,7 @@ export default function createRoutes (store) {
         let instantReducer = require('./module').default;
         injectAsyncReducer(store, 'instantPage', instantReducer);
         cb(null, InstantContainer);
-      });
+      }, 'instantPage');
     }
   };
 }

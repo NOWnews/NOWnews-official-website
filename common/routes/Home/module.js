@@ -1,7 +1,7 @@
-export const LOAD_INDEX_REQUEST = Symbol('LOAD_INDEX_REQUEST');
-export const LOAD_INDEX_SUCCESS = Symbol('LOAD_INDEX_SUCCESS');
-export const LOAD_INDEX_FAILURE = Symbol('LOAD_INDEX_FAILURE');
-export const SWITCH_TRIPLET_TYPE = Symbol('SWITCH_TRIPLET_TYPE');
+export const LOAD_INDEX_REQUEST = 'LOAD_INDEX_REQUEST';
+export const LOAD_INDEX_SUCCESS = 'LOAD_INDEX_SUCCESS';
+export const LOAD_INDEX_FAILURE = 'LOAD_INDEX_FAILURE';
+export const SWITCH_TRIPLET_TYPE = 'SWITCH_TRIPLET_TYPE';
 
 const initialState = {
   carousels: [],
@@ -65,6 +65,7 @@ export default function homePage (state = initialState, action) {
     case LOAD_INDEX_FAILURE:
       return {
         ...state,
+        isLoading: false,
         error: action.payload
       };
     case SWITCH_TRIPLET_TYPE:

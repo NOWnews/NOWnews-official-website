@@ -1,6 +1,6 @@
-export const LOAD_HEADER_REQUEST = Symbol('LOAD_HEADER_REQUEST');
-export const LOAD_HEADER_SUCCESS = Symbol('LOAD_HEADER_SUCCESS');
-export const LOAD_HEADER_FAILURE = Symbol('LOAD_HEADER_FAILURE');
+export const LOAD_HEADER_REQUEST = 'LOAD_HEADER_REQUEST';
+export const LOAD_HEADER_SUCCESS = 'LOAD_HEADER_SUCCESS';
+export const LOAD_HEADER_FAILURE = 'LOAD_HEADER_FAILURE';
 
 const initialState = {
   lastFetched: null,
@@ -54,7 +54,8 @@ export default function header (state = initialState, action) {
       };
     case LOAD_HEADER_FAILURE:
       return { ...state,
-        error: action.payload
+        error: action.payload,
+        isLoading: false
       };
     default:
       return state;

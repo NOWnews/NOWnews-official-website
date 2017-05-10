@@ -1,6 +1,6 @@
-export const LOAD_CHANNEL_REQUEST = Symbol('LOAD_CHANNEL_REQUEST');
-export const LOAD_CHANNEL_SUCCESS = Symbol('LOAD_CHANNEL_SUCCESS');
-export const LOAD_CHANNEL_FAILURE = Symbol('LOAD_CHANNEL_FAILURE');
+export const LOAD_CHANNEL_REQUEST = 'LOAD_CHANNEL_REQUEST';
+export const LOAD_CHANNEL_SUCCESS = 'LOAD_CHANNEL_SUCCESS';
+export const LOAD_CHANNEL_FAILURE = 'LOAD_CHANNEL_FAILURE';
 
 const initialState = {
   channels: [],

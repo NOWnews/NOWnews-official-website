@@ -1,6 +1,6 @@
-export const LOAD_CATEGORY_REQUEST = Symbol('LOAD_CATEGORY_REQUEST');
-export const LOAD_CATEGORY_SUCCESS = Symbol('LOAD_CATEGORY_SUCCESS');
-export const LOAD_CATEGORY_FAILURE = Symbol('LOAD_CATEGORY_FAILURE');
+export const LOAD_CATEGORY_REQUEST = 'LOAD_CATEGORY_REQUEST';
+export const LOAD_CATEGORY_SUCCESS = 'LOAD_CATEGORY_SUCCESS';
+export const LOAD_CATEGORY_FAILURE = 'LOAD_CATEGORY_FAILURE';
 
 const initialState = {
   error: null,
@@ -61,7 +61,8 @@ export default function categoryPage (state = initialState, action) {
     case LOAD_CATEGORY_FAILURE:
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
+        isLoading: false
       };
     default:
       return state;

@@ -12,7 +12,7 @@ export default function createRoutes (store) {
         let favoriteReducer = require('./module').default;
         injectAsyncReducer(store, 'favoritePage', favoriteReducer);
         cb(null, FavoriteContainer);
-      });
+      }, 'favoritePage');
     }
   };
 }

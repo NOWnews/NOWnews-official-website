@@ -12,7 +12,7 @@ export default function createRoutes (store) {
         let homeReducer = require('./module').default;
         injectAsyncReducer(store, 'homePage', homeReducer);
         cb(null, HomeContainer);
-      });
+      }, 'homePage');
     }
   };
 }

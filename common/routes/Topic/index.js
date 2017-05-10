@@ -13,7 +13,7 @@ export default function createRoutes (store) {
         let topicReducer = require('./module').default;
         injectAsyncReducer(store, 'topicPage', topicReducer);
         cb(null, TopicContainer);
-      });
+      }, 'topicPage');
     }
   };
 }
