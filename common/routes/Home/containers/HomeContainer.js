@@ -6,7 +6,7 @@ import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
 import { BlockItems, BlockItems4, BlockItems8, SlideRight, VideoBlock } from '../components';
-import { Container, RightSide, LeftSide, Loading, Margin10, NotFound } from '../../../components/Layout';
+import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
 import { Ad300x250, Ad300x600 } from '../../../components/Ad';
@@ -42,7 +42,7 @@ class HomeContainer extends Component {
 
   render () {
     const { menus, homePage } = this.props;
-    const { carousels, isLoading, specialTopics, tripletType } = homePage;
+    const { carousels, isLoading, specialChannels, specialTopics, tripletType } = homePage;
     const seeMoreTextDefined = {
       instant: '即時',
       favorite: '個人',
@@ -55,92 +55,99 @@ class HomeContainer extends Component {
           className={css(styles.tripletBlockTopIcon)} src={`/icons/${imgName}.png`} />
       );
     });
+
     return (
       <div>
+        <Header menus={menus} />
         {isLoading && <Loading />}
-        {!isLoading && carousels.length === 0 && <NotFound />}
+
         {!isLoading && carousels.length > 0 &&
-          <div>
-            <Header menus={menus} />
+          <Container>
+            <div className={`clearfix ${css(styles.slideArea)}`}>
+              <Slide list={carousels.slice(0, 5)} />
+              <SlideRight newsList={carousels.slice(0, 5)} />
+            </div>
+          </Container>}
+
+        {!isLoading && specialTopics.length > 0 &&
+          <div className={css(styles.bg)}>
+            <Container className='clearfix'>
+              <LeftSide>
+                <BlockItems4 newsList={specialTopics.slice(0, 4)} />
+                <div className={css(styles.seeMoreBlock)}>
+                  <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
+                </div>
+              </LeftSide>
+              <RightSide>
+                <Margin10>
+                  <Ad300x250 />
+                </Margin10>
+                <Margin10>
+                  <Ad300x250 />
+                </Margin10>
+              </RightSide>
+            </Container>
+          </div>}
+
+        {!isLoading && carousels.length > 0 &&
+          <div className={css(styles.tripletBlock)}>
             <Container>
-              <div className={`clearfix ${css(styles.slideArea)}`}>
-                <Slide list={carousels.slice(0, 5)} />
-                <SlideRight newsList={carousels.slice(0, 5)} />
+              <div className={css(styles.tripletBlockTop)}>
+                { TripletIcons }
+                { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>台北市</span>}
+              </div>
+              <BlockItems newsList={carousels.slice(0, 9)} />
+              <div className='clearfix' />
+              <div className={css(styles.seeMoreBlock)}>
+                <Link className={css(styles.seeMoreLink)} to={tripletType}>
+                  看更多{seeMoreTextDefined[tripletType]}新聞
+                </Link>
               </div>
             </Container>
-            <div className={css(styles.bg)}>
-              <Container className='clearfix'>
-                <LeftSide>
-                  <BlockItems4 newsList={specialTopics.slice(0, 4)} />
+          </div>}
+
+        {!isLoading && carousels.length > 0 &&
+          <div className={css(styles.videoBlock)}>
+            <Container className={css(styles.videoContaienr)}>
+              <VideoBlock list={carousels} />
+              <div className={css(styles.seeMoreBlock)}>
+                <Link className={css(styles.seeMoreLink, styles.white)} to={''}>
+                  看更多影音
+                </Link>
+              </div>
+            </Container>
+          </div>}
+
+        {!isLoading && specialChannels.length > 0 &&
+          <div className={css(styles.specialChannelsBox)}>
+            <Container className='clearfix'>
+              <LeftSide>
+                <div>
+                  <div className={css(styles.specialChannelsTitle)}>
+                    <h1 className={css(styles.specialChannelsTitleText)}>精選特輯</h1>
+                    <hr className={css(styles.specialChannelsTitleLine)} />
+                  </div>
+                  <BlockItems8 channels={specialChannels.slice(0, 8)} />
                   <div className={css(styles.seeMoreBlock)}>
-                    <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
+                    <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多特輯</Link>
                   </div>
-                </LeftSide>
-                <RightSide>
-                  <Margin10>
-                    <Ad300x250 />
-                  </Margin10>
-                  <Margin10>
-                    <Ad300x250 />
-                  </Margin10>
-                </RightSide>
-              </Container>
-            </div>
-            <div className={css(styles.tripletBlock)}>
-              <Container>
-                <div className={css(styles.tripletBlockTop)}>
-                  { TripletIcons }
-                  { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>台北市</span>}
                 </div>
-                <BlockItems newsList={carousels.slice(0, 9)} />
-                <div className='clearfix' />
-                <div className={css(styles.seeMoreBlock)}>
-                  <Link className={css(styles.seeMoreLink)} to={tripletType}>
-                    看更多{seeMoreTextDefined[tripletType]}新聞
-                  </Link>
-                </div>
-              </Container>
-            </div>
-            <div className={css(styles.videoBlock)}>
-              <Container className={css(styles.videoContaienr)}>
-                <VideoBlock list={carousels} />
-                <div className={css(styles.seeMoreBlock)}>
-                  <Link className={css(styles.seeMoreLink, styles.white)} to={''}>
-                    看更多影音
-                  </Link>
-                </div>
-              </Container>
-            </div>
-            <div className={css(styles.specialChannelsBox)}>
-              <Container className='clearfix'>
-                <LeftSide>
-                  <div>
-                    <div className={css(styles.specialChannelsTitle)}>
-                      <h1 className={css(styles.specialChannelsTitleText)}>精選特輯</h1>
-                      <hr className={css(styles.specialChannelsTitleLine)} />
-                    </div>
-                    <BlockItems8 channels={homePage.specialChannels.slice(0, 8)} />
-                    <div className={css(styles.seeMoreBlock)}>
-                      <Link className={css(styles.seeMoreLink)} to={`channel/${homePage.specialChannels[0].sn}`}>看更多特輯</Link>
-                    </div>
-                  </div>
-                </LeftSide>
-                <RightSide>
-                  <Margin10>
-                    <Ad300x600 />
-                  </Margin10>
-                  <Margin10>
-                    <Ad300x250 />
-                  </Margin10>
-                  <Margin10>
-                    <AppleStyle />
-                  </Margin10>
-                  <Margin10>
-                    <AndroidStyle />
-                  </Margin10>
-                </RightSide>
-              </Container>
-            </div>
+              </LeftSide>}
+              <RightSide>
+                <Margin10>
+                  <Ad300x600 />
+                </Margin10>
+                <Margin10>
+                  <Ad300x250 />
+                </Margin10>
+                <Margin10>
+                  <AppleStyle />
+                </Margin10>
+                <Margin10>
+                  <AndroidStyle />
+                </Margin10>
+              </RightSide>
+            </Container>
           </div>}
       </div>
     );

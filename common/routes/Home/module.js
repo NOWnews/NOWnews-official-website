@@ -65,6 +65,7 @@ export default function homePage (state = initialState, action) {
     case LOAD_INDEX_FAILURE:
       return {
         ...state,
+        isLoading: false,
         error: action.payload
       };
     case SWITCH_TRIPLET_TYPE:
