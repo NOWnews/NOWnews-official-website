@@ -4,7 +4,7 @@ import Link from 'react-router/lib/Link';
 
 export const BlockTopicItem = ({ category, photo = {}, time, title, url }) => {
   return (
-    <Link className={css(styles.box)} to={url}>
+    <Link className={css(styles.box)} to={url} target='_blank'>
       <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
       <div className={css(styles.bottom)}>
         <div className={css(styles.category)}>{category}</div>
