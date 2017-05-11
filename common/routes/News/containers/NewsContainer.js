@@ -98,11 +98,13 @@ class NewsContainer extends Component {
 
     let currentChildMenu;
 
-    data[0].Menus.forEach(({ ParentId, id }) => {
-      if (!currentChildMenu && ParentId === currentMainMenu) {
-        currentChildMenu = id;
-      }
-    });
+    if (data.length > 0) {
+      data[0].Menus.forEach(({ ParentId, id }) => {
+        if (!currentChildMenu && ParentId === currentMainMenu) {
+          currentChildMenu = id;
+        }
+      });
+    }
 
     return (
       <div>
