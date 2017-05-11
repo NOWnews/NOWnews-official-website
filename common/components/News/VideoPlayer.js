@@ -6,21 +6,23 @@ class VideoPlayer extends Component {
 
   componentDidMount () {
     // instantiate video.js
-    let { src, type } = this.props;
-
-    let options = {
-      autoPlay: false,
-      controls: true
-    };
+    let { src, poster } = this.props;
+    let type = 'video/mp4';
 
     if (src.indexOf('youtu') > 0) {
-      options.techOrder = ['youtube'];
       type = 'video/youtube';
-    } else if (src.indexOf('mp4') > 0) {
-      type = 'video/mp4';
     }
 
-    options.sources = [{ src, type }];
+    const options = {
+      autoPlay: false,
+      controls: true,
+      techOrder: ['flash', 'html5', 'youtube'],
+      poster,
+      sources: [{ src, type }],
+      flash: {
+        swf: 'http://www.flashls.org/videojs/video-js.swf'
+      }
+    };
 
     this.player = videojs(this.videoNode, options);
   }
@@ -46,10 +48,8 @@ class VideoPlayer extends Component {
 }
 
 VideoPlayer.propTypes = {
-  src: PropTypes.string,
-  type: PropTypes.string
-  // src: PropTypes.string.isRequired,
-  // type: PropTypes.string.isRequired
+  poster: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired
 };
 
 export default VideoPlayer;

@@ -11,7 +11,7 @@ import { Ad300x250 } from '../Ad';
 
 const ContentForVideo = ({ news, changeFontSize, fontSize }) => (
   <Container>
-    <VideoPlayer src={news.MainVideo.url} />
+    <VideoPlayer src={news.MainVideo.url} poster={news.MainPhoto.url} />
     <i>{news.MainVideo && news.MainVideo.desc}</i>
     <Margin10 className='clearfix'>
       <LeftSide>
