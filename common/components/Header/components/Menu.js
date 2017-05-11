@@ -35,9 +35,9 @@ const Menu = ({ menus, currentMainMenu, currentChildMenu }) => {
       <div className={css(styles.menu)}>{ mainMenuDoms }</div>
       {childMenus.length > 0 && <hr />}
       <div className={css(styles.menu)}>
-        { childMenus.map(({ sn, isExternal, url, name }) =>
+        { childMenus.map(({ _id, sn, isExternal, url, name }) =>
           <Link
-            className={css(styles.link)}
+            className={`${css(styles.link)} ${(_id === currentChildMenu) && css(styles.active)}`}
             key={sn}
             target={isExternal === true ? '_blank' : '_self'}
             to={url}>
