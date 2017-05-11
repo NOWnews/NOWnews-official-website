@@ -135,7 +135,7 @@ class HomeContainer extends Component {
                     <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多特輯</Link>
                   </div>
                 </div>
-              </LeftSide>}
+              </LeftSide>
               <RightSide>
                 <Margin10>
                   <Ad300x600 />

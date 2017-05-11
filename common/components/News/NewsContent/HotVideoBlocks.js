@@ -5,10 +5,10 @@ import Link from 'react-router/lib/Link';
 import { Margin10 } from '../../../components/Layout';
 
 const HotVideoBlocks = ({ list }) => {
-  let items = list.map((news) => {
-    let { sn, MainPhoto, shortTitle, formatStartedAt } = news;
+  let items = list.map((news, index) => {
+    const { sn, MainPhoto, shortTitle, formatStartedAt } = news;
     return (
-      <Link className={css(styles.blockItem)} key={sn}
+      <Link className={css(styles.blockItem)} key={index}
         to={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`}>
         <img className={css(styles.img)} src={MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
         <div className={css(styles.bottom)}>
