@@ -3,7 +3,7 @@ import {
   Content, FontSize, HotVideoBlocks, Social, Tags,
   Thermometer, ThermometerSm
 } from './NewsContent';
-import { TripletNav } from '../News';
+import { TripletNav, VideoPlayer } from '../News';
 
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
@@ -11,9 +11,7 @@ import { Ad300x250 } from '../Ad';
 
 const ContentForVideo = ({ news, changeFontSize, fontSize }) => (
   <Container>
-    <video width='100%' height='545' controls>
-      <source src='{{news.MainVideo.url}}' type='video/mp4' />
-    </video>
+    <VideoPlayer src={news.MainVideo.url} />
     <i>{news.MainVideo && news.MainVideo.desc}</i>
     <Margin10 className='clearfix'>
       <LeftSide>

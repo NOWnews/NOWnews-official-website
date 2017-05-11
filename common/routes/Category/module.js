@@ -3,6 +3,7 @@ export const LOAD_CATEGORY_SUCCESS = 'LOAD_CATEGORY_SUCCESS';
 export const LOAD_CATEGORY_FAILURE = 'LOAD_CATEGORY_FAILURE';
 
 const initialState = {
+  currentMenu: {},
   error: null,
   hotNewsList: [],
   isLoading: false,
@@ -19,12 +20,14 @@ export function loadCategoryList (categoryName, page = 1) {
       axios.get(`${protocol}://${host}/cat/${categoryName}?page=${page}`),
       axios.get(`${protocol}://${host}/hot/${categoryName}`)
     ]).then(([categoryNewsList, hotNewsList]) => {
+      const { menu, newsList, pageData } = categoryNewsList.data;
       dispatch({
         type: LOAD_CATEGORY_SUCCESS,
         payload: {
           hotNewsList: hotNewsList.data,
-          newsList: categoryNewsList.data.newsList,
-          pageData: categoryNewsList.data.pageData
+          currentMenu: menu,
+          newsList,
+          pageData
         },
         meta: {
           lastFetched: Date.now()
@@ -49,9 +52,10 @@ export default function categoryPage (state = initialState, action) {
         error: null
       };
     case LOAD_CATEGORY_SUCCESS:
-      let { hotNewsList, newsList, pageData } = action.payload;
+      let { currentMenu, hotNewsList, newsList, pageData } = action.payload;
       return {
         ...state,
+        currentMenu,
         newsList,
         pageData,
         hotNewsList,

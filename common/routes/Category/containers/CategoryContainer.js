@@ -21,21 +21,28 @@ const mapStateToProps = state => ({
 });
 
 const CategoryPage = ({ categoryPage, menus }) => {
-  let originList = categoryPage.newsList || [];
-  let slideData = originList.slice(0, 5);
-  let blockData = originList.slice(5, 10);
+  const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
+  const slideData = newsList.slice(0, 5);
+  const blockData = newsList.slice(5, 10);
+
+  const isMainMenu = currentMenu.ParentId === null;
+  const currentMainMenu = isMainMenu ? currentMenu._id : currentMenu.ParentId;
+  const currentChildMenu = isMainMenu ? null : currentMenu._id;
+
   return (
     <Container>
-      <Header menus={menus} currentMainMenu={originList[0] && originList[0].MainMenu.id} />
+      <Header menus={menus}
+        currentChildMenu={currentChildMenu}
+        currentMainMenu={currentMainMenu} />
       {categoryPage.isLoading && <Loading />}
-      {!categoryPage.isLoading && originList.length === 0 && <NotFound />}
-      {!categoryPage.isLoading && originList.length > 0 &&
+      {!categoryPage.isLoading && newsList.length === 0 && <NotFound />}
+      {!categoryPage.isLoading && newsList.length > 0 &&
         <div>
           <Margin10 className='clearfix'>
             <Slide list={slideData} />
-            <HotNews newsList={categoryPage.hotNewsList.slice(0, 6)} />
+            <HotNews newsList={hotNewsList.slice(0, 6)} />
           </Margin10>
-          <BlockItems12 newsList={blockData} page={categoryPage.pageData} />
+          <BlockItems12 newsList={blockData} page={pageData} />
         </div>
       }
     </Container>

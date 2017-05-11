@@ -42,7 +42,10 @@ class HomeContainer extends Component {
 
   render () {
     const { menus, homePage } = this.props;
-    const { carousels, isLoading, specialChannels, specialTopics, tripletType } = homePage;
+    const {
+      carousels, isLoading, specialChannels, specialTopics, tripletType,
+      videos
+    } = homePage;
     const seeMoreTextDefined = {
       instant: '即時',
       favorite: '個人',
@@ -106,12 +109,12 @@ class HomeContainer extends Component {
             </Container>
           </div>}
 
-        {!isLoading && carousels.length > 0 &&
+        {!isLoading && videos.length > 0 &&
           <div className={css(styles.videoBlock)}>
             <Container className={css(styles.videoContaienr)}>
-              <VideoBlock list={carousels} />
+              <VideoBlock list={videos} />
               <div className={css(styles.seeMoreBlock)}>
-                <Link className={css(styles.seeMoreLink, styles.white)} to={''}>
+                <Link className={css(styles.seeMoreLink, styles.white)} to={'/'}>
                   看更多影音
                 </Link>
               </div>
@@ -132,7 +135,7 @@ class HomeContainer extends Component {
                     <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多特輯</Link>
                   </div>
                 </div>
-              </LeftSide>}
+              </LeftSide>
               <RightSide>
                 <Margin10>
                   <Ad300x600 />

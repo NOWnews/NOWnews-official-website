@@ -96,9 +96,19 @@ class NewsContainer extends Component {
       );
     });
 
+    let currentChildMenu;
+
+    data[0].Menus.forEach(({ ParentId, id }) => {
+      if (!currentChildMenu && ParentId === currentMainMenu) {
+        currentChildMenu = id;
+      }
+    });
+
     return (
       <div>
-        <Header menus={this.props.menus} currentMainMenu={currentMainMenu} />
+        <Header menus={this.props.menus}
+          currentChildMenu={currentChildMenu}
+          currentMainMenu={currentMainMenu} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}
           currentMainMenu={currentMainMenu} newsTitle={newsTitle} />}
         {isLoading &&

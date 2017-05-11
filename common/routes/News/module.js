@@ -1,3 +1,4 @@
+import moment from 'moment';
 import isomorphicCookie from 'isomorphic-cookie';
 import { callApi as pvCallApi } from '../../../lib/track/pageview';
 export const CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE';
@@ -67,10 +68,10 @@ export const loadNews = (sn, isLoadMore = false) => {
 
       // 內文無限下滑時，載入新的新聞也要累積 PV 數
       if (isLoadMore) {
-        const { pathname, search } = window.location;
-        let menuId = result.MainMenu.id;
-        let newsId = result.id;
-        pvCallApi(apiServ, menuId, newsId, pathname, search);
+        const { search } = window.location;
+        const { id: newsId, MainMenu, sn, startedAt } = result;
+        const formatStartedAt = moment(startedAt).format('YYYYMMDD');
+        pvCallApi(apiServ, MainMenu.id, newsId, `/news/${formatStartedAt}/${sn}`, search);
       }
     }).catch(error => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);

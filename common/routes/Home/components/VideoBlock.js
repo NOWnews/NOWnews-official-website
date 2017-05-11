@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
+import { VideoPlayer } from '../../../components/News';
 
 class VideoBlock extends Component {
   constructor (props) {
@@ -33,14 +34,16 @@ class VideoBlock extends Component {
   }
 
   render () {
-    const thumbs = this.props.list.map(({ sn, MainPhoto, shortTitle }, index) => {
+    const { list } = this.props;
+
+    const thumbs = list.map(({ sn, MainPhoto, shortTitle }, index) => {
       const thumbTitleClass = css(
         styles.thumbTitle,
         (index === this.state.selectedIndex) ? styles.active : ''
       );
 
       return (
-        <div className={`left ${css(styles.thumb)}`} key={sn} onClick={() => this.onSelectThumb(index)}>
+        <div className={`left ${css(styles.thumb)}`} key={index} onClick={() => this.onSelectThumb(index)}>
           <img src={MainPhoto && MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'}
             alt={shortTitle} className={css(styles.img)} />
           <div className={thumbTitleClass}>{shortTitle}</div>
@@ -50,8 +53,8 @@ class VideoBlock extends Component {
 
     return (
       <Margin10 className='relative'>
-        <div>
-          <iframe width='970' height='500' src='https://www.youtube.com/embed/5Xvud7uqWNw' />
+        <div key={this.state.selectedIndex}>
+          <VideoPlayer src={list[this.state.selectedIndex].MainVideo.url} />
         </div>
         <FontAwesome className={css(styles.iconLeft)} name='chevron-left' size='2x'
           onClick={this.prev} />

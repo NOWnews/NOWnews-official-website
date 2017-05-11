@@ -14,3 +14,4 @@ export Slide from './Slide';
 export SpecialTopicNav from './SpecialTopicNav';
 export TripletHead from './TripletHead';
 export TripletNav from './TripletNav';
+export VideoPlayer from './VideoPlayer';
