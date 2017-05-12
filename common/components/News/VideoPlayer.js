@@ -20,7 +20,7 @@ class VideoPlayer extends Component {
       poster,
       sources: [{ src, type }],
       flash: {
-        swf: 'http://www.flashls.org/videojs/video-js.swf'
+        swf: '/video-js.swf'
       }
     };
 
