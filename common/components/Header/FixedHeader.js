@@ -66,8 +66,7 @@ const styles = StyleSheet.create({
     display: 'inline-block',
     height: firstRowHeight,
     lineHeight: `${firstRowHeight}px`,
-    position: 'relative',
-    top: -10
+    position: 'relative'
   },
   newsTitle: {
     background: '#F1F2F3',
@@ -92,10 +91,9 @@ const styles = StyleSheet.create({
   },
   logo: {
     display: 'inline-block',
-    height: 'auto',
     minWidth: 151,
-    paddingRight: 0,
-    paddingTop: 15,
+    position: 'relative',
+    top: 4,
     width: 151
   },
   active: {
