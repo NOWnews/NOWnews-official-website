@@ -6,21 +6,23 @@ class VideoPlayer extends Component {
 
   componentDidMount () {
     // instantiate video.js
-    let { src, type } = this.props;
-
-    let options = {
-      autoPlay: false,
-      controls: true
-    };
+    let { src, poster } = this.props;
+    let type = 'video/mp4';
 
     if (src.indexOf('youtu') > 0) {
-      options.techOrder = ['youtube'];
       type = 'video/youtube';
-    } else if (src.indexOf('mp4') > 0) {
-      type = 'video/mp4';
     }
 
-    options.sources = [{ src, type }];
+    const options = {
+      autoPlay: false,
+      controls: true,
+      techOrder: ['flash', 'html5', 'youtube'],
+      poster,
+      sources: [{ src, type }],
+      flash: {
+        swf: '/video-js.swf'
+      }
+    };
 
     this.player = videojs(this.videoNode, options);
   }
@@ -36,9 +38,27 @@ class VideoPlayer extends Component {
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
   render () {
+    const { width = 970, height = 545 } = this.props;
+    const iconSize = 100;
+    const fontSize = 70;
+    const customVideoJsPlayer = `
+      .video-js .vjs-big-play-button {
+        border: 0;
+        border-radius: 50%;
+        left: ${width / 2 - iconSize / 2}px;
+        top: ${height / 2 - iconSize / 2}px;
+        width: ${iconSize}px;
+        height: ${iconSize}px;
+      }
+      .video-js .vjs-big-play-button:before {
+        padding-top: ${(iconSize - fontSize) / 2 + 10}px;
+        font-size: ${fontSize}px;
+      }
+    `;
     return (
       <div data-vjs-player>
-        <video width='970' height='545' className='video-js'
+        <style dangerouslySetInnerHTML={{__html: customVideoJsPlayer}} />
+        <video width={width} height={height} className='video-js'
           ref={node => { this.videoNode = node; }} />
       </div>
     );
@@ -46,10 +66,10 @@ class VideoPlayer extends Component {
 }
 
 VideoPlayer.propTypes = {
-  src: PropTypes.string,
-  type: PropTypes.string
-  // src: PropTypes.string.isRequired,
-  // type: PropTypes.string.isRequired
+  height: PropTypes.number,
+  poster: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  width: PropTypes.number
 };
 
 export default VideoPlayer;

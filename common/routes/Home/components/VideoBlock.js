@@ -18,7 +18,7 @@ class VideoBlock extends Component {
 
   next () {
     const { positionIndex } = this.state;
-    const maxIndex = this.props.list.length - 4;
+    const maxIndex = (this.props.list.length <= 4) ? 0 : this.props.list.length - 4;
     const nextIndex = (positionIndex === maxIndex) ? maxIndex : positionIndex + 1;
     this.setState({positionIndex: nextIndex});
   }
@@ -35,7 +35,7 @@ class VideoBlock extends Component {
 
   render () {
     const { list } = this.props;
-
+    const selectedItem = list[this.state.selectedIndex];
     const thumbs = list.map(({ sn, MainPhoto, shortTitle }, index) => {
       const thumbTitleClass = css(
         styles.thumbTitle,
@@ -54,7 +54,8 @@ class VideoBlock extends Component {
     return (
       <Margin10 className='relative'>
         <div key={this.state.selectedIndex}>
-          <VideoPlayer src={list[this.state.selectedIndex].MainVideo.url} />
+          <VideoPlayer height={500} poster={selectedItem.MainPhoto.url}
+            src={selectedItem.MainVideo.url} />
         </div>
         <FontAwesome className={css(styles.iconLeft)} name='chevron-left' size='2x'
           onClick={this.prev} />
