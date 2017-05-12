@@ -13,6 +13,7 @@ module.exports = {
       CLIENT_ENTRY
     ],
     vendor: [
+      'moment',
       'react',
       'react-dom',
       'react-router',
