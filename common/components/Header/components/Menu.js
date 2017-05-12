@@ -23,7 +23,7 @@ const Menu = ({ menus, currentMainMenu, currentChildMenu }) => {
       <Link
         className={linkClass}
         key={sn}
-        target={isExternal === true ? '_blank' : '_self'}
+        target={isExternal === true ? '_blank' : null}
         to={url}>
         { name }
       </Link>
@@ -39,7 +39,7 @@ const Menu = ({ menus, currentMainMenu, currentChildMenu }) => {
           <Link
             className={`${css(styles.link)} ${(_id === currentChildMenu) && css(styles.active)}`}
             key={sn}
-            target={isExternal === true ? '_blank' : '_self'}
+            target={isExternal === true ? '_blank' : null}
             to={url}>
             { name }
           </Link>
