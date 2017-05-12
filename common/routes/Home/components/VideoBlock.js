@@ -54,7 +54,7 @@ class VideoBlock extends Component {
     return (
       <Margin10 className='relative'>
         <div key={this.state.selectedIndex}>
-          <VideoPlayer height='500' poster={selectedItem.MainPhoto.url}
+          <VideoPlayer height={500} poster={selectedItem.MainPhoto.url}
             src={selectedItem.MainVideo.url} />
         </div>
         <FontAwesome className={css(styles.iconLeft)} name='chevron-left' size='2x'
