@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   bg: {
     background: 'url(/bg/bg-home-dot.png)',
     backgroundSize: 5,
-    marginTop: '-36.5px',
+    marginTop: '-41px',
     paddingBottom: '100px'
   },
   white: {
