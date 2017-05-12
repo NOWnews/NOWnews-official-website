@@ -38,9 +38,10 @@ class VideoPlayer extends Component {
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
   render () {
+    const { width = 970, height = 545 } = this.props;
     return (
       <div data-vjs-player>
-        <video width='970' height='545' className='video-js'
+        <video width={width} height={height} className='video-js'
           ref={node => { this.videoNode = node; }} />
       </div>
     );
@@ -48,8 +49,10 @@ class VideoPlayer extends Component {
 }
 
 VideoPlayer.propTypes = {
+  height: PropTypes.number,
   poster: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired
+  src: PropTypes.string.isRequired,
+  width: PropTypes.number
 };
 
 export default VideoPlayer;
