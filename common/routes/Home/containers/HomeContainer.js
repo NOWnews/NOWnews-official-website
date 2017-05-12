@@ -68,7 +68,7 @@ class HomeContainer extends Component {
           <Container>
             <div className={`clearfix ${css(styles.slideArea)}`}>
               <Slide list={carousels.slice(0, 5)} />
-              <SlideRight newsList={carousels.slice(0, 5)} />
+              <SlideRight newsList={carousels.slice(5, 10)} />
             </div>
           </Container>}
 

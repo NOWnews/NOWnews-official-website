@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.65)',
     borderTop: '1px solid #ffffff',
     color: '#ffffff',
-    fontSize: 17,
+    fontSize: 16,
     height: 68,
     lineHeight: '68px',
     paddingLeft: 28
