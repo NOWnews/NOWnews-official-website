@@ -20,7 +20,7 @@ const FixedHeader = ({ currentMainMenu, menus, newsTitle }) => {
       <Link
         className={linkClass}
         key={sn}
-        target={isExternal === true ? '_blank' : '_self'}
+        target={isExternal === true ? '_blank' : null}
         to={url}>
         { name }
       </Link>
