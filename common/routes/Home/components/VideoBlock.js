@@ -18,7 +18,7 @@ class VideoBlock extends Component {
 
   next () {
     const { positionIndex } = this.state;
-    const maxIndex = this.props.list.length - 4;
+    const maxIndex = (this.props.list.length <= 4) ? 0 : this.props.list.length - 4;
     const nextIndex = (positionIndex === maxIndex) ? maxIndex : positionIndex + 1;
     this.setState({positionIndex: nextIndex});
   }
