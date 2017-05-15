@@ -9,6 +9,7 @@ export const Slide = ({ list }) => {
     axis: 'horizontal',
     autoPlay: true,
     emulateTouch: true,
+    Link,
     showArrows: false,
     showStatus: false,
     showThumbs: false,
