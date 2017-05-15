@@ -37,6 +37,7 @@ const BlockItems12 = ({ hasAd = true, newsList, page }) => {
 const styles = StyleSheet.create({
   blockItem: {
     float: 'left',
+    height: 245,
     marginBottom: 30,
     marginLeft: 11.5,
     marginRight: 11.5,
