@@ -17,7 +17,7 @@ export function loadCategoryList (categoryName, page = 1) {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_CATEGORY_REQUEST });
     return Promise.all([
-      axios.get(`${protocol}://${host}/cat/${categoryName}?page=${page}`),
+      axios.get(`${protocol}://${host}/cat/${categoryName}?page=${page}&limit=15`),
       axios.get(`${protocol}://${host}/hot/${categoryName}`)
     ]).then(([categoryNewsList, hotNewsList]) => {
       const { menu, newsList, pageData } = categoryNewsList.data;
