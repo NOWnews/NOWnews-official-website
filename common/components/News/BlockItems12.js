@@ -27,8 +27,10 @@ const BlockItems12 = ({ hasAd = true, newsList, page }) => {
   });
 
   return (
-    <div className='clearfix'>
-      { items }
+    <div>
+      <div className='clearfix'>
+        { items }
+      </div>
       <Pagination {...page} />
     </div>
   );
