@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
 const CategoryPage = ({ categoryPage, menus }) => {
   const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
   const slideData = newsList.slice(0, 5);
-  const blockData = newsList.slice(5, 10);
+  const blockData = newsList.slice(5, 15);
 
   const isMainMenu = currentMenu.ParentId === null;
   const currentMainMenu = isMainMenu ? currentMenu._id : currentMenu.ParentId;

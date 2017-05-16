@@ -35,7 +35,7 @@ class TimeAndKeywordArea extends Component {
     let timeOptions = definedTimeOptions.map(({ value, text }) => {
       let className = (value === timeRange) ? css(styles.active) : '';
       return (
-        <li key={value} className={`${className} ${css(styles.groupItem)}`}
+        <li key={value} className={`${css(styles.groupItem)} ${className}`}
           onClick={() => { this.setTimeRange(value); }}>
           <i className={css(styles.sequare)}>■</i>
           {text}

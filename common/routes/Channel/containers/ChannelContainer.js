@@ -35,7 +35,7 @@ const ChannelContainer = ({ channelPage, loadChannelData, menus }) => {
       <ChannelSelecter channels={channels} selectedChannel={channel} loadChannelData={loadChannelData} />
       {!isLoading && newsList.length === 0 && <NotFound />}
       {!isLoading && newsList.length > 0 &&
-        <Margin10 className='clearfix'>
+        <Margin10>
           <BlockItems newsList={newsList} />
           <Pagination {...pageData} />
         </Margin10>

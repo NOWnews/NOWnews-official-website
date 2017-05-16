@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   prevAndNext: {
     color: '#000000',
     border: '1px solid #000000',
-    borderRadius: '30%',
+    borderRadius: 15,
     fontSize: 13,
     padding: '2px 6px',
     textDecoration: 'none'

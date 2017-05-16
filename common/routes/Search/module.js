@@ -14,7 +14,7 @@ export const initialState = {
   timeRange: ''
 };
 
-export function loadSearchList ({ keyword = '', page, timeRange }) {
+export function loadSearchList ({ keyword = '', page = 1, timeRange }) {
   return (dispatch, getState, { axios }) => {
     dispatch({ type: LOAD_SEARCH_REQUEST, keyword, timeRange });
     if (!keyword) {
@@ -23,7 +23,7 @@ export function loadSearchList ({ keyword = '', page, timeRange }) {
     }
 
     const { protocol, host } = getState().sourceRequest;
-    return axios.get(`${protocol}://${host}/search/${keyword}?page=${page}`)
+    return axios.get(`${protocol}://${host}/search/${keyword}?page=${page}&timeRange=${timeRange}`)
     .then(res => {
       dispatch({
         type: LOAD_SEARCH_SUCCESS,
