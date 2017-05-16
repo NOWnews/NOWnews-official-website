@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import { Margin10 } from '../../../components/Layout';
+import TypeIcon from '../TypeIcon';
 
 const HotVideoBlocks = ({ list }) => {
   let items = list.map((news, index) => {
@@ -10,6 +11,7 @@ const HotVideoBlocks = ({ list }) => {
     return (
       <Link className={css(styles.blockItem)} key={index}
         to={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`}>
+        <TypeIcon type='VIDEO' />
         <img className={css(styles.img)} src={MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
         <div className={css(styles.bottom)}>
           <div className={css(styles.title)}>{shortTitle}</div>
@@ -22,7 +24,7 @@ const HotVideoBlocks = ({ list }) => {
 
   return (
     <Margin10>
-      <h2>熱門新聞</h2>
+      <h2>熱門影音</h2>
       <Margin10 classNamew='clearfix'>{ items }</Margin10>
     </Margin10>
   );
@@ -33,6 +35,7 @@ const styles = StyleSheet.create({
     color: '#000',
     float: 'left',
     marginRight: 30,
+    position: 'relative',
     textDecoration: 'none',
     width: 300
   },

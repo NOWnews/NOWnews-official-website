@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
+import TypeIcon from './TypeIcon';
 
-export const ListItem = ({ category, photo = {}, time, title, url }) => (
+export const ListItem = ({ category, photo = {}, time, type, title, url }) => (
   <Link className={`clearfix ${css(styles.box)}`} to={url}>
     <div className={`left ${css(styles.left)}`}>
       <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+      <TypeIcon type={type} size='LI' />
     </div>
     <div className={`right ${css(styles.right)}`}>
       <div className={css(styles.category)}>{category}</div>
@@ -20,6 +22,7 @@ const styles = StyleSheet.create({
   box: {
     display: 'block',
     marginTop: '1rem',
+    position: 'relative',
     textDecoration: 'none',
     width: '100%'
   },
@@ -60,6 +63,7 @@ ListItem.propTypes = {
   photo: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
+  type: PropTypes.string,
   url: PropTypes.string.isRequired
 };
 

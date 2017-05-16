@@ -35,7 +35,6 @@ export function loadFavoriteList () {
 }
 
 export default function favoritePage (state = initialState, action) {
-  console.log('!!!');
   switch (action.type) {
     case LOAD_FAVORITE_REQUEST:
       return {
