@@ -70,6 +70,7 @@ class NewsContainer extends Component {
       const formatStartedAt = moment(startedAt).format('YYYYMMDD');
       window.history.pushState(null, null, `/news/${formatStartedAt}/${sn}`);
       this.props.changeNewsTitle(title);
+      window.dataLayer.push({'event': 'trackPageView'});
     }
   }
 
