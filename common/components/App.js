@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Helmet from 'react-helmet';
 import Footer from './Footer';
+import { GTM } from './Tracking';
 
 const styles = StyleSheet.create({
   root: {
@@ -21,6 +22,7 @@ const App = ({ children }) => (
     />
     {children}
     <Footer />
+    <GTM gtmId='GTM-W25KLJG' />
   </div>
 );
 
