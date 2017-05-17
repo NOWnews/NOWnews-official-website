@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 class InstantBar extends Component {
   constructor (props) {
@@ -53,25 +54,32 @@ class InstantBar extends Component {
       transitionName: 'item'
     };
 
+    const first = list[index * 3];
+    const second = list[index * 3 + 1];
+    const third = list[index * 3 + 2];
+
     return (
       <div className={css(styles.box)}>
         <style dangerouslySetInnerHTML={{__html: customTransitionStyle}} />
         <span className={css(styles.text)}>即時跑馬燈</span>
         <CSSTransitionGroup {...transitionConfig}>
-          <Link key={index * 3} className={css(styles.link)}>
-            <span>{list[index * 3].shortTitle}</span>
+          <Link key={first.sn} className={css(styles.link)}
+            to={generateNewsUrl(first.sn, first.startedAt)}>
+            <span>{first.shortTitle}</span>
           </Link>
         </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
         <CSSTransitionGroup {...transitionConfig}>
-          <Link key={index * 3 + 1} className={css(styles.link)}>
-            <span>{list[index * 3 + 1].shortTitle}</span>
+          <Link key={second.sn} className={css(styles.link)}
+            to={generateNewsUrl(second.sn, second.startedAt)}>
+            <span>{second.shortTitle}</span>
           </Link>
         </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
         <CSSTransitionGroup {...transitionConfig}>
-          <Link key={index * 3 + 2} className={css(styles.link)}>
-            <span>{list[index * 3 + 2].shortTitle}</span>
+          <Link key={third.sn} className={css(styles.link)}
+            to={generateNewsUrl(third.sn, third.startedAt)}>
+            <span>{third.shortTitle}</span>
           </Link>
         </CSSTransitionGroup>
       </div>
@@ -95,6 +103,7 @@ const styles = StyleSheet.create({
   },
   link: {
     backfaceVisibility: 'hidden',
+    color: '#ffffff',
     position: 'absolute',
     display: 'inline-block',
     fontWeight: 'bold',

@@ -11,6 +11,7 @@ import { LatestVideoNav, ListItem, SpecialTopicNav, TripletHead } from '../../..
 import { Ad300x250 } from '../../../components/Ad';
 import { Container, RightSide, LeftSide, Loading, Margin10, NotFound } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';
+import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -43,7 +44,7 @@ const InstantContainer = ({ marquee, menus, instantPage }) => (
                   photo={value.MainPhoto}
                   title={value.title}
                   time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
-                  url={`/news/${moment(value.formatStartedAt).format('YYYYMMDD')}/${value.sn}`} />
+                  url={generateNewsUrl(value.sn, value.formatStartedAt)} />
               ))}
             </div>
           }

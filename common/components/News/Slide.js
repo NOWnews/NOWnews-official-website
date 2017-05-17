@@ -1,8 +1,8 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
+import generateNewsUrl from '../../../lib/generateNewsUrl';
 
 export const Slide = ({ list }) => {
   let settings = {
@@ -20,7 +20,7 @@ export const Slide = ({ list }) => {
     <Carousel className={css(styles.box)} {...settings}>
       {list.map(({ MainPhoto, shortTitle, sn, startedAt, title, url }) => {
         if (!url) {
-          url = `/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`;
+          url = generateNewsUrl(sn, startedAt);
         }
 
         return (

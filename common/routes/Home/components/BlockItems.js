@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
+import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const BlockItems = ({ newsList }) => {
   let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }) => {
@@ -13,7 +14,7 @@ const BlockItems = ({ newsList }) => {
           title={shortTitle}
           type={type}
           time={moment(formatStartedAt).format('YYYY/MM/DD')}
-          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
+          url={generateNewsUrl(sn, formatStartedAt)} />
       </div>
     );
   });

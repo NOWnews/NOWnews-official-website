@@ -4,6 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import BlockItem from './BlockItem';
 import { Ad300x250 } from '../Ad';
 import Pagination from '../Pagination';
+import generateNewsUrl from '../../../lib/generateNewsUrl';
 
 const BlockItems12 = ({ hasAd = true, newsList, page }) => {
   let items = [];
@@ -18,7 +19,7 @@ const BlockItems12 = ({ hasAd = true, newsList, page }) => {
           title={shortTitle}
           time={moment(formatStartedAt).format('YYYY/MM/DD')}
           type={type}
-          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
+          url={generateNewsUrl(sn, formatStartedAt)} />
       </div>
     );
 

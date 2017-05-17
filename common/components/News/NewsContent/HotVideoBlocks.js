@@ -4,13 +4,14 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import { Margin10 } from '../../../components/Layout';
 import TypeIcon from '../TypeIcon';
+import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const HotVideoBlocks = ({ list }) => {
   let items = list.map((news, index) => {
     const { sn, MainPhoto, shortTitle, formatStartedAt } = news;
     return (
       <Link className={css(styles.blockItem)} key={index}
-        to={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`}>
+        to={generateNewsUrl(sn, formatStartedAt)}>
         <TypeIcon type='VIDEO' />
         <img className={css(styles.img)} src={MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
         <div className={css(styles.bottom)}>

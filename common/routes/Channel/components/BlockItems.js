@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
 import { Ad300x250 } from '../../../components/Ad';
+import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const BlockItems = ({ newsList }) => {
   let items = [];
@@ -17,7 +18,7 @@ const BlockItems = ({ newsList }) => {
           title={shortTitle}
           time={moment(formatStartedAt).format('YYYY/MM/DD')}
           type={type}
-          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
+          url={generateNewsUrl(sn, formatStartedAt)} />
       </div>
     );
 

@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, { PropTypes } from 'react';
 import ListItem from '../../../components/News/ListItem';
 import { Margin10 } from '../../../components/Layout';
+import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const RelatedContent = ({ list, sn, type }) => {
   let cloneList = [...list];
@@ -25,7 +26,7 @@ const RelatedContent = ({ list, sn, type }) => {
         photo={MainPhoto}
         title={shortTitle}
         time={moment(formatStartedAt).format('YYYY/MM/DD')}
-        url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
+        url={generateNewsUrl(sn, formatStartedAt)} />
     );
   });
 

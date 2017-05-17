@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { provideHooks } from 'redial';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
@@ -10,6 +9,7 @@ import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import { changeFontSize, changeNewsTitle, loadNews, selectCurrentNews, showFixedHeader } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
+import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const redial = {
   fetch: ({ dispatch, params: { sn } }) => Promise.all([
@@ -68,8 +68,7 @@ class NewsContainer extends Component {
     const { sn, startedAt, title } = this.props.currentNews.data[index];
     const originalSn = window.location.pathname.split('/')[3];
     if (parseInt(originalSn, 10) !== sn) {
-      const formatStartedAt = moment(startedAt).format('YYYYMMDD');
-      window.history.pushState(null, null, `/news/${formatStartedAt}/${sn}`);
+      window.history.pushState(null, null, generateNewsUrl(sn, startedAt));
       this.props.changeNewsTitle(title);
       window.dataLayer.push({'event': 'trackPageView'});
     }

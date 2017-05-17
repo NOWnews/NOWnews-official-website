@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
+import generateNewsUrl from '../../../lib/generateNewsUrl';
 
 const TripletNav = ({ newsList }) => {
   let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }, key) => {
@@ -14,7 +15,7 @@ const TripletNav = ({ newsList }) => {
           title={shortTitle}
           time={moment(formatStartedAt).format('YYYY/MM/DD')}
           type={type}
-          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
+          url={generateNewsUrl(sn, formatStartedAt)} />
       </div>
     );
   });
