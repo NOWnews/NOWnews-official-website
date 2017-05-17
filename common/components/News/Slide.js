@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
-import generateNewsUrl from '../../../lib/generateNewsUrl';
 
 export const Slide = ({ list }) => {
   let settings = {
@@ -18,15 +17,11 @@ export const Slide = ({ list }) => {
 
   return (
     <Carousel className={css(styles.box)} {...settings}>
-      {list.map(({ MainPhoto, shortTitle, sn, startedAt, title, url }) => {
-        if (!url) {
-          url = generateNewsUrl(sn, startedAt);
-        }
-
+      {list.map(({ parseUrl, MainPhoto, shortTitle, sn, startedAt, title }) => {
         return (
           <Link className={css(styles.ahref)} style={{backgroundImage: `url(${MainPhoto.url})`}}
             alt={shortTitle || title}
-            key={sn} to={url}>
+            key={sn} to={parseUrl}>
             { /* <img className={css(styles.img)} src={MainPhoto.url} /> */ }
           </Link>
         );

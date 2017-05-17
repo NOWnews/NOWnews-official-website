@@ -3,12 +3,11 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import BlockItem from './BlockItem';
 import { Ad300x250 } from '../Ad';
 import Pagination from '../Pagination';
-import generateNewsUrl from '../../../lib/generateNewsUrl';
 
 const BlockItems12 = ({ hasAd = true, newsList, page }) => {
   let items = [];
 
-  newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }, key) => {
+  newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem
@@ -18,7 +17,7 @@ const BlockItems12 = ({ hasAd = true, newsList, page }) => {
           title={shortTitle}
           time={formatStartedAt}
           type={type}
-          url={generateNewsUrl(sn, formatStartedAt)} />
+          url={parseUrl} />
       </div>
     );
 

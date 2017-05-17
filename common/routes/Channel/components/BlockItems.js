@@ -2,12 +2,11 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
 import { Ad300x250 } from '../../../components/Ad';
-import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const BlockItems = ({ newsList }) => {
   let items = [];
 
-  newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }, key) => {
+  newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem
@@ -17,7 +16,7 @@ const BlockItems = ({ newsList }) => {
           title={shortTitle}
           time={formatStartedAt}
           type={type}
-          url={generateNewsUrl(sn, formatStartedAt)} />
+          url={parseUrl} />
       </div>
     );
 

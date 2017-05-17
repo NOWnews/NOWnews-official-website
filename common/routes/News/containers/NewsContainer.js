@@ -12,7 +12,6 @@ import {
   showFixedHeader
 } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
-import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const redial = {
   fetch: ({ dispatch, params: { sn } }) => Promise.all([
@@ -67,10 +66,10 @@ class NewsContainer extends Component {
   }
 
   touchWindowTop (item, index) {
-    const { sn, startedAt, title } = this.props.currentNews.data[index];
+    const { sn, title, parseUrl } = this.props.currentNews.data[index];
     const originalSn = window.location.pathname.split('/')[3];
     if (parseInt(originalSn, 10) !== sn) {
-      window.history.pushState(null, null, generateNewsUrl(sn, startedAt));
+      window.history.pushState(null, null, parseUrl);
       this.props.changeNewsTitle(title);
       window.dataLayer.push({'event': 'trackPageView'});
     }

@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
-import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const BlockItems = ({ newsList }) => {
-  let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }) => {
+  let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }) => {
     return (
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem key={sn}
@@ -13,7 +12,7 @@ const BlockItems = ({ newsList }) => {
           title={shortTitle}
           type={type}
           time={formatStartedAt}
-          url={generateNewsUrl(sn, formatStartedAt)} />
+          url={parseUrl} />
       </div>
     );
   });

@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const SlideRight = ({ newsList }) => (
   <div className={css(styles.box)}>
-    {newsList.map(({ sn, MainPhoto, shortTitle, startedAt }) => (
+    {newsList.map(({ sn, MainPhoto, shortTitle, parseUrl }) => (
       <Link className={css(styles.link)} style={{backgroundImage: 'url(' + MainPhoto.url + ')'}} key={sn}
-        to={generateNewsUrl(sn, startedAt)}>
+        to={parseUrl}>
         <div className={css(styles.item)}>{ shortTitle }</div>
       </Link>
     ))}

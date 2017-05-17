@@ -2,10 +2,9 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
-import generateNewsUrl from '../../../lib/generateNewsUrl';
 
 const LatestVideoNav = ({ list }) => {
-  let items = list.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
+  let items = list.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl }, key) => {
     return (
       <div key={key} className={css(styles.item)}>
         <ListItemSm
@@ -13,7 +12,7 @@ const LatestVideoNav = ({ list }) => {
           title={shortTitle}
           time={formatStartedAt}
           type='VIDEO'
-          url={generateNewsUrl(sn, formatStartedAt)} />
+          url={parseUrl} />
       </div>
     );
   });

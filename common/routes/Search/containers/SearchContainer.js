@@ -14,7 +14,6 @@ import { Container, Loading, Margin10, NotFound } from '../../../components/Layo
 import Pagination from '../../../components/Pagination';
 
 import { TimeAndKeywordArea } from '../components';
-import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const redial = {
   fetch: ({ dispatch, query }) => Promise.all([
@@ -78,7 +77,7 @@ class SearchPage extends Component {
                     photo={value.MainPhoto}
                     title={value.title}
                     time={value.formatStartedAt}
-                    url={generateNewsUrl(value.sn, value.formatStartedAt)} />
+                    url={value.parseUrl} />
                 ))}
               </div>
             }

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 class InstantBar extends Component {
   constructor (props) {
@@ -64,21 +63,21 @@ class InstantBar extends Component {
         <span className={css(styles.text)}>即時跑馬燈</span>
         <CSSTransitionGroup {...transitionConfig}>
           <Link key={first.sn} className={css(styles.link)}
-            to={generateNewsUrl(first.sn, first.startedAt)}>
+            to={first.parseUrl}>
             <span>{first.shortTitle}</span>
           </Link>
         </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
         <CSSTransitionGroup {...transitionConfig}>
           <Link key={second.sn} className={css(styles.link)}
-            to={generateNewsUrl(second.sn, second.startedAt)}>
+            to={second.parseUrl}>
             <span>{second.shortTitle}</span>
           </Link>
         </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
         <CSSTransitionGroup {...transitionConfig}>
           <Link key={third.sn} className={css(styles.link)}
-            to={generateNewsUrl(third.sn, third.startedAt)}>
+            to={third.parseUrl}>
             <span>{third.shortTitle}</span>
           </Link>
         </CSSTransitionGroup>

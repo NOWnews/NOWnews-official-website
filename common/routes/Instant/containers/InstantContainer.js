@@ -10,7 +10,6 @@ import { LatestVideoNav, ListItem, SpecialTopicNav, TripletHead } from '../../..
 import { Ad300x250 } from '../../../components/Ad';
 import { Container, RightSide, LeftSide, Loading, Margin10, NotFound } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';
-import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const redial = {
   fetch: ({ dispatch, query: { page } }) => Promise.all([
@@ -44,7 +43,7 @@ const InstantContainer = ({ marquee, menus, instantPage }) => (
                   title={value.title}
                   time={value.formatStartedAt}
                   type={value.type}
-                  url={generateNewsUrl(value.sn, value.formatStartedAt)} />
+                  url={value.parseUrl} />
               ))}
             </div>
           }

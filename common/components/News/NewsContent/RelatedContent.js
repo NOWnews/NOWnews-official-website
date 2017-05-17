@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import ListItem from '../../../components/News/ListItem';
 import { Margin10 } from '../../../components/Layout';
-import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const RelatedContent = ({ list, sn, type }) => {
   let cloneList = [...list];
@@ -11,13 +10,14 @@ const RelatedContent = ({ list, sn, type }) => {
     formatStartedAt: (new Date()).toISOString(),
     MainPhoto: {},
     sn: 999999,
+    parseUrl: '/news/20170101/999999',
     shortTitle: '一旦過敏被誘發 寶寶皮膚紅腫愛哭鬧'
   };
 
   // 將廣告有規律的安插在 array 裡面。
   cloneList.splice(sn % 3, 0, fakeSponsorNews);
   cloneList.map((news) => {
-    const { sn, MainMenu, MainPhoto, shortTitle, formatStartedAt } = news;
+    const { sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl } = news;
     items.push(
       <ListItem
         key={sn}
@@ -25,7 +25,7 @@ const RelatedContent = ({ list, sn, type }) => {
         photo={MainPhoto}
         title={shortTitle}
         time={formatStartedAt}
-        url={generateNewsUrl(sn, formatStartedAt)} />
+        url={parseUrl} />
     );
   });
 

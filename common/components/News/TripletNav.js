@@ -2,10 +2,9 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
-import generateNewsUrl from '../../../lib/generateNewsUrl';
 
 const TripletNav = ({ newsList }) => {
-  const items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, startedAt, type }, key) => {
+  const items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, startedAt, type, parseUrl }, key) => {
     return (
       <div key={key}>
         <ListItemSm
@@ -14,7 +13,7 @@ const TripletNav = ({ newsList }) => {
           title={shortTitle}
           time={startedAt}
           type={type}
-          url={generateNewsUrl(sn, startedAt)} />
+          url={parseUrl} />
       </div>
     );
   });
