@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import {
-  Content, FontSize, HotVideoBlocks, Social, Tags,
+  Content, FontSize, RelatedContent, Social, Tags,
   Thermometer, ThermometerSm
 } from './NewsContent';
 import { TripletNav, VideoPlayer } from '../News';
@@ -19,7 +19,8 @@ const ContentForVideo = ({ news, changeFontSize, fontSize }) => (
         <Tags tags={news.Tags} />
         <Social />
         <ThermometerSm />
-        <HotVideoBlocks list={[news, news, news, news, news, news]} />
+        <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
+        {/* <HotVideoBlocks list={news.relations} /> */}
       </LeftSide>
       <RightSide>
         <Social />
