@@ -11,7 +11,7 @@ import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
 import { Ad300x250, Ad300x600 } from '../../../components/Ad';
 
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectHomePage, loadHomeList, switchTripletType } from '../module';
 
 const redial = {
@@ -23,6 +23,7 @@ const redial = {
 
 const mapStateToProps = state => ({
   homePage: selectHomePage(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
@@ -41,7 +42,7 @@ class HomeContainer extends Component {
   }
 
   render () {
-    const { menus, homePage } = this.props;
+    const { marquee, menus, homePage } = this.props;
     const {
       carousels, isLoading, specialChannels, specialTopics, tripletType,
       videos
@@ -61,7 +62,7 @@ class HomeContainer extends Component {
 
     return (
       <div>
-        <Header menus={menus} />
+        <Header menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
 
         {!isLoading && carousels.length > 0 &&
@@ -246,6 +247,7 @@ const styles = StyleSheet.create({
 
 HomeContainer.propTypes = {
   homePage: PropTypes.object.isRequired,
+  marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
   switchTripletType: PropTypes.func.isRequired
 };

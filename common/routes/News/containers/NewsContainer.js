@@ -9,7 +9,7 @@ import { Ad970x250 } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import { changeFontSize, changeNewsTitle, loadNews, selectCurrentNews, showFixedHeader } from '../module';
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 
 const redial = {
   fetch: ({ dispatch, params: { sn } }) => Promise.all([
@@ -20,6 +20,7 @@ const redial = {
 
 const mapStateToProps = state => ({
   currentNews: selectCurrentNews(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
@@ -75,14 +76,15 @@ class NewsContainer extends Component {
   }
 
   render () {
-    const { isLoading, data = [], hasMore, fontSize, newsTitle, showFixedHeader } = this.props.currentNews;
+    const { currentNews, changeFontSize, menus, marquee } = this.props;
+    const { isLoading, data = [], hasMore, fontSize, newsTitle, showFixedHeader } = currentNews;
     const currentMainMenu = data[0] && data[0].MainMenu.id;
     const totalLength = data.length;
     const items = data.map((item, i) => {
       const { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
       const contentProps = {
         news,
-        changeFontSize: this.props.changeFontSize,
+        changeFontSize,
         fontSize
       };
 
@@ -109,7 +111,7 @@ class NewsContainer extends Component {
 
     return (
       <div>
-        <Header menus={this.props.menus}
+        <Header menus={menus} marquee={marquee}
           currentChildMenu={currentChildMenu}
           currentMainMenu={currentMainMenu} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}
@@ -138,6 +140,7 @@ NewsContainer.propTypes = {
   changeNewsTitle: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
   loadNews: PropTypes.func.isRequired,
+  marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
   showFixedHeader: PropTypes.func.isRequired
 };

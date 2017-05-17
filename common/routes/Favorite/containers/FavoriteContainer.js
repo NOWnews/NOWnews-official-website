@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { selectFavoritePage, loadFavoriteList } from '../module';
 
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 
 import { Header } from '../../../components/Header';
 import { BlockItems12, TripletHead } from '../../../components/News';
@@ -18,12 +18,13 @@ const redial = {
 
 const mapStateToProps = state => ({
   favoritePage: selectFavoritePage(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const FavoriteContainer = ({ menus, favoritePage }) => (
+const FavoriteContainer = ({ marquee, menus, favoritePage }) => (
   <div>
-    <Header menus={menus} />
+    <Header menus={menus} marquee={marquee} />
     <TripletHead active='favorite' />
     <Container>
       {favoritePage.isLoading && <Loading />}
@@ -36,8 +37,9 @@ const FavoriteContainer = ({ menus, favoritePage }) => (
 );
 
 FavoriteContainer.propTypes = {
-  menus: PropTypes.array.isRequired,
-  favoritePage: PropTypes.object.isRequired
+  favoritePage: PropTypes.object.isRequired,
+  marquee: PropTypes.array.isRequired,
+  menus: PropTypes.array.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps)(FavoriteContainer));

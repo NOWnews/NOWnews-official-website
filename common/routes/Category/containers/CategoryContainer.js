@@ -2,7 +2,7 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
 import { BlockItems12, Slide } from '../../../components/News';
 import { HotNews } from '../components';
@@ -17,10 +17,11 @@ const redial = {
 
 const mapStateToProps = state => ({
   categoryPage: selectCategoryPage(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const CategoryPage = ({ categoryPage, menus }) => {
+const CategoryPage = ({ categoryPage, menus, marquee }) => {
   const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
   const slideData = newsList.slice(0, 5);
   const blockData = newsList.slice(5, 15);
@@ -31,7 +32,7 @@ const CategoryPage = ({ categoryPage, menus }) => {
 
   return (
     <Container>
-      <Header menus={menus}
+      <Header menus={menus} marquee={marquee}
         currentChildMenu={currentChildMenu}
         currentMainMenu={currentMainMenu} />
       {categoryPage.isLoading && <Loading />}
@@ -51,6 +52,7 @@ const CategoryPage = ({ categoryPage, menus }) => {
 
 CategoryPage.propTypes = {
   categoryPage: PropTypes.object.isRequired,
+  marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired
 };
 

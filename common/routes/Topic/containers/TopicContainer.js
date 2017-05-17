@@ -2,7 +2,7 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectTopicPage, loadTopics } from '../module';
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { Slide } from '../../../components/News';
@@ -18,14 +18,15 @@ const redial = {
 
 const mapStateToProps = state => ({
   topicPage: selectTopicPage(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const TopicContainer = ({ topicPage, menus }) => {
+const TopicContainer = ({ topicPage, menus, marquee }) => {
   let { pageData, topics } = topicPage;
   return (
     <Container>
-      <Header menus={menus} />
+      <Header menus={menus} marquee={marquee} />
       {topicPage.isLoading && <Loading />}
       {!topicPage.isLoading && topics.length === 0 && <NotFound />}
       {!topicPage.isLoading && topics.length > 0 &&
@@ -44,6 +45,7 @@ const TopicContainer = ({ topicPage, menus }) => {
 
 TopicContainer.propTypes = {
   topicPage: PropTypes.object.isRequired,
+  marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired
 };
 

@@ -4,7 +4,7 @@ import { provideHooks } from 'redial';
 import moment from 'moment';
 import { selectInstantPage, loadInstantList } from '../module';
 
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 
 import { Header } from '../../../components/Header';
 import { LatestVideoNav, ListItem, SpecialTopicNav, TripletHead } from '../../../components/News';
@@ -21,12 +21,13 @@ const redial = {
 
 const mapStateToProps = state => ({
   instantPage: selectInstantPage(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const InstantContainer = ({ menus, instantPage }) => (
+const InstantContainer = ({ marquee, menus, instantPage }) => (
   <div>
-    <Header menus={menus} />
+    <Header menus={menus} marquee={marquee} />
     <TripletHead active='instant' />
     <Container>
       <Margin10 className='clearfix'>
@@ -63,6 +64,7 @@ const InstantContainer = ({ menus, instantPage }) => (
 
 InstantContainer.propTypes = {
   menus: PropTypes.array.isRequired,
+  marquee: PropTypes.array.isRequired,
   instantPage: PropTypes.object.isRequired
 };
 
