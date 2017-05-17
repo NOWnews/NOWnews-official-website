@@ -9,7 +9,6 @@ const BlockItems = ({ newsList }) => {
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem key={sn}
           category={MainMenu && MainMenu.name || 'Sponsored'}
-          hasTypeIcon={false}
           photo={MainPhoto}
           title={shortTitle}
           type={type}

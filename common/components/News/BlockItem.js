@@ -3,10 +3,10 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import TypeIcon from './TypeIcon';
 
-export const BlockItem = ({ category, hasTypeIcon = true, photo = {}, time, title, type, url }) => {
+export const BlockItem = ({ category, photo = {}, time, title, type, url }) => {
   return (
     <Link className={css(styles.box)} to={url}>
-      {hasTypeIcon && <TypeIcon type={type} />}
+      <TypeIcon type={type} />
       <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
       <div className={css(styles.bottom)}>
         <div className={css(styles.category)}>{category}</div>
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
 
 BlockItem.propTypes = {
   category: PropTypes.string.isRequired,
-  hasTypeIcon: PropTypes.bool,
   photo: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
