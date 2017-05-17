@@ -8,7 +8,7 @@ import Pagination from '../Pagination';
 const BlockItems12 = ({ hasAd = true, newsList, page }) => {
   let items = [];
 
-  newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
+  newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem
@@ -17,6 +17,7 @@ const BlockItems12 = ({ hasAd = true, newsList, page }) => {
           photo={MainPhoto}
           title={shortTitle}
           time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          type={type}
           url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
       </div>
     );

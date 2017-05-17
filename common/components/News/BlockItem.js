@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
+import TypeIcon from './TypeIcon';
 
-export const BlockItem = ({ category, photo = {}, time, title, url }) => {
+export const BlockItem = ({ category, photo = {}, time, title, type, url }) => {
   return (
     <Link className={css(styles.box)} to={url}>
+      <TypeIcon type={type} />
       <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
       <div className={css(styles.bottom)}>
         <div className={css(styles.category)}>{category}</div>
@@ -19,6 +21,8 @@ export const BlockItem = ({ category, photo = {}, time, title, url }) => {
 const styles = StyleSheet.create({
   box: {
     color: '#000',
+    display: 'block',
+    position: 'relative',
     textDecoration: 'none'
   },
   bottom: {
@@ -53,6 +57,7 @@ BlockItem.propTypes = {
   photo: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
+  type: PropTypes.string,
   url: PropTypes.string.isRequired
 };
 

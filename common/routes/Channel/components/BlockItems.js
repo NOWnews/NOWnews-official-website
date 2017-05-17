@@ -7,7 +7,7 @@ import { Ad300x250 } from '../../../components/Ad';
 const BlockItems = ({ newsList }) => {
   let items = [];
 
-  newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
+  newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem
@@ -16,6 +16,7 @@ const BlockItems = ({ newsList }) => {
           photo={MainPhoto}
           title={shortTitle}
           time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          type={type}
           url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
       </div>
     );

@@ -5,7 +5,7 @@ import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
 
 const TripletNav = ({ newsList }) => {
-  let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt }, key) => {
+  let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }, key) => {
     return (
       <div key={key}>
         <ListItemSm
@@ -13,6 +13,7 @@ const TripletNav = ({ newsList }) => {
           photo={MainPhoto}
           title={shortTitle}
           time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          type={type}
           url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
       </div>
     );
