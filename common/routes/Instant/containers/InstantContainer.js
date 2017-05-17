@@ -13,8 +13,8 @@ import Pagination from '../../../components/Pagination';
 import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
 const redial = {
-  fetch: ({ dispatch }) => Promise.all([
-    dispatch(loadInstantList()),
+  fetch: ({ dispatch, query: { page } }) => Promise.all([
+    dispatch(loadInstantList(page)),
     dispatch(loadHeader())
   ])
 };

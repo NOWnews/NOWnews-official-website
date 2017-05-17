@@ -53,12 +53,19 @@ class HomeContainer extends Component {
       lbs: '地區'
     };
     const TripletIcons = ['instant', 'favorite', 'lbs'].map((value) => {
-      let imgName = (tripletType === value) ? `${value}_active` : value;
+      const imgName = (tripletType === value) ? `${value}_active` : value;
+
       return (
         <img key={value} onClick={() => { this.switchTripletType(value); }}
           className={css(styles.tripletBlockTopIcon)} src={`/icons/${imgName}.png`} />
       );
     });
+
+    const tripletObject = {
+      instant: marquee,
+      favorite: [],
+      lbs: []
+    };
 
     return (
       <div>
@@ -100,8 +107,8 @@ class HomeContainer extends Component {
                 { TripletIcons }
                 { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>台北市</span>}
               </div>
-              <BlockItems newsList={carousels.slice(0, 9)} />
-              <div className='clearfix' />
+              <BlockItems newsList={tripletObject[tripletType].slice(0, 9)} />
+              { tripletType === 'favorite' && <h3>尚未開放，敬請期待！</h3>}
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
                   看更多{seeMoreTextDefined[tripletType]}新聞

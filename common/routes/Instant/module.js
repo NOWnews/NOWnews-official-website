@@ -12,16 +12,15 @@ const initialState = {
   videos: []
 };
 
-export function loadInstantList () {
+export function loadInstantList (page = 1) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_INSTANT_REQUEST });
-    /* TODO 先暫時用 indexpage 當 api 代替 */
-    return axios.get(`${protocol}://${host}/indexpage`)
+    return axios.get(`${protocol}://${host}/instant?page=${page}&limit=12`)
     .then(res => {
       dispatch({
         type: LOAD_INSTANT_SUCCESS,
-        payload: res.data.carousels,
+        payload: res.data,
         meta: {
           lastFetched: Date.now()
         }
@@ -45,9 +44,11 @@ export default function instantPage (state = initialState, action) {
         error: null
       };
     case LOAD_INSTANT_SUCCESS:
+      let { newsList, pageData } = action.payload;
       return {
         ...state,
-        newsList: action.payload,
+        newsList,
+        pageData,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
