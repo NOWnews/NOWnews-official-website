@@ -27,8 +27,10 @@ const FavoriteContainer = ({ marquee, menus, favoritePage }) => (
     <Header menus={menus} marquee={marquee} />
     <TripletHead active='favorite' />
     <Container>
+
       {favoritePage.isLoading && <Loading />}
-      {!favoritePage.isLoading && favoritePage.newsList.length === 0 && <NotFound />}
+      <h3>尚未開放，敬請期待！</h3>
+      {false && !favoritePage.isLoading && favoritePage.newsList.length === 0 && <NotFound />}
       {!favoritePage.isLoading && favoritePage.newsList.length > 0 &&
         <BlockItems12 hasAd={false} newsList={favoritePage.newsList} page={favoritePage.pageData} />
       }

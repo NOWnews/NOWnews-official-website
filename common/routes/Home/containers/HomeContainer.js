@@ -49,7 +49,7 @@ class HomeContainer extends Component {
     } = homePage;
     const seeMoreTextDefined = {
       instant: '即時',
-      favorite: '個人',
+      favorite: '感興趣',
       lbs: '地區'
     };
     const TripletIcons = ['instant', 'favorite', 'lbs'].map((value) => {
@@ -64,7 +64,7 @@ class HomeContainer extends Component {
     const tripletObject = {
       instant: marquee,
       favorite: [],
-      lbs: []
+      lbs: marquee // temp
     };
 
     return (

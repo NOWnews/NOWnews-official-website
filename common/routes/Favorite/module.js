@@ -15,7 +15,7 @@ export function loadFavoriteList () {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_FAVORITE_REQUEST });
     /* TODO 先暫時用 indexpage 當 api 代替 */
-    return axios.get(`${protocol}://${host}/indexpage`)
+    return axios.get(`${protocol}://${host}/interests`)
     .then(res => {
       dispatch({
         type: LOAD_FAVORITE_SUCCESS,
