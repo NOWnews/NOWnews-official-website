@@ -12,6 +12,7 @@ const LatestVideoNav = ({ list }) => {
           photo={MainPhoto}
           title={shortTitle}
           time={formatStartedAt}
+          type='VIDEO'
           url={generateNewsUrl(sn, formatStartedAt)} />
       </div>
     );

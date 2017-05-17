@@ -43,6 +43,7 @@ const InstantContainer = ({ marquee, menus, instantPage }) => (
                   photo={value.MainPhoto}
                   title={value.title}
                   time={value.formatStartedAt}
+                  type={value.type}
                   url={generateNewsUrl(value.sn, value.formatStartedAt)} />
               ))}
             </div>
@@ -53,8 +54,8 @@ const InstantContainer = ({ marquee, menus, instantPage }) => (
         </LeftSide>
         <RightSide>
           <Ad300x250 />
-          <SpecialTopicNav list={instantPage.topics.slice(0, 6)} />
-          <LatestVideoNav list={instantPage.videos.slice(0, 4)} />
+          <SpecialTopicNav list={instantPage.topics} />
+          <LatestVideoNav list={instantPage.videos} />
           <Ad300x250 />
         </RightSide>
       </Margin10>

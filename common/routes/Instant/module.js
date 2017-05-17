@@ -16,11 +16,18 @@ export function loadInstantList (page = 1) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_INSTANT_REQUEST });
-    return axios.get(`${protocol}://${host}/instant?page=${page}&limit=12`)
-    .then(res => {
+    return Promise.all([
+      axios.get(`${protocol}://${host}/instant?page=${page}&limit=12`),
+      axios.get(`${protocol}://${host}/instant?type=video&limit=4`),
+      axios.get(`${protocol}://${host}/specialtopics?limit=6`)
+    ]).then(([instant, instantVideo, topic]) => {
       dispatch({
         type: LOAD_INSTANT_SUCCESS,
-        payload: res.data,
+        payload: {
+          news: instant.data,
+          videos: instantVideo.data.newsList,
+          topics: topic.data.specialTopics
+        },
         meta: {
           lastFetched: Date.now()
         }
@@ -44,11 +51,13 @@ export default function instantPage (state = initialState, action) {
         error: null
       };
     case LOAD_INSTANT_SUCCESS:
-      let { newsList, pageData } = action.payload;
+      let { news: { newsList, pageData }, topics, videos } = action.payload;
       return {
         ...state,
         newsList,
         pageData,
+        topics,
+        videos,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
