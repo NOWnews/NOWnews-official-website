@@ -25,7 +25,7 @@ const TripletNav = ({ newsList }) => {
         <div className={css(styles.background)} />
         <div className={css(styles.switchIcons)}>
           <img className={css(styles.icon)} src='/icons/instant.png' />
-          <img className={css(styles.icon)} src='/icons/favorite.png' />
+          <img className={css(styles.icon)} src='/icons/interest.png' />
           <img className={css(styles.icon)} src='/icons/lbs_active.png' />
         </div>
         <div className={css(styles.mapTitle)}>台北市</div>

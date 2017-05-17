@@ -10,7 +10,7 @@ export default function createRoutes (store) {
         cb(null, [
           require('./Category').default(store), // no need to modify store, no reducer
           require('./Channel').default(store),
-          require('./Favorite').default(store),
+          require('./Interest').default(store),
           require('./Info').default(store),
           require('./Instant').default(store),
           require('./LBS').default(store),

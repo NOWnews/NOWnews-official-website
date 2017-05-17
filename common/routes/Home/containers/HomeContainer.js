@@ -49,10 +49,10 @@ class HomeContainer extends Component {
     } = homePage;
     const seeMoreTextDefined = {
       instant: '即時',
-      favorite: '感興趣',
+      interest: '感興趣',
       lbs: '地區'
     };
-    const TripletIcons = ['instant', 'favorite', 'lbs'].map((value) => {
+    const TripletIcons = ['instant', 'interest', 'lbs'].map((value) => {
       const imgName = (tripletType === value) ? `${value}_active` : value;
 
       return (
@@ -63,7 +63,7 @@ class HomeContainer extends Component {
 
     const tripletObject = {
       instant: marquee,
-      favorite: [],
+      interest: [],
       lbs: marquee // temp
     };
 
@@ -108,7 +108,7 @@ class HomeContainer extends Component {
                 { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>台北市</span>}
               </div>
               <BlockItems newsList={tripletObject[tripletType].slice(0, 9)} />
-              { tripletType === 'favorite' && <h3>尚未開放，敬請期待！</h3>}
+              { tripletType === 'interest' && <h3>尚未開放，敬請期待！</h3>}
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
                   看更多{seeMoreTextDefined[tripletType]}新聞
