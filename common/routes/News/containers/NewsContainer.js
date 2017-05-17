@@ -7,7 +7,10 @@ import { FixedHeader, Header } from '../../../components/Header';
 import { Ad970x250 } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
-import { changeFontSize, changeNewsTitle, loadNews, selectCurrentNews, showFixedHeader } from '../module';
+import {
+  changeFontSize, changeNewsTitle, loadNews, loadMoreNews, selectCurrentNews,
+  showFixedHeader
+} from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import generateNewsUrl from '../../../../lib/generateNewsUrl';
 
@@ -27,7 +30,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = bindActionCreators.bind(null, {
   changeFontSize,
   changeNewsTitle,
-  loadNews,
+  loadMoreNews,
   showFixedHeader
 });
 
@@ -52,8 +55,7 @@ class NewsContainer extends Component {
   loadItems () {
     const newsData = this.props.currentNews.data;
     const sn = newsData[newsData.length - 1].next.sn;
-    const isLoadMore = true;
-    this.props.loadNews(sn, isLoadMore);
+    this.props.loadMoreNews(sn);
   }
 
   scrollListener () {
@@ -76,15 +78,19 @@ class NewsContainer extends Component {
 
   render () {
     const { currentNews, changeFontSize, menus, marquee } = this.props;
-    const { isLoading, data = [], hasMore, fontSize, newsTitle, showFixedHeader } = currentNews;
+    const {
+      isLoading, data = [], hasMore, fontSize, newsTitle,
+      showFixedHeader, topics
+    } = currentNews;
     const currentMainMenu = data[0] && data[0].MainMenu.id;
     const totalLength = data.length;
     const items = data.map((item, i) => {
       const { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
       const contentProps = {
-        news,
         changeFontSize,
-        fontSize
+        fontSize,
+        news,
+        topics
       };
 
       return (
@@ -138,7 +144,7 @@ NewsContainer.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   changeNewsTitle: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
-  loadNews: PropTypes.func.isRequired,
+  loadMoreNews: PropTypes.func.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
   showFixedHeader: PropTypes.func.isRequired

@@ -10,7 +10,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForNews = ({ news, changeFontSize, fontSize }) => (
+const ContentForNews = ({ news, changeFontSize, fontSize, topics }) => (
   <Container>
     <div className={css(styles.contentDiv)}>
       <span className={css(styles.contentImg)}
@@ -37,7 +37,7 @@ const ContentForNews = ({ news, changeFontSize, fontSize }) => (
         <Thermometer />
         <TripletNav newsList={[news]} />
         <Ad300x250 />
-        <SpecialTopicNav list={[1, 2, 3, 4, 5, 6]} />
+        <SpecialTopicNav list={topics} />
         <Ad300x250 />
       </RightSide>
     </Margin10>
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
 ContentForNews.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  news: PropTypes.object.isRequired
+  news: PropTypes.object.isRequired,
+  topics: PropTypes.array.isRequired
 };
 
 export default ContentForNews;

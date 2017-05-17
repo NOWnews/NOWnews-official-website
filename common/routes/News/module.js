@@ -22,7 +22,11 @@ const initialState = {
   isSSRAndInit: false,
   lastFetched: null,
   newsTitle: '',
-  showFixedHeader: false
+  showFixedHeader: false,
+  // rightSide
+  topics: [],
+  favorite: [],
+  lbs: []
 };
 
 export const changeFontSize = (fontSize) => {
@@ -38,17 +42,60 @@ export const changeNewsTitle = (newsTitle) => {
   };
 };
 
-export const loadNews = (sn, isLoadMore = false) => {
+export const loadNews = (sn) => {
   return (dispatch, getState, { axios }) => {
     const state = getState();
     const { protocol, host } = state.sourceRequest;
     const apiServ = `${protocol}://${host}`;
     dispatch({ type: LOAD_NEWS_REQUEST });
 
-    // 第一次 SPA 完將 scroll 置頂
-    if (canUseDOM && !isLoadMore) {
+    // 將 scroll 置頂
+    if (canUseDOM) {
       window.document.body.scrollTop = 0;
     }
+
+    return Promise.all([
+      axios.get(`${apiServ}/news/${sn}`),
+      axios.get(`${apiServ}/news/${sn}/nextandprev`),
+      axios.get(`${apiServ}/news/${sn}/relations`),
+      axios.get(`${apiServ}/specialtopics?limit=6`)
+
+    ]).then(([news, nextandprev, relations, topic]) => {
+      let { next, prev } = nextandprev.data;
+      let result = news.data;
+
+      dispatch({
+        type: LOAD_NEWS_SUCCESS,
+        payload: {
+          news: {
+            ...result,
+            next,
+            prev,
+            relations: relations.data
+          },
+          topics: topic.data.specialTopics
+        },
+        meta: {
+          lastFetched: Date.now()
+        }
+      });
+    }).catch(error => {
+      console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
+      dispatch({
+        type: LOAD_NEWS_FAILURE,
+        payload: error,
+        error: true
+      });
+    });
+  };
+};
+
+export const loadMoreNews = (sn) => {
+  return (dispatch, getState, { axios }) => {
+    const state = getState();
+    const { protocol, host } = state.sourceRequest;
+    const apiServ = `${protocol}://${host}`;
+    dispatch({ type: LOAD_NEWS_REQUEST });
 
     return Promise.all([
       axios.get(`${apiServ}/news/${sn}`),
@@ -59,7 +106,7 @@ export const loadNews = (sn, isLoadMore = false) => {
       let result = news.data;
 
       dispatch({
-        type: isLoadMore ? LOAD_MORE_NEWS_SUCCESS : LOAD_NEWS_SUCCESS,
+        type: LOAD_MORE_NEWS_SUCCESS,
         payload: { ...result, next, prev, relations: relations.data },
         meta: {
           lastFetched: Date.now()
@@ -67,12 +114,10 @@ export const loadNews = (sn, isLoadMore = false) => {
       });
 
       // 內文無限下滑時，載入新的新聞也要累積 PV 數
-      if (isLoadMore) {
-        const { search } = window.location;
-        const { id: newsId, MainMenu, sn, startedAt } = result;
-        const formatStartedAt = moment(startedAt).format('YYYYMMDD');
-        pvCallApi(apiServ, MainMenu.id, newsId, `/news/${formatStartedAt}/${sn}`, search);
-      }
+      const { search } = window.location;
+      const { id: newsId, MainMenu, sn, startedAt } = result;
+      const formatStartedAt = moment(startedAt).format('YYYYMMDD');
+      pvCallApi(apiServ, MainMenu.id, newsId, `/news/${formatStartedAt}/${sn}`, search);
     }).catch(error => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
@@ -146,14 +191,16 @@ export default function currentNews (state = initialState, action) {
         lastFetched: action.meta.lastFetched
       };
     case LOAD_NEWS_SUCCESS:
+      const { news, topics } = action.payload;
       return {
         ...state,
-        data: [action.payload],
-        hasMore: !!action.payload.next.sn,
+        data: [news],
+        hasMore: !!news.next.sn,
         isLoading: false,
         isSSRAndInit: !canUseDOM,
         lastFetched: action.meta.lastFetched,
-        newsTitle: action.payload.title
+        newsTitle: news.title,
+        topics
       };
     case LOAD_NEWS_FAILURE:
     case LOAD_PREVIEW_FAILURE:
