@@ -8,7 +8,7 @@ const RelatedContent = ({ list, sn, type }) => {
   let items = [];
   // 暫時廣告資料
   let fakeSponsorNews = {
-    formatStartedAt: new Date(),
+    formatStartedAt: (new Date()).toISOString(),
     MainPhoto: {},
     sn: 999999,
     shortTitle: '一旦過敏被誘發 寶寶皮膚紅腫愛哭鬧'
@@ -17,7 +17,7 @@ const RelatedContent = ({ list, sn, type }) => {
   // 將廣告有規律的安插在 array 裡面。
   cloneList.splice(sn % 3, 0, fakeSponsorNews);
   cloneList.map((news) => {
-    let { sn, MainMenu, MainPhoto, shortTitle, formatStartedAt } = news;
+    const { sn, MainMenu, MainPhoto, shortTitle, formatStartedAt } = news;
     items.push(
       <ListItem
         key={sn}

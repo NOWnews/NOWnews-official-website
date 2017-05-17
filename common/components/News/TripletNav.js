@@ -5,16 +5,16 @@ import { Margin10 } from '../Layout';
 import generateNewsUrl from '../../../lib/generateNewsUrl';
 
 const TripletNav = ({ newsList }) => {
-  let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }, key) => {
+  const items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, startedAt, type }, key) => {
     return (
       <div key={key}>
         <ListItemSm
           category={MainMenu && MainMenu.name || '未分類'}
           photo={MainPhoto}
           title={shortTitle}
-          time={formatStartedAt}
+          time={startedAt}
           type={type}
-          url={generateNewsUrl(sn, formatStartedAt)} />
+          url={generateNewsUrl(sn, startedAt)} />
       </div>
     );
   });
