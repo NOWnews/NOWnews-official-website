@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockTopicItem } from '../../../components/News';
@@ -14,7 +13,7 @@ const BlockItems = ({ topics }) => {
           key={sn}
           photo={MainPhoto}
           title={shortTitle}
-          time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          time={formatStartedAt}
           url={url || ''} />
       </div>
     );

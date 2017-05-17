@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
-import moment from 'moment';
 import { selectInstantPage, loadInstantList } from '../module';
 
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
@@ -43,7 +42,7 @@ const InstantContainer = ({ marquee, menus, instantPage }) => (
                   category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
                   photo={value.MainPhoto}
                   title={value.title}
-                  time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
+                  time={value.formatStartedAt}
                   url={generateNewsUrl(value.sn, value.formatStartedAt)} />
               ))}
             </div>

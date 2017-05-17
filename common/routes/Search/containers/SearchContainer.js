@@ -4,7 +4,6 @@ import { provideHooks } from 'redial';
 import { bindActionCreators } from 'redux';
 import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import moment from 'moment';
 import { selectSearchPage, loadSearchList } from '../module';
 
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
@@ -78,7 +77,7 @@ class SearchPage extends Component {
                     category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
                     photo={value.MainPhoto}
                     title={value.title}
-                    time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
+                    time={value.formatStartedAt}
                     url={generateNewsUrl(value.sn, value.formatStartedAt)} />
                 ))}
               </div>

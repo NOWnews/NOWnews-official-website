@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
@@ -13,7 +12,7 @@ const TripletNav = ({ newsList }) => {
           category={MainMenu && MainMenu.name || '未分類'}
           photo={MainPhoto}
           title={shortTitle}
-          time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          time={formatStartedAt}
           type={type}
           url={generateNewsUrl(sn, formatStartedAt)} />
       </div>

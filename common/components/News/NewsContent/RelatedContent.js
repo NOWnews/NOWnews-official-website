@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import ListItem from '../../../components/News/ListItem';
 import { Margin10 } from '../../../components/Layout';
@@ -25,7 +24,7 @@ const RelatedContent = ({ list, sn, type }) => {
         category={MainMenu && MainMenu.name || 'Sponsored'}
         photo={MainPhoto}
         title={shortTitle}
-        time={moment(formatStartedAt).format('YYYY/MM/DD')}
+        time={formatStartedAt}
         url={generateNewsUrl(sn, formatStartedAt)} />
     );
   });

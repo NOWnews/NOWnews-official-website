@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
@@ -12,7 +11,7 @@ const LatestVideoNav = ({ list }) => {
         <ListItemSm
           photo={MainPhoto}
           title={shortTitle}
-          time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          time={formatStartedAt}
           url={generateNewsUrl(sn, formatStartedAt)} />
       </div>
     );
