@@ -122,7 +122,7 @@ class HomeContainer extends Component {
             <Container className={css(styles.videoContaienr)}>
               <VideoBlock list={videos} />
               <div className={css(styles.seeMoreBlock)}>
-                <Link className={css(styles.seeMoreLink, styles.white)} to={'/'}>
+                <Link className={css(styles.seeMoreLink, styles.white)} to={'/video/instant'}>
                   看更多影音
                 </Link>
               </div>
