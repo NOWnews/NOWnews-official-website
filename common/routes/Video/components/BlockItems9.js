@@ -1,39 +1,54 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import moment from 'moment';
 import TypeIcon from '../../../components/News/TypeIcon';
 import Pagination from '../../../components/Pagination';
 
-const BlockItems9 = ({ newsList, page }) => {
-  const items = newsList.map(({ sn, MainPhoto, shortTitle, startedAt }) => {
-    return (
-      <div key={sn} className={css(styles.blockItem)}>
-        <TypeIcon type='VIDEO' />
-        <img className={css(styles.img)} src={MainPhoto.url} />
-        <div className={css(styles.bottom)}>
-          <div className={css(styles.title)}>{shortTitle}</div>
-          <img src='/icons/whiteClock.png' />
-          <span className={css(styles.time)}>
-            {moment(startedAt).format('YYYY/MM/DD')}
-          </span>
+class BlockItems9 extends Component {
+  constructor (props) {
+    super(props);
+    this.select = this.select.bind(this);
+  }
+
+  select (index) {
+    if (this.props.selectVideo !== index) {
+      this.props.selectVideo(index);
+    }
+  }
+
+  render () {
+    const { newsList, page } = this.props;
+    const items = newsList.map(({ sn, MainPhoto, shortTitle, startedAt }, index) => {
+      return (
+        <div key={sn} className={css(styles.blockItem)} onClick={() => { this.select(index); }}>
+          <TypeIcon type='VIDEO' />
+          <img className={css(styles.img)} src={MainPhoto.url} />
+          <div className={css(styles.bottom)}>
+            <div className={css(styles.title)}>{shortTitle}</div>
+            <img src='/icons/whiteClock.png' />
+            <span className={css(styles.time)}>
+              {moment(startedAt).format('YYYY/MM/DD')}
+            </span>
+          </div>
         </div>
+      );
+    });
+
+    return (
+      <div>
+        <div className='clearfix'>
+          { items }
+        </div>
+        <Pagination {...page} />
       </div>
     );
-  });
-
-  return (
-    <div>
-      <div className='clearfix'>
-        { items }
-      </div>
-      <Pagination {...page} />
-    </div>
-  );
+  }
 };
 
 const styles = StyleSheet.create({
   blockItem: {
     color: '#000',
+    cursor: 'pointer',
     float: 'left',
     height: 245,
     marginBottom: 30,
@@ -64,7 +79,8 @@ const styles = StyleSheet.create({
 
 BlockItems9.propTypes = {
   newsList: PropTypes.array.isRequired,
-  page: PropTypes.object.isRequired
+  page: PropTypes.object.isRequired,
+  selectVideo: PropTypes.func.isRequired
 };
 
 export default BlockItems9;

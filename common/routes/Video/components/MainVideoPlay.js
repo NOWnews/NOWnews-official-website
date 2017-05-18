@@ -19,7 +19,7 @@ class MainVideoPlay extends Component {
   render () {
     const { news, showNextButton } = this.props;
     const { MainPhoto, MainVideo = {}, startedAt, sn, title, parseUrl } = news;
-    const videoUrl = MainVideo.url || 'https://www.youtube.com/watch?v=8sXFiwsnbvg';
+    const videoUrl = MainVideo.url;
 
     return (
       <div className={css(styles.box)}>
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     border: 'none',
     color: '#ffffff',
     fontSize: 16,
+    outline: 'none',
     position: 'absolute',
     right: 0
   }

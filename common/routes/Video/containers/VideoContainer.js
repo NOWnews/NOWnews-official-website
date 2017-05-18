@@ -2,7 +2,7 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectVideoPage, loadVideoList, nextVideo } from '../module';
+import { selectVideoPage, loadVideoList, nextVideo, selectVideo } from '../module';
 import { NavBar } from '../../../components/Video';
 import { Container, Loading, NotFound } from '../../../components/Layout';
 import { BlockItems9, MainVideoPlay, VideoCategories } from '../components';
@@ -18,10 +18,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
-  nextVideo
+  nextVideo,
+  selectVideo
 });
 
-const VideoPage = ({ nextVideo, videoPage }) => {
+const VideoPage = ({ nextVideo, selectVideo, videoPage }) => {
   const { currentCategory, menus, newsList, pageData, selectedIndex } = videoPage;
   const maxIndex = newsList.length - 1;
   return (
@@ -37,7 +38,9 @@ const VideoPage = ({ nextVideo, videoPage }) => {
       <Container>
         {!videoPage.isLoading && newsList.length === 0 && <NotFound />}
         {!videoPage.isLoading && newsList.length > 0 &&
-          <BlockItems9 page={pageData}newsList={newsList.slice(0, 9)} />}
+          <BlockItems9 newsList={newsList.slice(0, 9)}
+            page={pageData}
+            selectVideo={selectVideo} />}
       </Container>
     </div>
   );
@@ -45,7 +48,8 @@ const VideoPage = ({ nextVideo, videoPage }) => {
 
 VideoPage.propTypes = {
   videoPage: PropTypes.object.isRequired,
-  nextVideo: PropTypes.func.isRequired
+  nextVideo: PropTypes.func.isRequired,
+  selectVideo: PropTypes.func.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(VideoPage));
