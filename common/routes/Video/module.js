@@ -68,6 +68,8 @@ export default function videoPage (state = initialState, action) {
       return {
         ...state,
         error: action.payload.message,
+        newsList: [],
+        menus: [],
         isLoading: false
       };
     default:

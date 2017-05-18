@@ -23,7 +23,7 @@ const VideoPage = ({ videoPage }) => {
       <NavBar selected='VIDEO' />
       {videoPage.isLoading && <Loading />}
       {!videoPage.isLoading && newsList.length > 0 && <MainVideoPlay news={newsList[selectedIndex]} />}
-      {!videoPage.isLoading && <VideoCategories menus={menus} currentCategory={currentCategory} />}
+      {!videoPage.isLoading && menus && <VideoCategories menus={menus} currentCategory={currentCategory} />}
       <Container>
         {!videoPage.isLoading && newsList.length === 0 && <NotFound />}
         {!videoPage.isLoading && newsList.length > 0 &&
