@@ -5,6 +5,7 @@ export const LOAD_HEADER_FAILURE = 'LOAD_HEADER_FAILURE';
 const initialState = {
   lastFetched: null,
   isLoading: false,
+  marquee: [],
   error: null,
   menus: [],
   currentMenu: {}
@@ -15,12 +16,12 @@ export function loadHeader (url) {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_HEADER_REQUEST });
     return Promise.all([
-      axios.get(`${protocol}://${host}/menus`)
-      // axios.get(`${protocol}://${host}/hot/$`)
-    ]).then(([menus]) => {
+      axios.get(`${protocol}://${host}/menus`),
+      axios.get(`${protocol}://${host}/instant?limit=9`)
+    ]).then(([menus, instant]) => {
       dispatch({
         type: LOAD_HEADER_SUCCESS,
-        payload: menus.data,
+        payload: [menus.data, instant.data],
         meta: {
           lastFetched: Date.now()
         }
@@ -46,15 +47,19 @@ export default function header (state = initialState, action) {
         error: null
       };
     case LOAD_HEADER_SUCCESS:
+      const [ menus, instant ] = action.payload;
       return {
         ...state,
-        menus: action.payload,
+        menus,
+        marquee: instant.newsList,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
     case LOAD_HEADER_FAILURE:
       return { ...state,
         error: action.payload,
+        menus: [],
+        marquee: [],
         isLoading: false
       };
     default:
@@ -63,3 +68,4 @@ export default function header (state = initialState, action) {
 }
 
 export const selectMenus = state => state.header.menus;
+export const selectMarquee = state => state.header.marquee;

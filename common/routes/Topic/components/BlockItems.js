@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockTopicItem } from '../../../components/News';
@@ -6,7 +5,7 @@ import { BlockTopicItem } from '../../../components/News';
 const BlockItems = ({ topics }) => {
   let items = [];
 
-  topics.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, url }, key) => {
+  topics.forEach(({ sn, MainMenu, MainPhoto, shortTitle, createdAt, url }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockTopicItem
@@ -14,7 +13,7 @@ const BlockItems = ({ topics }) => {
           key={sn}
           photo={MainPhoto}
           title={shortTitle}
-          time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          time={createdAt}
           url={url || ''} />
       </div>
     );

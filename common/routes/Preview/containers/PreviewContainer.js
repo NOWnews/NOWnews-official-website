@@ -1,7 +1,7 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { loadPreview, selectCurrentNews } from '../../News/module';
 import { Header } from '../../../components/Header';
 import { Loading } from '../../../components/Layout';
@@ -16,10 +16,11 @@ const redial = {
 
 const mapStateToProps = state => ({
   currentNews: selectCurrentNews(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const PreviewPage = ({ currentNews, menus, changeFontSize }) => {
+const PreviewPage = ({ currentNews, marquee, menus, changeFontSize }) => {
   let {isLoading, data, fontSize} = currentNews;
   let [{ formatStartedAt, newsBy, MainMenu, title, type, ...news }] = data;
   let contentProps = {
@@ -30,7 +31,7 @@ const PreviewPage = ({ currentNews, menus, changeFontSize }) => {
   news.relations = [];
   return (
     <div>
-      <Header menus={menus} />
+      <Header menus={menus} marquee={marquee} />
       {isLoading && <Loading />}
       {!isLoading &&
         <div>
@@ -46,6 +47,7 @@ const PreviewPage = ({ currentNews, menus, changeFontSize }) => {
 PreviewPage.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
+  marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired
 };
 

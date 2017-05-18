@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
-import moment from 'moment';
 import { selectInstantPage, loadInstantList } from '../module';
 
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 
 import { Header } from '../../../components/Header';
 import { LatestVideoNav, ListItem, SpecialTopicNav, TripletHead } from '../../../components/News';
@@ -13,20 +12,21 @@ import { Container, RightSide, LeftSide, Loading, Margin10, NotFound } from '../
 import Pagination from '../../../components/Pagination';
 
 const redial = {
-  fetch: ({ dispatch }) => Promise.all([
-    dispatch(loadInstantList()),
+  fetch: ({ dispatch, query: { page } }) => Promise.all([
+    dispatch(loadInstantList(page)),
     dispatch(loadHeader())
   ])
 };
 
 const mapStateToProps = state => ({
   instantPage: selectInstantPage(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const InstantContainer = ({ menus, instantPage }) => (
+const InstantContainer = ({ marquee, menus, instantPage }) => (
   <div>
-    <Header menus={menus} />
+    <Header menus={menus} marquee={marquee} />
     <TripletHead active='instant' />
     <Container>
       <Margin10 className='clearfix'>
@@ -41,8 +41,9 @@ const InstantContainer = ({ menus, instantPage }) => (
                   category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
                   photo={value.MainPhoto}
                   title={value.title}
-                  time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
-                  url={`/news/${moment(value.formatStartedAt).format('YYYYMMDD')}/${value.sn}`} />
+                  time={value.formatStartedAt}
+                  type={value.type}
+                  url={value.parseUrl} />
               ))}
             </div>
           }
@@ -52,8 +53,8 @@ const InstantContainer = ({ menus, instantPage }) => (
         </LeftSide>
         <RightSide>
           <Ad300x250 />
-          <SpecialTopicNav list={instantPage.topics.slice(0, 6)} />
-          <LatestVideoNav list={instantPage.videos.slice(0, 4)} />
+          <SpecialTopicNav list={instantPage.topics} />
+          <LatestVideoNav list={instantPage.videos} />
           <Ad300x250 />
         </RightSide>
       </Margin10>
@@ -63,6 +64,7 @@ const InstantContainer = ({ menus, instantPage }) => (
 
 InstantContainer.propTypes = {
   menus: PropTypes.array.isRequired,
+  marquee: PropTypes.array.isRequired,
   instantPage: PropTypes.object.isRequired
 };
 

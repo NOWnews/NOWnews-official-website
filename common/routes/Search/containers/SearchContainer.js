@@ -4,10 +4,9 @@ import { provideHooks } from 'redial';
 import { bindActionCreators } from 'redux';
 import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import moment from 'moment';
 import { selectSearchPage, loadSearchList } from '../module';
 
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 
 import { Header } from '../../../components/Header';
 import ListItem from '../../../components/News/ListItem';
@@ -25,6 +24,7 @@ const redial = {
 
 const mapStateToProps = state => ({
   searchPage: selectSearchPage(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
@@ -45,12 +45,12 @@ class SearchPage extends Component {
   }
 
   render () {
-    let { loadSearchList, menus, searchPage } = this.props;
+    let { loadSearchList, menus, searchPage, marquee } = this.props;
     let { isLoading, list, hotKeywords, pageData, keyword, timeRange } = searchPage;
 
     return (
       <Container>
-        <Header menus={menus} />
+        <Header menus={menus} marquee={marquee} />
         <Margin10 className='center'>
           <input type='hidden' name='timeRange' value={timeRange} />
           <input type='text' key={keyword} name='keyword' placeholder='搜尋'
@@ -76,8 +76,8 @@ class SearchPage extends Component {
                     category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
                     photo={value.MainPhoto}
                     title={value.title}
-                    time={moment(value.formatStartedAt).format('YYYY/MM/DD')}
-                    url={`/news/${moment(value.formatStartedAt).format('YYYYMMDD')}/${value.sn}`} />
+                    time={value.formatStartedAt}
+                    url={value.parseUrl} />
                 ))}
               </div>
             }
@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
 
 SearchPage.propTypes = {
   loadSearchList: PropTypes.func.isRequired,
+  marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
   searchPage: PropTypes.object.isRequired
 };

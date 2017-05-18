@@ -7,10 +7,9 @@ import TypeIcon from '../TypeIcon';
 
 const HotVideoBlocks = ({ list }) => {
   let items = list.map((news, index) => {
-    const { sn, MainPhoto, shortTitle, formatStartedAt } = news;
+    const { sn, MainPhoto, shortTitle, formatStartedAt, parseUrl } = news;
     return (
-      <Link className={css(styles.blockItem)} key={index}
-        to={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`}>
+      <Link className={css(styles.blockItem)} key={sn} to={parseUrl}>
         <TypeIcon type='VIDEO' />
         <img className={css(styles.img)} src={MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
         <div className={css(styles.bottom)}>

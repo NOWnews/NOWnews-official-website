@@ -1,17 +1,16 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockTopicItem } from '../../../components/News';
 
 const BlockItems = ({ newsList }) => {
-  let items = newsList.map(({ formatStartedAt, MainPhoto, sn, title, url }) => {
+  let items = newsList.map(({ createdAt, MainPhoto, sn, title, url }) => {
     return (
       <div key={sn} className={css(styles.blockItem)}>
         <BlockTopicItem key={sn}
           category='專題'
           photo={MainPhoto}
           title={title}
-          time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          time={createdAt}
           url={url} />
       </div>
     );

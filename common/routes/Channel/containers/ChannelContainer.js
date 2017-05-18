@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectChannelPage, loadChannelData } from '../module';
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { ChannelSelecter, BlockItems } from '../components';
@@ -18,6 +18,7 @@ const redial = {
 
 const mapStateToProps = state => ({
   channelPage: selectChannelPage(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
@@ -25,12 +26,12 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   loadChannelData
 });
 
-const ChannelContainer = ({ channelPage, loadChannelData, menus }) => {
+const ChannelContainer = ({ channelPage, loadChannelData, menus, marquee }) => {
   let { channels, isLoading, pageData, selectedChannel } = channelPage;
   let { newsList = [], ...channel } = selectedChannel;
   return (
     <Container>
-      <Header menus={menus} />
+      <Header menus={menus} marquee={marquee} />
       {isLoading && <Loading />}
       <ChannelSelecter channels={channels} selectedChannel={channel} loadChannelData={loadChannelData} />
       {!isLoading && newsList.length === 0 && <NotFound />}
@@ -48,6 +49,7 @@ const ChannelContainer = ({ channelPage, loadChannelData, menus }) => {
 ChannelContainer.propTypes = {
   channelPage: PropTypes.object.isRequired,
   loadChannelData: PropTypes.func.isRequired,
+  marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired
 };
 

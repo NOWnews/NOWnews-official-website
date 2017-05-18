@@ -1,7 +1,7 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
 import { Container } from '../../../components/Layout';
 import * as Components from '../components';
@@ -13,16 +13,17 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const InfoContainer = ({ menus, location: { pathname } }) => {
+const InfoContainer = ({ marquee, menus, location: { pathname } }) => {
   let originType = pathname.split('/')[2];
   let upperCaseFirstWord = originType.substring(0, 1).toUpperCase() + originType.substring(1);
   let content = Components[upperCaseFirstWord];
   return (
     <Container>
-      <Header menus={menus} />
+      <Header menus={menus} marquee={marquee} />
       { content && content() }
     </Container>
   );
@@ -30,6 +31,7 @@ const InfoContainer = ({ menus, location: { pathname } }) => {
 
 InfoContainer.propTypes = {
   menus: PropTypes.array.isRequired,
+  marquee: PropTypes.array.isRequired,
   location: PropTypes.object.isRequired
 };
 

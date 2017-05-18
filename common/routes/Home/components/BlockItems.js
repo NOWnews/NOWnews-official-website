@@ -1,10 +1,9 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
 
 const BlockItems = ({ newsList }) => {
-  let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }) => {
+  let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }) => {
     return (
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem key={sn}
@@ -12,8 +11,8 @@ const BlockItems = ({ newsList }) => {
           photo={MainPhoto}
           title={shortTitle}
           type={type}
-          time={moment(formatStartedAt).format('YYYY/MM/DD')}
-          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
+          time={formatStartedAt}
+          url={parseUrl} />
       </div>
     );
   });

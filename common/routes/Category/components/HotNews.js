@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
@@ -7,9 +6,9 @@ import { RightSide } from '../../../components/Layout';
 const HotNews = ({ newsList }) => (
   <RightSide>
     <div className={css(styles.head)}>熱門</div>
-    {newsList.map(({ shortTitle, sn, startedAt }) => (
+    {newsList.map(({ shortTitle, sn, startedAt, parseUrl }) => (
       <Link className={css(styles.link)} key={sn}
-        to={`/news/${moment(startedAt).format('YYYYMMDD')}/${sn}`}>
+        to={parseUrl}>
         <div className={css(styles.item)}>
           { shortTitle }
         </div>

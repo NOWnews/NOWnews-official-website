@@ -28,11 +28,7 @@ class InstantBar extends Component {
 
   render () {
     const { index } = this.state;
-    const list = [
-      '年金改革圍城　至少11起攻擊事件', '年金改革圍城　至少11起攻擊事件', '年金改革圍城　至少11起攻擊事件',
-      '美女主播痛批工時制度  力挺司機', '美女主播痛批工時制度  力挺司機', '美女主播痛批工時制度  力挺司機',
-      '蝶戀花周比蒼道歉：人車與友力無關', '蝶戀花周比蒼道歉：人車與友力無關', '蝶戀花周比蒼道歉：人車與友力無關'
-    ];
+    const list = this.props.list;
 
     const customTransitionStyle = `
     .item-enter {
@@ -57,25 +53,32 @@ class InstantBar extends Component {
       transitionName: 'item'
     };
 
+    const first = list[index * 3];
+    const second = list[index * 3 + 1];
+    const third = list[index * 3 + 2];
+
     return (
       <div className={css(styles.box)}>
         <style dangerouslySetInnerHTML={{__html: customTransitionStyle}} />
         <span className={css(styles.text)}>即時跑馬燈</span>
         <CSSTransitionGroup {...transitionConfig}>
-          <Link key={index * 3} className={css(styles.link)}>
-            <span>{list[index * 3]}</span>
+          <Link key={first.sn} className={css(styles.link)}
+            to={first.parseUrl}>
+            <span>{first.shortTitle}</span>
           </Link>
         </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
         <CSSTransitionGroup {...transitionConfig}>
-          <Link key={index * 3 + 1} className={css(styles.link)}>
-            <span>{list[index * 3 + 1]}</span>
+          <Link key={second.sn} className={css(styles.link)}
+            to={second.parseUrl}>
+            <span>{second.shortTitle}</span>
           </Link>
         </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
         <CSSTransitionGroup {...transitionConfig}>
-          <Link key={index * 3 + 2} className={css(styles.link)}>
-            <span>{list[index * 3 + 2]}</span>
+          <Link key={third.sn} className={css(styles.link)}
+            to={third.parseUrl}>
+            <span>{third.shortTitle}</span>
           </Link>
         </CSSTransitionGroup>
       </div>
@@ -99,6 +102,7 @@ const styles = StyleSheet.create({
   },
   link: {
     backfaceVisibility: 'hidden',
+    color: '#ffffff',
     position: 'absolute',
     display: 'inline-block',
     fontWeight: 'bold',
@@ -127,7 +131,7 @@ const styles = StyleSheet.create({
 });
 
 InstantBar.propTypes = {
-  list: PropTypes.array
+  list: PropTypes.array.isRequired
 };
 
 export default InstantBar;

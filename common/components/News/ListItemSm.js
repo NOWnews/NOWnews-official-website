@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
@@ -13,7 +14,9 @@ export const ListItemSm = ({ category, photo = {}, time, title, type, url }) => 
       {category && <div className={css(styles.category)}>{category}</div>}
       <div className={css(styles.title)}>{title}</div>
       <img src='/icons/whiteClock.png' />
-      <span className={css(styles.time)}>{time}</span>
+      <span className={css(styles.time)}>
+        {moment(time).format('YYYY/MM/DD')}
+      </span>
     </div>
   </Link>
 );

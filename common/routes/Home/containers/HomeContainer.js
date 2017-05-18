@@ -11,7 +11,7 @@ import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
 import { Ad300x250, Ad300x600 } from '../../../components/Ad';
 
-import { loadHeader, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectHomePage, loadHomeList, switchTripletType } from '../module';
 
 const redial = {
@@ -23,6 +23,7 @@ const redial = {
 
 const mapStateToProps = state => ({
   homePage: selectHomePage(state),
+  marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
@@ -41,27 +42,34 @@ class HomeContainer extends Component {
   }
 
   render () {
-    const { menus, homePage } = this.props;
+    const { marquee, menus, homePage } = this.props;
     const {
       carousels, isLoading, specialChannels, specialTopics, tripletType,
       videos
     } = homePage;
     const seeMoreTextDefined = {
       instant: '即時',
-      favorite: '個人',
+      interest: '感興趣',
       lbs: '地區'
     };
-    const TripletIcons = ['instant', 'favorite', 'lbs'].map((value) => {
-      let imgName = (tripletType === value) ? `${value}_active` : value;
+    const TripletIcons = ['instant', 'interest', 'lbs'].map((value) => {
+      const imgName = (tripletType === value) ? `${value}_active` : value;
+
       return (
         <img key={value} onClick={() => { this.switchTripletType(value); }}
           className={css(styles.tripletBlockTopIcon)} src={`/icons/${imgName}.png`} />
       );
     });
 
+    const tripletObject = {
+      instant: marquee,
+      interest: [],
+      lbs: marquee // temp
+    };
+
     return (
       <div>
-        <Header menus={menus} />
+        <Header menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
 
         {!isLoading && carousels.length > 0 &&
@@ -99,8 +107,8 @@ class HomeContainer extends Component {
                 { TripletIcons }
                 { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>台北市</span>}
               </div>
-              <BlockItems newsList={carousels.slice(0, 9)} />
-              <div className='clearfix' />
+              <BlockItems newsList={tripletObject[tripletType].slice(0, 9)} />
+              { tripletType === 'interest' && <h3>尚未開放，敬請期待！</h3>}
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
                   看更多{seeMoreTextDefined[tripletType]}新聞
@@ -246,6 +254,7 @@ const styles = StyleSheet.create({
 
 HomeContainer.propTypes = {
   homePage: PropTypes.object.isRequired,
+  marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
   switchTripletType: PropTypes.func.isRequired
 };

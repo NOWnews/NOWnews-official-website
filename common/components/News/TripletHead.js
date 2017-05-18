@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../Layout';
 
 const TripletHead = ({ active, city }) => {
-  let linkIcons = ['instant', 'favorite', 'lbs'].map((value) => {
+  let linkIcons = ['instant', 'interest', 'lbs'].map((value) => {
     let imgName = (value === active) ? `${value}_active` : value;
     return (
       <Link to={value} key={value}>

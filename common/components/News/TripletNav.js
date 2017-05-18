@@ -1,20 +1,19 @@
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
 
 const TripletNav = ({ newsList }) => {
-  let items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, type }, key) => {
+  const items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, startedAt, type, parseUrl }, key) => {
     return (
       <div key={key}>
         <ListItemSm
           category={MainMenu && MainMenu.name || '未分類'}
           photo={MainPhoto}
           title={shortTitle}
-          time={moment(formatStartedAt).format('YYYY/MM/DD')}
+          time={startedAt}
           type={type}
-          url={`/news/${moment(formatStartedAt).format('YYYYMMDD')}/${sn}`} />
+          url={parseUrl} />
       </div>
     );
   });
@@ -25,7 +24,7 @@ const TripletNav = ({ newsList }) => {
         <div className={css(styles.background)} />
         <div className={css(styles.switchIcons)}>
           <img className={css(styles.icon)} src='/icons/instant.png' />
-          <img className={css(styles.icon)} src='/icons/favorite.png' />
+          <img className={css(styles.icon)} src='/icons/interest.png' />
           <img className={css(styles.icon)} src='/icons/lbs_active.png' />
         </div>
         <div className={css(styles.mapTitle)}>台北市</div>

@@ -6,9 +6,9 @@ import { Margin10 } from '../../components/Layout';
 const SpecialTopicNav = ({ list }) => (
   <Margin10>
     <div className={css(styles.head)}>專題</div>
-    {list.map((value, key) => (
-      <Link className={css(styles.link)} key={key} to={''}>
-        <div className={css(styles.item)}>吃喝玩樂</div>
+    {list.map(({ sn, title, url }, key) => (
+      <Link className={css(styles.link)} key={sn} to={url}>
+        <div className={css(styles.item)}>{ title }</div>
       </Link>
     ))}
   </Margin10>

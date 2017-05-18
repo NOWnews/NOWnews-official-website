@@ -4,7 +4,7 @@ import { Ad200x70, Ad970x90 } from '../Ad';
 import { InstantBar, Logo, Menu, RightSide } from './components';
 import { Container } from '../Layout';
 
-export const Header = ({ menus, currentMainMenu, currentChildMenu }) => (
+export const Header = ({ menus, currentMainMenu, currentChildMenu, marquee }) => (
   <Container>
     <div className={css(styles.header)}>
       <Logo />
@@ -15,7 +15,7 @@ export const Header = ({ menus, currentMainMenu, currentChildMenu }) => (
     <Menu menus={menus}
       currentMainMenu={currentMainMenu}
       currentChildMenu={currentChildMenu} />
-    <InstantBar />
+    <InstantBar list={marquee} />
     <Ad970x90 />
   </Container>
 );
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
 Header.propTypes = {
   currentChildMenu: PropTypes.string,
   currentMainMenu: PropTypes.string,
+  marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired
 };
 
