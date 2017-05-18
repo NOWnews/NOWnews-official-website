@@ -1,17 +1,12 @@
 import React, { PropTypes } from 'react';
-import { StyleSheet, css } from 'aphrodite/no-important';
-import { Ad200x70, Ad970x90 } from '../Ad';
-import { InstantBar, Logo, Menu, RightSide } from './components';
+import { Ad970x90 } from '../Ad';
+import { InstantBar, Menu } from './components';
+import LogoRow from './LogoRow';
 import { Container } from '../Layout';
 
 export const Header = ({ menus, currentMainMenu, currentChildMenu, marquee }) => (
   <Container>
-    <div className={css(styles.header)}>
-      <Logo />
-      <Ad200x70 />
-      <Ad200x70 />
-      <RightSide />
-    </div>
+    <LogoRow />
     <Menu menus={menus}
       currentMainMenu={currentMainMenu}
       currentChildMenu={currentChildMenu} />
@@ -19,17 +14,6 @@ export const Header = ({ menus, currentMainMenu, currentChildMenu, marquee }) =>
     <Ad970x90 />
   </Container>
 );
-
-const styles = StyleSheet.create({
-  ad: {
-    textAlign: 'center',
-    width: 230
-  },
-  header: {
-    color: '#999',
-    display: 'inline-flex'
-  }
-});
 
 Header.propTypes = {
   currentChildMenu: PropTypes.string,

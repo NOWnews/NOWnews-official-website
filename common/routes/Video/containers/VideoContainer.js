@@ -6,6 +6,7 @@ import { selectVideoPage, loadVideoList, nextVideo, selectVideo } from '../modul
 import { NavBar } from '../../../components/Video';
 import { Container, Loading, NotFound } from '../../../components/Layout';
 import { BlockItems9, MainVideoPlay, VideoCategories } from '../components';
+import { LogoRow } from '../../../components/Header';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName }, query: { page } }) => Promise.all([
@@ -27,6 +28,7 @@ const VideoPage = ({ nextVideo, selectVideo, videoPage }) => {
   const maxIndex = newsList.length - 1;
   return (
     <div>
+      <LogoRow />
       <NavBar selected='VIDEO' />
       {videoPage.isLoading && <Loading />}
       {!videoPage.isLoading && newsList.length > 0 &&
