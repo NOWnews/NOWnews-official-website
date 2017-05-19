@@ -15,7 +15,7 @@ const ContentForNews = ({ news, changeFontSize, fontSize, topics }) => (
     <div className={css(styles.contentDiv)}>
       <span className={css(styles.contentImg)}
         style={{
-          backgroundImage: `url(${news.MainPhoto && news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`,
+          backgroundImage: `url(${news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`,
           fontSize
         }} />
     </div>

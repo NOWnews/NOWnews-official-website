@@ -8,7 +8,7 @@ export const BlockItem = ({ category, photo = {}, time, title, type, url }) => {
   return (
     <Link className={css(styles.box)} to={url}>
       <TypeIcon type={type} />
-      <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+      <img className={css(styles.img)} src={photo.thumbnail || photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
       <div className={css(styles.bottom)}>
         <div className={css(styles.category)}>{category}</div>
         <div className={css(styles.title)}>{title}</div>

@@ -22,7 +22,7 @@ class BlockItems9 extends Component {
       return (
         <div key={sn} className={css(styles.blockItem)} onClick={() => { this.select(index); }}>
           <TypeIcon type='VIDEO' />
-          <img className={css(styles.img)} src={MainPhoto.url} />
+          <img className={css(styles.img)} src={MainPhoto.thumbnail || MainPhoto.url} />
           <div className={css(styles.bottom)}>
             <div className={css(styles.title)}>{shortTitle}</div>
             <img src='/icons/whiteClock.png' />

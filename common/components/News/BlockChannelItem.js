@@ -5,7 +5,7 @@ import Link from 'react-router/lib/Link';
 export const BlockChannelItem = ({ photo = {}, sn, title }) => {
   return (
     <Link className={css(styles.box)} to={`/channel/${sn}`}>
-      <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+      <img className={css(styles.img)} src={photo.thumbnail || photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
       <div className={css(styles.bottom)}>
         <div className={css(styles.title)}>{title}</div>
       </div>
