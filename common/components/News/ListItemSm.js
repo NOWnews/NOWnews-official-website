@@ -7,7 +7,7 @@ import TypeIcon from './TypeIcon';
 export const ListItemSm = ({ category, photo = {}, time, title, type, url }) => (
   <Link className={`clearfix ${css(styles.box)}`} to={url}>
     <div className={`left ${css(styles.left)}`}>
-      <img className={css(styles.img)} src={photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+      <img className={css(styles.img)} src={photo.thumbnail || photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
       <TypeIcon type={type} size='LI_S' />
     </div>
     <div className={`right ${css(styles.right)}`}>

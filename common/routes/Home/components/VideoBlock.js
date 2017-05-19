@@ -44,7 +44,7 @@ class VideoBlock extends Component {
 
       return (
         <div className={`left ${css(styles.thumb)}`} key={index} onClick={() => this.onSelectThumb(index)}>
-          <img src={MainPhoto && MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'}
+          <img src={MainPhoto && (MainPhoto.thumbnail || MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg')}
             alt={shortTitle} className={css(styles.img)} />
           <div className={thumbTitleClass}>{shortTitle}</div>
         </div>
