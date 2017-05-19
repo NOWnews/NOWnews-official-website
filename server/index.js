@@ -56,7 +56,7 @@ export const createServer = (config) => {
     app.use(webpackHotMiddleware(compiler, { log: console.log }));
   }
 
-  app.use(express.static('public'));
+  app.use(express.static('public', { etag: 1000, maxage: 86400000 * 365 }));
 
   app.get('*', (req, res) => {
     const store = configureStore({
