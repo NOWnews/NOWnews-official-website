@@ -11,9 +11,9 @@ export default function createRoutes (store) {
       ], (require) => {
         let VideoContainer = require('./containers/VideoContainer').default;
         let videoReducer = require('./module').default;
-        injectAsyncReducer(store, 'videoPage', videoReducer);
+        injectAsyncReducer(store, 'lylivePage', videoReducer);
         cb(null, VideoContainer);
-      }, 'videoPage');
+      }, 'lylivePage');
     }
   };
 }

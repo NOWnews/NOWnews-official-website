@@ -92,7 +92,7 @@ export function loadRelatedNews (sn) {
   };
 }
 
-export default function videoPage (state = initialState, action) {
+export default function lylivePage (state = initialState, action) {
   switch (action.type) {
     case SET_VIDEO_SOURCE:
       return {
@@ -126,4 +126,4 @@ export default function videoPage (state = initialState, action) {
   }
 }
 
-export const selectVideoPage = state => state.videoPage;
+export const selectLylivePage = state => state.lylivePage;

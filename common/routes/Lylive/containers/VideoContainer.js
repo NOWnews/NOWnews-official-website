@@ -1,7 +1,7 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectVideoPage, setVideoSource, loadRelatedNews } from '../module';
+import { selectLylivePage, setVideoSource, loadRelatedNews } from '../module';
 import { NavBar } from '../../../components/Video';
 import { Container, Loading } from '../../../components/Layout';
 import { MainVideoPlay, RelatedNews, VideoSelector } from '../components';
@@ -15,27 +15,27 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
-  videoPage: selectVideoPage(state)
+  lylivePage: selectLylivePage(state)
 });
 
-const VideoPage = ({ videoPage }) => {
+const LylivePage = ({ lylivePage }) => {
   return (
     <div>
       <Container>
         <LogoRow />
         <NavBar selected='LY_LIVE' />
-        <MainVideoPlay url={videoPage.videoSourceList[videoPage.videoSource - 1].url} />
-        {videoPage.isLoading && <Loading />}
-        {!videoPage.isLoading && videoPage.newsList.length > 0 &&
-        <RelatedNews newsList={videoPage.newsList} />}
-        <VideoSelector currentVideoSource={videoPage.videoSource} videoSourceList={videoPage.videoSourceList} />
+        <MainVideoPlay url={lylivePage.videoSourceList[lylivePage.videoSource - 1].url} />
+        {lylivePage.isLoading && <Loading />}
+        {!lylivePage.isLoading && lylivePage.newsList.length > 0 &&
+        <RelatedNews newsList={lylivePage.newsList} />}
+        <VideoSelector currentVideoSource={lylivePage.videoSource} videoSourceList={lylivePage.videoSourceList} />
       </Container>
     </div>
   );
 };
 
-VideoPage.propTypes = {
-  videoPage: PropTypes.object.isRequired
+LylivePage.propTypes = {
+  lylivePage: PropTypes.object.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps)(VideoPage));
+export default provideHooks(redial)(connect(mapStateToProps)(LylivePage));
