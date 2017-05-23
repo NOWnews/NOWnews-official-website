@@ -6,20 +6,22 @@ const initialState = {
   error: null,
   isLoading: false,
   lastFetched: null,
+  location: [],
+  mapCity: '',
   newsList: [],
   pageData: {}
 };
 
-export function loadLBSList () {
+export function loadLBSList (location, page = 1) {
   return (dispatch, getState, { axios }) => {
+    const { latitude: lat, longitude: lng } = location.coords;
     const { protocol, host } = getState().sourceRequest;
-    dispatch({ type: LOAD_LBS_REQUEST });
-    /* TODO 先暫時用 indexpage 當 api 代替 */
-    return axios.get(`${protocol}://${host}/indexpage`)
+    dispatch({ type: LOAD_LBS_REQUEST, payload: [lat, lng] });
+    return axios.get(`${protocol}://${host}/location?lat=${lat}&lng=${lng}&page=${page}`)
     .then(res => {
       dispatch({
         type: LOAD_LBS_SUCCESS,
-        payload: res.data.carousels,
+        payload: res.data,
         meta: {
           lastFetched: Date.now()
         }
@@ -39,13 +41,17 @@ export default function LBSPage (state = initialState, action) {
     case LOAD_LBS_REQUEST:
       return {
         ...state,
+        location: action.payload,
         isLoading: true,
         error: null
       };
     case LOAD_LBS_SUCCESS:
+      const { newsList, mapInfo, pageData } = action.payload;
       return {
         ...state,
-        newsList: action.payload,
+        mapCity: mapInfo.city,
+        newsList,
+        pageData,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
