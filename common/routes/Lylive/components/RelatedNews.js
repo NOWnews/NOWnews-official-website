@@ -69,6 +69,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   headline: {
+    fontSize: 22,
+    fontWeight: 100,
     color: '#FFFFFF',
     padding: '1rem',
     paddingLeft: 0,

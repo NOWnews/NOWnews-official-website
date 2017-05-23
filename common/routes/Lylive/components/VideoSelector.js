@@ -15,7 +15,7 @@ class VideoSelector extends Component {
                 <Link className={css(styles.firstRowItem, (this.props.currentVideoSource === item.id) && styles.active)}
                   key={index}
                   to={`/lylive/${item.id}`}>
-                  {item.title}
+                  <span className={css(styles.selectTitleOneLine)}>{item.title}</span>
                 </Link>
               );
             })}
@@ -26,7 +26,7 @@ class VideoSelector extends Component {
                 <Link className={css(styles.secondRowItem, (this.props.currentVideoSource === item.id) && styles.active)}
                   key={index}
                   to={`/lylive/${item.id}`}>
-                  {item.title}
+                  <span className={css(styles.selectTitleTwoLine)}>{item.title}</span>
                 </Link>
               );
             })}
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     position: 'relative'
   },
   container: {
-    width: 800,
+    width: 850,
     background: '#f5f5f5',
     position: 'absolute',
     top: -60,
@@ -56,11 +56,10 @@ const styles = StyleSheet.create({
     color: '#343434',
     fontSize: 18,
     textDecoration: 'none',
-    width: 800 / 5,
+    width: 850 / 5,
     boxSizing: 'border-box',
     display: 'inline-block',
     height: 100,
-    paddingTop: 30,
     border: '1px solid #e4e4e4',
     textAlign: 'center',
     verticalAlign: 'middle'
@@ -70,17 +69,14 @@ const styles = StyleSheet.create({
     color: '#343434',
     fontSize: 18,
     textDecoration: 'none',
-    width: 800 / 6,
+    width: 850 / 6,
     boxSizing: 'border-box',
     display: 'inline-block',
     height: 100,
-    paddingTop: '2%',
-    paddingBottom: '2%',
-    paddingLeft: 20,
-    paddingRight: 20,
     border: '1px solid #e4e4e4',
     textAlign: 'center',
-    verticalAlign: 'middle'
+    verticalAlign: 'middle',
+    padding: '0 10'
   },
   active: {
     color: '#5a9af6',
@@ -88,6 +84,18 @@ const styles = StyleSheet.create({
     border: '3px solid transparent',
     borderImage: 'linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%)',
     borderImageSlice: 1
+  },
+  selectTitleOneLine: {
+    position: 'relative',
+    top: '50%',
+    marginTop: -12.5,
+    display: 'block'
+  },
+  selectTitleTwoLine: {
+    position: 'relative',
+    top: '50%',
+    marginTop: -25,
+    display: 'block'
   }
 });
 
