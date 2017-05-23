@@ -5,7 +5,6 @@ export const NEXT_VIDEO_NEWS = 'NEXT_VIDEO_NEWS';
 export const SELECT_VIDEO_NEWS = 'SELECT_VIDEO_NEWS';
 export const SELECT_VIDEO_SOURCE = 'SELECT_VIDEO_SOURCE';
 const initialState = {
-  currentCategory: '',
   videoSource: 1,
   newsList: [],
   videoSourceList: [
