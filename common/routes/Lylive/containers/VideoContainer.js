@@ -1,8 +1,7 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { selectVideoPage, nextVideo, selectVideo, setVideoSource, loadRelatedNews} from '../module';
+import { selectVideoPage, setVideoSource, loadRelatedNews} from '../module';
 import { NavBar } from '../../../components/Video';
 import { Container, Loading } from '../../../components/Layout';
 import { MainVideoPlay, RelatedNews, VideoSelector } from '../components';
@@ -19,12 +18,7 @@ const mapStateToProps = state => ({
   videoPage: selectVideoPage(state)
 });
 
-const mapDispatchToProps = bindActionCreators.bind(null, {
-  nextVideo,
-  selectVideo
-});
-
-const VideoPage = ({ nextVideo, selectVideo, videoPage }) => {
+const VideoPage = ({ videoPage }) => {
   return (
     <div>
       <Container>
@@ -41,9 +35,7 @@ const VideoPage = ({ nextVideo, selectVideo, videoPage }) => {
 };
 
 VideoPage.propTypes = {
-  videoPage: PropTypes.object.isRequired,
-  nextVideo: PropTypes.func.isRequired,
-  selectVideo: PropTypes.func.isRequired
+  videoPage: PropTypes.object.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(VideoPage));
+export default provideHooks(redial)(connect(mapStateToProps)(VideoPage));

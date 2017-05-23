@@ -5,31 +5,35 @@ import Link from 'react-router/lib/Link';
 import moment from 'moment';
 
 class MainVideoPlay extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      positionIndex: 0,
+      selectedIndex: 0
+    };
+    this.next = this.next.bind(this);
+    this.prev = this.prev.bind(this);
+  }
+
+  next () {
+    const { positionIndex } = this.state;
+    const maxIndex = (this.props.newsList.length <= 4) ? 0 : this.props.newsList.length - 4;
+    const nextIndex = (positionIndex === maxIndex) ? maxIndex : positionIndex + 1;
+    this.setState({positionIndex: nextIndex});
+  }
+  prev () {
+    const { positionIndex } = this.state;
+    const prevIndex = (positionIndex === 0) ? 0 : positionIndex - 1;
+    this.setState({positionIndex: prevIndex});
+  }
+
   render () {
     return (
       <div className={css(styles.box)}>
         <div>
           <h1 className={css(styles.headline)}>相關新聞</h1>
         </div>
-        <div className={css(styles.newsBlocks)}>
-          { this.props.newsList.map((item, index) => {
-            return (
-              <Link className={css(styles.newsBlock)}
-                key={index}
-                to={`/news/${moment(item.formatStartedAt).format('YYYYMMDD')}/${item.sn}`}>
-                <div className={css(styles.newsBlock)}>
-                  <img src={item.MainPhoto.thumbnail} className={css(styles.img)} />
-                  <p className={css(styles.cat)}>{item.MainMenu.name}</p>
-                  <p className={css(styles.title)}>{item.title}</p>
-                  <p className={css(styles.date)}>
-                    <FontAwesome className={css(styles.icon)} name='clock-o' size='lg' />
-                    {moment(item.formatStartedAt).format('YYYY.MM.DD')}
-                  </p>
-                </div>
-              </Link>
-            );
-          })}
-
+        <div className={css(styles.newsBlocks)} style={{width: this.props.newsList.length * 260, transitionDuration: '350ms', transform: `translate3d(${this.state.positionIndex * -260}px, 0px, 0px)`}}>
           { this.props.newsList.map((item, index) => {
             return (
               <Link className={css(styles.newsBlock)}
@@ -50,8 +54,8 @@ class MainVideoPlay extends Component {
 
         </div>
         <div className={css(styles.preNextBlock)}>
-          <div className={css(styles.leftArrow)}>＜</div>
-          <div className={css(styles.rightArrow)}>＞</div>
+          <div className={css(styles.leftArrow)} onClick={this.prev}>＜</div>
+          <div className={css(styles.rightArrow)} onClick={this.next}>＞</div>
         </div>
       </div>
     );
@@ -61,7 +65,8 @@ class MainVideoPlay extends Component {
 const styles = StyleSheet.create({
   box: {
     background: '#000000',
-    padding: '0 2rem'
+    padding: '0 2rem',
+    overflow: 'hidden'
   },
   headline: {
     color: '#FFFFFF',

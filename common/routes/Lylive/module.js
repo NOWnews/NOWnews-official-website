@@ -3,7 +3,6 @@ export const LOAD_NEWS_SUCCESS = 'LOAD_NEWS_SUCCESS';
 export const LOAD_NEWS_FAILURE = 'LOAD_NEWS_FAILURE';
 export const NEXT_VIDEO_NEWS = 'NEXT_VIDEO_NEWS';
 export const SELECT_VIDEO_NEWS = 'SELECT_VIDEO_NEWS';
-// export const LOAD_RELATED_NEWS = 'LOAD_RELATED_NEWS';
 export const SELECT_VIDEO_SOURCE = 'SELECT_VIDEO_SOURCE';
 const initialState = {
   currentCategory: '',
@@ -96,20 +95,20 @@ export function loadRelatedNews (sn) {
   };
 }
 
-// export function nextVideo () {
-//   return (dispatch) => {
-//     dispatch({ type: NEXT_VIDEO_NEWS });
-//   };
-// }
+export function nextNews () {
+  return (dispatch) => {
+    dispatch({ type: NEXT_VIDEO_NEWS });
+  };
+}
 
-// export function selectVideo (selectedIndex) {
-//   return (dispatch) => {
-//     dispatch({
-//       type: SELECT_VIDEO_NEWS,
-//       payload: selectedIndex
-//     });
-//   };
-// }
+export function selectVideo (selectedIndex) {
+  return (dispatch) => {
+    dispatch({
+      type: SELECT_VIDEO_NEWS,
+      payload: selectedIndex
+    });
+  };
+}
 
 export default function videoPage (state = initialState, action) {
   switch (action.type) {
@@ -140,16 +139,6 @@ export default function videoPage (state = initialState, action) {
         newsList: [],
         isLoading: false
       };
-    // case NEXT_VIDEO_NEWS:
-    //   return {
-    //     ...state,
-    //     selectedIndex: state.selectedIndex + 1
-    //   };
-    // case SELECT_VIDEO_NEWS:
-    //   return {
-    //     ...state,
-    //     selectedIndex: action.payload
-    //   };
     default:
       return state;
   }

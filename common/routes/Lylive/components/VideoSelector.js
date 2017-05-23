@@ -1,10 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-// import FontAwesome from 'react-fontawesome';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
-// import { VideoPlayer } from '../../../components/News';
 import { Container } from '../../../components/Layout';
-// import moment from 'moment';
 
 class VideoSelector extends Component {
 
