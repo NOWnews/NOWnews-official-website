@@ -62,24 +62,28 @@ class InstantBar extends Component {
         <style dangerouslySetInnerHTML={{__html: customTransitionStyle}} />
         <span className={css(styles.text)}>即時跑馬燈</span>
         <CSSTransitionGroup {...transitionConfig}>
+          {first &&
           <Link key={first.sn} className={css(styles.link)}
             to={first.parseUrl}>
             <span>{first.shortTitle}</span>
           </Link>
+          }
         </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
         <CSSTransitionGroup {...transitionConfig}>
+          {second &&
           <Link key={second.sn} className={css(styles.link)}
             to={second.parseUrl}>
             <span>{second.shortTitle}</span>
-          </Link>
+          </Link>}
         </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
         <CSSTransitionGroup {...transitionConfig}>
-          <Link key={third.sn} className={css(styles.link)}
+          {third && <Link key={third.sn} className={css(styles.link)}
             to={third.parseUrl}>
             <span>{third.shortTitle}</span>
-          </Link>
+          </Link>}
+
         </CSSTransitionGroup>
       </div>
     );
