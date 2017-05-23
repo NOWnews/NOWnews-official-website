@@ -3,8 +3,20 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
 
-const TripletNav = ({ newsList }) => {
-  const items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, startedAt, type, parseUrl }, key) => {
+const TripletNav = ({ list, mapCity }) => {
+  const tripletType = 'lbs'; // temp
+  const slicedList = list[tripletType].slice(0, 5);
+
+  const TripletIcons = ['instant', 'interest', 'lbs'].map((value) => {
+    const imgName = (tripletType === value) ? `${value}_active` : value;
+
+    return (
+      <img key={value} onClick={() => { this.switchTripletType(value); }}
+        className={css(styles.icon)} src={`/icons/${imgName}.png`} />
+    );
+  });
+
+  const items = slicedList.map(({ sn, MainMenu, MainPhoto, shortTitle, startedAt, type, parseUrl }, key) => {
     return (
       <div key={key}>
         <ListItemSm
@@ -23,12 +35,12 @@ const TripletNav = ({ newsList }) => {
       <div className={`relative ${css(styles.switchIconArea)}`}>
         <div className={css(styles.background)} />
         <div className={css(styles.switchIcons)}>
-          <img className={css(styles.icon)} src='/icons/instant.png' />
-          <img className={css(styles.icon)} src='/icons/interest.png' />
-          <img className={css(styles.icon)} src='/icons/lbs_active.png' />
+          { TripletIcons }
         </div>
-        <div className={css(styles.mapTitle)}>台北市</div>
+        { tripletType === 'lbs' && <div className={css(styles.mapTitle)}>{ mapCity }</div>}
       </div>
+      { tripletType === 'interest' && <h3>尚未開放，敬請期待！</h3>}
+      { tripletType === 'lbs' && mapCity === '' && <h3>尚未取得您的位置資訊</h3>}
       <div>{ items }</div>
     </Margin10>
   );
@@ -65,7 +77,8 @@ const styles = StyleSheet.create({
 });
 
 TripletNav.propTypes = {
-  newsList: PropTypes.array.isRequired
+  list: PropTypes.object.isRequired,
+  mapCity: PropTypes.string.isRequired
 };
 
 export default TripletNav;

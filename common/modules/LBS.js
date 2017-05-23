@@ -60,6 +60,7 @@ export default function LBS (state = initialState, action) {
       return {
         ...state,
         location: action.payload,
+        mapCity: '',
         newsList: [],
         isLoading: true,
         error: null
