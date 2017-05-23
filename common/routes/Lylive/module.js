@@ -1,9 +1,7 @@
 export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
 export const LOAD_NEWS_SUCCESS = 'LOAD_NEWS_SUCCESS';
 export const LOAD_NEWS_FAILURE = 'LOAD_NEWS_FAILURE';
-export const NEXT_VIDEO_NEWS = 'NEXT_VIDEO_NEWS';
-export const SELECT_VIDEO_NEWS = 'SELECT_VIDEO_NEWS';
-export const SELECT_VIDEO_SOURCE = 'SELECT_VIDEO_SOURCE';
+export const SET_VIDEO_SOURCE = 'SET_VIDEO_SOURCE';
 const initialState = {
   videoSource: 1,
   newsList: [],
@@ -69,7 +67,7 @@ const initialState = {
 export function setVideoSource (videoSource) {
   return (dispatch, getState, { axios }) => {
     dispatch({
-      type: SELECT_VIDEO_SOURCE,
+      type: SET_VIDEO_SOURCE,
       payload: videoSource });
   };
 }
@@ -94,24 +92,9 @@ export function loadRelatedNews (sn) {
   };
 }
 
-export function nextNews () {
-  return (dispatch) => {
-    dispatch({ type: NEXT_VIDEO_NEWS });
-  };
-}
-
-export function selectVideo (selectedIndex) {
-  return (dispatch) => {
-    dispatch({
-      type: SELECT_VIDEO_NEWS,
-      payload: selectedIndex
-    });
-  };
-}
-
 export default function videoPage (state = initialState, action) {
   switch (action.type) {
-    case SELECT_VIDEO_SOURCE:
+    case SET_VIDEO_SOURCE:
       return {
         ...state,
         isLoading: false,

@@ -1,7 +1,7 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectVideoPage, setVideoSource, loadRelatedNews} from '../module';
+import { selectVideoPage, setVideoSource, loadRelatedNews } from '../module';
 import { NavBar } from '../../../components/Video';
 import { Container, Loading } from '../../../components/Layout';
 import { MainVideoPlay, RelatedNews, VideoSelector } from '../components';
