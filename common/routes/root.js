@@ -13,6 +13,7 @@ export default function createRoutes (store) {
           require('./Interest').default(store),
           require('./Info').default(store),
           require('./Instant').default(store),
+          require('./Lylive').default(store),
           require('./LBS').default(store),
           require('./News').default(store),
           require('./Preview').default(store),
