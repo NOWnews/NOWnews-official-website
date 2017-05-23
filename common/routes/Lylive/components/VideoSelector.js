@@ -86,8 +86,11 @@ const styles = StyleSheet.create({
     verticalAlign: 'middle'
   },
   active: {
-    border: '5px solid BLUE',
-    color: 'BLUE'
+    color: '#5a9af6',
+    background: '#eee',
+    border: '3px solid transparent',
+    borderImage: 'linear-gradient(to bottom, #3acfd5 0%, #3a4ed5 100%)',
+    borderImageSlice: 1
   }
 });
 
