@@ -75,7 +75,6 @@ export function loadRelatedNews (sn) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_RELATED_NEWS_REQUEST });
-    console.log(1);
     const getListUrl = `cat/politics`;
     return axios.get(`${protocol}://${host}/${getListUrl}`)
       .then((res) => {
@@ -84,13 +83,11 @@ export function loadRelatedNews (sn) {
           type: LOAD_RELATED_NEWS_SUCCESS,
           payload: newsList
         });
-        console.log(2);
       }).catch(error => {
         dispatch({
           type: LOAD_RELATED_NEWS_FAILURE,
           payload: error
         });
-        console.log(3);
       });
   };
 }
@@ -118,7 +115,6 @@ export default function lylivePage (state = initialState, action) {
         isLoading: false
       };
     case LOAD_RELATED_NEWS_FAILURE:
-      console.log(action.payload);
       return {
         ...state,
         error: action.payload.message,
