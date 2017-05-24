@@ -105,13 +105,16 @@ class NewsContainer extends Component {
         topics,
         triplet
       };
-
+      const ContentTypeObject = {
+        NEWS: ContentForNews,
+        PHOTO: ContentForPhoto,
+        VIDEO: ContentForVideo
+      };
+      const Content = ContentTypeObject[type];
       return (
         <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
-          { type === 'NEWS' && <ContentForNews {...contentProps} /> }
-          { type === 'PHOTO' && <ContentForPhoto {...contentProps} /> }
-          { type === 'VIDEO' && <ContentForVideo {...contentProps} /> }
+          {<Content {...contentProps} />}
           {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
         </div>
       );
