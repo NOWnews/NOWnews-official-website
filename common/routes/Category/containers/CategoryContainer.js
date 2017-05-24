@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
+import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
 import { HotNews } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
@@ -29,9 +30,9 @@ const CategoryPage = ({ categoryPage, menus, marquee }) => {
   const isMainMenu = currentMenu.ParentId === null;
   const currentMainMenu = isMainMenu ? currentMenu._id : currentMenu.ParentId;
   const currentChildMenu = isMainMenu ? null : currentMenu._id;
-
   return (
     <Container>
+      <IsAdult isAdult={currentMenu.isAdult} />
       <Header menus={menus} marquee={marquee}
         currentChildMenu={currentChildMenu}
         currentMainMenu={currentMainMenu} />

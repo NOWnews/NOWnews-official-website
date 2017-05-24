@@ -13,6 +13,7 @@ import {
 } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
+import { IsAdult } from '../../../components/Alert';
 
 const redial = {
   fetch: ({ dispatch, params: { sn } }) => Promise.all([
@@ -125,9 +126,9 @@ class NewsContainer extends Component {
         }
       });
     }
-
     return (
       <div>
+        {!isLoading && <IsAdult isAdult={data[0].isAdult} />}
         <Header menus={menus} marquee={marquee}
           currentChildMenu={currentChildMenu}
           currentMainMenu={currentMainMenu} />

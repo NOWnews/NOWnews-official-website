@@ -53,6 +53,7 @@
     "react-google-tag-manager": "^2.1.0",
     "react-helmet": "^3.1.0",
     "react-infinite-scroller": "git+https://github.com/esbb48/react-infinite-scroller.git#touchWindowTop",
+    "react-overlays": "^0.7.0",
     "react-redux": "^4.4.0",
     "react-responsive-carousel": "git+https://github.com/esbb48/react-responsive-carousel.git#customTitleWithCarousel",
     "react-router": "^2.0.0",
