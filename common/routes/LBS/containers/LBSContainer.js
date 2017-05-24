@@ -1,8 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
-import { selectLBSPage, loadLBSList } from '../module';
+import { bindActionCreators } from 'redux';
 
+import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 
 import { Header } from '../../../components/Header';
@@ -11,35 +12,51 @@ import { Container, Loading, NotFound } from '../../../components/Layout';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
-    dispatch(loadLBSList()),
     dispatch(loadHeader())
   ])
 };
 
 const mapStateToProps = state => ({
-  LBSPage: selectLBSPage(state),
+  LBS: selectLBS(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const LBSContainer = ({ marquee, menus, LBSPage }) => (
-  <div>
-    <Header menus={menus} marquee={marquee} />
-    <TripletHead active='lbs' city='台北市' />
-    <Container>
-      {LBSPage.isLoading && <Loading />}
-      {!LBSPage.isLoading && LBSPage.newsList.length === 0 && <NotFound />}
-      {!LBSPage.isLoading && LBSPage.newsList.length > 0 &&
-        <BlockItems12 newsList={LBSPage.newsList} page={LBSPage.pageData} />
-      }
-    </Container>
-  </div>
-);
+const mapDispatchToProps = bindActionCreators.bind(null, {
+  loadLBSList
+});
+
+class LBSContainer extends Component {
+
+  componentDidMount () {
+    this.props.loadLBSList();
+  }
+
+  render () {
+    const { marquee, menus, LBS } = this.props;
+    const { isLoading, location, mapCity, newsList, pageData } = LBS;
+    return (
+      <div>
+        <Header menus={menus} marquee={marquee} />
+        <TripletHead active='lbs' city={mapCity} />
+        <Container>
+          {isLoading && <Loading />}
+          {!isLoading && location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
+          {!isLoading && newsList.length === 0 && <NotFound />}
+          {!isLoading && newsList.length > 0 &&
+            <BlockItems12 newsList={newsList} page={pageData} />
+          }
+        </Container>
+      </div>
+    );
+  }
+}
 
 LBSContainer.propTypes = {
   menus: PropTypes.array.isRequired,
   marquee: PropTypes.array.isRequired,
-  LBSPage: PropTypes.object.isRequired
+  loadLBSList: PropTypes.func.isRequired,
+  LBS: PropTypes.object.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps)(LBSContainer));
+export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(LBSContainer));

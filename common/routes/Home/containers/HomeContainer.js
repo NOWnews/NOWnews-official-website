@@ -12,6 +12,7 @@ import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
 import { Ad300x250, Ad300x600 } from '../../../components/Ad';
 
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
+import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectHomePage, loadHomeList, switchTripletType } from '../module';
 
 const redial = {
@@ -23,11 +24,13 @@ const redial = {
 
 const mapStateToProps = state => ({
   homePage: selectHomePage(state),
+  LBS: selectLBS(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
+  loadLBSList,
   switchTripletType
 });
 
@@ -41,8 +44,12 @@ class HomeContainer extends Component {
     this.props.switchTripletType(type);
   }
 
+  componentDidMount () {
+    this.props.loadLBSList();
+  }
+
   render () {
-    const { marquee, menus, homePage } = this.props;
+    const { marquee, menus, homePage, LBS = {} } = this.props;
     const {
       carousels, isLoading, specialChannels, specialTopics, tripletType,
       videos
@@ -64,7 +71,7 @@ class HomeContainer extends Component {
     const tripletObject = {
       instant: marquee,
       interest: [],
-      lbs: marquee // temp
+      lbs: LBS.newsList
     };
 
     return (
@@ -105,9 +112,10 @@ class HomeContainer extends Component {
             <Container>
               <div className={css(styles.tripletBlockTop)}>
                 { TripletIcons }
-                { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>台北市</span>}
+                { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>{LBS.mapCity}</span>}
               </div>
               <BlockItems newsList={tripletObject[tripletType].slice(0, 9)} />
+              { tripletType === 'lbs' && !isLoading && LBS.location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
               { tripletType === 'interest' && <h3>尚未開放，敬請期待！</h3>}
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
@@ -254,6 +262,8 @@ const styles = StyleSheet.create({
 
 HomeContainer.propTypes = {
   homePage: PropTypes.object.isRequired,
+  LBS: PropTypes.object,
+  loadLBSList: PropTypes.func.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
   switchTripletType: PropTypes.func.isRequired

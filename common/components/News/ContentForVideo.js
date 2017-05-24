@@ -9,7 +9,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForVideo = ({ news, changeFontSize, fontSize }) => (
+const ContentForVideo = ({ news, changeFontSize, fontSize, triplet }) => (
   <Container>
     <VideoPlayer src={news.MainVideo.url} poster={news.MainPhoto.url} />
     <i>{news.MainVideo && news.MainVideo.desc}</i>
@@ -27,7 +27,7 @@ const ContentForVideo = ({ news, changeFontSize, fontSize }) => (
         <FontSize changeFontSize={changeFontSize} />
         <Ad300x250 />
         <Thermometer />
-        <TripletNav newsList={[news, news, news, news, news]} />
+        <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
       </RightSide>
     </Margin10>
   </Container>
@@ -36,7 +36,8 @@ const ContentForVideo = ({ news, changeFontSize, fontSize }) => (
 ContentForVideo.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  news: PropTypes.object.isRequired
+  news: PropTypes.object.isRequired,
+  triplet: PropTypes.object.isRequired
 };
 
 export default ContentForVideo;

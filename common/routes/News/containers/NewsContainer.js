@@ -12,6 +12,7 @@ import {
   showFixedHeader
 } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
+import { selectLBS, loadLBSList } from '../../../modules/LBS';
 
 const redial = {
   fetch: ({ dispatch, params: { sn } }) => Promise.all([
@@ -22,6 +23,7 @@ const redial = {
 
 const mapStateToProps = state => ({
   currentNews: selectCurrentNews(state),
+  LBS: selectLBS(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
@@ -29,6 +31,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = bindActionCreators.bind(null, {
   changeFontSize,
   changeNewsTitle,
+  loadLBSList,
   loadMoreNews,
   showFixedHeader
 });
@@ -48,6 +51,7 @@ class NewsContainer extends Component {
         window.document.body.scrollTop = 0;
       }, 100);
     }
+    this.props.loadLBSList();
     window.addEventListener('scroll', this.scrollListener);
   }
 
@@ -76,20 +80,29 @@ class NewsContainer extends Component {
   }
 
   render () {
-    const { currentNews, changeFontSize, menus, marquee } = this.props;
+    const { currentNews, changeFontSize, LBS, menus, marquee } = this.props;
     const {
       isLoading, data = [], hasMore, fontSize, newsTitle,
       showFixedHeader, topics
     } = currentNews;
     const currentMainMenu = data[0] && data[0].MainMenu.id;
     const totalLength = data.length;
+    const triplet = {
+      list: {
+        instant: marquee,
+        interest: [],
+        lbs: LBS.newsList
+      },
+      mapCity: LBS.mapCity
+    };
     const items = data.map((item, i) => {
       const { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
       const contentProps = {
         changeFontSize,
         fontSize,
         news,
-        topics
+        topics,
+        triplet
       };
 
       return (
@@ -143,6 +156,8 @@ NewsContainer.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   changeNewsTitle: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
+  LBS: PropTypes.object,
+  loadLBSList: PropTypes.func.isRequired,
   loadMoreNews: PropTypes.func.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,

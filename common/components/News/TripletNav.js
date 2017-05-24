@@ -1,37 +1,63 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
 
-const TripletNav = ({ newsList }) => {
-  const items = newsList.map(({ sn, MainMenu, MainPhoto, shortTitle, startedAt, type, parseUrl }, key) => {
-    return (
-      <div key={key}>
-        <ListItemSm
-          category={MainMenu && MainMenu.name || '未分類'}
-          photo={MainPhoto}
-          title={shortTitle}
-          time={startedAt}
-          type={type}
-          url={parseUrl} />
-      </div>
-    );
-  });
+class TripletNav extends Component {
+  constructor (props) {
+    super(props);
+    this.state = { tripletType: 'instant' };
+    this.switchTripletType = this.switchTripletType.bind(this);
+  }
 
-  return (
-    <Margin10>
-      <div className={`relative ${css(styles.switchIconArea)}`}>
-        <div className={css(styles.background)} />
-        <div className={css(styles.switchIcons)}>
-          <img className={css(styles.icon)} src='/icons/instant.png' />
-          <img className={css(styles.icon)} src='/icons/interest.png' />
-          <img className={css(styles.icon)} src='/icons/lbs_active.png' />
+  switchTripletType (type) {
+    this.setState({tripletType: type});
+  }
+
+  render () {
+    const { list, mapCity } = this.props;
+    const { tripletType } = this.state;
+    const slicedList = list[tripletType].slice(0, 5);
+
+    const TripletIcons = ['instant', 'interest', 'lbs'].map((value) => {
+      const imgName = (tripletType === value) ? `${value}_active` : value;
+
+      return (
+        <img key={value} onClick={() => { this.switchTripletType(value); }}
+          className={css(styles.icon)} src={`/icons/${imgName}.png`} />
+      );
+    });
+
+    const items = slicedList.map(({ sn, MainMenu, MainPhoto, shortTitle, startedAt, type, parseUrl }, key) => {
+      return (
+        <div key={key}>
+          <ListItemSm
+            category={MainMenu && MainMenu.name || '未分類'}
+            photo={MainPhoto}
+            title={shortTitle}
+            time={startedAt}
+            type={type}
+            url={parseUrl} />
         </div>
-        <div className={css(styles.mapTitle)}>台北市</div>
-      </div>
-      <div>{ items }</div>
-    </Margin10>
-  );
+      );
+    });
+
+    return (
+      <Margin10>
+        <div className={`relative ${css(styles.switchIconArea)}`}>
+          <div className={css(styles.background)} />
+          <div className={css(styles.switchIcons)}>
+            { TripletIcons }
+          </div>
+          { tripletType === 'lbs' && <div className={css(styles.mapTitle)}>{ mapCity }</div>}
+        </div>
+        { tripletType === 'interest' && <h3>尚未開放，敬請期待！</h3>}
+        { tripletType === 'lbs' && mapCity === '' && <h3>尚未取得您的位置資訊</h3>}
+        <div>{ items }</div>
+      </Margin10>
+    );
+  }
+
 };
 
 const styles = StyleSheet.create({
@@ -44,12 +70,13 @@ const styles = StyleSheet.create({
     zIndex: -1
   },
   icon: {
-    width: '80px',
-    margin: '0 5px'
+    curosr: 'pointer',
+    margin: '0 5px',
+    width: 80
   },
   mapTitle: {
     color: '#0080ff',
-    fontSize: '20px',
+    fontSize: 20,
     fontWeight: 'bold',
     lineHeight: '20px',
     margin: '5px 30px',
@@ -65,7 +92,8 @@ const styles = StyleSheet.create({
 });
 
 TripletNav.propTypes = {
-  newsList: PropTypes.array.isRequired
+  list: PropTypes.object.isRequired,
+  mapCity: PropTypes.string.isRequired
 };
 
 export default TripletNav;

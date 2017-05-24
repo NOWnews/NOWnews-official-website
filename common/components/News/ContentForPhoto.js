@@ -11,7 +11,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, topics }) => {
+const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, topics, triplet }) => {
   let settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -49,7 +49,7 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
           <FontSize changeFontSize={changeFontSize} />
           <Ad300x250 />
           <Thermometer />
-          <TripletNav newsList={[news, news, news, news, news]} />
+          <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
           <Ad300x250 />
           <SpecialTopicNav list={[topics]} />
           <Ad300x250 />
@@ -92,7 +92,8 @@ ContentForPhoto.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
   news: PropTypes.object.isRequired,
-  topics: PropTypes.array.isRequired
+  topics: PropTypes.array.isRequired,
+  triplet: PropTypes.object.isRequired
 };
 
 export default ContentForPhoto;
