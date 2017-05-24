@@ -47,14 +47,14 @@ class MainVideoPlay extends Component {
           { this.props.newsList.map((item, index) => {
             return (
               <Link className={css(styles.newsBlock)}
-                key={index}
-                to={`/news/${moment(item.formatStartedAt).format('YYYYMMDD')}/${item.sn}`}>
+                key={item.sn}
+                to={item.parseUrl}>
                 <div className={css(styles.newsBlock)}>
                   <img src={item.MainPhoto.thumbnail} className={css(styles.img)} />
                   <p className={css(styles.cat)}>{item.MainMenu.name}</p>
                   <p className={css(styles.title)}>{item.title}</p>
                   <p className={css(styles.date)}>
-                    <FontAwesome className={css(styles.icon)} name='clock-o' size='lg' />
+                    <img src='/icons/whiteClock.png' />
                     {moment(item.formatStartedAt).format('YYYY.MM.DD')}
                   </p>
                 </div>
