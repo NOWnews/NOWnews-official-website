@@ -86,12 +86,12 @@ const styles = StyleSheet.create({
   newsBlock: {
     marginRight: 15,
     display: 'inline-block',
-    maxWidth: 245,
+    maxWidth: 240,
     verticalAlign: 'top'
   },
   img: {
-    width: '100%',
-    maxHeight: 150
+    width: 200,
+    height: 120
   },
   newsBlocks: {
     overflow: 'hidden',
@@ -110,7 +110,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     margin: 0,
     paddingLeft: 10,
-    whiteSpace: 'normal'
+    whiteSpace: 'normal',
+    textOverflow: 'ellipsis',
+    wordWrap: 'break-word',
+    overflow: 'hidden',
+    maxHeight: '3.6em',
+    lineHeight: '1.8em'
   },
   icon: {
     marginRight: 10
