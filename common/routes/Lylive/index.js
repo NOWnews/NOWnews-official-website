@@ -6,13 +6,13 @@ export default function createRoutes (store) {
     path: 'lylive/:videoSource',
     getComponents (location, cb) {
       require.ensure([
-        './containers/VideoContainer',
+        './containers/LyLiveContainer',
         './module'
       ], (require) => {
-        let VideoContainer = require('./containers/VideoContainer').default;
-        let videoReducer = require('./module').default;
-        injectAsyncReducer(store, 'lylivePage', videoReducer);
-        cb(null, VideoContainer);
+        let LyLiveContainer = require('./containers/LyLiveContainer').default;
+        let liliveReducer = require('./module').default;
+        injectAsyncReducer(store, 'lylivePage', liliveReducer);
+        cb(null, LyLiveContainer);
       }, 'lylivePage');
     }
   };
