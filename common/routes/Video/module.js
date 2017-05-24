@@ -6,6 +6,7 @@ export const SELECT_VIDEO_NEWS = 'SELECT_VIDEO_NEWS';
 
 const initialState = {
   currentCategory: '',
+  currentMenu: {},
   error: null,
   hotNewsList: [],
   isLoading: false,
@@ -23,13 +24,14 @@ export function loadVideoList (categoryName, page = 1) {
     return Promise.all([
       axios.get(`${protocol}://${host}/menus`),
       axios.get(`${protocol}://${host}/${getListUrl}page=${page}&limit=9`)
-    ]).then(([menu, video]) => {
-      const { newsList, pageData } = video.data;
+    ]).then(([menuSrc, videoSrc]) => {
+      const { newsList, pageData, menu } = videoSrc.data;
       dispatch({
         type: LOAD_VIDEO_SUCCESS,
         payload: {
           currentCategory: categoryName,
-          menus: menu.data,
+          currentMenu: menu || {},
+          menus: menuSrc.data,
           newsList,
           pageData
         },
@@ -70,10 +72,11 @@ export default function videoPage (state = initialState, action) {
         error: null
       };
     case LOAD_VIDEO_SUCCESS:
-      const { currentCategory, menus, newsList, pageData } = action.payload;
+      const { currentMenu, currentCategory, menus, newsList, pageData } = action.payload;
       return {
         ...state,
         currentCategory,
+        currentMenu,
         menus,
         newsList,
         pageData,
