@@ -29,13 +29,13 @@ module.exports = {
     path: CLIENT_OUTPUT
   },
   module: {
-    // preLoaders: [
-    //   {
-    //     test: /\.jsx?$/,
-    //     loader: 'eslint',
-    //     exclude: /(node_modules)/
-    //   }
-    // ],
+    preLoaders: [
+      {
+        test: /\.jsx?$/,
+        loader: 'eslint',
+        exclude: /(node_modules)/
+      }
+    ],
     loaders: [
       {
         test: /\.js$/,
