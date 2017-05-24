@@ -26,7 +26,7 @@ const LylivePage = ({ lylivePage }) => {
         <NavBar selected='LY_LIVE' />
         <MainVideoPlay url={lylivePage.videoSourceList[lylivePage.videoSource - 1].url} />
         {lylivePage.isLoading && <Loading />}
-        {!lylivePage.isLoading && lylivePage.newsList.length > 0 &&
+        {!lylivePage.isLoading &&
         <RelatedNews newsList={lylivePage.newsList} />}
         <VideoSelector currentVideoSource={lylivePage.videoSource} videoSourceList={lylivePage.videoSourceList} />
       </Container>

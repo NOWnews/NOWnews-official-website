@@ -75,10 +75,10 @@ export function loadRelatedNews (sn) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWS_REQUEST });
-    const getListUrl = `news/15/relations`;
+    const getListUrl = `cat/politics`;
     return axios.get(`${protocol}://${host}/${getListUrl}`)
       .then((res) => {
-        const newsList = res.data;
+        const newsList = res.data.newsList;
         dispatch({
           type: LOAD_NEWS_SUCCESS,
           payload: newsList

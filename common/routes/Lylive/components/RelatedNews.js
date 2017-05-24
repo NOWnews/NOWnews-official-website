@@ -26,12 +26,22 @@ class MainVideoPlay extends Component {
     const prevIndex = (positionIndex === 0) ? 0 : positionIndex - 1;
     this.setState({positionIndex: prevIndex});
   }
-
+  renderScrollBar () {
+    if (this.props.newsList.length > 0) {
+      return (
+        <div className={css(styles.preNextBlock)}>
+          <div className={css(styles.leftArrow)} onClick={this.prev}>＜</div>
+          <div className={css(styles.rightArrow)} onClick={this.next}>＞</div>
+        </div>
+      );
+    }
+  }
   render () {
     return (
       <div className={css(styles.box)}>
         <div>
           <h1 className={css(styles.headline)}>相關新聞</h1>
+          <h1 className={this.props.newsList.length === 0 ? css(styles.noNews) : ''}> {this.props.newsList.length === 0 ? '找不到相關新聞！！' : ''}</h1>
         </div>
         <div className={css(styles.newsBlocks)} style={{width: this.props.newsList.length * 260, transitionDuration: '350ms', transform: `translate3d(${this.state.positionIndex * -260}px, 0px, 0px)`}}>
           { this.props.newsList.map((item, index) => {
@@ -53,10 +63,7 @@ class MainVideoPlay extends Component {
           })}
 
         </div>
-        <div className={css(styles.preNextBlock)}>
-          <div className={css(styles.leftArrow)} onClick={this.prev}>＜</div>
-          <div className={css(styles.rightArrow)} onClick={this.next}>＞</div>
-        </div>
+        {this.renderScrollBar()}
       </div>
     );
   }
@@ -139,6 +146,12 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: '#FFFFFF',
     color: '#FFFFFF'
+  },
+  noNews: {
+    color: '#FFFFFF',
+    fontSize: 25,
+    height: 150,
+    textAlign: 'center'
   }
 });
 
