@@ -195,11 +195,11 @@ export default function currentNews (state = initialState, action) {
       return {
         ...state,
         data: [news],
-        hasMore: !!news.next.sn,
+        hasMore: news && !!news.next.sn,
         isLoading: false,
         isSSRAndInit: !canUseDOM,
-        lastFetched: action.meta.lastFetched,
-        newsTitle: news.title,
+        lastFetched: action.meta && action.meta.lastFetched,
+        newsTitle: news && news.title,
         topics
       };
     case LOAD_NEWS_FAILURE:
