@@ -25,11 +25,11 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
 });
 
 const VideoPage = ({ nextVideo, selectVideo, videoPage }) => {
-  const { currentCategory, menus, newsList, pageData, selectedIndex } = videoPage;
+  const { currentCategory, currentMenu, menus, newsList, pageData, selectedIndex } = videoPage;
   const maxIndex = newsList.length - 1;
   return (
     <div>
-      <IsAdult isAdult={currentCategory.isAdult} />
+      <IsAdult isAdult={currentMenu.isAdult} />
       <LogoRow />
       <NavBar selected='VIDEO' />
       {videoPage.isLoading && <Loading />}
