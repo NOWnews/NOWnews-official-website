@@ -7,6 +7,7 @@ import { NavBar } from '../../../components/Video';
 import { Container, Loading, NotFound } from '../../../components/Layout';
 import { BlockItems9, MainVideoPlay, VideoCategories } from '../components';
 import { LogoRow } from '../../../components/Header';
+import { IsAdult } from '../../../components/Alert';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName }, query: { page } }) => Promise.all([
@@ -28,6 +29,7 @@ const VideoPage = ({ nextVideo, selectVideo, videoPage }) => {
   const maxIndex = newsList.length - 1;
   return (
     <div>
+      <IsAdult isAdult={currentCategory.isAdult} />
       <LogoRow />
       <NavBar selected='VIDEO' />
       {videoPage.isLoading && <Loading />}
