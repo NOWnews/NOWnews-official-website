@@ -1,6 +1,6 @@
-export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
-export const LOAD_NEWS_SUCCESS = 'LOAD_NEWS_SUCCESS';
-export const LOAD_NEWS_FAILURE = 'LOAD_NEWS_FAILURE';
+export const LOAD_RELATED_NEWS_REQUEST = 'LOAD_RELATED_NEWS_REQUEST';
+export const LOAD_RELATED_NEWS_SUCCESS = 'LOAD_RELATED_NEWS_SUCCESS';
+export const LOAD_RELATED_NEWS_FAILURE = 'LOAD_RELATED_NEWS_FAILURE';
 export const SET_VIDEO_SOURCE = 'SET_VIDEO_SOURCE';
 const initialState = {
   videoSource: 1,
@@ -74,20 +74,23 @@ export function setVideoSource (videoSource) {
 export function loadRelatedNews (sn) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
-    dispatch({ type: LOAD_NEWS_REQUEST });
+    dispatch({ type: LOAD_RELATED_NEWS_REQUEST });
+    console.log(1);
     const getListUrl = `cat/politics`;
     return axios.get(`${protocol}://${host}/${getListUrl}`)
       .then((res) => {
         const newsList = res.data.newsList;
         dispatch({
-          type: LOAD_NEWS_SUCCESS,
+          type: LOAD_RELATED_NEWS_SUCCESS,
           payload: newsList
         });
+        console.log(2);
       }).catch(error => {
         dispatch({
-          type: LOAD_NEWS_FAILURE,
+          type: LOAD_RELATED_NEWS_FAILURE,
           payload: error
         });
+        console.log(3);
       });
   };
 }
@@ -101,23 +104,24 @@ export default function lylivePage (state = initialState, action) {
         error: null,
         videoSource: action.payload
       };
-    case LOAD_NEWS_REQUEST:
+    case LOAD_RELATED_NEWS_REQUEST:
       return {
         ...state,
         isLoading: true,
         error: null
       };
-    case LOAD_NEWS_SUCCESS:
+    case LOAD_RELATED_NEWS_SUCCESS:
       const newsList = action.payload;
       return {
         ...state,
         newsList,
         isLoading: false
       };
-    case LOAD_NEWS_FAILURE:
+    case LOAD_RELATED_NEWS_FAILURE:
+      console.log(action.payload);
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         newsList: [],
         isLoading: false
       };

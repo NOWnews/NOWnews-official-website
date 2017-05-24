@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import moment from 'moment';

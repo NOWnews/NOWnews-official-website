@@ -13,7 +13,7 @@ class VideoSelector extends Component {
             {this.props.videoSourceList.slice(0, 5).map((item, index) => {
               return (
                 <Link className={css(styles.firstRowItem, (this.props.currentVideoSource === item.id) && styles.active)}
-                  key={item.sn}
+                  key={item.id}
                   to={`/lylive/${item.id}`}>
                   <span className={css(styles.selectTitleOneLine)}>{item.title}</span>
                 </Link>
@@ -24,7 +24,7 @@ class VideoSelector extends Component {
             { this.props.videoSourceList.slice(5).map((item, index) => {
               return (
                 <Link className={css(styles.secondRowItem, (this.props.currentVideoSource === item.id) && styles.active)}
-                  key={item.sn}
+                  key={item.id}
                   to={`/lylive/${item.id}`}>
                   <span className={css(styles.selectTitleTwoLine)}>{item.title}</span>
                 </Link>
@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
     display: 'block'
   }
 });
-
 
 VideoSelector.propTypes = {
   videoSourceList: PropTypes.array.isRequired,
