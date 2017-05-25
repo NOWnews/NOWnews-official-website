@@ -16,14 +16,13 @@ const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 const initialState = {
   data: [],
   error: null,
-  fontSize: isomorphicCookie.load('fontSize') || 16,
+  fontSize: isomorphicCookie.load('NOW_fontSize') || 16,
   hasMore: false,
   isLoading: false,
   isSSRAndInit: false,
   lastFetched: null,
   newsTitle: '',
   showFixedHeader: false,
-  // rightSide
   topics: [],
   favorite: [],
   lbs: []
@@ -31,7 +30,7 @@ const initialState = {
 
 export const changeFontSize = (fontSize) => {
   return (dispatch) => {
-    isomorphicCookie.save('fontSize', fontSize, { secure: false });
+    isomorphicCookie.save('NOW_fontSize', fontSize, { secure: false });
     dispatch({ type: CHANGE_FONT_SIZE, payload: fontSize });
   };
 };
