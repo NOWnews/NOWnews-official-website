@@ -11,7 +11,7 @@ export const initialState = {
   list: [],
   pageData: {},
   keyword: '',
-  timeRange: ''
+  timeRange: 'lastWeek'
 };
 
 export function loadSearchList ({ keyword = '', page = 1, timeRange }) {

@@ -3,10 +3,13 @@ import videojs from 'video.js';
 import 'videojs-youtube';
 
 class VideoPlayer extends Component {
-
   componentDidMount () {
-    // instantiate video.js
     let { src, poster } = this.props;
+    if (src.indexOf('facebook') > 0 || src.indexOf('streamable') > 0) {
+      return;
+    }
+
+    // UseVideoJs
     let type = 'video/mp4';
 
     if (src.indexOf('youtu') > 0) {
@@ -55,11 +58,24 @@ class VideoPlayer extends Component {
         font-size: ${fontSize}px;
       }
     `;
+
+    let src = this.props.src;
+    let useIframe = false;
+    if (src.indexOf('facebook') > 0) {
+      useIframe = true;
+      src = `https://www.facebook.com/plugins/video.php?href=${src}&show_text=0&width=${width}&height=${height}`;
+    } else if (src.indexOf('streamable') > 0) {
+      useIframe = true;
+    }
     return (
-      <div data-vjs-player>
-        <style dangerouslySetInnerHTML={{__html: customVideoJsPlayer}} />
-        <video width={width} height={height} className='video-js'
-          ref={node => { this.videoNode = node; }} />
+      <div>
+        {useIframe && <iframe src={src}
+          width={width} height={height} scrolling='no' frameBorder='0' allowTransparency='true' allowFullScreen='true' />}
+        {!useIframe && <div data-vjs-player>
+          <style dangerouslySetInnerHTML={{__html: customVideoJsPlayer}} />
+          <video width={width} height={height} className='video-js'
+            ref={node => { this.videoNode = node; }} />
+        </div>}
       </div>
     );
   }
