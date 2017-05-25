@@ -21,21 +21,21 @@ class TimeAndKeywordArea extends Component {
   }
 
   render () {
-    let { hotKeywords = [], timeRange } = this.props;
-
-    let definedTimeOptions = [
+    const definedTimeOptions = [
       { value: 'lastWeek', text: '過去一週' },
       { value: 'lastMonth', text: '過去一個月' },
       { value: 'lastYear', text: '過去一年' }
     ];
-
     // tempData
-    hotKeywords = ['不要不要', '藍軍教父', '谷阿莫'];
+    const { hotKeywords = ['不要不要', '藍軍教父', '谷阿莫'], timeRange } = this.props;
 
-    let timeOptions = definedTimeOptions.map(({ value, text }) => {
-      let className = (value === timeRange) ? css(styles.active) : '';
+    const timeOptions = definedTimeOptions.map(({ value, text }) => {
+      const className = css(
+        styles.groupItem,
+        (value === timeRange) ? styles.active : ''
+      );
       return (
-        <li key={value} className={`${css(styles.groupItem)} ${className}`}
+        <li key={value} className={className}
           onClick={() => { this.setTimeRange(value); }}>
           <i className={css(styles.sequare)}>■</i>
           {text}
@@ -68,7 +68,7 @@ class TimeAndKeywordArea extends Component {
 
 const styles = StyleSheet.create({
   active: {
-    color: '#1884FB'
+    color: '#0080FF'
   },
   dottedLine: {
     border: '1px #727374 dashed'
@@ -85,7 +85,10 @@ const styles = StyleSheet.create({
   groupItem: {
     color: '#78797A',
     cursor: 'pointer',
-    listStyleType: 'none'
+    listStyleType: 'none',
+    ':hover': {
+      opacity: 0.6
+    }
   },
   groupTitle: {
     fontSize: 18

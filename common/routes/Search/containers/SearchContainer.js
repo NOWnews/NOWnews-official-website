@@ -17,7 +17,7 @@ import { TimeAndKeywordArea } from '../components';
 
 const redial = {
   fetch: ({ dispatch, query }) => Promise.all([
-    dispatch(loadSearchList(query)),
+    dispatch(loadSearchList(query, 1, 'lastWeek')),
     dispatch(loadHeader())
   ])
 };

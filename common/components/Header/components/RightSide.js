@@ -11,7 +11,7 @@ const Nav = () => {
   ];
   return (
     <div className={`clearfix ${css(styles.box)}`}>
-      <Link className={css(styles.link)} to='/search'>
+      <Link className={css(styles.link)} to='/search?timeRange=lastWeek'>
         <FontAwesome name='search' size='2x' />
       </Link>
       <Link className={css(styles.link)} to='/user'>
