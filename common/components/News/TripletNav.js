@@ -51,7 +51,6 @@ class TripletNav extends Component {
           </div>
           { tripletType === 'lbs' && <div className={css(styles.mapTitle)}>{ mapCity }</div>}
         </div>
-        { tripletType === 'interest' && <h3>尚未開放，敬請期待！</h3>}
         { tripletType === 'lbs' && mapCity === '' && <h3>尚未取得您的位置資訊</h3>}
         <div>{ items }</div>
       </Margin10>

@@ -67,4 +67,5 @@ export default function interest (state = initialState, action) {
   }
 }
 
-export const selectInterest = state => state.interest;
+export const selectInterestPage = state => state.interest;
+export const selectInterest = state => state.interest.newsList;

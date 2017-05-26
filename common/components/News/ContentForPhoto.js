@@ -11,7 +11,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, topics, triplet }) => {
+const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet }) => {
   let settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -41,7 +41,7 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
           <Social />
           <ThermometerSm />
           <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
-          <RelatedContent type='你可能會喜歡' list={news.relations} sn={news.sn} />
+          <RelatedContent type='你可能會喜歡' list={interest.slice(0, 3)} sn={news.sn} />
           <RecommendAds />
         </LeftSide>
         <RightSide>
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
 ContentForPhoto.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
+  interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
   topics: PropTypes.array.isRequired,
   triplet: PropTypes.object.isRequired

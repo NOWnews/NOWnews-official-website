@@ -74,7 +74,7 @@ class HomeContainer extends Component {
 
     const tripletObject = {
       instant: marquee,
-      interest: interest.newsList,
+      interest: interest,
       lbs: LBS.newsList
     };
 
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
 
 HomeContainer.propTypes = {
   homePage: PropTypes.object.isRequired,
-  interest: PropTypes.object.isRequired,
+  interest: PropTypes.array.isRequired,
   LBS: PropTypes.object,
   loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,

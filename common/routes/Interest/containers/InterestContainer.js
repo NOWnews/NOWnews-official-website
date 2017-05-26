@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
-import { selectInterest, loadInterest } from '../../../modules/interest';
+import { selectInterestPage, loadInterest } from '../../../modules/interest';
 
 import { Header } from '../../../components/Header';
 import { BlockItems12, TripletHead } from '../../../components/News';
@@ -16,7 +16,7 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
-  interest: selectInterest(state),
+  interest: selectInterestPage(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
