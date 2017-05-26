@@ -13,11 +13,11 @@ const initialState = {
 
 export function loadHeader (url) {
   return (dispatch, getState, { axios }) => {
-    const { protocol, host } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_HEADER_REQUEST });
     return Promise.all([
-      axios.get(`${protocol}://${host}/menus`),
-      axios.get(`${protocol}://${host}/instant?limit=9`)
+      axios.get(`${apiServ}/menus`),
+      axios.get(`${apiServ}/instant?limit=9`)
     ]).then(([menus, instant]) => {
       dispatch({
         type: LOAD_HEADER_SUCCESS,
@@ -57,7 +57,7 @@ export default function header (state = initialState, action) {
       };
     case LOAD_HEADER_FAILURE:
       return { ...state,
-        error: action.payload,
+        error: action.payload.message,
         menus: [],
         marquee: [],
         isLoading: false

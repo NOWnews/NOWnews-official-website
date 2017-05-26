@@ -61,8 +61,7 @@ export const createServer = (config) => {
   app.get('*', (req, res) => {
     const store = configureStore({
       sourceRequest: {
-        protocol: 'https', // req.headers['x-forwarded-proto'] || req.protocol,
-        host: webApiServer
+        apiServ: webApiServer
       }
     });
     const routes = createRoutes(store);

@@ -16,9 +16,9 @@ const initialState = {
 
 export function loadHomeList () {
   return (dispatch, getState, { axios }) => {
-    const { protocol, host } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_INDEX_REQUEST });
-    return axios.get(`${protocol}://${host}/indexpage`)
+    return axios.get(`${apiServ}/indexpage`)
     .then(res => {
       dispatch({
         type: LOAD_INDEX_SUCCESS,

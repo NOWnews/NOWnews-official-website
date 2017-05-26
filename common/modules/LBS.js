@@ -32,9 +32,9 @@ export function loadLBSList (page = 1) {
   return (dispatch, getState, { axios }) => {
     getLocation().then((location) => {
       const { latitude: lat, longitude: lng } = location.coords;
-      const { protocol, host } = getState().sourceRequest;
+      const { apiServ } = getState().sourceRequest;
       dispatch({ type: LOAD_LBS_REQUEST, payload: [lat, lng] });
-      return axios.get(`${protocol}://${host}/location?limit=10&lat=${lat}&lng=${lng}&page=${page}`)
+      return axios.get(`${apiServ}/location?limit=10&lat=${lat}&lng=${lng}&page=${page}`)
       .then(res => {
         dispatch({
           type: LOAD_LBS_SUCCESS,
@@ -78,7 +78,7 @@ export default function LBS (state = initialState, action) {
     case LOAD_LBS_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         isLoading: false,
         newsList: []
       };

@@ -14,11 +14,11 @@ const initialState = {
 
 export function loadCategoryList (categoryName, page = 1) {
   return (dispatch, getState, { axios }) => {
-    const { protocol, host } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_CATEGORY_REQUEST });
     return Promise.all([
-      axios.get(`${protocol}://${host}/cat/${categoryName}?page=${page}&limit=15`),
-      axios.get(`${protocol}://${host}/hot/${categoryName}`)
+      axios.get(`${apiServ}/cat/${categoryName}?page=${page}&limit=15`),
+      axios.get(`${apiServ}/hot/${categoryName}`)
     ]).then(([categoryNewsList, hotNewsList]) => {
       const { menu, newsList, pageData } = categoryNewsList.data;
       dispatch({
@@ -65,7 +65,7 @@ export default function categoryPage (state = initialState, action) {
     case LOAD_CATEGORY_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         isLoading: false
       };
     default:

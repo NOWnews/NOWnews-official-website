@@ -18,12 +18,12 @@ const initialState = {
 
 export function loadVideoList (categoryName, page = 1) {
   return (dispatch, getState, { axios }) => {
-    const { protocol, host } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_VIDEO_REQUEST });
     const getListUrl = (categoryName === 'instant') ? 'instant?type=VIDEO&' : `cat/${categoryName}/video?`;
     return Promise.all([
-      axios.get(`${protocol}://${host}/menus`),
-      axios.get(`${protocol}://${host}/${getListUrl}page=${page}&limit=9`)
+      axios.get(`${apiServ}/menus`),
+      axios.get(`${apiServ}/${getListUrl}page=${page}&limit=9`)
     ]).then(([menuSrc, videoSrc]) => {
       const { newsList, pageData, menu } = videoSrc.data;
       dispatch({

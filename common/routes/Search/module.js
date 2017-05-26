@@ -22,8 +22,8 @@ export function loadSearchList ({ keyword = '', page = 1, timeRange }) {
       return Promise.resolve();
     }
 
-    const { protocol, host } = getState().sourceRequest;
-    return axios.get(`${protocol}://${host}/search/${keyword}?page=${page}&timeRange=${timeRange}`)
+    const { apiServ } = getState().sourceRequest;
+    return axios.get(`${apiServ}/search/${keyword}?page=${page}&timeRange=${timeRange}`)
     .then(res => {
       dispatch({
         type: LOAD_SEARCH_SUCCESS,
@@ -64,7 +64,7 @@ export default function searchPage (state = initialState, action) {
     case LOAD_SEARCH_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         isLoading: false
       };
     case PASS_SEARCH_REQUEST:

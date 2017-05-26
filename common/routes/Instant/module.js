@@ -14,12 +14,12 @@ const initialState = {
 
 export function loadInstantList (page = 1) {
   return (dispatch, getState, { axios }) => {
-    const { protocol, host } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_INSTANT_REQUEST });
     return Promise.all([
-      axios.get(`${protocol}://${host}/instant?page=${page}&limit=12`),
-      axios.get(`${protocol}://${host}/instant?type=video&limit=4`),
-      axios.get(`${protocol}://${host}/specialtopics?limit=6`)
+      axios.get(`${apiServ}/instant?page=${page}&limit=12`),
+      axios.get(`${apiServ}/instant?type=video&limit=4`),
+      axios.get(`${apiServ}/specialtopics?limit=6`)
     ]).then(([instant, instantVideo, topic]) => {
       dispatch({
         type: LOAD_INSTANT_SUCCESS,
@@ -64,7 +64,7 @@ export default function instantPage (state = initialState, action) {
     case LOAD_INSTANT_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         isLoading: false
       };
     default:
