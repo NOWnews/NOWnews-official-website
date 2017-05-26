@@ -205,7 +205,7 @@ export default function currentNews (state = initialState, action) {
     case LOAD_PREVIEW_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         isLoading: false
       };
     case LOAD_PREVIEW_SUCCESS:

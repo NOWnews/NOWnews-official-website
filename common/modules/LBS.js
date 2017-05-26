@@ -78,7 +78,7 @@ export default function LBS (state = initialState, action) {
     case LOAD_LBS_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         isLoading: false,
         newsList: []
       };

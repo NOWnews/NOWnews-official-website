@@ -64,7 +64,7 @@ export default function instantPage (state = initialState, action) {
     case LOAD_INSTANT_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         isLoading: false
       };
     default:

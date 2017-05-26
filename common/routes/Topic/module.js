@@ -57,7 +57,7 @@ export default function topicPage (state = initialState, action) {
     case LOAD_TOPIC_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         isLoading: false,
         topics: []
       };
