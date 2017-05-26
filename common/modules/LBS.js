@@ -34,7 +34,7 @@ export function loadLBSList (page = 1) {
       const { latitude: lat, longitude: lng } = location.coords;
       const { protocol, host } = getState().sourceRequest;
       dispatch({ type: LOAD_LBS_REQUEST, payload: [lat, lng] });
-      return axios.get(`${protocol}://${host}/location?lat=${lat}&lng=${lng}&page=${page}`)
+      return axios.get(`${protocol}://${host}/location?limit=10&lat=${lat}&lng=${lng}&page=${page}`)
       .then(res => {
         dispatch({
           type: LOAD_LBS_SUCCESS,

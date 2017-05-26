@@ -15,7 +15,7 @@ export function loadInterest (cookie, userId) {
     const cookie = isomorphicCookie.load('NOW_personalize');
     const userId = isomorphicCookie.load('NOW_member');
     const { protocol, host } = getState().sourceRequest;
-    let queryString = `?limit=9&cookie=${cookie}`;
+    let queryString = `?limit=12&cookie=${cookie}`;
     if (userId) {
       queryString += `&userId=${userId}`;
     }
