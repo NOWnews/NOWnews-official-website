@@ -61,7 +61,7 @@ export const createServer = (config) => {
   app.get('*', (req, res) => {
     const store = configureStore({
       sourceRequest: {
-        protocol: 'http', // req.headers['x-forwarded-proto'] || req.protocol,
+        protocol: req.headers['x-forwarded-proto'] || req.protocol,
         host: webApiServer
       }
     });
