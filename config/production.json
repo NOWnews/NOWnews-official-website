@@ -1,6 +1,6 @@
 {
   "mode": "production",
-  "webApiServer": "http://107.167.181.83:10001",
+  "webApiServer": "https://devapi.nownews.com",
   "isProdMode": true,
   "server": {
     "webConcurrency": 1,
