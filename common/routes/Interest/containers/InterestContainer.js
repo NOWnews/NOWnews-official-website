@@ -29,7 +29,7 @@ const InterestContainer = ({ marquee, menus, interest }) => (
       {interest.isLoading && <Loading />}
       {!interest.isLoading && interest.newsList.length === 0 && <NotFound />}
       {!interest.isLoading && interest.newsList.length > 0 &&
-        <BlockItems12 hasAd={false} newsList={interest.newsList} />}
+        <BlockItems12 hasAd={false} newsList={interest.newsList.slice(0, 12)} />}
     </Container>
   </div>
 );
