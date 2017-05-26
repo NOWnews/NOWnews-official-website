@@ -11,13 +11,14 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 import { Ad300x250 } from '../Ad';
 const ContentForNews = ({ news, changeFontSize, interest, fontSize, topics, triplet }) => {
   const randomKey = news.sn % 3;
-
+  const width = (news.MainPhoto.width > 970) ? 970 : news.MainPhoto.width;
+  const imgApi = `https://imgapiv2.nownews.com/?w=${width}&q=70&src=`;
   return (
     <Container>
       <div className={css(styles.contentDiv)}>
         <span className={css(styles.contentImg)}
           style={{
-            backgroundImage: `url(${news.MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'})`,
+            backgroundImage: `url(${imgApi}${news.MainPhoto.url})`,
             fontSize
           }} />
       </div>
