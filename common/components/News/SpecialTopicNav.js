@@ -7,7 +7,7 @@ const SpecialTopicNav = ({ list }) => (
   <Margin10>
     <div className={css(styles.head)}>專題</div>
     {list.map(({ sn, title, url }, key) => (
-      <Link className={css(styles.link)} key={sn} to={url}>
+      <Link className={css(styles.link)} key={sn} to={url} target='_blank'>
         <div className={css(styles.item)}>{ title }</div>
       </Link>
     ))}
