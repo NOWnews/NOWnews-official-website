@@ -13,6 +13,7 @@ import { Ad300x250, Ad300x600 } from '../../../components/Ad';
 
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
+import { selectInterest, loadInterest } from '../../../modules/interest';
 import { selectHomePage, loadHomeList, switchTripletType } from '../module';
 
 const redial = {
@@ -24,12 +25,14 @@ const redial = {
 
 const mapStateToProps = state => ({
   homePage: selectHomePage(state),
+  interest: selectInterest(state),
   LBS: selectLBS(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
+  loadInterest,
   loadLBSList,
   switchTripletType
 });
@@ -46,10 +49,11 @@ class HomeContainer extends Component {
 
   componentDidMount () {
     this.props.loadLBSList();
+    this.props.loadInterest();
   }
 
   render () {
-    const { marquee, menus, homePage, LBS = {} } = this.props;
+    const { marquee, interest, menus, homePage, LBS = {} } = this.props;
     const {
       carousels, isLoading, specialChannels, specialTopics, tripletType,
       videos
@@ -70,7 +74,7 @@ class HomeContainer extends Component {
 
     const tripletObject = {
       instant: marquee,
-      interest: [],
+      interest: interest,
       lbs: LBS.newsList
     };
 
@@ -116,7 +120,6 @@ class HomeContainer extends Component {
               </div>
               <BlockItems newsList={tripletObject[tripletType].slice(0, 9)} />
               { tripletType === 'lbs' && !isLoading && LBS.location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
-              { tripletType === 'interest' && <h3>尚未開放，敬請期待！</h3>}
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
                   看更多{seeMoreTextDefined[tripletType]}新聞
@@ -262,7 +265,9 @@ const styles = StyleSheet.create({
 
 HomeContainer.propTypes = {
   homePage: PropTypes.object.isRequired,
+  interest: PropTypes.array.isRequired,
   LBS: PropTypes.object,
+  loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,

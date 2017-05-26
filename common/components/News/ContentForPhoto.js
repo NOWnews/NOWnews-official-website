@@ -11,8 +11,8 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, topics, triplet }) => {
-  let settings = {
+const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet }) => {
+  const settings = {
     axis: 'horizontal',
     autoPlay: true,
     emulateTouch: true,
@@ -21,7 +21,8 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
     showThumbs: true,
     showIndicators: false
   };
-  let photoList = [MainPhoto, ...Photos];
+  const photoList = [MainPhoto, ...Photos];
+  const randomKey = news.sn % 3;
   return (
     <Container>
       <div className={css(styles.contentDiv)}>
@@ -40,8 +41,8 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
           <Tags tags={news.Tags} />
           <Social />
           <ThermometerSm />
-          <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
-          <RelatedContent type='你可能會喜歡' list={news.relations} sn={news.sn} />
+          <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
+          <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} randomKey={randomKey} />
           <RecommendAds />
         </LeftSide>
         <RightSide>
@@ -91,6 +92,7 @@ const styles = StyleSheet.create({
 ContentForPhoto.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
+  interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
   topics: PropTypes.array.isRequired,
   triplet: PropTypes.object.isRequired

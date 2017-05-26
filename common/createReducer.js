@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import header from './modules/header';
+import interest from './modules/interest';
 import LBS from './modules/LBS';
 const initialState = {
   host: '',
@@ -13,6 +14,7 @@ const sourceRequest = (state = initialState, action) => state;
 export default function createReducer (asyncReducers) {
   return combineReducers({
     header,
+    interest,
     LBS,
     sourceRequest,
     ...asyncReducers

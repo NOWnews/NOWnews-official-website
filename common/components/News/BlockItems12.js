@@ -31,7 +31,7 @@ const BlockItems12 = ({ hasAd = true, newsList, page }) => {
       <div className='clearfix'>
         { items }
       </div>
-      <Pagination {...page} />
+      {page && <Pagination {...page} />}
     </div>
   );
 };
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 BlockItems12.propTypes = {
   hasAd: PropTypes.bool,
   newsList: PropTypes.array.isRequired,
-  page: PropTypes.object.isRequired
+  page: PropTypes.object
 };
 
 export default BlockItems12;

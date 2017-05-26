@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ListItem from '../../../components/News/ListItem';
 import { Margin10 } from '../../../components/Layout';
 
-const RelatedContent = ({ list, sn, type }) => {
+const RelatedContent = ({ list, randomKey, type }) => {
   let cloneList = [...list];
   let items = [];
   // 暫時廣告資料
@@ -15,7 +15,7 @@ const RelatedContent = ({ list, sn, type }) => {
   };
 
   // 將廣告有規律的安插在 array 裡面。
-  cloneList.splice(sn % 3, 0, fakeSponsorNews);
+  cloneList.splice(randomKey, 0, fakeSponsorNews);
   cloneList.map((news) => {
     const { sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl } = news;
     items.push(
@@ -39,7 +39,7 @@ const RelatedContent = ({ list, sn, type }) => {
 
 RelatedContent.propTypes = {
   list: PropTypes.array.isRequired,
-  sn: PropTypes.number.isRequired,
+  randomKey: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired
 };
 

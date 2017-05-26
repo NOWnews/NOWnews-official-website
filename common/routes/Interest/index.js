@@ -1,5 +1,4 @@
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
-import { injectAsyncReducer } from '../../store';
 
 export default function createRoutes (store) {
   return {
@@ -9,8 +8,6 @@ export default function createRoutes (store) {
         './containers/InterestContainer'
       ], (require) => {
         let InterestContainer = require('./containers/InterestContainer').default;
-        let interestReducer = require('./module').default;
-        injectAsyncReducer(store, 'interestPage', interestReducer);
         cb(null, InterestContainer);
       }, 'interestPage');
     }

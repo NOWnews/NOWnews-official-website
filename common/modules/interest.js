@@ -1,3 +1,4 @@
+import isomorphicCookie from 'isomorphic-cookie';
 export const LOAD_INTEREST_REQUEST = 'LOAD_INTEREST_REQUEST';
 export const LOAD_INTEREST_SUCCESS = 'LOAD_INTEREST_SUCCESS';
 export const LOAD_INTEREST_FAILURE = 'LOAD_INTEREST_FAILURE';
@@ -6,19 +7,24 @@ const initialState = {
   error: null,
   isLoading: false,
   lastFetched: null,
-  newsList: [],
-  pageData: {}
+  newsList: []
 };
 
-export function loadInterestList (page = 1) {
+export function loadInterest (cookie, userId) {
   return (dispatch, getState, { axios }) => {
+    const cookie = isomorphicCookie.load('NOW_personalize');
+    const userId = isomorphicCookie.load('NOW_member');
     const { protocol, host } = getState().sourceRequest;
+    let queryString = `?limit=12&cookie=${cookie}`;
+    if (userId) {
+      queryString += `&userId=${userId}`;
+    }
     dispatch({ type: LOAD_INTEREST_REQUEST });
-    return axios.get(`${protocol}://${host}/interests?page=${page}`)
+    return axios.get(`${protocol}://${host}/personalize${queryString}`)
     .then(res => {
       dispatch({
         type: LOAD_INTEREST_SUCCESS,
-        payload: res.data.carousels,
+        payload: res.data,
         meta: {
           lastFetched: Date.now()
         }
@@ -33,11 +39,12 @@ export function loadInterestList (page = 1) {
   };
 }
 
-export default function interestPage (state = initialState, action) {
+export default function interest (state = initialState, action) {
   switch (action.type) {
     case LOAD_INTEREST_REQUEST:
       return {
         ...state,
+        newsList: [],
         isLoading: true,
         error: null
       };
@@ -51,7 +58,7 @@ export default function interestPage (state = initialState, action) {
     case LOAD_INTEREST_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         isLoading: false,
         newsList: []
       };
@@ -60,4 +67,5 @@ export default function interestPage (state = initialState, action) {
   }
 }
 
-export const selectInterestPage = state => state.interestPage;
+export const selectInterestPage = state => state.interest;
+export const selectInterest = state => state.interest.newsList;
