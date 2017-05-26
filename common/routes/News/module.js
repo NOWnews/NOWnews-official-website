@@ -43,9 +43,7 @@ export const changeNewsTitle = (newsTitle) => {
 
 export const loadNews = (sn) => {
   return (dispatch, getState, { axios }) => {
-    const state = getState();
-    const { protocol, host } = state.sourceRequest;
-    const apiServ = `${protocol}://${host}`;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWS_REQUEST });
 
     // 將 scroll 置頂
@@ -91,9 +89,7 @@ export const loadNews = (sn) => {
 
 export const loadMoreNews = (sn) => {
   return (dispatch, getState, { axios }) => {
-    const state = getState();
-    const { protocol, host } = state.sourceRequest;
-    const apiServ = `${protocol}://${host}`;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWS_REQUEST });
 
     return Promise.all([
@@ -130,9 +126,9 @@ export const loadMoreNews = (sn) => {
 
 export const loadPreview = (redisKey) => {
   return (dispatch, getState, { axios }) => {
-    const { protocol, host } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_PREVIEW_REQUEST });
-    return axios.get(`${protocol}://${host}/previews/${redisKey}`)
+    return axios.get(`${apiServ}/previews/${redisKey}`)
       .then(res => {
         dispatch({
           type: LOAD_PREVIEW_SUCCESS,

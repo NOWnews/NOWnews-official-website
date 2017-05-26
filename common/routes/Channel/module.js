@@ -17,11 +17,11 @@ const initialState = {
 
 export function loadChannelData (sn, page = 1) {
   return (dispatch, getState, { axios }) => {
-    const { protocol, host } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_CHANNEL_REQUEST });
     return Promise.all([
-      axios.get(`${protocol}://${host}/specialchannels`),
-      axios.get(`${protocol}://${host}/specialchannels/${sn}?page=${page}`)
+      axios.get(`${apiServ}/specialchannels`),
+      axios.get(`${apiServ}/specialchannels/${sn}?page=${page}`)
     ]).then(([specialchannels, channelData]) => {
       let { pageData, ...selectedChannel } = channelData.data;
       dispatch({

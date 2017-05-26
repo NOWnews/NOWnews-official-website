@@ -12,9 +12,9 @@ const initialState = {
 
 export function loadTopics (page = 1) {
   return (dispatch, getState, { axios }) => {
-    const { protocol, host } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_TOPIC_REQUEST });
-    return axios.get(`${protocol}://${host}/specialtopics?limit=20&page=${page}`)
+    return axios.get(`${apiServ}/specialtopics?limit=20&page=${page}`)
     .then((result) => {
       let { specialTopics, pageData } = result.data;
       dispatch({

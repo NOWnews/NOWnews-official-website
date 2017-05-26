@@ -73,10 +73,10 @@ export function setVideoSource (videoSource) {
 }
 export function loadRelatedNews (sn) {
   return (dispatch, getState, { axios }) => {
-    const { protocol, host } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_RELATED_NEWS_REQUEST });
     const getListUrl = `cat/politics`;
-    return axios.get(`${protocol}://${host}/${getListUrl}`)
+    return axios.get(`${apiServ}/${getListUrl}`)
       .then((res) => {
         const newsList = res.data.newsList;
         dispatch({

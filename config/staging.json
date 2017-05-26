@@ -1,6 +1,6 @@
 {
   "mode": "staging",
-  "webApiServer": "devapi.nownews.com",
+  "webApiServer": "https://devapi.nownews.com",
   "isProdMode": true,
   "server": {
     "webConcurrency": 1,

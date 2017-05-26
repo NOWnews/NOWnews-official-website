@@ -27,8 +27,7 @@ const render = () => {
   const createRoutes = require('../common/routes/root').default;
   const routes = createRoutes(store);
   const track = () => {
-    const { sourceRequest: { protocol, host }, ...state } = store.getState();
-    const apiServ = `${protocol}://${host}`;
+    const { sourceRequest: { apiServ }, ...state } = store.getState();
     window.document.body.scrollTop = 0;
     pageview.init(apiServ, pathname, search, state);
   };

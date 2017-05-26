@@ -14,13 +14,13 @@ export function loadInterest (cookie, userId) {
   return (dispatch, getState, { axios }) => {
     const cookie = isomorphicCookie.load('NOW_personalize');
     const userId = isomorphicCookie.load('NOW_member');
-    const { protocol, host } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     let queryString = `?limit=12&cookie=${cookie}`;
     if (userId) {
       queryString += `&userId=${userId}`;
     }
     dispatch({ type: LOAD_INTEREST_REQUEST });
-    return axios.get(`${protocol}://${host}/personalize${queryString}`)
+    return axios.get(`${apiServ}/personalize${queryString}`)
     .then(res => {
       dispatch({
         type: LOAD_INTEREST_SUCCESS,
