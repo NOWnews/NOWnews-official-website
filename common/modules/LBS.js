@@ -69,7 +69,7 @@ export default function LBS (state = initialState, action) {
       const { newsList, mapInfo, pageData } = action.payload;
       return {
         ...state,
-        mapCity: mapInfo.city,
+        mapCity: mapInfo.city || mapInfo.area,
         newsList,
         pageData,
         lastFetched: action.meta.lastFetched,
