@@ -20,6 +20,17 @@ export default function createRoutes (store) {
             }
           },
           {
+            path: 'forgot',
+            getComponents (location, cb) {
+              require.ensure([
+                './containers/ForgotContainer'
+              ], (require) => {
+                const ForgotContainer = require('./containers/ForgotContainer').default;
+                cb(null, ForgotContainer);
+              }, 'fotgotPage');
+            }
+          },
+          {
             path: 'login',
             getComponents (location, cb) {
               require.ensure([

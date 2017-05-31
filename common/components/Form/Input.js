@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Field } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const renderField = ({ ...input }) => (
-  <input className={css(styles.input)} {...input} />
+const renderField = ({ input, meta, ...opts }) => (
+  // opts like type, placeholder
+  <input className={css(styles.input)} {...input} {...opts} />
 );
 
 export const Input = ({ ...input }) => {
@@ -28,5 +29,11 @@ const styles = StyleSheet.create({
     }
   }
 });
+
+renderField.propTypes = {
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired,
+  opts: PropTypes.object
+};
 
 export default Input;

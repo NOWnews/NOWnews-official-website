@@ -20,7 +20,7 @@ const LoginPage = ({ handleSubmit }) => {
         <p className={css(styles.error)}>● 您輸入的密碼錯誤</p>
         <form onSubmit={handleSubmit}>
           <div>
-            <Input name='email' component='input' type='text'
+            <Input name='email' component='input' type='email'
               placeholder='輸入帳號（E-mail）' />
           </div>
           <div>
