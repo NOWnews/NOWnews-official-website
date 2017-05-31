@@ -29,7 +29,7 @@ const ForgotPage = ({ handleSubmit }) => {
 
 const styles = StyleSheet.create({
   box: {
-    margin: '70px auto',
+    margin: '50px auto',
     textAlign: 'center',
     width: 300
   },
