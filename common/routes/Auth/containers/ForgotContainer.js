@@ -42,4 +42,4 @@ ForgotPage.propTypes = {
   handleSubmit: PropTypes.func
 };
 
-export default connect(mapStateToProps)(reduxForm({form: 'login'})(ForgotPage));
+export default connect(mapStateToProps)(reduxForm({form: 'forgot'})(ForgotPage));
