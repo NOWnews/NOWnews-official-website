@@ -13,12 +13,13 @@ const ContentForNews = ({ news, changeFontSize, interest, fontSize, topics, trip
   const randomKey = news.sn % 3;
   const width = (news.MainPhoto.width > 970) ? 970 : news.MainPhoto.width;
   const imgApi = `https://imgapiv2.nownews.com/?w=${width}&q=70&src=`;
+  const imgUrl = (news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
   return (
     <Container>
       <div className={css(styles.contentDiv)}>
         <span className={css(styles.contentImg)}
           style={{
-            backgroundImage: `url(${imgApi}${news.MainPhoto.url})`,
+            backgroundImage: `url(${imgUrl})`,
             fontSize
           }} />
       </div>
