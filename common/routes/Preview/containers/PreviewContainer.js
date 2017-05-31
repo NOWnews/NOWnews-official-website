@@ -26,7 +26,18 @@ const PreviewPage = ({ currentNews, marquee, menus, changeFontSize }) => {
   let contentProps = {
     news,
     changeFontSize,
-    fontSize
+    fontSize,
+    // preview page don't show this part, just give the default value.
+    interest: [],
+    topics: [],
+    triplet: {
+      list: {
+        instant: marquee,
+        interest: [],
+        lbs: []
+      },
+      triplet: ''
+    }
   };
   news.relations = [];
   return (
