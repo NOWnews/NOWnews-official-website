@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 
 renderField.propTypes = {
   input: PropTypes.object.isRequired,
-  label: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
   meta: PropTypes.object.isRequired,
   opts: PropTypes.object
 };

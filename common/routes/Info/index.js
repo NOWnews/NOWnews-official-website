@@ -36,6 +36,15 @@ export default function createRoutes (store) {
             }
           },
           {
+            path: 'member',
+            getComponents (location, cb) {
+              require.ensure(['./components/Member'], (require) => {
+                const page = require('./components/Member').default;
+                cb(null, page);
+              }, 'member');
+            }
+          },
+          {
             path: 'partner',
             getComponents (location, cb) {
               require.ensure(['./components/Partner'], (require) => {
