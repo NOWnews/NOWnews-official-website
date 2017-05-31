@@ -1,25 +1,17 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import {
-  Content, FontSize, RecommendAds, RelatedContent, Social,
-  Tags, Thermometer, ThermometerSm
-} from './NewsContent';
-import { SpecialTopicNav, TripletNav } from '../News';
-
+import { Content, FontSize, Tags } from './NewsContent';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
-import { Ad300x250 } from '../Ad';
-const ContentForNews = ({ news, changeFontSize, interest, fontSize, topics, triplet }) => {
-  const randomKey = news.sn % 3;
+const PreviewForNews = ({ news, changeFontSize, fontSize }) => {
   const width = (news.MainPhoto.width > 970) ? 970 : news.MainPhoto.width;
   const imgApi = `https://imgapiv2.nownews.com/?w=${width}&q=70&src=`;
-  const imgUrl = (news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
   return (
     <Container>
       <div className={css(styles.contentDiv)}>
         <span className={css(styles.contentImg)}
           style={{
-            backgroundImage: `url(${imgUrl})`,
+            backgroundImage: `url(${imgApi}${news.MainPhoto.url})`,
             fontSize
           }} />
       </div>
@@ -28,21 +20,9 @@ const ContentForNews = ({ news, changeFontSize, interest, fontSize, topics, trip
         <LeftSide>
           <Content content={news.content} fontSize={fontSize} />
           <Tags tags={news.Tags} />
-          <Social />
-          <ThermometerSm />
-          <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
-          <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} randomKey={randomKey} />
-          <RecommendAds />
         </LeftSide>
         <RightSide>
-          <Social />
           <FontSize changeFontSize={changeFontSize} />
-          <Ad300x250 />
-          <Thermometer />
-          <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
-          <Ad300x250 />
-          <SpecialTopicNav list={topics} />
-          <Ad300x250 />
         </RightSide>
       </Margin10>
     </Container>
@@ -64,13 +44,10 @@ const styles = StyleSheet.create({
   }
 });
 
-ContentForNews.propTypes = {
+PreviewForNews.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  interest: PropTypes.array.isRequired,
-  news: PropTypes.object.isRequired,
-  topics: PropTypes.array.isRequired,
-  triplet: PropTypes.object.isRequired
+  news: PropTypes.object.isRequired
 };
 
-export default ContentForNews;
+export default PreviewForNews;

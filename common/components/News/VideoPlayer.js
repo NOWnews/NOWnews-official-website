@@ -4,7 +4,7 @@ import 'videojs-youtube';
 
 class VideoPlayer extends Component {
   componentDidMount () {
-    let { src, poster } = this.props;
+    let { src, poster, width = 970 } = this.props;
     if (src.indexOf('facebook') > 0 || src.indexOf('streamable') > 0) {
       return;
     }
@@ -16,11 +16,13 @@ class VideoPlayer extends Component {
       type = 'video/youtube';
     }
 
+    const imgApi = `https://imgapiv2.nownews.com/?w=${width}&q=70&src=`;
+
     const options = {
       autoPlay: false,
       controls: true,
       techOrder: ['flash', 'html5', 'youtube'],
-      poster,
+      poster: `${imgApi}${poster}`,
       sources: [{ src, type }],
       flash: {
         swf: '/src/video-js.swf'

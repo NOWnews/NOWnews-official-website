@@ -50,12 +50,14 @@ class MainVideoPlay extends Component {
                 to={item.parseUrl}>
                 <div className={css(styles.newsBlock)}>
                   <img src={item.MainPhoto.thumbnail} className={css(styles.img)} />
-                  <p className={css(styles.cat)}>{item.MainMenu.name}</p>
-                  <p className={css(styles.title)}>{item.title}</p>
-                  <p className={css(styles.date)}>
+                  <div className={css(styles.bottom)}>
+                    <div className={css(styles.cat)}>{item.MainMenu.name}</div>
+                    <div className={css(styles.title)}>{item.title}</div>
                     <img src='/icons/whiteClock.png' />
-                    {moment(item.formatStartedAt).format('YYYY.MM.DD')}
-                  </p>
+                    <span className={css(styles.date)}>
+                      {moment(item.formatStartedAt).format('YYYY/MM/DD')}
+                    </span>
+                  </div>
                 </div>
               </Link>
             );
@@ -74,9 +76,12 @@ const styles = StyleSheet.create({
     padding: '0 2rem',
     overflow: 'hidden'
   },
+  bottom: {
+    marginLeft: 10
+  },
   headline: {
     fontSize: 22,
-    fontWeight: 100,
+    fontWeight: 400,
     color: '#FFFFFF',
     padding: '1rem',
     paddingLeft: 0,
@@ -89,47 +94,47 @@ const styles = StyleSheet.create({
     verticalAlign: 'top'
   },
   img: {
-    width: 200,
-    height: 120
+    width: 240,
+    height: 135
   },
   newsBlocks: {
     overflow: 'hidden',
     whiteSpace: 'nowrap'
   },
   cat: {
-    color: '#70aaf5',
+    color: '#1886FB',
     margin: 0,
-    paddingLeft: 10,
-    fontSize: 15,
-    fontWeight: 'bold'
+    fontSize: 13
   },
   title: {
-    color: '#f5f5f5',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 500,
     margin: 0,
-    paddingLeft: 10,
+    marginBottom: 5,
     whiteSpace: 'normal',
     textOverflow: 'ellipsis',
     wordWrap: 'break-word',
     overflow: 'hidden',
-    maxHeight: '3.6em',
-    lineHeight: '1.8em'
+    maxHeight: '3.6em'
   },
   icon: {
     marginRight: 10
   },
   date: {
-    color: '#f5f5f5',
+    color: '#888',
+    fontSize: '13px',
+    marginLeft: 5,
     marginTop: 5,
-    paddingLeft: 10
+    position: 'relative',
+    top: '-2px'
   },
   preNextBlock: {
     width: 100,
     marginTop: 20,
     marginLeft: 'auto',
     marginRight: 'auto',
-    paddingBottom: 150
+    paddingBottom: 115
   },
   leftArrow: {
     float: 'left',

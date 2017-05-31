@@ -5,7 +5,7 @@ import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header'
 import { loadPreview, selectCurrentNews } from '../../News/module';
 import { Header } from '../../../components/Header';
 import { Loading } from '../../../components/Layout';
-import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
+import { Head, PreviewForNews, PreviewForPhoto, PreviewForVideo } from '../../../components/News';
 
 const redial = {
   fetch: ({ dispatch, params: { redisKey } }) => Promise.all([
@@ -22,23 +22,22 @@ const mapStateToProps = state => ({
 
 const PreviewPage = ({ currentNews, marquee, menus, changeFontSize }) => {
   let {isLoading, data, fontSize} = currentNews;
-  let [{ formatStartedAt, newsBy, MainMenu, title, type, ...news }] = data;
+  let [{ createdAt, startedAt, newsBy, MainMenu, title, type, ...news }] = data;
   let contentProps = {
     news,
     changeFontSize,
     fontSize
   };
-  news.relations = [];
   return (
     <div>
       <Header menus={menus} marquee={marquee} />
       {isLoading && <Loading />}
       {!isLoading &&
         <div>
-          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
-          { type === 'NEWS' && <ContentForNews {...contentProps} /> }
-          { type === 'PHOTO' && <ContentForPhoto {...contentProps} /> }
-          { type === 'VIDEO' && <ContentForVideo {...contentProps} /> }
+          <Head newsBy={newsBy} mainMenu={MainMenu} time={startedAt || createdAt} title={title} />
+          { type === 'NEWS' && <PreviewForNews {...contentProps} /> }
+          { type === 'PHOTO' && <PreviewForPhoto {...contentProps} /> }
+          { type === 'VIDEO' && <PreviewForVideo {...contentProps} /> }
         </div>}
     </div>
   );

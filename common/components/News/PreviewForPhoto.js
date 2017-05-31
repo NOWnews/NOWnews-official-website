@@ -1,17 +1,10 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
-import {
-  Content, FontSize, RecommendAds, RelatedContent, Social,
-  Tags, Thermometer, ThermometerSm
-} from './NewsContent';
-import { SpecialTopicNav, TripletNav } from '../News';
-
+import { Content, FontSize, Tags } from './NewsContent';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
-import { Ad300x250 } from '../Ad';
-
-const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet }) => {
+const PreviewForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize }) => {
   const settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -22,7 +15,6 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
     showIndicators: false
   };
   const photoList = [MainPhoto, ...Photos];
-  const randomKey = news.sn % 3;
   const imgApi = 'https://imgapiv2.nownews.com/?w=970&q=70&src=';
   return (
     <Container>
@@ -40,21 +32,9 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
         <LeftSide>
           <Content content={news.content} fontSize={fontSize} />
           <Tags tags={news.Tags} />
-          <Social />
-          <ThermometerSm />
-          <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
-          <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} randomKey={randomKey} />
-          <RecommendAds />
         </LeftSide>
         <RightSide>
-          <Social />
           <FontSize changeFontSize={changeFontSize} />
-          <Ad300x250 />
-          <Thermometer />
-          <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
-          <Ad300x250 />
-          <SpecialTopicNav list={[topics]} />
-          <Ad300x250 />
         </RightSide>
       </Margin10>
     </Container>
@@ -90,13 +70,10 @@ const styles = StyleSheet.create({
   }
 });
 
-ContentForPhoto.propTypes = {
+PreviewForPhoto.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  interest: PropTypes.array.isRequired,
-  news: PropTypes.object.isRequired,
-  topics: PropTypes.array.isRequired,
-  triplet: PropTypes.object.isRequired
+  news: PropTypes.object.isRequired
 };
 
-export default ContentForPhoto;
+export default PreviewForPhoto;

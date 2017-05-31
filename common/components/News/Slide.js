@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 
 export const Slide = ({ list }) => {
-  const imgApi = 'http://imgapiv2.nownews.com/?w=670&q=70&src=';
+  const imgApi = 'https://imgapiv2.nownews.com/?w=600&q=70&src=';
   const settings = {
     axis: 'horizontal',
     autoPlay: true,
