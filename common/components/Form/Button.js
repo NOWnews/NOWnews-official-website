@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     border: 0,
     borderRadius: 5,
     color: '#ffffff',
+    cursor: 'pointer',
     fontSize: 17,
     fontWeight: 'bold',
     margin: 10,

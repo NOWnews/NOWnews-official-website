@@ -20,9 +20,9 @@ const SignupPage = ({ handleSubmit }) => {
           <InputWithLabel name='name' component='input' type='text' label='姓名' />
           <InputWithLabel name='email' component='input' type='email' label='帳號 / E-mail' />
           <div>
-            <label className={css(styles.label)}>密碼</label><br />
+            <label className={css(styles.label)} htmlFor='password'>密碼</label><br />
             <div className={css(styles.pwdBox)}>
-              <Input name='password' component='input' type='password' placeholder='輸入密碼' />
+              <Input id='password' name='password' component='input' type='password' placeholder='輸入密碼' />
             </div>
             <div className={css(styles.pwdBox)}>
               <Input name='confirmPassword' component='input' type='password' placeholder='確認密碼' />
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   },
   pwdBox: {
     display: 'inline-block',
+    marginBottom: 15,
     marginRight: 20,
     width: '40%'
   },

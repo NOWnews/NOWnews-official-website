@@ -2,13 +2,16 @@ import React, { PropTypes } from 'react';
 import { Field } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const renderField = ({ input, label, meta, ...opts }) => (
+const renderField = ({ input: { name, ...input }, label, meta, ...opts }) => {
   // opts like type, placeholder
-  <div>
-    <label className={css(styles.label)}>{label}</label>
-    <input className={css(styles.input)} {...input} {...opts} />
-  </div>
-);
+  const inputProps = {id: name, name, ...input, ...opts};
+  return (
+    <div>
+      <label className={css(styles.label)} htmlFor={name}>{label}</label>
+      <input className={css(styles.input)} {...inputProps} />
+    </div>
+  );
+};
 
 export const Input = ({ ...input }) => {
   return (
