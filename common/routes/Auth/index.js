@@ -40,6 +40,17 @@ export default function createRoutes (store) {
                 cb(null, LoginContainer);
               }, 'loginPage');
             }
+          },
+          {
+            path: 'member',
+            getComponents (location, cb) {
+              require.ensure([
+                './containers/MemberContainer'
+              ], (require) => {
+                const MemberContainer = require('./containers/MemberContainer').default;
+                cb(null, MemberContainer);
+              }, 'memberPage');
+            }
           }
         ]);
       });
