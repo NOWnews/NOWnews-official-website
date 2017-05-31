@@ -25,6 +25,6 @@ const Basic = ({ children }) => (
 );
 
 Basic.propTypes = {
-  children: PropTypes.shape().isRequired
+  children: PropTypes.any.isRequired
 };
 export default Basic;
