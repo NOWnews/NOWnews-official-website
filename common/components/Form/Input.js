@@ -18,13 +18,15 @@ const styles = StyleSheet.create({
     background: '#ebebeb',
     border: 0,
     borderRadius: 5,
-    fontSize: 15,
-    margin: 8,
+    fontSize: 17,
+    fontWeight: 'bold',
+    margin: '6px 8px',
     outline: 'none',
     padding: 15,
     width: '100%',
     '::placeholder': {
       color: 'black',
+      fontSize: 14,
       fontWeight: 500
     }
   }
