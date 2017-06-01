@@ -26,8 +26,8 @@ class TimeAndKeywordArea extends Component {
       { value: 'lastMonth', text: '過去一個月' },
       { value: 'lastYear', text: '過去一年' }
     ];
-    // tempData
-    const { hotKeywords = ['不要不要', '藍軍教父', '谷阿莫'], timeRange } = this.props;
+
+    const { hotKeywords, keyword, timeRange } = this.props;
 
     const timeOptions = definedTimeOptions.map(({ value, text }) => {
       const className = css(
@@ -42,6 +42,21 @@ class TimeAndKeywordArea extends Component {
         </li>
       );
     });
+
+    const keywordDoms = hotKeywords.map((word, key) => {
+      const className = css(
+        styles.groupItem,
+        (word === keyword) ? styles.active : ''
+      );
+      return (
+        <li key={key} className={className}
+          onClick={() => { this.setKeyword(word); }}>
+          <i className={css(styles.sequare)}>■ </i>
+          {word}
+        </li>
+      );
+    });
+
     return (
       <div className={`left ${css(styles.leftArea)}`}>
         <label className={css(styles.groupTitle)}>時間搜尋</label>
@@ -53,13 +68,7 @@ class TimeAndKeywordArea extends Component {
         <label className={css(styles.groupTitle)}>熱門搜尋</label>
         <hr className={css(styles.dottedLine)} />
         <ul className={css(styles.groupBox)}>
-          {hotKeywords.map((word, key) =>
-            <li key={key} className={css(styles.groupItem)}
-              onClick={() => { this.setKeyword(word); }}>
-              <i className={css(styles.sequare)}>■ </i>
-              {word}
-            </li>
-        )}
+          { keywordDoms }
         </ul>
       </div>
     );

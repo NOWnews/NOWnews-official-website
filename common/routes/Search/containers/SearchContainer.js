@@ -64,7 +64,7 @@ class SearchPage extends Component {
         </Margin10>
         <Margin10 className='clearfix'>
           <TimeAndKeywordArea loadSearchList={loadSearchList}
-            hotKeywords={hotKeywords} keyword={keyword} timeRange={timeRange} />
+            hotKeywords={hotKeywords.slice(0, 7)} keyword={keyword} timeRange={timeRange} />
           <div className='left'>
             {isLoading && <Loading /> }
             {!isLoading && list.length === 0 && <NotFound />}
