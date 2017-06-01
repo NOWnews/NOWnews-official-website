@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import header from './modules/header';
 import interest from './modules/interest';
 import LBS from './modules/LBS';
@@ -13,6 +14,7 @@ const sourceRequest = (state = initialState, action) => state;
 // added async
 export default function createReducer (asyncReducers) {
   return combineReducers({
+    form: formReducer,
     header,
     interest,
     LBS,
