@@ -36,15 +36,6 @@ export default function createRoutes (store) {
             }
           },
           {
-            path: 'member',
-            getComponents (location, cb) {
-              require.ensure(['./components/Member'], (require) => {
-                const page = require('./components/Member').default;
-                cb(null, page);
-              }, 'member');
-            }
-          },
-          {
             path: 'partner',
             getComponents (location, cb) {
               require.ensure(['./components/Partner'], (require) => {
@@ -60,6 +51,15 @@ export default function createRoutes (store) {
                 const page = require('./components/Privacy').default;
                 cb(null, page);
               }, 'privacy');
+            }
+          },
+          {
+            path: 'terms',
+            getComponents (location, cb) {
+              require.ensure(['./components/Terms'], (require) => {
+                const page = require('./components/Terms').default;
+                cb(null, page);
+              }, 'terms');
             }
           }
         ]);

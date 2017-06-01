@@ -22,7 +22,7 @@ const SignupPage = ({ handleSubmit }) => {
           <div className={css(styles.submitBox)}>
             <div>
               <span className={css(styles.agreeWord)}>註冊即代表同意</span>
-              <SmLinkTo url='/info/member' text='使用者條款' isExternal />
+              <SmLinkTo url='/info/terms' text='使用者條款' isExternal />
             </div>
             <Button text='登入' />
           </div>
