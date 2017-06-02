@@ -10,6 +10,7 @@ export default function createRoutes (store) {
       getChildRoutes (location, cb) {
         require.ensure([], (require) => {
           cb(null, [
+            require('./Author').default(store),
             require('./Category').default(store),
             require('./Channel').default(store),
             require('./Interest').default(store),
