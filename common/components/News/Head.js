@@ -4,14 +4,16 @@ import FontAwesome from 'react-fontawesome';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Head = ({ newsBy = '', mainMenu, time, title }) => (
+const Head = ({ newsBy = '', mainMenu, time, title, authorId }) => (
   <div className={css(styles.box)}>
     <div className={css(styles.content)}>
       <Link className={css(styles.category)}>{ mainMenu.name || '不分類' }</Link>
       <h1 className={css(styles.title)}>{ title }</h1>
       <div className={css(styles.authorArea)}>
-        <FontAwesome name='user-circle' size='2x' style={{ position: 'relative', top: '4px' }} />
-        <span className={css(styles.author)}>{ newsBy }</span>
+        <Link to={`/author/${authorId}`} className={css(styles.authorArea)}>
+          <FontAwesome name='user-circle' size='2x' style={{ position: 'relative', top: '4px' }} />
+          <span className={css(styles.author)}>{ newsBy }</span>
+        </Link>
         <img className={css(styles.timeIcon)}src='/icons/grayClock.png' />
         <span>{moment(time).format('YYYY/MM/DD HH:MM')}</span>
       </div>
@@ -25,7 +27,8 @@ const styles = StyleSheet.create({
     marginRight: 15
   },
   authorArea: {
-    color: '#747576'
+    color: '#747576',
+    textDecoration: 'none'
   },
   box: {
     backgroundColor: '#F1F2F3'
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
 });
 
 Head.propTypes = {
+  authorId: PropTypes.string.isRequired,
   newsBy: PropTypes.string.isRequired,
   mainMenu: PropTypes.object.isRequired,
   time: PropTypes.string.isRequired,

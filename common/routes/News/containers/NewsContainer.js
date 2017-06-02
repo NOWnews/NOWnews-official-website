@@ -101,7 +101,7 @@ class NewsContainer extends Component {
       mapCity: LBS.mapCity
     };
     const items = data.map((item, i) => {
-      const { formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
+      const { Author, formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
       const contentProps = {
         changeFontSize,
         interest,
@@ -118,7 +118,7 @@ class NewsContainer extends Component {
       const Content = ContentTypeObject[type];
       return (
         <div key={news.sn}>
-          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} />
+          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} authorId={Author} />
           {<Content {...contentProps} />}
           {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
         </div>
