@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
+import { selectLocal } from '../../../modules/sourceRequest';
 
 import { Header } from '../../../components/Header';
 import { BlockItems12, TripletHead } from '../../../components/News';
@@ -18,6 +19,7 @@ const redial = {
 
 const mapStateToProps = state => ({
   LBS: selectLBS(state),
+  local: selectLocal(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
@@ -33,7 +35,7 @@ class LBSContainer extends Component {
   }
 
   render () {
-    const { marquee, menus, LBS } = this.props;
+    const { marquee, menus, LBS, local } = this.props;
     const { isLoading, location, mapCity, newsList, pageData } = LBS;
     return (
       <div>
@@ -44,7 +46,7 @@ class LBSContainer extends Component {
           {!isLoading && location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
           {!isLoading && newsList.length === 0 && <NotFound />}
           {!isLoading && newsList.length > 0 &&
-            <BlockItems12 newsList={newsList} page={pageData} />
+            <BlockItems12 newsList={newsList} page={pageData} local={local} />
           }
         </Container>
       </div>
@@ -53,9 +55,10 @@ class LBSContainer extends Component {
 }
 
 LBSContainer.propTypes = {
+  loadLBSList: PropTypes.func.isRequired,
+  local: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   marquee: PropTypes.array.isRequired,
-  loadLBSList: PropTypes.func.isRequired,
   LBS: PropTypes.object.isRequired
 };
 

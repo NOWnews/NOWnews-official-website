@@ -17,7 +17,7 @@ class BlockItems9 extends Component {
   }
 
   render () {
-    const { newsList, page } = this.props;
+    const { local, newsList, page } = this.props;
     const items = newsList.map(({ sn, MainPhoto, shortTitle, startedAt }, index) => {
       return (
         <div key={sn} className={css(styles.blockItem)} onClick={() => { this.select(index); }}>
@@ -39,7 +39,7 @@ class BlockItems9 extends Component {
         <div className='clearfix'>
           { items }
         </div>
-        <Pagination {...page} />
+        <Pagination {...page} {...local} />
       </div>
     );
   }
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
 });
 
 BlockItems9.propTypes = {
+  local: PropTypes.object,
   newsList: PropTypes.array.isRequired,
   page: PropTypes.object.isRequired,
   selectVideo: PropTypes.func.isRequired

@@ -1,38 +1,39 @@
 import React, { PropTypes } from 'react';
+import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-export const Pagination = ({ currentPage = 1, hasPrev = false, hasNext = false, nextPage = 0, prevPage = 0, totalPage = 1 }) => {
+export const Pagination = ({ path: pathname, query, ...pageData }) => {
+  const pages = [];
+  const { currentPage = 1, hasPrev = false, hasNext = false, nextPage = 0, prevPage = 0, totalPage = 1 } = pageData;
+  // 當在倒數幾頁的時候就不能使用最大值 10 筆，要依據 totalPage 除 10 的餘數
+  const totalDeciles = Math.floor(totalPage / 10);
+  const currentDeciles = Math.floor(currentPage / 10);
+
   let index = 1;
   let max = 10;
-  let pages = [];
 
-  // 當在倒數幾頁的時候就不能使用最大值 10 筆，要依據 totalPage 除 10 的餘數
-  let totalDeciles = Math.floor(totalPage / 10);
-  let currentDeciles = Math.floor(currentPage / 10);
   if (totalDeciles === currentDeciles) {
     max = totalPage % 10;
   }
 
   for (index; index <= max; index++) {
-    let page = (10 * currentDeciles) + index;
-    let url = `?page=${page}`;
-
-    if (currentPage === index) {
-      pages.push(<a key={page} className={css(styles.page, styles.activePage)} href={url}>{page}</a>);
+    const page = (10 * currentDeciles) + index;
+    if (currentPage === page) {
+      pages.push(<Link key={page} className={css(styles.page, styles.activePage)} to={{pathname, query}}>{page}</Link>);
     } else {
-      pages.push(<a key={page} className={css(styles.page)} href={url}>{page}</a>);
+      pages.push(<Link key={page} className={css(styles.page)} to={{pathname, query: {...query, page}}}>{page}</Link>);
     }
   }
 
   return (
     <div className={css(styles.box)}>
       { hasPrev
-        ? <a className={css(styles.prevAndNext)} href={`?page=${prevPage}`}>上一頁</a>
-        : <a className={css(styles.prevAndNext, styles.disabledPrevAndNext)}>上一頁</a>}
+        ? <Link className={css(styles.prevAndNext)} to={{pathname, query: {...query, page: prevPage}}}>上一頁</Link>
+        : <Link className={css(styles.prevAndNext, styles.disabledPrevAndNext)}>上一頁</Link>}
       { pages }
       { hasNext
-        ? <a className={css(styles.prevAndNext)} href={`?page=${nextPage}`}>下一頁</a>
-        : <a className={css(styles.prevAndNext, styles.disabledPrevAndNext)}>下一頁</a>}
+        ? <Link className={css(styles.prevAndNext)} to={{pathname, query: {...query, page: nextPage}}}>下一頁</Link>
+        : <Link className={css(styles.prevAndNext, styles.disabledPrevAndNext)}>下一頁</Link>}
     </div>
   );
 };
@@ -65,6 +66,8 @@ const styles = StyleSheet.create({
 });
 
 Pagination.propTypes = {
+  path: PropTypes.string,
+  query: PropTypes.object,
   currentPage: PropTypes.number,
   hasNext: PropTypes.bool,
   hasPrev: PropTypes.bool,

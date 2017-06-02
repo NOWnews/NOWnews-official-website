@@ -23,6 +23,6 @@ export default function sourceRequest (state = initialState, action) {
   }
 }
 
-export const selcetLocal = (state) => {
+export const selectLocal = (state) => {
   return state.sourceRequest.local;
 };
