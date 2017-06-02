@@ -56,7 +56,6 @@ export const loadNews = (sn) => {
       axios.get(`${apiServ}/news/${sn}/nextandprev`),
       axios.get(`${apiServ}/news/${sn}/relations`),
       axios.get(`${apiServ}/specialtopics?limit=6`)
-
     ]).then(([news, nextandprev, relations, topic]) => {
       let { next, prev } = nextandprev.data;
       let result = news.data;
