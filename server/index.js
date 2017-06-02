@@ -27,6 +27,7 @@ import configLib from 'config';
 const defaultServerConfig = configLib.get('server');
 const isProdMode = configLib.get('isProdMode');
 const webApiServer = configLib.get('webApiServer');
+const memberApiServer = configLib.get('memberApiServer');
 
 export const createServer = (config) => {
   const __PROD__ = isProdMode;
@@ -66,7 +67,8 @@ export const createServer = (config) => {
         local: {
           path: url.parse(req.url).pathname,
           query: req.query
-        }
+        },
+        memberServ: memberApiServer
       }
     });
     const routes = createRoutes(store);

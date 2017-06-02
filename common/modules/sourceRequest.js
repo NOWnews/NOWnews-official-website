@@ -2,7 +2,8 @@ export const SET_LOCAL = 'SET_LOCAL';
 
 const initialState = {
   apiServ: null,
-  local: {}
+  local: {},
+  memberServ: null
 };
 
 export function setLocal (path, query) {
