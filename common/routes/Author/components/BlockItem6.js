@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import BlockItem from '../../../components/News/BlockItem';
-// import Pagination from '../../../components';
 
 const BlockItems6 = ({ newsList, page }) => {
   let items = [];
