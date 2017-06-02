@@ -6,13 +6,38 @@ import FontAwesome from 'react-fontawesome';
 const AuthorInfo = ({ authorData }) => {
   return (
     <div className={`clearfix ${css(styles.authorInfo)}`}>
-      <FontAwesome name='user-circle-o' size='4x' />
-      <h2>{authorData.name}</h2>
+      <div className={css(styles.imgbox)}>
+        { authorData.Avatar ? <img className={css(styles.avatar)} src={authorData.Avatar} />
+          : <FontAwesome name='user-circle-o' style={{ color: 'gray', fontSize: '8em' }} />
+        }
+      </div>
+
+      <p className={css(styles.name)}>{authorData.name}</p>
+
+      {/* <hr className={css(styles.horiLine)} />
+      <p>{ authorData.desc ? authorData.desc : '目前沒有介紹' }</p>
+      <hr className={css(styles.horiLine)} /> */}
     </div>
   );
 };
 
 const styles = StyleSheet.create({
+  horiLine: {
+    borderTop: '3px dashed #8c8b8b'
+  },
+  name: {
+    fontSize: '1.5em',
+    textAlign: 'center'
+  },
+  imgbox: {
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: 10
+  },
+  avatar: {
+    minWidth: 150,
+    maxWidth: 200
+  },
   authorInfo: {
     float: 'left',
     height: '100%',

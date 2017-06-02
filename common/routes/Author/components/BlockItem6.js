@@ -26,7 +26,6 @@ const BlockItems6 = ({ newsList, page }) => {
       <div className='clearfix'>
         { items }
       </div>
-      {/* {page && <Pagination {...page} />} */}
     </div>
   );
 };

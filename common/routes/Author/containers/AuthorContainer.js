@@ -1,22 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
-// import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { selectAuthorPage, loadAuthorData } from '../module';
-
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
-
 import { Header } from '../../../components/Header';
-// import ListItem from '../../../components/News/ListItem';
-import { Container } from '../../../components/Layout';
-// import Pagination from '../../../components/Pagination';
-
-// import { TimeAndKeywordArea } from '../components';
+import { Container, Margin10, Loading } from '../../../components/Layout';
+import Pagination from '../../../components/Pagination';
 import { BlockItem6, AuthorInfo } from '../components';
 const redial = {
   fetch: ({ dispatch, params: { authorId }, query: { page } }) => Promise.all([
-    dispatch(loadAuthorData(authorId)),
+    dispatch(loadAuthorData(authorId, page)),
     dispatch(loadHeader())
   ])
 };
@@ -28,20 +22,20 @@ const mapStateToProps = state => ({
 });
 
 class AuthorPage extends Component {
-
   render () {
     let { menus, authorPage, marquee } = this.props;
     let { isLoading, newsList } = authorPage;
-    // let { isLoading, list, hotKeywords, pageData, keyword, timeRange } = searchPage;
-
     return (
       <Container>
         <Header menus={menus} marquee={marquee} />
-        <div className={css(styles.box)}>
-          <AuthorInfo authorData={{name: 'jason'}} />
-          { isLoading && <h1>true</h1> }
-          <BlockItem6 newsList={newsList} />
-        </div>
+        <Margin10>
+          <div className={css(styles.box)}>
+            <AuthorInfo authorData={newsList[0].Author} />
+            {isLoading && <Loading /> }
+            <BlockItem6 newsList={newsList} />
+          </div>
+          <Pagination {...authorPage.pageData} />
+        </Margin10>
       </Container>
     );
   }
@@ -54,7 +48,6 @@ const styles = StyleSheet.create({
 });
 
 AuthorPage.propTypes = {
-  // loadAuthorData: PropTypes.func.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
   authorPage: PropTypes.object.isRequired
