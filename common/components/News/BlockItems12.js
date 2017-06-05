@@ -4,7 +4,7 @@ import BlockItem from './BlockItem';
 import { Ad300x250 } from '../Ad';
 import Pagination from '../Pagination';
 
-const BlockItems12 = ({ hasAd = true, newsList, page }) => {
+const BlockItems12 = ({ hasAd = true, newsList, page, local }) => {
   let items = [];
 
   newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }, key) => {
@@ -31,7 +31,7 @@ const BlockItems12 = ({ hasAd = true, newsList, page }) => {
       <div className='clearfix'>
         { items }
       </div>
-      {page && <Pagination {...page} />}
+      {page && <Pagination {...page} {...local} />}
     </div>
   );
 };
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
 });
 
 BlockItems12.propTypes = {
+  local: PropTypes.object,
   hasAd: PropTypes.bool,
   newsList: PropTypes.array.isRequired,
   page: PropTypes.object

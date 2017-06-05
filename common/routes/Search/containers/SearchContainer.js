@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { selectSearchPage, loadSearchList } from '../module';
-
+import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 
 import { Header } from '../../../components/Header';
@@ -23,6 +23,7 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
+  local: selectLocal(state),
   searchPage: selectSearchPage(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
@@ -39,14 +40,17 @@ class SearchPage extends Component {
   }
 
   submitForm () {
-    let { timeRange, pageData: { currentPage: page } } = this.props.searchPage;
-    let keyword = this.searchInput.value;
+    const { timeRange } = this.props.searchPage;
+    const page = 1;
+    const keyword = this.searchInput.value;
+    const url = `/search?keyword=${keyword}&timeRange=${timeRange}&page=${page}`;
+    window.history.pushState(null, null, url);
     this.props.loadSearchList({ keyword, page, timeRange });
   }
 
   render () {
-    let { loadSearchList, menus, searchPage, marquee } = this.props;
-    let { isLoading, list, hotKeywords, pageData, keyword, timeRange } = searchPage;
+    const { loadSearchList, local, menus, searchPage, marquee } = this.props;
+    const { isLoading, list, hotKeywords, pageData, keyword, timeRange } = searchPage;
 
     return (
       <Container>
@@ -83,7 +87,7 @@ class SearchPage extends Component {
             }
           </div>
         </Margin10>
-        <Pagination {...pageData} />
+        <Pagination {...pageData} {...local} />
       </Container>
     );
   }
@@ -112,6 +116,7 @@ const styles = StyleSheet.create({
 
 SearchPage.propTypes = {
   loadSearchList: PropTypes.func.isRequired,
+  local: PropTypes.object.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
   searchPage: PropTypes.object.isRequired

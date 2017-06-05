@@ -2,6 +2,7 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
+import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
@@ -17,12 +18,13 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
+  local: selectLocal(state),
   categoryPage: selectCategoryPage(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const CategoryPage = ({ categoryPage, menus, marquee }) => {
+const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
   const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
   const slideData = newsList.slice(0, 5);
   const blockData = newsList.slice(5, 15);
@@ -44,7 +46,7 @@ const CategoryPage = ({ categoryPage, menus, marquee }) => {
             <Slide list={slideData} />
             <HotNews newsList={hotNewsList.slice(0, 6)} />
           </Margin10>
-          <BlockItems12 newsList={blockData} page={pageData} />
+          <BlockItems12 newsList={blockData} page={pageData} local={local} />
         </div>
       }
     </Container>
@@ -52,6 +54,7 @@ const CategoryPage = ({ categoryPage, menus, marquee }) => {
 };
 
 CategoryPage.propTypes = {
+  local: PropTypes.object.isRequired,
   categoryPage: PropTypes.object.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired

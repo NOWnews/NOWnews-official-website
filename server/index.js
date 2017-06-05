@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import compression from 'compression';
 import hpp from 'hpp';
 import throng from 'throng';
+import url from 'url';
 
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -61,7 +62,11 @@ export const createServer = (config) => {
   app.get('*', (req, res) => {
     const store = configureStore({
       sourceRequest: {
-        apiServ: webApiServer
+        apiServ: webApiServer,
+        local: {
+          path: url.parse(req.url).pathname,
+          query: req.query
+        }
       }
     });
     const routes = createRoutes(store);

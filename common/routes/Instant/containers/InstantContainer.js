@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { selectInstantPage, loadInstantList } from '../module';
-
+import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 
 import { Header } from '../../../components/Header';
@@ -19,12 +19,13 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
+  local: selectLocal(state),
   instantPage: selectInstantPage(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const InstantContainer = ({ marquee, menus, instantPage }) => (
+const InstantContainer = ({ local, marquee, menus, instantPage }) => (
   <div>
     <Header menus={menus} marquee={marquee} />
     <TripletHead active='instant' />
@@ -48,7 +49,7 @@ const InstantContainer = ({ marquee, menus, instantPage }) => (
             </div>
           }
           <Margin10>
-            <Pagination {...instantPage.pageData} />
+            <Pagination {...instantPage.pageData} {...local} />
           </Margin10>
         </LeftSide>
         <RightSide>
@@ -63,6 +64,7 @@ const InstantContainer = ({ marquee, menus, instantPage }) => (
 );
 
 InstantContainer.propTypes = {
+  local: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   marquee: PropTypes.array.isRequired,
   instantPage: PropTypes.object.isRequired

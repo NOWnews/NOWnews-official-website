@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectTopicPage, loadTopics } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
+import { selectLocal } from '../../../modules/sourceRequest';
 import { Header } from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { Slide } from '../../../components/News';
@@ -17,13 +18,14 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
+  local: selectLocal(state),
   topicPage: selectTopicPage(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const TopicContainer = ({ topicPage, menus, marquee }) => {
-  let { pageData, topics } = topicPage;
+const TopicContainer = ({ local, topicPage, menus, marquee }) => {
+  const { pageData, topics } = topicPage;
   return (
     <Container>
       <Header menus={menus} marquee={marquee} />
@@ -36,7 +38,7 @@ const TopicContainer = ({ topicPage, menus, marquee }) => {
             <TopicRight topics={topics.slice(5, 10)} />
           </Margin10>
           <BlockItems topics={topics.slice(10, 20)} />
-          <Pagination {...pageData} />
+          <Pagination {...pageData} {...local} />
         </div>
       }
     </Container>
@@ -44,6 +46,7 @@ const TopicContainer = ({ topicPage, menus, marquee }) => {
 };
 
 TopicContainer.propTypes = {
+  local: PropTypes.object.isRequired,
   topicPage: PropTypes.object.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired

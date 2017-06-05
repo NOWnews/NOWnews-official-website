@@ -1,7 +1,6 @@
 export const LOAD_SEARCH_REQUEST = 'LOAD_SEARCH_REQUEST';
 export const LOAD_SEARCH_SUCCESS = 'LOAD_SEARCH_SUCCESS';
 export const LOAD_SEARCH_FAILURE = 'LOAD_SEARCH_FAILURE';
-export const PASS_SEARCH_REQUEST = 'PASS_SEARCH_REQUEST';
 
 export const initialState = {
   error: null,
@@ -17,12 +16,12 @@ export const initialState = {
 export function loadSearchList ({ keyword = '', page = 1, timeRange }) {
   return (dispatch, getState, { axios }) => {
     dispatch({ type: LOAD_SEARCH_REQUEST, keyword, timeRange });
-    dispatch({ type: PASS_SEARCH_REQUEST });
     const { apiServ } = getState().sourceRequest;
-
     let apiCall = [axios.get(`${apiServ}/tag/hot`)];
     if (keyword) {
-      apiCall.push(axios.get(`${apiServ}/search/${keyword}?page=${page}&timeRange=${timeRange}`));
+      const encodeKeyword = encodeURI(keyword);
+      const url = `${apiServ}/search/${encodeKeyword}?page=${page}&timeRange=${timeRange}`;
+      apiCall.push(axios.get(url));
     }
     return Promise.all(apiCall).then(([tag, news]) => {
       const { pageData = {}, newsList = [] } = (news && news.data) || {};
@@ -72,12 +71,6 @@ export default function searchPage (state = initialState, action) {
         ...state,
         error: action.payload.message,
         isLoading: false
-      };
-    case PASS_SEARCH_REQUEST:
-      return {
-        ...state,
-        isLoading: false,
-        list: []
       };
     default:
       return state;

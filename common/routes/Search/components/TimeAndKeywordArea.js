@@ -16,7 +16,7 @@ class TimeAndKeywordArea extends Component {
   }
 
   setKeyword (keyword) {
-    window.history.pushState(null, null, `/search?keyword=${keyword}`);
+    window.history.pushState(null, null, `/search?keyword=${keyword}&timeRange=lastWeek`);
     this.props.loadSearchList({ keyword, timeRange: 'lastWeek' });
   }
 

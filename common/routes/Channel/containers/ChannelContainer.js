@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectChannelPage, loadChannelData } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
+import { selectLocal } from '../../../modules/sourceRequest';
 import { Header } from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { ChannelSelecter, BlockItems } from '../components';
@@ -17,6 +18,7 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
+  local: selectLocal(state),
   channelPage: selectChannelPage(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
@@ -26,9 +28,9 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   loadChannelData
 });
 
-const ChannelContainer = ({ channelPage, loadChannelData, menus, marquee }) => {
-  let { channels, isLoading, pageData, selectedChannel } = channelPage;
-  let { newsList = [], ...channel } = selectedChannel;
+const ChannelContainer = ({ channelPage, local, loadChannelData, menus, marquee }) => {
+  const { channels, isLoading, pageData, selectedChannel } = channelPage;
+  const { newsList = [], ...channel } = selectedChannel;
   return (
     <Container>
       <Header menus={menus} marquee={marquee} />
@@ -38,7 +40,7 @@ const ChannelContainer = ({ channelPage, loadChannelData, menus, marquee }) => {
       {!isLoading && newsList.length > 0 &&
         <Margin10>
           <BlockItems newsList={newsList} />
-          <Pagination {...pageData} />
+          <Pagination {...pageData} {...local} />
         </Margin10>
       }
 
@@ -48,6 +50,7 @@ const ChannelContainer = ({ channelPage, loadChannelData, menus, marquee }) => {
 
 ChannelContainer.propTypes = {
   channelPage: PropTypes.object.isRequired,
+  local: PropTypes.object.isRequired,
   loadChannelData: PropTypes.func.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired

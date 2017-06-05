@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
 import { Container } from '../../../components/Layout';
+import { selectLocal } from '../../../modules/sourceRequest';
 
 const redial = {
   fetch: ({ dispatch, params: { type } }) => Promise.all([
@@ -12,11 +13,12 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
+  local: selectLocal(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
-const InfoContainer = ({ marquee, menus, children }) => {
+const InfoContainer = ({ local, marquee, menus, children }) => {
   return (
     <Container>
       <Header menus={menus} marquee={marquee} />
@@ -26,6 +28,7 @@ const InfoContainer = ({ marquee, menus, children }) => {
 };
 
 InfoContainer.propTypes = {
+  local: PropTypes.object.isRequired,
   children: PropTypes.shape().isRequired,
   menus: PropTypes.array.isRequired,
   marquee: PropTypes.array.isRequired
