@@ -20,13 +20,11 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-const PreviewPage = ({ currentNews, marquee, menus, changeFontSize }) => {
-  let {isLoading, data, fontSize} = currentNews;
+const PreviewPage = ({ currentNews, marquee, menus }) => {
+  let {isLoading, data} = currentNews;
   let [{ createdAt, startedAt, newsBy, MainMenu, title, type, ...news }] = data;
   let contentProps = {
-    news,
-    changeFontSize,
-    fontSize
+    news
   };
   return (
     <div>
@@ -44,7 +42,6 @@ const PreviewPage = ({ currentNews, marquee, menus, changeFontSize }) => {
 };
 
 PreviewPage.propTypes = {
-  changeFontSize: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired
