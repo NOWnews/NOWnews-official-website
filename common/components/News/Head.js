@@ -4,14 +4,14 @@ import FontAwesome from 'react-fontawesome';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Head = ({ newsBy = '', mainMenu, time, title, author }) => (
+const Head = ({ newsBy = '', mainMenu, time, title, authorId, imgSrc }) => (
   <div className={css(styles.box)}>
     <div className={css(styles.content)}>
       <Link className={css(styles.category)}>{ mainMenu.name || '不分類' }</Link>
       <h1 className={css(styles.title)}>{ title }</h1>
       <div className={css(styles.authorArea)}>
-        <Link to={`/author/${author.id}`} className={css(styles.authorArea)}>
-          { author.Avatar.thumbnail ? <img className={css(styles.avatar)} src={author.Avatar.thumbnail} />
+        <Link to={`/author/${authorId}`} className={css(styles.authorArea)}>
+          { imgSrc ? <img className={css(styles.avatar)} src={imgSrc} />
           : <FontAwesome name='user-circle' size='2x' style={{ position: 'relative', top: '4px' }} />
           }
           <span className={css(styles.author)}>{ newsBy }</span>
@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
 });
 
 Head.propTypes = {
-  author: PropTypes.object.isRequired,
+  authorId: PropTypes.string.isRequired,
+  imgSrc: PropTypes.string.isRequired,
   newsBy: PropTypes.string.isRequired,
   mainMenu: PropTypes.object.isRequired,
   time: PropTypes.string.isRequired,
