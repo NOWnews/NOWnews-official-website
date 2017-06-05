@@ -30,7 +30,7 @@ class AuthorPage extends Component {
         <Header menus={menus} marquee={marquee} />
         <Margin10>
           <div className={css(styles.box)}>
-            <AuthorInfo authorData={newsList[0].Author} />
+            <AuthorInfo authorData={newsList[0] && newsList[0].Author} />
             {isLoading && <Loading /> }
             <BlockItem6 newsList={newsList} />
           </div>
