@@ -7,7 +7,7 @@ const AuthorInfo = ({ authorData }) => {
   return (
     <div className={`clearfix ${css(styles.authorInfo)}`}>
       <div className={css(styles.imgbox)}>
-        { authorData.Avatar ? <img className={css(styles.avatar)} src={authorData.Avatar} />
+        { authorData.Avatar ? <img className={css(styles.avatar)} src={authorData.Avatar.thumbnail} />
           : <FontAwesome name='user-circle-o' style={{ color: 'gray', fontSize: '8em' }} />
         }
       </div>
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   avatar: {
+    borderRadius: 100,
     minWidth: 150,
     maxWidth: 200
   },
