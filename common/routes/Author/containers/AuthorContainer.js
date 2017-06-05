@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { selectAuthorPage, loadAuthorData } from '../module';
+import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
 import { Container, Margin10, Loading } from '../../../components/Layout';
@@ -16,6 +17,7 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
+  local: selectLocal(state),
   authorPage: selectAuthorPage(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
@@ -23,7 +25,7 @@ const mapStateToProps = state => ({
 
 class AuthorPage extends Component {
   render () {
-    let { menus, authorPage, marquee } = this.props;
+    let { local, menus, authorPage, marquee } = this.props;
     let { isLoading, newsList } = authorPage;
     return (
       <Container>
@@ -34,7 +36,7 @@ class AuthorPage extends Component {
             {isLoading && <Loading /> }
             <BlockItem6 newsList={newsList} />
           </div>
-          <Pagination {...authorPage.pageData} />
+          <Pagination {...authorPage.pageData} local={local} />
         </Margin10>
       </Container>
     );
@@ -48,6 +50,7 @@ const styles = StyleSheet.create({
 });
 
 AuthorPage.propTypes = {
+  local: PropTypes.object.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
   authorPage: PropTypes.object.isRequired
