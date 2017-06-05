@@ -22,7 +22,7 @@ export const ListItemSm = ({ category, photo, time, title, type, url }) => {
       </div>
     </Link>
   );
-}
+};
 
 const styles = StyleSheet.create({
   box: {
