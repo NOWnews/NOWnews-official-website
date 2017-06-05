@@ -49,7 +49,7 @@ class MainVideoPlay extends Component {
                 key={item.sn}
                 to={item.parseUrl}>
                 <div className={css(styles.newsBlock)}>
-                  <img src={item.MainPhoto.thumbnail} className={css(styles.img)} />
+                  <img src={item.MainPhoto && item.MainPhoto.thumbnail} className={css(styles.img)} />
                   <div className={css(styles.bottom)}>
                     <div className={css(styles.cat)}>{item.MainMenu.name}</div>
                     <div className={css(styles.title)}>{item.title}</div>

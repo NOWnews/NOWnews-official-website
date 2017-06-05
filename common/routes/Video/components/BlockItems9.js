@@ -19,10 +19,11 @@ class BlockItems9 extends Component {
   render () {
     const { newsList, page } = this.props;
     const items = newsList.map(({ sn, MainPhoto, shortTitle, startedAt }, index) => {
+      const photo = MainPhoto || {};
       return (
         <div key={sn} className={css(styles.blockItem)} onClick={() => { this.select(index); }}>
           <TypeIcon type='VIDEO' />
-          <img className={css(styles.img)} src={MainPhoto.thumbnail || MainPhoto.url} />
+          <img className={css(styles.img)} src={photo.thumbnail || photo.url} />
           <div className={css(styles.bottom)}>
             <div className={css(styles.title)}>{shortTitle}</div>
             <img src='/icons/whiteClock.png' />

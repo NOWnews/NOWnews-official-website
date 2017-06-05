@@ -4,22 +4,25 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import TypeIcon from './TypeIcon';
 
-export const ListItem = ({ category, photo = {}, time, type, title, url }) => (
-  <Link className={`clearfix ${css(styles.box)}`} to={url}>
-    <div className={`left ${css(styles.left)}`}>
-      <img className={css(styles.img)} src={photo.thumbnail || photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
-      <TypeIcon type={type} size='LI' />
-    </div>
-    <div className={`right ${css(styles.right)}`}>
-      <div className={css(styles.category)}>{category}</div>
-      <div className={css(styles.title)}>{title}</div>
-      <img src='/icons/whiteClock.png' />
-      <span className={css(styles.time)}>
-        {moment(time).format('YYYY/MM/DD')}
-      </span>
-    </div>
-  </Link>
-);
+export const ListItem = ({ category, photo, time, title, type, url }) => {
+  const mainPhoto = photo || {};
+  return (
+    <Link className={`clearfix ${css(styles.box)}`} to={url}>
+      <div className={`left ${css(styles.left)}`}>
+        <img className={css(styles.img)} src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+        <TypeIcon type={type} size='LI' />
+      </div>
+      <div className={`right ${css(styles.right)}`}>
+        <div className={css(styles.category)}>{category}</div>
+        <div className={css(styles.title)}>{title}</div>
+        <img src='/icons/whiteClock.png' />
+        <span className={css(styles.time)}>
+          {moment(time).format('YYYY/MM/DD')}
+        </span>
+      </div>
+    </Link>
+  );
+}
 
 const styles = StyleSheet.create({
   box: {
