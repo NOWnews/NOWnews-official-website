@@ -4,11 +4,12 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import TypeIcon from './TypeIcon';
 
-export const BlockItem = ({ category, photo = {}, time, title, type, url }) => {
+export const BlockItem = ({ category, photo, time, title, type, url }) => {
+  const mainPhoto = photo || {};
   return (
     <Link className={css(styles.box)} to={url}>
       <TypeIcon type={type} />
-      <img className={css(styles.img)} src={photo.thumbnail || photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+      <img className={css(styles.img)} src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
       <div className={css(styles.bottom)}>
         <div className={css(styles.category)}>{category}</div>
         <div className={css(styles.title)}>{title}</div>
