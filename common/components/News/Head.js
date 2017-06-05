@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
 });
 
 Head.propTypes = {
-  authorId: PropTypes.string.isRequired,
-  imgSrc: PropTypes.string.isRequired,
+  authorId: PropTypes.string,
+  imgSrc: PropTypes.string,
   newsBy: PropTypes.string.isRequired,
   mainMenu: PropTypes.object.isRequired,
   time: PropTypes.string.isRequired,
