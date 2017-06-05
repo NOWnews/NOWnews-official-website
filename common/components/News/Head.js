@@ -24,6 +24,12 @@ const Head = ({ newsBy = '', mainMenu, time, title, authorId, imgSrc }) => (
 );
 
 const styles = StyleSheet.create({
+  avatar: {
+    maxWidth: 30,
+    borderRadius: 15,
+    position: 'relative',
+    top: 5
+  },
   author: {
     marginLeft: 5,
     marginRight: 15
