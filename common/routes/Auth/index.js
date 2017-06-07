@@ -1,5 +1,6 @@
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
 import Basic from '../../components/Basic';
+import { injectAsyncReducer } from '../../store';
 
 export default function createRoutes (store) {
   return {
@@ -7,6 +8,8 @@ export default function createRoutes (store) {
     component: Basic,
     getChildRoutes (location, cb) {
       require.ensure([], (require) => {
+        const authFormReducer = require('./module').default;
+        injectAsyncReducer(store, 'authPage', authFormReducer);
         cb(null, [
           {
             path: 'signup',

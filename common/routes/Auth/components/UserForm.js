@@ -6,10 +6,12 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 const UserForm = () => {
   return (
     <div>
-      <InputWithLabel name='name' component='input' type='text' label='姓名' />
-      <InputWithLabel name='email' component='input' type='email' label='帳號 / E-mail' />
+      <InputWithLabel isRequired name='name' component='input' type='text' label='姓名' />
+      <InputWithLabel isRequired name='email' component='input' type='email' label='帳號 / E-mail' />
       <div>
-        <label className={css(styles.label)} htmlFor='password'>密碼</label><br />
+        <label className={css(styles.label)} htmlFor='password'>密碼</label>
+        <span className={css(styles.warning)}>*</span>
+        <br />
         <div className={css(styles.pwdBox)}>
           <Input id='password' name='password' component='input' type='password' placeholder='輸入密碼' />
         </div>
@@ -56,6 +58,10 @@ const styles = StyleSheet.create({
   },
   genderOpts: {
     paddingRight: 10
+  },
+  warning: {
+    color: '#FF3E29',
+    fontSize: 12
   }
 });
 

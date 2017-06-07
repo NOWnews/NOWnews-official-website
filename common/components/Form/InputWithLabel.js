@@ -2,12 +2,13 @@ import React, { PropTypes } from 'react';
 import { Field } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const renderField = ({ input: { name, ...input }, label, meta, ...opts }) => {
+const renderField = ({ input: { name, ...input }, label, meta, isRequired, ...opts }) => {
   // opts like type, placeholder
   const inputProps = {id: name, name, ...input, ...opts};
   return (
     <div>
       <label className={css(styles.label)} htmlFor={name}>{label}</label>
+      { isRequired && <span className={css(styles.warning)}>*</span>}
       <input className={css(styles.input)} {...inputProps} />
     </div>
   );
@@ -42,11 +43,16 @@ const styles = StyleSheet.create({
       fontSize: 14,
       fontWeight: 500
     }
+  },
+  warning: {
+    color: '#FF3E29',
+    fontSize: 12
   }
 });
 
 renderField.propTypes = {
   input: PropTypes.object.isRequired,
+  isRequired: PropTypes.bool,
   label: PropTypes.string.isRequired,
   meta: PropTypes.object.isRequired,
   opts: PropTypes.object

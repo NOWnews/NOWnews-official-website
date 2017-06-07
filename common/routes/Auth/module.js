@@ -1,71 +1,57 @@
-export const LOAD_CATEGORY_REQUEST = 'LOAD_CATEGORY_REQUEST';
-export const LOAD_CATEGORY_SUCCESS = 'LOAD_CATEGORY_SUCCESS';
-export const LOAD_CATEGORY_FAILURE = 'LOAD_CATEGORY_FAILURE';
+export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 
 const initialState = {
-  currentMenu: {},
   error: null,
-  hotNewsList: [],
   isLoading: false,
-  lastFetched: null,
-  newsList: [],
-  pageData: {}
+  lastFetched: null
 };
 
-export function loadCategoryList (categoryName, page = 1) {
+export function onSignup () {
   return (dispatch, getState, { axios }) => {
-    const { apiServ } = getState().sourceRequest;
-    dispatch({ type: LOAD_CATEGORY_REQUEST });
-    return Promise.all([
-      axios.get(`${apiServ}/cat/${categoryName}?page=${page}&limit=15`),
-      axios.get(`${apiServ}/hot/${categoryName}`)
-    ]).then(([categoryNewsList, hotNewsList]) => {
-      const { menu, newsList, pageData } = categoryNewsList.data;
+    const { memberServ } = getState().sourceRequest;
+    const values = getState().form.auth.values;
+    dispatch({ type: SIGNUP_REQUEST });
+    const url = `${memberServ}/api/member/signup`;
+    return axios.post(url, values)
+    .then((result) => {
       dispatch({
-        type: LOAD_CATEGORY_SUCCESS,
-        payload: {
-          hotNewsList: hotNewsList.data,
-          currentMenu: menu,
-          newsList,
-          pageData
-        },
+        type: SIGNUP_SUCCESS,
+        payload: result,
         meta: {
           lastFetched: Date.now()
         }
       });
+      const confirmRes = window.confirm('【註冊完成〗，請前往註冊信箱做帳號認證！');
+      if (confirmRes) {
+        window.location = '/auth/login';
+      }
     }).catch(error => {
       dispatch({
-        type: LOAD_CATEGORY_FAILURE,
-        payload: error,
-        error: true
+        type: SIGNUP_FAILURE,
+        payload: error.response.data
       });
     });
   };
 }
 
-export default function categoryPage (state = initialState, action) {
+export default function auth (state = initialState, action) {
   switch (action.type) {
-    case LOAD_CATEGORY_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-        error: null
-      };
-    case LOAD_CATEGORY_SUCCESS:
-      let { currentMenu, hotNewsList, newsList, pageData } = action.payload;
-      return {
-        ...state,
-        currentMenu,
-        newsList,
-        pageData,
-        hotNewsList,
-        lastFetched: action.meta.lastFetched,
-        isLoading: false
-      };
-    case LOAD_CATEGORY_FAILURE:
+    case SIGNUP_FAILURE:
       return {
         ...state,
         error: action.payload.message,
+        isLoading: false
+      };
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        isLoading: false
+      };
+    case SIGNUP_REQUEST:
+      return {
+        ...state,
         isLoading: false
       };
     default:
@@ -73,4 +59,6 @@ export default function categoryPage (state = initialState, action) {
   }
 }
 
-export const selectCategoryPage = state => state.categoryPage;
+export const selectAuthPage = state => state.auth;
+export const selectAuthForm = state => state.form.auth;
+
