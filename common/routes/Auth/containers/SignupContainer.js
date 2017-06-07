@@ -28,9 +28,9 @@ const checkEmail = (value) => {
   return regStr.test(value);
 };
 
-const SignupPage = ({ authForm, onSignup, authPage }) => {
-  const values = authForm && authForm.values;
-  const { password = '', confirmPassword = '', name, email } = values || {};
+const SignupPage = ({ authForm, authPage, onSignup }) => {
+  const values = authForm && authForm.values || {}; // 沒輸入值的時候 values 會是 undefined
+  const { password = '', confirmPassword = '', name, email } = values;
   let error = (values === {}) ? authPage.error : null;
 
   if (!checkPwd(password)) {
