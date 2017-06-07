@@ -1,9 +1,15 @@
+export const ACTIVE_REQUEST = 'ACTIVE_REQUEST';
+export const ACTIVE_SUCCESS = 'ACTIVE_SUCCESS';
+export const ACTIVE_FAILURE = 'ACTIVE_FAILURE';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+export const RESEND_ACTIVE_REQUEST = 'RESEND_ACTIVE_REQUEST';
+export const RESEND_ACTIVE_SUCCESS = 'RESEND_ACTIVE_SUCCESS';
+export const RESEND_ACTIVE_FAILURE = 'RESEND_ACTIVE_FAILURE';
 
 const initialState = {
   error: null,
@@ -11,7 +17,30 @@ const initialState = {
   lastFetched: null
 };
 
-export function onLogin () {
+export const activeEmail = (token) => {
+  return (dispatch, getState, { axios }) => {
+    dispatch({ type: ACTIVE_REQUEST });
+    const { memberServ } = getState().sourceRequest;
+    const url = `${memberServ}/api/auth/active?token=${token}`;
+    return axios.get(url)
+    .then((result) => {
+      dispatch({
+        type: ACTIVE_SUCCESS,
+        payload: result,
+        meta: {
+          lastFetched: Date.now()
+        }
+      });
+    }).catch(error => {
+      dispatch({
+        type: ACTIVE_FAILURE,
+        payload: error.response.data
+      });
+    });
+  };
+};
+
+export const onLogin = () => {
   return (dispatch, getState, { axios }) => {
     const { memberServ } = getState().sourceRequest;
     const values = getState().form.auth.values;
@@ -34,9 +63,9 @@ export function onLogin () {
       });
     });
   };
-}
+};
 
-export function onSignup () {
+export const onSignup = () => {
   return (dispatch, getState, { axios }) => {
     const { memberServ } = getState().sourceRequest;
     const values = getState().form.auth.values;
@@ -62,25 +91,62 @@ export function onSignup () {
       });
     });
   };
-}
+};
+
+export const resendActiveEmail = () => {
+  return (dispatch, getState, { axios }) => {
+    dispatch({ type: RESEND_ACTIVE_REQUEST });
+    const { memberServ } = getState().sourceRequest;
+    const { email } = getState().form.auth.values || {};
+
+    if (!email || (email && email.trim().length === 0)) {
+      return dispatch({
+        type: RESEND_ACTIVE_FAILURE,
+        payload: {message: '信箱格式有誤'}
+      });
+    }
+
+    return axios.post(`${memberServ}/api/auth/resend`, { email })
+    .then((result) => {
+      dispatch({
+        type: RESEND_ACTIVE_SUCCESS,
+        payload: result,
+        meta: {
+          lastFetched: Date.now()
+        }
+      });
+    }).catch(error => {
+      dispatch({
+        type: RESEND_ACTIVE_FAILURE,
+        payload: error.response.data
+      });
+    });
+  };
+};
 
 export default function authPage (state = initialState, action) {
   switch (action.type) {
+    case ACTIVE_FAILURE:
     case LOGIN_FAILURE:
     case SIGNUP_FAILURE:
+    case RESEND_ACTIVE_FAILURE:
       return {
         ...state,
         error: action.payload.message,
         isLoading: false
       };
+    case ACTIVE_SUCCESS:
     case LOGIN_SUCCESS:
     case SIGNUP_SUCCESS:
+    case RESEND_ACTIVE_SUCCESS:
       return {
         ...state,
         isLoading: false
       };
+    case ACTIVE_REQUEST:
     case LOGIN_REQUEST:
     case SIGNUP_REQUEST:
+    case RESEND_ACTIVE_REQUEST:
       return {
         ...state,
         isLoading: false

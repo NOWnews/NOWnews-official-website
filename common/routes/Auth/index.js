@@ -12,6 +12,17 @@ export default function createRoutes (store) {
         injectAsyncReducer(store, 'authPage', authFormReducer);
         cb(null, [
           {
+            path: 'active/:token',
+            getComponents (location, cb) {
+              require.ensure([
+                './containers/ActiveContainer'
+              ], (require) => {
+                const ActiveContainer = require('./containers/ActiveContainer').default;
+                cb(null, ActiveContainer);
+              }, 'activePage');
+            }
+          },
+          {
             path: 'signup',
             getComponents (location, cb) {
               require.ensure([
@@ -19,7 +30,7 @@ export default function createRoutes (store) {
               ], (require) => {
                 const SignupContainer = require('./containers/SignupContainer').default;
                 cb(null, SignupContainer);
-              }, 'singupPage');
+              }, 'signupPage');
             }
           },
           {
