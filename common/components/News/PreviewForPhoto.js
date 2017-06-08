@@ -4,7 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { Content, FontSize, Tags } from './NewsContent';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
-const PreviewForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize }) => {
+const PreviewForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize }) => {
   const settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -14,7 +14,7 @@ const PreviewForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
     showThumbs: true,
     showIndicators: false
   };
-  const photoList = [MainPhoto, ...Photos];
+  const photoList = [...Photos];
   const imgApi = 'https://imgapiv2.nownews.com/?w=970&q=70&src=';
   return (
     <Container>

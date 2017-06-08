@@ -11,7 +11,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet }) => {
+const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet }) => {
   const settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -21,7 +21,7 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
     showThumbs: true,
     showIndicators: false
   };
-  const photoList = [MainPhoto, ...Photos];
+  const photoList = [...Photos];
   const randomKey = news.sn % 3;
   const imgApi = 'https://imgapiv2.nownews.com/?w=970&q=70&src=';
   return (
