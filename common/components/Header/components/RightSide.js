@@ -1,23 +1,22 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const RightSide = ({ user }) => {
+const Nav = () => {
   const socialList = [
     { icon: 'weibo', url: 'http://tw.weibo.com/nownews' },
     { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
     { icon: 'FB', url: 'https://facebook.com/nownews' }
   ];
-  const memberLink = user ? '/auth/me' : '/auth/login';
   return (
     <div className={`clearfix ${css(styles.box)}`}>
       <Link className={css(styles.link)} to='/search?timeRange=lastWeek'>
         <FontAwesome name='search' size='2x' />
       </Link>
-      <Link className={css(styles.link)} to={memberLink}>
+      <Link className={css(styles.link)} to='/user'>
         <FontAwesome name='user-circle-o' size='2x' />
-        <div className={css(styles.account)}>{user || 'Account'}</div>
+        <div className={css(styles.account)}>Account</div>
       </Link>
       {socialList.map(({ icon, url }) =>
         <Link className={`right ${css(styles.btnSocial)}`} key={icon} target='_blank' to={url}>
@@ -55,8 +54,4 @@ const styles = StyleSheet.create({
   }
 });
 
-RightSide.propTypes = {
-  user: PropTypes.string
-};
-
-export default RightSide;
+export default Nav;

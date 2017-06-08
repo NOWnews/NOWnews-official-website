@@ -1,7 +1,6 @@
 {
   "mode": "staging",
   "webApiServer": "https://devapi.nownews.com",
-  "memberApiServer": "http://localhost:8888",
   "isProdMode": true,
   "server": {
     "webConcurrency": 1,

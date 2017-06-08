@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { LogoRow } from '../../../components/Header';
 import { Container } from '../../../components/Layout';
 import { Button } from '../../../components/Form';
@@ -8,39 +7,30 @@ import { reduxForm } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import { UserForm } from '../components';
-import { selectUser } from '../../../modules/sourceRequest';
-import { onUpdate, onLogout, selectAuthForm, selectAuthPage } from '../module';
 
 const mapStateToProps = state => ({
-  authPage: selectAuthPage(state),
-  authForm: selectAuthForm(state),
-  initialValues: selectUser(state)
 });
 
-const mapDispatchToProps = bindActionCreators.bind(null, {
-  onLogout,
-  onUpdate
-});
-
-const MePage = ({ authForm, authPage, initialValues, onLogout, onUpdate }) => {
+const MemberPage = ({ handleSubmit }) => {
   return (
     <Container>
-      <LogoRow user={initialValues.name} />
+      <LogoRow />
       <div className={css(styles.box)}>
         <div className={css(styles.leftSide)}>
           <span className='h1'>Terry Sun</span>
           <hr className={css(styles.dottedLine)} />
           <div className={css(styles.item, styles.active)}>會員設定</div>
-          <div className={css(styles.item)} onClick={onLogout}>登出</div>
-
+          <div className={css(styles.item)}>登出</div>
           <hr className={css(styles.dottedLine)} />
           <Link className={css(styles.backToHome)} to='/'>回首頁</Link>
         </div>
         <div className={css(styles.rightSide)}>
-          <UserForm />
-          <div className={css(styles.submitBox)}>
-            <Button text='儲存' type='submit' handleSubmit={onUpdate} />
-          </div>
+          <form onSubmit={handleSubmit}>
+            <UserForm />
+            <div className={css(styles.submitBox)}>
+              <Button text='儲存' />
+            </div>
+          </form>
         </div>
       </div>
     </Container>
@@ -102,12 +92,8 @@ const styles = StyleSheet.create({
   }
 });
 
-MePage.propTypes = {
-  authPage: PropTypes.object,
-  authForm: PropTypes.object,
-  initialValues: PropTypes.object,
-  onLogout: PropTypes.func,
-  onUpdate: PropTypes.func
+MemberPage.propTypes = {
+  handleSubmit: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({form: 'auth'})(MePage));
+export default connect(mapStateToProps)(reduxForm({form: 'member'})(MemberPage));

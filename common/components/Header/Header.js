@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Ad970x90 } from '../Ad';
 import { InstantBar, Menu } from './components';
+import LogoRow from './LogoRow';
 import { Container } from '../Layout';
 
 export const Header = ({ menus, currentMainMenu, currentChildMenu, marquee }) => (
   <Container>
+    <LogoRow />
     <Menu menus={menus}
       currentMainMenu={currentMainMenu}
       currentChildMenu={currentChildMenu} />
