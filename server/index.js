@@ -63,13 +63,16 @@ export const createServer = (config) => {
 
   app.get('*', (req, res) => {
     const user = isomorphicCookie.load('NOW_memberData', req);
+    const fontSize = isomorphicCookie.load('NOW_fontSize', req) || 16;
+
     const store = configureStore({
       sourceRequest: {
         apiServ: webApiServer,
         local: {
+          fontSize,
           path: url.parse(req.url).pathname,
           query: req.query,
-          user,
+          user
         },
         memberServ: memberApiServer
       }
@@ -91,6 +94,7 @@ export const createServer = (config) => {
       const { components } = renderProps;
       // Define locals to be provided to all lifecycle hooks:
       const locals = {
+        fontSize,
         path: renderProps.location.pathname,
         query: renderProps.location.query,
         params: renderProps.params,

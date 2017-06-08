@@ -5,6 +5,7 @@ export const CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE';
 export const CHANGE_NEWS_TITLE = 'CHANGE_NEWS_TITLE';
 export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
 export const LOAD_NEWS_SUCCESS = 'LOAD_NEWS_SUCCESS';
+export const LOAD_MORE_NEWS_REQUEST = 'LOAD_MORE_NEWS_REQUEST';
 export const LOAD_MORE_NEWS_SUCCESS = 'LOAD_MORE_NEWS_SUCCESS';
 export const LOAD_NEWS_FAILURE = 'LOAD_NEWS_FAILURE';
 export const LOAD_PREVIEW_REQUEST = 'LOAD_PREVIEW_REQUEST';
@@ -12,11 +13,10 @@ export const LOAD_PREVIEW_SUCCESS = 'LOAD_PREVIEW_SUCCESS';
 export const LOAD_PREVIEW_FAILURE = 'LOAD_PREVIEW_FAILURE';
 export const SHOW_FIXED_HEADER = 'SHOW_FIXED_HEADER';
 const canUseDOM = !!(typeof window !== 'undefined' && window.document);
-
 const initialState = {
   data: [],
   error: null,
-  fontSize: isomorphicCookie.load('NOW_fontSize') || 16,
+  fontSize: null,
   hasMore: false,
   isLoading: false,
   isSSRAndInit: false,
@@ -41,10 +41,10 @@ export const changeNewsTitle = (newsTitle) => {
   };
 };
 
-export const loadNews = (sn) => {
+export const loadNews = (sn, fontSize) => {
   return (dispatch, getState, { axios }) => {
     const { apiServ } = getState().sourceRequest;
-    dispatch({ type: LOAD_NEWS_REQUEST });
+    dispatch({ type: LOAD_NEWS_REQUEST, payload: { fontSize } });
 
     // 將 scroll 置頂
     if (canUseDOM) {
@@ -89,7 +89,7 @@ export const loadNews = (sn) => {
 export const loadMoreNews = (sn) => {
   return (dispatch, getState, { axios }) => {
     const { apiServ } = getState().sourceRequest;
-    dispatch({ type: LOAD_NEWS_REQUEST });
+    dispatch({ type: LOAD_MORE_NEWS_REQUEST });
 
     return Promise.all([
       axios.get(`${apiServ}/news/${sn}`),
@@ -155,8 +155,6 @@ export const showFixedHeader = (showHeader) => {
 };
 
 export default function currentNews (state = initialState, action) {
-  // 暫時解，初始化時有時 fontSize 會變成 undefined
-  state.fontSize = isomorphicCookie.load('fontSize') || 16;
   switch (action.type) {
     case CHANGE_FONT_SIZE:
       return {
@@ -169,6 +167,13 @@ export default function currentNews (state = initialState, action) {
         newsTitle: action.payload
       };
     case LOAD_NEWS_REQUEST:
+      return {
+        ...state,
+        fontSize: action.payload.fontSize,
+        error: null,
+        isLoading: true
+      };
+    case LOAD_MORE_NEWS_REQUEST:
     case LOAD_PREVIEW_REQUEST:
       return {
         ...state,
