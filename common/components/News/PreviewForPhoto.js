@@ -14,13 +14,12 @@ const PreviewForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize }
     showThumbs: true,
     showIndicators: false
   };
-  const photoList = [...Photos];
   const imgApi = 'https://imgapiv2.nownews.com/?w=970&q=70&src=';
   return (
     <Container>
       <div className={css(styles.contentDiv)}>
         <Carousel {...settings}>
-          {photoList.map(({ desc, sn, url }) => (
+          {Photos.map(({ desc, sn, url }) => (
             <div className={css(styles.contentImg)}>
               <img key={sn} src={`${imgApi}${url}`} />
               <p className={css(styles.imgDesc)}>{desc}</p>
