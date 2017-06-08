@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   contentDiv: {
     background: '#f1f2f3',
-    height: 545,
+    height: 570,
     marginBottom: 60
   },
   imgDesc: {
