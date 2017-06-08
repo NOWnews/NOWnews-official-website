@@ -36,7 +36,9 @@ const ActivePage = ({ authForm, authPage, resendActiveEmail }) => {
           <p className={css(styles.error)}>請輸入信箱重新取得驗證信</p>
           <Input name='email' component='input' type='email' placeholder='輸入帳號（E-mail）' />
           <Button text='送出' type='submit' handleSubmit={resendActiveEmail} />
-        </Margin10> : <div>信箱驗證成功網站，請 <Link to='/auth/login'>點我</Link> 登入</div>}
+        </Margin10> : <Margin10>
+          信箱驗證成功網站，請 <Link className={css(styles.backToLogin)} to='/auth/login'>返回登入</Link>
+        </Margin10>}
       </div>
     </Container>
   );
@@ -47,6 +49,19 @@ const styles = StyleSheet.create({
     margin: '50px auto',
     textAlign: 'center',
     width: 360
+  },
+  backToLogin: {
+    background: '#1886FB',
+    textDecoration: 'none',
+    border: 0,
+    borderRadius: 5,
+    color: '#ffffff',
+    cursor: 'pointer',
+    fontSize: 17,
+    fontWeight: 'bold',
+    margin: 10,
+    outline: 'none',
+    padding: '6.5px 40px'
   },
   error: {
     color: '#FF3E29'
