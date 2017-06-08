@@ -17,9 +17,9 @@ import { selectInterest, loadInterest } from '../../../modules/interest';
 import { IsAdult } from '../../../components/Alert';
 
 const redial = {
-  fetch: ({ dispatch, params: { sn } }) => Promise.all([
+  fetch: ({ dispatch, params: { sn }, fontSize }) => Promise.all([
     dispatch(loadHeader()),
-    dispatch(loadNews(sn))
+    dispatch(loadNews(sn, fontSize))
   ])
 };
 
