@@ -2,23 +2,31 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import Footer from './Footer';
 import Basic from './Basic';
-import { setLocal } from '../modules/sourceRequest';
+import LogoRow from './Header/LogoRow';
+import { setLocal, selectUser } from '../modules/sourceRequest';
+import { connect } from 'react-redux';
 
 const redial = {
-  fetch: ({ dispatch, path, query }) => Promise.all([
-    dispatch(setLocal(path, query))
+  fetch: ({ dispatch, ...local }) => Promise.all([
+    dispatch(setLocal(local))
   ])
 };
 
-const App = ({ children }) => (
+const mapStateToProps = state => ({
+  user: selectUser(state)
+});
+
+const App = ({ children, user }) => (
   <Basic>
+    <LogoRow user={user.name} />
     {children}
     <Footer />
   </Basic>
 );
 
 App.propTypes = {
-  children: PropTypes.shape().isRequired
+  children: PropTypes.shape().isRequired,
+  user: PropTypes.object
 };
 
-export default provideHooks(redial)(App);
+export default provideHooks(redial)(connect(mapStateToProps)(App));
