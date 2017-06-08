@@ -7,7 +7,6 @@ import compression from 'compression';
 import hpp from 'hpp';
 import throng from 'throng';
 import url from 'url';
-import isomorphicCookie from 'isomorphic-cookie';
 
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -28,7 +27,6 @@ import configLib from 'config';
 const defaultServerConfig = configLib.get('server');
 const isProdMode = configLib.get('isProdMode');
 const webApiServer = configLib.get('webApiServer');
-const memberApiServer = configLib.get('memberApiServer');
 
 export const createServer = (config) => {
   const __PROD__ = isProdMode;
@@ -62,16 +60,13 @@ export const createServer = (config) => {
   app.use(express.static('public', { etag: 1000, maxage: 86400000 * 365 }));
 
   app.get('*', (req, res) => {
-    const user = isomorphicCookie.load('NOW_memberData', req);
     const store = configureStore({
       sourceRequest: {
         apiServ: webApiServer,
         local: {
           path: url.parse(req.url).pathname,
-          query: req.query,
-          user,
-        },
-        memberServ: memberApiServer
+          query: req.query
+        }
       }
     });
     const routes = createRoutes(store);
@@ -89,12 +84,12 @@ export const createServer = (config) => {
       }
 
       const { components } = renderProps;
+
       // Define locals to be provided to all lifecycle hooks:
       const locals = {
         path: renderProps.location.pathname,
         query: renderProps.location.query,
         params: renderProps.params,
-        user,
 
         // Allow lifecycle hooks to dispatch Redux actions:
         dispatch

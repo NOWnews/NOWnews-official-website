@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 });
 
 SmLinkTo.propTypes = {
-  isExternal: PropTypes.bool,
+  isExternal: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired
 };
