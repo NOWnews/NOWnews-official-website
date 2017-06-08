@@ -6,9 +6,9 @@ const initialState = {
   memberServ: null
 };
 
-export function setLocal (path, query) {
+export function setLocal (local) {
   return (dispatch) => {
-    dispatch({ type: SET_LOCAL, payload: { path, query } });
+    dispatch({ type: SET_LOCAL, payload: local });
   };
 }
 
@@ -24,6 +24,5 @@ export default function sourceRequest (state = initialState, action) {
   }
 }
 
-export const selectLocal = (state) => {
-  return state.sourceRequest.local;
-};
+export const selectLocal = state => state.sourceRequest.local;
+export const selectUser = state => state.sourceRequest.local.user;

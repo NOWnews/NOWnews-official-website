@@ -53,7 +53,7 @@ export const onLogin = () => {
     return axios.post(url, values)
     .then((result) => {
       // isomorphicCookie.save('NOW_member', result, { secure: false });
-      isomorphicCookie.save('NOW_memberData', result, { secure: false });
+      isomorphicCookie.save('NOW_memberData', result.data, { secure: false });
       dispatch({
         type: LOGIN_SUCCESS,
         payload: result,

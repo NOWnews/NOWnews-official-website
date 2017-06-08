@@ -8,21 +8,23 @@ import { reduxForm } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import { UserForm } from '../components';
-import { onUpdate, selectAuthForm, selectAuthPage } from '../module.js';
+import { selectUser } from '../../../modules/sourceRequest';
+import { onUpdate, selectAuthForm, selectAuthPage } from '../module';
 
 const mapStateToProps = state => ({
   authPage: selectAuthPage(state),
-  authForm: selectAuthForm(state)
+  authForm: selectAuthForm(state),
+  initialValues: selectUser(state)
 });
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
   onUpdate
 });
 
-const MePage = ({ authForm, authPage, onUpdate }) => {
+const MePage = ({ authForm, authPage, initialValues, onUpdate }) => {
   return (
     <Container>
-      <LogoRow />
+      <LogoRow user={initialValues.name} />
       <div className={css(styles.box)}>
         <div className={css(styles.leftSide)}>
           <span className='h1'>Terry Sun</span>
@@ -101,6 +103,7 @@ const styles = StyleSheet.create({
 MePage.propTypes = {
   authPage: PropTypes.object,
   authForm: PropTypes.object,
+  initialValues: PropTypes.object,
   onUpdate: PropTypes.func
 };
 

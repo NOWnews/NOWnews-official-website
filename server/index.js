@@ -7,6 +7,7 @@ import compression from 'compression';
 import hpp from 'hpp';
 import throng from 'throng';
 import url from 'url';
+import isomorphicCookie from 'isomorphic-cookie';
 
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -66,7 +67,8 @@ export const createServer = (config) => {
         apiServ: webApiServer,
         local: {
           path: url.parse(req.url).pathname,
-          query: req.query
+          query: req.query,
+          user: isomorphicCookie.load('NOW_memberData', req)
         },
         memberServ: memberApiServer
       }
