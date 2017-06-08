@@ -1,0 +1,11 @@
+{
+  "mode": "default",
+  "webApiServer": "http://localhost:10001",
+  "memberApiServer": "http://localhost:8888",
+  "isProdMode": false,
+  "server": {
+    "webConcurrency": 1,
+    "port": 5000,
+    "timeout": 29000
+  }
+}
