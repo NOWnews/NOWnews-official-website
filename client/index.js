@@ -8,6 +8,7 @@ import browserHistory from 'react-router/lib/browserHistory';
 import { Provider } from 'react-redux';
 import { StyleSheet } from 'aphrodite/no-important';
 import { configureStore } from '../common/store';
+import isomorphicCookie from 'isomorphic-cookie';
 import * as pageview from '../lib/track/pageview';
 
 const initialState = window.INITIAL_STATE || {};
@@ -64,6 +65,7 @@ const render = () => {
         path: renderProps.location.pathname,
         query: renderProps.location.query,
         params: renderProps.params,
+        user: isomorphicCookie.load('NOW_memberData'),
 
         // Allow lifecycle hooks to dispatch Redux actions:
         dispatch

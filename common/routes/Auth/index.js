@@ -1,5 +1,6 @@
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
 import Basic from '../../components/Basic';
+import { injectAsyncReducer } from '../../store';
 
 export default function createRoutes (store) {
   return {
@@ -7,7 +8,20 @@ export default function createRoutes (store) {
     component: Basic,
     getChildRoutes (location, cb) {
       require.ensure([], (require) => {
+        const authFormReducer = require('./module').default;
+        injectAsyncReducer(store, 'authPage', authFormReducer);
         cb(null, [
+          {
+            path: 'active/:token',
+            getComponents (location, cb) {
+              require.ensure([
+                './containers/ActiveContainer'
+              ], (require) => {
+                const ActiveContainer = require('./containers/ActiveContainer').default;
+                cb(null, ActiveContainer);
+              }, 'activePage');
+            }
+          },
           {
             path: 'signup',
             getComponents (location, cb) {
@@ -16,7 +30,7 @@ export default function createRoutes (store) {
               ], (require) => {
                 const SignupContainer = require('./containers/SignupContainer').default;
                 cb(null, SignupContainer);
-              }, 'singupPage');
+              }, 'signupPage');
             }
           },
           {
@@ -42,14 +56,14 @@ export default function createRoutes (store) {
             }
           },
           {
-            path: 'member',
+            path: 'me',
             getComponents (location, cb) {
               require.ensure([
-                './containers/MemberContainer'
+                './containers/MeContainer'
               ], (require) => {
-                const MemberContainer = require('./containers/MemberContainer').default;
-                cb(null, MemberContainer);
-              }, 'memberPage');
+                const MeContainer = require('./containers/MeContainer').default;
+                cb(null, MeContainer);
+              }, 'mePage');
             }
           }
         ]);
