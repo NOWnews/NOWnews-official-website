@@ -28,8 +28,8 @@ const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, 
       <div className={css(styles.contentDiv)}>
         <Carousel {...settings}>
           {Photos.map(({ desc, sn, url }) => (
-            <div className={css(styles.contentImg)}>
-              <img key={sn} src={`${imgApi}${url}`} />
+            <div className={css(styles.contentImg)} key={sn}>
+              <img src={`${imgApi}${url}`} />
               <p className={css(styles.imgDesc)}>{desc}</p>
             </div>
           ))}
@@ -52,7 +52,7 @@ const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, 
           <Thermometer />
           <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
           <Ad300x250 />
-          <SpecialTopicNav list={[topics]} />
+          <SpecialTopicNav list={topics} />
           <Ad300x250 />
         </RightSide>
       </Margin10>
