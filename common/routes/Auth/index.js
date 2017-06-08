@@ -56,14 +56,14 @@ export default function createRoutes (store) {
             }
           },
           {
-            path: 'member',
+            path: 'me',
             getComponents (location, cb) {
               require.ensure([
-                './containers/MemberContainer'
+                './containers/MeContainer'
               ], (require) => {
-                const MemberContainer = require('./containers/MemberContainer').default;
-                cb(null, MemberContainer);
-              }, 'memberPage');
+                const MeContainer = require('./containers/MeContainer').default;
+                cb(null, MeContainer);
+              }, 'mePage');
             }
           }
         ]);
