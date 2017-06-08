@@ -71,11 +71,11 @@ export const Footer = () => {
 
           {/* Member, Download App */}
           <div className='right' style={{ textAlign: 'right', width: '15%' }}>
-            <Link className={css(styles.btnMember)} to='/'>加入會員</Link>
-            <Link to='https://itunes.apple.com/tw/app/nownews-v1/id388356807?mt=8'>
+            <Link className={css(styles.btnMember)} to='/auth/signin'>加入會員</Link>
+            <Link target='_blank' to='https://itunes.apple.com/tw/app/nownews-v1/id388356807?mt=8'>
               <img src='/app/dark_ios.png' />
             </Link>
-            <Link to='https://play.google.com/store/apps/details?id=com.nownews&hl=zh_TW'>
+            <Link target='_blank' to='https://play.google.com/store/apps/details?id=com.nownews&hl=zh_TW'>
               <img src='/app/dark_android.png' />
             </Link>
           </div>
