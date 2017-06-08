@@ -11,7 +11,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet }) => {
+const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet }) => {
   const settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -21,14 +21,13 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
     showThumbs: true,
     showIndicators: false
   };
-  const photoList = [MainPhoto, ...Photos];
   const randomKey = news.sn % 3;
   const imgApi = 'https://imgapiv2.nownews.com/?w=970&q=70&src=';
   return (
     <Container>
       <div className={css(styles.contentDiv)}>
         <Carousel {...settings}>
-          {photoList.map(({ desc, sn, url }) => (
+          {Photos.map(({ desc, sn, url }) => (
             <div className={css(styles.contentImg)}>
               <img key={sn} src={`${imgApi}${url}`} />
               <p className={css(styles.imgDesc)}>{desc}</p>
