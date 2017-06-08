@@ -9,7 +9,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import { UserForm } from '../components';
 import { selectUser } from '../../../modules/sourceRequest';
-import { onUpdate, selectAuthForm, selectAuthPage } from '../module';
+import { onUpdate, onLogout, selectAuthForm, selectAuthPage } from '../module';
 
 const mapStateToProps = state => ({
   authPage: selectAuthPage(state),
@@ -18,10 +18,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
+  onLogout,
   onUpdate
 });
 
-const MePage = ({ authForm, authPage, initialValues, onUpdate }) => {
+const MePage = ({ authForm, authPage, initialValues, onLogout, onUpdate }) => {
   return (
     <Container>
       <LogoRow user={initialValues.name} />
@@ -30,7 +31,8 @@ const MePage = ({ authForm, authPage, initialValues, onUpdate }) => {
           <span className='h1'>Terry Sun</span>
           <hr className={css(styles.dottedLine)} />
           <div className={css(styles.item, styles.active)}>會員設定</div>
-          <div className={css(styles.item)}>登出</div>
+          <div className={css(styles.item)} onClick={onLogout}>登出</div>
+
           <hr className={css(styles.dottedLine)} />
           <Link className={css(styles.backToHome)} to='/'>回首頁</Link>
         </div>
@@ -104,6 +106,7 @@ MePage.propTypes = {
   authPage: PropTypes.object,
   authForm: PropTypes.object,
   initialValues: PropTypes.object,
+  onLogout: PropTypes.func,
   onUpdate: PropTypes.func
 };
 

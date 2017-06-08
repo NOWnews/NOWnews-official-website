@@ -1,3 +1,4 @@
+export const CLEAR_USER = 'CLEAR_USER';
 export const SET_LOCAL = 'SET_LOCAL';
 
 const initialState = {
@@ -14,6 +15,13 @@ export function setLocal (local) {
 
 export default function sourceRequest (state = initialState, action) {
   switch (action.type) {
+    case CLEAR_USER:
+      let tempLocal = { ...state.local };
+      tempLocal.user = {};
+      return {
+        ...state,
+        local: tempLocal
+      };
     case SET_LOCAL:
       return {
         ...state,

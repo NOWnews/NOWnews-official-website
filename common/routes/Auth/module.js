@@ -1,10 +1,12 @@
 import isomorphicCookie from 'isomorphic-cookie';
+import { CLEAR_USER } from '../../modules/sourceRequest';
 export const ACTIVE_REQUEST = 'ACTIVE_REQUEST';
 export const ACTIVE_SUCCESS = 'ACTIVE_SUCCESS';
 export const ACTIVE_FAILURE = 'ACTIVE_FAILURE';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
@@ -71,6 +73,15 @@ export const onLogin = () => {
   };
 };
 
+export const onLogout = () => {
+  return (dispatch, getState, { axios }) => {
+    dispatch({ type: LOGOUT_REQUEST });
+    isomorphicCookie.remove('NOW_memberData');
+    isomorphicCookie.remove('NOW_member');
+    dispatch({ type: CLEAR_USER });
+    window.location = '/';
+  };
+};
 export const onSignup = () => {
   return (dispatch, getState, { axios }) => {
     const { memberServ } = getState().sourceRequest;
