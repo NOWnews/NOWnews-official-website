@@ -7,7 +7,6 @@ import { selectVideoPage, loadVideoList, nextVideo, selectVideo } from '../modul
 import { NavBar } from '../../../components/Video';
 import { Container, Loading, NotFound } from '../../../components/Layout';
 import { BlockItems9, MainVideoPlay, VideoCategories } from '../components';
-import { LogoRow } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
 
 const redial = {
@@ -32,7 +31,6 @@ const VideoPage = ({ local, nextVideo, selectVideo, videoPage }) => {
   return (
     <div>
       <IsAdult isAdult={currentMenu.isAdult} />
-      <LogoRow />
       <NavBar selected='VIDEO' />
       {videoPage.isLoading && <Loading />}
       {!videoPage.isLoading && newsList.length > 0 &&

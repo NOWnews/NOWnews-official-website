@@ -35,15 +35,16 @@ export default function createRoutes (store) {
               }, 'disclaimer');
             }
           },
-          {
-            path: 'partner',
-            getComponents (location, cb) {
-              require.ensure(['./components/Partner'], (require) => {
-                const page = require('./components/Partner').default;
-                cb(null, page);
-              }, 'partner');
-            }
-          },
+          // 董哥：合作夥伴先拉掉不放
+          // {
+          //   path: 'partner',
+          //   getComponents (location, cb) {
+          //     require.ensure(['./components/Partner'], (require) => {
+          //       const page = require('./components/Partner').default;
+          //       cb(null, page);
+          //     }, 'partner');
+          //   }
+          // },
           {
             path: 'privacy',
             getComponents (location, cb) {

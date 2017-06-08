@@ -7,12 +7,14 @@ import { Container } from '../Layout';
 
 export const Footer = () => {
   const moreList = [
-    { title: '立院直播', url: '' },
-    { title: '購屋通', url: '' },
-    { title: '名家論壇', url: '' },
-    { title: '飆網超省', url: '' },
-    { title: '公益行善', url: '' },
-    { title: '色區', url: '' }
+    { isExternal: false, title: '立院直播', url: '/lylive/1' },
+    { isExternal: true, title: '購屋通', url: 'http://www.cthouse.com.tw/?utm_source=nownews&utm_medium=text&utm_content=navigation&utm_campaign=nownews' },
+    { isExternal: false, title: '名家論壇', url: '' },
+    { isExternal: true, title: '飆網超省', url: 'https://www.kbro.com.tw/K01/cm-promo-more-2_3_0_6_3.html?&mkwid=bPIzZHwz' },
+    { isExternal: false, title: '公益行善', url: '' },
+    { isExternal: true, title: '網頁遊戲', url: 'http://nownews.nicegame.com.tw/' },
+    { isExternal: true, title: '投票區', url: 'http://vote.nownews.com/' },
+    { isExternal: false, title: '色區', url: '' }
   ];
   const socialList = [
     { icon: 'FB', url: 'https://facebook.com/nownews' },
@@ -36,8 +38,11 @@ export const Footer = () => {
           <div className='left' style={{ width: '25%' }}>
             <label className={css(styles.groupTitle)}>More NOWnews</label>
             <div style={{ width: 200 }}>
-              { moreList.map(({ title, url }, i) =>
-                <Link className={css(styles.moreLink)} key={i} target='_blank' to={url}>{ title }</Link>
+              { moreList.map(({ isExternal, title, url }, i) =>
+                <Link className={css(styles.moreLink)}
+                  key={i}
+                  target={isExternal === true ? '_blank' : null}
+                  to={url}>{ title }</Link>
               )}
             </div>
           </div>
@@ -52,8 +57,9 @@ export const Footer = () => {
             )}
             <Link className={css(styles.groupTitle)}
               target='_blank' to='/info/about'>About NOWnews</Link>
-            <Link className={css(styles.groupTitle)}
-              target='_blank' to='/info/partner'>合作夥伴</Link>
+            {/* 董哥：合作夥伴先拉掉不放 */}
+            {/* <Link className={css(styles.groupTitle)}
+              target='_blank' to='/info/partner'>合作夥伴</Link> */}
           </div>
 
           {/* Contact Us */}
@@ -71,11 +77,11 @@ export const Footer = () => {
 
           {/* Member, Download App */}
           <div className='right' style={{ textAlign: 'right', width: '15%' }}>
-            <Link className={css(styles.btnMember)} to='/'>加入會員</Link>
-            <Link to='https://itunes.apple.com/tw/app/nownews-v1/id388356807?mt=8'>
+            <Link className={css(styles.btnMember)} to='/auth/signin'>加入會員</Link>
+            <Link target='_blank' to='https://itunes.apple.com/tw/app/nownews-v1/id388356807?mt=8'>
               <img src='/app/dark_ios.png' />
             </Link>
-            <Link to='https://play.google.com/store/apps/details?id=com.nownews&hl=zh_TW'>
+            <Link target='_blank' to='https://play.google.com/store/apps/details?id=com.nownews&hl=zh_TW'>
               <img src='/app/dark_android.png' />
             </Link>
           </div>

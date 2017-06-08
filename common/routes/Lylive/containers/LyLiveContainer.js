@@ -5,7 +5,6 @@ import { selectLylivePage, setVideoSource, loadRelatedNews } from '../module';
 import { NavBar } from '../../../components/Video';
 import { Container, Loading } from '../../../components/Layout';
 import { MainVideoPlay, RelatedNews, VideoSelector } from '../components';
-import { LogoRow } from '../../../components/Header';
 
 const redial = {
   fetch: ({ dispatch, params: { videoSource } }) => Promise.all([
@@ -22,7 +21,6 @@ const LylivePage = ({ lylivePage }) => {
   return (
     <div>
       <Container>
-        <LogoRow />
         <NavBar selected='LY_LIVE' />
         <MainVideoPlay url={lylivePage.videoSourceList[lylivePage.videoSource - 1].url} />
         {lylivePage.isLoading && <Loading />}
