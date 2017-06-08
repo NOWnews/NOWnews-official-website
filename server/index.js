@@ -62,13 +62,14 @@ export const createServer = (config) => {
   app.use(express.static('public', { etag: 1000, maxage: 86400000 * 365 }));
 
   app.get('*', (req, res) => {
+    const user = isomorphicCookie.load('NOW_memberData', req);
     const store = configureStore({
       sourceRequest: {
         apiServ: webApiServer,
         local: {
           path: url.parse(req.url).pathname,
           query: req.query,
-          user: isomorphicCookie.load('NOW_memberData', req)
+          user,
         },
         memberServ: memberApiServer
       }
@@ -88,12 +89,12 @@ export const createServer = (config) => {
       }
 
       const { components } = renderProps;
-
       // Define locals to be provided to all lifecycle hooks:
       const locals = {
         path: renderProps.location.pathname,
         query: renderProps.location.query,
         params: renderProps.params,
+        user,
 
         // Allow lifecycle hooks to dispatch Redux actions:
         dispatch
