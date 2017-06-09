@@ -22,6 +22,7 @@ const ContentForNews = ({ news, changeFontSize, interest, fontSize, topics, trip
       <Margin10 className='clearfix'>
         <LeftSide>
           <Content content={news.content} fontSize={fontSize} />
+          {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
           <Tags tags={news.Tags} />
           <Social />
           <ThermometerSm />

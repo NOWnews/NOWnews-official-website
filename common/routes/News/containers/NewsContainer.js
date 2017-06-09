@@ -101,7 +101,7 @@ class NewsContainer extends Component {
       mapCity: LBS.mapCity
     };
     const items = data.map((item, i) => {
-      const { Author, formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
+      const { Author, formatStartedAt, newsBy, MainMenu, title, traceCode, type, ...news } = item;
       const contentProps = {
         changeFontSize,
         interest,
@@ -121,6 +121,7 @@ class NewsContainer extends Component {
           <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} authorId={Author.id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
           {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
+          {traceCode && <script dangerouslySetInnerHTML={{__html: traceCode}} />}
         </div>
       );
     });
