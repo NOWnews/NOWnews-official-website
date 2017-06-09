@@ -97,7 +97,7 @@ export const onSignup = () => {
           lastFetched: Date.now()
         }
       });
-      const confirmRes = window.confirm('【註冊完成〗，請前往註冊信箱做帳號認證！');
+      const confirmRes = window.confirm('【註冊完成】，請前往註冊信箱做帳號認證！');
       if (confirmRes) {
         window.location = '/auth/login';
       }
@@ -156,6 +156,10 @@ export const resendActiveEmail = () => {
           lastFetched: Date.now()
         }
       });
+      const confirmRes = window.confirm('【重寄確認信成功】，請前往信箱做帳號認證！');
+      if (confirmRes) {
+        window.location = '/auth/login';
+      }
     }).catch(error => {
       dispatch({
         type: RESEND_ACTIVE_FAILURE,

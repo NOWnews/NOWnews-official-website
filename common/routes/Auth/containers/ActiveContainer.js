@@ -11,7 +11,7 @@ import { Button, Input } from '../../../components/Form';
 import Link from 'react-router/lib/Link';
 
 const redial = {
-  fetch: ({ dispatch, params: { token } }) => Promise.all([
+  fetch: ({ dispatch, query: { token } }) => Promise.all([
     dispatch(activeEmail(token))
   ])
 };

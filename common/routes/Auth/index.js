@@ -12,7 +12,7 @@ export default function createRoutes (store) {
         injectAsyncReducer(store, 'authPage', authFormReducer);
         cb(null, [
           {
-            path: 'active/:token',
+            path: 'active',
             getComponents (location, cb) {
               require.ensure([
                 './containers/ActiveContainer'
