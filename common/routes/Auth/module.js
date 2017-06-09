@@ -54,8 +54,9 @@ export const onLogin = () => {
     const url = `${memberServ}/api/member/signin`;
     return axios.post(url, values)
     .then((result) => {
-      // isomorphicCookie.save('NOW_member', result, { secure: false });
-      isomorphicCookie.save('NOW_memberData', result.data, { secure: false });
+      const { id, token, name } = result.data;
+      isomorphicCookie.save('NOW_member', id, { secure: false });
+      isomorphicCookie.save('NOW_memberData', { token, name }, { secure: false });
       dispatch({
         type: LOGIN_SUCCESS,
         payload: result,
