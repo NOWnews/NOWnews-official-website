@@ -27,6 +27,7 @@ class Idle extends Component {
   attachScrollListener () {
     const scrollEl = window;
     scrollEl.addEventListener('click', this.scrollListener);
+    scrollEl.addEventListener('mousemove', this.scrollListener);
     scrollEl.addEventListener('resize', this.scrollListener);
     scrollEl.addEventListener('scroll', this.scrollListener);
   }
@@ -38,6 +39,7 @@ class Idle extends Component {
   detachScrollListener () {
     const scrollEl = window;
     scrollEl.removeEventListener('click', this.scrollListener);
+    scrollEl.removeEventListener('mousemove', this.scrollListener);
     scrollEl.removeEventListener('resize', this.scrollListener);
     scrollEl.removeEventListener('scroll', this.scrollListener);
   }
