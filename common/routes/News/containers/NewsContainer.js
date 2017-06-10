@@ -8,8 +8,8 @@ import { Ad970x250 } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import {
-  changeFontSize, changeNewsTitle, loadNews, loadMoreNews, selectCurrentNews,
-  showFixedHeader
+  changeFontSize, changeNewsTitle, loadNews, loadMoreNews, onWarm,
+  selectCurrentNews, showFixedHeader
 } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
@@ -37,6 +37,7 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   loadInterest,
   loadLBSList,
   loadMoreNews,
+  onWarm,
   showFixedHeader
 });
 
@@ -85,7 +86,7 @@ class NewsContainer extends Component {
   }
 
   render () {
-    const { currentNews, changeFontSize, interest, LBS, menus, marquee } = this.props;
+    const { currentNews, changeFontSize, interest, LBS, menus, marquee, onWarm } = this.props;
     const {
       isLoading, data = [], hasMore, fontSize, newsTitle,
       showFixedHeader, topics
@@ -107,6 +108,7 @@ class NewsContainer extends Component {
         interest,
         fontSize,
         news,
+        onWarm,
         topics,
         triplet
       };
@@ -173,6 +175,7 @@ NewsContainer.propTypes = {
   loadMoreNews: PropTypes.func.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
+  onWarm: PropTypes.func.isRequired,
   showFixedHeader: PropTypes.func.isRequired
 };
 

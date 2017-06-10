@@ -11,7 +11,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet }) => {
+const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, interest, onWarm, topics, triplet }) => {
   const settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -41,7 +41,7 @@ const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, 
           {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
           <Tags tags={news.Tags} />
           <Social />
-          <ThermometerSm />
+          <ThermometerSm onWarm={onWarm} />
           <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
           <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} randomKey={randomKey} />
           <RecommendAds />
@@ -50,7 +50,7 @@ const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, 
           <Social />
           <FontSize changeFontSize={changeFontSize} />
           <Ad300x250 />
-          <Thermometer />
+          <Thermometer pv={1} onWarm={onWarm} />
           <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
           <Ad300x250 />
           <SpecialTopicNav list={topics} />
@@ -95,6 +95,7 @@ ContentForPhoto.propTypes = {
   fontSize: PropTypes.number.isRequired,
   interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
+  onWarm: PropTypes.func.isRequired,
   topics: PropTypes.array.isRequired,
   triplet: PropTypes.object.isRequired
 };
