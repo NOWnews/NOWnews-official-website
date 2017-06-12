@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Helmet from 'react-helmet';
 import { GTM } from './Tracking';
-import Idle from './Idle';
+// import Idle from './Idle';
 
 const styles = StyleSheet.create({
   root: {
@@ -20,7 +20,8 @@ const Basic = ({ children }) => (
         {async: '', rel: 'stylesheet', href: '/vendor/video-js.min.css'}
       ]}
     />
-    <Idle />
+
+    {/* 目前先不放 <Idle /> */}
     {children}
     <GTM gtmId='GTM-W25KLJG' />
   </div>
