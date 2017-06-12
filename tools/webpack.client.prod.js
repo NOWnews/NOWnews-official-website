@@ -10,16 +10,16 @@ module.exports = {
   entry: {
     main: [CLIENT_ENTRY],
     vendor: [
-      'aphrodite',
-      'FontAwesome',
-      'Modal',
-      'moment',
+      'aphrodite/no-important',
       'react',
       'react-dom',
+      'react-fontawesome',
+      'react-google-tag-manager',
       'react-router',
-      'redux',
       'react-redux',
-      'react-simple-dfp'
+      'react-overlays/lib/Modal',
+      'react-simple-dfp',
+      'redux'
     ]
   },
   output: {
