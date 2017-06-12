@@ -9,7 +9,7 @@ import { BlockItems, BlockItems4, BlockItems8, SlideRight, VideoBlock } from '..
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
-import { Ad300x250, Ad300x600 } from '../../../components/Ad';
+import { DFP } from '../../../components/Ad';
 
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
@@ -102,10 +102,10 @@ class HomeContainer extends Component {
               </LeftSide>
               <RightSide>
                 <Margin10>
-                  <Ad300x250 />
+                  <DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />
                 </Margin10>
                 <Margin10>
-                  <Ad300x250 />
+                  <DFP opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />
                 </Margin10>
               </RightSide>
             </Container>
@@ -157,10 +157,10 @@ class HomeContainer extends Component {
               </LeftSide>
               <RightSide>
                 <Margin10>
-                  <Ad300x600 />
+                  <DFP opts={['/5799246/Nownews_home_300x600_RB_new2', [300, 600], 'div-gpt-ad-1496983253991-0']} />
                 </Margin10>
                 <Margin10>
-                  <Ad300x250 />
+                  <DFP opts={['/5799246/Nownews_home_300x250_RB_new2', [300, 250], 'div-gpt-ad-1496983283211-0']} />
                 </Margin10>
                 <Margin10>
                   <AppleStyle />

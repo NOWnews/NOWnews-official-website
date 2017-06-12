@@ -13,13 +13,16 @@ module.exports = {
       CLIENT_ENTRY
     ],
     vendor: [
-      'moment',
+      'aphrodite/no-important',
       'react',
       'react-dom',
+      'react-fontawesome',
+      'react-google-tag-manager',
       'react-router',
-      'redux',
       'react-redux',
-      'aphrodite'
+      'react-overlays/lib/Modal',
+      'react-simple-dfp',
+      'redux'
     ]
   },
   output: {

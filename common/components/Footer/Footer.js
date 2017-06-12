@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import AdBlock from './components/AdBlock';
-import { Ad970x250 } from '../Ad';
+import { DFP } from '../Ad';
 import { Container } from '../Layout';
 
 export const Footer = () => {
@@ -26,7 +26,7 @@ export const Footer = () => {
 
   return (
     <Container>
-      <Ad970x250 />
+      <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
       <div className={css(styles.footer)}>
         <div className={css(styles.adBlocks)}>
           { [1, 2, 3, 4, 5].map((index) => <AdBlock key={index} />)}
