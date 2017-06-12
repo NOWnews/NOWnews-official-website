@@ -10,12 +10,16 @@ module.exports = {
   entry: {
     main: [CLIENT_ENTRY],
     vendor: [
+      'aphrodite',
+      'FontAwesome',
+      'Modal',
+      'moment',
       'react',
       'react-dom',
       'react-router',
       'redux',
       'react-redux',
-      'aphrodite'
+      'react-simple-dfp'
     ]
   },
   output: {
