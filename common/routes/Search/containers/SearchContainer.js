@@ -36,7 +36,22 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
 class SearchPage extends Component {
   constructor (props) {
     super(props);
+    this.keyup = this.keyup.bind(this);
     this.submitForm = this.submitForm.bind(this);
+  }
+
+  componentDidMount () {
+    this.searchInput.addEventListener('keyup', this.keyup);
+  }
+
+  componentWillUnmount () {
+    this.searchInput.removeEventListener('keyup', this.keyup);
+  }
+
+  keyup (e) {
+    if (e.keyCode === 13) {
+      this.submitForm();
+    }
   }
 
   submitForm () {
