@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Ad970x90 } from '../Ad';
+import { DFP } from '../Ad';
 import { InstantBar, Menu } from './components';
 import { Container } from '../Layout';
 
@@ -9,7 +9,7 @@ export const Header = ({ menus, currentMainMenu, currentChildMenu, marquee }) =>
       currentMainMenu={currentMainMenu}
       currentChildMenu={currentChildMenu} />
     <InstantBar list={marquee} />
-    <Ad970x90 />
+    <DFP opts={['/5799246/Nownews_home_970x250_T_new2', [[970, 90], [970, 250]], 'div-gpt-ad-1496983147535-0']} />
   </Container>
 );
 
