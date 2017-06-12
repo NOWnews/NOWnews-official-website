@@ -14,14 +14,14 @@ const PreviewForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize }
     showThumbs: true,
     showIndicators: false
   };
-  const imgApi = 'https://imgapiv2.nownews.com/?w=970&q=70&src=';
+  const imgApi = 'https://imgapiv2.nownews.com/?h=570&q=70&src=';
   return (
     <Container>
-      <div className={css(styles.contentDiv)}>
+      <div className={css(styles.SlideBox)}>
         <Carousel {...settings}>
           {Photos.map(({ desc, sn, url }) => (
-            <div className={css(styles.contentImg)}>
-              <img key={sn} src={`${imgApi}${url}`} />
+            <div className={css(styles.contentDiv)}>
+              <img className={css(styles.contentImg)} src={`${imgApi}${url}`} />
               <p className={css(styles.imgDesc)}>{desc}</p>
             </div>
           ))}
@@ -45,17 +45,13 @@ const styles = StyleSheet.create({
     margin: '1rem 0'
   },
   contentImg: {
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-    display: 'inline-block',
-    backgroundPosition: 'center center',
-    width: '100%',
-    height: 545
+    height: '100%',
+    width: 'auto !important'
   },
   contentDiv: {
+    textAlign: 'center',
     background: '#f1f2f3',
-    height: 570,
-    marginBottom: 60
+    height: 570
   },
   imgDesc: {
     backgroundImage: 'url("/bg/bg-photo-news-desc.png")',
@@ -66,6 +62,10 @@ const styles = StyleSheet.create({
     lineHeight: '60px',
     position: 'absolute',
     width: '100%'
+  },
+  SlideBox: {
+    height: 570,
+    marginBottom: 60
   }
 });
 
