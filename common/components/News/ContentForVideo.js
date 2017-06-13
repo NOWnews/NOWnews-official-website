@@ -12,6 +12,7 @@ import { Ad300x250 } from '../Ad';
 
 const ContentForVideo = ({ news, changeFontSize, fontSize, onWarm, triplet }) => {
   const { freeContent, MainPhoto, MainVideo, parseUrl, title } = news;
+  const randomKey = news.sn % 3;
   const socialProps = {
     img: MainPhoto.url,
     title,
@@ -28,7 +29,7 @@ const ContentForVideo = ({ news, changeFontSize, fontSize, onWarm, triplet }) =>
           <Tags tags={news.Tags} />
           <Social {...socialProps} />
           {/* <ThermometerSm onWarm={onWarm} /> */}
-          <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
+          <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
           {/* <HotVideoBlocks list={news.relations} /> */}
         </LeftSide>
         <RightSide>
