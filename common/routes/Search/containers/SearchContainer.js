@@ -36,20 +36,12 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
 class SearchPage extends Component {
   constructor (props) {
     super(props);
-    this.keyup = this.keyup.bind(this);
+    this.onEnter = this.onEnter.bind(this);
     this.submitForm = this.submitForm.bind(this);
   }
 
-  componentDidMount () {
-    document.addEventListener('keyup', this.keyup);
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('keyup', this.keyup);
-  }
-
-  keyup (e) {
-    if (e.keyCode === 13) {
+  onEnter (e) {
+    if (e.key === 'Enter') {
       this.submitForm();
     }
   }
@@ -73,6 +65,7 @@ class SearchPage extends Component {
         <Margin10 className='center'>
           <input type='hidden' name='timeRange' value={timeRange} />
           <input type='text' key={keyword} name='keyword' placeholder='搜尋'
+            onKeyPress={this.onEnter}
             ref={ref => { this.searchInput = ref; }}
             className={`input ${css(styles.searchInput)}`} defaultValue={keyword} />
           <button type='submit' className={css(styles.submitButton)}
