@@ -5,11 +5,20 @@ import Link from 'react-router/lib/Link';
 import TypeIcon from './TypeIcon';
 
 export const BlockItem = ({ category, photo, time, title, type, url }) => {
-  const mainPhoto = photo || {};
+  const { width, height, ...mainPhoto } = photo || {};
+  let imgStyle = {};
+  if (height >= width && (width - height) > -200) {
+    const top = height * 300 / width / 5;
+    imgStyle.top = `-${top}px`;
+  }
+
   return (
     <Link className={css(styles.box)} to={url}>
       <TypeIcon type={type} />
-      <img className={css(styles.img)} src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+      <div className={css(styles.imgDiv)}>
+        <img className={css(styles.img)} style={imgStyle}
+          src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+      </div>
       <div className={css(styles.bottom)}>
         <div className={css(styles.category)}>{category}</div>
         <div className={css(styles.title)}>{title}</div>
@@ -34,25 +43,31 @@ const styles = StyleSheet.create({
   },
   category: {
     color: '#1886FB',
-    fontSize: '13px'
+    fontSize: 13
   },
   img: {
-    height: '168px',
+    height: 'auto',
     marginBottom: 5,
-    maxWidth: '100%',
-    maxHeight: '168px',
+    position: 'relative',
     width: '100%'
+  },
+  imgDiv: {
+    background: '#f1f2f3',
+    height: 168,
+    maxheight: 168,
+    overflow: 'hidden',
+    textAlign: 'center'
   },
   title: {
     margin: '5px 0'
   },
   time: {
     color: '#888',
-    fontSize: '13px',
+    fontSize: 13,
     marginLeft: 5,
     marginTop: 5,
     position: 'relative',
-    top: '-2px'
+    top: -2
   }
 });
 
