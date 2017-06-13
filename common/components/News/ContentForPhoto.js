@@ -3,7 +3,8 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
-  Tags, Thermometer, ThermometerSm
+  Tags, Thermometer
+  // , ThermometerSm
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 
@@ -41,7 +42,7 @@ const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, 
           {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
           <Tags tags={news.Tags} />
           <Social />
-          <ThermometerSm onWarm={onWarm} />
+          {/* <ThermometerSm onWarm={onWarm} /> */}
           <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
           <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} randomKey={randomKey} />
           <RecommendAds />

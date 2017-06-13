@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import {
   Content, FontSize, RelatedContent, Social, Tags,
-  Thermometer, ThermometerSm
+  Thermometer
+  // , ThermometerSm
 } from './NewsContent';
 import { TripletNav, VideoPlayer } from '../News';
 
@@ -19,7 +20,7 @@ const ContentForVideo = ({ news, changeFontSize, fontSize, onWarm, triplet }) =>
         {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
         <Tags tags={news.Tags} />
         <Social />
-        <ThermometerSm onWarm={onWarm} />
+        {/* <ThermometerSm onWarm={onWarm} /> */}
         <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
         {/* <HotVideoBlocks list={news.relations} /> */}
       </LeftSide>

@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
-  Tags, Thermometer, ThermometerSm
+  Tags, Thermometer
+  // , ThermometerSm
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 
@@ -25,7 +26,7 @@ const ContentForNews = ({ news, changeFontSize, interest, fontSize, onWarm, topi
           {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
           <Tags tags={news.Tags} />
           <Social />
-          <ThermometerSm onWarm={onWarm} />
+          {/* <ThermometerSm onWarm={onWarm} /> */}
           <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
           <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} randomKey={randomKey} />
           <RecommendAds />
