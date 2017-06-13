@@ -7,6 +7,7 @@ import TypeIcon from './TypeIcon';
 export const BlockItem = ({ category, photo, time, title, type, url }) => {
   const { width, height, ...mainPhoto } = photo || {};
   let imgStyle = {};
+  // 如果是接近方圖的話會往上位移 20%，因為方形的圖通常主要內容在中間。
   if (height >= width && (width - height) > -200) {
     const top = height * 300 / width / 5;
     imgStyle.top = `-${top}px`;
