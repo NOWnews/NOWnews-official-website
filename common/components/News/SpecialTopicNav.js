@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     height: 30,
     lineHeight: '30px',
+    overflow: 'hidden',
     textAlign: 'center'
   },
   item: {
