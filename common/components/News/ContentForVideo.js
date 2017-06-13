@@ -14,7 +14,7 @@ const ContentForVideo = ({ news, changeFontSize, fontSize, onWarm, triplet }) =>
   const { freeContent, MainPhoto, MainVideo, parseUrl, title } = news;
   const randomKey = news.sn % 3;
   const socialProps = {
-    img: MainPhoto.url,
+    img: MainPhoto && MainPhoto.url,
     title,
     url: parseUrl
   };

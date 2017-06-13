@@ -25,7 +25,7 @@ const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize,
   const randomKey = news.sn % 3;
   const imgApi = 'https://imgapiv2.nownews.com/?h=570&q=70&src=';
   const socialProps = {
-    img: MainPhoto.url,
+    img: MainPhoto && MainPhoto.url,
     title: news.title,
     url: news.parseUrl
   };
