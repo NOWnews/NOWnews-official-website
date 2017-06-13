@@ -102,7 +102,7 @@ class NewsContainer extends Component {
       mapCity: LBS.mapCity
     };
     const items = data.map((item, i) => {
-      const { Author, formatStartedAt, newsBy, MainMenu, title, traceCode, type, ...news } = item;
+      const { Author, formatStartedAt, newsBy, MainMenu, traceCode, type, ...news } = item;
       const contentProps = {
         changeFontSize,
         interest,
@@ -120,7 +120,7 @@ class NewsContainer extends Component {
       const Content = ContentTypeObject[type];
       return (
         <div key={news.sn}>
-          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} authorId={Author.id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
+          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={news.title} authorId={Author.id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
           {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
           {traceCode && <script dangerouslySetInnerHTML={{__html: traceCode}} />}

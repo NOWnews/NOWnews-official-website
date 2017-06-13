@@ -12,7 +12,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, interest, onWarm, topics, triplet }) => {
+const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, onWarm, topics, triplet }) => {
   const settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -24,6 +24,11 @@ const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, 
   };
   const randomKey = news.sn % 3;
   const imgApi = 'https://imgapiv2.nownews.com/?h=570&q=70&src=';
+  const socialProps = {
+    img: MainPhoto.url,
+    title: news.title,
+    url: news.parseUrl
+  };
   return (
     <Container>
       <div className={css(styles.SlideBox)}>
@@ -41,14 +46,14 @@ const ContentForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize, 
           <Content content={news.content} fontSize={fontSize} />
           {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
           <Tags tags={news.Tags} />
-          <Social />
+          <Social {...socialProps} />
           {/* <ThermometerSm onWarm={onWarm} /> */}
           <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
           <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} randomKey={randomKey} />
           <RecommendAds />
         </LeftSide>
         <RightSide>
-          <Social />
+          <Social {...socialProps} />
           <FontSize changeFontSize={changeFontSize} />
           <Ad300x250 />
           <Thermometer pv={1} onWarm={onWarm} />
