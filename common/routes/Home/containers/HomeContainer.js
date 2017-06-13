@@ -171,6 +171,9 @@ class HomeContainer extends Component {
               </RightSide>
             </Container>
           </div>}
+        <Container>
+          <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
+        </Container>
       </div>
     );
   };
