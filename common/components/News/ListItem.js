@@ -5,11 +5,19 @@ import Link from 'react-router/lib/Link';
 import TypeIcon from './TypeIcon';
 
 export const ListItem = ({ category, photo, time, title, type, url }) => {
-  const mainPhoto = photo || {};
+  const { width, height, ...mainPhoto } = photo || {};
+  let imgStyle = {};
+  // 如果是接近方圖的話會往上位移 25%，因為方形的圖通常主要內容在中間。
+  if (height >= width && (width - height) > -200) {
+    const top = height * 95 / width / 4;
+    imgStyle.top = `-${top}px`;
+  }
+
   return (
     <Link className={`clearfix ${css(styles.box)}`} to={url}>
       <div className={`left ${css(styles.left)}`}>
-        <img className={css(styles.img)} src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+        <img className={css(styles.img)} style={imgStyle}
+          src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
         <TypeIcon type={type} size='LI' />
       </div>
       <div className={`right ${css(styles.right)}`}>
@@ -38,11 +46,13 @@ const styles = StyleSheet.create({
     marginTop: '0.4rem'
   },
   left: {
-    width: 170
+    height: 95,
+    width: 170,
+    overflow: 'hidden'
   },
   img: {
-    height: 95,
-    maxHeight: 95,
+    height: 'auto',
+    position: 'relative',
     width: '100%'
   },
   right: {
