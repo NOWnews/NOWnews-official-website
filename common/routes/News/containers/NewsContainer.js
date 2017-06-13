@@ -139,7 +139,7 @@ class NewsContainer extends Component {
     }
     return (
       <div>
-        {!isLoading && <IsAdult isAdult={data[0].isAdult} />}
+        {!isLoading && data[0] && <IsAdult isAdult={data[0].isAdult} />}
         <Header menus={menus} marquee={marquee}
           currentChildMenu={currentChildMenu}
           currentMainMenu={currentMainMenu} />
