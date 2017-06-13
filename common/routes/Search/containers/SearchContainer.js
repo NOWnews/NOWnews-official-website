@@ -41,11 +41,11 @@ class SearchPage extends Component {
   }
 
   componentDidMount () {
-    this.searchInput.addEventListener('keyup', this.keyup);
+    document.addEventListener('keyup', this.keyup);
   }
 
   componentWillUnmount () {
-    this.searchInput.removeEventListener('keyup', this.keyup);
+    document.removeEventListener('keyup', this.keyup);
   }
 
   keyup (e) {
