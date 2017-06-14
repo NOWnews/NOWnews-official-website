@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     height: 40,
     lineHeight: '40px',
+    overflow: 'hidden',
     textAlign: 'center'
   },
   link: {

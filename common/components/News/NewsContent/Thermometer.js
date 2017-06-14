@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
 
-const Thermometer = () => (
-  <Margin10 className='center'>
-    <label className={css(styles.label)}>新聞溫度計</label>
-    <hr className={css(styles.dottedLine)} />
-    <div className='relative'>
-      <img className={css(styles.thermometerPointer)} src='/others/thermometer-pointer.png' />
-      <img className={css(styles.thermometerBar)} src='/others/thermometer-bar.png' />
-    </div>
-    <div>
-      <img src='/icons/fire.png' />
-      <span className={css(styles.fireWord)}>需要溫暖</span>
-    </div>
-  </Margin10>
-);
+const Thermometer = ({ onWarm, pv = 1 }) => {
+  const maxPv = 10000;
+  const positionRate = (pv / maxPv) * 100 * 0.9;
+  const pointerPosition = {
+    left: `${positionRate}%`
+  };
+  return (
+    <Margin10 className='center'>
+      <label className={css(styles.label)}>新聞溫度計</label>
+      <hr className={css(styles.dottedLine)} />
+      <div className='relative'>
+        <img className={css(styles.thermometerPointer)}
+          src='/others/thermometer-pointer.png'
+          style={pointerPosition} />
+        <img className={css(styles.thermometerBar)} src='/others/thermometer-bar.png' />
+      </div>
+      {/* <div onClick={onWarm}>
+        <img src='/icons/fire.png' />
+        <span className={css(styles.fireWord)}>需要溫暖</span>
+      </div> */}
+    </Margin10>
+  );
+};
 
 const styles = StyleSheet.create({
   dottedLine: {
@@ -36,11 +45,16 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   thermometerPointer: {
-    marginTop: -7,
+    top: -7,
     position: 'absolute',
     zIndex: 2
   }
 
 });
+
+Thermometer.propTypes = {
+  onWarm: PropTypes.func.isRequired,
+  pv: PropTypes.number
+};
 
 export default Thermometer;

@@ -44,7 +44,9 @@ const styles = StyleSheet.create({
   },
   category: {
     color: '#1886FB',
-    fontSize: 13
+    fontSize: 13,
+    position: 'relative',
+    top: 5
   },
   img: {
     height: 'auto',

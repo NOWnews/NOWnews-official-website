@@ -9,27 +9,29 @@ class VideoPlayer extends Component {
       return;
     }
 
-    // UseVideoJs
+    /* -- Use Video Js Start -- */
     let type = 'video/mp4';
 
     if (src.indexOf('youtu') > 0) {
       type = 'video/youtube';
     }
 
-    const imgApi = `https://imgapiv2.nownews.com/?w=${width}&q=70&src=`;
-
-    const options = {
+    let options = {
       autoPlay: false,
       controls: true,
       techOrder: ['flash', 'html5', 'youtube'],
-      poster: `${imgApi}${poster}`,
-      sources: [{ src, type }],
-      flash: {
-        swf: '/src/video-js.swf'
-      }
+      poster: `https://imgapiv2.nownews.com/?w=${width}&q=70&src=${poster}`,
+      sources: [{ src, type }]
     };
 
+    if (src.indexOf('.m3u8') > 0) {
+      options.flash = {
+        swf: '/src/video-js.swf'
+      };
+    }
+
     this.player = videojs(this.videoNode, options);
+    /* -- Use Video Js End -- */
   }
 
   // destroy player on unmount
@@ -46,20 +48,6 @@ class VideoPlayer extends Component {
     const { width = 970, height = 545 } = this.props;
     const iconSize = 100;
     const fontSize = 70;
-    const customVideoJsPlayer = `
-      .video-js .vjs-big-play-button {
-        border: 0;
-        border-radius: 50%;
-        left: ${width / 2 - iconSize / 2}px;
-        top: ${height / 2 - iconSize / 2}px;
-        width: ${iconSize}px;
-        height: ${iconSize}px;
-      }
-      .video-js .vjs-big-play-button:before {
-        padding-top: ${(iconSize - fontSize) / 2 + 10}px;
-        font-size: ${fontSize}px;
-      }
-    `;
 
     let src = this.props.src;
     let useIframe = false;
@@ -69,12 +57,26 @@ class VideoPlayer extends Component {
     } else if (src.indexOf('streamable') > 0) {
       useIframe = true;
     }
+
     return (
       <div>
         {useIframe && <iframe src={src}
           width={width} height={height} scrolling='no' frameBorder='0' allowTransparency='true' allowFullScreen='true' />}
         {!useIframe && <div data-vjs-player>
-          <style dangerouslySetInnerHTML={{__html: customVideoJsPlayer}} />
+          <style dangerouslySetInnerHTML={{__html: `
+            .video-js .vjs-big-play-button {
+              border: 0;
+              border-radius: 50%;
+              left: ${width / 2 - iconSize / 2}px;
+              top: ${height / 2 - iconSize / 2}px;
+              width: ${iconSize}px;
+              height: ${iconSize}px;
+            }
+            .video-js .vjs-big-play-button:before {
+              padding-top: ${(iconSize - fontSize) / 2 + 10}px;
+              font-size: ${fontSize}px;
+            }
+          `}} />
           <video width={width} height={height} className='video-js'
             ref={node => { this.videoNode = node; }} />
         </div>}

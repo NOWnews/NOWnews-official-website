@@ -2,17 +2,23 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
-  Tags, Thermometer, ThermometerSm
+  Tags, Thermometer
+  // , ThermometerSm
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
-const ContentForNews = ({ news, changeFontSize, interest, fontSize, topics, triplet }) => {
+const ContentForNews = ({ news, changeFontSize, interest, fontSize, onWarm, topics, triplet }) => {
   const randomKey = news.sn % 3;
   const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
   const imgUrl = (news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
+  const socialProps = {
+    img: imgUrl,
+    title: news.title,
+    url: news.parseUrl
+  };
   return (
     <Container>
       <div className={css(styles.contentDiv)}>
@@ -22,18 +28,19 @@ const ContentForNews = ({ news, changeFontSize, interest, fontSize, topics, trip
       <Margin10 className='clearfix'>
         <LeftSide>
           <Content content={news.content} fontSize={fontSize} />
+          {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
           <Tags tags={news.Tags} />
-          <Social />
-          <ThermometerSm />
+          <Social {...socialProps} />
+          {/* <ThermometerSm onWarm={onWarm} /> */}
           <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
           <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} randomKey={randomKey} />
           <RecommendAds />
         </LeftSide>
         <RightSide>
-          <Social />
+          <Social {...socialProps} />
           <FontSize changeFontSize={changeFontSize} />
           <Ad300x250 />
-          <Thermometer />
+          <Thermometer pv={1} onWarm={onWarm} />
           <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
           <Ad300x250 />
           <SpecialTopicNav list={topics} />
@@ -61,6 +68,7 @@ ContentForNews.propTypes = {
   fontSize: PropTypes.number.isRequired,
   interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
+  onWarm: PropTypes.func.isRequired,
   topics: PropTypes.array.isRequired,
   triplet: PropTypes.object.isRequired
 };

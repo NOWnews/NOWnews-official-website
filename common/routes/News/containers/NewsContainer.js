@@ -8,8 +8,8 @@ import { Ad970x250 } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import {
-  changeFontSize, changeNewsTitle, loadNews, loadMoreNews, selectCurrentNews,
-  showFixedHeader
+  changeFontSize, changeNewsTitle, loadNews, loadMoreNews, onWarm,
+  selectCurrentNews, showFixedHeader
 } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
@@ -37,6 +37,7 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   loadInterest,
   loadLBSList,
   loadMoreNews,
+  onWarm,
   showFixedHeader
 });
 
@@ -85,7 +86,7 @@ class NewsContainer extends Component {
   }
 
   render () {
-    const { currentNews, changeFontSize, interest, LBS, menus, marquee } = this.props;
+    const { currentNews, changeFontSize, interest, LBS, menus, marquee, onWarm } = this.props;
     const {
       isLoading, data = [], hasMore, fontSize, newsTitle,
       showFixedHeader, topics
@@ -101,12 +102,13 @@ class NewsContainer extends Component {
       mapCity: LBS.mapCity
     };
     const items = data.map((item, i) => {
-      const { Author, formatStartedAt, newsBy, MainMenu, title, type, ...news } = item;
+      const { Author, formatStartedAt, newsBy, MainMenu, traceCode, type, ...news } = item;
       const contentProps = {
         changeFontSize,
         interest,
         fontSize,
         news,
+        onWarm,
         topics,
         triplet
       };
@@ -118,9 +120,10 @@ class NewsContainer extends Component {
       const Content = ContentTypeObject[type];
       return (
         <div key={news.sn}>
-          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={title} authorId={Author.id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
+          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={news.title} authorId={Author.id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
           {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
+          {traceCode && <script dangerouslySetInnerHTML={{__html: traceCode}} />}
         </div>
       );
     });
@@ -136,7 +139,7 @@ class NewsContainer extends Component {
     }
     return (
       <div>
-        {!isLoading && <IsAdult isAdult={data[0].isAdult} />}
+        {!isLoading && data[0] && <IsAdult isAdult={data[0].isAdult} />}
         <Header menus={menus} marquee={marquee}
           currentChildMenu={currentChildMenu}
           currentMainMenu={currentMainMenu} />
@@ -172,6 +175,7 @@ NewsContainer.propTypes = {
   loadMoreNews: PropTypes.func.isRequired,
   marquee: PropTypes.array.isRequired,
   menus: PropTypes.array.isRequired,
+  onWarm: PropTypes.func.isRequired,
   showFixedHeader: PropTypes.func.isRequired
 };
 
