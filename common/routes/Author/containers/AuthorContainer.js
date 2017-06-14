@@ -7,6 +7,7 @@ import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
 import { Container, Margin10, Loading, NotFound } from '../../../components/Layout';
+import { DFP } from '../../../components/Ad';
 import Pagination from '../../../components/Pagination';
 import { BlockItem6, AuthorInfo } from '../components';
 const redial = {
@@ -39,6 +40,7 @@ class AuthorPage extends Component {
           </div>
           <Pagination {...authorPage.pageData} {...local} />
         </Margin10>}
+        <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
       </Container>
     );
   }

@@ -5,6 +5,7 @@ import { selectLylivePage, setVideoSource, loadRelatedNews } from '../module';
 import { NavBar } from '../../../components/Video';
 import { Container, Loading } from '../../../components/Layout';
 import { MainVideoPlay, RelatedNews, VideoSelector } from '../components';
+import { DFP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, params: { videoSource } }) => Promise.all([
@@ -27,6 +28,7 @@ const LylivePage = ({ lylivePage }) => {
         {!lylivePage.isLoading &&
         <RelatedNews newsList={lylivePage.newsList} />}
         <VideoSelector currentVideoSource={lylivePage.videoSource} videoSourceList={lylivePage.videoSourceList} />
+        <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
       </Container>
     </div>
   );

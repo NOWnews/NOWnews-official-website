@@ -3,7 +3,7 @@ import { InstantBar, Menu } from './components';
 import { DFP } from '../Ad';
 import { Container } from '../Layout';
 
-export const Header = ({ adType, menus, currentMainMenu, currentChildMenu, marquee }) => (
+export const Header = ({ adType = 'home', menus, currentMainMenu, currentChildMenu, marquee }) => (
   <Container>
     <Menu menus={menus}
       currentMainMenu={currentMainMenu}

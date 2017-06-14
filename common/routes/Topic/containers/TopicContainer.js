@@ -9,6 +9,7 @@ import Pagination from '../../../components/Pagination';
 import { Slide } from '../../../components/News';
 import { BlockItems, TopicRight } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
+import { DFP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, query: { page } }) => Promise.all([
@@ -41,6 +42,7 @@ const TopicContainer = ({ local, topicPage, menus, marquee }) => {
           <Pagination {...pageData} {...local} />
         </div>
       }
+      <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
     </Container>
   );
 };

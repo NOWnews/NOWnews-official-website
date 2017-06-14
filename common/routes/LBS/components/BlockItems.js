@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { BlockItem } from '../../../components/News';
 import { DFP } from '../../../components/Ad';
+import Pagination from '../../../components/Pagination';
+import { BlockItem } from '../../../components/News';
 
-const BlockItems = ({ newsList }) => {
+const BlockItems = ({ newsList, page, local }) => {
   let items = [];
 
   newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }, key) => {
@@ -20,16 +21,21 @@ const BlockItems = ({ newsList }) => {
       </div>
     );
 
-    if (key === 4) {
-      items.push(<DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />);
-    } else if (key === 9) {
-      items.push(<DFP opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />);
+    if (key === 1) {
+      items.push(<DFP key={`Ad_M1`} className={css(styles.blockItem)}
+        opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />);
+    } else if (key === 6) {
+      items.push(<DFP key={`Ad_M2`} className={css(styles.blockItem)}
+        opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />);
     }
   });
 
   return (
-    <div className='clearfix'>
-      { items }
+    <div>
+      <div className='clearfix'>
+        { items }
+      </div>
+      {page && <Pagination {...page} {...local} />}
     </div>
   );
 };
@@ -37,6 +43,7 @@ const BlockItems = ({ newsList }) => {
 const styles = StyleSheet.create({
   blockItem: {
     float: 'left',
+    height: 245,
     marginBottom: 30,
     marginLeft: 11.5,
     marginRight: 11.5,
@@ -45,7 +52,9 @@ const styles = StyleSheet.create({
 });
 
 BlockItems.propTypes = {
-  newsList: PropTypes.array.isRequired
+  local: PropTypes.object,
+  newsList: PropTypes.array.isRequired,
+  page: PropTypes.object
 };
 
 export default BlockItems;
