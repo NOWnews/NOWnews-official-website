@@ -8,6 +8,7 @@ import hpp from 'hpp';
 import throng from 'throng';
 import url from 'url';
 import isomorphicCookie from 'isomorphic-cookie';
+import axios from 'axios';
 
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -60,6 +61,19 @@ export const createServer = (config) => {
   }
 
   app.use(express.static('public', { etag: 1000, maxage: 86400000 * 365 }));
+
+  // process login
+  app.get('/api/oauth_callback', (req, res) => {
+    const token = req.get('token');
+    axios.get('https://memberapi.nownews.com/api/member', {
+      headers: { token }
+    }).then((result)=>{
+      const { id, email, gender, birthday, phone } = result.data;
+      isomorphicCookie.save('NOW_member', id, { secure: false }, res);
+      isomorphicCookie.save('NOW_memberData', { token, name, email, gender, phone }, { secure: false }, res);
+      return res.redirect('/');
+    });
+  });
 
   app.get('*', (req, res) => {
     const user = isomorphicCookie.load('NOW_memberData', req);

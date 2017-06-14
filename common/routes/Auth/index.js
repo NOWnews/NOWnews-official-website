@@ -23,17 +23,6 @@ export default function createRoutes (store) {
             }
           },
           {
-            path: 'signup',
-            getComponents (location, cb) {
-              require.ensure([
-                './containers/SignupContainer'
-              ], (require) => {
-                const SignupContainer = require('./containers/SignupContainer').default;
-                cb(null, SignupContainer);
-              }, 'signupPage');
-            }
-          },
-          {
             path: 'forgot',
             getComponents (location, cb) {
               require.ensure([
@@ -64,6 +53,28 @@ export default function createRoutes (store) {
                 const MeContainer = require('./containers/MeContainer').default;
                 cb(null, MeContainer);
               }, 'mePage');
+            }
+          },
+          {
+            path: 'oauth',
+            getComponents (location, cb) {
+              require.ensure([
+                './containers/OauthContainer'
+              ], (require) => {
+                const OauthContainer = require('./containers/OauthContainer').default;
+                cb(null, OauthContainer);
+              }, 'oauthPage');
+            }
+          },
+          {
+            path: 'signup',
+            getComponents (location, cb) {
+              require.ensure([
+                './containers/SignupContainer'
+              ], (require) => {
+                const SignupContainer = require('./containers/SignupContainer').default;
+                cb(null, SignupContainer);
+              }, 'signupPage');
             }
           }
         ]);

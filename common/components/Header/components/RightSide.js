@@ -9,7 +9,7 @@ const RightSide = ({ user }) => {
     { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
     { icon: 'FB', url: 'https://facebook.com/nownews' }
   ];
-  const memberLink = user ? '/auth/me' : '/auth/login';
+  const memberLink = user ? '/auth/me' : '/auth/oauth';
   return (
     <div className={`clearfix ${css(styles.box)}`}>
       <Link className={css(styles.link)} to='/search?timeRange=lastWeek'>
