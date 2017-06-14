@@ -120,7 +120,7 @@ class NewsContainer extends Component {
       const Content = ContentTypeObject[type];
       return (
         <div key={news.sn}>
-          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={news.title} authorId={Author.id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
+          <Head newsBy={newsBy} mainMenu={MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
           {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
           {traceCode && <script dangerouslySetInnerHTML={{__html: traceCode}} />}
