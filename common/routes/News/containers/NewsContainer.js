@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
-import { Ad970x250 } from '../../../components/Ad';
+import { DFP } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import {
@@ -101,9 +101,13 @@ class NewsContainer extends Component {
       },
       mapCity: LBS.mapCity
     };
+    const adType = 'social';  // temp
+
     const items = data.map((item, i) => {
       const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
+      const itemAdType = 'social';  // temp
       const contentProps = {
+        adType: itemAdType,
         changeFontSize,
         interest,
         fontSize,
@@ -122,8 +126,10 @@ class NewsContainer extends Component {
         <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
-          {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
           {traceCode && <script dangerouslySetInnerHTML={{__html: traceCode}} />}
+          {(totalLength - 1) !== i && <Container>
+            <DFP opts={[`Nownews_${adType}_article_970x250_B_new2`, [[970, 90], [970, 250]]]} />
+          </Container>}
         </div>
       );
     });
@@ -140,7 +146,7 @@ class NewsContainer extends Component {
     return (
       <div>
         {!isLoading && data[0] && <IsAdult isAdult={data[0].isAdult} />}
-        <Header menus={menus} marquee={marquee}
+        <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
           currentChildMenu={currentChildMenu}
           currentMainMenu={currentMainMenu} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}
@@ -159,6 +165,9 @@ class NewsContainer extends Component {
             touchWindowTop={this.touchWindowTop}>
             <div>{items}</div>
           </InfiniteScroll>}
+        <Container>
+          <DFP opts={[`/5799246/Nownews_${adType}_article_970x250_B_new2`, [[970, 250], [970, 90]]]} />
+        </Container>
       </div>
     );
   }

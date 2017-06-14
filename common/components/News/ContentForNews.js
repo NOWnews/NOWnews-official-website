@@ -5,10 +5,8 @@ import {
   Tags, Thermometer, ThermometerSm
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
-
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
-
-import { Ad300x250 } from '../Ad';
+import { DFP } from '../Ad';
 
 class ContentForNews extends Component {
   constructor (props) {
@@ -52,12 +50,12 @@ class ContentForNews extends Component {
           <RightSide>
             <Social {...socialProps} />
             <FontSize changeFontSize={changeFontSize} />
-            <Ad300x250 />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RT_new2`, [300, 250]]} />
             <Thermometer pv={news.pageView.totalScore} onWarm={this.onWarm} />
             <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
-            <Ad300x250 />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RM_new2`, [300, 250]]} />
             <SpecialTopicNav list={topics} />
-            <Ad300x250 />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RB_new2`, [300, 250]]} />
           </RightSide>
         </Margin10>
       </Container>
@@ -78,6 +76,7 @@ const styles = StyleSheet.create({
 });
 
 ContentForNews.propTypes = {
+  adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
   interest: PropTypes.array.isRequired,

@@ -80,7 +80,7 @@ class HomeContainer extends Component {
 
     return (
       <div>
-        <Header menus={menus} marquee={marquee} />
+        <Header adType='home' menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
 
         {!isLoading && carousels.length > 0 &&

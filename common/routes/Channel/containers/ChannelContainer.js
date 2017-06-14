@@ -43,7 +43,6 @@ const ChannelContainer = ({ channelPage, local, loadChannelData, menus, marquee 
           <Pagination {...pageData} {...local} />
         </Margin10>
       }
-
     </Container>
   );
 };

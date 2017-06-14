@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
+import { DFP } from '../../../components/Ad';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
@@ -25,6 +26,7 @@ const mapStateToProps = state => ({
 });
 
 const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
+  const adType = 'social';
   const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
   const slideData = newsList.slice(0, 5);
   const blockData = newsList.slice(5, 15);
@@ -35,7 +37,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
   return (
     <Container>
       <IsAdult isAdult={currentMenu.isAdult} />
-      <Header menus={menus} marquee={marquee}
+      <Header adType={adType} menus={menus} marquee={marquee}
         currentChildMenu={currentChildMenu}
         currentMainMenu={currentMainMenu} />
       {categoryPage.isLoading && <Loading />}
@@ -46,9 +48,10 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
             <Slide list={slideData} />
             <HotNews newsList={hotNewsList.slice(0, 6)} />
           </Margin10>
-          <BlockItems12 newsList={blockData} page={pageData} local={local} />
+          <BlockItems12 adType={adType} newsList={blockData} page={pageData} local={local} />
         </div>
       }
+      <DFP opts={[`/5799246/Nownews_${adType}_970x250_B_new2`, [[970, 250], [970, 90]]]} />
     </Container>
   );
 };

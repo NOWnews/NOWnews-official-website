@@ -4,10 +4,8 @@ import {
   Thermometer, ThermometerSm
 } from './NewsContent';
 import { TripletNav, VideoPlayer } from '../News';
-
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
-
-import { Ad300x250 } from '../Ad';
+import { DFP } from '../Ad';
 
 class ContentForVideo extends Component {
 
@@ -48,7 +46,7 @@ class ContentForVideo extends Component {
           <RightSide>
             <Social {...socialProps} />
             <FontSize changeFontSize={changeFontSize} />
-            <Ad300x250 />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RT_new2`, [300, 250]]} />
             <Thermometer pv={news.pageView.totalScore} onWarm={this.onWarm} />
             <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
           </RightSide>
@@ -59,6 +57,7 @@ class ContentForVideo extends Component {
 };
 
 ContentForVideo.propTypes = {
+  adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
   onWarm: PropTypes.func.isRequired,
