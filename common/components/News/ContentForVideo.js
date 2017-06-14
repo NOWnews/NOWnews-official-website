@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import {
   Content, FontSize, RelatedContent, Social, Tags,
-  Thermometer, ThermometerSm
+  Thermometer
+  // , ThermometerSm
 } from './NewsContent';
 import { TripletNav, VideoPlayer } from '../News';
 
@@ -9,33 +10,44 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForVideo = ({ news, changeFontSize, fontSize, triplet }) => (
-  <Container>
-    <VideoPlayer src={news.MainVideo.url} poster={news.MainPhoto.url} />
-    <i>{news.MainVideo && news.MainVideo.desc}</i>
-    <Margin10 className='clearfix'>
-      <LeftSide>
-        <Content content={news.content} fontSize={fontSize} />
-        <Tags tags={news.Tags} />
-        <Social />
-        <ThermometerSm />
-        <RelatedContent type='相關新聞' list={news.relations} sn={news.sn} />
-        {/* <HotVideoBlocks list={news.relations} /> */}
-      </LeftSide>
-      <RightSide>
-        <Social />
-        <FontSize changeFontSize={changeFontSize} />
-        <Ad300x250 />
-        <Thermometer />
-        <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
-      </RightSide>
-    </Margin10>
-  </Container>
-);
+const ContentForVideo = ({ news, changeFontSize, fontSize, onWarm, triplet }) => {
+  const { freeContent, MainPhoto, MainVideo, parseUrl, title } = news;
+  const randomKey = news.sn % 3;
+  const socialProps = {
+    img: MainPhoto && MainPhoto.url,
+    title,
+    url: parseUrl
+  };
+  return (
+    <Container>
+      <VideoPlayer src={MainVideo.url} poster={MainPhoto.url} />
+      <i>{MainVideo && MainVideo.desc}</i>
+      <Margin10 className='clearfix'>
+        <LeftSide>
+          <Content content={news.content} fontSize={fontSize} />
+          {freeContent && <div dangerouslySetInnerHTML={{__html: freeContent}} />}
+          <Tags tags={news.Tags} />
+          <Social {...socialProps} />
+          {/* <ThermometerSm onWarm={onWarm} /> */}
+          <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
+          {/* <HotVideoBlocks list={news.relations} /> */}
+        </LeftSide>
+        <RightSide>
+          <Social {...socialProps} />
+          <FontSize changeFontSize={changeFontSize} />
+          <Ad300x250 />
+          <Thermometer pv={1} onWarm={onWarm} />
+          <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
+        </RightSide>
+      </Margin10>
+    </Container>
+  );
+};
 
 ContentForVideo.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
+  onWarm: PropTypes.func.isRequired,
   news: PropTypes.object.isRequired,
   triplet: PropTypes.object.isRequired
 };

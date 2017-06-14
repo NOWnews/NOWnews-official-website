@@ -1,12 +1,51 @@
-import React from 'react';
-// import { StyleSheet, css } from 'aphrodite/no-important';
+import React, { PropTypes } from 'react';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Social = () => (
-  <div>Social
-  </div>
-);
+const Social = ({ img, title, url }) => {
+  const completeUrl = `https://nownews.com${url}`;
+  const appkey = ''; // 暫無 webio appkey
+  const socialList = [
+    { icon: 'FB', url: `https://www.facebook.com/sharer/sharer.php?u=${completeUrl}` },
+    { icon: 'weibo', url: `http://service.weibo.com/share/share.php?url=${completeUrl}&title=${title}&pic=${img}&appkey=${appkey}` },
+    { icon: 'G+', url: `https://plus.google.com/share?url=${completeUrl}` }, // hidden google
+    { icon: 'twitter', url: `https://twitter.com/intent/tweet?text=${title}&url=${completeUrl}&via=NOWnews_TW` }
+  ];
 
-// const styles = StyleSheet.create({
-// });
+  const onPopup = (url) => {
+    window.open(url, 'Share to ...', 'status = 1, height = 500, width = 500, resizable = 0');
+  };
+
+  return (
+    <div className={css(styles.box)}>
+      <iframe src={`https://www.facebook.com/plugins/like.php?href=${completeUrl}&width=50&layout=button_count&action=like&size=small&show_faces=false&share=false&height=21&appId=867128150065008`}
+        width='80' height='21' style={{border: 'none', overflow: 'hidden'}} scrolling='no' frameBorder='0' allowTransparency='true' />
+      { socialList.map(({ icon, url }) =>
+        <a className={css(styles.btnSocial)} key={icon} target='_blank' onClick={() => { onPopup(url); }}>
+          <img className={css(styles.img)} src={`/social/${icon}.png`} alt={icon} />
+        </a>
+      )}
+    </div>
+  );
+};
+
+const styles = StyleSheet.create({
+  box: {
+    marginTop: 20,
+    textAlign: 'center'
+  },
+  btnSocial: {
+    cursor: 'pointer',
+    marginRight: 8
+  },
+  img: {
+    width: 40
+  }
+});
+
+Social.propTypes = {
+  img: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired
+};
 
 export default Social;

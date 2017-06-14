@@ -12,6 +12,10 @@ export const LOAD_PREVIEW_REQUEST = 'LOAD_PREVIEW_REQUEST';
 export const LOAD_PREVIEW_SUCCESS = 'LOAD_PREVIEW_SUCCESS';
 export const LOAD_PREVIEW_FAILURE = 'LOAD_PREVIEW_FAILURE';
 export const SHOW_FIXED_HEADER = 'SHOW_FIXED_HEADER';
+export const WARM_NEWS_REQUEST = 'WARM_NEWS_REQUEST';
+export const WARM_NEWS_SUCCESS = 'WARM_NEWS_SUCCESS';
+export const WARM_NEWS_FAILURE = 'WARM_NEWS_FAILURE';
+
 const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 const initialState = {
   data: [],
@@ -145,6 +149,41 @@ export const loadPreview = (redisKey) => {
           error: true
         });
       });
+  };
+};
+
+export const onWarm = () => {
+  return (dispatch, getState, { axios }) => {
+    const { apiServ, local: { user } } = getState().sourceRequest;
+    if (!user) {
+      const confirmRes = window.confirm('感謝您的支持，加點溫暖前要先登入喔！（點【確定】會幫你導到登入頁）');
+      if (confirmRes) {
+        window.location = '/auth/login';
+      }
+    }
+    dispatch({ type: WARM_NEWS_REQUEST });
+    // newsId and menuId is temp
+    let newsId, menuId;
+    return axios.put(`${apiServ}/temperatures`, {
+      newsId,
+      menuId,
+      userId: user.id,
+      url: window.location.pathname
+    }).then((result) => {
+      dispatch({
+        type: WARM_NEWS_SUCCESS,
+        meta: {
+          lastFetched: Date.now()
+        }
+      });
+    }).catch(error => {
+      window.alert('感謝您對這篇新聞的支持，您已經加過溫暖囉！');
+      dispatch({
+        type: WARM_NEWS_FAILURE,
+        payload: error,
+        error: true
+      });
+    });
   };
 };
 

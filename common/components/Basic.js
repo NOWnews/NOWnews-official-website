@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     color: '#000'
   }
 });
-
 const Basic = ({ children }) => (
   <div className={css(styles.root)}>
     <Helmet title='NOWnews 今日新聞' titleTemplate='NOWnews 今日新聞'
@@ -18,6 +17,11 @@ const Basic = ({ children }) => (
         {async: '', rel: 'stylesheet', href: '/vendor/font-awesome-4.7.0/css/font-awesome.min.css'},
         {async: '', rel: 'stylesheet', href: '/vendor/carousel.min.css'},
         {async: '', rel: 'stylesheet', href: '/vendor/video-js.min.css'}
+      ]}
+      meta={[
+        {charset: 'utf-8'},
+        {property: 'fb:app_id', content: 132863386747341},
+        {property: 'fb:pages', content: 102884532662}
       ]}
     />
 

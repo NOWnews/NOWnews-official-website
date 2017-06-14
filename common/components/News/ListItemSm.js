@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 
 ListItemSm.propTypes = {
   category: PropTypes.string,
-  photo: PropTypes.object.isRequired,
+  photo: PropTypes.object,
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   type: PropTypes.string,
