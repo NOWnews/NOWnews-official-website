@@ -1,54 +1,68 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
-  Tags, Thermometer
-  // , ThermometerSm
+  Tags, Thermometer, ThermometerSm
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
-const ContentForNews = ({ news, changeFontSize, interest, fontSize, onWarm, topics, triplet }) => {
-  const randomKey = news.sn % 3;
-  const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
-  const imgUrl = (news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
-  const socialProps = {
-    img: imgUrl,
-    title: news.title,
-    url: news.parseUrl
-  };
-  return (
-    <Container>
-      <div className={css(styles.contentDiv)}>
-        <img className={css(styles.contentImg)} src={imgUrl} />
-      </div>
-      <i>{news.MainPhoto && news.MainPhoto.desc}</i>
-      <Margin10 className='clearfix'>
-        <LeftSide>
-          <Content content={news.content} fontSize={fontSize} />
-          {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
-          <Tags tags={news.Tags} />
-          <Social {...socialProps} />
-          {/* <ThermometerSm onWarm={onWarm} /> */}
-          <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
-          <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} randomKey={randomKey} />
-          <RecommendAds />
-        </LeftSide>
-        <RightSide>
-          <Social {...socialProps} />
-          <FontSize changeFontSize={changeFontSize} />
-          <Ad300x250 />
-          <Thermometer pv={1} onWarm={onWarm} />
-          <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
-          <Ad300x250 />
-          <SpecialTopicNav list={topics} />
-          <Ad300x250 />
-        </RightSide>
-      </Margin10>
-    </Container>
-  );
+
+class ContentForNews extends Component {
+  constructor (props) {
+    super(props);
+    this.onWarm = this.onWarm.bind(this);
+  }
+
+  onWarm () {
+    const { news, onWarm } = this.props;
+    onWarm(news._id, news.MainMenu._id);
+  }
+
+  render () {
+    const { news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
+    const randomKey = news.sn % 3;
+    const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
+    const imgUrl = (news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
+    const socialProps = {
+      img: imgUrl,
+      title: news.title,
+      url: news.parseUrl
+    };
+
+    return (
+      <Container>
+        <div className={css(styles.contentDiv)}>
+          <img className={css(styles.contentImg)} src={imgUrl} />
+        </div>
+        <i>{news.MainPhoto && news.MainPhoto.desc}</i>
+        <Margin10 className='clearfix'>
+          <LeftSide>
+            <Content content={news.content} fontSize={fontSize} />
+            {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
+            <Tags tags={news.Tags} />
+            <Social {...socialProps} />
+            <ThermometerSm onWarm={this.onWarm} />
+            <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
+            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} randomKey={randomKey} />
+            <RecommendAds />
+          </LeftSide>
+          <RightSide>
+            <Social {...socialProps} />
+            <FontSize changeFontSize={changeFontSize} />
+            <Ad300x250 />
+            <Thermometer pv={1} onWarm={this.onWarm} />
+            <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
+            <Ad300x250 />
+            <SpecialTopicNav list={topics} />
+            <Ad300x250 />
+          </RightSide>
+        </Margin10>
+      </Container>
+    );
+  }
 };
 
 const styles = StyleSheet.create({

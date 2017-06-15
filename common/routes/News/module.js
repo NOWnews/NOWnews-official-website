@@ -152,18 +152,16 @@ export const loadPreview = (redisKey) => {
   };
 };
 
-export const onWarm = () => {
+export const onWarm = ({ menuId, newsId }) => {
   return (dispatch, getState, { axios }) => {
     const { apiServ, local: { user } } = getState().sourceRequest;
     if (!user) {
       const confirmRes = window.confirm('感謝您的支持，加點溫暖前要先登入喔！（點【確定】會幫你導到登入頁）');
       if (confirmRes) {
-        window.location = '/auth/login';
+        window.location = '/auth/oauth';
       }
     }
     dispatch({ type: WARM_NEWS_REQUEST });
-    // newsId and menuId is temp
-    let newsId, menuId;
     return axios.put(`${apiServ}/temperatures`, {
       newsId,
       menuId,
@@ -177,12 +175,12 @@ export const onWarm = () => {
         }
       });
     }).catch(error => {
-      window.alert('感謝您對這篇新聞的支持，您已經加過溫暖囉！');
       dispatch({
         type: WARM_NEWS_FAILURE,
         payload: error,
         error: true
       });
+      window.alert('感謝您對這篇新聞的支持，您已經加過溫暖囉！');
     });
   };
 };
