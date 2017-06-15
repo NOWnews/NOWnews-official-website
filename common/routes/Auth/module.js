@@ -115,10 +115,13 @@ export const onUpdate = () => {
   return (dispatch, getState, { axios }) => {
     dispatch({ type: UPDATE_REQUEST });
     const { memberServ } = getState().sourceRequest;
-    const values = getState().form.auth.values;
+    const { token, values } = getState().form.auth.values;
     const url = `${memberServ}/api/member`;
-    return axios.put(url, values)
-    .then((result) => {
+    return axios.put(url, values, {
+      headers: { 'X-NOWnews-Member': token }
+    }).then((result) => {
+      const { id, email, name, gender, birthday, phone } = result.data;
+      isomorphicCookie.save('NOW_memberData', { token, name, email, gender, phone }, { secure: false });
       dispatch({
         type: UPDATE_SUCCESS,
         payload: result,

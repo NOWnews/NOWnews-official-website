@@ -28,7 +28,7 @@ const MePage = ({ authForm, authPage, initialValues, onLogout, onUpdate }) => {
       <LogoRow user={initialValues.name} />
       <div className={css(styles.box)}>
         <div className={css(styles.leftSide)}>
-          <span className='h1'>Terry Sun</span>
+          <span className='h1'>{authForm.values.name}</span>
           <hr className={css(styles.dottedLine)} />
           <div className={css(styles.item, styles.active)}>會員設定</div>
           <div className={css(styles.item)} onClick={onLogout}>登出</div>
