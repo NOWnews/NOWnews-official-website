@@ -7,7 +7,7 @@ const UserForm = () => {
   return (
     <div>
       <InputWithLabel isRequired name='name' component='input' type='text' label='姓名' />
-      <InputWithLabel isRequired name='email' component='input' type='email' label='帳號 / E-mail' />
+      <InputWithLabel isRequired name='email' component='input' type='email' label='帳號 / E-mail' disabled />
       {/* <div>
         <label className={css(styles.label)} htmlFor='password'>密碼</label>
         <span className={css(styles.warning)}>*</span>

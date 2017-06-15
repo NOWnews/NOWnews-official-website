@@ -65,7 +65,7 @@ export const createServer = (config) => {
   // process login
   app.get('/api/oauth_callback', (req, res) => {
     const { token } = req.query;
-    axios.get('https://memberapi.nownews.com/api/member', {
+    axios.get(`${memberApiServer}/api/member`, {
       headers: { 'X-NOWnews-Member': token }
     }).then((result) => {
       const { id, email, name, gender, birthday, phone } = result.data;
