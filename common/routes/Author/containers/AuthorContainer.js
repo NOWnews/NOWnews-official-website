@@ -25,8 +25,8 @@ const mapStateToProps = state => ({
 
 class AuthorPage extends Component {
   render () {
-    let { local, menus, authorPage, marquee } = this.props;
-    let { isLoading, newsList } = authorPage;
+    const { local, menus, authorPage, marquee } = this.props;
+    const { isLoading, newsList } = authorPage;
     return (
       <Container>
         <Header menus={menus} marquee={marquee} />
@@ -37,7 +37,7 @@ class AuthorPage extends Component {
             <AuthorInfo authorData={newsList[0].Author || {}} />
             <BlockItem6 newsList={newsList} />
           </div>
-          <Pagination {...authorPage.pageData} local={local} />
+          <Pagination {...authorPage.pageData} {...local} />
         </Margin10>}
       </Container>
     );
