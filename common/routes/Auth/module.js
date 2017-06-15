@@ -120,8 +120,8 @@ export const onUpdate = () => {
     return axios.put(url, values, {
       headers: { 'X-NOWnews-Member': token }
     }).then((result) => {
-      const { id, email, name, gender, birthday, phone } = result.data;
-      isomorphicCookie.save('NOW_memberData', { token, name, email, gender, phone }, { secure: false });
+      const { email, name, gender, birthday, phone } = result.data;
+      isomorphicCookie.save('NOW_memberData', { token, birthday, name, email, gender, phone }, { secure: false });
       dispatch({
         type: UPDATE_SUCCESS,
         payload: result,
