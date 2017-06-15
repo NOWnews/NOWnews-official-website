@@ -64,17 +64,17 @@ export const createServer = (config) => {
 
   // process login
   app.get('/api/oauth_callback', (req, res) => {
-    const token = req.get('token');
+    const { token } = req.query;
     axios.get('https://memberapi.nownews.com/api/member', {
-      headers: { token }
+      headers: { 'X-NOWnews-Member': token }
     }).then((result) => {
-      const { id, email, gender, birthday, phone } = result.data;
+      const { id, email, name, gender, birthday, phone } = result.data;
       isomorphicCookie.save('NOW_member', id, { secure: false }, res);
       isomorphicCookie.save('NOW_memberData', { token, name, email, gender, phone }, { secure: false }, res);
       return res.redirect('/');
     }).catch((error) => {
-      console.log(error, '!!!');
-      return res.result('/auth/oauth');
+      console.log('error', error.response);
+      return res.redirect(`/auth/oauth?msg=${error.response.data.message}`);
     });
   });
 

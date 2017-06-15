@@ -6,16 +6,19 @@ import { LogoRow } from '../../../components/Header';
 import { Container, Margin10 } from '../../../components/Layout';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { SmLinkTo } from '../../../components/Form';
+import { selectLocal } from '../../../modules/sourceRequest';
 
 const mapStateToProps = state => ({
+  local: selectLocal(state)
 });
 
-const OauthContainer = ({ handleSubmit }) => {
+const OauthContainer = ({ local, handleSubmit }) => {
   return (
     <Container>
       <LogoRow />
       <div className={css(styles.box)}>
         <h1>會員登入</h1>
+        {local.query && local.query.msg && <p className={css(styles.error)}>● {local.query.msg}</p>}
         <Margin10>
           <a href='https://memberapi.nownews.com/api/auth/oauth' className={css(styles.googleBtn)}>
             <img src='/social/btn-google-signin.png' />
@@ -71,6 +74,7 @@ const styles = StyleSheet.create({
 });
 
 OauthContainer.propTypes = {
+  local: PropTypes.object,
   handleSubmit: PropTypes.func
 };
 

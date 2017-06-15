@@ -17,7 +17,7 @@ const RightSide = ({ user }) => {
       </Link>
       <Link className={css(styles.link)} to={memberLink}>
         <FontAwesome name='user-circle-o' size='2x' />
-        <div className={css(styles.account)}>{user || 'Account'}</div>
+        <div className={css(styles.account)}>{user ? '會員資料' : '加入會員'}</div>
       </Link>
       {socialList.map(({ icon, url }) =>
         <Link className={`right ${css(styles.btnSocial)}`} key={icon} target='_blank' to={url}>
