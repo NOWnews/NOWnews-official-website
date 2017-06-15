@@ -115,7 +115,7 @@ export const onUpdate = () => {
   return (dispatch, getState, { axios }) => {
     dispatch({ type: UPDATE_REQUEST });
     const { memberServ } = getState().sourceRequest;
-    const { token, values } = getState().form.auth.values;
+    const { token, ...values } = getState().form.auth.values;
     const url = `${memberServ}/api/member/update`;
     return axios.patch(url, values, {
       headers: { 'X-NOWnews-Member': token }
