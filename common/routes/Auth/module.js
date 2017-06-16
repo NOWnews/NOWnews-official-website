@@ -3,6 +3,9 @@ import { CLEAR_USER } from '../../modules/sourceRequest';
 export const ACTIVE_REQUEST = 'ACTIVE_REQUEST';
 export const ACTIVE_SUCCESS = 'ACTIVE_SUCCESS';
 export const ACTIVE_FAILURE = 'ACTIVE_FAILURE';
+export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
+export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
+export const LOAD_USER_FAILURE = 'LOAD_USER_FAILURE';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -20,7 +23,8 @@ export const UPDATE_FAILURE = 'UPDATE_FAILURE';
 const initialState = {
   error: null,
   isLoading: false,
-  lastFetched: null
+  lastFetched: null,
+  user: null
 };
 
 export const activeEmail = (token) => {
@@ -46,6 +50,38 @@ export const activeEmail = (token) => {
   };
 };
 
+// SSR render will use this function, so dont use win
+export const loadUser = () => {
+  return (dispatch, getState, { axios }) => {
+    const { memberServ, local: { user } } = getState().sourceRequest;
+    dispatch({ type: LOAD_USER_REQUEST });
+    const token = user && user.token;
+    if (!token) {
+      dispatch({
+        type: LOAD_USER_FAILURE,
+        payload: { message: '您還沒登入喔！' }
+      });
+    }
+    axios.get(`${memberServ}/api/member`, {
+      headers: { 'X-NOWnews-Member': token }
+    }).then(({ data: user }) => {
+      isomorphicCookie.save('NOW_memberData', { token, ...user }, { secure: false });
+      dispatch({
+        type: LOAD_USER_SUCCESS,
+        payload: user,
+        meta: {
+          lastFetched: Date.now()
+        }
+      });
+    }).catch(error => {
+      dispatch({
+        type: LOAD_USER_FAILURE,
+        payload: error.response.data
+      });
+    });
+  };
+};
+
 export const onLogin = () => {
   return (dispatch, getState, { axios }) => {
     const { memberServ } = getState().sourceRequest;
@@ -54,9 +90,9 @@ export const onLogin = () => {
     const url = `${memberServ}/api/member/signin`;
     return axios.post(url, values)
     .then((result) => {
-      const { id, token, name } = result.data;
+      const { id, ...user } = result.data;
       isomorphicCookie.save('NOW_member', id, { secure: false });
-      isomorphicCookie.save('NOW_memberData', { token, name }, { secure: false });
+      isomorphicCookie.save('NOW_memberData', { ...user }, { secure: false });
       dispatch({
         type: LOGIN_SUCCESS,
         payload: result,
@@ -78,12 +114,12 @@ export const onLogout = () => {
   return (dispatch, getState, { axios }) => {
     const { memberServ, local: { user } } = getState().sourceRequest;
     dispatch({ type: LOGOUT_REQUEST });
-    isomorphicCookie.remove('NOW_memberData');
-    isomorphicCookie.remove('NOW_member');
     const url = `${memberServ}/api/member/logout`;
     axios.get(url, {
       headers: { 'X-NOWnews-Member': user.token }
     });
+    isomorphicCookie.remove('NOW_memberData');
+    isomorphicCookie.remove('NOW_member');
     dispatch({ type: CLEAR_USER });
     window.location = '/';
   };
@@ -125,8 +161,8 @@ export const onUpdate = () => {
     return axios.patch(url, values, {
       headers: { 'X-NOWnews-Member': token }
     }).then((result) => {
-      const { email, name, gender, birthday, phone } = result.data;
-      isomorphicCookie.save('NOW_memberData', { token, birthday, name, email, gender, phone }, { secure: false });
+      const { name } = result.data;
+      isomorphicCookie.save('NOW_memberData', { token, name }, { secure: false });
       dispatch({
         type: UPDATE_SUCCESS,
         payload: result,
@@ -134,6 +170,7 @@ export const onUpdate = () => {
           lastFetched: Date.now()
         }
       });
+      window.alert('更新成功！');
     }).catch(error => {
       dispatch({
         type: UPDATE_FAILURE,
@@ -181,6 +218,7 @@ export const resendActiveEmail = () => {
 export default function authPage (state = initialState, action) {
   switch (action.type) {
     case ACTIVE_FAILURE:
+    case LOAD_USER_FAILURE:
     case LOGIN_FAILURE:
     case SIGNUP_FAILURE:
     case RESEND_ACTIVE_FAILURE:
@@ -189,6 +227,12 @@ export default function authPage (state = initialState, action) {
         ...state,
         error: action.payload.message,
         isLoading: false
+      };
+    case LOAD_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        user: action.payload
       };
     case ACTIVE_SUCCESS:
     case LOGIN_SUCCESS:
@@ -199,11 +243,16 @@ export default function authPage (state = initialState, action) {
         ...state,
         isLoading: false
       };
+    case LOAD_USER_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        user: null
+      };
     case ACTIVE_REQUEST:
     case LOGIN_REQUEST:
     case SIGNUP_REQUEST:
     case RESEND_ACTIVE_REQUEST:
-    case UPDATE_REQUEST:
       return {
         ...state,
         isLoading: true

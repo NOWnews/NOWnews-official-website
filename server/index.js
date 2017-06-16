@@ -68,9 +68,9 @@ export const createServer = (config) => {
     axios.get(`${memberApiServer}/api/member`, {
       headers: { 'X-NOWnews-Member': token }
     }).then((result) => {
-      const { id, email, name, gender, birthday, phone } = result.data;
+      const { id, ...user } = result.data;
       isomorphicCookie.save('NOW_member', id, { secure: false }, res);
-      isomorphicCookie.save('NOW_memberData', { token, birthday, name, email, gender, phone }, { secure: false }, res);
+      isomorphicCookie.save('NOW_memberData', { token, ...user }, { secure: false }, res);
       return res.redirect('/');
     }).catch((error) => {
       console.log('error', error.response);
