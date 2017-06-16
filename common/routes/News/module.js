@@ -152,17 +152,11 @@ export const loadPreview = (redisKey) => {
   };
 };
 
-export const onWarm = (menuId, newsId) => {
+export const onWarm = (newsId, menuId) => {
   return (dispatch, getState, { axios }) => {
     const { apiServ } = getState().sourceRequest;
     const userId = isomorphicCookie.load('NOW_member');
 
-    if (!userId) {
-      const confirmRes = window.confirm('感謝您的支持，加點溫暖前要先登入喔！（點【確定】會幫你導到登入頁）');
-      if (confirmRes) {
-        window.location = '/auth/oauth';
-      }
-    }
     dispatch({ type: WARM_NEWS_REQUEST });
     return axios.put(`${apiServ}/temperatures`, {
       newsId,
