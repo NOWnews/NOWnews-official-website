@@ -62,7 +62,8 @@ export const loadUser = () => {
         payload: { message: '您還沒登入喔！' }
       });
     }
-    axios.get(`${memberServ}/api/member`, {
+
+    return axios.get(`${memberServ}/api/member`, {
       headers: { 'X-NOWnews-Member': token }
     }).then(({ data: user }) => {
       isomorphicCookie.save('NOW_memberData', { token, ...user }, { secure: false });
