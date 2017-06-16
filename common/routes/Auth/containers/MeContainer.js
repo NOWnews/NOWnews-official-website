@@ -33,8 +33,7 @@ const MePage = ({ authForm, authPage, initialValues, onLogout, onUpdate }) => {
     <Container>
       <LogoRow user={initialValues && initialValues.name} />
       {authPage.isLoading && <Loading />}
-      {!authPage.isLoading && !authPage.user && <h2 className={css(styles.error)}>您還沒有登入喔！</h2>}
-      {authPage.user && <div className={css(styles.box)}>
+      <div className={css(styles.box)}>
         <div className={css(styles.leftSide)}>
           <span className='h1'>{initialValues && initialValues.name}</span>
           <hr className={css(styles.dottedLine)} />
@@ -43,14 +42,15 @@ const MePage = ({ authForm, authPage, initialValues, onLogout, onUpdate }) => {
           <hr className={css(styles.dottedLine)} />
           <Link className={css(styles.backToHome)} to='/'>回首頁</Link>
         </div>
-        <div className={css(styles.rightSide)}>
+        {!authPage.isLoading && !authPage.user && <h2 className={css(styles.error)}>權限認證有誤/過期，請嘗試重新登入。</h2>}
+        {authPage.user && <div className={css(styles.rightSide)}>
           {authPage.error && <p className={css(styles.error)}>● {authPage.error}</p>}
           <UserForm />
           <div className={css(styles.submitBox)}>
             <Button text='儲存' type='submit' handleSubmit={onUpdate} />
           </div>
-        </div>
-      </div>}
+        </div>}
+      </div>
     </Container>
   );
 };

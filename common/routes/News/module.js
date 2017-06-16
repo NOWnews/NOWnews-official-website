@@ -170,6 +170,7 @@ export const onWarm = (newsId, menuId) => {
           lastFetched: Date.now()
         }
       });
+      window.alert('感受到您的溫暖支持囉！');
     }).catch(error => {
       dispatch({
         type: WARM_NEWS_FAILURE,
