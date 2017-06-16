@@ -40,7 +40,7 @@ class ContentForNews extends Component {
           <LeftSide>
             <Content content={news.content} fontSize={fontSize} />
             {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
-            <Tags tags={news.Tags} />
+            <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
             <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
@@ -51,7 +51,7 @@ class ContentForNews extends Component {
             <Social {...socialProps} />
             <FontSize changeFontSize={changeFontSize} />
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RT_new2`, [300, 250]]} />
-            <Thermometer pv={news.pageView.totalScore} onWarm={this.onWarm} />
+            <Thermometer pv={news.pageView ? news.pageView.totalScore : 0} onWarm={this.onWarm} />
             <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RM_new2`, [300, 250]]} />
             <SpecialTopicNav list={topics} />
