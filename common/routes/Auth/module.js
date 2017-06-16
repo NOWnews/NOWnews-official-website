@@ -76,9 +76,14 @@ export const onLogin = () => {
 
 export const onLogout = () => {
   return (dispatch, getState, { axios }) => {
+    const { memberServ, local: { user } } = getState().sourceRequest;
     dispatch({ type: LOGOUT_REQUEST });
     isomorphicCookie.remove('NOW_memberData');
     isomorphicCookie.remove('NOW_member');
+    const url = `${memberServ}/api/member/logout`;
+    axios.get(url, {
+      headers: { 'X-NOWnews-Member': user.token }
+    });
     dispatch({ type: CLEAR_USER });
     window.location = '/';
   };
