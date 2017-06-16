@@ -56,7 +56,7 @@ export const Footer = () => {
               </Link>
             )}
             <Link className={css(styles.groupTitle)}
-              target='_blank' to='/info/about'>About NOWnews</Link>
+              target='_blank' to='https://m.nownews.com/about'>About NOWnews</Link>
             {/* 董哥：合作夥伴先拉掉不放 */}
             {/* <Link className={css(styles.groupTitle)}
               target='_blank' to='/info/partner'>合作夥伴</Link> */}
