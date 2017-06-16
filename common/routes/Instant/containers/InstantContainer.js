@@ -67,7 +67,7 @@ const InstantContainer = ({ local, marquee, menus, instantPage }) => (
 InstantContainer.propTypes = {
   local: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   instantPage: PropTypes.object.isRequired
 };
 

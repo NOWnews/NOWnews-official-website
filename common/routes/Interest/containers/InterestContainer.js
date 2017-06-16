@@ -36,7 +36,7 @@ const InterestContainer = ({ marquee, menus, interest }) => (
 
 InterestContainer.propTypes = {
   interest: PropTypes.object.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };
 

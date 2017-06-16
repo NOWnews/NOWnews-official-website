@@ -59,7 +59,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
 CategoryPage.propTypes = {
   local: PropTypes.object.isRequired,
   categoryPage: PropTypes.object.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };
 

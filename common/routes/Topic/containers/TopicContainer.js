@@ -50,7 +50,7 @@ const TopicContainer = ({ local, topicPage, menus, marquee }) => {
 TopicContainer.propTypes = {
   local: PropTypes.object.isRequired,
   topicPage: PropTypes.object.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };
 

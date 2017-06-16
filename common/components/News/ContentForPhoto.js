@@ -22,7 +22,7 @@ class ContentForPhoto extends Component {
   }
 
   render () {
-    const { news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet } = this.props;
+    const { adType, news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet } = this.props;
     const settings = {
       axis: 'horizontal',
       autoPlay: true,

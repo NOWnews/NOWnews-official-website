@@ -53,7 +53,7 @@ ChannelContainer.propTypes = {
   channelPage: PropTypes.object.isRequired,
   local: PropTypes.object.isRequired,
   loadChannelData: PropTypes.func.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };
 

@@ -20,7 +20,7 @@ class ContentForVideo extends Component {
   }
 
   render () {
-    const { news, changeFontSize, fontSize, triplet } = this.props;
+    const { adType, news, changeFontSize, fontSize, triplet } = this.props;
     const { freeContent, MainPhoto, MainVideo, parseUrl, title } = news;
     const randomKey = news.sn % 3;
     const socialProps = {

@@ -20,7 +20,7 @@ class ContentForNews extends Component {
   }
 
   render () {
-    const { news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
+    const { adType, news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
     const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
     const imgUrl = (news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';

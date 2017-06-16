@@ -28,7 +28,7 @@ class InstantBar extends Component {
 
   render () {
     const { index } = this.state;
-    const list = this.props.list;
+    const { ads, news } = this.props;
 
     const customTransitionStyle = `
     .item-enter {
@@ -53,9 +53,9 @@ class InstantBar extends Component {
       transitionName: 'item'
     };
 
-    const first = list[index * 3];
-    const second = list[index * 3 + 1];
-    const third = list[index * 3 + 2];
+    const first = news[index * 2];
+    const second = news[index * 2 + 1];
+    const third = ads[index];
 
     return (
       <div className={css(styles.box)}>
@@ -79,9 +79,9 @@ class InstantBar extends Component {
         </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
         <CSSTransitionGroup {...transitionConfig}>
-          {third && <Link key={third.sn} className={css(styles.link)}
-            to={third.parseUrl}>
-            <span>{third.shortTitle}</span>
+          {third && <Link key={index} className={css(styles.link)}
+            to={third.url} target='_blank'>
+            <span>{third.title}</span>
           </Link>}
 
         </CSSTransitionGroup>
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
   },
   linkWrapper: {
     width: 272.5,
+    overflow: 'hidden',
     position: 'relative'
   },
   link: {
@@ -135,7 +136,8 @@ const styles = StyleSheet.create({
 });
 
 InstantBar.propTypes = {
-  list: PropTypes.array.isRequired
+  ads: PropTypes.array.isRequired,
+  news: PropTypes.array.isRequired
 };
 
 export default InstantBar;

@@ -182,7 +182,7 @@ NewsContainer.propTypes = {
   loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,
   loadMoreNews: PropTypes.func.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   onWarm: PropTypes.func.isRequired,
   showFixedHeader: PropTypes.func.isRequired

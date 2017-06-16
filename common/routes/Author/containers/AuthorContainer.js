@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 
 AuthorPage.propTypes = {
   local: PropTypes.object.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   authorPage: PropTypes.object.isRequired
 };

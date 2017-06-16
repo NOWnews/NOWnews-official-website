@@ -61,7 +61,7 @@ LBSContainer.propTypes = {
   loadLBSList: PropTypes.func.isRequired,
   local: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   LBS: PropTypes.object.isRequired
 };
 

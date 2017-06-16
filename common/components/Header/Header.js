@@ -8,7 +8,7 @@ export const Header = ({ adType = 'home', menus, currentMainMenu, currentChildMe
     <Menu menus={menus}
       currentMainMenu={currentMainMenu}
       currentChildMenu={currentChildMenu} />
-    <InstantBar list={marquee} />
+    <InstantBar {...marquee} />
     {adType && <DFP opts={[`/5799246/Nownews_${adType}_970x250_T_new2`, [[970, 90], [970, 250]]]} />}
   </Container>
 );
@@ -17,7 +17,7 @@ Header.propTypes = {
   adType: PropTypes.string,
   currentChildMenu: PropTypes.string,
   currentMainMenu: PropTypes.string,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };
 
