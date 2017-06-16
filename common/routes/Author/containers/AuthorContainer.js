@@ -6,7 +6,7 @@ import { selectAuthorPage, loadAuthorData } from '../module';
 import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
-import { Container, Margin10, Loading } from '../../../components/Layout';
+import { Container, Margin10, Loading, NotFound } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';
 import { BlockItem6, AuthorInfo } from '../components';
 const redial = {
@@ -25,19 +25,20 @@ const mapStateToProps = state => ({
 
 class AuthorPage extends Component {
   render () {
-    let { local, menus, authorPage, marquee } = this.props;
-    let { isLoading, newsList } = authorPage;
+    const { local, menus, authorPage, marquee } = this.props;
+    const { isLoading, newsList } = authorPage;
     return (
       <Container>
         <Header menus={menus} marquee={marquee} />
-        <Margin10>
+        {isLoading && <Loading />}
+        {!isLoading && newsList.length === 0 && <NotFound />}
+        {!isLoading && newsList.length > 0 && <Margin10>
           <div className={css(styles.box)}>
-            {newsList[0] && <AuthorInfo authorData={newsList[0].Author} />}
-            {isLoading && <Loading /> }
+            <AuthorInfo authorData={newsList[0].Author || {}} />
             <BlockItem6 newsList={newsList} />
           </div>
-          <Pagination {...authorPage.pageData} local={local} />
-        </Margin10>
+          <Pagination {...authorPage.pageData} {...local} />
+        </Margin10>}
       </Container>
     );
   }

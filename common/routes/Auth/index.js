@@ -12,7 +12,7 @@ export default function createRoutes (store) {
         injectAsyncReducer(store, 'authPage', authFormReducer);
         cb(null, [
           {
-            path: 'active/:token',
+            path: 'active',
             getComponents (location, cb) {
               require.ensure([
                 './containers/ActiveContainer'
@@ -20,17 +20,6 @@ export default function createRoutes (store) {
                 const ActiveContainer = require('./containers/ActiveContainer').default;
                 cb(null, ActiveContainer);
               }, 'activePage');
-            }
-          },
-          {
-            path: 'signup',
-            getComponents (location, cb) {
-              require.ensure([
-                './containers/SignupContainer'
-              ], (require) => {
-                const SignupContainer = require('./containers/SignupContainer').default;
-                cb(null, SignupContainer);
-              }, 'signupPage');
             }
           },
           {
@@ -64,6 +53,28 @@ export default function createRoutes (store) {
                 const MeContainer = require('./containers/MeContainer').default;
                 cb(null, MeContainer);
               }, 'mePage');
+            }
+          },
+          {
+            path: 'oauth',
+            getComponents (location, cb) {
+              require.ensure([
+                './containers/OauthContainer'
+              ], (require) => {
+                const OauthContainer = require('./containers/OauthContainer').default;
+                cb(null, OauthContainer);
+              }, 'oauthPage');
+            }
+          },
+          {
+            path: 'signup',
+            getComponents (location, cb) {
+              require.ensure([
+                './containers/SignupContainer'
+              ], (require) => {
+                const SignupContainer = require('./containers/SignupContainer').default;
+                cb(null, SignupContainer);
+              }, 'signupPage');
             }
           }
         ]);

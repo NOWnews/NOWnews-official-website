@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     textDecoration: 'none'
   },
   box: {
-    backgroundColor: '#F1F2F3'
+    backgroundColor: '#F1F2F3',
+    width: '100%'
   },
   category: {
     color: '#1886FB',

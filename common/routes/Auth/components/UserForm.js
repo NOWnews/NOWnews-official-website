@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, InputWithLabel } from '../../../components/Form';
+import { InputWithLabel } from '../../../components/Form';
 import { Field } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
@@ -7,8 +7,8 @@ const UserForm = () => {
   return (
     <div>
       <InputWithLabel isRequired name='name' component='input' type='text' label='姓名' />
-      <InputWithLabel isRequired name='email' component='input' type='email' label='帳號 / E-mail' />
-      <div>
+      <InputWithLabel isRequired name='email' component='input' type='email' label='帳號 / E-mail' disabled />
+      {/* <div>
         <label className={css(styles.label)} htmlFor='password'>密碼</label>
         <span className={css(styles.warning)}>*</span>
         <br />
@@ -18,7 +18,7 @@ const UserForm = () => {
         <div className={css(styles.pwdBox)}>
           <Input name='confirmPassword' component='input' type='password' placeholder='確認密碼' />
         </div>
-      </div>
+      </div> */}
       <InputWithLabel name='phone' component='input' type='text' label='手機' />
       <div>
         <label className={css(styles.label)}>性別</label>

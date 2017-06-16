@@ -1,15 +1,21 @@
+import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { LogoRow } from '../../../components/Header';
-import { Container } from '../../../components/Layout';
+import { Container, Loading } from '../../../components/Layout';
 import { Button } from '../../../components/Form';
 import { reduxForm } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import { UserForm } from '../components';
+import { loadUser, onUpdate, onLogout, selectAuthForm, selectAuthPage } from '../module';
 import { selectUser } from '../../../modules/sourceRequest';
-import { onUpdate, onLogout, selectAuthForm, selectAuthPage } from '../module';
+const redial = {
+  fetch: ({ dispatch }) => Promise.all([
+    dispatch(loadUser())
+  ])
+};
 
 const mapStateToProps = state => ({
   authPage: selectAuthPage(state),
@@ -25,23 +31,25 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
 const MePage = ({ authForm, authPage, initialValues, onLogout, onUpdate }) => {
   return (
     <Container>
-      <LogoRow user={initialValues.name} />
+      <LogoRow user={initialValues && initialValues.name} />
+      {authPage.isLoading && <Loading />}
       <div className={css(styles.box)}>
         <div className={css(styles.leftSide)}>
-          <span className='h1'>Terry Sun</span>
+          <span className='h1'>{initialValues && initialValues.name}</span>
           <hr className={css(styles.dottedLine)} />
           <div className={css(styles.item, styles.active)}>會員設定</div>
           <div className={css(styles.item)} onClick={onLogout}>登出</div>
-
           <hr className={css(styles.dottedLine)} />
           <Link className={css(styles.backToHome)} to='/'>回首頁</Link>
         </div>
-        <div className={css(styles.rightSide)}>
+        {!authPage.isLoading && !authPage.user && <h2 className={css(styles.error)}>權限認證有誤/過期，請嘗試重新登入。</h2>}
+        {authPage.user && <div className={css(styles.rightSide)}>
+          {authPage.error && <p className={css(styles.error)}>● {authPage.error}</p>}
           <UserForm />
           <div className={css(styles.submitBox)}>
             <Button text='儲存' type='submit' handleSubmit={onUpdate} />
           </div>
-        </div>
+        </div>}
       </div>
     </Container>
   );
@@ -72,6 +80,9 @@ const styles = StyleSheet.create({
   dottedLine: {
     border: '1px #727374 dashed',
     margin: '20px 0'
+  },
+  error: {
+    color: '#FF3E29'
   },
   item: {
     cursor: 'pointer',
@@ -109,5 +120,4 @@ MePage.propTypes = {
   onLogout: PropTypes.func,
   onUpdate: PropTypes.func
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({form: 'auth'})(MePage));
+export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(reduxForm({form: 'auth'})(MePage)));

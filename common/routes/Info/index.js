@@ -8,15 +8,16 @@ export default function createRoutes (store) {
     getChildRoutes (location, cb) {
       require.ensure([], (require) => {
         cb(null, [
-          {
-            path: 'about',
-            getComponents (location, cb) {
-              require.ensure(['./components/About'], (require) => {
-                const page = require('./components/About').default;
-                cb(null, page);
-              }, 'about');
-            }
-          },
+          // 暫時隱藏
+          // {
+          //   path: 'about',
+          //   getComponents (location, cb) {
+          //     require.ensure(['./components/About'], (require) => {
+          //       const page = require('./components/About').default;
+          //       cb(null, page);
+          //     }, 'about');
+          //   }
+          // },
           {
             path: 'copyright',
             getComponents (location, cb) {

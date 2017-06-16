@@ -9,7 +9,7 @@ const RightSide = ({ user }) => {
     { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
     { icon: 'FB', url: 'https://facebook.com/nownews' }
   ];
-  const memberLink = user ? '/auth/me' : '/auth/login';
+  const memberLink = user ? '/auth/me' : '/auth/oauth';
   return (
     <div className={`clearfix ${css(styles.box)}`}>
       <Link className={css(styles.link)} to='/search?timeRange=lastWeek'>
@@ -17,7 +17,7 @@ const RightSide = ({ user }) => {
       </Link>
       <Link className={css(styles.link)} to={memberLink}>
         <FontAwesome name='user-circle-o' size='2x' />
-        <div className={css(styles.account)}>{user || 'Account'}</div>
+        <div className={css(styles.account)}>{user ? '會員資料' : '加入會員'}</div>
       </Link>
       {socialList.map(({ icon, url }) =>
         <Link className={`right ${css(styles.btnSocial)}`} key={icon} target='_blank' to={url}>

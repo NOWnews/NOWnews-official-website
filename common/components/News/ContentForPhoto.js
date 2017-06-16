@@ -1,10 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
-  Tags, Thermometer
-  // , ThermometerSm
+  Tags, Thermometer, ThermometerSm
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 
@@ -12,59 +11,74 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 
 import { Ad300x250 } from '../Ad';
 
-const ContentForPhoto = ({ news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, onWarm, topics, triplet }) => {
-  const settings = {
-    axis: 'horizontal',
-    autoPlay: true,
-    emulateTouch: true,
-    showArrows: true,
-    showStatus: false,
-    showThumbs: true,
-    showIndicators: false
-  };
-  const randomKey = news.sn % 3;
-  const imgApi = 'https://imgapiv2.nownews.com/?h=570&q=70&src=';
-  const socialProps = {
-    img: MainPhoto && MainPhoto.url,
-    title: news.title,
-    url: news.parseUrl
-  };
-  return (
-    <Container>
-      <div className={css(styles.SlideBox)}>
-        <Carousel {...settings}>
-          {Photos.map(({ desc, sn, url }) => (
-            <div className={css(styles.contentDiv)} key={sn}>
-              <img className={css(styles.contentImg)} src={`${imgApi}${url}`} />
-              <p className={css(styles.imgDesc)}>{desc}</p>
-            </div>
-          ))}
-        </Carousel>
-      </div>
-      <Margin10 className='clearfix'>
-        <LeftSide>
-          <Content content={news.content} fontSize={fontSize} />
-          {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
-          <Tags tags={news.Tags} />
-          <Social {...socialProps} />
-          {/* <ThermometerSm onWarm={onWarm} /> */}
-          <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
-          <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} randomKey={randomKey} />
-          <RecommendAds />
-        </LeftSide>
-        <RightSide>
-          <Social {...socialProps} />
-          <FontSize changeFontSize={changeFontSize} />
-          <Ad300x250 />
-          <Thermometer pv={1} onWarm={onWarm} />
-          <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
-          <Ad300x250 />
-          <SpecialTopicNav list={topics} />
-          <Ad300x250 />
-        </RightSide>
-      </Margin10>
-    </Container>
-  );
+class ContentForPhoto extends Component {
+
+  constructor (props) {
+    super(props);
+    this.onWarm = this.onWarm.bind(this);
+  }
+
+  onWarm () {
+    const { news, onWarm } = this.props;
+    onWarm(news._id, news.MainMenu._id);
+  }
+
+  render () {
+    const { news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet } = this.props;
+    const settings = {
+      axis: 'horizontal',
+      autoPlay: true,
+      emulateTouch: true,
+      showArrows: true,
+      showStatus: false,
+      showThumbs: true,
+      showIndicators: false
+    };
+    const randomKey = news.sn % 3;
+    const imgApi = 'https://imgapiv2.nownews.com/?h=570&q=70&src=';
+    const socialProps = {
+      img: MainPhoto && MainPhoto.url,
+      title: news.title,
+      url: news.parseUrl
+    };
+
+    return (
+      <Container>
+        <div className={css(styles.SlideBox)}>
+          <Carousel {...settings}>
+            {Photos.map(({ desc, sn, url }) => (
+              <div className={css(styles.contentDiv)} key={sn}>
+                <img className={css(styles.contentImg)} src={`${imgApi}${url}`} />
+                <p className={css(styles.imgDesc)}>{desc}</p>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+        <Margin10 className='clearfix'>
+          <LeftSide>
+            <Content content={news.content} fontSize={fontSize} />
+            {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
+            <Tags tags={news.Tags} />
+            <Social {...socialProps} />
+            <ThermometerSm onWarm={this.onWarm} />
+            <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
+            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} randomKey={randomKey} />
+            <RecommendAds />
+          </LeftSide>
+          <RightSide>
+            <Social {...socialProps} />
+            <FontSize changeFontSize={changeFontSize} />
+            <Ad300x250 />
+            <Thermometer pv={news.pageView.totalScore} onWarm={this.onWarm} />
+            <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
+            <Ad300x250 />
+            <SpecialTopicNav list={topics} />
+            <Ad300x250 />
+          </RightSide>
+        </Margin10>
+      </Container>
+    );
+  }
 };
 
 const styles = StyleSheet.create({

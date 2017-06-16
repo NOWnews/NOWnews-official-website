@@ -18,10 +18,10 @@ const Thermometer = ({ onWarm, pv = 1 }) => {
           style={pointerPosition} />
         <img className={css(styles.thermometerBar)} src='/others/thermometer-bar.png' />
       </div>
-      {/* <div onClick={onWarm}>
+      <div className={css(styles.wramBtn)} onClick={onWarm}>
         <img src='/icons/fire.png' />
         <span className={css(styles.fireWord)}>需要溫暖</span>
-      </div> */}
+      </div>
     </Margin10>
   );
 };
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     top: -7,
     position: 'absolute',
     zIndex: 2
+  },
+  wramBtn: {
+    cursor: 'pointer'
   }
 
 });
