@@ -53,7 +53,7 @@ class ContentForNews extends Component {
             <Social {...socialProps} />
             <FontSize changeFontSize={changeFontSize} />
             <Ad300x250 />
-            <Thermometer pv={1} onWarm={this.onWarm} />
+            <Thermometer pv={news.pageView.totalScore} onWarm={this.onWarm} />
             <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
             <Ad300x250 />
             <SpecialTopicNav list={topics} />
