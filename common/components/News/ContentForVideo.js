@@ -20,7 +20,7 @@ class ContentForVideo extends Component {
   }
 
   render () {
-    const { adType, news, changeFontSize, fontSize, triplet } = this.props;
+    const { ads, adType, news, changeFontSize, fontSize, triplet } = this.props;
     const { freeContent, MainPhoto, MainVideo, parseUrl, title } = news;
     const randomKey = news.sn % 3;
     const socialProps = {
@@ -28,7 +28,6 @@ class ContentForVideo extends Component {
       title,
       url: parseUrl
     };
-
     return (
       <Container>
         <VideoPlayer src={MainVideo.url} poster={MainPhoto.url} />
@@ -40,7 +39,7 @@ class ContentForVideo extends Component {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
+            <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
             {/* <HotVideoBlocks list={news.relations} /> */}
           </LeftSide>
           <RightSide>
@@ -57,6 +56,7 @@ class ContentForVideo extends Component {
 };
 
 ContentForVideo.propTypes = {
+  ads: PropTypes.object,
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,

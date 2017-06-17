@@ -20,16 +20,15 @@ class ContentForNews extends Component {
   }
 
   render () {
-    const { adType, news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
+    const { ads, adType, news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
     const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
-    const imgUrl = (news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
+    const imgUrl = (news.MainPhoto && news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
     const socialProps = {
       img: imgUrl,
       title: news.title,
       url: news.parseUrl
     };
-
     return (
       <Container>
         <div className={css(styles.contentDiv)}>
@@ -43,9 +42,9 @@ class ContentForNews extends Component {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
-            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} randomKey={randomKey} />
-            <RecommendAds />
+            <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
+            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} adKey={randomKey} ad={ads.like} />
+            <RecommendAds ads={ads.recommand} />
           </LeftSide>
           <RightSide>
             <Social {...socialProps} />
@@ -76,6 +75,7 @@ const styles = StyleSheet.create({
 });
 
 ContentForNews.propTypes = {
+  ads: PropTypes.object,
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,

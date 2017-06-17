@@ -18,6 +18,7 @@ export const WARM_NEWS_FAILURE = 'WARM_NEWS_FAILURE';
 
 const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 const initialState = {
+  ads: {},
   data: [],
   error: null,
   fontSize: null,
@@ -59,14 +60,16 @@ export const loadNews = (sn, fontSize) => {
       axios.get(`${apiServ}/news/${sn}`),
       axios.get(`${apiServ}/news/${sn}/nextandprev`),
       axios.get(`${apiServ}/news/${sn}/relations`),
-      axios.get(`${apiServ}/specialtopics?limit=6`)
-    ]).then(([news, nextandprev, relations, topic]) => {
+      axios.get(`${apiServ}/specialtopics?limit=6`),
+      axios.get(`${apiServ}/ad/news`)
+    ]).then(([news, nextandprev, relations, topic, ads]) => {
       let { next, prev } = nextandprev.data;
       let result = news.data;
 
       dispatch({
         type: LOAD_NEWS_SUCCESS,
         payload: {
+          ads: ads.data,
           news: {
             ...result,
             next,
@@ -102,7 +105,6 @@ export const loadMoreNews = (sn) => {
     ]).then(([news, nextandprev, relations]) => {
       let { next, prev } = nextandprev.data;
       let result = news.data;
-
       dispatch({
         type: LOAD_MORE_NEWS_SUCCESS,
         payload: { ...result, next, prev, relations: relations.data },
@@ -224,9 +226,10 @@ export default function currentNews (state = initialState, action) {
         lastFetched: action.meta.lastFetched
       };
     case LOAD_NEWS_SUCCESS:
-      const { news, topics } = action.payload;
+      const { ads, news, topics } = action.payload;
       return {
         ...state,
+        ads,
         data: [news],
         hasMore: news && !!news.next.sn,
         isLoading: false,

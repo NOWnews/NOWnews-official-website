@@ -95,7 +95,7 @@ class NewsContainer extends Component {
     const totalLength = data.length;
     const triplet = {
       list: {
-        instant: marquee,
+        instant: marquee.news,
         interest,
         lbs: LBS.newsList
       },
@@ -107,6 +107,7 @@ class NewsContainer extends Component {
       const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
       const itemAdType = 'social';  // temp
       const contentProps = {
+        ads: currentNews.ads,
         adType: itemAdType,
         changeFontSize,
         interest,

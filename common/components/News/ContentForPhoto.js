@@ -22,7 +22,7 @@ class ContentForPhoto extends Component {
   }
 
   render () {
-    const { adType, news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet } = this.props;
+    const { ads, adType, news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet } = this.props;
     const settings = {
       axis: 'horizontal',
       autoPlay: true,
@@ -39,7 +39,6 @@ class ContentForPhoto extends Component {
       title: news.title,
       url: news.parseUrl
     };
-
     return (
       <Container>
         <div className={css(styles.SlideBox)}>
@@ -59,9 +58,9 @@ class ContentForPhoto extends Component {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
-            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} randomKey={randomKey} />
-            <RecommendAds />
+            <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
+            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} adKey={randomKey} ad={ads.like} />
+            <RecommendAds ads={ads.recommand} />
           </LeftSide>
           <RightSide>
             <Social {...socialProps} />
@@ -109,6 +108,7 @@ const styles = StyleSheet.create({
 });
 
 ContentForPhoto.propTypes = {
+  ads: PropTypes.object,
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,

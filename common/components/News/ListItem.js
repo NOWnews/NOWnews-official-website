@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import TypeIcon from './TypeIcon';
 
-export const ListItem = ({ category, photo, time, title, type, url }) => {
+export const ListItem = ({ isExternal, category, photo, time, title, type, url }) => {
   const { width, height, ...mainPhoto } = photo || {};
   let imgStyle = {};
   // 如果是接近方圖的話會往上位移 25%，因為方形的圖通常主要內容在中間。
@@ -14,7 +14,8 @@ export const ListItem = ({ category, photo, time, title, type, url }) => {
   }
 
   return (
-    <Link className={`clearfix ${css(styles.box)}`} to={url}>
+    <Link className={`clearfix ${css(styles.box)}`}
+      to={url} target={isExternal === true ? '_blank' : null}>
       <div className={`left ${css(styles.left)}`}>
         <img className={css(styles.img)} style={imgStyle}
           src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
@@ -76,6 +77,7 @@ const styles = StyleSheet.create({
 
 ListItem.propTypes = {
   category: PropTypes.string.isRequired,
+  isExternal: PropTypes.bool,
   photo: PropTypes.object,
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,

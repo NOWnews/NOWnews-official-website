@@ -73,7 +73,7 @@ class HomeContainer extends Component {
     });
 
     const tripletObject = {
-      instant: marquee,
+      instant: marquee.news,
       interest: interest,
       lbs: LBS.newsList
     };
