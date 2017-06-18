@@ -10,7 +10,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import { UserForm } from '../components';
 import { loadUser, onUpdate, onLogout, selectAuthForm, selectAuthPage } from '../module';
-import { selectUser } from '../../../modules/sourceRequest';
+
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
     dispatch(loadUser())
@@ -20,7 +20,7 @@ const redial = {
 const mapStateToProps = state => ({
   authPage: selectAuthPage(state),
   authForm: selectAuthForm(state),
-  initialValues: selectUser(state)
+  initialValues: selectAuthPage(state).user
 });
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
@@ -43,7 +43,7 @@ const MePage = ({ authForm, authPage, initialValues, onLogout, onUpdate }) => {
           <Link className={css(styles.backToHome)} to='/'>回首頁</Link>
         </div>
         {!authPage.isLoading && !authPage.user && <h2 className={css(styles.error)}>權限認證有誤/過期，請嘗試重新登入。</h2>}
-        {authPage.user && <div className={css(styles.rightSide)}>
+        {!authPage.isLoading && authPage.user && <div className={css(styles.rightSide)}>
           {authPage.error && <p className={css(styles.error)}>● {authPage.error}</p>}
           <UserForm />
           <div className={css(styles.submitBox)}>
@@ -120,4 +120,10 @@ MePage.propTypes = {
   onLogout: PropTypes.func,
   onUpdate: PropTypes.func
 };
-export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(reduxForm({form: 'auth'})(MePage)));
+
+const reduxConfig = {
+  form: 'auth',
+  enableReinitialize: true
+};
+
+export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(reduxForm(reduxConfig)(MePage)));
