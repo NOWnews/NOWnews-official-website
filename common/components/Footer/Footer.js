@@ -12,7 +12,7 @@ export const Footer = ({ ads }) => {
     { isExternal: true, title: '飆網超省', url: 'https://www.kbro.com.tw/K01/cm-promo-more-2_3_0_6_3.html?&mkwid=bPIzZHwz' },
     // { isExternal: false, title: '公益行善', url: '' },
     { isExternal: true, title: '網頁遊戲', url: 'http://nownews.nicegame.com.tw/' },
-    { isExternal: true, title: '投票區', url: 'http://vote.nownews.com/' },
+    { isExternal: true, title: '投票區', url: 'http://vote.nownews.com/' }
     // { isExternal: false, title: '色區', url: '' }
   ];
   const socialList = [
