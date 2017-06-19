@@ -28,9 +28,9 @@ const render = () => {
   const createRoutes = require('../common/routes/root').default;
   const routes = createRoutes(store);
   const track = () => {
-    const { sourceRequest: { apiServ }, ...state } = store.getState();
+    const { sourceRequest: { apiServ, headers }, ...state } = store.getState();
     window.document.body.scrollTop = 0;
-    pageview.init(apiServ, pathname, search, state);
+    pageview.init(apiServ, pathname, search, state, headers);
   };
 
   // Pull child routes using match. Adjust Router for vanilla webpack HMR,
