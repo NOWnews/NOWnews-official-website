@@ -81,7 +81,6 @@ export const createServer = (config) => {
       isomorphicCookie.save('NOW_memberData', { token, ...user }, { secure: false }, res);
       return res.redirect('/');
     }).catch((error) => {
-      console.log('error', error.response);
       return res.redirect(`/auth/oauth?msg=${error.response.data.message}`);
     });
   });
@@ -89,7 +88,6 @@ export const createServer = (config) => {
   app.get('*', (req, res) => {
     const user = isomorphicCookie.load('NOW_memberData', req);
     const fontSize = isomorphicCookie.load('NOW_fontSize', req) || 16;
-
     const store = configureStore({
       sourceRequest: {
         headers,
