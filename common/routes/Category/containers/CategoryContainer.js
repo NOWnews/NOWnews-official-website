@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 
 const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
   const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
-  const adType = getAdType(currentMenu.categoryName);
+  const adType = getAdType(currentMenu);
   const slideData = newsList.slice(0, 5);
   const blockData = newsList.slice(5, 15);
 

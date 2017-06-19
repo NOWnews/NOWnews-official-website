@@ -9,15 +9,18 @@ import { Container, Loading, NotFound } from '../../../components/Layout';
 import { BlockItems9, MainVideoPlay, VideoCategories } from '../components';
 import { IsAdult } from '../../../components/Alert';
 import { DFP } from '../../../components/Ad';
+import { loadHeader, selectMenus } from '../../../modules/header';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName }, query: { page } }) => Promise.all([
+    dispatch(loadHeader()),
     dispatch(loadVideoList(categoryName, page))
   ])
 };
 
 const mapStateToProps = state => ({
   local: selectLocal(state),
+  menus: selectMenus(state),
   videoPage: selectVideoPage(state)
 });
 
@@ -26,8 +29,8 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   selectVideo
 });
 
-const VideoPage = ({ local, nextVideo, selectVideo, videoPage }) => {
-  const { currentCategory, currentMenu, menus, newsList, pageData, selectedIndex } = videoPage;
+const VideoPage = ({ local, menus, nextVideo, selectVideo, videoPage }) => {
+  const { currentCategory, currentMenu, newsList, pageData, selectedIndex } = videoPage;
   const maxIndex = newsList.length - 1;
   return (
     <div>
@@ -56,6 +59,7 @@ const VideoPage = ({ local, nextVideo, selectVideo, videoPage }) => {
 VideoPage.propTypes = {
   local: PropTypes.object.isRequired,
   videoPage: PropTypes.object.isRequired,
+  menus: PropTypes.array.isRequired,
   nextVideo: PropTypes.func.isRequired,
   selectVideo: PropTypes.func.isRequired
 };

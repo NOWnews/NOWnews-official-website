@@ -86,7 +86,7 @@ export function loadRelatedNews (sn) {
       }).catch(error => {
         dispatch({
           type: LOAD_RELATED_NEWS_FAILURE,
-          payload: error
+          payload: error.response.data
         });
       });
   };

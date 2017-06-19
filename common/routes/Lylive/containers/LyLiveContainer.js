@@ -6,9 +6,11 @@ import { NavBar } from '../../../components/Video';
 import { Container, Loading } from '../../../components/Layout';
 import { MainVideoPlay, RelatedNews, VideoSelector } from '../components';
 import { DFP } from '../../../components/Ad';
+import { loadHeader } from '../../../modules/header';
 
 const redial = {
   fetch: ({ dispatch, params: { videoSource } }) => Promise.all([
+    dispatch(loadHeader()),
     dispatch(setVideoSource(videoSource)),
     dispatch(loadRelatedNews(videoSource))
   ])

@@ -46,7 +46,7 @@ export function loadLBSList (page = 1) {
       }).catch(error => {
         dispatch({
           type: LOAD_LBS_FAILURE,
-          payload: error,
+          payload: error.response.data,
           error: true
         });
       });

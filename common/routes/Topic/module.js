@@ -30,8 +30,7 @@ export function loadTopics (page = 1) {
     }).catch(error => {
       dispatch({
         type: LOAD_TOPIC_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
     });
   };

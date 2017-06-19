@@ -89,11 +89,11 @@ class NewsContainer extends Component {
     const { currentNews, changeFontSize, interest, LBS, menus, marquee, onWarm } = this.props;
     const {
       isLoading, data = [], hasMore, fontSize, newsTitle,
-      showFixedHeader, topics
+      showFixedHeader, topics, Menus
     } = currentNews;
     const currentMainMenu = data[0] && data[0].MainMenu || {};
-    const adType = getAdType(currentMainMenu.categoryName || '');
-    const mainMenuId = currentMainMenu.id;
+    const adType = getAdType(currentMainMenu, Menus);
+    const mainMenuId = currentMainMenu._id;
     const totalLength = data.length;
     const triplet = {
       list: {
@@ -106,7 +106,7 @@ class NewsContainer extends Component {
 
     const items = data.map((item, i) => {
       const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
-      const itemAdType = getAdType(news.MainMenu.categoryName);
+      const itemAdType = getAdType(news.MainMenu, news.Menus);
       const contentProps = {
         ads: currentNews.ads,
         adType: itemAdType,
