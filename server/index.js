@@ -26,6 +26,9 @@ import { compileDev, startDev } from '../tools/dx';
 import { configureStore } from '../common/store';
 import createRoutes from '../common/routes/root';
 import configLib from 'config';
+
+import redirect from './redirect';
+
 const defaultServerConfig = configLib.get('server');
 const isProdMode = configLib.get('isProdMode');
 const webApiServer = configLib.get('webApiServer');
@@ -61,6 +64,8 @@ export const createServer = (config) => {
   }
 
   app.use(express.static('public', { etag: 1000, maxage: 86400000 * 365 }));
+
+  app.use(redirect(app));
 
   // process login
   app.get('/api/oauth_callback', (req, res) => {
