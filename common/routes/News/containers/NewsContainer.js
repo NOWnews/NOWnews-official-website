@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
-import { Ad970x250 } from '../../../components/Ad';
+import { DFP, getAdType } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import {
@@ -91,19 +91,25 @@ class NewsContainer extends Component {
       isLoading, data = [], hasMore, fontSize, newsTitle,
       showFixedHeader, topics
     } = currentNews;
-    const currentMainMenu = data[0] && data[0].MainMenu.id;
+    const currentMainMenu = data[0] && data[0].MainMenu || {};
+    const adType = getAdType(currentMainMenu.categoryName || '');
+    const mainMenuId = currentMainMenu.id;
     const totalLength = data.length;
     const triplet = {
       list: {
-        instant: marquee,
+        instant: marquee.news,
         interest,
         lbs: LBS.newsList
       },
       mapCity: LBS.mapCity
     };
+
     const items = data.map((item, i) => {
       const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
+      const itemAdType = getAdType(news.MainMenu.categoryName);
       const contentProps = {
+        ads: currentNews.ads,
+        adType: itemAdType,
         changeFontSize,
         interest,
         fontSize,
@@ -122,29 +128,31 @@ class NewsContainer extends Component {
         <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
-          {(totalLength - 1) !== i && <Container><Ad970x250 /></Container>}
           {traceCode && <script dangerouslySetInnerHTML={{__html: traceCode}} />}
+          {(totalLength - 1) !== i && <Container>
+            <DFP opts={[`Nownews_${adType}_article_970x250_B_new2`, [[970, 90], [970, 250]]]} />
+          </Container>}
         </div>
       );
     });
 
-    let currentChildMenu;
+    let childMenuId;
 
     if (data.length > 0) {
       data[0].Menus.forEach(({ ParentId, id }) => {
-        if (!currentChildMenu && ParentId === currentMainMenu) {
-          currentChildMenu = id;
+        if (!childMenuId && ParentId === mainMenuId) {
+          childMenuId = id;
         }
       });
     }
     return (
       <div>
         {!isLoading && data[0] && <IsAdult isAdult={data[0].isAdult} />}
-        <Header menus={menus} marquee={marquee}
-          currentChildMenu={currentChildMenu}
-          currentMainMenu={currentMainMenu} />
+        <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
+          currentChildMenu={childMenuId}
+          currentMainMenu={mainMenuId} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}
-          currentMainMenu={currentMainMenu} newsTitle={newsTitle} />}
+          currentMainMenu={mainMenuId} newsTitle={newsTitle} />}
         {isLoading &&
           <div>
             <div>{items}</div>
@@ -159,6 +167,9 @@ class NewsContainer extends Component {
             touchWindowTop={this.touchWindowTop}>
             <div>{items}</div>
           </InfiniteScroll>}
+        <Container>
+          <DFP opts={[`/5799246/Nownews_${adType}_article_970x250_B_new2`, [[970, 250], [970, 90]]]} />
+        </Container>
       </div>
     );
   }
@@ -173,7 +184,7 @@ NewsContainer.propTypes = {
   loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,
   loadMoreNews: PropTypes.func.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   onWarm: PropTypes.func.isRequired,
   showFixedHeader: PropTypes.func.isRequired

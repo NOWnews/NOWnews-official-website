@@ -1,17 +1,19 @@
-import React from 'react';
-import { Ad150x150 } from '../../Ad';
+import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-export const AdBlock = () => (
-  <div className={css(styles.box)}>
-    <Ad150x150 />
-    <div className={css(styles.title)}>標題標題標題標題標題標題標題標題標題</div>
-  </div>
+export const AdBlock = ({ ad }) => (
+  <a className={css(styles.box)} href={ad.url} target='_blank'>
+    <div>
+      <img src={ad.img} width='150' height='150' />
+    </div>
+    <div className={css(styles.title)}>{ad.title}</div>
+  </a>
 );
 
 const styles = StyleSheet.create({
   box: {
     textAlign: 'center',
+    textDecoration: 'none',
     width: 970 / 5
   },
   title: {
@@ -20,4 +22,9 @@ const styles = StyleSheet.create({
     width: 150
   }
 });
+
+AdBlock.propTypes = {
+  ad: PropTypes.object
+};
+
 export default AdBlock;

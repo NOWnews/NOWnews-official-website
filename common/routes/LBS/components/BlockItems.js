@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import BlockItem from './BlockItem';
-import { DFP } from '../Ad';
-import Pagination from '../Pagination';
+import { DFP } from '../../../components/Ad';
+import Pagination from '../../../components/Pagination';
+import { BlockItem } from '../../../components/News';
 
-const BlockItems12 = ({ adType, newsList, page, local }) => {
+const BlockItems = ({ newsList, page, local }) => {
   let items = [];
 
   newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }, key) => {
@@ -21,12 +21,12 @@ const BlockItems12 = ({ adType, newsList, page, local }) => {
       </div>
     );
 
-    if (adType && key === 1) {
-      items.push(<DFP key={`Ad_RT`} className={css(styles.blockItem)}
-        opts={[`/5799246/Nownews_${adType}_300x250_RT_new2`, [300, 250]]} />);
-    } else if (adType && key === 6) {
-      items.push(<DFP key={`Ad_RB`} className={css(styles.blockItem)}
-        opts={[`/5799246/Nownews_${adType}_300x250_RB_new2`, [300, 250]]} />);
+    if (key === 1) {
+      items.push(<DFP key={`Ad_M1`} className={css(styles.blockItem)}
+        opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />);
+    } else if (key === 6) {
+      items.push(<DFP key={`Ad_M2`} className={css(styles.blockItem)}
+        opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />);
     }
   });
 
@@ -51,11 +51,10 @@ const styles = StyleSheet.create({
   }
 });
 
-BlockItems12.propTypes = {
+BlockItems.propTypes = {
   local: PropTypes.object,
-  adType: PropTypes.string,
   newsList: PropTypes.array.isRequired,
   page: PropTypes.object
 };
 
-export default BlockItems12;
+export default BlockItems;

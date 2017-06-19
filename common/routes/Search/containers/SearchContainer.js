@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 SearchPage.propTypes = {
   loadSearchList: PropTypes.func.isRequired,
   local: PropTypes.object.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   searchPage: PropTypes.object.isRequired
 };

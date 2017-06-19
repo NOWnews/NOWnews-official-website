@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import AdBlock from './components/AdBlock';
-import { DFP } from '../Ad';
 import { Container } from '../Layout';
 
-export const Footer = () => {
+export const Footer = ({ ads }) => {
   const moreList = [
     { isExternal: false, title: '立院直播', url: '/lylive/1' },
     { isExternal: true, title: '購屋通', url: 'http://www.cthouse.com.tw/?utm_source=nownews&utm_medium=text&utm_content=navigation&utm_campaign=nownews' },
@@ -26,10 +25,9 @@ export const Footer = () => {
 
   return (
     <Container>
-      <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
       <div className={css(styles.footer)}>
         <div className={css(styles.adBlocks)}>
-          { [1, 2, 3, 4, 5].map((index) => <AdBlock key={index} />)}
+          { ads.map((ad, index) => <AdBlock key={index} ad={ad} />)}
         </div>
         <hr className={css(styles.hr)} />
         <div className={`clearfix ${css(styles.announce)}`}>
@@ -171,4 +169,9 @@ const styles = StyleSheet.create({
     width: 80
   }
 });
+
+Footer.propTypes = {
+  ads: PropTypes.array
+};
+
 export default Footer;

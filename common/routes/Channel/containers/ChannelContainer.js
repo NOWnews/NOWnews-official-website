@@ -9,6 +9,7 @@ import { Header } from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { ChannelSelecter, BlockItems } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
+import { DFP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, params: { sn }, query: { page } }) => Promise.all([
@@ -43,7 +44,7 @@ const ChannelContainer = ({ channelPage, local, loadChannelData, menus, marquee 
           <Pagination {...pageData} {...local} />
         </Margin10>
       }
-
+      <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
     </Container>
   );
 };
@@ -52,7 +53,7 @@ ChannelContainer.propTypes = {
   channelPage: PropTypes.object.isRequired,
   local: PropTypes.object.isRequired,
   loadChannelData: PropTypes.func.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };
 

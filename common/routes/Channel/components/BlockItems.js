@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockItem } from '../../../components/News';
-import { Ad300x250 } from '../../../components/Ad';
+import { DFP } from '../../../components/Ad';
 
 const BlockItems = ({ newsList }) => {
   let items = [];
@@ -20,8 +20,10 @@ const BlockItems = ({ newsList }) => {
       </div>
     );
 
-    if (key === 4 || key === 9) {
-      items.push(<Ad300x250 key={`Ad${key}`} className={css(styles.blockItem)} />);
+    if (key === 4) {
+      items.push(<DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />);
+    } else if (key === 9) {
+      items.push(<DFP opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />);
     }
   });
 

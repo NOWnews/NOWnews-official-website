@@ -2,24 +2,30 @@ import React, { PropTypes } from 'react';
 import ListItem from '../../../components/News/ListItem';
 import { Margin10 } from '../../../components/Layout';
 
-const RelatedContent = ({ list, randomKey, type }) => {
+const RelatedContent = ({ ad, adKey, list, type }) => {
   let cloneList = [...list];
   let items = [];
   // 暫時廣告資料
-  let fakeSponsorNews = {
+  let sponsorNews = {
     formatStartedAt: (new Date()).toISOString(),
-    MainPhoto: {},
-    sn: 999999,
-    parseUrl: '/news/20170101/999999',
-    shortTitle: '一旦過敏被誘發 寶寶皮膚紅腫愛哭鬧'
+    isExternal: true,
+    MainPhoto: {
+      url: ad.img,
+      height: 95,
+      width: 170
+    },
+    sn: 'ad',
+    parseUrl: ad.url,
+    shortTitle: ad.title
   };
 
   // 將廣告有規律的安插在 array 裡面。
-  cloneList.splice(randomKey, 0, fakeSponsorNews);
+  cloneList.splice(adKey, 0, sponsorNews);
   cloneList.map((news) => {
-    const { sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl } = news;
+    const { sn, isExternal, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl } = news;
     items.push(
       <ListItem
+        isExternal={isExternal}
         key={sn}
         category={MainMenu && MainMenu.name || 'Sponsored'}
         photo={MainPhoto}
@@ -38,8 +44,9 @@ const RelatedContent = ({ list, randomKey, type }) => {
 };
 
 RelatedContent.propTypes = {
+  adKey: PropTypes.number.isRequired,
+  ad: PropTypes.object.isRequired,
   list: PropTypes.array.isRequired,
-  randomKey: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired
 };
 

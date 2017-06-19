@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { Ad200x112 } from '../../../components/Ad';
 
-const RecommendAds = () => {
+const RecommendAds = ({ ads }) => {
   var items = [];
 
-  [0, 1, 2, 3, 4, 5].map((index) => {
+  ads.map((ad, index) => {
     items.push(
-      <div className={css(styles.item)} key={index}>
-        <Ad200x112 />
-        <div>一旦過敏被誘發 寶寶皮膚紅腫愛哭鬧</div>
-      </div>
+      <a className={css(styles.item)} key={index} href={ad.url} target='_blank'>
+        <div>
+          <img src={ad.img} width='200' height='112' />
+        </div>
+        <div>{ad.title}</div>
+      </a>
     );
   });
 
@@ -26,12 +27,18 @@ const RecommendAds = () => {
 
 const styles = StyleSheet.create({
   item: {
+    color: '#000000',
+    display: 'block',
     float: 'left',
     fontSize: 15,
     marginRight: 10,
     marginBottom: 15,
+    textDecoration: 'none',
     width: 200
   }
 });
 
+RecommendAds.propTypes = {
+  ads: PropTypes.array
+};
 export default RecommendAds;

@@ -62,7 +62,7 @@ const render = () => {
 
       // Define locals to be provided to all lifecycle hooks:
       const locals = {
-        fontSize: isomorphicCookie.load('NOW_fontSize'),
+        fontSize: isomorphicCookie.load('NOW_fontSize') || 16,
         path: renderProps.location.pathname,
         query: renderProps.location.query,
         params: renderProps.params,

@@ -73,14 +73,14 @@ class HomeContainer extends Component {
     });
 
     const tripletObject = {
-      instant: marquee,
+      instant: marquee.news,
       interest: interest,
       lbs: LBS.newsList
     };
 
     return (
       <div>
-        <Header menus={menus} marquee={marquee} />
+        <Header adType='home' menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
 
         {!isLoading && carousels.length > 0 &&
@@ -171,6 +171,9 @@ class HomeContainer extends Component {
               </RightSide>
             </Container>
           </div>}
+        <Container>
+          <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
+        </Container>
       </div>
     );
   };
@@ -269,7 +272,7 @@ HomeContainer.propTypes = {
   LBS: PropTypes.object,
   loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   switchTripletType: PropTypes.func.isRequired
 };
