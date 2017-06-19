@@ -9,6 +9,7 @@ import throng from 'throng';
 import url from 'url';
 import isomorphicCookie from 'isomorphic-cookie';
 import axios from 'axios';
+import cors from 'cors';
 
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -42,6 +43,7 @@ export const createServer = (config) => {
   let assets = null;
   app.disable('x-powered-by');
   app.use(bodyParser.json());
+  app.use(cors());
   app.use(bodyParser.urlencoded({ extended: true }));
 
   if (__PROD__) {
