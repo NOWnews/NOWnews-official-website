@@ -42,7 +42,6 @@ export const createServer = (config) => {
   let assets = null;
   app.disable('x-powered-by');
   app.use(bodyParser.json());
-  app.use(cors());
   app.use(bodyParser.urlencoded({ extended: true }));
 
   if (__PROD__) {
