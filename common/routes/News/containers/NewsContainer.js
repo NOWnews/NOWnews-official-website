@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
-import { DFP } from '../../../components/Ad';
+import { DFP, getAdType } from '../../../components/Ad';
 import { Container, Loading } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import {
@@ -91,7 +91,9 @@ class NewsContainer extends Component {
       isLoading, data = [], hasMore, fontSize, newsTitle,
       showFixedHeader, topics
     } = currentNews;
-    const currentMainMenu = data[0] && data[0].MainMenu.id;
+    const currentMainMenu = data[0] && data[0].MainMenu || {};
+    const adType = getAdType(currentMainMenu.categoryName || '');
+    const mainMenuId = currentMainMenu.id;
     const totalLength = data.length;
     const triplet = {
       list: {
@@ -101,11 +103,10 @@ class NewsContainer extends Component {
       },
       mapCity: LBS.mapCity
     };
-    const adType = 'social';  // temp
 
     const items = data.map((item, i) => {
       const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
-      const itemAdType = 'social';  // temp
+      const itemAdType = getAdType(news.MainMenu.categoryName);
       const contentProps = {
         ads: currentNews.ads,
         adType: itemAdType,
@@ -135,12 +136,12 @@ class NewsContainer extends Component {
       );
     });
 
-    let currentChildMenu;
+    let childMenuId;
 
     if (data.length > 0) {
       data[0].Menus.forEach(({ ParentId, id }) => {
-        if (!currentChildMenu && ParentId === currentMainMenu) {
-          currentChildMenu = id;
+        if (!childMenuId && ParentId === mainMenuId) {
+          childMenuId = id;
         }
       });
     }
@@ -148,10 +149,10 @@ class NewsContainer extends Component {
       <div>
         {!isLoading && data[0] && <IsAdult isAdult={data[0].isAdult} />}
         <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
-          currentChildMenu={currentChildMenu}
-          currentMainMenu={currentMainMenu} />
+          currentChildMenu={childMenuId}
+          currentMainMenu={mainMenuId} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}
-          currentMainMenu={currentMainMenu} newsTitle={newsTitle} />}
+          currentMainMenu={mainMenuId} newsTitle={newsTitle} />}
         {isLoading &&
           <div>
             <div>{items}</div>

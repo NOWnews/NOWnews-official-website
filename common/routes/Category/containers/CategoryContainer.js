@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
-import { DFP } from '../../../components/Ad';
+import { DFP, getAdType } from '../../../components/Ad';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
@@ -26,8 +26,8 @@ const mapStateToProps = state => ({
 });
 
 const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
-  const adType = 'social';
   const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
+  const adType = getAdType(currentMenu.categoryName);
   const slideData = newsList.slice(0, 5);
   const blockData = newsList.slice(5, 15);
 
