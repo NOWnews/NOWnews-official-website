@@ -21,30 +21,27 @@ export function loadVideoList (categoryName, page = 1) {
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_VIDEO_REQUEST });
     const getListUrl = (categoryName === 'instant') ? 'instant?type=VIDEO&' : `cat/${categoryName}/video?`;
-    return Promise.all([
-      axios.get(`${apiServ}/menus`),
-      axios.get(`${apiServ}/${getListUrl}page=${page}&limit=9`)
-    ]).then(([menuSrc, videoSrc]) => {
-      const { newsList, pageData, menu } = videoSrc.data;
-      dispatch({
-        type: LOAD_VIDEO_SUCCESS,
-        payload: {
-          currentCategory: categoryName,
-          currentMenu: menu || {},
-          menus: menuSrc.data,
-          newsList,
-          pageData
-        },
-        meta: {
-          lastFetched: Date.now()
-        }
+    return axios.get(`${apiServ}/${getListUrl}page=${page}&limit=9`)
+      .then((videoSrc) => {
+        const { newsList, pageData, menu } = videoSrc.data;
+        dispatch({
+          type: LOAD_VIDEO_SUCCESS,
+          payload: {
+            currentCategory: categoryName,
+            currentMenu: menu || {},
+            newsList,
+            pageData
+          },
+          meta: {
+            lastFetched: Date.now()
+          }
+        });
+      }).catch(error => {
+        dispatch({
+          type: LOAD_VIDEO_FAILURE,
+          payload: error.response.data
+        });
       });
-    }).catch(error => {
-      dispatch({
-        type: LOAD_VIDEO_FAILURE,
-        payload: error.response.data
-      });
-    });
   };
 }
 
@@ -72,12 +69,11 @@ export default function videoPage (state = initialState, action) {
         error: null
       };
     case LOAD_VIDEO_SUCCESS:
-      const { currentMenu, currentCategory, menus, newsList, pageData } = action.payload;
+      const { currentMenu, currentCategory, newsList, pageData } = action.payload;
       return {
         ...state,
         currentCategory,
         currentMenu,
-        menus,
         newsList,
         pageData,
         selectedIndex: 0,
@@ -89,7 +85,6 @@ export default function videoPage (state = initialState, action) {
         ...state,
         error: action.payload.message,
         newsList: [],
-        menus: [],
         isLoading: false
       };
     case NEXT_VIDEO_NEWS:

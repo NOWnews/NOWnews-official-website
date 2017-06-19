@@ -1,12 +1,11 @@
-module.exports = function(app) {
-
+module.exports = function (app) {
   app.get('/n/:yyyy/:mm/:dd/:sn', (req, res) => {
     const { yyyy, mm, dd, sn } = req.params;
     res.redirect(301, `/news/${yyyy}${mm}${dd}/${sn}`);
   });
 
   app.get('/cat/:mainCategory/:childCategory', (req, res) => {
-    const { mainCategory, childCategory } = req.params;
+    const { childCategory } = req.params;
     res.redirect(301, `/cat/${childCategory}`);
   });
 
@@ -23,8 +22,7 @@ module.exports = function(app) {
     res.redirect(301, `/news/${yyyy}${mm}${dd}/${sn}`);
   });
 
-
-  return function(req, res, next) {
-      return next();
+  return function (req, res, next) {
+    return next();
   };
 };
