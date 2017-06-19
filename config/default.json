@@ -1,0 +1,14 @@
+{
+  "mode": "default",
+  "webApiServer": "http://localhost:10001",
+  "memberApiServer": "https://memberapi.nownews.com",
+  "isProdMode": false,
+  "headers": {
+    "X-NOWnews-API": "YouCanSeeMeJohnCena"
+  },
+  "server": {
+    "webConcurrency": 1,
+    "port": 5000,
+    "timeout": 29000
+  }
+}

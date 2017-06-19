@@ -1,0 +1,37 @@
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import axiosLib from 'axios';
+import createReducer from './createReducer';
+
+export function configureStore (initialState) {
+  const axios = axiosLib.create({
+    headers: initialState.sourceRequest.headers
+  });
+
+  let store = createStore(createReducer(), initialState, compose(
+    applyMiddleware(
+      thunk.withExtraArgument({ axios })
+    ),
+
+    process.env.NODE_ENV === 'develop' &&
+    typeof window === 'object' &&
+    typeof window.devToolsExtension !== 'undefined'
+      ? window.devToolsExtension({serialize: true})
+      : f => f
+  ));
+
+  store.asyncReducers = {};
+
+  if (process.env.NODE_ENV === 'develop') {
+    if (module.hot) {
+      module.hot.accept('./createReducer', () => store.replaceReducer(require('./createReducer').default));
+    }
+  }
+
+  return store;
+}
+
+export function injectAsyncReducer (store, name, asyncReducer) {
+  store.asyncReducers[name] = asyncReducer;
+  store.replaceReducer(createReducer(store.asyncReducers));
+}

@@ -1,0 +1,2 @@
+export IsAdult from './IsAdult';
+
