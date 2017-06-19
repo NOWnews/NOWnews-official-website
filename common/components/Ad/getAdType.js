@@ -22,8 +22,19 @@ const definedMapping = {
   eworld: 'tec' // 科技
 };
 
-const getAdType = (mainCategory, childCategory) => {
-  const categoryName = (childCategory && mainCategory === 'place') ? childCategory : mainCategory;
+const getAdType = (mainMenu, childMenus) => {
+  let categoryName = mainMenu.categoryName;
+
+  // 正確取得地方新聞子分類
+  if (categoryName === 'place' && childMenus) {
+    childMenus.forEach((menu) => {
+      if (menu.ParentId !== mainMenu._id) {
+        return;
+      };
+      categoryName = menu.categoryName;
+    });
+  }
+
   const adType = (definedMapping[categoryName]) ? definedMapping[categoryName] : defaultAdType;
   return adType;
 };
