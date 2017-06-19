@@ -26,8 +26,7 @@ export function loadAuthorData (authorId, page = 1) {
     }).catch(error => {
       dispatch({
         type: LOAD_AUTHOR_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
     });
   };

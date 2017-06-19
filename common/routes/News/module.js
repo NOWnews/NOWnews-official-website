@@ -86,8 +86,7 @@ export const loadNews = (sn, fontSize) => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
         type: LOAD_NEWS_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
     });
   };
@@ -122,8 +121,7 @@ export const loadMoreNews = (sn) => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
         type: LOAD_NEWS_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
     });
   };
@@ -147,8 +145,7 @@ export const loadPreview = (redisKey) => {
         console.error(`Error in reducer that handles ${LOAD_PREVIEW_FAILURE}: `, error);
         dispatch({
           type: LOAD_PREVIEW_FAILURE,
-          payload: error,
-          error: true
+          payload: error.response.data
         });
       });
   };
@@ -176,8 +173,7 @@ export const onWarm = (newsId, menuId) => {
     }).catch(error => {
       dispatch({
         type: WARM_NEWS_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
       window.alert('感謝您對這篇新聞的支持，您已經加過溫暖囉！');
     });

@@ -42,7 +42,7 @@ export function loadVideoList (categoryName, page = 1) {
     }).catch(error => {
       dispatch({
         type: LOAD_VIDEO_FAILURE,
-        payload: error
+        payload: error.response.data
       });
     });
   };

@@ -30,8 +30,7 @@ export function loadHomeList () {
     }).catch(error => {
       dispatch({
         type: LOAD_INDEX_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
     });
   };
@@ -66,7 +65,7 @@ export default function homePage (state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        error: action.payload
+        error: action.payload.message
       };
     case SWITCH_TRIPLET_TYPE:
       return {
