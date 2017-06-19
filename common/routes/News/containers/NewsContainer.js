@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
 import { DFP, getAdType } from '../../../components/Ad';
-import { Container, Loading } from '../../../components/Layout';
+import { Container } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import {
   changeFontSize, changeNewsTitle, loadNews, loadMoreNews, onWarm,
@@ -63,8 +63,10 @@ class NewsContainer extends Component {
 
   loadItems () {
     const newsData = this.props.currentNews.data;
-    const sn = newsData[newsData.length - 1].next.sn;
-    this.props.loadMoreNews(sn);
+    if (!this.props.currentNews.isLoading) {
+      const sn = newsData[newsData.length - 1].next.sn;
+      this.props.loadMoreNews(sn);
+    }
   }
 
   scrollListener () {
@@ -153,20 +155,15 @@ class NewsContainer extends Component {
           currentMainMenu={mainMenuId} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}
           currentMainMenu={mainMenuId} newsTitle={newsTitle} />}
-        {isLoading &&
-          <div>
-            <div>{items}</div>
-            <Loading />
-          </div>}
-        {!isLoading &&
-          <InfiniteScroll
-            pageStart={0}
-            loader={<div>Load More ...</div>}
-            loadMore={this.loadItems}
-            hasMore={hasMore}
-            touchWindowTop={this.touchWindowTop}>
-            <div>{items}</div>
-          </InfiniteScroll>}
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={this.loadItems}
+          hasMore={hasMore}
+          threshold={600}
+          touchWindowTop={this.touchWindowTop}>
+          <div>{items}</div>
+        </InfiniteScroll>
+        {isLoading && <Container><h3>新聞載入中，請稍候片刻 ...</h3></Container>}
         <Container>
           <DFP opts={[`/5799246/Nownews_${adType}_article_970x250_B_new2`, [[970, 250], [970, 90]]]} />
         </Container>

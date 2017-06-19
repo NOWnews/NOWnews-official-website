@@ -94,7 +94,7 @@ export const loadNews = (sn, fontSize) => {
 
 export const loadMoreNews = (sn) => {
   return (dispatch, getState, { axios }) => {
-    const { apiServ } = getState().sourceRequest;
+    const { apiServ, headers } = getState().sourceRequest;
     dispatch({ type: LOAD_MORE_NEWS_REQUEST });
 
     return Promise.all([
@@ -116,7 +116,7 @@ export const loadMoreNews = (sn) => {
       const { search } = window.location;
       const { id: newsId, MainMenu, sn, startedAt } = result;
       const formatStartedAt = moment(startedAt).format('YYYYMMDD');
-      pvCallApi(apiServ, MainMenu.id, newsId, `/news/${formatStartedAt}/${sn}`, search);
+      pvCallApi(apiServ, MainMenu.id, newsId, `/news/${formatStartedAt}/${sn}`, search, headers);
     }).catch(error => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({

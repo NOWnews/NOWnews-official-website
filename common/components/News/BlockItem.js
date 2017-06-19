@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   title: {
+    height: 22,
     margin: '5px 0'
   },
   time: {

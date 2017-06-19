@@ -1,9 +1,13 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import axios from 'axios';
+import axiosLib from 'axios';
 import createReducer from './createReducer';
 
 export function configureStore (initialState) {
+  const axios = axiosLib.create({
+    headers: initialState.sourceRequest.headers
+  });
+
   let store = createStore(createReducer(), initialState, compose(
     applyMiddleware(
       thunk.withExtraArgument({ axios })

@@ -33,6 +33,7 @@ const defaultServerConfig = configLib.get('server');
 const isProdMode = configLib.get('isProdMode');
 const webApiServer = configLib.get('webApiServer');
 const memberApiServer = configLib.get('memberApiServer');
+const headers = configLib.get('headers');
 
 export const createServer = (config) => {
   const __PROD__ = isProdMode;
@@ -89,6 +90,7 @@ export const createServer = (config) => {
 
     const store = configureStore({
       sourceRequest: {
+        headers,
         apiServ: webApiServer,
         local: {
           fontSize,

@@ -3,6 +3,9 @@
   "webApiServer": "https://devapi.nownews.com",
   "memberApiServer": "https://memberapi.nownews.com",
   "isProdMode": true,
+  "headers": {
+    "X-NOWnews-API": "YouCanSeeMeJohnCena"
+  },
   "server": {
     "webConcurrency": 1,
     "port": 5000,
