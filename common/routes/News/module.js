@@ -205,6 +205,7 @@ export default function currentNews (state = initialState, action) {
     case LOAD_NEWS_REQUEST:
       return {
         ...state,
+        data: [],
         fontSize: action.payload.fontSize,
         error: null,
         isLoading: true
