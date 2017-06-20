@@ -1,5 +1,6 @@
 import { provideHooks } from 'redial';
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -128,6 +129,24 @@ class NewsContainer extends Component {
       const Content = ContentTypeObject[type];
       return (
         <div key={news.sn}>
+          <div>
+            <Helmet title='NOWnews 今日新聞' titleTemplate={news.title + '| NOWnews 今日新聞'}
+              meta={[
+                { name: 'description', content: news.summary },
+                { name: 'twitter:title', content: news.title },
+                { name: 'twitter:image', content: news.MainPhoto.url },
+                { name: 'twitter:description', content: news.summary },
+                { name: 'twitter:card', content: 'summary_large_image' },
+                { property: 'og:type', content: 'article' },
+                { property: 'og:title', content: news.title },
+                { property: 'og:description', content: news.summary },
+                { property: 'og:image', content: news.MainPhoto.url },
+
+                { property: 'og:url', content: 'http://www.nownews.com' + news.parseUrl },
+                { property: 'og:rich_attachment', content: 'true' }
+              ]}
+            />
+          </div>
           <Head newsBy={newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
           {traceCode && <script dangerouslySetInnerHTML={{__html: traceCode}} />}

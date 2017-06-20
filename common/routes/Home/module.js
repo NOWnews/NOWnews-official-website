@@ -29,6 +29,7 @@ export function loadHomeList () {
             lastFetched: Date.now()
           }
         });
+        return;
       }
       dispatch({ type: LOAD_INDEX_SUCCESS_AND_EMPTY });
     }).catch(error => {
