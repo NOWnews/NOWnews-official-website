@@ -16,6 +16,7 @@ import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header'
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectInterest, loadInterest } from '../../../modules/interest';
 import { IsAdult } from '../../../components/Alert';
+import { MicroDataNews } from '../../../components/JSONLD';
 
 const redial = {
   fetch: ({ dispatch, params: { sn }, fontSize }) => Promise.all([
@@ -146,6 +147,7 @@ class NewsContainer extends Component {
                 { property: 'og:rich_attachment', content: 'true' }
               ]}
             />
+            <MicroDataNews news={item} />
           </div>
           <Head newsBy={newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}

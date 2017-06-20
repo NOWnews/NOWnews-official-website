@@ -10,6 +10,7 @@ import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
 import { HotNews } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
+import { MicroDataCategory } from '../../../components/JSONLD';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName }, query: { page } }) => Promise.all([
@@ -36,6 +37,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
   const currentChildMenu = isMainMenu ? null : currentMenu._id;
   return (
     <Container>
+      <MicroDataCategory category={categoryPage} />
       <IsAdult isAdult={currentMenu.isAdult} />
       <Header adType={adType} menus={menus} marquee={marquee}
         currentChildMenu={currentChildMenu}
