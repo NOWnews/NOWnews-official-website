@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
+import Helmet from 'react-helmet';
 
 class ChannelSelecter extends Component {
   constructor (props) {
@@ -32,6 +33,29 @@ class ChannelSelecter extends Component {
         <span key={sn} className={`${css(styles.channelItem)} ${isActive}`}
           onClick={() => { this.switchChannel(sn); }}>
           {title}
+          <div>
+            <Helmet title='NOWnews 今日新聞' titleTemplate={selectedChannel.title + '| NOWnews 今日新聞'}
+              meta={[
+                { name: 'description', content: `${selectedChannel.title} | 特輯` },
+                { name: 'twitter:title', content: `${selectedChannel.title} | 特輯` },
+                { name: 'twitter:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+                { name: 'twitter:description', content: `${selectedChannel.title} | 特輯 | NOWnews 今日新聞` },
+                { name: 'twitter:card', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+                { name: 'contact', content: 'service@nownews.com' },
+                { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
+                { property: 'article:author', content: 'https://www.facebook.com/nownews' },
+                { property: 'og:type', content: 'article' },
+                { property: 'og:locale', content: 'zh_TW' },
+                { property: 'og:title', content: `${selectedChannel.title} | 特輯` },
+                { property: 'og:description', content: `${selectedChannel.title} | 特輯 | NOWnews 今日新聞` },
+                { property: 'og:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+                { property: 'og:url', content: 'http://www.nownews.com/channel/' + selectedChannel.sn },
+                { property: 'og:rich_attachment', content: 'true' }
+              ]}
+              link={[
+                {rel: 'canonical', href: `http://www.nownews.com/channel/${selectedChannel.sn}`}
+              ]} />
+          </div>
         </span>
       );
     });
