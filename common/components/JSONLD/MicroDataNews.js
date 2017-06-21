@@ -33,12 +33,11 @@ const MicroDataNews = ({ news }) => {
 	      "height": 52
 	    }
 	  },
-	  "description": "22歲陳姓女模在今年3月遭姦殺並棄屍在南港的廢棄商場，而凶手正是陳女閨密的男友程宇，引發譁然。當時程宇宣稱和女友梁女一起計畫犯案，過程中梁女更將包包背帶綁住陳女的脖子，而梁女也遭羈押3天。經檢警偵辦後"
+	  "description": "24歲陳姓女模在今年3月遭姦殺並棄屍在南港的廢棄商場，而凶手正是陳女閨密的男友程宇，引發譁然。當時程宇宣稱和女友梁女一起計畫犯案，過程中梁女更將包包背帶綁住陳女的脖子，而梁女也遭羈押3天。經檢警偵辦後"
   };
-
   return (
     <script type='application/ld+json'>
-      {JSON.stringify(data)}
+      {`${JSON.stringify(data)}`}
     </script>
   );
 };
