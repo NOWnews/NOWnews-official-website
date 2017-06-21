@@ -28,8 +28,7 @@ class InstantBar extends Component {
 
   render () {
     const { index } = this.state;
-    const { ads, news } = this.props;
-
+    let { ads, news } = this.props;
     const customTransitionStyle = `
     .item-enter {
       opacity: 0.8;
@@ -52,6 +51,14 @@ class InstantBar extends Component {
       transitionLeaveTimeout: 500,
       transitionName: 'item'
     };
+
+    if (!news) {
+      news = {};
+    }
+
+    if (!ads) {
+      ads = {};
+    }
 
     const first = news[index * 2];
     const second = news[index * 2 + 1];
