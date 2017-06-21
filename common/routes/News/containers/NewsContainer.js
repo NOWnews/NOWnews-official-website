@@ -107,7 +107,9 @@ class NewsContainer extends Component {
       },
       mapCity: LBS.mapCity
     };
-
+    const tags = tags.map(({ name }) => {
+      return name;
+    });
     const items = data.map((item, i) => {
       const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
       const itemAdType = getAdType(news.MainMenu, news.Menus);
@@ -130,25 +132,6 @@ class NewsContainer extends Component {
       const Content = ContentTypeObject[type];
       return (
         <div key={news.sn}>
-          <div>
-            <Helmet title='NOWnews 今日新聞' titleTemplate={news.title + '| NOWnews 今日新聞'}
-              meta={[
-                { name: 'description', content: news.summary },
-                { name: 'twitter:title', content: news.title },
-                { name: 'twitter:image', content: news.MainPhoto.url },
-                { name: 'twitter:description', content: news.summary },
-                { name: 'twitter:card', content: 'summary_large_image' },
-                { property: 'og:type', content: 'article' },
-                { property: 'og:title', content: news.title },
-                { property: 'og:description', content: news.summary },
-                { property: 'og:image', content: news.MainPhoto.url },
-
-                { property: 'og:url', content: 'http://www.nownews.com' + news.parseUrl },
-                { property: 'og:rich_attachment', content: 'true' }
-              ]}
-            />
-            <MicroDataNews news={item} />
-          </div>
           <Head newsBy={newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
           {traceCode && <script dangerouslySetInnerHTML={{__html: traceCode}} />}
@@ -170,6 +153,32 @@ class NewsContainer extends Component {
     }
     return (
       <div>
+        <div>
+          <Helmet title='NOWnews 今日新聞' titleTemplate={news.title + '| NOWnews 今日新聞'}
+            meta={[
+              { name: 'description', content: news.summary },
+              { name: 'keywords', content: tags.join(',') },
+              { name: 'twitter:title', content: news.title },
+              { name: 'twitter:image', content: news.MainPhoto.url },
+              { name: 'twitter:description', content: news.summary },
+              { name: 'twitter:card', content: 'summary_large_image' },
+              { name: 'contact', content: 'service@nownews.com' },
+              { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
+              { property: 'article:author', content: 'https://www.facebook.com/nownews' },
+              { property: 'og:type', content: 'article' },
+              { property: 'og:title', content: news.title },
+              { property: 'og:description', content: news.summary },
+              { property: 'og:image', content: news.MainPhoto.url },
+
+              { property: 'og:url', content: 'http://www.nownews.com' + news.parseUrl },
+              { property: 'og:rich_attachment', content: 'true' }
+            ]}
+            link={[
+                {rel: 'canonical', href: `http://www.nownews.com${news.parseUrl}`}
+            ]}
+          />
+          <MicroDataNews news={item} />
+        </div>
         {!isLoading && data[0] && <IsAdult isAdult={data[0].isAdult} />}
         <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}

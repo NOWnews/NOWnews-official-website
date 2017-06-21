@@ -12,6 +12,7 @@ const MicroDataNews = ({ news }) => {
 	    "@id": `http://www.nownews.com${news.parseUrl}`
 	  },
 	  "articleBody": news.content,
+	  "headline": news.title,
 	  "image": {
 	    "@type": "ImageObject",
 	    "url": news.MainPhoto.url,
