@@ -173,7 +173,7 @@ class NewsContainer extends Component {
               { property: 'og:title', content: news.title },
               { property: 'og:description', content: news.summary },
               { property: 'og:image', content: news.MainPhoto.url },
-
+              { property: 'og:video', content: (news.type === 'VIDEO') ? news.MainVideo.url : '' },
               { property: 'og:url', content: 'http://www.nownews.com' + news.parseUrl },
               { property: 'og:rich_attachment', content: 'true' }
             ]}
