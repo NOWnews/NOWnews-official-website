@@ -107,9 +107,7 @@ class NewsContainer extends Component {
       },
       mapCity: LBS.mapCity
     };
-    const tags = tags.map(({ name }) => {
-      return name;
-    });
+
     const items = data.map((item, i) => {
       const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
       const itemAdType = getAdType(news.MainMenu, news.Menus);
@@ -142,18 +140,24 @@ class NewsContainer extends Component {
       );
     });
 
+    // 如果有新聞的話做處理：取得分類、關鍵字字串
+    const news = data[0];
     let childMenuId;
-
-    if (data.length > 0) {
-      data[0].Menus.forEach(({ ParentId, id }) => {
+    let tags = [];
+    if (news) {
+      news.Menus.forEach(({ ParentId, id }) => {
         if (!childMenuId && ParentId === mainMenuId) {
           childMenuId = id;
         }
       });
+
+      tags = news.Tags.map(({ name }) => {
+        return name;
+      });
     }
     return (
       <div>
-        <div>
+        {news && <div>
           <Helmet title='NOWnews 今日新聞' titleTemplate={news.title + '| NOWnews 今日新聞'}
             meta={[
               { name: 'description', content: news.summary },
@@ -175,11 +179,10 @@ class NewsContainer extends Component {
             ]}
             link={[
                 {rel: 'canonical', href: `http://www.nownews.com${news.parseUrl}`}
-            ]}
-          />
-          <MicroDataNews news={item} />
-        </div>
-        {!isLoading && data[0] && <IsAdult isAdult={data[0].isAdult} />}
+            ]} />
+          <MicroDataNews news={news} />
+        </div>}
+        {!isLoading && news && <IsAdult isAdult={news.isAdult} />}
         <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
           currentMainMenu={mainMenuId} />
