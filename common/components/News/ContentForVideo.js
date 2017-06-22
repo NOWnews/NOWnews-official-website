@@ -39,6 +39,7 @@ class ContentForVideo extends Component {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
+            <div className='fb-comments' data-href={`https://www.nownews.com${news.parseUrl}`} data-width='670' data-numposts='5' />
             <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
             {/* <HotVideoBlocks list={news.relations} /> */}
           </LeftSide>

@@ -59,6 +59,23 @@ class NewsContainer extends Component {
     this.props.loadInterest();
     this.props.loadLBSList();
     window.addEventListener('scroll', this.scrollListener);
+    window.fbAsyncInit = () => {
+      window.FB.init({
+        appId: '132863386747341',
+        xfbml: true,
+        version: 'v2.9'
+      });
+      window.FB.XFBML.parse();
+    };
+
+    (function (d, s, id) {
+      let js;
+      let fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = '//connect.facebook.net/zh_TW/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   }
 
   loadItems () {
@@ -149,6 +166,7 @@ class NewsContainer extends Component {
     }
     return (
       <div>
+        <div id='fb-root' />
         {!isLoading && data[0] && <IsAdult isAdult={data[0].isAdult} />}
         <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
