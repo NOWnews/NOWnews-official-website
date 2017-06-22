@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 95%',
     backgroundPositionY: '45px',
-    marginBottom: 10,
+    marginBottom: 60,
     marginTop: '-80px'
   },
   tripletBlockTop: {
