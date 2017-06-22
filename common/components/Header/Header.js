@@ -9,7 +9,7 @@ export const Header = ({ adType = 'home', menus, currentMainMenu, currentChildMe
       currentMainMenu={currentMainMenu}
       currentChildMenu={currentChildMenu} />
     <InstantBar {...marquee} />
-    {adType && <DFP opts={[`/5799246/Nownews_${adType}_970x250_T_new2`, [[970, 90], [970, 250]]]} />}
+    {adType && <DFP opts={[`/5799246/Nownews_${adType}_970x250_T_new2`, [[970, 90], [970, 250]], `div-gpt-ad-custom-${adType}-header`]} />}
   </Container>
 );
 
