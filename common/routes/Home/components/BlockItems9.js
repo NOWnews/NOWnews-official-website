@@ -39,8 +39,6 @@ const BlockItems9 = ({ ads, hasAd, newsList }) => {
     );
   });
 
-  console.log(items, '!!!!~~!!!');
-
   return (
     <div className='clearfix'>
       { items }

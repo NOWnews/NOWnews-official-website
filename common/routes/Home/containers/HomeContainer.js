@@ -101,12 +101,18 @@ class HomeContainer extends Component {
                 </div>
               </LeftSide>
               <RightSide>
+
                 <Margin10>
                   <DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />
                 </Margin10>
                 <Margin10>
                   <DFP opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />
                 </Margin10>
+                {ads.cthouse.img !== '' && <Margin10>
+                  <a href={ads.cthouse.url}>
+                    <img alt={ads.cthouse.title} src={ads.cthouse.img} width='300' height='250' />
+                  </a>
+                </Margin10>}
               </RightSide>
             </Container>
           </div>}
