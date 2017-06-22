@@ -127,6 +127,11 @@ class HomeContainer extends Component {
               </div>
             </Container>
           </div>}
+        <Container className='clearfix'>
+          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_1', [300, 250], 'div-gpt-ad-1498098181254-0']} />
+          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_2', [300, 250], 'div-gpt-ad-1498098246352-0']} />
+          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_3', [300, 250], 'div-gpt-ad-1498098293038-0']} />
+        </Container>
 
         {!isLoading && videos.length > 0 &&
           <div className={css(styles.videoBlock)}>
@@ -263,6 +268,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     lineHeight: '90px',
     color: '#0080ff'
+  },
+  niceGame: {
+    float: 'left',
+    margin: '0 11.5px'
   }
 });
 
