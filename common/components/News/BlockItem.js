@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   category: {
     color: '#1886FB',
     fontSize: 13,
+    height: 18.89,
     position: 'relative',
     top: 5
   },

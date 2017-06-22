@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
-import { BlockItems, BlockItems4, BlockItems8, SlideRight, VideoBlock } from '../components';
+import { BlockItems9, BlockItems4, BlockItems8, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
@@ -55,8 +55,8 @@ class HomeContainer extends Component {
   render () {
     const { marquee, interest, menus, homePage, LBS = {} } = this.props;
     const {
-      carousels, isLoading, specialChannels, specialTopics, tripletType,
-      videos
+      ads, carousels, isLoading, specialChannels, specialTopics,
+      tripletType, videos
     } = homePage;
     const seeMoreTextDefined = {
       instant: '即時',
@@ -118,7 +118,10 @@ class HomeContainer extends Component {
                 { TripletIcons }
                 { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>{LBS.mapCity}</span>}
               </div>
-              <BlockItems newsList={tripletObject[tripletType].slice(0, 9)} />
+              <BlockItems9
+                ads={ads.health}
+                hasAd={tripletType === 'instant'}
+                newsList={tripletObject[tripletType].slice(0, 9)} />
               { tripletType === 'lbs' && !isLoading && LBS.location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
