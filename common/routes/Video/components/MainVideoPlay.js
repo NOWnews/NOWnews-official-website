@@ -32,7 +32,7 @@ class MainVideoPlay extends Component {
             <h2 className={css(styles.title)}>{title}</h2>
             <img src='/icons/whiteClock.png' />
             <span className={css(styles.time)}>
-              {moment(startedAt).format('YYYY.MM.DD hh:ss')}
+              {moment(startedAt).format('YYYY.MM.DD hh:mm')}
             </span>
             <Link className={css(styles.linkContent)} to={parseUrl}>內文</Link>
             {/* 不確定分享要連到哪先隱藏
