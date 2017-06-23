@@ -8,6 +8,7 @@ import {
 import { SpecialTopicNav, TripletNav } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 import { DFP } from '../Ad';
+import FacebookProvider, { Comments } from 'react-facebook';
 
 class ContentForPhoto extends Component {
 
@@ -58,7 +59,9 @@ class ContentForPhoto extends Component {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            <div className='fb-comments' data-href={`https://www.nownews.com${news.parseUrl}`} data-width='670' data-numposts='5' />
+            <FacebookProvider appId='132863386747341' language='zh_TW'>
+              <Comments href={`https://www.nownews.com${news.parseUrl}`} />
+            </FacebookProvider>
             <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
             <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} adKey={randomKey} ad={ads.like} />
             <RecommendAds ads={ads.recommand} />
