@@ -65,7 +65,7 @@ class Idle extends Component {
         show={this.state.showIdle}
         onHide={this.close}>
         <div className={css(styles.dialog)}>
-          <span className={css(styles.closeBtn)} onClick={this.close}>✖</span>
+          <span className={css(styles.closeBtn)} onClick={this.close}>✖ 關閉</span>
           <h1>閒置頁面</h1>
         </div>
       </Modal>
@@ -92,20 +92,23 @@ const styles = StyleSheet.create({
     opacity: 0.5
   },
   closeBtn: {
-    color: '#A8A8A8',
+    backgroundColor: '#000000',
+    border: 0,
+    color: '#ffffff',
     cursor: 'pointer',
-    fontSize: 20,
-    padding: '2px 5px',
-    position: 'absolute',
-    right: 0,
+    fontSize: 16,
+    right: -70,
+    textDecoration: 'none',
     top: 0,
+    padding: '5px 10px',
+    position: 'absolute',
     ':hover': {
       opacity: 0.6
     }
   },
   dialog: {
     textAlign: 'center',
-    position: 'relative',
+    position: 'absolute',
     width: 400,
     top: `${top}%`,
     left: `${left}%`,
