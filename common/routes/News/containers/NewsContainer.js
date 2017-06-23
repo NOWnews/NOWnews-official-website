@@ -48,7 +48,6 @@ class NewsContainer extends Component {
     this.touchWindowTop = this.touchWindowTop.bind(this);
     this.scrollListener = this.scrollListener.bind(this);
   }
-
   componentDidMount () {
     // 第一次 SSR 完將 scroll 置頂
     if (this.props.currentNews.isSSRAndInit) {
@@ -59,25 +58,7 @@ class NewsContainer extends Component {
     this.props.loadInterest();
     this.props.loadLBSList();
     window.addEventListener('scroll', this.scrollListener);
-    window.fbAsyncInit = () => {
-      window.FB.init({
-        appId: '132863386747341',
-        xfbml: true,
-        version: 'v2.9'
-      });
-      window.FB.XFBML.parse();
-    };
-
-    (function (d, s, id) {
-      let js;
-      let fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) { return; }
-      js = d.createElement(s); js.id = id;
-      js.src = '//connect.facebook.net/zh_TW/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
   }
-
   loadItems () {
     const newsData = this.props.currentNews.data;
     if (!this.props.currentNews.isLoading) {
