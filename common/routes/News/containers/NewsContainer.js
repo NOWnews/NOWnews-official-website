@@ -48,7 +48,9 @@ class NewsContainer extends Component {
     this.touchWindowTop = this.touchWindowTop.bind(this);
     this.scrollListener = this.scrollListener.bind(this);
   }
-
+  componentDidUpdate () {
+    window.FB.XFBML.parse();
+  }
   componentDidMount () {
     // 第一次 SSR 完將 scroll 置頂
     if (this.props.currentNews.isSSRAndInit) {
