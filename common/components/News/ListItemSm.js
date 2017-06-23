@@ -17,7 +17,7 @@ export const ListItemSm = ({ category, photo, time, title, type, url }) => {
     <Link className={`clearfix ${css(styles.box)}`} to={url}>
       <div className={`left ${css(styles.left)}`}>
         <img className={css(styles.img)} style={imgStyle}
-          src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+          src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} alt={mainPhoto.desc} />
         <TypeIcon type={type} size='LI_S' />
       </div>
       <div className={`right ${css(styles.right)}`}>
