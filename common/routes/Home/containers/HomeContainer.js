@@ -103,6 +103,7 @@ class HomeContainer extends Component {
                 </div>
               </LeftSide>
               <RightSide>
+                <CrazyAd />
                 {ads.crazyAd && ads.crazyAd.type && <CrazyAd ad={ads.crazyAd} />}
                 <GrabBag />
                 <Margin10>

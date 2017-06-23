@@ -61,6 +61,7 @@ class NewsContainer extends Component {
     this.props.loadLBSList();
     window.addEventListener('scroll', this.scrollListener);
   }
+
   loadItems () {
     const newsData = this.props.currentNews.data;
     if (!this.props.currentNews.isLoading) {

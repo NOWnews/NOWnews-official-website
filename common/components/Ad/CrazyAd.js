@@ -1,33 +1,40 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Modal from 'react-overlays/lib/Modal';
-import isomorphicCookie from 'isomorphic-cookie';
-import moment from 'moment';
+// import isomorphicCookie from 'isomorphic-cookie';
+// import moment from 'moment';
 
 class CrazyAd extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: true
     };
   }
 
-  componentDidMount () {
-    if (!isomorphicCookie.load('NOW_CrazyFlag')) {
-      this.setState({ isOpen: true });
-      isomorphicCookie.save('NOW_CrazyFlag', 'NOW_CrazyFlag', {
-        secure: false,
-        expires: new Date(moment().add(1, 'day'))
-      });
-    }
-  }
+  // componentDidMount () {
+  //   if (!isomorphicCookie.load('NOW_CrazyFlag')) {
+  //     this.setState({ isOpen: true });
+  //     isomorphicCookie.save('NOW_CrazyFlag', 'NOW_CrazyFlag', {
+  //       secure: false,
+  //       expires: new Date(moment().add(1, 'day'))
+  //     });
+  //   }
+  // }
 
   close = () => {
     this.setState({ isOpen: false });
   }
 
   render () {
-    const { img, title, type, video } = this.props.ad;
+    const ad = {
+      title: '華航空姐',
+      type: 'VIDEO',
+      video: 'https://www.youtube.com/embed/yFJ3So9kvEE?autoplay=1'
+      // type: 'PHOTO',
+      // img: '/ad/780x480.jpg'
+    };
+    const { img, title, type, video } = ad || this.props.ad;
     return (
       <Modal
         aria-labelledby='modal-crazy'
@@ -38,8 +45,8 @@ class CrazyAd extends Component {
         onHide={this.close}>
         <div className={css(styles.dialog)}>
           <span className={css(styles.btn)} onClick={this.close}>✖ 關閉</span>
-          {type === 'VIDEO' && <iframe width='1024' height='576' src={`${video}&autoplay=1`} frameVorder='0' allowFullScreen />}
-          {type === 'PHOTO' && <img width='780' height='480' alt={title} src={img} />}
+          {type === 'VIDEO' && <iframe width='970' height='480' src={`${video}&autoplay=1`} frameVorder='0' allowFullScreen />}
+          {type === 'PHOTO' && <img width='970' height='480' alt={title} src={img} />}
         </div>
       </Modal>
     );
@@ -59,9 +66,7 @@ const modalStyle = {
 const styles = StyleSheet.create({
   backdropStyle: {
     ...modalStyle,
-    zIndex: 'auto',
-    backgroundColor: '#000',
-    opacity: 0.5
+    zIndex: 'auto'
   },
   btn: {
     backgroundColor: '#000000',
