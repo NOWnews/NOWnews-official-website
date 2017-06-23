@@ -18,7 +18,7 @@ const Social = ({ img, title, url }) => {
 
   return (
     <div className={css(styles.box)}>
-      <iframe src={`https://www.facebook.com/plugins/like.php?href=${completeUrl}&width=50&layout=button_count&action=like&size=small&show_faces=false&share=false&height=21&appId=867128150065008`}
+      <iframe src={`https://www.facebook.com/plugins/like.php?href=${completeUrl}&width=50&layout=button_count&action=like&size=small&show_faces=false&share=false&height=21&appId=132863386747341`}
         width='80' height='21' style={{border: 'none', overflow: 'hidden'}} scrolling='no' frameBorder='0' allowTransparency='true' />
       { socialList.map(({ icon, url }) =>
         <a className={css(styles.btnSocial, styles[icon])} key={icon} target='_blank' onClick={() => { onPopup(url); }}>
