@@ -9,7 +9,7 @@ import { BlockItems9, BlockItems6, BlockItems8, SlideRight, VideoBlock } from '.
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
-import { DFP, GrabBag } from '../../../components/Ad';
+import { CrazyAd, DFP, GrabBag } from '../../../components/Ad';
 
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
@@ -103,6 +103,7 @@ class HomeContainer extends Component {
                 </div>
               </LeftSide>
               <RightSide>
+                {ads.crazyAd && ads.crazyAd.type && <CrazyAd ad={ads.crazyAd} />}
                 <GrabBag />
                 <Margin10>
                   <DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />
