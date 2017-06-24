@@ -5,6 +5,7 @@ export const LOAD_INDEX_FAILURE = 'LOAD_INDEX_FAILURE';
 export const SWITCH_TRIPLET_TYPE = 'SWITCH_TRIPLET_TYPE';
 
 const initialState = {
+  ads: [],
   carousels: [],
   error: null,
   isLoading: false,
@@ -19,16 +20,22 @@ export function loadHomeList () {
   return (dispatch, getState, { axios }) => {
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_INDEX_REQUEST });
-    return axios.get(`${apiServ}/indexpage`)
-    .then(({ data }) => {
-      if (data) {
+    return Promise.all([
+      axios.get(`${apiServ}/indexpage`),
+      axios.get(`${apiServ}/promote/home`)
+    ]).then(([home, ads]) => {
+      if (home.data) {
         dispatch({
           type: LOAD_INDEX_SUCCESS,
-          payload: data,
+          payload: {
+            ads: ads.data,
+            home: home.data
+          },
           meta: {
             lastFetched: Date.now()
           }
         });
+        return;
       }
       dispatch({ type: LOAD_INDEX_SUCCESS_AND_EMPTY });
     }).catch(error => {
@@ -55,9 +62,11 @@ export default function homePage (state = initialState, action) {
         error: null
       };
     case LOAD_INDEX_SUCCESS:
-      const { carousels, specialChannels, specialTopics, videos } = action.payload;
+      const { ads, home } = action.payload;
+      const { carousels, specialChannels, specialTopics, videos } = home;
       return {
         ...state,
+        ads,
         carousels,
         videos,
         specialChannels,

@@ -31,7 +31,7 @@ InfoContainer.propTypes = {
   local: PropTypes.object.isRequired,
   children: PropTypes.shape().isRequired,
   menus: PropTypes.array.isRequired,
-  marquee: PropTypes.array.isRequired
+  marquee: PropTypes.object.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps)(InfoContainer));

@@ -26,7 +26,7 @@ const BlockItems = ({ newsList }) => {
 const styles = StyleSheet.create({
   blockItem: {
     float: 'left',
-    margin: '25px 11.5px',
+    margin: '0 11.5px 25px',
     width: 300,
     position: 'relative'
   }
