@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import StaticContainer from 'react-static-container';
 import { GTM } from './Tracking';
 // import Idle from './Idle';
-import Perf from 'react-addons-perf';
+// import Perf from 'react-addons-perf';
 
 const styles = StyleSheet.create({
   root: {
@@ -12,10 +12,6 @@ const styles = StyleSheet.create({
   }
 });
 class Basic extends Component {
-
-  componentDidMount () {
-    window.Perf = Perf;
-  }
 
   render () {
     return (

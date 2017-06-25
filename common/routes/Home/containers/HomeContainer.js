@@ -65,11 +65,16 @@ class HomeContainer extends Component {
       interest: '感興趣',
       lbs: '地區'
     };
+    const titles = {
+      instant: '即時新聞',
+      interest: '您感興趣的新聞',
+      lbs: '地區新聞'
+    };
     const TripletIcons = ['instant', 'interest', 'lbs'].map((value) => {
       const imgName = (tripletType === value) ? `${value}_active` : value;
 
       return (
-        <img key={value} onClick={() => { this.switchTripletType(value); }}
+        <img key={value} onClick={() => { this.switchTripletType(value); }} title={titles[value]}
           className={css(styles.tripletBlockTopIcon)} src={`/icons/${imgName}.png`} />
       );
     });

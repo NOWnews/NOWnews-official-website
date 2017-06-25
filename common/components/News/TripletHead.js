@@ -4,11 +4,16 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../Layout';
 
 const TripletHead = ({ active, city }) => {
+  const titles = {
+    instant: '即時新聞',
+    interest: '您感興趣的新聞',
+    lbs: '地區新聞'
+  };
   let linkIcons = ['instant', 'interest', 'lbs'].map((value) => {
     let imgName = (value === active) ? `${value}_active` : value;
     return (
       <Link to={value} key={value}>
-        <img className={css(styles.icon)} src={`/icons/${imgName}.png`} />
+        <img className={css(styles.icon)} src={`/icons/${imgName}.png`} title={titles[value]} />
       </Link>
     );
   });

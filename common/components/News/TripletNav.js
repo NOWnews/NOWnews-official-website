@@ -18,13 +18,17 @@ class TripletNav extends Component {
     const { list, mapCity } = this.props;
     const { tripletType } = this.state;
     const slicedList = list[tripletType].slice(0, 5);
-
+    const titles = {
+      instant: '即時新聞',
+      interest: '您感興趣的新聞',
+      lbs: '地區新聞'
+    };
     const TripletIcons = ['instant', 'interest', 'lbs'].map((value) => {
       const imgName = (tripletType === value) ? `${value}_active` : value;
 
       return (
         <img key={value} onClick={() => { this.switchTripletType(value); }}
-          className={css(styles.icon)} src={`/icons/${imgName}.png`} />
+          className={css(styles.icon)} src={`/icons/${imgName}.png`} title={titles[value]} />
       );
     });
 
