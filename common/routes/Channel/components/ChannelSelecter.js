@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
     padding: '10px 20px',
     position: 'absolute',
     textAlign: 'center',
-    width: 970
+    width: 970,
+    zIndex: 100
   },
   channelItem: {
     color: '#000000',
