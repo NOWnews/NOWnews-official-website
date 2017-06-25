@@ -8,7 +8,9 @@ import StaticContainer from 'react-static-container';
 export const LogoRow = ({ user }) => (
   <Container>
     <div className={css(styles.header)}>
-      <Logo />
+      <StaticContainer>
+        <Logo />
+      </StaticContainer>
       <StaticContainer>
         <DFP className={css(styles.adBox)} opts={['/5799246/Nownews_all_200x70_LT_new2', [200, 70], 'div-gpt-ad-1496983081227-0']} />
       </StaticContainer>

@@ -39,7 +39,7 @@ class FixedHeader extends PureComponent {
             <Link className={css(styles.iconLink)} to='/search'>
               <FontAwesome name='search' size='2x' />
             </Link>
-            <Link className={css(styles.iconLink)} to='/user'>
+            <Link className={css(styles.iconLink)} to='/auth/oauth'>
               <FontAwesome name='user-circle-o' size='2x' />
             </Link>
           </div>
