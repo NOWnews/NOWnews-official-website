@@ -149,9 +149,11 @@ class NewsContainer extends Component {
         }
       });
 
-      tags = news.Tags.map(({ name }) => {
-        return name;
-      });
+      if (news.Tags) {
+        tags = news.Tags.map(({ name }) => {
+          return name;
+        });
+      }
     }
     return (
       <div>
