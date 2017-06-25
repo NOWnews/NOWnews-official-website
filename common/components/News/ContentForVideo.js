@@ -6,6 +6,7 @@ import {
 import { TripletNav, VideoPlayer } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 import { DFP } from '../Ad';
+import FacebookProvider, { Comments } from 'react-facebook';
 
 class ContentForVideo extends Component {
 
@@ -39,6 +40,9 @@ class ContentForVideo extends Component {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
+            <FacebookProvider appId='132863386747341' language='zh_TW'>
+              <Comments href={`https://www.nownews.com${news.parseUrl}`} />
+            </FacebookProvider>
             <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
             {/* <HotVideoBlocks list={news.relations} /> */}
           </LeftSide>

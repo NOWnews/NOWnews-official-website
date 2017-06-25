@@ -17,7 +17,7 @@ const Head = ({ newsBy = '', mainMenu, time, title, authorId, imgSrc }) => (
           <span className={css(styles.author)}>{ newsBy }</span>
         </Link>
         <img className={css(styles.timeIcon)}src='/icons/grayClock.png' />
-        <span>{moment(time).format('YYYY/MM/DD HH:MM')}</span>
+        <span>{moment(time).format('YYYY/MM/DD HH:mm')}</span>
       </div>
     </div>
   </div>

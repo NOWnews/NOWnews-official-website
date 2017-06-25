@@ -19,7 +19,6 @@ export const Footer = ({ ads }) => {
     { icon: 'FB', url: 'https://facebook.com/nownews' },
     { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
     { icon: 'weibo', url: 'http://tw.weibo.com/nownews' },
-    { icon: 'G+', url: 'https://plus.google.com/+nownews' },
     { icon: 'twitter', url: 'https://twitter.com/NOWnews_TW' }
   ];
 

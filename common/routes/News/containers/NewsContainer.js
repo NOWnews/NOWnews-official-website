@@ -50,7 +50,6 @@ class NewsContainer extends Component {
     this.touchWindowTop = this.touchWindowTop.bind(this);
     this.scrollListener = this.scrollListener.bind(this);
   }
-
   componentDidMount () {
     // 第一次 SSR 完將 scroll 置頂
     if (this.props.currentNews.isSSRAndInit) {
@@ -62,7 +61,6 @@ class NewsContainer extends Component {
     this.props.loadLBSList();
     window.addEventListener('scroll', this.scrollListener);
   }
-
   loadItems () {
     const newsData = this.props.currentNews.data;
     if (!this.props.currentNews.isLoading) {

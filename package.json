@@ -49,6 +49,7 @@
     "opn": "4.0.2",
     "react": "15.4.2",
     "react-dom": "15.4.2",
+    "react-facebook": "4.0.13",
     "react-fontawesome": "1.6.1",
     "react-google-tag-manager": "2.1.0",
     "react-helmet": "3.3.2",
