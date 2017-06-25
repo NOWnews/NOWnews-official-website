@@ -1,17 +1,19 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Helmet from 'react-helmet';
 import StaticContainer from 'react-static-container';
 import { GTM } from './Tracking';
 // import Idle from './Idle';
+
+// 有要測試 Perf 的時候才打開，chrome 記得安裝相關套件
 // import Perf from 'react-addons-perf';
 
-const styles = StyleSheet.create({
-  root: {
-    color: '#000'
-  }
-});
-class Basic extends Component {
+class Basic extends PureComponent {
+  // 有要測試 Perf 的時候才打開，chrome 記得安裝相關套件
+  // componentDidMount () {
+  //   window.Perf = Perf;
+  // }
+
   render () {
     return (
       <div className={css(styles.root)}>
@@ -38,6 +40,12 @@ class Basic extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  root: {
+    color: '#000'
+  }
+});
 
 Basic.propTypes = {
   children: PropTypes.any.isRequired
