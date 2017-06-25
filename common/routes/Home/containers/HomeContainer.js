@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Link from 'react-router/lib/Link';
 import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
+import StaticContainer from 'react-static-container';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
 import { BlockItems9, BlockItems6, BlockItems8, SlideRight, VideoBlock } from '../components';
@@ -81,43 +82,45 @@ class HomeContainer extends Component {
 
     return (
       <div>
-        <MicroDataSearch />
         <Header adType='home' menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
-
-        {!isLoading && carousels.length > 0 &&
-          <Container>
-            <div className={`clearfix ${css(styles.slideArea)}`}>
-              <Slide list={carousels.slice(0, 5)} />
-              <SlideRight newsList={carousels.slice(5, 10)} />
-            </div>
-          </Container>}
-
-        {!isLoading && specialTopics.length > 0 &&
-          <div className={css(styles.bg)}>
-            <Container className='clearfix'>
-              <LeftSide>
-                <BlockItems6 newsList={specialTopics.slice(0, 6)} />
-                <div className={css(styles.seeMoreBlock)}>
-                  <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
+        <StaticContainer>
+          <div>
+            <MicroDataSearch />
+            {!isLoading && carousels.length > 0 &&
+              <Container>
+                <div className={`clearfix ${css(styles.slideArea)}`}>
+                  <Slide list={carousels.slice(0, 5)} />
+                  <SlideRight newsList={carousels.slice(5, 10)} />
                 </div>
-              </LeftSide>
-              <RightSide>
-                <GrabBag />
-                <Margin10>
-                  <DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />
-                </Margin10>
-                <Margin10>
-                  <DFP opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />
-                </Margin10>
-                {ads.cthouse && ads.cthouse.img !== '' && <Margin10>
-                  <a href={ads.cthouse.url}>
-                    <img alt={ads.cthouse.title} src={ads.cthouse.img} width='300' height='250' />
-                  </a>
-                </Margin10>}
-              </RightSide>
-            </Container>
-          </div>}
+              </Container>}
+            {!isLoading && specialTopics.length > 0 &&
+              <div className={css(styles.bg)}>
+                <Container className='clearfix'>
+                  <LeftSide>
+                    <BlockItems6 newsList={specialTopics.slice(0, 6)} />
+                    <div className={css(styles.seeMoreBlock)}>
+                      <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
+                    </div>
+                  </LeftSide>
+                  <RightSide>
+                    <GrabBag />
+                    <Margin10>
+                      <DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />
+                    </Margin10>
+                    <Margin10>
+                      <DFP opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />
+                    </Margin10>
+                    {ads.cthouse && ads.cthouse.img !== '' && <Margin10>
+                      <a href={ads.cthouse.url}>
+                        <img alt={ads.cthouse.title} src={ads.cthouse.img} width='300' height='250' />
+                      </a>
+                    </Margin10>}
+                  </RightSide>
+                </Container>
+              </div>}
+          </div>
+        </StaticContainer>
 
         {!isLoading && carousels.length > 0 &&
           <div className={css(styles.tripletBlock)}>
@@ -138,58 +141,62 @@ class HomeContainer extends Component {
               </div>
             </Container>
           </div>}
-        <Container className='clearfix'>
-          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_1', [300, 250], 'div-gpt-ad-1498098181254-0']} />
-          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_2', [300, 250], 'div-gpt-ad-1498098246352-0']} />
-          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_3', [300, 250], 'div-gpt-ad-1498098293038-0']} />
-        </Container>
-
-        {!isLoading && videos.length > 0 &&
-          <div className={css(styles.videoBlock)}>
-            <Container className={css(styles.videoContaienr)}>
-              <VideoBlock list={videos} />
-              <div className={css(styles.seeMoreBlock)}>
-                <Link className={css(styles.seeMoreLink, styles.white)} to={'/video/instant'}>
-                  看更多影音
-                </Link>
-              </div>
-            </Container>
-          </div>}
-
-        {!isLoading && specialChannels.length > 0 &&
-          <div className={css(styles.specialChannelsBox)}>
+        <StaticContainer>
+          <div>
             <Container className='clearfix'>
-              <LeftSide>
-                <div>
-                  <div className={css(styles.specialChannelsTitle)}>
-                    <h1 className={css(styles.specialChannelsTitleText)}>精選特輯</h1>
-                    <hr className={css(styles.specialChannelsTitleLine)} />
-                  </div>
-                  <BlockItems8 channels={specialChannels.slice(0, 8)} />
-                  <div className={css(styles.seeMoreBlock)}>
-                    <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多特輯</Link>
-                  </div>
-                </div>
-              </LeftSide>
-              <RightSide>
-                <Margin10>
-                  <DFP opts={['/5799246/Nownews_home_300x600_RB_new2', [300, 600], 'div-gpt-ad-1496983253991-0']} />
-                </Margin10>
-                <Margin10>
-                  <DFP opts={['/5799246/Nownews_home_300x250_RB_new2', [300, 250], 'div-gpt-ad-1496983283211-0']} />
-                </Margin10>
-                <Margin10>
-                  <AppleStyle />
-                </Margin10>
-                <Margin10>
-                  <AndroidStyle />
-                </Margin10>
-              </RightSide>
+              <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_1', [300, 250], 'div-gpt-ad-1498098181254-0']} />
+              <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_2', [300, 250], 'div-gpt-ad-1498098246352-0']} />
+              <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_3', [300, 250], 'div-gpt-ad-1498098293038-0']} />
             </Container>
-          </div>}
-        <Container>
-          <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
-        </Container>
+
+            {!isLoading && videos.length > 0 &&
+              <div className={css(styles.videoBlock)}>
+                <Container className={css(styles.videoContaienr)}>
+                  <VideoBlock list={videos} />
+                  <div className={css(styles.seeMoreBlock)}>
+                    <Link className={css(styles.seeMoreLink, styles.white)} to={'/video/instant'}>
+                      看更多影音
+                    </Link>
+                  </div>
+                </Container>
+              </div>}
+
+            {!isLoading && specialChannels.length > 0 &&
+              <div className={css(styles.specialChannelsBox)}>
+                <Container className='clearfix'>
+                  <LeftSide>
+                    <div>
+                      <div className={css(styles.specialChannelsTitle)}>
+                        <h1 className={css(styles.specialChannelsTitleText)}>精選特輯</h1>
+                        <hr className={css(styles.specialChannelsTitleLine)} />
+                      </div>
+                      <BlockItems8 channels={specialChannels.slice(0, 8)} />
+                      <div className={css(styles.seeMoreBlock)}>
+                        <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多特輯</Link>
+                      </div>
+                    </div>
+                  </LeftSide>
+                  <RightSide>
+                    <Margin10>
+                      <DFP opts={['/5799246/Nownews_home_300x600_RB_new2', [300, 600], 'div-gpt-ad-1496983253991-0']} />
+                    </Margin10>
+                    <Margin10>
+                      <DFP opts={['/5799246/Nownews_home_300x250_RB_new2', [300, 250], 'div-gpt-ad-1496983283211-0']} />
+                    </Margin10>
+                    <Margin10>
+                      <AppleStyle />
+                    </Margin10>
+                    <Margin10>
+                      <AndroidStyle />
+                    </Margin10>
+                  </RightSide>
+                </Container>
+              </div>}
+            <Container>
+              <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
+            </Container>
+          </div>
+        </StaticContainer>
       </div>
     );
   };

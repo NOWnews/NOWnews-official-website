@@ -90,7 +90,6 @@ class InstantBar extends Component {
             to={third.url} target='_blank'>
             <span>{third.title}</span>
           </Link>}
-
         </CSSTransitionGroup>
       </div>
     );

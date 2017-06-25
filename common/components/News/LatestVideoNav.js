@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
+import StaticContainer from 'react-static-container';
 
 const LatestVideoNav = ({ list }) => {
   let items = list.map(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl }, key) => {
@@ -18,10 +19,12 @@ const LatestVideoNav = ({ list }) => {
   });
 
   return (
-    <Margin10>
-      <div className={css(styles.head)}>最新影音</div>
-      <div>{ items }</div>
-    </Margin10>
+    <StaticContainer>
+      <Margin10>
+        <div className={css(styles.head)}>最新影音</div>
+        <div>{ items }</div>
+      </Margin10>
+    </StaticContainer>
   );
 };
 

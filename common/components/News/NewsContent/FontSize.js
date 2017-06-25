@@ -1,25 +1,38 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
+import StaticContainer from 'react-static-container';
 
 class FontSize extends Component {
   constructor (props) {
     super(props);
-    this.changeFontSize = this.changeFontSize.bind(this);
+    this.changeToBig = this.changeToBig.bind(this);
+    this.changeToMiddle = this.changeToMiddle.bind(this);
+    this.changeToSmall = this.changeToSmall.bind(this);
   }
 
-  changeFontSize (fontSize) {
-    this.props.changeFontSize(fontSize);
+  changeToBig () {
+    this.props.changeFontSize(24);
+  }
+
+  changeToMiddle () {
+    this.props.changeFontSize(20);
+  }
+
+  changeToSmall () {
+    this.props.changeFontSize(16);
   }
 
   render () {
     return (
-      <Margin10>
-        <hr className={css(styles.dottedLine)} />
-        <button className={css(styles.btn)} onClick={() => this.changeFontSize(24)}>大</button>
-        <button className={css(styles.btn)} onClick={() => this.changeFontSize(20)}>中</button>
-        <button className={css(styles.btn)} onClick={() => this.changeFontSize(16)}>小</button>
-      </Margin10>
+      <StaticContainer>
+        <Margin10>
+          <hr className={css(styles.dottedLine)} />
+          <button className={css(styles.btn)} onClick={this.changeToBig}>大</button>
+          <button className={css(styles.btn)} onClick={this.changeToMiddle}>中</button>
+          <button className={css(styles.btn)} onClick={this.changeToSmall}>小</button>
+        </Margin10>
+      </StaticContainer>
     );
   }
 }

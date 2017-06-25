@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react';
 import IndexLink from 'react-router/lib/IndexLink';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import StaticContainer from 'react-static-container';
 
 const Logo = ({ customClass = css(styles.defaultBox) }) => (
-  <div className={customClass}>
-    <IndexLink to='/'>
-      <img className={css(styles.img)} alt='NOWnews Logo' src='/logo.png' />
-    </IndexLink>
-  </div>
+  <StaticContainer>
+    <div className={customClass}>
+      <IndexLink to='/'>
+        <img className={css(styles.img)} alt='NOWnews Logo' src='/logo.png' />
+      </IndexLink>
+    </div>
+  </StaticContainer>
 );
 
 const styles = StyleSheet.create({

@@ -59,6 +59,7 @@
     "react-responsive-carousel": "git+https://github.com/esbb48/react-responsive-carousel.git#customTitleWithCarousel",
     "react-router": "2.8.1",
     "react-simple-dfp": "git+https://github.com/esbb48/react-simple-dfp.git#9b83782",
+    "react-static-container": "1.0.1",
     "react-transition-group": "1.2.0",
     "redial": "0.4.2",
     "redux": "3.7.0",

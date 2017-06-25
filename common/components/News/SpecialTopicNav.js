@@ -1,17 +1,20 @@
 import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
+import StaticContainer from 'react-static-container';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../components/Layout';
 
 const SpecialTopicNav = ({ list }) => (
-  <Margin10>
-    <div className={css(styles.head)}>專題</div>
-    {list.map(({ sn, title, url }, key) => (
-      <Link className={css(styles.link)} key={sn} to={url} target='_blank'>
-        <div className={css(styles.item)}>{ title }</div>
-      </Link>
-    ))}
-  </Margin10>
+  <StaticContainer>
+    <Margin10>
+      <div className={css(styles.head)}>專題</div>
+      {list.map(({ sn, title, url }, key) => (
+        <Link className={css(styles.link)} key={sn} to={url} target='_blank'>
+          <div className={css(styles.item)}>{ title }</div>
+        </Link>
+      ))}
+    </Margin10>
+  </StaticContainer>
 );
 
 const styles = StyleSheet.create({
