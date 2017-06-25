@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Link from 'react-router/lib/Link';
 import { bindActionCreators } from 'redux';
@@ -39,7 +39,7 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   switchTripletType
 });
 
-class HomeContainer extends Component {
+class HomeContainer extends PureComponent {
   constructor (props) {
     super(props);
     this.switchTripletType = this.switchTripletType.bind(this);

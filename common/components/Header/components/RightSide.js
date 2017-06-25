@@ -1,31 +1,34 @@
-import React, { PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const RightSide = ({ user }) => {
-  const socialList = [
-    { icon: 'weibo', url: 'http://tw.weibo.com/nownews' },
-    { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
-    { icon: 'FB', url: 'https://facebook.com/nownews' }
-  ];
-  const memberLink = user ? '/auth/me' : '/auth/oauth';
-  return (
-    <div className={`clearfix ${css(styles.box)}`}>
-      <Link className={css(styles.link)} to='/search?timeRange=lastWeek'>
-        <FontAwesome name='search' size='2x' />
-      </Link>
-      <Link className={css(styles.link)} to={memberLink}>
-        <FontAwesome name='user-circle-o' size='2x' />
-        <div className={css(styles.account)}>{user ? '會員資料' : '加入會員'}</div>
-      </Link>
-      {socialList.map(({ icon, url }) =>
-        <Link className={`right ${css(styles.btnSocial)}`} key={icon} target='_blank' to={url}>
-          <img src={`/social/${icon}.png`} alt={icon} />
+class RightSide extends PureComponent {
+  render () {
+    const { user } = this.props;
+    const socialList = [
+      { icon: 'weibo', url: 'http://tw.weibo.com/nownews' },
+      { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
+      { icon: 'FB', url: 'https://facebook.com/nownews' }
+    ];
+    const memberLink = user ? '/auth/me' : '/auth/oauth';
+    return (
+      <div className={`clearfix ${css(styles.box)}`}>
+        <Link className={css(styles.link)} to='/search?timeRange=lastWeek'>
+          <FontAwesome name='search' size='2x' />
         </Link>
-      )}
-    </div>
-  );
+        <Link className={css(styles.link)} to={memberLink}>
+          <FontAwesome name='user-circle-o' size='2x' />
+          <div className={css(styles.account)}>{user ? '會員資料' : '加入會員'}</div>
+        </Link>
+        {socialList.map(({ icon, url }) =>
+          <Link className={`right ${css(styles.btnSocial)}`} key={icon} target='_blank' to={url}>
+            <img src={`/social/${icon}.png`} alt={icon} />
+          </Link>
+        )}
+      </div>
+    );
+  }
 };
 
 const styles = StyleSheet.create({

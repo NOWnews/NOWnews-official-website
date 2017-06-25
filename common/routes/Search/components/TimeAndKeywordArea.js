@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-class TimeAndKeywordArea extends Component {
+class TimeAndKeywordArea extends PureComponent {
 
   constructor (props) {
     super(props);

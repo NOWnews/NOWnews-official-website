@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Container } from '../../../components/Layout';
-class MainVideoPlay extends Component {
+class MainVideoPlay extends PureComponent {
   render () {
     return (
       <div className={css(styles.box)}>

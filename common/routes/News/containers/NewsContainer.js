@@ -1,5 +1,5 @@
 import { provideHooks } from 'redial';
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -43,7 +43,7 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   showFixedHeader
 });
 
-class NewsContainer extends Component {
+class NewsContainer extends PureComponent {
   constructor (props) {
     super(props);
     this.loadItems = this.loadItems.bind(this);
