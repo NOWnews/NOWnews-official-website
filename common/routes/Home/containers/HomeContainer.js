@@ -15,6 +15,7 @@ import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header'
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectInterest, loadInterest } from '../../../modules/interest';
 import { selectHomePage, loadHomeList, switchTripletType } from '../module';
+import { MicroDataSearch } from '../../../components/JSONLD';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -80,6 +81,7 @@ class HomeContainer extends Component {
 
     return (
       <div>
+        <MicroDataSearch />
         <Header adType='home' menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
 

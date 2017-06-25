@@ -1,5 +1,6 @@
 import { provideHooks } from 'redial';
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -15,6 +16,7 @@ import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header'
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectInterest, loadInterest } from '../../../modules/interest';
 import { IsAdult } from '../../../components/Alert';
+import { MicroDataNews } from '../../../components/JSONLD';
 
 const redial = {
   fetch: ({ dispatch, params: { sn }, fontSize }) => Promise.all([
@@ -136,19 +138,50 @@ class NewsContainer extends Component {
       );
     });
 
+    // 如果有新聞的話做處理：取得分類、關鍵字字串
+    const news = data[0];
     let childMenuId;
-
-    if (data.length > 0) {
-      data[0].Menus.forEach(({ ParentId, id }) => {
+    let tags = [];
+    if (news) {
+      news.Menus.forEach(({ ParentId, id }) => {
         if (!childMenuId && ParentId === mainMenuId) {
           childMenuId = id;
         }
       });
+
+      tags = news.Tags.map(({ name }) => {
+        return name;
+      });
     }
     return (
       <div>
-        <div id='fb-root' />
-        {!isLoading && data[0] && <IsAdult isAdult={data[0].isAdult} />}
+        {news && <div>
+          <Helmet title='NOWnews 今日新聞' titleTemplate={news.title + '| NOWnews 今日新聞'}
+            meta={[
+              { name: 'description', content: news.summary },
+              { name: 'keywords', content: tags.join(',') },
+              { name: 'twitter:title', content: news.title },
+              { name: 'twitter:image', content: news.MainPhoto.url },
+              { name: 'twitter:description', content: news.summary },
+              { name: 'twitter:card', content: news.MainPhoto.url },
+              { name: 'contact', content: 'service@nownews.com' },
+              { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
+              { property: 'article:author', content: 'https://www.facebook.com/nownews' },
+              { property: 'og:type', content: 'article' },
+              { property: 'og:locale', content: 'zh_TW' },
+              { property: 'og:title', content: news.title },
+              { property: 'og:description', content: news.summary },
+              { property: 'og:image', content: news.MainPhoto.url },
+              { property: 'og:video', content: (news.type === 'VIDEO') ? news.MainVideo.url : '' },
+              { property: 'og:url', content: 'http://www.nownews.com' + news.parseUrl },
+              { property: 'og:rich_attachment', content: 'true' }
+            ]}
+            link={[
+                {rel: 'canonical', href: `http://www.nownews.com${news.parseUrl}`}
+            ]} />
+          <MicroDataNews news={news} />
+        </div>}
+        {!isLoading && news && <IsAdult isAdult={news.isAdult} />}
         <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
           currentMainMenu={mainMenuId} />
