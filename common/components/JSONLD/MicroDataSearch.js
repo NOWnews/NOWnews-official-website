@@ -36,7 +36,8 @@ const MicroDataSearch = () => {
             "https://www.youtube.com/user/NOWnewscom",
             "https://www.facebook.com/nownews",
             "https://www.instagram.com/nownews/",
-            "http://weibo.com/nownews"
+            "http://weibo.com/nownews",
+            "https://twitter.com/NOWnews_TW"
         ]
     },
     {
