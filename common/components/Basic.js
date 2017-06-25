@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   }
 });
 class Basic extends Component {
-
   render () {
     return (
       <div className={css(styles.root)}>

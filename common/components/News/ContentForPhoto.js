@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 import {
@@ -10,7 +10,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 import { DFP } from '../Ad';
 import FacebookProvider, { Comments } from 'react-facebook';
 
-class ContentForPhoto extends Component {
+class ContentForPhoto extends PureComponent {
 
   constructor (props) {
     super(props);

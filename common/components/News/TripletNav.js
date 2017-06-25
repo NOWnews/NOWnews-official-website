@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import ListItemSm from './ListItemSm';
 import { Margin10 } from '../Layout';
 
-class TripletNav extends Component {
+class TripletNav extends PureComponent {
   constructor (props) {
     super(props);
     this.state = { tripletType: 'instant' };
