@@ -3,13 +3,20 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { DFP } from '../Ad';
 import { Logo, RightSide } from './components';
 import { Container } from '../Layout';
+import StaticContainer from 'react-static-container';
 
 export const LogoRow = ({ user }) => (
   <Container>
     <div className={css(styles.header)}>
-      <Logo />
-      <DFP className={css(styles.adBox)} opts={['/5799246/Nownews_all_200x70_LT_new2', [200, 70], 'div-gpt-ad-1496983081227-0']} />
-      <DFP className={css(styles.adBox)} opts={['/5799246/Nownews_all_200x70_RT_new2', [200, 70], 'div-gpt-ad-1496983120685-0']} />
+      <StaticContainer>
+        <Logo />
+      </StaticContainer>
+      <StaticContainer>
+        <DFP className={css(styles.adBox)} opts={['/5799246/Nownews_all_200x70_LT_new2', [200, 70], 'div-gpt-ad-1496983081227-0']} />
+      </StaticContainer>
+      <StaticContainer>
+        <DFP className={css(styles.adBox)} opts={['/5799246/Nownews_all_200x70_RT_new2', [200, 70], 'div-gpt-ad-1496983120685-0']} />
+      </StaticContainer>
       <RightSide user={user} />
     </div>
   </Container>

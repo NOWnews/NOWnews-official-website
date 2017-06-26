@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
@@ -9,7 +9,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 import { DFP } from '../Ad';
 import FacebookProvider, { Comments } from 'react-facebook';
 
-class ContentForNews extends Component {
+class ContentForNews extends PureComponent {
   constructor (props) {
     super(props);
     this.onWarm = this.onWarm.bind(this);
@@ -33,7 +33,7 @@ class ContentForNews extends Component {
     return (
       <Container>
         <div className={css(styles.contentDiv)}>
-          <img className={css(styles.contentImg)} src={imgUrl} />
+          <img className={css(styles.contentImg)} src={imgUrl} alt={news.MainPhoto.desc} />
         </div>
         <i>{news.MainPhoto && news.MainPhoto.desc}</i>
         <Margin10 className='clearfix'>

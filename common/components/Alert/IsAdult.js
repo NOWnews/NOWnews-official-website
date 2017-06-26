@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Modal from 'react-overlays/lib/Modal';
 import FontAwesome from 'react-fontawesome';
 
-class IsAdult extends Component {
+class IsAdult extends PureComponent {
   constructor (props) {
     super(props);
     this.state = {

@@ -1,51 +1,56 @@
-import React, { PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Logo } from './components';
 import { Container } from '../Layout';
 
-const FixedHeader = ({ currentMainMenu, menus, newsTitle }) => {
-  const mainMenuDoms = [];
+class FixedHeader extends PureComponent {
 
-  menus.map(({ _id, child, isExternal, name, sn, url }) => {
-    const isCurrentMainMenu = (_id === currentMainMenu);
+  render () {
+    const { currentMainMenu, menus, newsTitle } = this.props;
+    const mainMenuDoms = [];
 
-    const linkClass = css(
-      styles.link,
-      (isCurrentMainMenu) && styles.active
-    );
+    menus.map(({ _id, child, isExternal, name, sn, url }) => {
+      const isCurrentMainMenu = (_id === currentMainMenu);
 
-    mainMenuDoms.push(
-      <Link
-        className={linkClass}
-        key={sn}
-        target={isExternal === true ? '_blank' : null}
-        to={url}>
-        { name }
-      </Link>
-    );
-  });
+      const linkClass = css(
+        styles.link,
+        (isCurrentMainMenu) && styles.active
+      );
 
-  return (
-    <div className={css(styles.header)}>
-      <Container className={css(styles.firstRow)}>
-        <Logo customClass={css(styles.logo)} />
-        <div className={css(styles.menu)}>{ mainMenuDoms }</div>
-        <div className={css(styles.icons)}>
-          <Link className={css(styles.iconLink)} to='/search'>
-            <FontAwesome name='search' size='2x' />
-          </Link>
-          <Link className={css(styles.iconLink)} to='/user'>
-            <FontAwesome name='user-circle-o' size='2x' />
-          </Link>
+      mainMenuDoms.push(
+        <Link
+          className={linkClass}
+          key={sn}
+          target={isExternal === true ? '_blank' : null}
+          to={url}>
+          { name }
+        </Link>
+      );
+    });
+
+    return (
+      <div className={css(styles.header)}>
+        <Container className={css(styles.firstRow)}>
+          <Logo customClass={css(styles.logo)} />
+          <div className={css(styles.menu)}>{ mainMenuDoms }</div>
+          <div className={css(styles.icons)}>
+            <Link className={css(styles.iconLink)} to='/search'>
+              <FontAwesome name='search' size='2x' />
+            </Link>
+            <Link className={css(styles.iconLink)} to='/auth/oauth'>
+              <FontAwesome name='user-circle-o' size='2x' />
+            </Link>
+          </div>
+        </Container>
+        <div className={css(styles.newsTitle)}>
+          <Container>{ newsTitle }</Container>
         </div>
-      </Container>
-      <div className={css(styles.newsTitle)}>
-        <Container>{ newsTitle }</Container>
       </div>
-    </div>
-  );
+    );
+  }
+
 };
 
 const firstRowHeight = 70;

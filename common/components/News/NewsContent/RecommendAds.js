@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import StaticContainer from 'react-static-container';
 
 const RecommendAds = ({ ads }) => {
   var items = [];
@@ -8,7 +9,7 @@ const RecommendAds = ({ ads }) => {
     items.push(
       <a className={css(styles.item)} key={index} href={ad.url} target='_blank'>
         <div>
-          <img src={ad.img} width='200' height='112' />
+          <img src={ad.img} width='200' height='112' alt={ad.title} />
         </div>
         <div>{ad.title}</div>
       </a>
@@ -16,12 +17,14 @@ const RecommendAds = ({ ads }) => {
   });
 
   return (
-    <div>
-      <h2>NOWnews 推薦</h2>
-      <div className='clearfix'>
-        { items }
+    <StaticContainer>
+      <div>
+        <h2>NOWnews 推薦</h2>
+        <div className='clearfix'>
+          { items }
+        </div>
       </div>
-    </div>
+    </StaticContainer>
   );
 };
 

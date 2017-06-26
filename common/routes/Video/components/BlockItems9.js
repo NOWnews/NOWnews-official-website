@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import moment from 'moment';
 import TypeIcon from '../../../components/News/TypeIcon';
 import Pagination from '../../../components/Pagination';
 
-class BlockItems9 extends Component {
+class BlockItems9 extends PureComponent {
   constructor (props) {
     super(props);
     this.select = this.select.bind(this);

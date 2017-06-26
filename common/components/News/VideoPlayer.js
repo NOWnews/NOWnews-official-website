@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import videojs from 'video.js';
 import 'videojs-youtube';
 
-class VideoPlayer extends Component {
+class VideoPlayer extends PureComponent {
   componentDidMount () {
     let { src, poster, width = 970 } = this.props;
     if (src.indexOf('facebook') > 0 || src.indexOf('streamable') > 0) {

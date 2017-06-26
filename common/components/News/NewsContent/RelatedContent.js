@@ -12,7 +12,8 @@ const RelatedContent = ({ ad, adKey, list, type }) => {
     MainPhoto: {
       url: ad.img,
       height: 95,
-      width: 170
+      width: 170,
+      desc: ad.title
     },
     sn: 'ad',
     parseUrl: ad.url,
