@@ -168,7 +168,7 @@ class HomeContainer extends PureComponent {
               <LeftSide>
                 <div>
                   <div className={css(styles.specialChannelsTitle)}>
-                    <h1 className={css(styles.specialChannelsTitleText)}>精選特輯</h1>
+                    <h2 className={css(styles.specialChannelsTitleText)}>精選特輯</h2>
                     <hr className={css(styles.specialChannelsTitleLine)} />
                   </div>
                   <BlockItems8 channels={specialChannels.slice(0, 8)} />

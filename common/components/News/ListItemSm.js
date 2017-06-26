@@ -25,7 +25,7 @@ class ListItemSm extends PureComponent {
         </div>
         <div className={`right ${css(styles.right)}`}>
           {category && <div className={css(styles.category)}>{category}</div>}
-          <div className={css(styles.title)}>{title}</div>
+          <div className={css(styles.title)}><h3 className={css(styles.h3)}>{title}</h3></div>
           <img src='/icons/whiteClock.png' />
           <span className={css(styles.time)}>
             {moment(time).format('YYYY/MM/DD')}
@@ -53,6 +53,10 @@ const styles = StyleSheet.create({
     height: 95,
     width: 155,
     overflow: 'hidden'
+  },
+  h3: {
+    fontSize: '16px',
+    fontWeight: 'normal'
   },
   img: {
     height: 'auto',
