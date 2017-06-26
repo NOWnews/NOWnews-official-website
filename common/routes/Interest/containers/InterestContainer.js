@@ -29,14 +29,14 @@ const InterestContainer = ({ marquee, menus, interest }) => (
       {interest.isLoading && <Loading />}
       {!interest.isLoading && interest.newsList.length === 0 && <NotFound />}
       {!interest.isLoading && interest.newsList.length > 0 &&
-        <BlockItems12 hasAd={false} newsList={interest.newsList.slice(0, 12)} />}
+        <BlockItems12 newsList={interest.newsList.slice(0, 12)} />}
     </Container>
   </div>
 );
 
 InterestContainer.propTypes = {
   interest: PropTypes.object.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };
 

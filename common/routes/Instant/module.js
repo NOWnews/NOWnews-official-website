@@ -35,8 +35,7 @@ export function loadInstantList (page = 1) {
     }).catch(error => {
       dispatch({
         type: LOAD_INSTANT_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
     });
   };

@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import BlockItem from './BlockItem';
-import { Ad300x250 } from '../Ad';
+import { DFP } from '../Ad';
 import Pagination from '../Pagination';
 
-const BlockItems12 = ({ hasAd = true, newsList, page, local }) => {
+const BlockItems12 = ({ adType, newsList, page, local }) => {
   let items = [];
 
   newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }, key) => {
@@ -21,8 +21,12 @@ const BlockItems12 = ({ hasAd = true, newsList, page, local }) => {
       </div>
     );
 
-    if (hasAd && (key === 1 || key === 6)) {
-      items.push(<Ad300x250 key={`Ad${key}`} className={css(styles.blockItem)} />);
+    if (adType && key === 1) {
+      items.push(<DFP key={`Ad_RT`} className={css(styles.blockItem)}
+        opts={[`/5799246/Nownews_${adType}_300x250_RT_new2`, [300, 250]]} />);
+    } else if (adType && key === 6) {
+      items.push(<DFP key={`Ad_RB`} className={css(styles.blockItem)}
+        opts={[`/5799246/Nownews_${adType}_300x250_RB_new2`, [300, 250]]} />);
     }
   });
 
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
 
 BlockItems12.propTypes = {
   local: PropTypes.object,
-  hasAd: PropTypes.bool,
+  adType: PropTypes.string,
   newsList: PropTypes.array.isRequired,
   page: PropTypes.object
 };

@@ -36,8 +36,7 @@ export function loadCategoryList (categoryName, page = 1) {
     }).catch(error => {
       dispatch({
         type: LOAD_CATEGORY_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
     });
   };

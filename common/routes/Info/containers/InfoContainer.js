@@ -1,6 +1,7 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import StaticContainer from 'react-static-container';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { Header } from '../../../components/Header';
 import { Container } from '../../../components/Layout';
@@ -20,10 +21,12 @@ const mapStateToProps = state => ({
 
 const InfoContainer = ({ local, marquee, menus, children }) => {
   return (
-    <Container>
-      <Header menus={menus} marquee={marquee} />
-      { children }
-    </Container>
+    <StaticContainer>
+      <Container>
+        <Header menus={menus} marquee={marquee} />
+        { children }
+      </Container>
+    </StaticContainer>
   );
 };
 
@@ -31,7 +34,7 @@ InfoContainer.propTypes = {
   local: PropTypes.object.isRequired,
   children: PropTypes.shape().isRequired,
   menus: PropTypes.array.isRequired,
-  marquee: PropTypes.array.isRequired
+  marquee: PropTypes.object.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps)(InfoContainer));

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 import {
@@ -6,12 +6,11 @@ import {
   Tags, Thermometer, ThermometerSm
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
-
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
+import { DFP } from '../Ad';
+import FacebookProvider, { Comments } from 'react-facebook';
 
-import { Ad300x250 } from '../Ad';
-
-class ContentForPhoto extends Component {
+class ContentForPhoto extends PureComponent {
 
   constructor (props) {
     super(props);
@@ -24,7 +23,7 @@ class ContentForPhoto extends Component {
   }
 
   render () {
-    const { news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet } = this.props;
+    const { ads, adType, news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet } = this.props;
     const settings = {
       axis: 'horizontal',
       autoPlay: true,
@@ -41,7 +40,6 @@ class ContentForPhoto extends Component {
       title: news.title,
       url: news.parseUrl
     };
-
     return (
       <Container>
         <div className={css(styles.SlideBox)}>
@@ -58,22 +56,25 @@ class ContentForPhoto extends Component {
           <LeftSide>
             <Content content={news.content} fontSize={fontSize} />
             {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
-            <Tags tags={news.Tags} />
+            <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
-            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} randomKey={randomKey} />
-            <RecommendAds />
+            <FacebookProvider appId='132863386747341' language='zh_TW'>
+              <Comments href={`https://www.nownews.com${news.parseUrl}`} />
+            </FacebookProvider>
+            <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
+            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} adKey={randomKey} ad={ads.like} />
+            <RecommendAds ads={ads.recommand} />
           </LeftSide>
           <RightSide>
             <Social {...socialProps} />
             <FontSize changeFontSize={changeFontSize} />
-            <Ad300x250 />
-            <Thermometer pv={news.pageView.totalScore} onWarm={this.onWarm} />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RT_new2`, [300, 250]]} />
+            <Thermometer pv={news.pageView ? news.pageView.totalScore : 0} onWarm={this.onWarm} />
             <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
-            <Ad300x250 />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RM_new2`, [300, 250]]} />
             <SpecialTopicNav list={topics} />
-            <Ad300x250 />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RB_new2`, [300, 250]]} />
           </RightSide>
         </Margin10>
       </Container>
@@ -87,7 +88,8 @@ const styles = StyleSheet.create({
   },
   contentImg: {
     height: '100%',
-    width: 'auto !important'
+    width: 'auto !important',
+    maxWidth: 970
   },
   contentDiv: {
     textAlign: 'center',
@@ -111,6 +113,8 @@ const styles = StyleSheet.create({
 });
 
 ContentForPhoto.propTypes = {
+  ads: PropTypes.object,
+  adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
   interest: PropTypes.array.isRequired,

@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
+import { DFP, getAdType } from '../../../components/Ad';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
 import { HotNews } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
+import { MicroDataCategory } from '../../../components/JSONLD';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName }, query: { page } }) => Promise.all([
@@ -26,6 +28,7 @@ const mapStateToProps = state => ({
 
 const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
   const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
+  const adType = getAdType(currentMenu);
   const slideData = newsList.slice(0, 5);
   const blockData = newsList.slice(5, 15);
 
@@ -34,8 +37,9 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
   const currentChildMenu = isMainMenu ? null : currentMenu._id;
   return (
     <Container>
+      <MicroDataCategory category={categoryPage} />
       <IsAdult isAdult={currentMenu.isAdult} />
-      <Header menus={menus} marquee={marquee}
+      <Header adType={adType} menus={menus} marquee={marquee}
         currentChildMenu={currentChildMenu}
         currentMainMenu={currentMainMenu} />
       {categoryPage.isLoading && <Loading />}
@@ -46,9 +50,10 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
             <Slide list={slideData} />
             <HotNews newsList={hotNewsList.slice(0, 6)} />
           </Margin10>
-          <BlockItems12 newsList={blockData} page={pageData} local={local} />
+          <BlockItems12 adType={adType} newsList={blockData} page={pageData} local={local} />
         </div>
       }
+      <DFP opts={[`/5799246/Nownews_${adType}_970x250_B_new2`, [[970, 250], [970, 90]]]} />
     </Container>
   );
 };
@@ -56,7 +61,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
 CategoryPage.propTypes = {
   local: PropTypes.object.isRequired,
   categoryPage: PropTypes.object.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };
 

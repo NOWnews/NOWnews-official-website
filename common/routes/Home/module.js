@@ -1,9 +1,11 @@
 export const LOAD_INDEX_REQUEST = 'LOAD_INDEX_REQUEST';
 export const LOAD_INDEX_SUCCESS = 'LOAD_INDEX_SUCCESS';
+export const LOAD_INDEX_SUCCESS_AND_EMPTY = 'LOAD_INDEX_SUCCESS_AND_EMPTY';
 export const LOAD_INDEX_FAILURE = 'LOAD_INDEX_FAILURE';
 export const SWITCH_TRIPLET_TYPE = 'SWITCH_TRIPLET_TYPE';
 
 const initialState = {
+  ads: [],
   carousels: [],
   error: null,
   isLoading: false,
@@ -18,20 +20,28 @@ export function loadHomeList () {
   return (dispatch, getState, { axios }) => {
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_INDEX_REQUEST });
-    return axios.get(`${apiServ}/indexpage`)
-    .then(res => {
-      dispatch({
-        type: LOAD_INDEX_SUCCESS,
-        payload: res.data,
-        meta: {
-          lastFetched: Date.now()
-        }
-      });
+    return Promise.all([
+      axios.get(`${apiServ}/indexpage`),
+      axios.get(`${apiServ}/promote/home`)
+    ]).then(([home, ads]) => {
+      if (home.data) {
+        dispatch({
+          type: LOAD_INDEX_SUCCESS,
+          payload: {
+            ads: ads.data,
+            home: home.data
+          },
+          meta: {
+            lastFetched: Date.now()
+          }
+        });
+        return;
+      }
+      dispatch({ type: LOAD_INDEX_SUCCESS_AND_EMPTY });
     }).catch(error => {
       dispatch({
         type: LOAD_INDEX_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
     });
   };
@@ -52,9 +62,11 @@ export default function homePage (state = initialState, action) {
         error: null
       };
     case LOAD_INDEX_SUCCESS:
-      let { carousels, specialChannels, specialTopics, videos } = action.payload;
+      const { ads, home } = action.payload;
+      const { carousels, specialChannels, specialTopics, videos } = home;
       return {
         ...state,
+        ads,
         carousels,
         videos,
         specialChannels,
@@ -62,11 +74,21 @@ export default function homePage (state = initialState, action) {
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
+    case LOAD_INDEX_SUCCESS_AND_EMPTY:
+      return {
+        ...state,
+        carousels: [],
+        isLoading: false,
+        specialChannels: [],
+        specialTopics: [],
+        tripletType: 'instant',
+        videos: []
+      };
     case LOAD_INDEX_FAILURE:
       return {
         ...state,
         isLoading: false,
-        error: action.payload
+        error: action.payload.message
       };
     case SWITCH_TRIPLET_TYPE:
       return {

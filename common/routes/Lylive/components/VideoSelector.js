@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Container } from '../../../components/Layout';
 
-class VideoSelector extends Component {
+class VideoSelector extends PureComponent {
 
   render () {
     return (

@@ -1,22 +1,23 @@
 import React, { PropTypes } from 'react';
-import { DFP } from '../Ad';
 import { InstantBar, Menu } from './components';
+import { DFP } from '../Ad';
 import { Container } from '../Layout';
 
-export const Header = ({ menus, currentMainMenu, currentChildMenu, marquee }) => (
+export const Header = ({ adType = 'home', menus, currentMainMenu, currentChildMenu, marquee }) => (
   <Container>
     <Menu menus={menus}
       currentMainMenu={currentMainMenu}
       currentChildMenu={currentChildMenu} />
-    <InstantBar list={marquee} />
-    <DFP opts={['/5799246/Nownews_home_970x250_T_new2', [[970, 90], [970, 250]], 'div-gpt-ad-1496983147535-0']} />
+    <InstantBar {...marquee} />
+    {adType && <DFP opts={[`/5799246/Nownews_${adType}_970x250_T_new2`, [[970, 90], [970, 250]], `div-gpt-ad-custom-${adType}-header`]} />}
   </Container>
 );
 
 Header.propTypes = {
+  adType: PropTypes.string,
   currentChildMenu: PropTypes.string,
   currentMainMenu: PropTypes.string,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired
 };
 

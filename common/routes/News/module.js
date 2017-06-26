@@ -18,6 +18,7 @@ export const WARM_NEWS_FAILURE = 'WARM_NEWS_FAILURE';
 
 const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 const initialState = {
+  ads: {},
   data: [],
   error: null,
   fontSize: null,
@@ -59,14 +60,16 @@ export const loadNews = (sn, fontSize) => {
       axios.get(`${apiServ}/news/${sn}`),
       axios.get(`${apiServ}/news/${sn}/nextandprev`),
       axios.get(`${apiServ}/news/${sn}/relations`),
-      axios.get(`${apiServ}/specialtopics?limit=6`)
-    ]).then(([news, nextandprev, relations, topic]) => {
+      axios.get(`${apiServ}/specialtopics?limit=6`),
+      axios.get(`${apiServ}/promote/news`)
+    ]).then(([news, nextandprev, relations, topic, ads]) => {
       let { next, prev } = nextandprev.data;
       let result = news.data;
 
       dispatch({
         type: LOAD_NEWS_SUCCESS,
         payload: {
+          ads: ads.data,
           news: {
             ...result,
             next,
@@ -83,8 +86,7 @@ export const loadNews = (sn, fontSize) => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
         type: LOAD_NEWS_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
     });
   };
@@ -92,7 +94,7 @@ export const loadNews = (sn, fontSize) => {
 
 export const loadMoreNews = (sn) => {
   return (dispatch, getState, { axios }) => {
-    const { apiServ } = getState().sourceRequest;
+    const { apiServ, headers } = getState().sourceRequest;
     dispatch({ type: LOAD_MORE_NEWS_REQUEST });
 
     return Promise.all([
@@ -102,7 +104,6 @@ export const loadMoreNews = (sn) => {
     ]).then(([news, nextandprev, relations]) => {
       let { next, prev } = nextandprev.data;
       let result = news.data;
-
       dispatch({
         type: LOAD_MORE_NEWS_SUCCESS,
         payload: { ...result, next, prev, relations: relations.data },
@@ -115,13 +116,12 @@ export const loadMoreNews = (sn) => {
       const { search } = window.location;
       const { id: newsId, MainMenu, sn, startedAt } = result;
       const formatStartedAt = moment(startedAt).format('YYYYMMDD');
-      pvCallApi(apiServ, MainMenu.id, newsId, `/news/${formatStartedAt}/${sn}`, search);
+      pvCallApi(apiServ, MainMenu.id, newsId, `/news/${formatStartedAt}/${sn}`, search, headers);
     }).catch(error => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
         type: LOAD_NEWS_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
     });
   };
@@ -145,8 +145,7 @@ export const loadPreview = (redisKey) => {
         console.error(`Error in reducer that handles ${LOAD_PREVIEW_FAILURE}: `, error);
         dispatch({
           type: LOAD_PREVIEW_FAILURE,
-          payload: error,
-          error: true
+          payload: error.response.data
         });
       });
   };
@@ -174,8 +173,7 @@ export const onWarm = (newsId, menuId) => {
     }).catch(error => {
       dispatch({
         type: WARM_NEWS_FAILURE,
-        payload: error,
-        error: true
+        payload: error.response.data
       });
       window.alert('感謝您對這篇新聞的支持，您已經加過溫暖囉！');
     });
@@ -203,6 +201,7 @@ export default function currentNews (state = initialState, action) {
     case LOAD_NEWS_REQUEST:
       return {
         ...state,
+        data: [],
         fontSize: action.payload.fontSize,
         error: null,
         isLoading: true
@@ -224,9 +223,10 @@ export default function currentNews (state = initialState, action) {
         lastFetched: action.meta.lastFetched
       };
     case LOAD_NEWS_SUCCESS:
-      const { news, topics } = action.payload;
+      const { ads, news, topics } = action.payload;
       return {
         ...state,
+        ads,
         data: [news],
         hasMore: news && !!news.next.sn,
         isLoading: false,

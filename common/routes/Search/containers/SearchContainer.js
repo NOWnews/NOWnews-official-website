@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { bindActionCreators } from 'redux';
@@ -33,7 +33,7 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   loadSearchList
 });
 
-class SearchPage extends Component {
+class SearchPage extends PureComponent {
   constructor (props) {
     super(props);
     this.onEnter = this.onEnter.bind(this);
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 SearchPage.propTypes = {
   loadSearchList: PropTypes.func.isRequired,
   local: PropTypes.object.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   searchPage: PropTypes.object.isRequired
 };

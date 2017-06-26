@@ -1,15 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import {
   Content, FontSize, RelatedContent, Social, Tags,
   Thermometer, ThermometerSm
 } from './NewsContent';
 import { TripletNav, VideoPlayer } from '../News';
-
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
+import { DFP } from '../Ad';
+import FacebookProvider, { Comments } from 'react-facebook';
 
-import { Ad300x250 } from '../Ad';
-
-class ContentForVideo extends Component {
+class ContentForVideo extends PureComponent {
 
   constructor (props) {
     super(props);
@@ -22,7 +21,7 @@ class ContentForVideo extends Component {
   }
 
   render () {
-    const { news, changeFontSize, fontSize, triplet } = this.props;
+    const { ads, adType, news, changeFontSize, fontSize, triplet } = this.props;
     const { freeContent, MainPhoto, MainVideo, parseUrl, title } = news;
     const randomKey = news.sn % 3;
     const socialProps = {
@@ -30,7 +29,6 @@ class ContentForVideo extends Component {
       title,
       url: parseUrl
     };
-
     return (
       <Container>
         <VideoPlayer src={MainVideo.url} poster={MainPhoto.url} />
@@ -39,17 +37,20 @@ class ContentForVideo extends Component {
           <LeftSide>
             <Content content={news.content} fontSize={fontSize} />
             {freeContent && <div dangerouslySetInnerHTML={{__html: freeContent}} />}
-            <Tags tags={news.Tags} />
+            <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
+            <FacebookProvider appId='132863386747341' language='zh_TW'>
+              <Comments href={`https://www.nownews.com${news.parseUrl}`} />
+            </FacebookProvider>
+            <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
             {/* <HotVideoBlocks list={news.relations} /> */}
           </LeftSide>
           <RightSide>
             <Social {...socialProps} />
             <FontSize changeFontSize={changeFontSize} />
-            <Ad300x250 />
-            <Thermometer pv={news.pageView.totalScore} onWarm={this.onWarm} />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RT_new2`, [300, 250]]} />
+            <Thermometer pv={news.pageView ? news.pageView.totalScore : 0} onWarm={this.onWarm} />
             <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
           </RightSide>
         </Margin10>
@@ -59,6 +60,8 @@ class ContentForVideo extends Component {
 };
 
 ContentForVideo.propTypes = {
+  ads: PropTypes.object,
+  adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
   onWarm: PropTypes.func.isRequired,

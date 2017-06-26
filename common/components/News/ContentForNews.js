@@ -1,16 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
   Tags, Thermometer, ThermometerSm
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
-
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
+import { DFP } from '../Ad';
+import FacebookProvider, { Comments } from 'react-facebook';
 
-import { Ad300x250 } from '../Ad';
-
-class ContentForNews extends Component {
+class ContentForNews extends PureComponent {
   constructor (props) {
     super(props);
     this.onWarm = this.onWarm.bind(this);
@@ -22,42 +21,44 @@ class ContentForNews extends Component {
   }
 
   render () {
-    const { news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
+    const { ads, adType, news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
     const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
-    const imgUrl = (news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
+    const imgUrl = (news.MainPhoto && news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
     const socialProps = {
       img: imgUrl,
       title: news.title,
       url: news.parseUrl
     };
-
     return (
       <Container>
         <div className={css(styles.contentDiv)}>
-          <img className={css(styles.contentImg)} src={imgUrl} />
+          <img className={css(styles.contentImg)} src={imgUrl} alt={news.MainPhoto.desc} />
         </div>
         <i>{news.MainPhoto && news.MainPhoto.desc}</i>
         <Margin10 className='clearfix'>
           <LeftSide>
             <Content content={news.content} fontSize={fontSize} />
             {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
-            <Tags tags={news.Tags} />
+            <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            <RelatedContent type='相關新聞' list={news.relations} randomKey={randomKey} />
-            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} randomKey={randomKey} />
-            <RecommendAds />
+            <FacebookProvider appId='132863386747341' language='zh_TW'>
+              <Comments href={`https://www.nownews.com${news.parseUrl}`} />
+            </FacebookProvider>
+            <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
+            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} adKey={randomKey} ad={ads.like} />
+            <RecommendAds ads={ads.recommand} />
           </LeftSide>
           <RightSide>
             <Social {...socialProps} />
             <FontSize changeFontSize={changeFontSize} />
-            <Ad300x250 />
-            <Thermometer pv={news.pageView.totalScore} onWarm={this.onWarm} />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RT_new2`, [300, 250]]} />
+            <Thermometer pv={news.pageView ? news.pageView.totalScore : 0} onWarm={this.onWarm} />
             <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
-            <Ad300x250 />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RM_new2`, [300, 250]]} />
             <SpecialTopicNav list={topics} />
-            <Ad300x250 />
+            <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RB_new2`, [300, 250]]} />
           </RightSide>
         </Margin10>
       </Container>
@@ -68,7 +69,8 @@ class ContentForNews extends Component {
 const styles = StyleSheet.create({
   contentImg: {
     height: 545,
-    width: 'auto'
+    width: 'auto',
+    maxWidth: 970
   },
   contentDiv: {
     textAlign: 'center',
@@ -78,6 +80,8 @@ const styles = StyleSheet.create({
 });
 
 ContentForNews.propTypes = {
+  ads: PropTypes.object,
+  adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
   interest: PropTypes.array.isRequired,

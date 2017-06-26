@@ -1,20 +1,22 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Link from 'react-router/lib/Link';
 import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
-import { BlockItems, BlockItems4, BlockItems8, SlideRight, VideoBlock } from '../components';
+import { BlockItems9, BlockItems6, BlockItems8, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
-import { DFP } from '../../../components/Ad';
+import { DFP, GrabBag } from '../../../components/Ad';
 
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectInterest, loadInterest } from '../../../modules/interest';
 import { selectHomePage, loadHomeList, switchTripletType } from '../module';
+import { MicroDataSearch } from '../../../components/JSONLD';
+import StaticContainer from 'react-static-container';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -37,7 +39,7 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   switchTripletType
 });
 
-class HomeContainer extends Component {
+class HomeContainer extends PureComponent {
   constructor (props) {
     super(props);
     this.switchTripletType = this.switchTripletType.bind(this);
@@ -55,34 +57,41 @@ class HomeContainer extends Component {
   render () {
     const { marquee, interest, menus, homePage, LBS = {} } = this.props;
     const {
-      carousels, isLoading, specialChannels, specialTopics, tripletType,
-      videos
+      ads, carousels, isLoading, specialChannels, specialTopics,
+      tripletType, videos
     } = homePage;
     const seeMoreTextDefined = {
       instant: '即時',
       interest: '感興趣',
       lbs: '地區'
     };
+    const titles = {
+      instant: '即時新聞',
+      interest: '您感興趣的新聞',
+      lbs: '地區新聞'
+    };
     const TripletIcons = ['instant', 'interest', 'lbs'].map((value) => {
       const imgName = (tripletType === value) ? `${value}_active` : value;
 
       return (
-        <img key={value} onClick={() => { this.switchTripletType(value); }}
+        <img key={value} onClick={() => { this.switchTripletType(value); }} title={titles[value]}
           className={css(styles.tripletBlockTopIcon)} src={`/icons/${imgName}.png`} />
       );
     });
 
     const tripletObject = {
-      instant: marquee,
+      instant: marquee.news,
       interest: interest,
       lbs: LBS.newsList
     };
 
     return (
       <div>
-        <Header menus={menus} marquee={marquee} />
+        <Header adType='home' menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
-
+        <StaticContainer>
+          <MicroDataSearch />
+        </StaticContainer>
         {!isLoading && carousels.length > 0 &&
           <Container>
             <div className={`clearfix ${css(styles.slideArea)}`}>
@@ -90,23 +99,28 @@ class HomeContainer extends Component {
               <SlideRight newsList={carousels.slice(5, 10)} />
             </div>
           </Container>}
-
         {!isLoading && specialTopics.length > 0 &&
           <div className={css(styles.bg)}>
             <Container className='clearfix'>
               <LeftSide>
-                <BlockItems4 newsList={specialTopics.slice(0, 4)} />
+                <BlockItems6 newsList={specialTopics.slice(0, 6)} />
                 <div className={css(styles.seeMoreBlock)}>
                   <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
                 </div>
               </LeftSide>
               <RightSide>
+                <GrabBag />
                 <Margin10>
                   <DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />
                 </Margin10>
                 <Margin10>
                   <DFP opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />
                 </Margin10>
+                {ads.cthouse && ads.cthouse.img !== '' && <Margin10>
+                  <a href={ads.cthouse.url}>
+                    <img alt={ads.cthouse.title} src={ads.cthouse.img} width='300' height='250' />
+                  </a>
+                </Margin10>}
               </RightSide>
             </Container>
           </div>}
@@ -118,7 +132,10 @@ class HomeContainer extends Component {
                 { TripletIcons }
                 { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>{LBS.mapCity}</span>}
               </div>
-              <BlockItems newsList={tripletObject[tripletType].slice(0, 9)} />
+              <BlockItems9
+                ads={ads.health}
+                hasAd={tripletType === 'instant'}
+                newsList={tripletObject[tripletType].slice(0, 9)} />
               { tripletType === 'lbs' && !isLoading && LBS.location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
@@ -127,6 +144,11 @@ class HomeContainer extends Component {
               </div>
             </Container>
           </div>}
+        <Container className='clearfix'>
+          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_1', [300, 250], 'div-gpt-ad-1498098181254-0']} />
+          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_2', [300, 250], 'div-gpt-ad-1498098246352-0']} />
+          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_3', [300, 250], 'div-gpt-ad-1498098293038-0']} />
+        </Container>
 
         {!isLoading && videos.length > 0 &&
           <div className={css(styles.videoBlock)}>
@@ -171,6 +193,9 @@ class HomeContainer extends Component {
               </RightSide>
             </Container>
           </div>}
+        <Container>
+          <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
+        </Container>
       </div>
     );
   };
@@ -228,7 +253,7 @@ const styles = StyleSheet.create({
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 95%',
     backgroundPositionY: '45px',
-    marginBottom: 10,
+    marginBottom: 60,
     marginTop: '-80px'
   },
   tripletBlockTop: {
@@ -260,6 +285,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     lineHeight: '90px',
     color: '#0080ff'
+  },
+  niceGame: {
+    float: 'left',
+    margin: '0 11.5px'
   }
 });
 
@@ -269,7 +298,7 @@ HomeContainer.propTypes = {
   LBS: PropTypes.object,
   loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   switchTripletType: PropTypes.func.isRequired
 };

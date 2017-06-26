@@ -1,35 +1,32 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import AdBlock from './components/AdBlock';
-import { DFP } from '../Ad';
 import { Container } from '../Layout';
 
-export const Footer = () => {
+export const Footer = ({ ads }) => {
   const moreList = [
     { isExternal: false, title: '立院直播', url: '/lylive/1' },
     { isExternal: true, title: '購屋通', url: 'http://www.cthouse.com.tw/?utm_source=nownews&utm_medium=text&utm_content=navigation&utm_campaign=nownews' },
-    { isExternal: false, title: '名家論壇', url: '' },
+    // { isExternal: false, title: '名家論壇', url: '' },
     { isExternal: true, title: '飆網超省', url: 'https://www.kbro.com.tw/K01/cm-promo-more-2_3_0_6_3.html?&mkwid=bPIzZHwz' },
-    { isExternal: false, title: '公益行善', url: '' },
+    // { isExternal: false, title: '公益行善', url: '' },
     { isExternal: true, title: '網頁遊戲', url: 'http://nownews.nicegame.com.tw/' },
-    { isExternal: true, title: '投票區', url: 'http://vote.nownews.com/' },
-    { isExternal: false, title: '色區', url: '' }
+    { isExternal: true, title: '投票區', url: 'http://vote.nownews.com/' }
+    // { isExternal: false, title: '色區', url: '' }
   ];
   const socialList = [
     { icon: 'FB', url: 'https://facebook.com/nownews' },
     { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
     { icon: 'weibo', url: 'http://tw.weibo.com/nownews' },
-    { icon: 'G+', url: 'https://plus.google.com/+nownews' },
     { icon: 'twitter', url: 'https://twitter.com/NOWnews_TW' }
   ];
 
   return (
     <Container>
-      <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
       <div className={css(styles.footer)}>
         <div className={css(styles.adBlocks)}>
-          { [1, 2, 3, 4, 5].map((index) => <AdBlock key={index} />)}
+          { ads.map((ad, index) => <AdBlock key={index} ad={ad} />)}
         </div>
         <hr className={css(styles.hr)} />
         <div className={`clearfix ${css(styles.announce)}`}>
@@ -171,4 +168,9 @@ const styles = StyleSheet.create({
     width: 80
   }
 });
+
+Footer.propTypes = {
+  ads: PropTypes.array
+};
+
 export default Footer;

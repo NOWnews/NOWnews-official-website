@@ -7,9 +7,11 @@ import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLocal } from '../../../modules/sourceRequest';
 
+import { BlockItems } from '../components';
 import { Header } from '../../../components/Header';
-import { BlockItems12, TripletHead } from '../../../components/News';
+import { TripletHead } from '../../../components/News';
 import { Container, Loading, NotFound } from '../../../components/Layout';
+import { DFP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -46,8 +48,9 @@ class LBSContainer extends Component {
           {!isLoading && location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
           {!isLoading && newsList.length === 0 && <NotFound />}
           {!isLoading && newsList.length > 0 &&
-            <BlockItems12 newsList={newsList} page={pageData} local={local} />
+            <BlockItems newsList={newsList} page={pageData} local={local} />
           }
+          <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
         </Container>
       </div>
     );
@@ -58,7 +61,7 @@ LBSContainer.propTypes = {
   loadLBSList: PropTypes.func.isRequired,
   local: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
-  marquee: PropTypes.array.isRequired,
+  marquee: PropTypes.object.isRequired,
   LBS: PropTypes.object.isRequired
 };
 

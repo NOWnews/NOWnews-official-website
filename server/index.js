@@ -27,10 +27,14 @@ import { compileDev, startDev } from '../tools/dx';
 import { configureStore } from '../common/store';
 import createRoutes from '../common/routes/root';
 import configLib from 'config';
+
+import redirect from './redirect';
+
 const defaultServerConfig = configLib.get('server');
 const isProdMode = configLib.get('isProdMode');
 const webApiServer = configLib.get('webApiServer');
 const memberApiServer = configLib.get('memberApiServer');
+const headers = configLib.get('headers');
 
 export const createServer = (config) => {
   const __PROD__ = isProdMode;
@@ -63,6 +67,7 @@ export const createServer = (config) => {
 
   app.use(express.static('public', { etag: 1000, maxage: 86400000 * 365 }));
 
+  app.use(redirect(app));
 
   // ============= sitemap stert =============
   let xmlns = 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"';
@@ -154,7 +159,6 @@ export const createServer = (config) => {
       isomorphicCookie.save('NOW_memberData', { token, ...user }, { secure: false }, res);
       return res.redirect('/');
     }).catch((error) => {
-      console.log('error', error.response);
       return res.redirect(`/auth/oauth?msg=${error.response.data.message}`);
     });
   });
@@ -162,9 +166,9 @@ export const createServer = (config) => {
   app.get('*', (req, res) => {
     const user = isomorphicCookie.load('NOW_memberData', req);
     const fontSize = isomorphicCookie.load('NOW_fontSize', req) || 16;
-
     const store = configureStore({
       sourceRequest: {
+        headers,
         apiServ: webApiServer,
         local: {
           fontSize,
@@ -220,7 +224,7 @@ export const createServer = (config) => {
           const head = Helm.rewind();
           res.status(200).send(`
             <!DOCTYPE html>
-            <html lang="en">
+            <html lang="zh-Hant">
               <head>
                 <meta charSet="utf-8">
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge">

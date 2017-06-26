@@ -5,10 +5,11 @@ export const LOAD_HEADER_FAILURE = 'LOAD_HEADER_FAILURE';
 const initialState = {
   lastFetched: null,
   isLoading: false,
-  marquee: [],
+  news: [],
   error: null,
   menus: [],
-  currentMenu: {}
+  currentMenu: {},
+  ads: {}
 };
 
 export function loadHeader (url) {
@@ -17,11 +18,12 @@ export function loadHeader (url) {
     dispatch({ type: LOAD_HEADER_REQUEST });
     return Promise.all([
       axios.get(`${apiServ}/menus`),
-      axios.get(`${apiServ}/instant?limit=9`)
-    ]).then(([menus, instant]) => {
+      axios.get(`${apiServ}/instant?limit=9`),
+      axios.get(`${apiServ}/promote/common`)
+    ]).then(([menus, instant, ad]) => {
       dispatch({
         type: LOAD_HEADER_SUCCESS,
-        payload: [menus.data, instant.data],
+        payload: [menus.data, instant.data, ad.data],
         meta: {
           lastFetched: Date.now()
         }
@@ -31,7 +33,7 @@ export function loadHeader (url) {
         console.error(`Error in reducer that handles ${LOAD_HEADER_FAILURE}: `, error);
         dispatch({
           type: LOAD_HEADER_FAILURE,
-          payload: error,
+          payload: error.response.data,
           error: true
         });
       });
@@ -47,11 +49,12 @@ export default function header (state = initialState, action) {
         error: null
       };
     case LOAD_HEADER_SUCCESS:
-      const [ menus, instant ] = action.payload;
+      const [ menus, instant, ads ] = action.payload;
       return {
         ...state,
+        ads,
         menus,
-        marquee: instant.newsList,
+        news: instant.newsList,
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
@@ -59,7 +62,7 @@ export default function header (state = initialState, action) {
       return { ...state,
         error: action.payload.message,
         menus: [],
-        marquee: [],
+        news: [],
         isLoading: false
       };
     default:
@@ -67,5 +70,11 @@ export default function header (state = initialState, action) {
   }
 }
 
+export const selectFooterAds = state => state.header.ads.footer;
 export const selectMenus = state => state.header.menus;
-export const selectMarquee = state => state.header.marquee;
+export const selectMarquee = (state) => {
+  return {
+    ads: state.header.ads.instant,
+    news: state.header.news
+  };
+};
