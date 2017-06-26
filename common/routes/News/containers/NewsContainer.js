@@ -78,12 +78,13 @@ class NewsContainer extends PureComponent {
   }
 
   touchWindowTop (item, index) {
-    const { sn, title, parseUrl } = this.props.currentNews.data[index];
+    const news = this.props.currentNews.data[index];
+    const { sn, title, parseUrl } = news
     const originalSn = window.location.pathname.split('/')[3];
     if (parseInt(originalSn, 10) !== sn) {
       window.history.pushState(null, null, parseUrl);
       this.props.changeNewsTitle(title);
-      trackCode();
+      trackCode(news);
     }
   }
 
