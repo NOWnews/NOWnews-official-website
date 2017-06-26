@@ -6,7 +6,7 @@ const SlideRight = ({ newsList }) => (
   <div className={css(styles.box)}>
     {newsList.map(({ sn, MainPhoto, shortTitle, parseUrl }) => (
       <Link className={css(styles.link)}
-        style={{backgroundImage: 'url(' + ((MainPhoto && MainPhoto.thumbnail) || (MainPhoto && MainPhoto.url)) + ')'}}
+        style={{backgroundImage: 'url(' + (MainPhoto ? MainPhoto.thumbnail : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg') + ')'}}
         key={sn} to={parseUrl}>
         <div className={css(styles.item)}>{ shortTitle }</div>
       </Link>
