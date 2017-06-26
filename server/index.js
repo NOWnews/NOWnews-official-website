@@ -276,7 +276,7 @@ export const createServer = (config) => {
                 <script>window.INITIAL_STATE = ${JSON.stringify(initialState)};</script>
                 <script src="${__PROD__ ? assets.vendor.js : '/vendor.js'}"></script>
                 <script async src="${__PROD__ ? assets.main.js : '/main.js'}" ></script>
-                <div style="display:none;">版本為 ${ region }</div>
+                <div style="display:none;">Server in ${ region }</div>
               </body>
             </html>
           `);
