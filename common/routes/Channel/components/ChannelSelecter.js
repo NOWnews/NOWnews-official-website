@@ -1,10 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
 import Helmet from 'react-helmet';
 
-class ChannelSelecter extends Component {
+class ChannelSelecter extends PureComponent {
   constructor (props) {
     super(props);
     this.state = {
@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
     padding: '10px 20px',
     position: 'absolute',
     textAlign: 'center',
-    width: 970
+    width: 970,
+    zIndex: 100
   },
   channelItem: {
     color: '#000000',

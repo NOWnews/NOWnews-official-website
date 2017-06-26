@@ -21,9 +21,9 @@ const BlockItems = ({ newsList }) => {
     );
 
     if (key === 4) {
-      items.push(<DFP className={css(styles.blockItem)} opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />);
+      items.push(<DFP key='AD_4' className={css(styles.blockItem)} opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />);
     } else if (key === 9) {
-      items.push(<DFP className={css(styles.blockItem)} opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />);
+      items.push(<DFP key='AD_9' className={css(styles.blockItem)} opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />);
     }
   });
 

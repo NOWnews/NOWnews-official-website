@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 // import FontAwesome from 'react-fontawesome';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
@@ -6,7 +6,7 @@ import { VideoPlayer } from '../../../components/News';
 import { Container } from '../../../components/Layout';
 import moment from 'moment';
 
-class MainVideoPlay extends Component {
+class MainVideoPlay extends PureComponent {
   constructor (props) {
     super(props);
     this.next = this.next.bind(this);

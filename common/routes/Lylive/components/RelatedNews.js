@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import moment from 'moment';
 
-class MainVideoPlay extends Component {
+class RelatedNews extends PureComponent {
   constructor (props) {
     super(props);
     this.state = {
@@ -164,8 +164,8 @@ const styles = StyleSheet.create({
   }
 });
 
-MainVideoPlay.propTypes = {
+RelatedNews.propTypes = {
   newsList: PropTypes.array.isRequired
 };
 
-export default MainVideoPlay;
+export default RelatedNews;

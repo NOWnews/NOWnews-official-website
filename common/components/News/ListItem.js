@@ -1,36 +1,39 @@
 import moment from 'moment';
-import React, { PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 import TypeIcon from './TypeIcon';
 
-export const ListItem = ({ isExternal, category, photo, time, title, type, url }) => {
-  const { width, height, ...mainPhoto } = photo || {};
-  let imgStyle = {};
-  // 如果是接近方圖的話會往上位移 25%，因為方形的圖通常主要內容在中間。
-  if (height >= width && (width - height) > -200) {
-    const top = height * 95 / width / 4;
-    imgStyle.top = `-${top}px`;
-  }
+class ListItem extends PureComponent {
+  render () {
+    const { isExternal, category, photo, time, title, type, url } = this.props;
+    const { width, height, ...mainPhoto } = photo || {};
+    let imgStyle = {};
+    // 如果是接近方圖的話會往上位移 25%，因為方形的圖通常主要內容在中間。
+    if (height >= width && (width - height) > -200) {
+      const top = height * 95 / width / 4;
+      imgStyle.top = `-${top}px`;
+    }
 
-  return (
-    <Link className={`clearfix ${css(styles.box)}`}
-      to={url} target={isExternal === true ? '_blank' : null}>
-      <div className={`left ${css(styles.left)}`}>
-        <img className={css(styles.img)} style={imgStyle}
-          src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} alt={mainPhoto.desc} />
-        <TypeIcon type={type} size='LI' />
-      </div>
-      <div className={`right ${css(styles.right)}`}>
-        <div className={css(styles.category)}>{category}</div>
-        <div className={css(styles.title)}>{title}</div>
-        <img src='/icons/whiteClock.png' />
-        <span className={css(styles.time)}>
-          {moment(time).format('YYYY/MM/DD')}
-        </span>
-      </div>
-    </Link>
-  );
+    return (
+      <Link className={`clearfix ${css(styles.box)}`}
+        to={url} target={isExternal === true ? '_blank' : null}>
+        <div className={`left ${css(styles.left)}`}>
+          <img className={css(styles.img)} style={imgStyle}
+            src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} alt={mainPhoto.desc} />
+          <TypeIcon type={type} size='LI' />
+        </div>
+        <div className={`right ${css(styles.right)}`}>
+          <div className={css(styles.category)}>{category}</div>
+          <div className={css(styles.title)}>{title}</div>
+          <img src='/icons/whiteClock.png' />
+          <span className={css(styles.time)}>
+            {moment(time).format('YYYY/MM/DD')}
+          </span>
+        </div>
+      </Link>
+    );
+  }
 };
 
 const styles = StyleSheet.create({

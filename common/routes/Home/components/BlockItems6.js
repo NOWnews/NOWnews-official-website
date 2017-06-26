@@ -1,28 +1,30 @@
-import React, { PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { BlockTopicItem } from '../../../components/News';
 
-const BlockItems = ({ newsList }) => {
-  let items = newsList.map(({ createdAt, MainPhoto, sn, title, url }) => {
+class BlockItems extends PureComponent {
+  render () {
+    const { newsList } = this.props;
+    let items = newsList.map(({ createdAt, MainPhoto, sn, title, url }) => {
+      return (
+        <div key={sn} className={css(styles.blockItem)}>
+          <BlockTopicItem key={sn}
+            category='專題'
+            photo={MainPhoto}
+            title={title}
+            time={createdAt}
+            url={url} />
+        </div>
+      );
+    });
+
     return (
-      <div key={sn} className={css(styles.blockItem)}>
-        <BlockTopicItem key={sn}
-          category='專題'
-          photo={MainPhoto}
-          title={title}
-          time={createdAt}
-          url={url} />
+      <div className='clearfix'>
+        { items }
       </div>
     );
-  });
-
-  return (
-    <div className='clearfix'>
-      { items }
-    </div>
-  );
-};
-
+  };
+}
 const styles = StyleSheet.create({
   blockItem: {
     float: 'left',

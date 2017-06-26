@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
-class InstantBar extends Component {
+class InstantBar extends PureComponent {
   constructor (props) {
     super(props);
     this.state = {
@@ -90,7 +90,6 @@ class InstantBar extends Component {
             to={third.url} target='_blank'>
             <span>{third.title}</span>
           </Link>}
-
         </CSSTransitionGroup>
       </div>
     );
