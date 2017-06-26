@@ -5,7 +5,7 @@ export const LOAD_INDEX_FAILURE = 'LOAD_INDEX_FAILURE';
 export const SWITCH_TRIPLET_TYPE = 'SWITCH_TRIPLET_TYPE';
 
 const initialState = {
-  ads: [],
+  ads: {},
   carousels: [],
   error: null,
   isLoading: false,
@@ -37,7 +37,7 @@ export function loadHomeList () {
         });
         return;
       }
-      dispatch({ type: LOAD_INDEX_SUCCESS_AND_EMPTY });
+      dispatch({ type: LOAD_INDEX_SUCCESS_AND_EMPTY, payload: { ads: ads.data } });
     }).catch(error => {
       dispatch({
         type: LOAD_INDEX_FAILURE,
@@ -77,6 +77,7 @@ export default function homePage (state = initialState, action) {
     case LOAD_INDEX_SUCCESS_AND_EMPTY:
       return {
         ...state,
+        ads: action.payload.ads,
         carousels: [],
         isLoading: false,
         specialChannels: [],

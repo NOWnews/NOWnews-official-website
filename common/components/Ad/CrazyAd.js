@@ -1,26 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Modal from 'react-overlays/lib/Modal';
-// import isomorphicCookie from 'isomorphic-cookie';
-// import moment from 'moment';
+import isomorphicCookie from 'isomorphic-cookie';
+import moment from 'moment';
 
 class CrazyAd extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      isOpen: true
+      isOpen: false
     };
   }
 
-  // componentDidMount () {
-  //   if (!isomorphicCookie.load('NOW_CrazyFlag')) {
-  //     this.setState({ isOpen: true });
-  //     isomorphicCookie.save('NOW_CrazyFlag', 'NOW_CrazyFlag', {
-  //       secure: false,
-  //       expires: new Date(moment().add(1, 'day'))
-  //     });
-  //   }
-  // }
+  componentDidMount () {
+    if (!isomorphicCookie.load('NOW_CrazyFlag')) {
+      this.setState({ isOpen: true });
+      isomorphicCookie.save('NOW_CrazyFlag', 'NOW_CrazyFlag', {
+        secure: false,
+        expires: new Date(moment().add(1, 'day'))
+      });
+    }
+  }
 
   close = () => {
     this.setState({ isOpen: false });
