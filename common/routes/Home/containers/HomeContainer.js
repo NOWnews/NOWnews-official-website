@@ -84,7 +84,7 @@ class HomeContainer extends Component {
         <MicroDataSearch />
         <Header adType='home' menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
-
+        {ads.crazyAd && ads.crazyAd.type && <CrazyAd ad={ads.crazyAd} />}
         {!isLoading && carousels.length > 0 &&
           <Container>
             <div className={`clearfix ${css(styles.slideArea)}`}>
@@ -92,7 +92,6 @@ class HomeContainer extends Component {
               <SlideRight newsList={carousels.slice(5, 10)} />
             </div>
           </Container>}
-
         {!isLoading && specialTopics.length > 0 &&
           <div className={css(styles.bg)}>
             <Container className='clearfix'>
@@ -103,8 +102,6 @@ class HomeContainer extends Component {
                 </div>
               </LeftSide>
               <RightSide>
-                <CrazyAd />
-                {ads.crazyAd && ads.crazyAd.type && <CrazyAd ad={ads.crazyAd} />}
                 <GrabBag />
                 <Margin10>
                   <DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />

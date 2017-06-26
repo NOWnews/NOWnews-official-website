@@ -27,14 +27,7 @@ class CrazyAd extends Component {
   }
 
   render () {
-    const ad = {
-      title: '華航空姐',
-      type: 'VIDEO',
-      video: 'https://www.youtube.com/embed/yFJ3So9kvEE?autoplay=1'
-      // type: 'PHOTO',
-      // img: '/ad/780x480.jpg'
-    };
-    const { img, title, type, video } = ad || this.props.ad;
+    const { img, title, type, video } = this.props.ad;
     return (
       <Modal
         aria-labelledby='modal-crazy'
