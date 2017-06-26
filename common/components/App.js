@@ -6,6 +6,7 @@ import LogoRow from './Header/LogoRow';
 import { selectFooterAds } from '../modules/header';
 import { setLocal, selectUser } from '../modules/sourceRequest';
 import { connect } from 'react-redux';
+import StaticContainer from 'react-static-container';
 
 const redial = {
   fetch: ({ dispatch, ...local }) => Promise.all([
@@ -22,7 +23,9 @@ const App = ({ ads, children, user }) => (
   <Basic>
     <LogoRow user={user.name} />
     {children}
-    <Footer ads={ads} />
+    <StaticContainer>
+      <Footer ads={ads} />
+    </StaticContainer>
   </Basic>
 );
 

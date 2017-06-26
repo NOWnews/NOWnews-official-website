@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import StaticContainer from 'react-static-container';
 
 const RecommendAds = ({ ads }) => {
   var items = [];
@@ -16,12 +17,14 @@ const RecommendAds = ({ ads }) => {
   });
 
   return (
-    <div>
-      <h2>NOWnews 推薦</h2>
-      <div className='clearfix'>
-        { items }
+    <StaticContainer>
+      <div>
+        <h2>NOWnews 推薦</h2>
+        <div className='clearfix'>
+          { items }
+        </div>
       </div>
-    </div>
+    </StaticContainer>
   );
 };
 

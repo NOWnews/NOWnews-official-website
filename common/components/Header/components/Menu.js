@@ -1,54 +1,57 @@
-import React, { PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-const Menu = ({ menus, currentMainMenu, currentChildMenu }) => {
-  let childMenus = [];
-  let mainMenuDoms = [];
+class Menu extends PureComponent {
 
-  menus.map(({ _id, child, isExternal, name, sn, url }) => {
-    let isCurrentMainMenu = false;
+  render () {
+    const { menus, currentMainMenu, currentChildMenu } = this.props;
+    let childMenus = [];
+    let mainMenuDoms = [];
 
-    if (_id === currentMainMenu) {
-      childMenus = child || [];
-      isCurrentMainMenu = true;
-    }
+    menus.map(({ _id, child, isExternal, name, sn, url }) => {
+      let isCurrentMainMenu = false;
 
-    let linkClass = css(
-      styles.link,
-      (isCurrentMainMenu) && styles.active
-    );
+      if (_id === currentMainMenu) {
+        childMenus = child || [];
+        isCurrentMainMenu = true;
+      }
 
-    mainMenuDoms.push(
-      <Link
-        className={linkClass}
-        key={sn}
-        target={isExternal === true ? '_blank' : null}
-        to={url}>
-        { name }
-      </Link>
-    );
-  });
+      let linkClass = css(
+        styles.link,
+        (isCurrentMainMenu) && styles.active
+      );
 
-  return (
-    <div>
-      <div className={css(styles.menu)}>{ mainMenuDoms }</div>
-      {childMenus.length > 0 && <hr />}
-      <div className={css(styles.menu)}>
-        { childMenus.map(({ _id, sn, isExternal, url, name }) =>
-          <Link
-            className={`${css(styles.link)} ${(_id === currentChildMenu) && css(styles.active)}`}
-            key={sn}
-            target={isExternal === true ? '_blank' : null}
-            to={url}>
-            { name }
-          </Link>
-        )}
+      mainMenuDoms.push(
+        <Link
+          className={linkClass}
+          key={sn}
+          target={isExternal === true ? '_blank' : null}
+          to={url}>
+          { name }
+        </Link>
+      );
+    });
+
+    return (
+      <div>
+        <div className={css(styles.menu)}>{ mainMenuDoms }</div>
+        {childMenus.length > 0 && <hr />}
+        <div className={css(styles.menu)}>
+          { childMenus.map(({ _id, sn, isExternal, url, name }) =>
+            <Link
+              className={`${css(styles.link)} ${(_id === currentChildMenu) && css(styles.active)}`}
+              key={sn}
+              target={isExternal === true ? '_blank' : null}
+              to={url}>
+              { name }
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
-  );
-};
-
+    );
+  };
+}
 const styles = StyleSheet.create({
   menu: {
     display: 'flex',

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import {
   Content, FontSize, RelatedContent, Social, Tags,
   Thermometer, ThermometerSm
@@ -8,7 +8,7 @@ import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 import { DFP } from '../Ad';
 import FacebookProvider, { Comments } from 'react-facebook';
 
-class ContentForVideo extends Component {
+class ContentForVideo extends PureComponent {
 
   constructor (props) {
     super(props);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import StaticContainer from 'react-static-container';
 
 const GarbBag = () => {
   const list = [
@@ -21,10 +22,12 @@ const GarbBag = () => {
   });
 
   return (
-    <div className={css(styles.box)}>
-      <div className={css(styles.title)}>好康報報</div>
-      <div className={css(styles.items)}>{ items }</div>
-    </div>
+    <StaticContainer>
+      <div className={css(styles.box)}>
+        <div className={css(styles.title)}>好康報報</div>
+        <div className={css(styles.items)}>{ items }</div>
+      </div>
+    </StaticContainer>
   );
 };
 

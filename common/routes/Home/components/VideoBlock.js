@@ -1,10 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
 import { VideoPlayer } from '../../../components/News';
 
-class VideoBlock extends Component {
+class VideoBlock extends PureComponent {
   constructor (props) {
     super(props);
     this.state = {

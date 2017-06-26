@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Link from 'react-router/lib/Link';
 import { bindActionCreators } from 'redux';
@@ -16,6 +16,7 @@ import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectInterest, loadInterest } from '../../../modules/interest';
 import { selectHomePage, loadHomeList, switchTripletType } from '../module';
 import { MicroDataSearch } from '../../../components/JSONLD';
+import StaticContainer from 'react-static-container';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -38,7 +39,7 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
   switchTripletType
 });
 
-class HomeContainer extends Component {
+class HomeContainer extends PureComponent {
   constructor (props) {
     super(props);
     this.switchTripletType = this.switchTripletType.bind(this);
@@ -64,11 +65,16 @@ class HomeContainer extends Component {
       interest: '感興趣',
       lbs: '地區'
     };
+    const titles = {
+      instant: '即時新聞',
+      interest: '您感興趣的新聞',
+      lbs: '地區新聞'
+    };
     const TripletIcons = ['instant', 'interest', 'lbs'].map((value) => {
       const imgName = (tripletType === value) ? `${value}_active` : value;
 
       return (
-        <img key={value} onClick={() => { this.switchTripletType(value); }}
+        <img key={value} onClick={() => { this.switchTripletType(value); }} title={titles[value]}
           className={css(styles.tripletBlockTopIcon)} src={`/icons/${imgName}.png`} />
       );
     });
@@ -81,10 +87,12 @@ class HomeContainer extends Component {
 
     return (
       <div>
-        <MicroDataSearch />
         <Header adType='home' menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
         {ads.crazyAd && ads.crazyAd.type && <CrazyAd ad={ads.crazyAd} />}
+        <StaticContainer>
+          <MicroDataSearch />
+        </StaticContainer>
         {!isLoading && carousels.length > 0 &&
           <Container>
             <div className={`clearfix ${css(styles.slideArea)}`}>

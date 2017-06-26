@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Modal from 'react-overlays/lib/Modal';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-class Idle extends Component {
+class Idle extends PureComponent {
   constructor (props) {
     super(props);
     this.open = this.open.bind(this);
