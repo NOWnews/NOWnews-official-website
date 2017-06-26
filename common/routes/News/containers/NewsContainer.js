@@ -162,6 +162,7 @@ class NewsContainer extends PureComponent {
             meta={[
               { name: 'description', content: news.summary },
               { name: 'keywords', content: tags.join(',') },
+              { name: 'news_keywords', content: tags.join(',') },
               { name: 'twitter:title', content: news.title },
               { name: 'twitter:image', content: news.MainPhoto.url },
               { name: 'twitter:description', content: news.summary },
