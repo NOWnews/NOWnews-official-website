@@ -10,5 +10,6 @@
     "webConcurrency": 1,
     "port": 5000,
     "timeout": 29000
-  }
+  },
+  "region": "China"
 }
