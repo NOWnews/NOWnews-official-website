@@ -72,9 +72,6 @@ export const createServer = (config) => {
   // ============= sitemap stert =============
   let xmlns = 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"';
   let xmlnsNews = 'xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"';
-  let xmlnsXhtml = 'xmlns:xhtml="http://www.w3.org/1999/xhtml"';
-  let xmlnsMobile = 'xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"';
-  let xmlnsImage = 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"';
 
   let xmlGoogleNews = (news) => {
     return `<url>
@@ -108,7 +105,7 @@ export const createServer = (config) => {
       });
       res.header('Content-Type', 'application/xml');
       return res.send(`<?xml version="1.0" encoding="UTF-8"?>
-        <urlset ${xmlns} ${xmlnsNews} ${xmlnsXhtml} ${xmlnsMobile} ${xmlnsImage}>${content}</urlset>`);
+        <urlset ${xmlns}>${content}</urlset>`);
     }).catch((error) => {
       console.error('error', error.response);
       return res.status(500).send('Internal server error');
@@ -124,7 +121,7 @@ export const createServer = (config) => {
       });
       res.header('Content-Type', 'application/xml');
       return res.send(`<?xml version="1.0" encoding="UTF-8"?>
-        <urlset ${xmlns} ${xmlnsNews} ${xmlnsXhtml} ${xmlnsMobile} ${xmlnsImage}>${content}</urlset>`);
+        <urlset ${xmlns}>${content}</urlset>`);
     }).catch((error) => {
       console.error('error', error.response);
       return res.status(500).send('Internal server error');
