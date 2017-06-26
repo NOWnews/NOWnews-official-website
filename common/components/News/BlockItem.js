@@ -24,7 +24,7 @@ class BlockItem extends PureComponent {
         </div>
         <div className={css(styles.bottom)}>
           <div className={css(styles.category)}>{category}</div>
-          <div className={css(styles.title)}>{title}</div>
+          <div className={css(styles.title)}><h3 className={css(styles.h3)}>{title}</h3></div>
           <img src='/icons/whiteClock.png' />
           <span className={css(styles.time)}>
             {moment(time).format('YYYY/MM/DD')}
@@ -68,6 +68,10 @@ const styles = StyleSheet.create({
   title: {
     height: 22,
     margin: '5px 0'
+  },
+  h3: {
+    fontSize: '16px',
+    fontWeight: 'normal'
   },
   time: {
     color: '#888',
