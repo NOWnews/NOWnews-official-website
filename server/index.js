@@ -9,6 +9,7 @@ import throng from 'throng';
 import url from 'url';
 import isomorphicCookie from 'isomorphic-cookie';
 import axios from 'axios';
+import _ from 'lodash';
 
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -61,6 +62,86 @@ export const createServer = (config) => {
   }
 
   app.use(express.static('public', { etag: 1000, maxage: 86400000 * 365 }));
+
+
+  // ============= sitemap stert =============
+  let xmlns = 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"';
+  let xmlnsNews = 'xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"';
+  let xmlnsXhtml = 'xmlns:xhtml="http://www.w3.org/1999/xhtml"';
+  let xmlnsMobile = 'xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"';
+  let xmlnsImage = 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"';
+
+  let xmlGoogleNews = (news) => {
+    return `<url>
+      <loc>${news.url}</loc>
+      <lastmod>${news.lastmod}</lastmod>
+      <changefreq>${news.changefreq}</changefreq>
+      <priority>${news.priority}.0</priority>
+    </url>`;
+  };
+  let xmlSitemapNews = (news) => {
+    return `<url>
+      <loc>${news.url}</loc>
+      <news:news>
+        <news:publication>
+          <news:name>${news.name}</news:name>
+          <news:language>${news.language}</news:language>
+        </news:publication>
+        <news:genres>${news.genres}</news:genres>
+        <news:publication_date>${news.publication_date}</news:publication_date>
+        <news:title>${news.title}</news:title>
+      </news:news>
+    </url>`;
+  };
+  app.get('/sitemap.xml', (req, res) => {
+    axios.get(`${webApiServer}/sitemap/google?device=desktop`, {
+      headers: { 'X-NOWnews-API': 'YouCanSeeMeJohnCena' }
+    }).then((result) => {
+      let content = '';
+      _.forEach(result.data, (news) => {
+        content += xmlGoogleNews(news);
+      });
+      res.header('Content-Type', 'application/xml');
+      return res.send(`<?xml version="1.0" encoding="UTF-8"?>
+        <urlset ${xmlns} ${xmlnsNews} ${xmlnsXhtml} ${xmlnsMobile} ${xmlnsImage}>${content}</urlset>`);
+    }).catch((error) => {
+      console.error('error', error.response);
+      return res.status(500).send('Internal server error');
+    });
+  });
+  app.get('/sitemapSSL.xml', (req, res) => {
+    axios.get(`${webApiServer}/sitemap/googleSSL?device=desktop`, {
+      headers: { 'X-NOWnews-API': 'YouCanSeeMeJohnCena' }
+    }).then((result) => {
+      let content = '';
+      _.forEach(result.data, (news) => {
+        content += xmlGoogleNews(news);
+      });
+      res.header('Content-Type', 'application/xml');
+      return res.send(`<?xml version="1.0" encoding="UTF-8"?>
+        <urlset ${xmlns} ${xmlnsNews} ${xmlnsXhtml} ${xmlnsMobile} ${xmlnsImage}>${content}</urlset>`);
+    }).catch((error) => {
+      console.error('error', error.response);
+      return res.status(500).send('Internal server error');
+    });
+  });
+  app.get('/newsSitemap.xml', (req, res) => {
+    axios.get(`${webApiServer}/sitemap/newsSitemap?device=desktop`, {
+      headers: { 'X-NOWnews-API': 'YouCanSeeMeJohnCena' }
+    }).then((result) => {
+      let content = '';
+      _.forEach(result.data, (news) => {
+        content += xmlSitemapNews(news);
+      });
+      res.header('Content-Type', 'application/xml');
+      return res.send(`<?xml version="1.0" encoding="UTF-8"?>
+        <urlset ${xmlns} ${xmlnsNews}>${content}</urlset>`);
+    }).catch((error) => {
+      console.error('error', error.response);
+      return res.status(500).send('Internal server error');
+    });
+  });
+  // ============= sitemap end =============
 
   // process login
   app.get('/api/oauth_callback', (req, res) => {
