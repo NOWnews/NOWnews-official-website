@@ -83,7 +83,7 @@ class NewsContainer extends PureComponent {
     if (parseInt(originalSn, 10) !== sn) {
       window.history.pushState(null, null, parseUrl);
       this.props.changeNewsTitle(title);
-      window.dataLayer.push({'event': 'trackPageView'});
+      window.dataLayer.push({'event': 'trackNewsPageView'});
     }
   }
 
