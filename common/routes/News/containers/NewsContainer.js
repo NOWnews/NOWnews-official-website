@@ -17,7 +17,7 @@ import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectInterest, loadInterest } from '../../../modules/interest';
 import { IsAdult } from '../../../components/Alert';
 import { MicroDataNews } from '../../../components/JSONLD';
-
+import { traceCode as libForTraceCode } from '../../../../lib/track/pageview';
 const redial = {
   fetch: ({ dispatch, params: { sn }, fontSize }) => Promise.all([
     dispatch(loadHeader()),
@@ -83,7 +83,7 @@ class NewsContainer extends PureComponent {
     if (parseInt(originalSn, 10) !== sn) {
       window.history.pushState(null, null, parseUrl);
       this.props.changeNewsTitle(title);
-      window.dataLayer.push({'event': 'trackNewsPageView'});
+      libForTraceCode();
     }
   }
 

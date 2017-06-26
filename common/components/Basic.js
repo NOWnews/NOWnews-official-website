@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Helmet from 'react-helmet';
+import { GTM } from './Tracking';
 import StaticContainer from 'react-static-container';
 // import Idle from './Idle';
 
@@ -30,6 +31,7 @@ class Basic extends PureComponent {
                 {property: 'fb:app_id', content: 132863386747341},
                 {property: 'fb:pages', content: 102884532662}
               ]} />
+            <GTM gtmId='GTM-W25KLJG' />
             <script dangerouslySetInnerHTML={{__html: `
                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
