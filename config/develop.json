@@ -1,6 +1,7 @@
 {
   "mode": "develop",
-  "webApiServer": "http://61.67.121.56:10001",
+  "webApiServer": "http://localhost:10001",
+  // "webApiServer": "http://61.67.121.56:10001",
   "memberApiServer": "https://memberapi.nownews.com",
   "isProdMode": false,
   "headers": {
@@ -10,5 +11,6 @@
     "webConcurrency": 1,
     "port": 5000,
     "timeout": 29000
-  }
+  },
+  "region": "Taiwan"
 }

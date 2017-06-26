@@ -4,6 +4,7 @@ import React, { PureComponent, PropTypes } from 'react';
 class MicroDataNews extends PureComponent {
   render () {
     const { news } = this.props;
+    const photo = news.MainPhoto && news.MainPhoto.url;
     const data = [
       {
         "@context": "http://schema.org",
@@ -18,7 +19,7 @@ class MicroDataNews extends PureComponent {
     	  "headline": news.title,
     	  "image": {
     	    "@type": "ImageObject",
-    	    "url": news.MainPhoto.url,
+    	    "url": photo,
     	    "width": 696,
     	    "height": 530
     	  },
@@ -66,7 +67,7 @@ class MicroDataNews extends PureComponent {
           "item": {
             "@id": `http://www.nownews.com${news.parseUrl}`,
             "name": news.title,
-            "image": news.MainPhoto.url
+            "image": photo
           }
         }]
       }

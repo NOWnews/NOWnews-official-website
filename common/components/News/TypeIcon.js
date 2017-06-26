@@ -18,7 +18,8 @@ const TypeIcon = ({ type = 'NEWS', size = 'BI' }) => {
 
 const styles = StyleSheet.create({
   newsType: {
-    position: 'absolute'
+    position: 'absolute',
+    zIndex: 10
   },
   // For Normal ListItem
   LI: {

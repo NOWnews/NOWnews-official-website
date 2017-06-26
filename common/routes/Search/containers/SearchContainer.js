@@ -14,6 +14,7 @@ import { Container, Loading, Margin10, NotFound } from '../../../components/Layo
 import Pagination from '../../../components/Pagination';
 
 import { TimeAndKeywordArea } from '../components';
+import Helmet from 'react-helmet';
 
 const redial = {
   fetch: ({ dispatch, query }) => Promise.all([
@@ -58,9 +59,39 @@ class SearchPage extends PureComponent {
   render () {
     const { loadSearchList, local, menus, searchPage, marquee } = this.props;
     const { isLoading, list, hotKeywords, pageData, keyword, timeRange } = searchPage;
-
+    const news = list[0];
+    let newsMainPhoto;
+    if (news) {
+      newsMainPhoto = news.MainPhoto && news.MainPhoto.url;
+    }
     return (
       <Container>
+        <div>
+          {news && <Helmet title='NOWnews 今日新聞' titleTemplate={keyword + '熱門搜尋| 新聞搜尋 | NOWnews 今日新聞'}
+            meta={[
+              { name: 'description', content: `${keyword}相關新聞及資料都在NOWnews今日新聞。` },
+              { name: 'keywords', content: `${keyword}, ${hotKeywords.join(',')}` },
+              { name: 'news_keywords', content: `${keyword}, ${hotKeywords.join(',')}` },
+              { name: 'twitter:title', content: `${keyword} 熱門搜尋| 新聞搜尋 | NOWnews 今日新聞` },
+              { name: 'twitter:image', content: newsMainPhoto },
+              { name: 'twitter:description', content: `${keyword}相關新聞及資料都在NOWnews今日新聞。` },
+              { name: 'twitter:card', content: news.MainPhoto.url },
+              { name: 'contact', content: 'service@nownews.com' },
+              { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
+              { property: 'article:author', content: 'https://www.facebook.com/nownews' },
+              { property: 'og:type', content: 'article' },
+              { property: 'og:locale', content: 'zh_TW' },
+              { property: 'og:title', content: `${keyword} 熱門搜尋| 新聞搜尋 | NOWnews 今日新聞` },
+              { property: 'og:description', content: `${keyword}相關新聞及資料都在NOWnews今日新聞。` },
+              { property: 'og:image', content: newsMainPhoto },
+              { property: 'og:video', content: (news.type === 'VIDEO') ? news.MainVideo.url : '' },
+              { property: 'og:url', content: `http://www.nownews.com/search?keyword=${keyword}&timeRange=lastWeek` },
+              { property: 'og:rich_attachment', content: 'true' }
+            ]}
+            link={[
+                {rel: 'canonical', href: `http://www.nownews.com/search?keyword=${keyword}&timeRange=lastWeek`}
+            ]} />}
+        </div>
         <Header menus={menus} marquee={marquee} />
         <Margin10 className='center'>
           <input type='hidden' name='timeRange' value={timeRange} />

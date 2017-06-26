@@ -6,7 +6,7 @@ import TypeIcon from './TypeIcon';
 
 class BlockItem extends PureComponent {
   render () {
-    const { category, photo, time, title, type, url } = this.props;
+    const { category, photo, target, time, title, type, url } = this.props;
     const { width, height, ...mainPhoto } = photo || {};
     let imgStyle = {};
     // 如果是接近方圖的話會往上位移 20%，因為方形的圖通常主要內容在中間。
@@ -16,7 +16,7 @@ class BlockItem extends PureComponent {
     }
 
     return (
-      <Link className={css(styles.box)} to={url}>
+      <Link className={css(styles.box)} to={url} target={target}>
         <TypeIcon type={type} />
         <div className={css(styles.imgDiv)}>
           <img className={css(styles.img)} style={imgStyle}
@@ -24,7 +24,7 @@ class BlockItem extends PureComponent {
         </div>
         <div className={css(styles.bottom)}>
           <div className={css(styles.category)}>{category}</div>
-          <div className={css(styles.title)}>{title}</div>
+          <div className={css(styles.title)}><h3 className={css(styles.h3)}>{title}</h3></div>
           <img src='/icons/whiteClock.png' />
           <span className={css(styles.time)}>
             {moment(time).format('YYYY/MM/DD')}
@@ -69,6 +69,10 @@ const styles = StyleSheet.create({
     height: 22,
     margin: '5px 0'
   },
+  h3: {
+    fontSize: '16px',
+    fontWeight: 'normal'
+  },
   time: {
     color: '#888',
     fontSize: 13,
@@ -82,6 +86,7 @@ const styles = StyleSheet.create({
 BlockItem.propTypes = {
   category: PropTypes.string.isRequired,
   photo: PropTypes.object,
+  target: PropTypes.string,
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   type: PropTypes.string,
