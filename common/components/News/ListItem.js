@@ -25,7 +25,7 @@ class ListItem extends PureComponent {
         </div>
         <div className={`right ${css(styles.right)}`}>
           <div className={css(styles.category)}>{category}</div>
-          <div className={css(styles.title)}>{title}</div>
+          <div className={css(styles.title)}><h3 className={css(styles.h3)}>{title}</h3></div>
           <img src='/icons/whiteClock.png' />
           <span className={css(styles.time)}>
             {moment(time).format('YYYY/MM/DD')}
@@ -75,6 +75,10 @@ const styles = StyleSheet.create({
     marginTop: 5,
     position: 'relative',
     top: '-2px'
+  },
+  h3: {
+    fontSize: '18px',
+    fontWeight: 'normal'
   }
 });
 

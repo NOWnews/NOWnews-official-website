@@ -25,7 +25,7 @@ class BlockItems9 extends PureComponent {
           <TypeIcon type='VIDEO' />
           <img className={css(styles.img)} src={photo.thumbnail || photo.url} />
           <div className={css(styles.bottom)}>
-            <div className={css(styles.title)}>{shortTitle}</div>
+            <div className={css(styles.title)}><h3 className={css(styles.h3)}>{shortTitle}</h3></div>
             <img src='/icons/whiteClock.png' />
             <span className={css(styles.time)}>
               {moment(startedAt).format('YYYY/MM/DD')}
@@ -67,6 +67,10 @@ const styles = StyleSheet.create({
   },
   title: {
     margin: '5px 0'
+  },
+  h3: {
+    fontSize: '16px',
+    fontWeight: 'normal'
   },
   time: {
     color: '#888',

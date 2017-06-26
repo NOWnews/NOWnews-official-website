@@ -46,7 +46,7 @@ class VideoBlock extends PureComponent {
         <div className={`left ${css(styles.thumb)}`} key={index} onClick={() => this.onSelectThumb(index)}>
           <img src={MainPhoto && (MainPhoto.thumbnail || MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg')}
             alt={shortTitle} className={css(styles.img)} />
-          <div className={thumbTitleClass}>{shortTitle}</div>
+          <div className={thumbTitleClass}><h3 className={css(styles.h3)}>{shortTitle}</h3></div>
         </div>
       );
     });
@@ -97,6 +97,10 @@ const styles = StyleSheet.create({
   iconLeft: {
     ...iconStyles,
     left: -25
+  },
+  h3: {
+    fontSize: '16px',
+    fontWeight: 'normal'
   },
   iconRight: {
     ...iconStyles,

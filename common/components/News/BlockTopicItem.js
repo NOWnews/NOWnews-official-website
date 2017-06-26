@@ -9,7 +9,7 @@ export const BlockTopicItem = ({ category, photo = {}, time, title, url }) => {
       <img className={css(styles.img)} src={photo.thumbnail || photo.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} alt={title} />
       <div className={css(styles.bottom)}>
         <div className={css(styles.category)}>{category}</div>
-        <div className={css(styles.title)}>{title}</div>
+        <div className={css(styles.title)}><h3 className={css(styles.h3)}>{title}</h3></div>
         <img src='/icons/whiteClock.png' />
         <span className={css(styles.time)}>
           {moment(time).format('YYYY/MM/DD')}
@@ -54,6 +54,10 @@ const styles = StyleSheet.create({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     width: '275px'
+  },
+  h3: {
+    fontSize: '16px',
+    fontWeight: 'normal'
   },
   time: {
     fontSize: 13,
