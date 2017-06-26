@@ -9,7 +9,7 @@ import { BlockItems9, BlockItems6, BlockItems8, SlideRight, VideoBlock } from '.
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
-import { DFP, GrabBag } from '../../../components/Ad';
+import { CrazyAd, DFP, GrabBag } from '../../../components/Ad';
 
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
@@ -89,6 +89,7 @@ class HomeContainer extends PureComponent {
       <div>
         <Header adType='home' menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
+        {ads.crazyAd && ads.crazyAd.type && <CrazyAd ad={ads.crazyAd} />}
         <StaticContainer>
           <MicroDataSearch />
         </StaticContainer>

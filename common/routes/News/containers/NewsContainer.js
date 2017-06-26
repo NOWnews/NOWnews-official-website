@@ -61,6 +61,7 @@ class NewsContainer extends PureComponent {
     this.props.loadLBSList();
     window.addEventListener('scroll', this.scrollListener);
   }
+
   loadItems () {
     const newsData = this.props.currentNews.data;
     if (!this.props.currentNews.isLoading) {
@@ -165,6 +166,7 @@ class NewsContainer extends PureComponent {
             meta={[
               { name: 'description', content: news.summary },
               { name: 'keywords', content: tags.join(',') },
+              { name: 'news_keywords', content: tags.join(',') },
               { name: 'twitter:title', content: news.title },
               { name: 'twitter:image', content: newsMainPhoto },
               { name: 'twitter:description', content: news.summary },
