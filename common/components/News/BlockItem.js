@@ -6,7 +6,7 @@ import TypeIcon from './TypeIcon';
 
 class BlockItem extends PureComponent {
   render () {
-    const { category, photo, time, title, type, url } = this.props;
+    const { category, photo, target, time, title, type, url } = this.props;
     const { width, height, ...mainPhoto } = photo || {};
     let imgStyle = {};
     // 如果是接近方圖的話會往上位移 20%，因為方形的圖通常主要內容在中間。
@@ -16,7 +16,7 @@ class BlockItem extends PureComponent {
     }
 
     return (
-      <Link className={css(styles.box)} to={url}>
+      <Link className={css(styles.box)} to={url} target={target}>
         <TypeIcon type={type} />
         <div className={css(styles.imgDiv)}>
           <img className={css(styles.img)} style={imgStyle}
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
 BlockItem.propTypes = {
   category: PropTypes.string.isRequired,
   photo: PropTypes.object,
+  target: PropTypes.string,
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   type: PropTypes.string,

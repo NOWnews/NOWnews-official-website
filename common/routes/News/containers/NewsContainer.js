@@ -17,7 +17,7 @@ import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectInterest, loadInterest } from '../../../modules/interest';
 import { IsAdult } from '../../../components/Alert';
 import { MicroDataNews } from '../../../components/JSONLD';
-
+import { trackCode } from '../../../../lib/track/pageview';
 const redial = {
   fetch: ({ dispatch, params: { sn }, fontSize }) => Promise.all([
     dispatch(loadHeader()),
@@ -79,12 +79,13 @@ class NewsContainer extends PureComponent {
   }
 
   touchWindowTop (item, index) {
-    const { sn, title, parseUrl } = this.props.currentNews.data[index];
+    const news = this.props.currentNews.data[index];
+    const { sn, title, parseUrl } = news;
     const originalSn = window.location.pathname.split('/')[3];
     if (parseInt(originalSn, 10) !== sn) {
       window.history.pushState(null, null, parseUrl);
       this.props.changeNewsTitle(title);
-      window.dataLayer.push({'event': 'trackPageView'});
+      trackCode(news);
     }
   }
 
@@ -143,7 +144,9 @@ class NewsContainer extends PureComponent {
     const news = data[0];
     let childMenuId;
     let tags = [];
+    let newsMainPhoto = '';
     if (news) {
+      newsMainPhoto = news.MainPhoto && news.MainPhoto.url;
       news.Menus.forEach(({ ParentId, id }) => {
         if (!childMenuId && ParentId === mainMenuId) {
           childMenuId = id;
@@ -165,9 +168,9 @@ class NewsContainer extends PureComponent {
               { name: 'keywords', content: tags.join(',') },
               { name: 'news_keywords', content: tags.join(',') },
               { name: 'twitter:title', content: news.title },
-              { name: 'twitter:image', content: news.MainPhoto.url },
+              { name: 'twitter:image', content: newsMainPhoto },
               { name: 'twitter:description', content: news.summary },
-              { name: 'twitter:card', content: news.MainPhoto.url },
+              { name: 'twitter:card', content: newsMainPhoto },
               { name: 'contact', content: 'service@nownews.com' },
               { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
               { property: 'article:author', content: 'https://www.facebook.com/nownews' },
@@ -175,7 +178,7 @@ class NewsContainer extends PureComponent {
               { property: 'og:locale', content: 'zh_TW' },
               { property: 'og:title', content: news.title },
               { property: 'og:description', content: news.summary },
-              { property: 'og:image', content: news.MainPhoto.url },
+              { property: 'og:image', content: newsMainPhoto },
               { property: 'og:video', content: (news.type === 'VIDEO') ? news.MainVideo.url : '' },
               { property: 'og:url', content: 'http://www.nownews.com' + news.parseUrl },
               { property: 'og:rich_attachment', content: 'true' }
