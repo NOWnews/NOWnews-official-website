@@ -33,7 +33,7 @@ class ContentForNews extends PureComponent {
     return (
       <Container>
         <div className={css(styles.contentDiv)}>
-          <img className={css(styles.contentImg)} src={imgUrl} alt={news.MainPhoto.desc} />
+          <img className={css(styles.contentImg)} src={imgUrl} alt={news.MainPhoto && news.MainPhoto.desc} />
         </div>
         <i>{news.MainPhoto && news.MainPhoto.desc}</i>
         <Margin10 className='clearfix'>
