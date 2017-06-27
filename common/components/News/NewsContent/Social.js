@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import FontAwesome from 'react-fontawesome';
 
 const Social = ({ img, title, url }) => {
-  const completeUrl = `https://nownews.com${url}`;
+  const completeUrl = `https://www.nownews.com${url}`;
   const appkey = ''; // 暫無 webio appkey
   const socialList = [
     { icon: 'facebook', url: `https://www.facebook.com/sharer/sharer.php?u=${completeUrl}` },
