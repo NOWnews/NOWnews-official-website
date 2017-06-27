@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
 import { DFP, getAdType } from '../../../components/Ad';
-import { Container } from '../../../components/Layout';
+import { Container, NotFound } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import {
   changeFontSize, changeNewsTitle, loadNews, loadMoreNews, onWarm,
@@ -194,6 +194,7 @@ class NewsContainer extends PureComponent {
           currentMainMenu={mainMenuId} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}
           currentMainMenu={mainMenuId} newsTitle={newsTitle} />}
+        {!isLoading && !news && <Container><NotFound /></Container>}
         <InfiniteScroll
           pageStart={0}
           loadMore={this.loadItems}
