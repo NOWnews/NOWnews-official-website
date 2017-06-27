@@ -273,10 +273,10 @@ export const createServer = (config) => {
               <body>
                 <div id="root">${data.html}</div>
                 <script>window.renderedClassNames = ${JSON.stringify(data.css.renderedClassNames)};</script>
-                <script>window.INITIAL_STATE = ${JSON.stringify(initialState)};</script>
+                <script>window.INITIAL_STATE = ${JSON.stringify(initialState).replace(/</g, '\\u003c')};</script>
                 <script src="${__PROD__ ? assets.vendor.js : '/vendor.js'}"></script>
                 <script async src="${__PROD__ ? assets.main.js : '/main.js'}" ></script>
-                <div style="display:none;">Server in ${ region }</div>
+                <div style="display:none;">Server in ${region}</div>
               </body>
             </html>
           `);
