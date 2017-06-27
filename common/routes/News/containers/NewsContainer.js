@@ -132,7 +132,7 @@ class NewsContainer extends PureComponent {
         <div key={news.sn}>
           <Head newsBy={newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
-          {traceCode && <script dangerouslySetInnerHTML={{__html: traceCode}} />}
+          {traceCode && <div dangerouslySetInnerHTML={{__html: traceCode}} />}
           {(totalLength - 1) !== i && <Container>
             <DFP opts={[`Nownews_${adType}_article_970x250_B_new2`, [[970, 90], [970, 250]]]} />
           </Container>}
