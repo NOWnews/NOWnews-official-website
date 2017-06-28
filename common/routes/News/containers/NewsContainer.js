@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
-import { DFP, getAdType } from '../../../components/Ad';
+import { DFP, getAdType, OneAd } from '../../../components/Ad';
 import { Container, NotFound } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import {
@@ -190,6 +190,7 @@ class NewsContainer extends PureComponent {
             ]} />
           <MicroDataNews news={news} />
         </div>}
+        <OneAd />
         {!isLoading && news && <IsAdult isAdult={news.isAdult} />}
         <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}

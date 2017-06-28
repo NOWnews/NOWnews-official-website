@@ -5,7 +5,7 @@ import { selectLylivePage, setVideoSource, loadRelatedNews } from '../module';
 import { NavBar } from '../../../components/Video';
 import { Container, Loading } from '../../../components/Layout';
 import { MainVideoPlay, RelatedNews, VideoSelector } from '../components';
-import { DFP } from '../../../components/Ad';
+import { DFP, OneAd } from '../../../components/Ad';
 import { loadHeader } from '../../../modules/header';
 
 const redial = {
@@ -23,6 +23,7 @@ const mapStateToProps = state => ({
 const LylivePage = ({ lylivePage }) => {
   return (
     <div>
+      <OneAd />
       <Container>
         <NavBar selected='LY_LIVE' />
         <MainVideoPlay url={lylivePage.videoSourceList[lylivePage.videoSource - 1].url} />

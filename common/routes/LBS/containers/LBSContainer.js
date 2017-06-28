@@ -11,7 +11,7 @@ import { BlockItems } from '../components';
 import { Header } from '../../../components/Header';
 import { TripletHead } from '../../../components/News';
 import { Container, Loading, NotFound } from '../../../components/Layout';
-import { DFP } from '../../../components/Ad';
+import { DFP, OneAd } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -41,6 +41,7 @@ class LBSContainer extends Component {
     const { isLoading, location, mapCity, newsList, pageData } = LBS;
     return (
       <div>
+        <OneAd />
         <Header menus={menus} marquee={marquee} />
         <TripletHead active='lbs' city={mapCity} />
         <Container>

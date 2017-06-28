@@ -15,6 +15,7 @@ import Pagination from '../../../components/Pagination';
 
 import { TimeAndKeywordArea } from '../components';
 import Helmet from 'react-helmet';
+import { OneAd } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, query }) => Promise.all([
@@ -92,6 +93,7 @@ class SearchPage extends PureComponent {
                 {rel: 'canonical', href: `http://www.nownews.com/search?keyword=${keyword}&timeRange=lastWeek`}
             ]} />}
         </div>
+        <OneAd />
         <Header menus={menus} marquee={marquee} />
         <Margin10 className='center'>
           <input type='hidden' name='timeRange' value={timeRange} />
