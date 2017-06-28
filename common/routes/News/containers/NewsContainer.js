@@ -14,7 +14,7 @@ import {
 } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
-import { selectInterest, loadInterest } from '../../../modules/interest';
+// import { selectInterest, loadInterest } from '../../../modules/interest';
 import { IsAdult } from '../../../components/Alert';
 import { MicroDataNews } from '../../../components/JSONLD';
 import { trackCode } from '../../../../lib/track/pageview';
@@ -27,7 +27,7 @@ const redial = {
 
 const mapStateToProps = state => ({
   currentNews: selectCurrentNews(state),
-  interest: selectInterest(state),
+  // interest: selectInterest(state),
   LBS: selectLBS(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
@@ -36,7 +36,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = bindActionCreators.bind(null, {
   changeFontSize,
   changeNewsTitle,
-  loadInterest,
+  // loadInterest,
   loadLBSList,
   loadMoreNews,
   onWarm,
@@ -57,7 +57,7 @@ class NewsContainer extends PureComponent {
         window.document.body.scrollTop = 0;
       }, 100);
     }
-    this.props.loadInterest();
+    // this.props.loadInterest();
     this.props.loadLBSList();
     window.addEventListener('scroll', this.scrollListener);
   }
@@ -90,7 +90,8 @@ class NewsContainer extends PureComponent {
   }
 
   render () {
-    const { currentNews, changeFontSize, interest, LBS, menus, marquee, onWarm } = this.props;
+    // const { currentNews, changeFontSize, interest, LBS, menus, marquee, onWarm } = this.props;
+    const { currentNews, changeFontSize, LBS, menus, marquee, onWarm } = this.props;
     const {
       isLoading, data = [], hasMore, fontSize, newsTitle,
       showFixedHeader, topics, Menus
@@ -102,7 +103,8 @@ class NewsContainer extends PureComponent {
     const triplet = {
       list: {
         instant: marquee.news,
-        interest,
+        // interest,
+        interest: [],
         lbs: LBS.newsList
       },
       mapCity: LBS.mapCity
@@ -115,7 +117,7 @@ class NewsContainer extends PureComponent {
         ads: currentNews.ads,
         adType: itemAdType,
         changeFontSize,
-        interest,
+        // interest,
         fontSize,
         news,
         onWarm,
@@ -216,9 +218,9 @@ NewsContainer.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
   changeNewsTitle: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
-  interest: PropTypes.array.isRequired,
+  // interest: PropTypes.array.isRequired,
   LBS: PropTypes.object,
-  loadInterest: PropTypes.func.isRequired,
+  // loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,
   loadMoreNews: PropTypes.func.isRequired,
   marquee: PropTypes.object.isRequired,
