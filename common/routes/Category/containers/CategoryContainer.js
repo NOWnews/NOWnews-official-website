@@ -11,6 +11,7 @@ import { BlockItems12, Slide } from '../../../components/News';
 import { HotNews } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
 import { MicroDataCategory } from '../../../components/JSONLD';
+import Helmet from 'react-helmet';
 
 const redial = {
   fetch: ({ dispatch, params: { categoryName }, query: { page } }) => Promise.all([
@@ -37,6 +38,31 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
   const currentChildMenu = isMainMenu ? null : currentMenu._id;
   return (
     <Container>
+      <div>
+        <Helmet title='NOWnews 今日新聞' titleTemplate={currentMenu.name + '| NOWnews 今日新聞'}
+          meta={[
+            { name: 'description', content: `${currentMenu.name}相關新聞及資料都在NOWnews今日新聞。` },
+            { name: 'keywords', content: currentMenu.name },
+            { name: 'news_keywords', content: currentMenu.name },
+            { name: 'twitter:title', content: `${currentMenu.name}相關新聞及資料都在NOWnews今日新聞。` },
+            { name: 'twitter:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+            { name: 'twitter:description', content: `${currentMenu.name}相關新聞及資料都在NOWnews今日新聞。` },
+            { name: 'twitter:card', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+            { name: 'contact', content: 'service@nownews.com' },
+            { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
+            { property: 'article:author', content: 'https://www.facebook.com/nownews' },
+            { property: 'og:type', content: 'article' },
+            { property: 'og:locale', content: 'zh_TW' },
+            { property: 'og:title', content: currentMenu.name },
+            { property: 'og:description', content: `${currentMenu.name}相關新聞及資料都在NOWnews今日新聞。` },
+            { property: 'og:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+            { property: 'og:url', content: 'http://www.nownews.com' + currentMenu.url },
+            { property: 'og:rich_attachment', content: 'true' }
+          ]}
+          link={[
+              {rel: 'canonical', href: `http://www.nownews.com${currentMenu.url}`}
+          ]} />
+      </div>
       <MicroDataCategory category={categoryPage} />
       <IsAdult isAdult={currentMenu.isAdult} />
       <Header adType={adType} menus={menus} marquee={marquee}
