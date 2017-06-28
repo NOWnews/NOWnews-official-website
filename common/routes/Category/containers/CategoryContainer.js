@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
-import { DFP, getAdType } from '../../../components/Ad';
+import { DFP, getAdType, OneAd } from '../../../components/Ad';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
@@ -63,6 +63,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
               {rel: 'canonical', href: `http://www.nownews.com${currentMenu.url}`}
           ]} />
       </div>
+      <OneAd />
       <MicroDataCategory category={categoryPage} />
       <IsAdult isAdult={currentMenu.isAdult} />
       <Header adType={adType} menus={menus} marquee={marquee}

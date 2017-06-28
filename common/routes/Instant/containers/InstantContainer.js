@@ -7,7 +7,7 @@ import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header'
 
 import { Header } from '../../../components/Header';
 import { LatestVideoNav, ListItem, SpecialTopicNav, TripletHead } from '../../../components/News';
-import { DFP } from '../../../components/Ad';
+import { DFP, OneAd } from '../../../components/Ad';
 import { Container, RightSide, LeftSide, Loading, Margin10, NotFound } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';
 
@@ -27,6 +27,7 @@ const mapStateToProps = state => ({
 
 const InstantContainer = ({ local, marquee, menus, instantPage }) => (
   <div>
+    <OneAd />
     <Header menus={menus} marquee={marquee} />
     <TripletHead active='instant' />
     <Container>

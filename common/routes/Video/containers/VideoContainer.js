@@ -8,7 +8,7 @@ import { NavBar } from '../../../components/Video';
 import { Container, Loading, NotFound } from '../../../components/Layout';
 import { BlockItems9, MainVideoPlay, VideoCategories } from '../components';
 import { IsAdult } from '../../../components/Alert';
-import { DFP } from '../../../components/Ad';
+import { DFP, OneAd } from '../../../components/Ad';
 import { loadHeader, selectMenus } from '../../../modules/header';
 
 const redial = {
@@ -34,6 +34,7 @@ const VideoPage = ({ local, menus, nextVideo, selectVideo, videoPage }) => {
   const maxIndex = newsList.length - 1;
   return (
     <div>
+      <OneAd />
       <IsAdult isAdult={currentMenu.isAdult} />
       <NavBar selected='VIDEO' />
       {videoPage.isLoading && <Loading />}
