@@ -19,12 +19,12 @@ export const Slide = ({ list }) => {
 
   return (
     <Carousel className={css(styles.box)} {...settings}>
-      {list.map(({ parseUrl, MainPhoto, shortTitle, sn, startedAt, title }) => {
+      {list.map(({ parseUrl, url, MainPhoto, shortTitle, sn, startedAt, title }) => {
         const imgUrl = (MainPhoto) ? `${imgApi}${MainPhoto.url}` : '';
         return (
           <Link className={css(styles.ahref)} style={{backgroundImage: `url(${imgUrl})`}}
             alt={shortTitle || title}
-            key={sn} to={parseUrl}>
+            key={sn} to={parseUrl || url}>
             { /* <img className={css(styles.img)} src={MainPhoto.url} /> */ }
           </Link>
         );
