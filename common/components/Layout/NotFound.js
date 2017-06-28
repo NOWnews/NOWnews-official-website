@@ -1,11 +1,19 @@
 import React from 'react';
 import Link from 'react-router/lib/Link';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 const NotFound = () => (
   <div className='center'>
+    <img className={css(styles.notFoundImg)} src='/404.png' />
     <h1>找不到網頁或內容，回<Link to='/'>首頁</Link>看看吧！</h1>
-    <iframe src='https://404page.missingkids.org.tw/api?key=svho5CZGyjQhEBespYqE' width='100%' height='635' frameBorder='0' />
+
   </div>
 );
 
+const styles = StyleSheet.create({
+  notFoundImg: {
+    width: '60%',
+    margin: '20px 0'
+  }
+});
 export default NotFound;
