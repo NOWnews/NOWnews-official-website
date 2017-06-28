@@ -10,7 +10,7 @@ import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header'
 
 import { Header } from '../../../components/Header';
 import ListItem from '../../../components/News/ListItem';
-import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
+import { Container, Loading, Margin10 } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';
 
 import { TimeAndKeywordArea } from '../components';
@@ -112,7 +112,7 @@ class SearchPage extends PureComponent {
             hotKeywords={hotKeywords.slice(0, 7)} keyword={keyword} timeRange={timeRange} />
           <div className='left'>
             {isLoading && <Loading /> }
-            {!isLoading && list.length === 0 && <NotFound />}
+            {!isLoading && list.length === 0 && <div>查無相關資料 ...</div>}
             {!isLoading && list.length > 0 &&
               <div>
                 {list.map((value, i) => (
