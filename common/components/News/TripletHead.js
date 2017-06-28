@@ -23,6 +23,7 @@ const TripletHead = ({ active, city }) => {
       <div className={css(styles.switchIcons)}>
         {linkIcons}
         {city && <span className={css(styles.mapTitle)}>{city}</span>}
+        { active === 'interest' && <span className={css(styles.mapTitle)}>尚未開放，敬請期待！</span>}
       </div>
     </Margin10>
   );

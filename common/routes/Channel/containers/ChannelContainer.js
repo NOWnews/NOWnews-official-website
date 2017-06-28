@@ -9,7 +9,7 @@ import { Header } from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { ChannelSelecter, BlockItems } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
-import { DFP } from '../../../components/Ad';
+import { DFP, OneAd } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, params: { sn }, query: { page } }) => Promise.all([
@@ -34,6 +34,7 @@ const ChannelContainer = ({ channelPage, local, loadChannelData, menus, marquee 
   const { newsList = [], ...channel } = selectedChannel;
   return (
     <Container>
+      <OneAd />
       <Header menus={menus} marquee={marquee} />
       {isLoading && <Loading />}
       <ChannelSelecter channels={channels} selectedChannel={channel} loadChannelData={loadChannelData} />

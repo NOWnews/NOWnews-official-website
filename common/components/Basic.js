@@ -21,12 +21,13 @@ class Basic extends PureComponent {
           <div>
             <Helmet title='NOWnews 今日新聞' titleTemplate='NOWnews 今日新聞'
               link={[
-                {async: '', rel: 'stylesheet', href: '/vendor/basscss.min.css'},
-                {async: '', rel: 'stylesheet', href: '/vendor/font-awesome-4.7.0/css/font-awesome.min.css'},
-                {async: '', rel: 'stylesheet', href: '/vendor/carousel.min.css'},
-                {async: '', rel: 'stylesheet', href: '/vendor/video-js.min.css'}
+                {async: 'async', rel: 'stylesheet', href: '/vendor/basscss.min.css'},
+                {async: 'async', rel: 'stylesheet', href: '/vendor/font-awesome-4.7.0/css/font-awesome.min.css'},
+                {async: 'async', rel: 'stylesheet', href: '/vendor/carousel.min.css'},
+                {async: 'async', rel: 'stylesheet', href: '/vendor/video-js.min.css'}
               ]}
               meta={[
+                {name: 'google-site-verification', content: 'IpBBA_rIUzM0_7nqKskLksd7Rg-aFVbhQyD7DKZT-Ac'},
                 {charset: 'utf-8'},
                 {property: 'fb:app_id', content: 132863386747341},
                 {property: 'fb:pages', content: 102884532662}

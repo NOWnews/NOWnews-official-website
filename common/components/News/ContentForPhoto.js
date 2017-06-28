@@ -23,7 +23,8 @@ class ContentForPhoto extends PureComponent {
   }
 
   render () {
-    const { ads, adType, news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet } = this.props;
+    // const { ads, adType, news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, interest, topics, triplet } = this.props;
+    const { ads, adType, news: { MainPhoto, Photos, ...news }, changeFontSize, fontSize, topics, triplet } = this.props;
     const settings = {
       axis: 'horizontal',
       autoPlay: true,
@@ -63,7 +64,7 @@ class ContentForPhoto extends PureComponent {
               <Comments href={`https://www.nownews.com${news.parseUrl}`} />
             </FacebookProvider>
             <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
-            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} adKey={randomKey} ad={ads.like} />
+            {/* <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} adKey={randomKey} ad={ads.like} /> */}
             <RecommendAds ads={ads.recommand} />
           </LeftSide>
           <RightSide>
@@ -117,7 +118,7 @@ ContentForPhoto.propTypes = {
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  interest: PropTypes.array.isRequired,
+  // interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
   onWarm: PropTypes.func.isRequired,
   topics: PropTypes.array.isRequired,

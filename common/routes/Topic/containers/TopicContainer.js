@@ -9,7 +9,7 @@ import Pagination from '../../../components/Pagination';
 import { Slide } from '../../../components/News';
 import { BlockItems, TopicRight } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
-import { DFP } from '../../../components/Ad';
+import { DFP, OneAd } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, query: { page } }) => Promise.all([
@@ -29,6 +29,7 @@ const TopicContainer = ({ local, topicPage, menus, marquee }) => {
   const { pageData, topics } = topicPage;
   return (
     <Container>
+      <OneAd />
       <Header menus={menus} marquee={marquee} />
       {topicPage.isLoading && <Loading />}
       {!topicPage.isLoading && topics.length === 0 && <NotFound />}
