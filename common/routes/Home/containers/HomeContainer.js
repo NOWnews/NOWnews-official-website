@@ -17,6 +17,7 @@ import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectHomePage, loadHomeList, switchTripletType } from '../module';
 import { MicroDataSearch } from '../../../components/JSONLD';
 import StaticContainer from 'react-static-container';
+import Helmet from 'react-helmet';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -89,6 +90,29 @@ class HomeContainer extends PureComponent {
 
     return (
       <div>
+        <Helmet title='NOWnews 今日新聞' titleTemplate={'NOWnews 今日新聞'}
+          meta={[
+            { name: 'description', content: 'NOWnews今日新聞 提供即時新聞以及豐富的政治、財經、生活、運動、娛樂、國際、社會等軟硬性新聞，屬綜合性的網路新聞網站。' },
+            { name: 'keywords', content: 'NOWnews今日新聞, NOWnews, 頭條新聞 ' },
+            { name: 'news_keywords', content: ' NOWnews今日新聞, NOWnews, 頭條新聞' },
+            { name: 'twitter:title', content: 'NOWnews 今日新聞' },
+            { name: 'twitter:image', content: 'https://www.nownews.com/logo.png' },
+            { name: 'twitter:description', content: 'NOWnews今日新聞 提供即時新聞以及豐富的政治、財經、生活、運動、娛樂、國際、社會等軟硬性新聞，屬綜合性的網路新聞網站。' },
+            { name: 'twitter:card', content: 'https://www.nownews.com/logo.png' },
+            { name: 'contact', content: 'service@nownews.com' },
+            { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
+            { property: 'article:author', content: 'https://www.facebook.com/nownews' },
+            { property: 'og:type', content: 'article' },
+            { property: 'og:locale', content: 'zh_TW' },
+            { property: 'og:title', content: 'NOWnews 今日新聞' },
+            { property: 'og:description', content: 'NOWnews今日新聞 提供即時新聞以及豐富的政治、財經、生活、運動、娛樂、國際、社會等軟硬性新聞，屬綜合性的網路新聞網站' },
+            { property: 'og:image', content: 'https://www.nownews.com/logo.png' },
+            { property: 'og:url', content: 'https://www.nownews.com' },
+            { property: 'og:rich_attachment', content: 'true' }
+          ]}
+          link={[
+            {rel: 'canonical', href: `https://www.nownews.com`}
+          ]} />
         <Header menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
         {ads.crazyAd && ads.crazyAd.type && <CrazyAd ad={ads.crazyAd} />}
