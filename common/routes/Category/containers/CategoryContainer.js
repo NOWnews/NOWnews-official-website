@@ -29,13 +29,17 @@ const mapStateToProps = state => ({
 
 const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
   const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
-  const adType = getAdType(currentMenu);
+  const isDefaultTemplate = currentMenu.template === 'DEFAULT';
+  const adCode = (isDefaultTemplate) ? getAdType(currentMenu) : currentMenu.templateAD;
   const slideData = newsList.slice(0, 5);
   const blockData = newsList.slice(5, 15);
 
   const isMainMenu = currentMenu.ParentId === null;
   const currentMainMenu = isMainMenu ? currentMenu._id : currentMenu.ParentId;
   const currentChildMenu = isMainMenu ? null : currentMenu._id;
+
+  const topAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `column_970x90_pu_${adCode}`;
+  const footerAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `column_970x90_pd_${adCode}`;
   return (
     <Container>
       <div>
@@ -63,12 +67,12 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
               {rel: 'canonical', href: `http://www.nownews.com${currentMenu.url}`}
           ]} />
       </div>
-      <OneAdICIP />
       <MicroDataCategory category={categoryPage} />
       <IsAdult isAdult={currentMenu.isAdult} />
-      <Header ad={`/5799246/Nownews_${adType}_970x250_T_new2`} menus={menus} marquee={marquee}
+      <Header ad={topAd} menus={menus} marquee={marquee}
         currentChildMenu={currentChildMenu}
         currentMainMenu={currentMainMenu} />
+      {isDefaultTemplate && <OneAdICIP />}
       {categoryPage.isLoading && <Loading />}
       {!categoryPage.isLoading && newsList.length === 0 && <NotFound />}
       {!categoryPage.isLoading && newsList.length > 0 &&
@@ -77,11 +81,11 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
             <Slide list={slideData} />
             <HotNews newsList={hotNewsList.slice(0, 6)} />
           </Margin10>
-          <BlockItems12 adType={adType} newsList={blockData} page={pageData} local={local} />
+          <BlockItems12 isDefaultTemplate={isDefaultTemplate} adCode={adCode} newsList={blockData} page={pageData} local={local} />
         </div>
       }
       <OneAdIR />
-      <DFP opts={[`/5799246/Nownews_${adType}_970x250_B_new2`, [[970, 250], [970, 90]]]} />
+      <DFP opts={[footerAd, [[970, 250], [970, 90]]]} />
     </Container>
   );
 };
