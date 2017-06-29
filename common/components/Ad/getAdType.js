@@ -1,3 +1,4 @@
+//  設定分類頁 dfp
 const defaultAdType = 'social';
 
 const definedMapping = {
@@ -11,7 +12,8 @@ const definedMapping = {
   china: 'china', // 大陸
   novelty: 'novel', // 新奇
   fashion: 'article', // 消費
-  taiwanhot: 'place', // 地方
+  local: 'place', // 地方
+  nationalindex: 'place', // 地方總覽
   ppc: 'ppc', // 北北基
   tcm: 'tcm', // 桃竹苗
   cct: 'cct', // 中彰投
