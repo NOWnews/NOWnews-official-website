@@ -66,6 +66,9 @@ class NewsContainer extends PureComponent {
     const newsData = this.props.currentNews.data;
     if (!this.props.currentNews.isLoading && this.props.currentNews.hasMore) {
       const sn = newsData[newsData.length - 1].next.sn;
+      if (!sn) {
+        return;
+      }
       this.props.loadMoreNews(sn);
     }
   }
