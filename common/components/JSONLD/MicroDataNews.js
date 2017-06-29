@@ -13,7 +13,7 @@ class MicroDataNews extends PureComponent {
     	  "dateModified": news.startedAt,
     	  "mainEntityOfPage":{
     	    "@type":"WebPage",
-    	    "@id": `http://www.nownews.com${news.parseUrl}`
+    	    "@id": `https://www.nownews.com${news.parseUrl}`
     	  },
     	  "articleBody": news.content,
     	  "headline": news.title,
@@ -32,7 +32,7 @@ class MicroDataNews extends PureComponent {
     	    "name": "NOWnews今日新聞",
     	    "logo": {
     	      "@type": "ImageObject",
-    	      "url": "http://www.nownews.com/assets/images/logo.png",
+    	      "url": "https://www.nownews.com/logo.png",
     	      "width": 220,
     	      "height": 52
     	    }
@@ -49,14 +49,14 @@ class MicroDataNews extends PureComponent {
           "item": {
             "@id": "https://www.nownews.com",
             "name": "NOWnews今日新聞",
-            "image": "http://www.nownews.com/logo.png"
+            "image": "https://www.nownews.com/logo.png"
           }
         },
         {
           "@type": "ListItem",
           "position": 2,
           "item": {
-            "@id": `http://www.nownews.com${news.MainMenu.url}`,
+            "@id": `https://www.nownews.com${news.MainMenu.url}`,
             "name": news.MainMenu.name,
             "image": "https://legacy.nownews.com/NOWnews_default/default_terry.jpg"
           }
@@ -65,7 +65,7 @@ class MicroDataNews extends PureComponent {
           "@type": "ListItem",
           "position": 3,
           "item": {
-            "@id": `http://www.nownews.com${news.parseUrl}`,
+            "@id": `https://www.nownews.com${news.parseUrl}`,
             "name": news.title,
             "image": photo
           }

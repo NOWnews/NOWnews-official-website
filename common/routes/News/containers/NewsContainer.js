@@ -200,11 +200,11 @@ class NewsContainer extends PureComponent {
               { property: 'og:description', content: news.summary },
               { property: 'og:image', content: newsMainPhoto },
               { property: 'og:video', content: (news.type === 'VIDEO') ? news.MainVideo.url : '' },
-              { property: 'og:url', content: 'http://www.nownews.com' + news.parseUrl },
+              { property: 'og:url', content: 'https://www.nownews.com' + news.parseUrl },
               { property: 'og:rich_attachment', content: 'true' }
             ]}
             link={[
-                {rel: 'canonical', href: `http://www.nownews.com${news.parseUrl}`}
+                {rel: 'canonical', href: `https://www.nownews.com${news.parseUrl}`}
             ]} />
           <MicroDataNews news={news} />
         </div>}
