@@ -39,7 +39,7 @@ export function loadSearchList ({ keyword = '', page = 1, timeRange }) {
     }).catch(error => {
       dispatch({
         type: LOAD_SEARCH_FAILURE,
-        payload: error.response.data
+        payload: error.response ? error.response.data : error.message
       });
     });
   };

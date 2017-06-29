@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 Content.propTypes = {
   content: PropTypes.string.isRequired,
   fontSize: PropTypes.number.isRequired,
-  freeContent: PropTypes.string.isRequired
+  freeContent: PropTypes.string
 };
 
 export default Content;

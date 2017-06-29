@@ -26,8 +26,8 @@ const mapStateToProps = state => ({
 // const InterestContainer = ({ marquee, menus, interest }) => (
 const InterestContainer = ({ marquee, menus, interest }) => (
   <div>
-    <OneAdICIP />
     <Header menus={menus} marquee={marquee} />
+    <OneAdICIP />
     <TripletHead active='interest' />
     <Container>
       {interest.isLoading && <Loading />}

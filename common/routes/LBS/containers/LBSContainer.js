@@ -41,8 +41,8 @@ class LBSContainer extends Component {
     const { isLoading, location, mapCity, newsList, pageData } = LBS;
     return (
       <div>
-        <OneAdICIP />
         <Header menus={menus} marquee={marquee} />
+        <OneAdICIP />
         <TripletHead active='lbs' city={mapCity} />
         <Container>
           {isLoading && <Loading />}

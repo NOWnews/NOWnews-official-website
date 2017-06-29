@@ -1,5 +1,5 @@
 //  設定分類頁 dfp
-const defaultAdType = 'social';
+const defaultAdType = 'life';
 
 const definedMapping = {
   politic: 'political', // 政治
@@ -24,19 +24,12 @@ const definedMapping = {
   eworld: 'tec' // 科技
 };
 
-const getAdType = (mainMenu, childMenus) => {
+const getAdType = (mainMenu, childMenu) => {
   let categoryName = mainMenu.categoryName;
-
   // 正確取得地方新聞子分類
-  if (categoryName === 'place' && childMenus) {
-    childMenus.forEach((menu) => {
-      if (menu.ParentId !== mainMenu._id) {
-        return;
-      };
-      categoryName = menu.categoryName;
-    });
+  if (categoryName === 'local' && childMenu) {
+    categoryName = childMenu.categoryName;
   }
-
   const adType = (definedMapping[categoryName]) ? definedMapping[categoryName] : defaultAdType;
   return adType;
 };

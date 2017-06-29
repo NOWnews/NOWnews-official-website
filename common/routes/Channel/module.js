@@ -38,7 +38,7 @@ export function loadChannelData (sn, page = 1) {
     }).catch(error => {
       dispatch({
         type: LOAD_CHANNEL_FAILURE,
-        payload: error.response.data
+        payload: error.response ? error.response.data : error.message
       });
     });
   };

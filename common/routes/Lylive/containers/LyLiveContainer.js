@@ -23,9 +23,9 @@ const mapStateToProps = state => ({
 const LylivePage = ({ lylivePage }) => {
   return (
     <div>
-      <OneAdICIP />
       <Container>
         <NavBar selected='LY_LIVE' />
+        <OneAdICIP />
         <MainVideoPlay url={lylivePage.videoSourceList[lylivePage.videoSource - 1].url} />
         {lylivePage.isLoading && <Loading />}
         {!lylivePage.isLoading &&
