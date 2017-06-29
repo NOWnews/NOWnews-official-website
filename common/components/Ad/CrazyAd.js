@@ -27,7 +27,7 @@ class CrazyAd extends Component {
   }
 
   render () {
-    const { img, title, type, video } = this.props.ad;
+    const { img, title, type, video, url } = this.props.ad;
     return (
       <Modal
         aria-labelledby='modal-crazy'
@@ -39,7 +39,7 @@ class CrazyAd extends Component {
         <div className={css(styles.dialog)}>
           <span className={css(styles.btn)} onClick={this.close}>✖ 關閉</span>
           {type === 'VIDEO' && <iframe width='970' height='480' src={`${video}&autoplay=1`} frameVorder='0' allowFullScreen />}
-          {type === 'PHOTO' && <img width='970' height='480' alt={title} src={img} />}
+          {type === 'PHOTO' && <a href={url} target='_blank'><img width='970' height='480' alt={title} src={img} /></a>}
         </div>
       </Modal>
     );

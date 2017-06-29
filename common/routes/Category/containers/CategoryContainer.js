@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
-import { DFP, getAdType, OneAd } from '../../../components/Ad';
+import { DFP, getAdType, OneAdIR, OneAdICIP } from '../../../components/Ad';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
@@ -56,14 +56,14 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
             { property: 'og:title', content: currentMenu.name },
             { property: 'og:description', content: `${currentMenu.name}相關新聞及資料都在NOWnews今日新聞。` },
             { property: 'og:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
-            { property: 'og:url', content: 'http://www.nownews.com' + currentMenu.url },
+            { property: 'og:url', content: 'https://www.nownews.com' + currentMenu.url },
             { property: 'og:rich_attachment', content: 'true' }
           ]}
           link={[
-              {rel: 'canonical', href: `http://www.nownews.com${currentMenu.url}`}
+              {rel: 'canonical', href: `https://www.nownews.com${currentMenu.url}`}
           ]} />
       </div>
-      <OneAd />
+      <OneAdICIP />
       <MicroDataCategory category={categoryPage} />
       <IsAdult isAdult={currentMenu.isAdult} />
       <Header adType={adType} menus={menus} marquee={marquee}
@@ -80,6 +80,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
           <BlockItems12 adType={adType} newsList={blockData} page={pageData} local={local} />
         </div>
       }
+      <OneAdIR />
       <DFP opts={[`/5799246/Nownews_${adType}_970x250_B_new2`, [[970, 250], [970, 90]]]} />
     </Container>
   );

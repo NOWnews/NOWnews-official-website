@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
-import { DFP, getAdType, OneAd } from '../../../components/Ad';
+import { DFP, getAdType, OneAdIR, OneAdICIP } from '../../../components/Ad';
 import { Container, NotFound } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import {
@@ -182,15 +182,15 @@ class NewsContainer extends PureComponent {
               { property: 'og:description', content: news.summary },
               { property: 'og:image', content: newsMainPhoto },
               { property: 'og:video', content: (news.type === 'VIDEO') ? news.MainVideo.url : '' },
-              { property: 'og:url', content: 'http://www.nownews.com' + news.parseUrl },
+              { property: 'og:url', content: 'https://www.nownews.com' + news.parseUrl },
               { property: 'og:rich_attachment', content: 'true' }
             ]}
             link={[
-                {rel: 'canonical', href: `http://www.nownews.com${news.parseUrl}`}
+                {rel: 'canonical', href: `https://www.nownews.com${news.parseUrl}`}
             ]} />
           <MicroDataNews news={news} />
         </div>}
-        <OneAd />
+        <OneAdICIP />
         {!isLoading && news && <IsAdult isAdult={news.isAdult} />}
         <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
@@ -209,6 +209,7 @@ class NewsContainer extends PureComponent {
         {isLoading && <Container><h3>新聞載入中，請稍候片刻 ...</h3></Container>}
         <Container>
           <DFP opts={[`/5799246/Nownews_${adType}_article_970x250_B_new2`, [[970, 250], [970, 90]]]} />
+          <OneAdIR />
         </Container>
       </div>
     );
