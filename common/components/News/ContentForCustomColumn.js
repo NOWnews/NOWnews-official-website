@@ -6,9 +6,6 @@ import { DFP } from '../Ad';
 import FacebookProvider, { Comments } from 'react-facebook';
 
 class ContentForCustomColumn extends PureComponent {
-  constructor (props) {
-    super(props);
-  }
 
   render () {
     const { news, changeFontSize, fontSize } = this.props;

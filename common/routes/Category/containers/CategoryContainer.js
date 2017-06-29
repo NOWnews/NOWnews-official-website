@@ -41,11 +41,10 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
   const adCode = (isDefaultTemplate) ? getAdType(currentMainMenu, currentChildMenu) : currentMenu.templateAD;
   const topAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `column_970x90_pu_${adCode}`;
   const footerAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `column_970x90_pd_${adCode}`;
-
   return (
     <Container>
       <div>
-        <Helmet title='NOWnews 今日新聞' titleTemplate={currentMenu.name + '| NOWnews 今日新聞'}
+        {currentMenu.name && <Helmet title='NOWnews 今日新聞' titleTemplate={currentMenu.name + '| NOWnews 今日新聞'}
           meta={[
             { name: 'description', content: `${currentMenu.name}相關新聞及資料都在NOWnews今日新聞。` },
             { name: 'keywords', content: currentMenu.name },
@@ -67,7 +66,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
           ]}
           link={[
               {rel: 'canonical', href: `http://www.nownews.com${currentMenu.url}`}
-          ]} />
+          ]} />}
       </div>
       <MicroDataCategory category={categoryPage} />
       <IsAdult isAdult={currentMenu.isAdult} />
