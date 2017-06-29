@@ -27,6 +27,7 @@ class Basic extends PureComponent {
                 {async: 'async', rel: 'stylesheet', href: '/vendor/video-js.min.css'}
               ]}
               meta={[
+                { name: 'msvalidate.01', content: 'DD4BB84D2BD1EE97A75961E31C37B771' },
                 {name: 'google-site-verification', content: 'IpBBA_rIUzM0_7nqKskLksd7Rg-aFVbhQyD7DKZT-Ac'},
                 {charset: 'utf-8'},
                 {property: 'fb:app_id', content: 132863386747341},

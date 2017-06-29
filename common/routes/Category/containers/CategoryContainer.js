@@ -56,11 +56,11 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
             { property: 'og:title', content: currentMenu.name },
             { property: 'og:description', content: `${currentMenu.name}相關新聞及資料都在NOWnews今日新聞。` },
             { property: 'og:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
-            { property: 'og:url', content: 'http://www.nownews.com' + currentMenu.url },
+            { property: 'og:url', content: 'https://www.nownews.com' + currentMenu.url },
             { property: 'og:rich_attachment', content: 'true' }
           ]}
           link={[
-              {rel: 'canonical', href: `http://www.nownews.com${currentMenu.url}`}
+              {rel: 'canonical', href: `https://www.nownews.com${currentMenu.url}`}
           ]} />
       </div>
       <OneAdICIP />

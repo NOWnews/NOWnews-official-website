@@ -86,11 +86,11 @@ class SearchPage extends PureComponent {
               { property: 'og:description', content: `${keyword}相關新聞及資料都在NOWnews今日新聞。` },
               { property: 'og:image', content: newsMainPhoto },
               { property: 'og:video', content: (news.type === 'VIDEO') ? news.MainVideo.url : '' },
-              { property: 'og:url', content: `http://www.nownews.com/search?keyword=${keyword}&timeRange=lastWeek` },
+              { property: 'og:url', content: `https://www.nownews.com/search?keyword=${keyword}&timeRange=lastWeek` },
               { property: 'og:rich_attachment', content: 'true' }
             ]}
             link={[
-                {rel: 'canonical', href: `http://www.nownews.com/search?keyword=${keyword}&timeRange=lastWeek`}
+                {rel: 'canonical', href: `https://www.nownews.com/search?keyword=${keyword}&timeRange=lastWeek`}
             ]} />}
         </div>
         <OneAdICIP />
