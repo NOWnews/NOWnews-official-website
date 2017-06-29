@@ -33,7 +33,7 @@ export function loadHeader (url) {
         console.error(`Error in reducer that handles ${LOAD_HEADER_FAILURE}: `, error);
         dispatch({
           type: LOAD_HEADER_FAILURE,
-          payload: error.response.data,
+          payload: error.response ? error.response.data : error.message,
           error: true
         });
       });
@@ -54,7 +54,7 @@ export default function header (state = initialState, action) {
         ...state,
         ads,
         menus,
-        news: instant.newsList,
+        news: instant && instant.newsList || [],
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
