@@ -9,7 +9,7 @@ const PreviewForVideo = ({ news, changeFontSize, fontSize }) => (
     <i>{news.MainVideo && news.MainVideo.desc}</i>
     <Margin10 className='clearfix'>
       <LeftSide>
-        <Content content={news.content} fontSize={fontSize} />
+        <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent} />
         <Tags tags={news.Tags} />
       </LeftSide>
       <RightSide>

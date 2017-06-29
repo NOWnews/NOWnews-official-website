@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
-import { DFP, getAdType, OneAd } from '../../../components/Ad';
+import { DFP, getAdType, OneAdIR, OneAdICIP } from '../../../components/Ad';
 import { Container, NotFound } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo } from '../../../components/News';
 import {
@@ -190,7 +190,7 @@ class NewsContainer extends PureComponent {
             ]} />
           <MicroDataNews news={news} />
         </div>}
-        <OneAd />
+        <OneAdICIP />
         {!isLoading && news && <IsAdult isAdult={news.isAdult} />}
         <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
@@ -209,6 +209,7 @@ class NewsContainer extends PureComponent {
         {isLoading && <Container><h3>新聞載入中，請稍候片刻 ...</h3></Container>}
         <Container>
           <DFP opts={[`/5799246/Nownews_${adType}_article_970x250_B_new2`, [[970, 250], [970, 90]]]} />
+          <OneAdIR />
         </Container>
       </div>
     );

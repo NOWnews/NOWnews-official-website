@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 
 const PreviewPage = ({ currentNews, marquee, menus }) => {
   let {isLoading, data} = currentNews;
-  let [{ createdAt, startedAt, newsBy, MainMenu, title, type, ...news }] = data;
+  let [{ createdAt, startedAt, newsBy, MainMenu, title, type, traceCode, ...news }] = data;
   let contentProps = {
     news
   };
@@ -36,6 +36,7 @@ const PreviewPage = ({ currentNews, marquee, menus }) => {
           { type === 'NEWS' && <PreviewForNews {...contentProps} /> }
           { type === 'PHOTO' && <PreviewForPhoto {...contentProps} /> }
           { type === 'VIDEO' && <PreviewForVideo {...contentProps} /> }
+          {traceCode && <div dangerouslySetInnerHTML={{__html: traceCode}} />}
         </div>}
     </div>
   );

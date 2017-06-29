@@ -22,7 +22,7 @@ class InstantBar extends PureComponent {
 
   updateIndex () {
     const { index } = this.state;
-    const nextIndex = (index === 2) ? 0 : index + 1;
+    const nextIndex = (index === 3) ? 0 : index + 1;
     this.setState({index: nextIndex});
   }
 
