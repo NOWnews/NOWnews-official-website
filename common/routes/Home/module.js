@@ -41,7 +41,7 @@ export function loadHomeList () {
     }).catch(error => {
       dispatch({
         type: LOAD_INDEX_FAILURE,
-        payload: error.response.data
+        payload: error.response ? error.response.data : error.message
       });
     });
   };

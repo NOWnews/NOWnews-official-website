@@ -4,9 +4,8 @@ import BlockItem from './BlockItem';
 import { DFP } from '../Ad';
 import Pagination from '../Pagination';
 
-const BlockItems12 = ({ adType, newsList, page, local }) => {
+const BlockItems12 = ({ isDefaultTemplate = true, adCode, newsList, page, local }) => {
   let items = [];
-
   newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
@@ -21,12 +20,14 @@ const BlockItems12 = ({ adType, newsList, page, local }) => {
       </div>
     );
 
-    if (adType && key === 1) {
+    if (adCode && key === 1) {
+      const RTAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_300x250_RT_new2` : `column_300x250_pu_${adCode}`;
       items.push(<DFP key={`Ad_RT`} className={css(styles.blockItem)}
-        opts={[`/5799246/Nownews_${adType}_300x250_RT_new2`, [300, 250]]} />);
-    } else if (adType && key === 6) {
+        opts={[RTAd, [300, 250]]} />);
+    } else if (adCode && key === 6) {
+      const RBAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_300x250_RB_new2` : `column_300x250_pu_${adCode}`;
       items.push(<DFP key={`Ad_RB`} className={css(styles.blockItem)}
-        opts={[`/5799246/Nownews_${adType}_300x250_RB_new2`, [300, 250]]} />);
+        opts={[RBAd, [300, 250]]} />);
     }
   });
 
@@ -52,8 +53,9 @@ const styles = StyleSheet.create({
 });
 
 BlockItems12.propTypes = {
+  isDefaultTemplate: PropTypes.bool,
   local: PropTypes.object,
-  adType: PropTypes.string,
+  adCode: PropTypes.string,
   newsList: PropTypes.array.isRequired,
   page: PropTypes.object
 };

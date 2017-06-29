@@ -5,6 +5,7 @@ export BlockTopicItem from './BlockTopicItem';
 export ContentForNews from './ContentForNews';
 export ContentForPhoto from './ContentForPhoto';
 export ContentForVideo from './ContentForVideo';
+export ContentForCustomColumn from './ContentForCustomColumn';
 export Head from './Head';
 export LatestVideoNav from './LatestVideoNav';
 export ListItem from './ListItem';

@@ -44,7 +44,7 @@ const initialState = {
 //     }).catch(error => {
 //       dispatch({
 //         type: ACTIVE_FAILURE,
-//         payload: error.response.data
+//         payload: error.response ? error.response.data : error.message
 //       });
 //     });
 //   };
@@ -77,7 +77,7 @@ export const loadUser = () => {
     }).catch(error => {
       dispatch({
         type: LOAD_USER_FAILURE,
-        payload: error.response.data
+        payload: error.response ? error.response.data : error.message
       });
     });
   };
@@ -105,7 +105,7 @@ export const loadUser = () => {
 //     }).catch(error => {
 //       dispatch({
 //         type: LOGIN_FAILURE,
-//         payload: error.response.data
+//         payload: error.response ? error.response.data : error.message
 //       });
 //     });
 //   };
@@ -148,7 +148,7 @@ export const onLogout = () => {
 //     }).catch(error => {
 //       dispatch({
 //         type: SIGNUP_FAILURE,
-//         payload: error.response.data
+//         payload: error.response ? error.response.data : error.message
 //       });
 //     });
 //   };
@@ -177,7 +177,7 @@ export const onUpdate = () => {
     }).catch(error => {
       dispatch({
         type: UPDATE_FAILURE,
-        payload: error.response.data
+        payload: error.response ? error.response.data : error.message
       });
     });
   };
@@ -212,7 +212,7 @@ export const onUpdate = () => {
 //     }).catch(error => {
 //       dispatch({
 //         type: RESEND_ACTIVE_FAILURE,
-//         payload: error.response.data
+//         payload: error.response ? error.response.data : error.message
 //       });
 //     });
 //   };

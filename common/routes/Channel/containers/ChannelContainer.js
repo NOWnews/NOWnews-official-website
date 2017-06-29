@@ -34,9 +34,9 @@ const ChannelContainer = ({ channelPage, local, loadChannelData, menus, marquee 
   const { newsList = [], ...channel } = selectedChannel;
   return (
     <Container>
-      <OneAdICIP />
       <Header menus={menus} marquee={marquee} />
       {isLoading && <Loading />}
+      <OneAdICIP />
       <ChannelSelecter channels={channels} selectedChannel={channel} loadChannelData={loadChannelData} />
       {!isLoading && newsList.length === 0 && <NotFound />}
       {!isLoading && newsList.length > 0 &&

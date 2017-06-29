@@ -32,7 +32,7 @@ export function loadInterest (cookie, userId) {
     }).catch(error => {
       dispatch({
         type: LOAD_INTEREST_FAILURE,
-        payload: error.response.data,
+        payload: error.response ? error.response.data : error.message,
         error: true
       });
     });

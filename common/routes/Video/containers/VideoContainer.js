@@ -34,9 +34,9 @@ const VideoPage = ({ local, menus, nextVideo, selectVideo, videoPage }) => {
   const maxIndex = newsList.length - 1;
   return (
     <div>
-      <OneAdICIP />
       <IsAdult isAdult={currentMenu.isAdult} />
       <NavBar selected='VIDEO' />
+      <OneAdICIP />
       {videoPage.isLoading && <Loading />}
       {!videoPage.isLoading && newsList.length > 0 &&
         <MainVideoPlay

@@ -86,7 +86,7 @@ export const loadNews = (sn, fontSize) => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
         type: LOAD_NEWS_FAILURE,
-        payload: error.response.data
+        payload: error.response ? error.response.data : error.message
       });
     });
   };
@@ -120,7 +120,7 @@ export const loadMoreNews = (sn) => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
         type: LOAD_NEWS_FAILURE,
-        payload: error.response.data
+        payload: error.response ? error.response.data : error.message
       });
     });
   };
@@ -144,7 +144,7 @@ export const loadPreview = (redisKey) => {
         console.error(`Error in reducer that handles ${LOAD_PREVIEW_FAILURE}: `, error);
         dispatch({
           type: LOAD_PREVIEW_FAILURE,
-          payload: error.response.data
+          payload: error.response ? error.response.data : error.message
         });
       });
   };
@@ -172,7 +172,7 @@ export const onWarm = (newsId, menuId) => {
     }).catch(error => {
       dispatch({
         type: WARM_NEWS_FAILURE,
-        payload: error.response.data
+        payload: error.response ? error.response.data : error.message
       });
       window.alert('感謝您對這篇新聞的支持，您已經加過溫暖囉！');
     });
@@ -216,7 +216,7 @@ export default function currentNews (state = initialState, action) {
       return {
         ...state,
         data: [...state.data, action.payload],
-        hasMore: !!action.payload.next.sn,
+        hasMore: (action.payload.template !== 'DEFAULT') && !!action.payload.next.sn,
         isLoading: false,
         isSSRAndInit: false,
         lastFetched: action.meta.lastFetched
@@ -227,7 +227,7 @@ export default function currentNews (state = initialState, action) {
         ...state,
         ads,
         data: [news],
-        hasMore: news && !!news.next.sn,
+        hasMore: (news.template !== 'DEFAULT') && news && !!news.next.sn,
         isLoading: false,
         isSSRAndInit: !canUseDOM,
         lastFetched: action.meta && action.meta.lastFetched,
