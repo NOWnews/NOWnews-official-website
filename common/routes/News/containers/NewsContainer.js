@@ -94,12 +94,12 @@ class NewsContainer extends PureComponent {
     const { currentNews, changeFontSize, LBS, menus, marquee, onWarm } = this.props;
     const {
       isLoading, data = [], hasMore, fontSize, newsTitle,
-      showFixedHeader, topics, Menus
+      showFixedHeader, topics, Menus, templateAD
     } = currentNews;
     const currentMainMenu = data[0] && data[0].MainMenu || {};
-    const adType = getAdType(currentMainMenu, Menus);
     const mainMenuId = currentMainMenu._id;
     const totalLength = data.length;
+    const isDefaultTemplate = (news.template === 'DEFAULT');
     const triplet = {
       list: {
         instant: marquee.news,
@@ -113,6 +113,8 @@ class NewsContainer extends PureComponent {
     const items = data.map((item, i) => {
       const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
       const itemAdType = getAdType(news.MainMenu, news.Menus);
+      const itemFooterAd = isDefaultTemplate ? `/5799246/Nownews_${adType}_article_970x250_B_new2` : `column_970x90_ad_${news.templateAD}`;
+
       const contentProps = {
         ads: currentNews.ads,
         adType: itemAdType,
@@ -136,7 +138,7 @@ class NewsContainer extends PureComponent {
           {<Content {...contentProps} />}
           {traceCode && <div dangerouslySetInnerHTML={{__html: traceCode}} />}
           {(totalLength - 1) !== i && <Container>
-            <DFP opts={[`Nownews_${adType}_article_970x250_B_new2`, [[970, 90], [970, 250]]]} />
+            <DFP opts={[itemFooterAd, [[970, 90], [970, 250]]]} />
           </Container>}
         </div>
       );
@@ -161,6 +163,20 @@ class NewsContainer extends PureComponent {
         });
       }
     }
+
+    // 處理不同版型的廣告
+    let topAd = '';
+    let footerAd = '';
+    let adType;
+    if (isDefaultTemplate) {
+      adType = getAdType(currentMainMenu, Menus);
+      topAd = `/5799246/Nownews_${adType}_970x250_T_new2`;
+      footerAd = `/5799246/Nownews_${adType}_article_970x250_B_new2`;
+    } else {
+      topAd = `column_970x90_au_${templateAD}`;
+      footerAd = `column_970x90_ad_${templateAD}`;
+    }
+
     return (
       <div>
         {news && <div>
@@ -190,13 +206,13 @@ class NewsContainer extends PureComponent {
             ]} />
           <MicroDataNews news={news} />
         </div>}
-        <OneAdICIP />
         {!isLoading && news && <IsAdult isAdult={news.isAdult} />}
-        <Header ad={`/5799246/Nownews_${adType}_970x250_T_new2`} menus={menus} marquee={marquee}
+        <Header ad={topAd} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
           currentMainMenu={mainMenuId} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}
           currentMainMenu={mainMenuId} newsTitle={newsTitle} />}
+        {isDefaultTemplate && <OneAdICIP />}
         {!isLoading && !news && <Container><NotFound /></Container>}
         <InfiniteScroll
           pageStart={0}
@@ -208,7 +224,7 @@ class NewsContainer extends PureComponent {
         </InfiniteScroll>
         {isLoading && <Container><h3>新聞載入中，請稍候片刻 ...</h3></Container>}
         <Container>
-          <DFP opts={[`/5799246/Nownews_${adType}_article_970x250_B_new2`, [[970, 250], [970, 90]]]} />
+          <DFP opts={[footerAd, [[970, 250], [970, 90]]]} />
           <OneAdIR />
         </Container>
       </div>

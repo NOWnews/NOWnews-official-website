@@ -216,7 +216,7 @@ export default function currentNews (state = initialState, action) {
       return {
         ...state,
         data: [...state.data, action.payload],
-        hasMore: !!action.payload.next.sn,
+        hasMore: (action.payload.template !== 'DEFAULT') && !!action.payload.next.sn,
         isLoading: false,
         isSSRAndInit: false,
         lastFetched: action.meta.lastFetched
@@ -227,7 +227,7 @@ export default function currentNews (state = initialState, action) {
         ...state,
         ads,
         data: [news],
-        hasMore: news && !!news.next.sn,
+        hasMore: (action.payload.template !== 'DEFAULT') && news && !!news.next.sn,
         isLoading: false,
         isSSRAndInit: !canUseDOM,
         lastFetched: action.meta && action.meta.lastFetched,
