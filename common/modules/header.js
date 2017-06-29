@@ -78,3 +78,11 @@ export const selectMarquee = (state) => {
     news: state.header.news
   };
 };
+export const selectObjectMenu = (state) => {
+  let result = {};
+  state.header.menus.forEach((menu) => {
+    result[menu._id] = menu;
+  });
+  return result;
+};
+

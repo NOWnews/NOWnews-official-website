@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { selectLocal } from '../../../modules/sourceRequest';
-import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
+import { loadHeader, selectMarquee, selectMenus, selectObjectMenu } from '../../../modules/header';
 import { DFP, getAdType, OneAdIR, OneAdICIP } from '../../../components/Ad';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
@@ -24,22 +24,24 @@ const mapStateToProps = state => ({
   local: selectLocal(state),
   categoryPage: selectCategoryPage(state),
   marquee: selectMarquee(state),
-  menus: selectMenus(state)
+  menus: selectMenus(state),
+  objectMenu: selectObjectMenu(state)
 });
 
-const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
+const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
   const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
   const isDefaultTemplate = currentMenu.template === 'DEFAULT';
-  const adCode = (isDefaultTemplate) ? getAdType(currentMenu) : currentMenu.templateAD;
   const slideData = newsList.slice(0, 5);
   const blockData = newsList.slice(5, 15);
 
   const isMainMenu = currentMenu.ParentId === null;
-  const currentMainMenu = isMainMenu ? currentMenu._id : currentMenu.ParentId;
-  const currentChildMenu = isMainMenu ? null : currentMenu._id;
+  const currentMainMenu = isMainMenu ? currentMenu : objectMenu[currentMenu.ParentId];
+  const currentChildMenu = isMainMenu ? null : currentMenu;
 
+  const adCode = (isDefaultTemplate) ? getAdType(currentMainMenu, currentChildMenu) : currentMenu.templateAD;
   const topAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `column_970x90_pu_${adCode}`;
   const footerAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `column_970x90_pd_${adCode}`;
+
   return (
     <Container>
       <div>
@@ -70,8 +72,8 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
       <MicroDataCategory category={categoryPage} />
       <IsAdult isAdult={currentMenu.isAdult} />
       <Header ad={topAd} menus={menus} marquee={marquee}
-        currentChildMenu={currentChildMenu}
-        currentMainMenu={currentMainMenu} />
+        currentChildMenu={currentChildMenu && currentChildMenu._id}
+        currentMainMenu={currentMainMenu._id} />
       {isDefaultTemplate && <OneAdICIP />}
       {categoryPage.isLoading && <Loading />}
       {!categoryPage.isLoading && newsList.length === 0 && <NotFound />}
@@ -94,7 +96,8 @@ CategoryPage.propTypes = {
   local: PropTypes.object.isRequired,
   categoryPage: PropTypes.object.isRequired,
   marquee: PropTypes.object.isRequired,
-  menus: PropTypes.array.isRequired
+  menus: PropTypes.array.isRequired,
+  objectMenu: PropTypes.object.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps)(CategoryPage));
