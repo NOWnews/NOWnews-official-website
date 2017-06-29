@@ -169,6 +169,8 @@ class NewsContainer extends PureComponent {
         });
       }
 
+      isDefaultTemplate = news.template === 'DEFAULT';
+
       // 處理不同版型的廣告
       if (isDefaultTemplate) {
         adType = getAdType(currentMainMenu, Menus);
