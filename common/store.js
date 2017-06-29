@@ -5,7 +5,8 @@ import createReducer from './createReducer';
 
 export function configureStore (initialState) {
   const axios = axiosLib.create({
-    headers: initialState.sourceRequest.headers
+    headers: initialState.sourceRequest.headers,
+    timeout: 10000
   });
 
   let store = createStore(createReducer(), initialState, compose(
