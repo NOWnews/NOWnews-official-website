@@ -60,7 +60,7 @@ module.exports = function (app) {
   });
 
   app.get('/search/:keyword', (req, res) => {
-    res.redirect(301, `/search?keyword=${keyword}&timeRange=lastWeek`);
+    res.redirect(301, `/search?keyword=${req.params.keyword}&timeRange=lastWeek`);
   });
 
   return function (req, res, next) {
