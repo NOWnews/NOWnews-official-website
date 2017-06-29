@@ -27,8 +27,8 @@ const mapStateToProps = state => ({
 
 const InstantContainer = ({ local, marquee, menus, instantPage }) => (
   <div>
-    <OneAdICIP />
     <Header menus={menus} marquee={marquee} />
+    <OneAdICIP />
     <TripletHead active='instant' />
     <Container>
       <Margin10 className='clearfix'>

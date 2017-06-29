@@ -93,8 +93,8 @@ class SearchPage extends PureComponent {
                 {rel: 'canonical', href: `http://www.nownews.com/search?keyword=${keyword}&timeRange=lastWeek`}
             ]} />}
         </div>
-        <OneAdICIP />
         <Header menus={menus} marquee={marquee} />
+        <OneAdICIP />
         <Margin10 className='center'>
           <input type='hidden' name='timeRange' value={timeRange} />
           <input type='text' key={keyword} name='keyword' placeholder='搜尋'

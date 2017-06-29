@@ -29,8 +29,8 @@ const TopicContainer = ({ local, topicPage, menus, marquee }) => {
   const { pageData, topics } = topicPage;
   return (
     <Container>
-      <OneAdICIP />
       <Header menus={menus} marquee={marquee} />
+      <OneAdICIP />
       {topicPage.isLoading && <Loading />}
       {!topicPage.isLoading && topics.length === 0 && <NotFound />}
       {!topicPage.isLoading && topics.length > 0 &&
