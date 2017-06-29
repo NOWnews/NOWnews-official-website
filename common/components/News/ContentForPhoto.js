@@ -55,8 +55,7 @@ class ContentForPhoto extends PureComponent {
         </div>
         <Margin10 className='clearfix'>
           <LeftSide>
-            <Content content={news.content} fontSize={fontSize} />
-            {news.freeContent && <div dangerouslySetInnerHTML={{__html: news.freeContent}} />}
+            <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent} />
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />

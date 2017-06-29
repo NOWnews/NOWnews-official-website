@@ -22,7 +22,7 @@ class ContentForVideo extends PureComponent {
 
   render () {
     const { ads, adType, news, changeFontSize, fontSize, triplet } = this.props;
-    const { freeContent, MainPhoto, MainVideo, parseUrl, title } = news;
+    const { MainPhoto, MainVideo, parseUrl, title } = news;
     const randomKey = news.sn % 3;
     const socialProps = {
       img: MainPhoto && MainPhoto.url,
@@ -35,8 +35,7 @@ class ContentForVideo extends PureComponent {
         <i>{MainVideo && MainVideo.desc}</i>
         <Margin10 className='clearfix'>
           <LeftSide>
-            <Content content={news.content} fontSize={fontSize} />
-            {freeContent && <div dangerouslySetInnerHTML={{__html: freeContent}} />}
+            <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent} />
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />

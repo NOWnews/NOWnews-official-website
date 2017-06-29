@@ -8,7 +8,7 @@ import { selectInterestPage } from '../../../modules/interest';
 import { Header } from '../../../components/Header';
 import { BlockItems12, TripletHead } from '../../../components/News';
 import { Container, Loading, NotFound } from '../../../components/Layout';
-import { OneAd } from '../../../components/Ad';
+import { OneAdIR, OneAdICIP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
 // const InterestContainer = ({ marquee, menus, interest }) => (
 const InterestContainer = ({ marquee, menus, interest }) => (
   <div>
-    <OneAd />
+    <OneAdICIP />
     <Header menus={menus} marquee={marquee} />
     <TripletHead active='interest' />
     <Container>
@@ -34,6 +34,7 @@ const InterestContainer = ({ marquee, menus, interest }) => (
       {!interest.isLoading && interest.newsList.length === 0 && <NotFound />}
       {!interest.isLoading && interest.newsList.length > 0 &&
         <BlockItems12 newsList={interest.newsList.slice(0, 12)} />}
+      <OneAdIR />
     </Container>
   </div>
 );

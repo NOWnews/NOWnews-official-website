@@ -7,7 +7,7 @@ import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header'
 
 import { Header } from '../../../components/Header';
 import { LatestVideoNav, ListItem, SpecialTopicNav, TripletHead } from '../../../components/News';
-import { DFP, OneAd } from '../../../components/Ad';
+import { DFP, OneAdIR, OneAdICIP } from '../../../components/Ad';
 import { Container, RightSide, LeftSide, Loading, Margin10, NotFound } from '../../../components/Layout';
 import Pagination from '../../../components/Pagination';
 
@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 
 const InstantContainer = ({ local, marquee, menus, instantPage }) => (
   <div>
-    <OneAd />
+    <OneAdICIP />
     <Header menus={menus} marquee={marquee} />
     <TripletHead active='instant' />
     <Container>
@@ -60,6 +60,7 @@ const InstantContainer = ({ local, marquee, menus, instantPage }) => (
           <DFP opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />
         </RightSide>
       </Margin10>
+      <OneAdIR />
       <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
     </Container>
   </div>
