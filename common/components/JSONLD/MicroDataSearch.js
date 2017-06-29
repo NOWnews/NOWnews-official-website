@@ -8,21 +8,21 @@ const MicroDataSearch = () => {
       "@type": "WebSite",
       "name": "NOWnews今日新聞",
       "alternateName": ["NOWnews今日新聞","NOWnews"],
-      "url": "http://www.nownews.com",
+      "url": "https://www.nownews.com",
       "keywords": ["NOWnews","NOWnews今日新聞"],
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "http://www.nownews.com/search?keyword={search_term_string}&timeRange=lastWeek&page=1",
+        "target": "https://www.nownews.com/search?keyword={search_term_string}&timeRange=lastWeek&page=1",
         "query-input": "required name=search_term_string"
       }
     },
     {
       "@context": "http://schema.org",
-        "@id": "http://www.nownews.com",
+        "@id": "https://www.nownews.com",
         "@type": "Organization",
         "name": "NOWnews今日新聞",
-        "url": "http://www.nownews.com/",
-        "logo": "https://dev.nownews.com/logo.png",
+        "url": "https://www.nownews.com/",
+        "logo": "https://www.nownews.com/logo.png",
         "contactPoint": [
             {
                 "@type": "ContactPoint",
@@ -48,7 +48,7 @@ const MicroDataSearch = () => {
         "@type":"ListItem",
         "position":1,
         "item":{
-         "@id":"http://www.nownews.com",
+         "@id":"https://www.nownews.com",
          "name":"NOWnews今日新聞"
         }
        }

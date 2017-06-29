@@ -49,11 +49,11 @@ class ChannelSelecter extends PureComponent {
                 { property: 'og:title', content: `${selectedChannel.title} | 特輯` },
                 { property: 'og:description', content: `${selectedChannel.title} | 特輯 | NOWnews 今日新聞` },
                 { property: 'og:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
-                { property: 'og:url', content: 'http://www.nownews.com/channel/' + selectedChannel.sn },
+                { property: 'og:url', content: 'https://www.nownews.com/channel/' + selectedChannel.sn },
                 { property: 'og:rich_attachment', content: 'true' }
               ]}
               link={[
-                {rel: 'canonical', href: `http://www.nownews.com/channel/${selectedChannel.sn}`}
+                {rel: 'canonical', href: `https://www.nownews.com/channel/${selectedChannel.sn}`}
               ]} />
           </div>
         </span>

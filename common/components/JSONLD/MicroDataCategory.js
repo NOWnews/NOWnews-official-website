@@ -16,14 +16,14 @@ class MicroDataCategory extends PureComponent {
           "item": {
             "@id": "https://www.nownews.com",
             "name": "NOWnews今日新聞",
-            "image": "http://www.nownews.com/logo.png"
+            "image": "https://www.nownews.com/logo.png"
           }
         },
         {
           "@type": "ListItem",
           "position": 2,
           "item": {
-            "@id": `http://www.nownews.com${category.currentMenu.url}`,
+            "@id": `https://www.nownews.com${category.currentMenu.url}`,
             "name": category.currentMenu.name,
             "image": "https://legacy.nownews.com/NOWnews_default/default_terry.jpg"
           }
