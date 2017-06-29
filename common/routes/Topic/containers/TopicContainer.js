@@ -9,7 +9,7 @@ import Pagination from '../../../components/Pagination';
 import { Slide } from '../../../components/News';
 import { BlockItems, TopicRight } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
-import { DFP, OneAd } from '../../../components/Ad';
+import { DFP, OneAdIR, OneAdICIP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, query: { page } }) => Promise.all([
@@ -29,7 +29,7 @@ const TopicContainer = ({ local, topicPage, menus, marquee }) => {
   const { pageData, topics } = topicPage;
   return (
     <Container>
-      <OneAd />
+      <OneAdICIP />
       <Header menus={menus} marquee={marquee} />
       {topicPage.isLoading && <Loading />}
       {!topicPage.isLoading && topics.length === 0 && <NotFound />}
@@ -43,6 +43,7 @@ const TopicContainer = ({ local, topicPage, menus, marquee }) => {
           <Pagination {...pageData} {...local} />
         </div>
       }
+      <OneAdIR />
       <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
     </Container>
   );
