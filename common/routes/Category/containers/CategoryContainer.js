@@ -66,7 +66,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee }) => {
       <OneAdICIP />
       <MicroDataCategory category={categoryPage} />
       <IsAdult isAdult={currentMenu.isAdult} />
-      <Header adType={adType} menus={menus} marquee={marquee}
+      <Header ad={`/5799246/Nownews_${adType}_970x250_T_new2`} menus={menus} marquee={marquee}
         currentChildMenu={currentChildMenu}
         currentMainMenu={currentMainMenu} />
       {categoryPage.isLoading && <Loading />}

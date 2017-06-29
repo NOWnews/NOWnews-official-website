@@ -192,7 +192,7 @@ class NewsContainer extends PureComponent {
         </div>}
         <OneAdICIP />
         {!isLoading && news && <IsAdult isAdult={news.isAdult} />}
-        <Header adType={`${adType}_article`} menus={menus} marquee={marquee}
+        <Header ad={`/5799246/Nownews_${adType}_970x250_T_new2`} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
           currentMainMenu={mainMenuId} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}

@@ -89,7 +89,7 @@ class HomeContainer extends PureComponent {
 
     return (
       <div>
-        <Header adType='home' menus={menus} marquee={marquee} />
+        <Header menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
         {ads.crazyAd && ads.crazyAd.type && <CrazyAd ad={ads.crazyAd} />}
         <StaticContainer>
