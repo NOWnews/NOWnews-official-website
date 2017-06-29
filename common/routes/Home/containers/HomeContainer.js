@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
-import { BlockItems9, BlockItems6, BlockItems8, SlideRight, VideoBlock } from '../components';
+import { BlockItems9, BlockTopicItems, BlockItems8, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
@@ -106,7 +106,7 @@ class HomeContainer extends PureComponent {
           <div className={css(styles.bg)}>
             <Container className='clearfix'>
               <LeftSide>
-                <BlockItems6 newsList={specialTopics.slice(0, 6)} />
+                <BlockTopicItems newsList={specialTopics.slice(0, 8)} />
                 <div className={css(styles.seeMoreBlock)}>
                   <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
                 </div>
