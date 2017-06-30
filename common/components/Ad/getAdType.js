@@ -11,7 +11,7 @@ const definedMapping = {
   global: 'international', // 國際
   china: 'china', // 大陸
   novelty: 'novel', // 新奇
-  fashion: 'article', // 消費
+  fashion: 'consu', // 消費
   local: 'place', // 地方
   nationalindex: 'place', // 地方總覽
   ppc: 'ppc', // 北北基
@@ -21,7 +21,7 @@ const definedMapping = {
   kpp: 'kpp', // 高屏澎
   yhd: 'yhd', // 宜花東
   km: 'km', // 金馬
-  eworld: 'tec' // 科技
+  eworld: 'tech' // 科技
 };
 
 const getAdType = (mainMenu, childMenu) => {
