@@ -9,7 +9,7 @@ export const Footer = ({ ads }) => {
     { isExternal: false, title: '立院直播', url: '/lylive/1' },
     { isExternal: true, title: '購屋通', url: 'http://www.cthouse.com.tw/?utm_source=nownews&utm_medium=text&utm_content=navigation&utm_campaign=nownews' },
     // { isExternal: false, title: '名家論壇', url: '' },
-    { isExternal: true, title: '飆網超省', url: 'https://www.kbro.com.tw/K01/cm-promo-more-2_3_0_6_3.html?&mkwid=bPIzZHwz' },
+    { isExternal: true, title: '飆網超省', url: 'https://www.twmbroadband.com/T01/cm-promo-more-2_3_0_1053_15.html?&mkwid=SjDd8oD' },
     // { isExternal: false, title: '公益行善', url: '' },
     { isExternal: true, title: '網頁遊戲', url: 'http://nownews.nicegame.com.tw/' },
     { isExternal: true, title: '投票區', url: 'http://vote.nownews.com/' }
