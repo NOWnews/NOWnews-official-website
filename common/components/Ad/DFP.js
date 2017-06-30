@@ -4,8 +4,8 @@ import Dfp from 'react-simple-dfp';
 // opts format: ['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']
 const DFP = ({ className = '', opts }) => {
   return (
-    <div className={className} >
-      <Dfp adUnitPath={opts[0]} key={opts[0]}
+    <div className={className} key={opts[0]}>
+      <Dfp adUnitPath={opts[0]}
         adCollapse
         adSize={opts[1]}
         adElementId={opts[2]} />
