@@ -116,7 +116,7 @@ class NewsContainer extends PureComponent {
       const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
       const itemAdType = getAdType(news.MainMenu, news.Menus);
       const isDefaultTemplateForItem = (news.template === 'DEFAULT');
-      const itemFooterAd = isDefaultTemplateForItem ? `/5799246/Nownews_${itemAdType}_article_970x250_B_new2` : `column_970x90_ad_${news.templateAD}`;
+      const itemFooterAd = isDefaultTemplateForItem ? `/5799246/Nownews_${itemAdType}_article_970x250_B_new2` : `/5799246/column_970x90_ad_${news.templateAD}`;
 
       const contentProps = {
         ads: currentNews.ads,
@@ -180,8 +180,8 @@ class NewsContainer extends PureComponent {
         topAd = `/5799246/Nownews_${adType}_970x250_T_new2`;
         footerAd = `/5799246/Nownews_${adType}_article_970x250_B_new2`;
       } else {
-        topAd = `column_970x90_au_${news.templateAD}`;
-        footerAd = `column_970x90_ad_${news.templateAD}`;
+        topAd = `/5799246/column_970x90_au_${news.templateAD}`;
+        footerAd = `/5799246/column_970x90_ad_${news.templateAD}`;
       }
     }
     return (

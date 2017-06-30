@@ -34,9 +34,9 @@ class ContentForCustomColumn extends PureComponent {
           <RightSide>
             <Social {...socialProps} />
             <FontSize changeFontSize={changeFontSize} />
-            <DFP opts={[`column_300x250_au_${news.templateAD}`, [300, 250]]} />
-            <DFP opts={[`column_300x250_am_${news.templateAD}`, [[300, 250], [300, 600]]]} />
-            <DFP opts={[`column_300x250_ad_${news.templateAD}`, [[300, 250], [300, 600]]]} />
+            <DFP opts={[`/5799246/column_300x250_au_${news.templateAD}`, [[300, 250], [300, 600]]]} />
+            <DFP opts={[`/5799246/column_300x250_ad_${news.templateAD}`, [[300, 600], [300, 250]]]} />
+            <DFP opts={[`/5799246/column_300x250_am_${news.templateAD}`, [[300, 600], [300, 250]]]} />
           </RightSide>
         </Margin10>
       </Container>
