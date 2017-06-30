@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     display: 'inline-block',
     height: firstRowHeight,
     lineHeight: `${firstRowHeight}px`,
-    marginLeft: 15,
+    marginLeft: 12.5,
     textDecoration: 'none',
     transition: '.2s opacity ease',
     ':hover': {
