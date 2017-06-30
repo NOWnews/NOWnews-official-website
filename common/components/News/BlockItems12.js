@@ -21,11 +21,11 @@ const BlockItems12 = ({ isDefaultTemplate = true, adCode, newsList, page, local 
     );
 
     if (adCode && key === 1) {
-      const RTAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_300x250_RT_new2` : `column_300x250_pu_${adCode}`;
+      const RTAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_300x250_RT_new2` : `/5799246/column_300x250_pu_${adCode}`;
       items.push(<DFP key={`Ad_RT`} className={css(styles.blockItem)}
         opts={[RTAd, [300, 250]]} />);
     } else if (adCode && key === 6) {
-      const RBAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_300x250_RB_new2` : `column_300x250_pu_${adCode}`;
+      const RBAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_300x250_RB_new2` : `/5799246/column_300x250_pd_${adCode}`;
       items.push(<DFP key={`Ad_RB`} className={css(styles.blockItem)}
         opts={[RBAd, [300, 250]]} />);
     }

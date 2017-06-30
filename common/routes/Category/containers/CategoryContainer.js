@@ -39,8 +39,8 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
   const currentChildMenu = isMainMenu ? null : currentMenu;
 
   const adCode = (isDefaultTemplate) ? getAdType(currentMainMenu, currentChildMenu) : currentMenu.templateAD;
-  const topAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `column_970x90_pu_${adCode}`;
-  const footerAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `column_970x90_pd_${adCode}`;
+  const topAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `/5799246/column_970x90_pu_${adCode}`;
+  const footerAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `/5799246/column_970x90_pd_${adCode}`;
   return (
     <Container>
       <div>
