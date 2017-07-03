@@ -47,12 +47,15 @@ class HomeContainer extends PureComponent {
   }
 
   switchTripletType (type) {
-    this.props.switchTripletType(type);
-  }
+    if (type === 'interest') {
+      this.props.loadInterest();
+    }
 
-  componentDidMount () {
-    this.props.loadLBSList();
-    this.props.loadInterest();
+    if (type === 'lbs') {
+      this.props.loadLBSList();
+    }
+
+    this.props.switchTripletType(type);
   }
 
   render () {

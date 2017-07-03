@@ -30,6 +30,12 @@ function getLocation () {
 
 export function loadLBSList (page = 1) {
   return (dispatch, getState, { axios }) => {
+    // 有資料同一頁就跳過，不重複呼叫
+    const { newsList, pageData } = getState().LBS;
+    if (newsList.length > 0 && pageData.currentPage === page.toString()) {
+      return Promise.resolve();
+    }
+
     getLocation().then((location) => {
       const { latitude: lat, longitude: lng } = location.coords;
       const { apiServ } = getState().sourceRequest;

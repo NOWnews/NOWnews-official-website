@@ -57,8 +57,6 @@ class NewsContainer extends PureComponent {
         window.document.body.scrollTop = 0;
       }, 100);
     }
-    this.props.loadInterest();
-    this.props.loadLBSList();
     window.addEventListener('scroll', this.scrollListener);
   }
 
@@ -107,7 +105,9 @@ class NewsContainer extends PureComponent {
         interest,
         lbs: LBS.newsList
       },
-      mapCity: LBS.mapCity
+      mapCity: LBS.mapCity,
+      loadInterest: this.props.loadInterest,
+      loadLBSList: this.props.loadLBSList
     };
 
     const items = data.map((item, i) => {
