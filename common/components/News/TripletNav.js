@@ -53,11 +53,10 @@ class TripletNav extends PureComponent {
           <div className={css(styles.switchIcons)}>
             { TripletIcons }
           </div>
-          { tripletType === 'interest' && <div className={css(styles.mapTitle)}>尚未開放，敬請期待！</div>}
           { tripletType === 'lbs' && <div className={css(styles.mapTitle)}>{ mapCity }</div>}
         </div>
         { tripletType === 'lbs' && mapCity === '' && <h3>尚未取得您的位置資訊</h3>}
-        { tripletType !== 'interest' && <div>{ items }</div>}
+        <div>{ items }</div>
       </Margin10>
     );
   }
