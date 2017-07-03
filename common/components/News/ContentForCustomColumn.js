@@ -28,7 +28,7 @@ class ContentForCustomColumn extends PureComponent {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <FacebookProvider appId='132863386747341' language='zh_TW'>
-              <Comments href={`http://www.nownews.com${news.parseUrl}`} />
+              <Comments href={`https://www.nownews.com${news.parseUrl}`} />
             </FacebookProvider>
           </LeftSide>
           <RightSide>
