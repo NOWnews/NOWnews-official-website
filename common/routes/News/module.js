@@ -48,6 +48,10 @@ export const changeNewsTitle = (newsTitle) => {
 
 export const loadNews = (sn, fontSize) => {
   return (dispatch, getState, { axios }) => {
+    if (!sn) {
+      return Promise.resolve();
+    }
+
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_NEWS_REQUEST, payload: { fontSize } });
 
