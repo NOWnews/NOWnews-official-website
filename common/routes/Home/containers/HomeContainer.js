@@ -13,7 +13,7 @@ import { CrazyAd, DFP, GrabBag } from '../../../components/Ad';
 
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
-// import { selectInterest, loadInterest } from '../../../modules/interest';
+import { selectInterest, loadInterest } from '../../../modules/interest';
 import { selectHomePage, loadHomeList, switchTripletType } from '../module';
 import { MicroDataSearch } from '../../../components/JSONLD';
 import StaticContainer from 'react-static-container';
@@ -28,14 +28,14 @@ const redial = {
 
 const mapStateToProps = state => ({
   homePage: selectHomePage(state),
-  // interest: selectInterest(state),
+  interest: selectInterest(state),
   LBS: selectLBS(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
-  // loadInterest,
+  loadInterest,
   loadLBSList,
   switchTripletType
 });
@@ -47,17 +47,19 @@ class HomeContainer extends PureComponent {
   }
 
   switchTripletType (type) {
+    if (type === 'interest') {
+      this.props.loadInterest();
+    }
+
+    if (type === 'lbs') {
+      this.props.loadLBSList();
+    }
+
     this.props.switchTripletType(type);
   }
 
-  componentDidMount () {
-    this.props.loadLBSList();
-    // this.props.loadInterest();
-  }
-
   render () {
-    // const { marquee, interest, menus, homePage, LBS = {} } = this.props;
-    const { marquee, menus, homePage, LBS = {} } = this.props;
+    const { marquee, interest, menus, homePage, LBS = {} } = this.props;
     const {
       ads, carousels, isLoading, specialChannels, specialTopics,
       tripletType, videos
@@ -83,8 +85,7 @@ class HomeContainer extends PureComponent {
 
     const tripletObject = {
       instant: marquee.news,
-      // interest,
-      interest: [],
+      interest,
       lbs: LBS.newsList
     };
 
@@ -157,7 +158,6 @@ class HomeContainer extends PureComponent {
             <Container>
               <div className={css(styles.tripletBlockTop)}>
                 { TripletIcons }
-                { tripletType === 'interest' && <span className={css(styles.mapTitle)}>未開放，敬請期待</span>}
                 { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>{LBS.mapCity}</span>}
               </div>
               <BlockItems9
@@ -165,11 +165,11 @@ class HomeContainer extends PureComponent {
                 hasAd={tripletType === 'instant'}
                 newsList={tripletObject[tripletType].slice(0, 9)} />
               { tripletType === 'lbs' && !isLoading && LBS.location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
-              { tripletType !== 'interest' && <div className={css(styles.seeMoreBlock)}>
+              <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
                   看更多{seeMoreTextDefined[tripletType]}新聞
                 </Link>
-              </div>}
+              </div>
             </Container>
           </div>}
         <Container className='clearfix'>
@@ -322,9 +322,9 @@ const styles = StyleSheet.create({
 
 HomeContainer.propTypes = {
   homePage: PropTypes.object.isRequired,
-  // interest: PropTypes.array.isRequired,
+  interest: PropTypes.array.isRequired,
   LBS: PropTypes.object,
-  // loadInterest: PropTypes.func.isRequired,
+  loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,
   marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,

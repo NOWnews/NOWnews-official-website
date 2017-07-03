@@ -21,8 +21,7 @@ class ContentForNews extends PureComponent {
   }
 
   render () {
-    // const { ads, adType, news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
-    const { ads, adType, news, changeFontSize, fontSize, topics, triplet } = this.props;
+    const { ads, adType, news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
     const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
     const imgUrl = (news.MainPhoto && news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
@@ -47,7 +46,7 @@ class ContentForNews extends PureComponent {
               <Comments href={`https://www.nownews.com${news.parseUrl}`} />
             </FacebookProvider>
             <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
-            {/* <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} adKey={randomKey} ad={ads.like} /> */}
+            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} adKey={randomKey} ad={ads.like} />
             <RecommendAds ads={ads.recommand} />
           </LeftSide>
           <RightSide>
@@ -55,7 +54,7 @@ class ContentForNews extends PureComponent {
             <FontSize changeFontSize={changeFontSize} />
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RT_new2`, [300, 250]]} />
             <Thermometer pv={news.pageView ? news.pageView.totalScore : 0} onWarm={this.onWarm} />
-            <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
+            <TripletNav {...triplet} />
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RM_new2`, [300, 250]]} />
             <SpecialTopicNav list={topics} />
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RB_new2`, [300, 250]]} />
@@ -84,7 +83,7 @@ ContentForNews.propTypes = {
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  // interest: PropTypes.array.isRequired,
+  interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
   onWarm: PropTypes.func.isRequired,
   topics: PropTypes.array.isRequired,
