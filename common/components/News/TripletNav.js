@@ -11,10 +11,6 @@ class TripletNav extends PureComponent {
   }
 
   switchTripletType (type) {
-    if (type === 'interest') {
-      this.props.loadInterest();
-    }
-
     if (type === 'lbs') {
       this.props.loadLBSList();
     }
@@ -103,7 +99,6 @@ const styles = StyleSheet.create({
 
 TripletNav.propTypes = {
   list: PropTypes.object.isRequired,
-  loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,
   mapCity: PropTypes.string.isRequired
 };

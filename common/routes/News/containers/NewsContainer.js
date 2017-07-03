@@ -57,6 +57,7 @@ class NewsContainer extends PureComponent {
         window.document.body.scrollTop = 0;
       }, 100);
     }
+    this.props.loadInterest();
     window.addEventListener('scroll', this.scrollListener);
   }
 
@@ -106,7 +107,6 @@ class NewsContainer extends PureComponent {
         lbs: LBS.newsList
       },
       mapCity: LBS.mapCity,
-      loadInterest: this.props.loadInterest,
       loadLBSList: this.props.loadLBSList
     };
 
