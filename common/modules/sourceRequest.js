@@ -32,5 +32,6 @@ export default function sourceRequest (state = initialState, action) {
   }
 }
 
+export const selectSourceRequest = state => state.sourceRequest;
 export const selectLocal = state => state.sourceRequest.local;
 export const selectUser = state => state.sourceRequest.local.user || {};
