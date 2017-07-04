@@ -46,7 +46,6 @@ class Basic extends PureComponent {
                 {property: 'fb:app_id', content: 132863386747341},
                 {property: 'fb:pages', content: 102884532662}
               ]} />
-            <GTM gtmId='GTM-W25KLJG' />
             <script dangerouslySetInnerHTML={{__html: `
                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -69,6 +68,7 @@ class Basic extends PureComponent {
             <noscript dangerouslySetInnerHTML={{__html: `
                 <img src='http://b.scorecardresearch.com/p?c1=2&c2=11473067&cv=2.0&cj=1' />
               `}} />
+            <GTM gtmId='GTM-W25KLJG' />
           </div>
         </StaticContainer>
         {/* 目前先不放 <Idle /> */}

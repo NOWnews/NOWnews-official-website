@@ -4,9 +4,10 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
-## 1.0.3 - 2017-07-03
+## 1.0.3 - 2017-07-04
 ### Changed
 - 更新飆網超省連結 @esbb48
+- 調整追蹤碼觸發時機、多帶的參數維度 @esbb48
 
 ### Fixed
 - 搜尋切換分頁時資料會被初始 @esbb48
