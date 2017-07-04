@@ -65,6 +65,14 @@ class SearchPage extends PureComponent {
     if (news) {
       newsMainPhoto = news.MainPhoto && news.MainPhoto.url;
     }
+    // SPA 的關係，local 的 query 不會持續被更新。
+    const refreshLocal = {
+      ...local,
+      query: {
+        keyword,
+        timeRange
+      }
+    };
     return (
       <Container>
         <div>
@@ -128,7 +136,7 @@ class SearchPage extends PureComponent {
             }
           </div>
         </Margin10>
-        <Pagination {...pageData} {...local} />
+        <Pagination {...pageData} {...refreshLocal} />
         <OneAdIR />
       </Container>
     );
