@@ -15,9 +15,11 @@ import {
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectInterest, loadInterest } from '../../../modules/interest';
+import { selectSourceRequest } from '../../../modules/sourceRequest';
 import { IsAdult } from '../../../components/Alert';
 import { MicroDataNews } from '../../../components/JSONLD';
-import { trackCode } from '../../../../lib/track/pageview';
+import { trackInfiniteScrollNews } from '../../../../lib/track/pageview';
+
 const redial = {
   fetch: ({ dispatch, params: { sn }, fontSize }) => Promise.all([
     dispatch(loadHeader()),
@@ -26,6 +28,7 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
+  sourceRequest: selectSourceRequest(state),
   currentNews: selectCurrentNews(state),
   interest: selectInterest(state),
   LBS: selectLBS(state),
@@ -81,13 +84,17 @@ class NewsContainer extends PureComponent {
   }
 
   touchWindowTop (item, index) {
+    // change url, title & track pageview for pv, ga, fb .. etc.
+    const { apiServ, headers } = this.props.sourceRequest;
     const news = this.props.currentNews.data[index];
     const { sn, title, parseUrl } = news;
-    const originalSn = window.location.pathname.split('/')[3];
+    const { pathname, search } = window.location;
+    const originalSn = pathname.split('/')[3];
     if (parseInt(originalSn, 10) !== sn) {
       window.history.pushState(null, null, parseUrl);
+      window.document.getElementsByTagName('title')[0].innerHTML = `${title}| NOWnews 今日新聞`;
       this.props.changeNewsTitle(title);
-      trackCode(news);
+      trackInfiniteScrollNews(apiServ, news, pathname, search, headers);
     }
   }
 
@@ -249,7 +256,8 @@ NewsContainer.propTypes = {
   marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   onWarm: PropTypes.func.isRequired,
-  showFixedHeader: PropTypes.func.isRequired
+  showFixedHeader: PropTypes.func.isRequired,
+  sourceRequest: PropTypes.object.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(NewsContainer));

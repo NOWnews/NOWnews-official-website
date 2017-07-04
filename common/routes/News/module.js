@@ -1,6 +1,4 @@
-import moment from 'moment';
 import isomorphicCookie from 'isomorphic-cookie';
-import { callApi as callPVApi } from '../../../lib/track/pageview';
 export const CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE';
 export const CHANGE_NEWS_TITLE = 'CHANGE_NEWS_TITLE';
 export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
@@ -98,7 +96,7 @@ export const loadNews = (sn, fontSize) => {
 
 export const loadMoreNews = (sn) => {
   return (dispatch, getState, { axios }) => {
-    const { apiServ, headers } = getState().sourceRequest;
+    const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_MORE_NEWS_REQUEST });
 
     return Promise.all([
@@ -115,11 +113,6 @@ export const loadMoreNews = (sn) => {
           lastFetched: Date.now()
         }
       });
-      // 內文無限下滑時，載入新的新聞也要累積 PV 數
-      const { search } = window.location;
-      const { id: newsId, MainMenu, sn, startedAt } = result;
-      const formatStartedAt = moment(startedAt).format('YYYYMMDD');
-      callPVApi(apiServ, MainMenu.id, newsId, `/news/${formatStartedAt}/${sn}`, search, headers);
     }).catch(error => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
