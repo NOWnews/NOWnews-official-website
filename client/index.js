@@ -21,17 +21,11 @@ const container = document.getElementById('root');
 StyleSheet.rehydrate(window.renderedClassNames);
 
 const render = () => {
-  const { pathname, search, hash } = window.location;
-  const location = `${pathname}${search}${hash}`;
-
   // We need to have a root route for HMR to work.
   const createRoutes = require('../common/routes/root').default;
   const routes = createRoutes(store);
-  const track = () => {
-    const { sourceRequest: { apiServ, headers }, ...state } = store.getState();
-    window.document.body.scrollTop = 0;
-    pageview.init(apiServ, pathname, search, state, headers);
-  };
+  const { pathname, search, hash } = window.location;
+  const location = `${pathname}${search}${hash}`;
 
   // Pull child routes using match. Adjust Router for vanilla webpack HMR,
   // in development using a new key every time there is an edit.
@@ -39,10 +33,9 @@ const render = () => {
     // Render app with Redux and router context to container element.
     // We need to have a random in development because of `match`'s dependency on
     // `routes.` Normally, we would want just one file from which we require `routes` from.
-
     return ReactDOM.render(
       <Provider store={store}>
-        <Router routes={routes} history={browserHistory} onUpdate={track} key={Math.random()} />
+        <Router routes={routes} history={browserHistory} key={Math.random()} />
       </Provider>,
       container
     );
@@ -78,7 +71,13 @@ const render = () => {
         delete window.INITIAL_STATE;
       } else {
         // Fetch mandatory data dependencies for 2nd route change onwards:
-        trigger('fetch', components, locals);
+        trigger('fetch', components, locals)
+        .then(() => {
+          window.document.body.scrollTop = 0;
+          const { pathname, search } = renderProps.location;
+          const { sourceRequest: { apiServ, headers }, ...state } = store.getState();
+          pageview.init(apiServ, pathname, search, state, headers);
+        });
       }
 
       // Fetch deferred, client-only data dependencies:
