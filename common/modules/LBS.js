@@ -14,8 +14,13 @@ const initialState = {
   pageData: {}
 };
 
-function getLocation () {
+function getLocation (dispatch, location) {
+  if (location.length !== 0) {
+    return Promise.resolve(location);
+  }
   const geolocation = window.navigator.geolocation;
+
+  dispatch({ type: LOAD_LOCATION_REQUEST });
 
   return new Promise((resolve, reject) => {
     if (!geolocation) {
@@ -23,7 +28,8 @@ function getLocation () {
     }
 
     geolocation.getCurrentPosition((position) => {
-      resolve(position);
+      const { latitude: lat, longitude: lng } = position.coords;
+      resolve([lat, lng]);
     }, () => {
       reject(new Error('Permission denied'));
     });
@@ -32,7 +38,7 @@ function getLocation () {
 
 export function loadLBSList () {
   return (dispatch, getState, { axios }) => {
-    // skip SSR, because it should work on client side!.
+    // skip SSR, because it should work on client side.
     const canUseDOM = !!(typeof window !== 'undefined' && window.document);
     if (!canUseDOM) {
       return Promise.resolve();
@@ -40,16 +46,14 @@ export function loadLBSList () {
 
     // 有抓過資料就跳過，不重複呼叫
     const { apiServ, local } = getState().sourceRequest;
-    const { lastFetched, pageData } = getState().LBS;
+    const { lastFetched, location, pageData } = getState().LBS;
     const page = local.query.page ? local.query.page : 1;
     if (lastFetched !== null && pageData.currentPage === parseInt(page, 10)) {
       return Promise.resolve();
     }
-    dispatch({ type: LOAD_LOCATION_REQUEST });
-    getLocation().then((location) => {
-      const { latitude: lat, longitude: lng } = location.coords;
-      dispatch({ type: LOAD_LBS_REQUEST, payload: [lat, lng] });
-
+    getLocation(dispatch, location).then((result) => {
+      dispatch({ type: LOAD_LBS_REQUEST, payload: result });
+      const [lat, lng] = result;
       return axios.get(`${apiServ}/location?limit=10&lat=${lat}&lng=${lng}&page=${page}`)
       .then(res => {
         dispatch({
