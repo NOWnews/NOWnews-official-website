@@ -39,7 +39,7 @@ class LBSContainer extends Component {
 
   render () {
     const { marquee, menus, LBS, local } = this.props;
-    const { isLoading, isLocationLoading, mapCity, newsList, pageData } = LBS;
+    const { isLoading, isLocationLoading, lastFetched, mapCity, newsList, pageData } = LBS;
     return (
       <div>
         <Header menus={menus} marquee={marquee} />
@@ -48,7 +48,7 @@ class LBSContainer extends Component {
         <Container>
           {isLoading && <Loading />}
           {isLocationLoading && <h3>尚未取得您的位置資訊，正在載入中 ...</h3>}
-          {!isLoading && !isLocationLoading && newsList.length === 0 && <NotFound />}
+          {lastFetched && !isLoading && !isLocationLoading && newsList.length === 0 && <NotFound />}
           {!isLoading && newsList.length > 0 &&
             <BlockItems newsList={newsList} page={pageData} local={local} />
           }
