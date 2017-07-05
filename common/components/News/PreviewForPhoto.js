@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
-import { Content, FontSize, Tags } from './NewsContent';
-import { Container, LeftSide, Margin10, RightSide } from '../Layout';
+import { Content, Tags } from './NewsContent';
+import { Container, LeftSide, Margin10 } from '../Layout';
 
-const PreviewForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize }) => {
+const PreviewForPhoto = ({ news: { Photos, ...news } }) => {
   const settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -29,12 +29,9 @@ const PreviewForPhoto = ({ news: { Photos, ...news }, changeFontSize, fontSize }
       </div>
       <Margin10 className='clearfix'>
         <LeftSide>
-          <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent} />
+          <Content content={news.content} fontSize={16} freeContent={news.freeContent} />
           <Tags tags={news.Tags} />
         </LeftSide>
-        <RightSide>
-          <FontSize changeFontSize={changeFontSize} />
-        </RightSide>
       </Margin10>
     </Container>
   );
@@ -70,8 +67,6 @@ const styles = StyleSheet.create({
 });
 
 PreviewForPhoto.propTypes = {
-  changeFontSize: PropTypes.func.isRequired,
-  fontSize: PropTypes.number.isRequired,
   news: PropTypes.object.isRequired
 };
 
