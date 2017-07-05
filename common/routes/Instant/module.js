@@ -14,6 +14,12 @@ const initialState = {
 
 export function loadInstantList (page = 1) {
   return (dispatch, getState, { axios }) => {
+    // 有資料同一頁就跳過，不重複呼叫
+    const { newsList, pageData } = getState().instantPage;
+    if (newsList.length > 0 && pageData.currentPage === page) {
+      return Promise.resolve();
+    }
+
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_INSTANT_REQUEST });
     return Promise.all([

@@ -12,9 +12,9 @@ const initialState = {
 
 export function loadInterest (cookie, userId) {
   return (dispatch, getState, { axios }) => {
-    // 有資料就跳過，不重複呼叫（沒有頁數問題）
-    const { newsList } = getState().interest;
-    if (newsList.length > 0) {
+    // 有抓過資料就跳過，不重複呼叫（沒有頁數問題）
+    const { lastFetched } = getState().interest;
+    if (lastFetched !== null) {
       return Promise.resolve();
     }
     const cookie = isomorphicCookie.load('NOW_personalize');
