@@ -1,15 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import StaticContainer from 'react-static-container';
 
-const GarbBag = () => {
-  const list = [
-    { isExternal: true, title: '網頁遊戲', url: 'http://nownews.nicegame.com.tw/' },
-    { isExternal: true, title: '旅食樂', url: 'http://play.nownews.com/' },
-    { isExternal: true, title: '飆網超省', url: 'http://www.kbro.com.tw/K01/cm-promo-more-2_3_0_6_3.html?&mkwid=E0kYnuLE' },
-    { isExternal: true, title: '購屋通', url: 'http://www.cthouse.com.tw/?utm_source=nownews&utm_medium=text&utm_content=navigation&utm_campaign=nownews' }
-  ];
-
+const GrabBag = ({ list }) => {
   const items = list.map(({ title, url }, key) => {
     return (
       <a className={css(styles.item)}
@@ -68,4 +61,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default GarbBag;
+GrabBag.propTypes = {
+  list: PropTypes.array.isRequired
+};
+
+export default GrabBag;

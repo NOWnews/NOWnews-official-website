@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
-import { DFP, getAdType, OneAdIR, OneAdICIP } from '../../../components/Ad';
+import { DFP, getAdType, OneAdIR } from '../../../components/Ad';
 import { Container, NotFound } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo, ContentForCustomColumn } from '../../../components/News';
 import {
@@ -132,6 +132,7 @@ class NewsContainer extends PureComponent {
         changeFontSize,
         interest,
         fontSize,
+        hasOneAdICIP: (i === 0),
         news,
         onWarm,
         topics,
@@ -185,7 +186,7 @@ class NewsContainer extends PureComponent {
       // 處理不同版型的廣告
       if (isDefaultTemplate) {
         adType = getAdType(currentMainMenu, Menus);
-        topAd = `/5799246/Nownews_${adType}_970x250_T_new2`;
+        topAd = `/5799246/Nownews_${adType}_article_970x250_T_new2`;
         footerAd = `/5799246/Nownews_${adType}_article_970x250_B_new2`;
       } else {
         topAd = `/5799246/column_970x90_au_${news.templateAD}`;
@@ -227,7 +228,6 @@ class NewsContainer extends PureComponent {
           currentMainMenu={mainMenuId} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}
           currentMainMenu={mainMenuId} newsTitle={newsTitle} />}
-        {isDefaultTemplate && <OneAdICIP />}
         {!isLoading && !news && <Container><NotFound /></Container>}
         <InfiniteScroll
           pageStart={0}

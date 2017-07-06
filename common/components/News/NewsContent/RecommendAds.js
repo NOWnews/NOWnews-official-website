@@ -11,7 +11,7 @@ const RecommendAds = ({ ads }) => {
         <div>
           <img src={ad.img} width='200' height='112' alt={ad.title} />
         </div>
-        <div>{ad.title}</div>
+        <div className={css(styles.title)}>{ad.title}</div>
       </a>
     );
   });
@@ -35,9 +35,12 @@ const styles = StyleSheet.create({
     float: 'left',
     fontSize: 15,
     marginRight: 10,
-    marginBottom: 15,
+    marginBottom: 5,
     textDecoration: 'none',
     width: 200
+  },
+  title: {
+    height: 40
   }
 });
 

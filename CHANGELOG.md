@@ -6,7 +6,12 @@
 
 ## 1.0.4 - 2017-07-06
 ### Added
+- 增加好康報報版位
+- 增加 Popoin
 - 加上觸發渲染twitter嵌入元素 @appleoxxo
+### Fixed
+- OneAd、DFP 廣告版位調整 @esbb48
+- 內頁 NOWnews 推薦字數超過兩行會跑版 @esbb48
 
 ## 1.0.3 - 2017-07-04
 ### Changed

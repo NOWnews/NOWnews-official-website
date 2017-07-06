@@ -62,7 +62,7 @@ class InstantBar extends PureComponent {
 
     const first = news[index * 2];
     const second = news[index * 2 + 1];
-    const third = ads[index];
+    const third = ads.instant[index];
 
     return (
       <div className={css(styles.box)}>
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
 });
 
 InstantBar.propTypes = {
-  ads: PropTypes.array.isRequired,
+  ads: PropTypes.object.isRequired,
   news: PropTypes.array.isRequired
 };
 

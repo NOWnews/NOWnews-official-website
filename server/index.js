@@ -252,6 +252,13 @@ export const createServer = (config) => {
                 <noscript>
                   <img src='http://b.scorecardresearch.com/p?c1=2&c2=11473067&cv=2.0&cj=1' />
                 </noscript>
+                <script type="text/javascript">
+                  (function() {
+                    var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.charset = "utf-8"; pa.async = true;
+                    pa.src = window.location.protocol + "//api.popin.cc/searchbox/nownews.js";
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+                  })();
+                </script>
                 <style>
                   html {
                     box-sizing: border-box

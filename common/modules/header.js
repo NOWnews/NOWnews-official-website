@@ -75,11 +75,19 @@ export default function header (state = initialState, action) {
   }
 }
 
-export const selectFooterAds = state => state.header.ads.footer;
+export const selectFooterAds = (state) => {
+  return {
+    footer: state.header.ads.footer,
+    grabBag: state.header.ads.grabBag
+  };
+};
 export const selectMenus = state => state.header.menus;
 export const selectMarquee = (state) => {
   return {
-    ads: state.header.ads.instant,
+    ads: {
+      instant: state.header.ads.instant || [],
+      grabBag: state.header.ads.grabBag || []
+    },
     news: state.header.news
   };
 };
