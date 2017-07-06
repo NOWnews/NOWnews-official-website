@@ -63,7 +63,7 @@ class ContentForPhoto extends PureComponent {
               <Comments href={`https://www.nownews.com${news.parseUrl}`} />
             </FacebookProvider>
             <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
-            <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, 3)} adKey={randomKey} ad={ads.like} />
+            <RelatedContent type='了解更多' list={interest.slice(randomKey, 3)} adKey={randomKey} ad={ads.like} />
             <div className='_popIn_recommend' data-url={`https://www.nownews.com${news.parseUrl}`} />
             <RecommendAds ads={ads.recommand} />
           </LeftSide>
