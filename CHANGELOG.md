@@ -4,6 +4,10 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.4 - 2017-07-06
+### Added
+- 加上觸發渲染twitter嵌入元素 @appleoxxo
+
 ## 1.0.3 - 2017-07-04
 ### Changed
 - 更新飆網超省連結 @esbb48
