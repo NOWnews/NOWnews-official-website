@@ -84,6 +84,9 @@ export const loadNews = (sn, fontSize) => {
           lastFetched: Date.now()
         }
       });
+      if (canUseDOM && window.twttr) {
+        window.twttr.widgets.load();
+      }
     }).catch(error => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
@@ -113,6 +116,9 @@ export const loadMoreNews = (sn) => {
           lastFetched: Date.now()
         }
       });
+      if (window.twttr) {
+        window.twttr.widgets.load();
+      }
     }).catch(error => {
       console.error(`Error in reducer that handles ${LOAD_NEWS_FAILURE}: `, error);
       dispatch({
