@@ -6,7 +6,7 @@ import {
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
-import { DFP } from '../Ad';
+import { DFP, OneAdICIP } from '../Ad';
 import FacebookProvider, { Comments } from 'react-facebook';
 
 class ContentForNews extends PureComponent {
@@ -21,7 +21,7 @@ class ContentForNews extends PureComponent {
   }
 
   render () {
-    const { ads, adType, news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
+    const { ads, adType, news, hasOneAdICIP, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
     const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
     const imgUrl = (news.MainPhoto && news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
@@ -42,11 +42,13 @@ class ContentForNews extends PureComponent {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
+            {hasOneAdICIP && <OneAdICIP />}
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={`https://www.nownews.com${news.parseUrl}`} />
             </FacebookProvider>
             <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
             <RelatedContent type='你可能會喜歡' list={interest.slice(randomKey, randomKey + 3)} adKey={randomKey} ad={ads.like} />
+            <div className='_popIn_recommend' data-url={`https://www.nownews.com${news.parseUrl}`} />
             <RecommendAds ads={ads.recommand} />
           </LeftSide>
           <RightSide>
@@ -83,6 +85,7 @@ ContentForNews.propTypes = {
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
+  hasOneAdICIP: PropTypes.bool.isRequired,
   interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
   onWarm: PropTypes.func.isRequired,
