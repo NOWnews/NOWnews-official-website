@@ -182,7 +182,7 @@ class NewsContainer extends PureComponent {
       // 處理不同版型的廣告
       if (isDefaultTemplate) {
         adType = getAdType(currentMainMenu, Menus);
-        topAd = `/5799246/Nownews_${adType}_970x250_T_new2`;
+        topAd = `/5799246/Nownews_${adType}_article_970x250_T_new2`;
         footerAd = `/5799246/Nownews_${adType}_article_970x250_B_new2`;
       } else {
         topAd = `/5799246/column_970x90_au_${news.templateAD}`;
