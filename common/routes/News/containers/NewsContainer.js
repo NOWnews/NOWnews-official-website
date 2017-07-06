@@ -58,6 +58,9 @@ class NewsContainer extends PureComponent {
     if (this.props.currentNews.isSSRAndInit) {
       setTimeout(function () {
         window.document.body.scrollTop = 0;
+        if (window.twttr) {
+          window.twttr.widgets.load();
+        }
       }, 100);
     }
     this.props.loadInterest();
