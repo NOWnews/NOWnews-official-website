@@ -1,10 +1,12 @@
 export const LOAD_LBS_REQUEST = 'LOAD_LBS_REQUEST';
 export const LOAD_LBS_SUCCESS = 'LOAD_LBS_SUCCESS';
 export const LOAD_LBS_FAILURE = 'LOAD_LBS_FAILURE';
+export const LOAD_LOCATION_REQUEST = 'LOAD_LOCATION_REQUEST';
 
 const initialState = {
   error: null,
   isLoading: false,
+  isLocationLoading: false,
   lastFetched: null,
   location: [],
   mapCity: '',
@@ -12,8 +14,13 @@ const initialState = {
   pageData: {}
 };
 
-function getLocation () {
+function getLocation (dispatch, location) {
+  if (location.length !== 0) {
+    return Promise.resolve(location);
+  }
   const geolocation = window.navigator.geolocation;
+
+  dispatch({ type: LOAD_LOCATION_REQUEST });
 
   return new Promise((resolve, reject) => {
     if (!geolocation) {
@@ -21,25 +28,32 @@ function getLocation () {
     }
 
     geolocation.getCurrentPosition((position) => {
-      resolve(position);
+      const { latitude: lat, longitude: lng } = position.coords;
+      resolve([lat, lng]);
     }, () => {
       reject(new Error('Permission denied'));
     });
   });
 }
 
-export function loadLBSList (page = 1) {
+export function loadLBSList () {
   return (dispatch, getState, { axios }) => {
-    // 有資料同一頁就跳過，不重複呼叫
-    const { newsList, pageData } = getState().LBS;
-    if (newsList.length > 0 && pageData.currentPage === page.toString()) {
+    // skip SSR, because it should work on client side.
+    const canUseDOM = !!(typeof window !== 'undefined' && window.document);
+    if (!canUseDOM) {
       return Promise.resolve();
     }
 
-    getLocation().then((location) => {
-      const { latitude: lat, longitude: lng } = location.coords;
-      const { apiServ } = getState().sourceRequest;
-      dispatch({ type: LOAD_LBS_REQUEST, payload: [lat, lng] });
+    // 有抓過資料就跳過，不重複呼叫
+    const { apiServ, local } = getState().sourceRequest;
+    const { lastFetched, location, pageData } = getState().LBS;
+    const page = local.query.page ? local.query.page : 1;
+    if (lastFetched !== null && pageData.currentPage === parseInt(page, 10)) {
+      return Promise.resolve();
+    }
+    getLocation(dispatch, location).then((result) => {
+      dispatch({ type: LOAD_LBS_REQUEST, payload: result });
+      const [lat, lng] = result;
       return axios.get(`${apiServ}/location?limit=10&lat=${lat}&lng=${lng}&page=${page}`)
       .then(res => {
         dispatch({
@@ -68,6 +82,7 @@ export default function LBS (state = initialState, action) {
         location: action.payload,
         mapCity: '',
         newsList: [],
+        isLocationLoading: false,
         isLoading: true,
         error: null
       };
@@ -86,6 +101,12 @@ export default function LBS (state = initialState, action) {
         ...state,
         error: action.payload.message,
         isLoading: false,
+        newsList: []
+      };
+    case LOAD_LOCATION_REQUEST:
+      return {
+        ...state,
+        isLocationLoading: true,
         newsList: []
       };
     default:

@@ -18,6 +18,12 @@ const initialState = {
 
 export function loadHomeList () {
   return (dispatch, getState, { axios }) => {
+    // 有抓過資料就跳過，不重複呼叫（沒有頁數問題）
+    const { lastFetched } = getState().homePage;
+    if (lastFetched !== null) {
+      return Promise.resolve();
+    }
+
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_INDEX_REQUEST });
     return Promise.all([

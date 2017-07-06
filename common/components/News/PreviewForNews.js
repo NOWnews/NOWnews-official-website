@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { Content, FontSize, Tags } from './NewsContent';
-import { Container, LeftSide, Margin10, RightSide } from '../Layout';
+import { Content, Tags } from './NewsContent';
+import { Container, LeftSide, Margin10 } from '../Layout';
 
-const PreviewForNews = ({ news, changeFontSize, fontSize }) => {
+const PreviewForNews = ({ news }) => {
   const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
   const imgUrl = (news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
   return (
@@ -14,12 +14,9 @@ const PreviewForNews = ({ news, changeFontSize, fontSize }) => {
       <i>{news.MainPhoto && news.MainPhoto.desc}</i>
       <Margin10 className='clearfix'>
         <LeftSide>
-          <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent} />
+          <Content content={news.content} fontSize={16} freeContent={news.freeContent} />
           <Tags tags={news.Tags} />
         </LeftSide>
-        <RightSide>
-          <FontSize changeFontSize={changeFontSize} />
-        </RightSide>
       </Margin10>
     </Container>
   );
@@ -38,8 +35,6 @@ const styles = StyleSheet.create({
 });
 
 PreviewForNews.propTypes = {
-  changeFontSize: PropTypes.func.isRequired,
-  fontSize: PropTypes.number.isRequired,
   news: PropTypes.object.isRequired
 };
 

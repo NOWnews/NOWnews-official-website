@@ -2,8 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
-// import { selectInterestPage, loadInterest } from '../../../modules/interest';
-import { selectInterestPage } from '../../../modules/interest';
+import { selectInterestPage, loadInterest } from '../../../modules/interest';
 
 import { Header } from '../../../components/Header';
 import { BlockItems12, TripletHead } from '../../../components/News';
@@ -12,7 +11,7 @@ import { OneAdIR, OneAdICIP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
-    // dispatch(loadInterest()),
+    dispatch(loadInterest()),
     dispatch(loadHeader())
   ])
 };
@@ -23,7 +22,6 @@ const mapStateToProps = state => ({
   menus: selectMenus(state)
 });
 
-// const InterestContainer = ({ marquee, menus, interest }) => (
 const InterestContainer = ({ marquee, menus, interest }) => (
   <div>
     <Header menus={menus} marquee={marquee} />

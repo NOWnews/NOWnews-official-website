@@ -15,7 +15,8 @@ import { DFP, OneAdIR, OneAdICIP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
-    dispatch(loadHeader())
+    dispatch(loadHeader()),
+    dispatch(loadLBSList())
   ])
 };
 
@@ -38,7 +39,7 @@ class LBSContainer extends Component {
 
   render () {
     const { marquee, menus, LBS, local } = this.props;
-    const { isLoading, location, mapCity, newsList, pageData } = LBS;
+    const { isLoading, isLocationLoading, lastFetched, mapCity, newsList, pageData } = LBS;
     return (
       <div>
         <Header menus={menus} marquee={marquee} />
@@ -46,8 +47,8 @@ class LBSContainer extends Component {
         <TripletHead active='lbs' city={mapCity} />
         <Container>
           {isLoading && <Loading />}
-          {!isLoading && location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
-          {!isLoading && newsList.length === 0 && <NotFound />}
+          {isLocationLoading && <h3>尚未取得您的位置資訊，正在載入中 ...</h3>}
+          {lastFetched && !isLoading && !isLocationLoading && newsList.length === 0 && <NotFound />}
           {!isLoading && newsList.length > 0 &&
             <BlockItems newsList={newsList} page={pageData} local={local} />
           }

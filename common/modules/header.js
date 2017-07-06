@@ -14,6 +14,11 @@ const initialState = {
 
 export function loadHeader (url) {
   return (dispatch, getState, { axios }) => {
+    // 有抓過資料就跳過，不重複呼叫（沒有頁數問題）
+    const { lastFetched } = getState().header;
+    if (lastFetched !== null) {
+      return Promise.resolve();
+    }
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_HEADER_REQUEST });
     return Promise.all([
