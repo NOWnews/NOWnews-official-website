@@ -30,7 +30,7 @@ const App = ({ ads, children, user }) => (
 );
 
 App.propTypes = {
-  ads: PropTypes.array,
+  ads: PropTypes.object.isRequired,
   children: PropTypes.shape().isRequired,
   user: PropTypes.object
 };

@@ -137,7 +137,7 @@ class HomeContainer extends PureComponent {
                 </div>
               </LeftSide>
               <RightSide>
-                <GrabBag />
+                <GrabBag list={marquee.ads.grabBag} />
                 <Margin10>
                   <DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />
                 </Margin10>
