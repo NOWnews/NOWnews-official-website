@@ -15,7 +15,7 @@ import Pagination from '../../../components/Pagination';
 
 import { TimeAndKeywordArea } from '../components';
 import Helmet from 'react-helmet';
-import { OneAdIR, OneAdICIP } from '../../../components/Ad';
+import { OneAdICIP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, query }) => Promise.all([
@@ -137,7 +137,6 @@ class SearchPage extends PureComponent {
           </div>
         </Margin10>
         <Pagination {...pageData} {...refreshLocal} />
-        <OneAdIR />
       </Container>
     );
   }

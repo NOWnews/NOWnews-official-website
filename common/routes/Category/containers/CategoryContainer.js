@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus, selectObjectMenu } from '../../../modules/header';
-import { DFP, getAdType, OneAdIR, OneAdICIP } from '../../../components/Ad';
+import { DFP, getAdType, OneAdICIP } from '../../../components/Ad';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
@@ -85,7 +85,6 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
           <BlockItems12 isDefaultTemplate={isDefaultTemplate} adCode={adCode} newsList={blockData} page={pageData} local={local} />
         </div>
       }
-      <OneAdIR />
       <DFP opts={[footerAd, [[970, 250], [970, 90]]]} />
     </Container>
   );
