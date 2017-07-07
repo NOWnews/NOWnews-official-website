@@ -5,7 +5,7 @@ import {
 } from './NewsContent';
 import { TripletNav, VideoPlayer } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
-import { DFP, OneAdICIP } from '../Ad';
+import { DFP, OneAdIR } from '../Ad';
 import FacebookProvider, { Comments } from 'react-facebook';
 
 class ContentForVideo extends PureComponent {
@@ -21,7 +21,7 @@ class ContentForVideo extends PureComponent {
   }
 
   render () {
-    const { ads, adType, hasOneAdICIP, news, changeFontSize, fontSize, triplet } = this.props;
+    const { ads, adType, hasOneAdIR, news, changeFontSize, fontSize, triplet } = this.props;
     const { MainPhoto, MainVideo, parseUrl, title } = news;
     const randomKey = news.sn % 3;
     const socialProps = {
@@ -39,7 +39,7 @@ class ContentForVideo extends PureComponent {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            {hasOneAdICIP && <OneAdICIP />}
+            {hasOneAdIR && <OneAdIR />}
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={`https://www.nownews.com${news.parseUrl}`} />
             </FacebookProvider>
@@ -65,7 +65,7 @@ ContentForVideo.propTypes = {
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  hasOneAdICIP: PropTypes.bool.isRequired,
+  hasOneAdIR: PropTypes.bool.isRequired,
   onWarm: PropTypes.func.isRequired,
   news: PropTypes.object.isRequired,
   triplet: PropTypes.object.isRequired
