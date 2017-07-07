@@ -9,7 +9,7 @@ import { Header } from '../../../components/Header';
 import Pagination from '../../../components/Pagination';
 import { ChannelSelecter, BlockItems } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
-import { DFP, OneAdIR, OneAdICIP } from '../../../components/Ad';
+import { DFP, OneAdICIP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, params: { sn }, query: { page } }) => Promise.all([
@@ -35,8 +35,8 @@ const ChannelContainer = ({ channelPage, local, loadChannelData, menus, marquee 
   return (
     <Container>
       <Header menus={menus} marquee={marquee} />
-      {isLoading && <Loading />}
       <OneAdICIP />
+      {isLoading && <Loading />}
       <ChannelSelecter channels={channels} selectedChannel={channel} loadChannelData={loadChannelData} />
       {!isLoading && newsList.length === 0 && <NotFound />}
       {!isLoading && newsList.length > 0 &&
@@ -45,7 +45,6 @@ const ChannelContainer = ({ channelPage, local, loadChannelData, menus, marquee 
           <Pagination {...pageData} {...local} />
         </Margin10>
       }
-      <OneAdIR />
       <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
     </Container>
   );

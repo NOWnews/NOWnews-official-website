@@ -7,7 +7,7 @@ import {
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
-import { DFP, OneAdICIP } from '../Ad';
+import { DFP, OneAdIR } from '../Ad';
 import FacebookProvider, { Comments } from 'react-facebook';
 
 class ContentForPhoto extends PureComponent {
@@ -23,7 +23,7 @@ class ContentForPhoto extends PureComponent {
   }
 
   render () {
-    const { ads, adType, news: { MainPhoto, Photos, ...news }, hasOneAdICIP, changeFontSize, fontSize, interest, topics, triplet } = this.props;
+    const { ads, adType, news: { MainPhoto, Photos, ...news }, hasOneAdIR, changeFontSize, fontSize, interest, topics, triplet } = this.props;
     const settings = {
       axis: 'horizontal',
       autoPlay: true,
@@ -58,7 +58,7 @@ class ContentForPhoto extends PureComponent {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            {hasOneAdICIP && <OneAdICIP />}
+            {hasOneAdIR && <OneAdIR />}
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={`https://www.nownews.com${news.parseUrl}`} />
             </FacebookProvider>
@@ -118,7 +118,7 @@ ContentForPhoto.propTypes = {
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  hasOneAdICIP: PropTypes.bool.isRequired,
+  hasOneAdIR: PropTypes.bool.isRequired,
   interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
   onWarm: PropTypes.func.isRequired,

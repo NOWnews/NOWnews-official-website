@@ -7,7 +7,7 @@ import { selectInterestPage, loadInterest } from '../../../modules/interest';
 import { Header } from '../../../components/Header';
 import { BlockItems12, TripletHead } from '../../../components/News';
 import { Container, Loading, NotFound } from '../../../components/Layout';
-import { OneAdIR, OneAdICIP } from '../../../components/Ad';
+import { OneAdICIP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -32,7 +32,6 @@ const InterestContainer = ({ marquee, menus, interest }) => (
       {!interest.isLoading && interest.newsList.length === 0 && <NotFound />}
       {!interest.isLoading && interest.newsList.length > 0 &&
         <BlockItems12 newsList={interest.newsList.slice(0, 12)} />}
-      <OneAdIR />
     </Container>
   </div>
 );

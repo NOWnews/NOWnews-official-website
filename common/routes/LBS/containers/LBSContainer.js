@@ -11,7 +11,7 @@ import { BlockItems } from '../components';
 import { Header } from '../../../components/Header';
 import { TripletHead } from '../../../components/News';
 import { Container, Loading, NotFound } from '../../../components/Layout';
-import { DFP, OneAdIR, OneAdICIP } from '../../../components/Ad';
+import { DFP, OneAdICIP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -52,7 +52,6 @@ class LBSContainer extends Component {
           {!isLoading && newsList.length > 0 &&
             <BlockItems newsList={newsList} page={pageData} local={local} />
           }
-          <OneAdIR />
           <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
         </Container>
       </div>

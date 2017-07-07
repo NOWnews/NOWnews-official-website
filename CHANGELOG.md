@@ -4,6 +4,10 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.5 - 2017-07-07
+### Fixed
+- 調整 OneAd 位置  @esbb48
+
 ## 1.0.4 - 2017-07-06
 ### Added
 - 增加好康報報版位
