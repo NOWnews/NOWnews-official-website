@@ -11,17 +11,17 @@ const Social = ({ img, title, url }) => {
     { icon: 'google', url: `https://plus.google.com/share?url=${completeUrl}` }, // hidden google
     { icon: 'twitter', url: `https://twitter.com/intent/tweet?text=${title}&url=${completeUrl}&via=NOWnews_TW` }
   ];
-  // ie js 不太正常，先直接用另開視窗的方式暫時解
-  // const onPopup = (url) => {
-  //   window.open(url, 'Share to ...', 'status = 1, height = 500, width = 500, resizable = 0');
-  // };
+
+  const onPopup = (url) => {
+    window.open(url, 'Share to ...', 'status = 1, height = 500, width = 500, resizable = 0');
+  };
 
   return (
     <div className={css(styles.box)}>
       <iframe src={`https://www.facebook.com/plugins/like.php?locale=zh_TW&href=${completeUrl}&width=50&layout=button_count&action=like&size=small&show_faces=false&share=false&height=21&appId=132863386747341`}
         width='80' height='21' style={{border: 'none', overflow: 'hidden'}} scrolling='no' frameBorder='0' allowTransparency='true' />
       { socialList.map(({ icon, url }) =>
-        <a className={css(styles.btnSocial, styles[icon])} key={icon} target='_blank' href={url}>
+        <a className={css(styles.btnSocial, styles[icon])} key={icon} onClick={ () => onPopup(url) }>
           <FontAwesome className={css(styles.icon)} size='2x' name={icon} />
         </a>
       )}
