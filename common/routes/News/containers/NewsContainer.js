@@ -163,12 +163,21 @@ class NewsContainer extends PureComponent {
     let childMenuId;
     let footerAd = '';
     let isDefaultTemplate = null;
-    let newsMainPhoto = '';
     let tags = [];
     let topAd = '';
-
+    let metaOpts = [];
     if (news) {
-      newsMainPhoto = news.MainPhoto && news.MainPhoto.url;
+      if (news.MainPhoto && news.MainPhoto.url) {
+        let newsMainPhoto = news.MainPhoto && news.MainPhoto.url;
+        metaOpts.push({ name: 'twitter:image', content: newsMainPhoto });
+        metaOpts.push({ name: 'twitter:card', content: newsMainPhoto });
+        metaOpts.push({ property: 'og:image', content: newsMainPhoto });
+      }
+
+      if (news.type === 'VIDEO') {
+        metaOpts.push({ property: 'og:video', content: news.MainVideo.url });
+      }
+
       news.Menus.forEach(({ ParentId, id }) => {
         if (!childMenuId && ParentId === mainMenuId) {
           childMenuId = id;
@@ -202,9 +211,7 @@ class NewsContainer extends PureComponent {
               { name: 'keywords', content: tags.join(',') },
               { name: 'news_keywords', content: tags.join(',') },
               { name: 'twitter:title', content: news.title },
-              { name: 'twitter:image', content: newsMainPhoto },
               { name: 'twitter:description', content: news.summary },
-              { name: 'twitter:card', content: newsMainPhoto },
               { name: 'contact', content: 'service@nownews.com' },
               { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
               { property: 'article:author', content: 'https://www.facebook.com/nownews' },
@@ -212,10 +219,9 @@ class NewsContainer extends PureComponent {
               { property: 'og:locale', content: 'zh_TW' },
               { property: 'og:title', content: news.title },
               { property: 'og:description', content: news.summary },
-              { property: 'og:image', content: newsMainPhoto },
-              { property: 'og:video', content: (news.type === 'VIDEO') ? news.MainVideo.url : '' },
               { property: 'og:url', content: 'https://www.nownews.com' + news.parseUrl },
-              { property: 'og:rich_attachment', content: 'true' }
+              { property: 'og:rich_attachment', content: 'true' },
+              ...metaOpts
             ]}
             link={[
                 {rel: 'canonical', href: `https://www.nownews.com${news.parseUrl}`}
