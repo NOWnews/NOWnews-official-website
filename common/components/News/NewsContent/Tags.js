@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
     color: '#000000',
     border: '1px solid #000000',
     borderRadius: 30,
+    display: 'inline-block',
     fontSize: 14,
+    marginBottom: 10,
     marginLeft: 10,
     padding: '1.5px 8px',
     textDecoration: 'none'
