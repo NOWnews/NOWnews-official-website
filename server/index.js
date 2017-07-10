@@ -220,6 +220,7 @@ export const createServer = (config) => {
             () => ReactDOM.renderToString(InitialView)
           );
           const head = Helm.rewind();
+          const regexp = / data-react-helmet="true"/g;
           res.status(200).send(`
             <!DOCTYPE html>
             <html lang="zh-Hant">
@@ -229,7 +230,7 @@ export const createServer = (config) => {
                 ${head.title.toString()}
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link rel="shortcut icon" href="/favicon.ico">
-                ${head.meta.toString()}
+                ${head.meta.toString().replace(regexp, '')}
                 ${head.link.toString()}
                 <script>
                   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
