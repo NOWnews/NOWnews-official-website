@@ -10,6 +10,7 @@ module.exports = {
   entry: {
     main: [CLIENT_ENTRY],
     vendor: [
+      'babel-polyfill',
       'aphrodite/no-important',
       'react',
       'react-dom',
