@@ -7,9 +7,11 @@
 ## 1.0.6 - 2017-07-10
 ### Changed
 - 內文分享調整回原始方式 @esbb48
+- react-helmet 在 meta 上時移除不必要參數 @esbb48
 
 ### Fixed
 - ie11 Minified 的問題 @esbb48
+- 調整 china 參數 @esbb48
 
 ## 1.0.5 - 2017-07-07
 ### Fixed
