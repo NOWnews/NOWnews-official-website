@@ -10,7 +10,7 @@ module.exports = {
   entry: {
     main: [CLIENT_ENTRY],
     vendor: [
-      'babel-polyfill',
+      'babel-polyfill', // fixed ie11 minified problem
       'aphrodite/no-important',
       'react',
       'react-dom',
