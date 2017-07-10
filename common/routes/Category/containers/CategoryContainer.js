@@ -33,7 +33,10 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
   const isDefaultTemplate = currentMenu.template === 'DEFAULT';
   const slideData = newsList.slice(0, 5);
   const blockData = newsList.slice(5, 15);
-
+  // newsList 圖片處理
+  newsList.map((news) => {
+    news.MainPhoto.thumbnail = news.MainPhoto.thumbnail.replace('src=https', 'src=http');
+  });
   const isMainMenu = currentMenu.ParentId === null;
   const currentMainMenu = isMainMenu ? currentMenu : objectMenu[currentMenu.ParentId];
   const currentChildMenu = isMainMenu ? null : currentMenu;
