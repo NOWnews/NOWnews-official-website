@@ -8,6 +8,7 @@
 ### Changed
 - 內文分享調整回原始方式 @esbb48
 - react-helmet 在 meta 上時移除不必要參數 @esbb48
+- 讓非必填的 image & video 就不串 @esbb48
 
 ### Fixed
 - ie11 Minified 的問題 @esbb48
