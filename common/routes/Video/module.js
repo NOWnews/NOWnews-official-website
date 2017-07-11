@@ -20,7 +20,7 @@ export function loadVideoList (categoryName, page = 1) {
   return (dispatch, getState, { axios }) => {
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_VIDEO_REQUEST });
-    const getListUrl = (categoryName === 'instant') ? 'instant?type=VIDEO&' : `cat/${categoryName}/video?`;
+    const getListUrl = (categoryName === 'instant') ? 'instant?type=VIDEO&' : `cat/${categoryName}/VIDEO?`;
     return axios.get(`${apiServ}/${getListUrl}page=${page}&limit=9`)
       .then((videoSrc) => {
         const { newsList, pageData, menu } = videoSrc.data;

@@ -4,6 +4,10 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.7 - 2017-07-11
+### Fixed
+- 影音分類 api 呼叫大小寫問題 @esbb48
+
 ## 1.0.6 - 2017-07-10
 ### Changed
 - 內文分享調整回原始方式 @esbb48
