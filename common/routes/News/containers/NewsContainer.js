@@ -230,7 +230,7 @@ class NewsContainer extends PureComponent {
               ...metaOpts
             ]}
             link={[
-                {rel: 'canonical', href: `https://www.nownews.com${news.parseUrl}`}
+                {rel: 'canonical', href: newsOgUrl}
             ]} />
           <MicroDataNews news={news} />
         </div>}
