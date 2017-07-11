@@ -202,9 +202,10 @@ class NewsContainer extends PureComponent {
         footerAd = `/5799246/column_970x90_ad_${news.templateAD}`;
       }
     }
-    let newsParseUrl = news.parseUrl;
-    if (newsParseUrl === '/news/20170626/2579651') {
-      newsParseUrl = '/n/2017/06/26/2579651';
+    // 暫時測試某篇新聞
+    let newsOgUrl = 'https://www.nownews.com' + news.parseUrl;
+    if (news.parseUrl === '/news/20170626/2579651') {
+      newsOgUrl = 'http://www.nownews.com/n/2017/06/26/2579651';
     }
 
     return (
@@ -224,7 +225,7 @@ class NewsContainer extends PureComponent {
               { property: 'og:locale', content: 'zh_TW' },
               { property: 'og:title', content: news.title },
               { property: 'og:description', content: news.summary },
-              { property: 'og:url', content: 'https://www.nownews.com' + newsParseUrl },
+              { property: 'og:url', content: newsOgUrl },
               { property: 'og:rich_attachment', content: 'true' },
               ...metaOpts
             ]}
