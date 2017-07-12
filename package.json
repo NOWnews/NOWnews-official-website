@@ -1,6 +1,6 @@
 {
   "name": "NOWnews-official-website",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "NOWnews 前台，需搭配 NOWnews-api 專案使用",
   "scripts": {
     "start": "cross-env NODE_ENV=develop node -r \"babel-register\" ./server",

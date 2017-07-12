@@ -4,6 +4,11 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.8 - 2017-07-12
+### Fixed
+- 救回幾則舊的新聞 FB 讚 @esbb48
+- 修復切回內頁 news 第一下會沒有的問題 @esbb48
+
 ## 1.0.7 - 2017-07-11
 ### Fixed
 - 影音分類 api 呼叫大小寫問題 @esbb48
