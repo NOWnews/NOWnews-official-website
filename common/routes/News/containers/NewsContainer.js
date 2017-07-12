@@ -166,7 +166,24 @@ class NewsContainer extends PureComponent {
     let tags = [];
     let topAd = '';
     let metaOpts = [];
+    let newsUrl = '';
+
     if (news) {
+      // 暫時，讓業務之前的新聞可以正確出來 FB 讚數
+      switch (news.parseUrl) {
+        case '/news/20170626/2579651':
+          newsUrl = 'http://www.nownews.com/n/2017/06/26/2579651';
+          break;
+        case '/news/20170614/2478938':
+          newsUrl = 'http://www.nownews.com/n/2017/06/14/2478938';
+          break;
+        case '/news/20170624/2574647':
+          newsUrl = 'http://www.nownews.com/n/2017/06/24/2574647';
+          break;
+        default:
+          newsUrl = 'https://www.nownews.com' + news.parseUrl;
+      }
+
       if (news.MainPhoto && news.MainPhoto.url) {
         let newsMainPhoto = news.MainPhoto && news.MainPhoto.url;
         metaOpts.push({ name: 'twitter:image', content: newsMainPhoto });
@@ -202,11 +219,6 @@ class NewsContainer extends PureComponent {
         footerAd = `/5799246/column_970x90_ad_${news.templateAD}`;
       }
     }
-    // 暫時測試某篇新聞
-    let newsOgUrl = 'https://www.nownews.com' + news.parseUrl;
-    if (news.parseUrl === '/news/20170626/2579651') {
-      newsOgUrl = 'http://www.nownews.com/n/2017/06/26/2579651';
-    }
 
     return (
       <div>
@@ -225,12 +237,12 @@ class NewsContainer extends PureComponent {
               { property: 'og:locale', content: 'zh_TW' },
               { property: 'og:title', content: news.title },
               { property: 'og:description', content: news.summary },
-              { property: 'og:url', content: newsOgUrl },
+              { property: 'og:url', content: newsUrl },
               { property: 'og:rich_attachment', content: 'true' },
               ...metaOpts
             ]}
             link={[
-                {rel: 'canonical', href: newsOgUrl}
+                {rel: 'canonical', href: newsUrl}
             ]} />
           <MicroDataNews news={news} />
         </div>}
