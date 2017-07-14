@@ -159,6 +159,7 @@ class NewsContainer extends PureComponent {
 
     // 如果有新聞的話做處理：取得分類、關鍵字字串
     const news = data[0];
+    const imgApi = `https://imgapiv2.nownews.com/?w=640&q=70&src=`;
     let adType;
     let childMenuId;
     let footerAd = '';
@@ -185,7 +186,7 @@ class NewsContainer extends PureComponent {
       }
 
       if (news.MainPhoto && news.MainPhoto.url) {
-        let newsMainPhoto = news.MainPhoto && news.MainPhoto.url;
+        let newsMainPhoto = `${imgApi}${news.MainPhoto.url}`;
         metaOpts.push({ name: 'twitter:image', content: newsMainPhoto });
         metaOpts.push({ name: 'twitter:card', content: newsMainPhoto });
         metaOpts.push({ property: 'og:image', content: newsMainPhoto });

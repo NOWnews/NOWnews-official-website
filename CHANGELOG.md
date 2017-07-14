@@ -8,6 +8,9 @@
 ### Added
 - Popin 的 meta @esbb48
 
+### Changed
+- 使用 imgApi @esbb48
+
 ### Fixed
 - 溫度計指標 PV 太大會消失在盡頭 @esbb48
 
