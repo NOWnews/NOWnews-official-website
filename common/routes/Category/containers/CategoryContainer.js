@@ -31,8 +31,9 @@ const mapStateToProps = state => ({
 const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
   const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
   const isDefaultTemplate = currentMenu.template === 'DEFAULT';
-  const slideData = newsList.slice(0, 5);
-  const blockData = newsList.slice(5, 15);
+  const slideData = isDefaultTemplate ? newsList.slice(0, 5) : hotNewsList.slice(0, 5);
+  const hotBlockData = isDefaultTemplate ? hotNewsList.slice(0, 6) : hotNewsList.slice(5, 11);
+  const blockData = isDefaultTemplate ? newsList.slice(5, 15) : newsList.slice(0, 10);
 
   const isMainMenu = currentMenu.ParentId === null;
   const currentMainMenu = isMainMenu ? currentMenu : objectMenu[currentMenu.ParentId];
@@ -80,7 +81,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
         <div>
           <Margin10 className='clearfix'>
             <Slide list={slideData} />
-            <HotNews newsList={hotNewsList.slice(0, 6)} />
+            <HotNews newsList={hotBlockData} />
           </Margin10>
           <BlockItems12 isDefaultTemplate={isDefaultTemplate} adCode={adCode} newsList={blockData} page={pageData} local={local} />
         </div>
