@@ -4,7 +4,7 @@ import { Margin10 } from '../../../components/Layout';
 
 const Thermometer = ({ onWarm, pv = 1 }) => {
   const maxPv = 10000;
-  const positionRate = (pv / maxPv) * 100 * 0.9;
+  const positionRate = (pv >= maxPv) ? 90 : (pv / maxPv) * 100 * 0.9;
   const pointerPosition = {
     left: `${positionRate}%`
   };
