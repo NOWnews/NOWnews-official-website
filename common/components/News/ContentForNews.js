@@ -23,7 +23,7 @@ class ContentForNews extends PureComponent {
   render () {
     const { ads, adType, news, hasOneAdIR, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
-    const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
+    const imgApi = `https://imgapiv2.nownews.com/?w=1080&q=70&src=`;
     const imgUrl = (news.MainPhoto && news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
     const socialProps = {
       img: imgUrl,
