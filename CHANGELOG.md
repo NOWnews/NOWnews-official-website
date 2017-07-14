@@ -4,6 +4,10 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.9 - 2017-07-14
+### Fixed
+- 地方新聞內頁都是生活廣告 @esbb48
+
 ## 1.0.8 - 2017-07-12
 ### Fixed
 - 救回幾則舊的新聞 FB 讚 @esbb48
