@@ -22,6 +22,7 @@ class ContentForVideo extends PureComponent {
 
   render () {
     const { ads, adType, hasOneAdIR, news, changeFontSize, fontSize, triplet } = this.props;
+    const imgApi = `https://imgapiv2.nownews.com/?w=1080&q=70&src=`;
     const { MainPhoto, MainVideo, parseUrl, title } = news;
     const randomKey = news.sn % 3;
     const socialProps = {
@@ -31,7 +32,7 @@ class ContentForVideo extends PureComponent {
     };
     return (
       <Container>
-        <VideoPlayer src={MainVideo.url} poster={MainPhoto.url} />
+        <VideoPlayer src={MainVideo.url} poster={`${imgApi}${MainPhoto.url}`} />
         <i>{MainVideo && MainVideo.desc}</i>
         <Margin10 className='clearfix'>
           <LeftSide>

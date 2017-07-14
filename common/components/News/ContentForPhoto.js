@@ -34,7 +34,7 @@ class ContentForPhoto extends PureComponent {
       showIndicators: false
     };
     const randomKey = news.sn % 3;
-    const imgApi = 'https://imgapiv2.nownews.com/?h=570&q=70&src=';
+    const imgApi = 'https://imgapiv2.nownews.com/?w=1080&q=70&src=';
     const socialProps = {
       img: MainPhoto && MainPhoto.url,
       title: news.title,

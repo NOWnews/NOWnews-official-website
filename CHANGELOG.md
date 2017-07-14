@@ -4,6 +4,16 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.8 - 2017-07-14
+### Added
+- Popin 的 meta @esbb48
+
+### Changed
+- 使用 imgApi @esbb48
+
+### Fixed
+- 溫度計指標 PV 太大會消失在盡頭 @esbb48
+
 ## 1.0.8 - 2017-07-12
 ### Fixed
 - 救回幾則舊的新聞 FB 讚 @esbb48
@@ -30,7 +40,7 @@
 ## 1.0.4 - 2017-07-06
 ### Added
 - 增加好康報報版位
-- 增加 Popoin
+- 增加 Popin
 - 加上觸發渲染twitter嵌入元素 @appleoxxo
 ### Fixed
 - OneAd、DFP 廣告版位調整 @esbb48
