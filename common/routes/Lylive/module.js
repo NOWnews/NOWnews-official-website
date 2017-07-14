@@ -75,7 +75,7 @@ export function loadRelatedNews (sn) {
   return (dispatch, getState, { axios }) => {
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_RELATED_NEWS_REQUEST });
-    const getListUrl = `cat/politics`;
+    const getListUrl = `cat/politic`;
     return axios.get(`${apiServ}/${getListUrl}`)
       .then((res) => {
         const newsList = res.data.newsList;
