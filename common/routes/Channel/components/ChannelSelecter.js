@@ -65,7 +65,7 @@ class ChannelSelecter extends PureComponent {
       <Margin10 className='center'>
         <button className={css(styles.selecter)} onClick={this.switchOpenStatus}>
           <span className={css(styles.selType)}>特輯</span>
-          <span className={css(styles.selTitle)}>{ selectedChannel.title }</span>
+          <span className={css(styles.selTitle)}>{ selectedChannel.title || '請選擇' }</span>
           <FontAwesome name='play' className={`${iconRotate} ${css(styles.selIcon)}`} size='2x' />
         </button>
         <div className={`clearfix ${isOpen} ${css(styles.channelsBox)}`}>{ items }</div>
