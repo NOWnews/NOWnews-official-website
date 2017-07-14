@@ -4,13 +4,18 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
-## 1.0.8 - 2017-07-14
+## 1.0.9 - 2017-07-14
 ### Added
 - Popin 的 meta @esbb48
 
 ### Changed
 - 使用 imgApi @esbb48
+- 專欄分類頁的 Slide 可以控制 @esbb48
+- 更新立院直播的新聞來源 @esbb48
 
+### Fixed
+- 地方新聞內頁都是生活廣告 @esbb48
+- 避免選到的專題沒有新聞 @esbb48
 ### Fixed
 - 溫度計指標 PV 太大會消失在盡頭 @esbb48
 

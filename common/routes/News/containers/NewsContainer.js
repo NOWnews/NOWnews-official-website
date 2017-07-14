@@ -105,7 +105,7 @@ class NewsContainer extends PureComponent {
     const { currentNews, changeFontSize, interest, LBS, menus, marquee, onWarm } = this.props;
     const {
       isLoading, data = [], hasMore, fontSize, newsTitle,
-      showFixedHeader, topics, Menus
+      showFixedHeader, topics
     } = currentNews;
     const currentMainMenu = data[0] && data[0].MainMenu || {};
     const mainMenuId = currentMainMenu._id;
@@ -122,7 +122,7 @@ class NewsContainer extends PureComponent {
 
     const items = data.map((item, i) => {
       const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
-      const itemAdType = getAdType(news.MainMenu, news.Menus);
+      const itemAdType = getAdType.fromMenus(news.MainMenu, news.Menus);
       const isDefaultTemplateForItem = (news.template === 'DEFAULT');
       const itemFooterAd = isDefaultTemplateForItem ? `/5799246/Nownews_${itemAdType}_article_970x250_B_new2` : `/5799246/column_970x90_ad_${news.templateAD}`;
 
@@ -197,8 +197,8 @@ class NewsContainer extends PureComponent {
         metaOpts.push({ property: 'og:video', content: news.MainVideo.url });
       }
 
-      news.Menus.forEach(({ ParentId, id }) => {
-        if (!childMenuId && ParentId === mainMenuId) {
+      news.Menus.forEach(({ ParentId, categoryName, id }) => {
+        if (!childMenuId && ParentId === mainMenuId && categoryName !== 'nationalindex') {
           childMenuId = id;
         }
       });
@@ -213,7 +213,7 @@ class NewsContainer extends PureComponent {
 
       // 處理不同版型的廣告
       if (isDefaultTemplate) {
-        adType = getAdType(currentMainMenu, Menus);
+        adType = getAdType.fromMenus(currentMainMenu, news.Menus);
         topAd = `/5799246/Nownews_${adType}_article_970x250_T_new2`;
         footerAd = `/5799246/Nownews_${adType}_article_970x250_B_new2`;
       } else {

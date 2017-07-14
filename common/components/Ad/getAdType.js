@@ -24,14 +24,30 @@ const definedMapping = {
   eworld: 'tech' // 科技
 };
 
-const getAdType = (mainMenu, childMenu) => {
+export const fromCurrentOne = (mainMenu, childMenu) => {
   let categoryName = mainMenu.categoryName;
+
   // 正確取得地方新聞子分類
   if (categoryName === 'local' && childMenu) {
     categoryName = childMenu.categoryName;
   }
+
   const adType = (definedMapping[categoryName]) ? definedMapping[categoryName] : defaultAdType;
   return adType;
 };
 
-export default getAdType;
+export const fromMenus = (mainMenu, Menus) => {
+  let categoryName = mainMenu.categoryName;
+
+  // 正確取得地方新聞子分類
+  if (categoryName === 'local' && Menus) {
+    Menus.forEach((menu) => {
+      if (menu.ParentId === mainMenu._id && menu.categoryName !== 'nationalindex') {
+        categoryName = menu.categoryName;
+      }
+    });
+  }
+
+  const adType = (definedMapping[categoryName]) ? definedMapping[categoryName] : defaultAdType;
+  return adType;
+};

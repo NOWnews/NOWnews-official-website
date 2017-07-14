@@ -23,7 +23,7 @@ export function loadChannelData (sn, page = 1) {
       axios.get(`${apiServ}/specialchannels`),
       axios.get(`${apiServ}/specialchannels/${sn}?page=${page}`)
     ]).then(([specialchannels, channelData]) => {
-      let { pageData, ...selectedChannel } = channelData.data;
+      let { pageData, ...selectedChannel } = channelData.data || {};
       dispatch({
         type: LOAD_CHANNEL_SUCCESS,
         payload: {
