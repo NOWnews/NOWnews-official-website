@@ -153,7 +153,7 @@ class HomeContainer extends PureComponent {
             </Container>
           </div>}
 
-        {!isLoading && carousels.length > 0 &&
+        {!isLoading && tripletObject.instant.length > 0 &&
           <div className={css(styles.tripletBlock)}>
             <Container>
               <div className={css(styles.tripletBlockTop)}>
@@ -165,6 +165,7 @@ class HomeContainer extends PureComponent {
                 hasAd={tripletType === 'instant'}
                 newsList={tripletObject[tripletType].slice(0, 9)} />
               { tripletType === 'lbs' && !isLoading && LBS.location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
+              { tripletType === 'lbs' && !isLoading && LBS.location.length > 0 && tripletObject.lbs.length === 0 && <h3>查無此區的相關新聞 ...</h3>}
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
                   看更多{seeMoreTextDefined[tripletType]}新聞
