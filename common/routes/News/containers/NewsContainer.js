@@ -173,10 +173,8 @@ class NewsContainer extends PureComponent {
         let newsMainPhoto = `${imgApi}${news.MainPhoto.url}`;
         metaOpts.push({ name: 'twitter:image', content: newsMainPhoto });
         metaOpts.push({ name: 'twitter:card', content: newsMainPhoto });
-        metaOpts.push({ property: 'og:image', content: newsMainPhoto });
-        metaOpts.push({ property: 'popin:image', content: newsMainPhoto });
-        // 為了讓 line 可以爬到圖片（縮圖會爬不到）
         metaOpts.push({ property: 'og:image', content: news.MainPhoto.url });
+        metaOpts.push({ property: 'popin:image', content: newsMainPhoto });
       }
 
       if (news.type === 'VIDEO') {
