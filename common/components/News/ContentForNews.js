@@ -28,7 +28,7 @@ class ContentForNews extends PureComponent {
     const socialProps = {
       img: imgUrl,
       title: news.title,
-      url: news.parseUrl
+      url: news.completeUrl
     };
     return (
       <Container>
@@ -44,7 +44,7 @@ class ContentForNews extends PureComponent {
             <ThermometerSm onWarm={this.onWarm} />
             {isFirstNews && <OneAdIR />}
             <FacebookProvider appId='132863386747341' language='zh_TW'>
-              <Comments href={`https://www.nownews.com${news.parseUrl}`} />
+              <Comments href={news.completeUrl} />
             </FacebookProvider>
             <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
             <RelatedContent type='了解更多' list={interest.slice(randomKey, randomKey + 3)} adKey={randomKey} ad={ads.like} />

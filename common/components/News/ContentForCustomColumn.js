@@ -14,7 +14,7 @@ class ContentForCustomColumn extends PureComponent {
     const socialProps = {
       img: imgUrl,
       title: news.title,
-      url: news.parseUrl
+      url: news.completeUrl
     };
     return (
       <Container>
@@ -28,7 +28,7 @@ class ContentForCustomColumn extends PureComponent {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <FacebookProvider appId='132863386747341' language='zh_TW'>
-              <Comments href={`https://www.nownews.com${news.parseUrl}`} />
+              <Comments href={news.completeUrl} />
             </FacebookProvider>
           </LeftSide>
           <RightSide>

@@ -23,12 +23,12 @@ class ContentForVideo extends PureComponent {
   render () {
     const { ads, adType, isFirstNews, news, changeFontSize, fontSize, triplet } = this.props;
     const imgApi = `https://imgapiv2.nownews.com/?w=1080&q=70&src=`;
-    const { MainPhoto, MainVideo, parseUrl, title } = news;
+    const { MainPhoto, MainVideo, completeUrl, title } = news;
     const randomKey = news.sn % 3;
     const socialProps = {
       img: MainPhoto && MainPhoto.url,
       title,
-      url: parseUrl
+      url: completeUrl
     };
     return (
       <Container>
@@ -42,7 +42,7 @@ class ContentForVideo extends PureComponent {
             <ThermometerSm onWarm={this.onWarm} />
             {isFirstNews && <OneAdIR />}
             <FacebookProvider appId='132863386747341' language='zh_TW'>
-              <Comments href={`https://www.nownews.com${news.parseUrl}`} />
+              <Comments href={news.completeUrl} />
             </FacebookProvider>
             <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
             <div className='_popIn_recommend' data-url={`https://www.nownews.com${news.parseUrl}`} />

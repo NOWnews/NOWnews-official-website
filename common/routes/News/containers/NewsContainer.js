@@ -167,27 +167,8 @@ class NewsContainer extends PureComponent {
     let tags = [];
     let topAd = '';
     let metaOpts = [];
-    let newsUrl = '';
 
     if (news) {
-      // 暫時，讓業務之前的新聞可以正確出來 FB 讚數
-      switch (news.parseUrl) {
-        case '/news/20170626/2579651':
-          newsUrl = 'http://www.nownews.com/n/2017/06/26/2579651';
-          break;
-        case '/news/20170614/2478938':
-          newsUrl = 'http://www.nownews.com/n/2017/06/14/2478938';
-          break;
-        case '/news/20170624/2574647':
-          newsUrl = 'http://www.nownews.com/n/2017/06/24/2574647';
-          break;
-        case '/news/20170626/2580134':
-          newsUrl = 'http://www.nownews.com/n/2017/06/26/2580134';
-          break;
-        default:
-          newsUrl = 'https://www.nownews.com' + news.parseUrl;
-      }
-
       if (news.MainPhoto && news.MainPhoto.url) {
         let newsMainPhoto = `${imgApi}${news.MainPhoto.url}`;
         metaOpts.push({ name: 'twitter:image', content: newsMainPhoto });
@@ -244,12 +225,12 @@ class NewsContainer extends PureComponent {
               { property: 'og:locale', content: 'zh_TW' },
               { property: 'og:title', content: news.title },
               { property: 'og:description', content: news.summary },
-              { property: 'og:url', content: newsUrl },
+              { property: 'og:url', content: news.completeUrl },
               { property: 'og:rich_attachment', content: 'true' },
               ...metaOpts
             ]}
             link={[
-                {rel: 'canonical', href: newsUrl}
+                {rel: 'canonical', href: news.completeUrl}
             ]} />
           <MicroDataNews news={news} />
         </div>}
