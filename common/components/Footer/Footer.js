@@ -5,12 +5,17 @@ import AdBlock from './components/AdBlock';
 import { Container } from '../Layout';
 
 export const Footer = ({ ads }) => {
+  let moreAds = [];
+  if (ads.grabBag) {
+    moreAds.push({ isExternal: true, ...ads.grabBag[0] });
+    moreAds.push({ isExternal: true, ...ads.grabBag[2] });
+    moreAds.push({ isExternal: true, ...ads.grabBag[3] });
+  }
+
   const moreList = [
     { isExternal: false, title: '立院直播', url: '/lylive/1' },
     { isExternal: false, title: '名家論壇', url: '/cat/celebritycomment' },
-    { isExternal: true, ...ads.grabBag[0] },
-    { isExternal: true, ...ads.grabBag[2] },
-    { isExternal: true, ...ads.grabBag[3] },
+    ...moreAds,
     { isExternal: false, title: '公益行善', url: '/cat/public' },
     { isExternal: true, title: '投票區', url: 'http://vote.nownews.com/' },
     { isExternal: false, title: '色區', url: '/cat/hotzone' }
@@ -25,9 +30,9 @@ export const Footer = ({ ads }) => {
   return (
     <Container>
       <div className={css(styles.footer)}>
-        <div className={css(styles.adBlocks)}>
-          { ads.footer.map((ad, index) => <AdBlock key={index} ad={ad} />)}
-        </div>
+        {ads.footer && <div className={css(styles.adBlocks)}>
+          {ads.footer.map((ad, index) => <AdBlock key={index} ad={ad} />)}
+        </div>}
         <hr className={css(styles.hr)} />
         <div className={`clearfix ${css(styles.announce)}`}>
 

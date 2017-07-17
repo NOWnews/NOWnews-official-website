@@ -10,7 +10,7 @@ import { selectLocal } from '../../../modules/sourceRequest';
 import { BlockItems } from '../components';
 import { Header } from '../../../components/Header';
 import { TripletHead } from '../../../components/News';
-import { Container, Loading, NotFound } from '../../../components/Layout';
+import { Container, Loading } from '../../../components/Layout';
 import { DFP, OneAdICIP } from '../../../components/Ad';
 
 const redial = {
@@ -48,7 +48,7 @@ class LBSContainer extends Component {
         <Container>
           {isLoading && <Loading />}
           {isLocationLoading && <h3>尚未取得您的位置資訊，正在載入中 ...</h3>}
-          {lastFetched && !isLoading && !isLocationLoading && newsList.length === 0 && <NotFound />}
+          {lastFetched && !isLoading && !isLocationLoading && newsList.length === 0 && <h3>查無此區的相關新聞 ...</h3>}
           {!isLoading && newsList.length > 0 &&
             <BlockItems newsList={newsList} page={pageData} local={local} />
           }

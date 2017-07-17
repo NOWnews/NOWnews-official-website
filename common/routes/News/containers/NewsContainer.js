@@ -181,6 +181,9 @@ class NewsContainer extends PureComponent {
         case '/news/20170624/2574647':
           newsUrl = 'http://www.nownews.com/n/2017/06/24/2574647';
           break;
+        case '/news/20170626/2580134':
+          newsUrl = 'http://www.nownews.com/n/2017/06/26/2580134';
+          break;
         default:
           newsUrl = 'https://www.nownews.com' + news.parseUrl;
       }
@@ -191,6 +194,8 @@ class NewsContainer extends PureComponent {
         metaOpts.push({ name: 'twitter:card', content: newsMainPhoto });
         metaOpts.push({ property: 'og:image', content: newsMainPhoto });
         metaOpts.push({ property: 'popin:image', content: newsMainPhoto });
+        // 為了讓 line 可以爬到圖片（縮圖會爬不到）
+        metaOpts.push({ property: 'og:image', content: news.MainPhoto.url });
       }
 
       if (news.type === 'VIDEO') {
