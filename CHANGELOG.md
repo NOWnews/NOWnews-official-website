@@ -4,6 +4,15 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.10 - 2017-07-17
+### Changed
+- 調整 line 分享的預覽圖 @esbb48
+- 調整 lbs 個階段的訊息 @esbb48
+
+### Fixed
+- api 壞掉避免完全 crash @esbb48
+- 救回舊新聞的讚 @esbb48
+
 ## 1.0.9 - 2017-07-14
 ### Added
 - Popin 的 meta @esbb48
