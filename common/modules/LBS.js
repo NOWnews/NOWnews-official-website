@@ -2,6 +2,7 @@ export const LOAD_LBS_REQUEST = 'LOAD_LBS_REQUEST';
 export const LOAD_LBS_SUCCESS = 'LOAD_LBS_SUCCESS';
 export const LOAD_LBS_FAILURE = 'LOAD_LBS_FAILURE';
 export const LOAD_LOCATION_REQUEST = 'LOAD_LOCATION_REQUEST';
+export const LOAD_LOCATION_FAILURE = 'LOAD_LOCATION_FAILURE';
 
 const initialState = {
   error: null,
@@ -21,7 +22,6 @@ function getLocation (dispatch, location) {
   const geolocation = window.navigator.geolocation;
 
   dispatch({ type: LOAD_LOCATION_REQUEST });
-
   return new Promise((resolve, reject) => {
     if (!geolocation) {
       reject(new Error('Not Supported'));
@@ -30,8 +30,9 @@ function getLocation (dispatch, location) {
     geolocation.getCurrentPosition((position) => {
       const { latitude: lat, longitude: lng } = position.coords;
       resolve([lat, lng]);
-    }, () => {
-      reject(new Error('Permission denied'));
+    }, (err) => {
+      dispatch({ type: LOAD_LOCATION_FAILURE, payload: err });
+      reject(err);
     });
   });
 }
@@ -66,7 +67,8 @@ export function loadLBSList () {
       }).catch(error => {
         dispatch({
           type: LOAD_LBS_FAILURE,
-          payload: error.response ? error.response.data : error.message,
+          payload: error,
+          isLocationLoading: false,
           error: true
         });
       });
@@ -99,7 +101,7 @@ export default function LBS (state = initialState, action) {
     case LOAD_LBS_FAILURE:
       return {
         ...state,
-        error: action.payload.message,
+        error: action.payload,
         isLoading: false,
         newsList: []
       };
@@ -108,6 +110,12 @@ export default function LBS (state = initialState, action) {
         ...state,
         isLocationLoading: true,
         newsList: []
+      };
+    case LOAD_LOCATION_FAILURE:
+      return {
+        ...state,
+        isLocationLoading: false,
+        error: action.payload
       };
     default:
       return state;
