@@ -181,6 +181,8 @@ class NewsContainer extends PureComponent {
         case '/news/20170624/2574647':
           newsUrl = 'http://www.nownews.com/n/2017/06/24/2574647';
           break;
+        case '/news/20170626/2580134':
+          newsUrl = 'http://www.nownews.com/n/2017/06/26/2580134';
         default:
           newsUrl = 'https://www.nownews.com' + news.parseUrl;
       }
