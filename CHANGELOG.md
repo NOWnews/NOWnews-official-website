@@ -8,6 +8,7 @@
 ### Changed
 - 調整 line 分享的預覽圖 @esbb48
 - 調整 lbs 個階段的訊息 @esbb48
+- 提出 completeUrl 的參數 @esbb48
 
 ### Fixed
 - api 壞掉避免完全 crash @esbb48
