@@ -21,7 +21,7 @@ class ContentForNews extends PureComponent {
   }
 
   render () {
-    const { ads, adType, news, hasOneAdIR, changeFontSize, interest, fontSize, topics, triplet } = this.props;
+    const { ads, adType, news, isFirstNews, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
     const imgApi = `https://imgapiv2.nownews.com/?w=1080&q=70&src=`;
     const imgUrl = (news.MainPhoto && news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
@@ -42,7 +42,7 @@ class ContentForNews extends PureComponent {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            {hasOneAdIR && <OneAdIR />}
+            {isFirstNews && <OneAdIR />}
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={`https://www.nownews.com${news.parseUrl}`} />
             </FacebookProvider>
@@ -85,7 +85,7 @@ ContentForNews.propTypes = {
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  hasOneAdIR: PropTypes.bool.isRequired,
+  isFirstNews: PropTypes.bool.isRequired,
   interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
   onWarm: PropTypes.func.isRequired,

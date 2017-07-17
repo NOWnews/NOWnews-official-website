@@ -132,7 +132,7 @@ class NewsContainer extends PureComponent {
         changeFontSize,
         interest,
         fontSize,
-        hasOneAdIR: (i === 0),
+        isFirstNews: (i === 0),
         news,
         onWarm,
         topics,

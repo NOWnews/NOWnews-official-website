@@ -23,7 +23,7 @@ class ContentForPhoto extends PureComponent {
   }
 
   render () {
-    const { ads, adType, news: { MainPhoto, Photos, ...news }, hasOneAdIR, changeFontSize, fontSize, interest, topics, triplet } = this.props;
+    const { ads, adType, news: { MainPhoto, Photos, ...news }, isFirstNews, changeFontSize, fontSize, interest, topics, triplet } = this.props;
     const settings = {
       axis: 'horizontal',
       autoPlay: true,
@@ -58,7 +58,7 @@ class ContentForPhoto extends PureComponent {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            {hasOneAdIR && <OneAdIR />}
+            {isFirstNews && <OneAdIR />}
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={`https://www.nownews.com${news.parseUrl}`} />
             </FacebookProvider>
@@ -118,7 +118,7 @@ ContentForPhoto.propTypes = {
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  hasOneAdIR: PropTypes.bool.isRequired,
+  isFirstNews: PropTypes.bool.isRequired,
   interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
   onWarm: PropTypes.func.isRequired,
