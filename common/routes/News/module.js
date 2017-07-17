@@ -31,6 +31,21 @@ const initialState = {
   lbs: []
 };
 
+const getCompleteUrl = (parseUrl) => {
+  // 暫時，讓業務之前的新聞可以正確出來 FB 讚數
+  const definedMapping = {
+    '/news/20170626/2579651': 'http://www.nownews.com/n/2017/06/26/2579651',
+    '/news/20170614/2478938': 'http://www.nownews.com/n/2017/06/14/2478938',
+    '/news/20170624/2574647': 'http://www.nownews.com/n/2017/06/24/2574647',
+    '/news/20170626/2580134': 'http://www.nownews.com/n/2017/06/26/2580134'
+  };
+  const newsUrl = definedMapping[parseUrl];
+  if (newsUrl) {
+    return newsUrl;
+  }
+  return `https://www.nownews.com${parseUrl}`;
+};
+
 export const changeFontSize = (fontSize) => {
   return (dispatch) => {
     isomorphicCookie.save('NOW_fontSize', fontSize, { secure: false });
@@ -216,16 +231,19 @@ export default function currentNews (state = initialState, action) {
         isLoading: true
       };
     case LOAD_MORE_NEWS_SUCCESS:
+      let moreNews = action.payload;
+      moreNews.completeUrl = getCompleteUrl(moreNews.parseUrl);
       return {
         ...state,
-        data: [...state.data, action.payload],
+        data: [...state.data, moreNews],
         hasMore: action.payload.template === 'DEFAULT' && !!action.payload.next.sn,
         isLoading: false,
         isSSRAndInit: false,
         lastFetched: action.meta.lastFetched
       };
     case LOAD_NEWS_SUCCESS:
-      const { ads, news, topics } = action.payload;
+      let { ads, news, topics } = action.payload;
+      news.completeUrl = getCompleteUrl(news.parseUrl);
       return {
         ...state,
         ads,

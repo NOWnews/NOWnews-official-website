@@ -132,7 +132,7 @@ class NewsContainer extends PureComponent {
         changeFontSize,
         interest,
         fontSize,
-        hasOneAdIR: (i === 0),
+        isFirstNews: (i === 0),
         news,
         onWarm,
         topics,
@@ -167,35 +167,14 @@ class NewsContainer extends PureComponent {
     let tags = [];
     let topAd = '';
     let metaOpts = [];
-    let newsUrl = '';
 
     if (news) {
-      // 暫時，讓業務之前的新聞可以正確出來 FB 讚數
-      switch (news.parseUrl) {
-        case '/news/20170626/2579651':
-          newsUrl = 'http://www.nownews.com/n/2017/06/26/2579651';
-          break;
-        case '/news/20170614/2478938':
-          newsUrl = 'http://www.nownews.com/n/2017/06/14/2478938';
-          break;
-        case '/news/20170624/2574647':
-          newsUrl = 'http://www.nownews.com/n/2017/06/24/2574647';
-          break;
-        case '/news/20170626/2580134':
-          newsUrl = 'http://www.nownews.com/n/2017/06/26/2580134';
-          break;
-        default:
-          newsUrl = 'https://www.nownews.com' + news.parseUrl;
-      }
-
       if (news.MainPhoto && news.MainPhoto.url) {
         let newsMainPhoto = `${imgApi}${news.MainPhoto.url}`;
         metaOpts.push({ name: 'twitter:image', content: newsMainPhoto });
         metaOpts.push({ name: 'twitter:card', content: newsMainPhoto });
-        metaOpts.push({ property: 'og:image', content: newsMainPhoto });
-        metaOpts.push({ property: 'popin:image', content: newsMainPhoto });
-        // 為了讓 line 可以爬到圖片（縮圖會爬不到）
         metaOpts.push({ property: 'og:image', content: news.MainPhoto.url });
+        metaOpts.push({ property: 'popin:image', content: newsMainPhoto });
       }
 
       if (news.type === 'VIDEO') {
@@ -244,16 +223,16 @@ class NewsContainer extends PureComponent {
               { property: 'og:locale', content: 'zh_TW' },
               { property: 'og:title', content: news.title },
               { property: 'og:description', content: news.summary },
-              { property: 'og:url', content: newsUrl },
+              { property: 'og:url', content: news.completeUrl },
               { property: 'og:rich_attachment', content: 'true' },
               ...metaOpts
             ]}
             link={[
-                {rel: 'canonical', href: newsUrl}
+                {rel: 'canonical', href: news.completeUrl}
             ]} />
           <MicroDataNews news={news} />
+          {data.length === 1 && <IsAdult isAdult={news.isAdult} />}
         </div>}
-        {!isLoading && news && <IsAdult isAdult={news.isAdult} />}
         <Header ad={topAd} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
           currentMainMenu={mainMenuId} />

@@ -13,7 +13,7 @@ class MicroDataNews extends PureComponent {
     	  "dateModified": news.startedAt,
     	  "mainEntityOfPage":{
     	    "@type":"WebPage",
-    	    "@id": `https://www.nownews.com${news.parseUrl}`
+    	    "@id": news.completeUrl
     	  },
     	  "articleBody": news.content,
     	  "headline": news.title,
@@ -65,7 +65,7 @@ class MicroDataNews extends PureComponent {
           "@type": "ListItem",
           "position": 3,
           "item": {
-            "@id": `https://www.nownews.com${news.parseUrl}`,
+            "@id": news.completeUrl,
             "name": news.title,
             "image": photo
           }

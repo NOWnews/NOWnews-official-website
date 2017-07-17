@@ -3,13 +3,12 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import FontAwesome from 'react-fontawesome';
 
 const Social = ({ img, title, url }) => {
-  const completeUrl = `https://www.nownews.com${url}`;
   const appkey = ''; // 暫無 webio appkey
   const socialList = [
-    { icon: 'facebook', url: `https://www.facebook.com/sharer/sharer.php?u=${completeUrl}` },
-    { icon: 'weibo', url: `http://service.weibo.com/share/share.php?url=${completeUrl}&title=${title}&pic=${img}&appkey=${appkey}` },
-    { icon: 'google', url: `https://plus.google.com/share?url=${completeUrl}` }, // hidden google
-    { icon: 'twitter', url: `https://twitter.com/intent/tweet?text=${title}&url=${completeUrl}&via=NOWnews_TW` }
+    { icon: 'facebook', url: `https://www.facebook.com/sharer/sharer.php?u=${url}` },
+    { icon: 'weibo', url: `http://service.weibo.com/share/share.php?url=${url}&title=${title}&pic=${img}&appkey=${appkey}` },
+    { icon: 'google', url: `https://plus.google.com/share?url=${url}` }, // hidden google
+    { icon: 'twitter', url: `https://twitter.com/intent/tweet?text=${title}&url=${url}&via=NOWnews_TW` }
   ];
 
   const onPopup = (url) => {
@@ -18,7 +17,7 @@ const Social = ({ img, title, url }) => {
 
   return (
     <div className={css(styles.box)}>
-      <iframe src={`https://www.facebook.com/plugins/like.php?locale=zh_TW&href=${completeUrl}&width=50&layout=button_count&action=like&size=small&show_faces=false&share=false&height=21&appId=132863386747341`}
+      <iframe src={`https://www.facebook.com/plugins/like.php?locale=zh_TW&href=${url}&width=50&layout=button_count&action=like&size=small&show_faces=false&share=false&height=21&appId=132863386747341`}
         width='80' height='21' style={{border: 'none', overflow: 'hidden'}} scrolling='no' frameBorder='0' allowTransparency='true' />
       { socialList.map(({ icon, url }) =>
         <a className={css(styles.btnSocial, styles[icon])} key={icon} onClick={() => onPopup(url)}>
