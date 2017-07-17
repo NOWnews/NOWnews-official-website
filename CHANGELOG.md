@@ -6,7 +6,7 @@
 
 ## 1.0.10 - 2017-07-17
 ### Changed
-- 調整 LBS 使用者拒絕提供地位置的提示 ＠appleoxxo
+- 調整 LBS 使用者拒絕提供位置資訊的提示 ＠appleoxxo
 - 調整 line 分享的預覽圖 @esbb48
 - 調整 lbs 個階段的訊息 @esbb48
 
