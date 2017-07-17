@@ -168,7 +168,9 @@ class HomeContainer extends PureComponent {
               { tripletType === 'interest' && !interest.isLoading && tripletObject.interest.length === 0 && <h3>查無相關新聞 ...</h3>}
               { tripletType === 'lbs' && LBS.isLocationLoading && <h3>尚未取得您的位置資訊，正在載入中 ...</h3>}
               { tripletType === 'lbs' && LBS.isLoading && <h3>資料載入中 ...</h3>}
-              { tripletType === 'lbs' && !LBS.isLoading && !LBS.isLocationLoading && tripletObject.lbs.length === 0 && <h3>查無此區的相關新聞 ...</h3>}
+              { tripletType === 'lbs' && LBS.error && LBS.error.code === 1 && <h3> 您拒絕提供位置資訊給我們，因此無法載入您的區域新聞 T____T </h3>}
+              { tripletType === 'lbs' && LBS.error && (LBS.error.code === 2 || LBS.error.code === 3) && <h3> 無法取得您的位置資訊 </h3>}
+              { tripletType === 'lbs' && !LBS.error && !LBS.isLoading && !LBS.isLocationLoading && tripletObject.lbs.length === 0 && <h3>查無此區的相關新聞 ...</h3>}
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
                   看更多{seeMoreTextDefined[tripletType]}新聞
