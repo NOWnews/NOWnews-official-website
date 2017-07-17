@@ -72,6 +72,8 @@ export function loadLBSList () {
           error: true
         });
       });
+    }).catch((error) => {
+      console.error(error);
     });
   };
 }
