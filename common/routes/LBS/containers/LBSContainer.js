@@ -48,7 +48,7 @@ class LBSContainer extends Component {
         <Container>
           {isLoading && <Loading />}
           {isLocationLoading && !error && <h3>尚未取得您的位置資訊，正在載入中 ...</h3>}
-          { error && error.code === 1 && <h3> 您拒絕提供位置資訊給我們T____T </h3>}
+          { error && error.code === 1 && <h3> 您拒絕提供位置資訊給我們，因此無法載入您的區域新聞 T____T </h3>}
           { error && (error.code === 2 || error.code === 3) && <h3> 無法取得您的位置資訊 </h3>}
           {lastFetched && !error && !isLoading && !isLocationLoading && newsList.length === 0 && <h3>查無此區的相關新聞 ...</h3>}
           {!isLoading && newsList.length > 0 &&
