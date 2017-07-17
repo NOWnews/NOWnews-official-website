@@ -9,13 +9,10 @@
 - 調整 LBS 使用者拒絕提供地位置的提示 ＠appleoxxo
 - 調整 line 分享的預覽圖 @esbb48
 - 調整 lbs 個階段的訊息 @esbb48
-- 提出 completeUrl 的參數 @esbb48
-- og:img 使用原圖就好，避免給兩個受到干擾 @esbb48
 
 ### Fixed
 - api 壞掉避免完全 crash @esbb48
 - 救回舊新聞的讚 @esbb48
-- 避免是否為成人一直跳出 @esbb48
 
 ## 1.0.9 - 2017-07-14
 ### Added
