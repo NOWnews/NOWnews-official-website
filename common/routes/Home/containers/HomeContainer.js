@@ -13,7 +13,7 @@ import { CrazyAd, DFP, GrabBag } from '../../../components/Ad';
 
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
-import { selectInterest, loadInterest } from '../../../modules/interest';
+import { selectInterestPage, loadInterest } from '../../../modules/interest';
 import { selectHomePage, loadHomeList, switchTripletType } from '../module';
 import { MicroDataSearch } from '../../../components/JSONLD';
 import StaticContainer from 'react-static-container';
@@ -28,7 +28,7 @@ const redial = {
 
 const mapStateToProps = state => ({
   homePage: selectHomePage(state),
-  interest: selectInterest(state),
+  interest: selectInterestPage(state),
   LBS: selectLBS(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
@@ -85,7 +85,7 @@ class HomeContainer extends PureComponent {
 
     const tripletObject = {
       instant: marquee.news,
-      interest,
+      interest: interest.newsList,
       lbs: LBS.newsList
     };
 
@@ -164,8 +164,11 @@ class HomeContainer extends PureComponent {
                 ads={ads.health}
                 hasAd={tripletType === 'instant'}
                 newsList={tripletObject[tripletType].slice(0, 9)} />
-              { tripletType === 'lbs' && !isLoading && LBS.location.length === 0 && <h3>尚未取得您的位置資訊</h3>}
-              { tripletType === 'lbs' && !isLoading && LBS.location.length > 0 && tripletObject.lbs.length === 0 && <h3>查無此區的相關新聞 ...</h3>}
+              { tripletType === 'interest' && interest.isLoading && <h3>資料載入中 ...</h3>}
+              { tripletType === 'interest' && !interest.isLoading && tripletObject.interest.length === 0 && <h3>查無相關新聞 ...</h3>}
+              { tripletType === 'lbs' && LBS.isLocationLoading && <h3>尚未取得您的位置資訊，正在載入中 ...</h3>}
+              { tripletType === 'lbs' && LBS.isLoading && <h3>資料載入中 ...</h3>}
+              { tripletType === 'lbs' && !LBS.isLoading && !LBS.isLocationLoading && tripletObject.lbs.length === 0 && <h3>查無此區的相關新聞 ...</h3>}
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink)} to={tripletType}>
                   看更多{seeMoreTextDefined[tripletType]}新聞
@@ -323,7 +326,7 @@ const styles = StyleSheet.create({
 
 HomeContainer.propTypes = {
   homePage: PropTypes.object.isRequired,
-  interest: PropTypes.array.isRequired,
+  interest: PropTypes.object.isRequired,
   LBS: PropTypes.object,
   loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,
