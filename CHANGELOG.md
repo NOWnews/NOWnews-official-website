@@ -4,6 +4,10 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.11 - 2017-07-19
+### Changed
+- 將 completeUrl 移到 api 做 @esbb48
+
 ## 1.0.10 - 2017-07-17
 ### Changed
 - 調整 LBS 使用者拒絕提供位置資訊的提示 ＠appleoxxo
