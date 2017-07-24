@@ -28,6 +28,7 @@ class CrazyAd extends Component {
 
   render () {
     const { img, title, type, video, url } = this.props.ad;
+
     return (
       <Modal
         aria-labelledby='modal-crazy'
