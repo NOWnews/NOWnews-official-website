@@ -159,7 +159,7 @@ class NewsContainer extends PureComponent {
 
     // 如果有新聞的話做處理：取得分類、關鍵字字串
     const news = data[0];
-    const imgApi = `https://imgapiv2.nownews.com/?w=640&q=70&src=`;
+    const imgApi = `http://imgapiv2.nownews.com/?w=640&q=70&src=`;
     let adType;
     let childMenuId;
     let footerAd = '';

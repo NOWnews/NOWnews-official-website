@@ -6,6 +6,7 @@
 
 ## 1.0.12 - 2017-07-26
 ### Changed
+- 更新 popin:image 的連結 https 變 http @esbb48
 - 將 OneAdIR 改成 DFP(Nownews_PC_pushdown) @esbb48
 
 ## 1.0.11 - 2017-07-19
