@@ -4,6 +4,10 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.12 - 2017-07-27
+### Changed
+- 新聞內頁增加好康報報版位(GrabBag) @esbb48
+
 ## 1.0.12 - 2017-07-26
 ### Changed
 - 更新 popin:image 的連結 https 變 http @esbb48

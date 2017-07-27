@@ -7,7 +7,7 @@ import {
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
-import { DFP } from '../Ad';
+import { DFP, GrabBag } from '../Ad';
 import FacebookProvider, { Comments } from 'react-facebook';
 
 class ContentForPhoto extends PureComponent {
@@ -76,6 +76,7 @@ class ContentForPhoto extends PureComponent {
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RM_new2`, [300, 250]]} />
             <SpecialTopicNav list={topics} />
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RB_new2`, [300, 250]]} />
+            <GrabBag list={ads.grabBag} />
           </RightSide>
         </Margin10>
       </Container>
