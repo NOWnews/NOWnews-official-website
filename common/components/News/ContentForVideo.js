@@ -5,7 +5,7 @@ import {
 } from './NewsContent';
 import { TripletNav, VideoPlayer } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
-import { DFP } from '../Ad';
+import { DFP, GrabBag } from '../Ad';
 import FacebookProvider, { Comments } from 'react-facebook';
 
 class ContentForVideo extends PureComponent {
@@ -54,6 +54,7 @@ class ContentForVideo extends PureComponent {
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RT_new2`, [300, 250]]} />
             <Thermometer pv={news.pageView ? news.pageView.totalScore : 0} onWarm={this.onWarm} />
             <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
+            <GrabBag list={ads.grabBag} />
           </RightSide>
         </Margin10>
       </Container>

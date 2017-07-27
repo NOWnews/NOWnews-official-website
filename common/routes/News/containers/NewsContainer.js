@@ -127,7 +127,7 @@ class NewsContainer extends PureComponent {
       const itemFooterAd = isDefaultTemplateForItem ? `/5799246/Nownews_${itemAdType}_article_970x250_B_new2` : `/5799246/column_970x90_ad_${news.templateAD}`;
 
       const contentProps = {
-        ads: currentNews.ads,
+        ads: { ...currentNews.ads, ...marquee.ads },
         adType: itemAdType,
         changeFontSize,
         interest,
