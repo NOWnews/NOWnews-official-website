@@ -5,7 +5,7 @@ import { Margin10 } from '../../../components/Layout';
 
 const Tags = ({ tags }) => (
   <Margin10>
-    { tags.length > 0 && '關鍵字'}
+    { tags.length > 0 && '關鍵字' }
     {tags.map(({ sn, name }) =>
       <Link className={css(styles.tag)} key={sn} to={`/search?timeRange=lastWeek&keyword=${name}`}>{ name }</Link>
     )}
