@@ -3,10 +3,29 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 
 const Content = ({ content, fontSize, freeContent }) => (
   <div>
+    <style>{`
+        .fontSize24 {
+          font-size: 24px;
+        }
+        .fontSize20 {
+          font-size: 20px;
+        }
+        .fontSize16 {
+          font-size: 16px;
+        }
+        .fontSize24 span {
+            font-size: 24px!important;
+        }
+        .fontSize20 span {
+            font-size: 20px!important;
+        }
+        .fontSize16 span {
+            font-size: 16px!important;
+        }
+    `}</style>
     <article
-      className={css(styles.box)}
-      dangerouslySetInnerHTML={{__html: content}}
-      style={{ fontSize }} />
+      className={`${css(styles.box)} fontSize${fontSize}`}
+      dangerouslySetInnerHTML={{__html: content}} />
     {freeContent && <div dangerouslySetInnerHTML={{__html: freeContent}} />}
   </div>
 );

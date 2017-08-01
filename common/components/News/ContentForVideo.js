@@ -54,7 +54,7 @@ class ContentForVideo extends PureComponent {
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RT_new2`, [300, 250]]} />
             <Thermometer pv={news.pageView ? news.pageView.totalScore : 0} onWarm={this.onWarm} />
             <TripletNav list={triplet.list} mapCity={triplet.mapCity} />
-            <GrabBag list={ads.grabBag} />
+            <Margin10><GrabBag list={ads.grabBag} /></Margin10>
           </RightSide>
         </Margin10>
       </Container>
