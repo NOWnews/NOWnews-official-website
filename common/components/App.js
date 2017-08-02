@@ -20,16 +20,13 @@ const mapStateToProps = state => ({
 });
 
 const App = ({ ads, children, user }) => {
-  // const canUseDOM = !!(typeof window !== 'undefined' && window.document);
-  return (
-    <Basic>
-      <LogoRow user={user.name} />
-      {children}
-      <StaticContainer>
-        <Footer ads={ads} />
-      </StaticContainer>
-    </Basic>
-  );
+  <Basic>
+    <LogoRow user={user.name} />
+    {children}
+    <StaticContainer>
+      <Footer ads={ads} />
+    </StaticContainer>
+  </Basic>
 };
 
 App.propTypes = {
