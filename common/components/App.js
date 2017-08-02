@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
   ads: selectFooterAds(state)
 });
 
-const App = ({ ads, children, user }) => {
+const App = ({ ads, children, user }) => (
   <Basic>
     <LogoRow user={user.name} />
     {children}
@@ -27,7 +27,7 @@ const App = ({ ads, children, user }) => {
       <Footer ads={ads} />
     </StaticContainer>
   </Basic>
-};
+);
 
 App.propTypes = {
   ads: PropTypes.object.isRequired,
