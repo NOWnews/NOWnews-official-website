@@ -56,6 +56,7 @@
     "react-infinite-scroller": "git+https://github.com/esbb48/react-infinite-scroller.git#touchWindowTop",
     "react-overlays": "0.7.0",
     "react-redux": "4.4.8",
+    "react-redux-firebase": "^1.4.4",
     "react-responsive-carousel": "git+https://github.com/esbb48/react-responsive-carousel.git#customTitleWithCarousel",
     "react-router": "2.8.1",
     "react-simple-dfp": "git+https://github.com/esbb48/react-simple-dfp.git#9b83782",
