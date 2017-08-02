@@ -5,7 +5,7 @@ import {
 } from './NewsContent';
 import { TripletNav, VideoPlayer } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
-import { DFP, GrabBag } from '../Ad';
+import { DFP, GrabBag, OneAdIR } from '../Ad';
 import FacebookProvider, { Comments } from 'react-facebook';
 
 class ContentForVideo extends PureComponent {
@@ -40,7 +40,7 @@ class ContentForVideo extends PureComponent {
             <Tags tags={news.Tags || []} />
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            {isFirstNews && <DFP opts={['/5799246/Nownews_PC_pushdown', [[970, 250], [1, 1]]]} />}
+            {isFirstNews && <OneAdIR />}
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={news.completeUrl} />
             </FacebookProvider>

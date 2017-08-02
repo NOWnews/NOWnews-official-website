@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
-import { DFP, getAdType } from '../../../components/Ad';
+import { DFP, OneAdICIP, getAdType } from '../../../components/Ad';
 import { Container, NotFound } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo, ContentForCustomColumn } from '../../../components/News';
 import {
@@ -236,6 +236,7 @@ class NewsContainer extends PureComponent {
         <Header ad={topAd} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
           currentMainMenu={mainMenuId} />
+        {isDefaultTemplate && <OneAdICIP />}
         {showFixedHeader && <FixedHeader menus={this.props.menus}
           currentMainMenu={mainMenuId} newsTitle={newsTitle} />}
         {!isLoading && !news && <Container><NotFound /></Container>}

@@ -5,6 +5,10 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## 1.0.16 - 2017-08-02
+### Changed
+- [廣告Final] OneAdICIP 改成 DFP @esbb48
+- [廣告Final] 內頁 OneAdIR 加回 @esbb48
+
 ### Add
 - 加上 firebase 推播 @wb
 
