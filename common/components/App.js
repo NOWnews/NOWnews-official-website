@@ -7,7 +7,6 @@ import { selectFooterAds } from '../modules/header';
 import { setLocal, selectUser } from '../modules/sourceRequest';
 import { connect } from 'react-redux';
 import StaticContainer from 'react-static-container';
-import Notification from 'react-web-notification';
 
 const redial = {
   fetch: ({ dispatch, ...local }) => Promise.all([
@@ -21,7 +20,7 @@ const mapStateToProps = state => ({
 });
 
 const App = ({ ads, children, user }) => {
-  const canUseDOM = !!(typeof window !== 'undefined' && window.document);
+  // const canUseDOM = !!(typeof window !== 'undefined' && window.document);
   return (
     <Basic>
       <LogoRow user={user.name} />
@@ -29,10 +28,6 @@ const App = ({ ads, children, user }) => {
       <StaticContainer>
         <Footer ads={ads} />
       </StaticContainer>
-      {canUseDOM && <Notification
-        ignore={false}
-        timeout={5000}
-        title={'this.state.title'} />}
     </Basic>
   );
 };
