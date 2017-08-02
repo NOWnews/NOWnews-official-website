@@ -1,5 +1,7 @@
 import React from 'react';
 import DFP from './DFP';
+import { Container, Margin10 } from '../Layout';
+
 // import Helmet from 'react-helmet';
 
 // const OneAdICIP = () => (
@@ -13,7 +15,11 @@ import DFP from './DFP';
 
 // 業務說用 DFP
 const OneAdICIP = () => (
-  <DFP opts={['/5799246/Nownews_PC_pushdown', [[970, 250], [1, 1]]]} />
+  <Container>
+    <Margin10>
+      <DFP opts={['/5799246/Nownews_PC_pushdown', [[970, 250], [1, 1]]]} />
+    </Margin10>
+  </Container>
 );
 
 export default OneAdICIP;
