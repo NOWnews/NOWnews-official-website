@@ -4,6 +4,10 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.16 - 2017-08-02
+### Add
+- 加上 firebase 推播 @wb
+
 ## 1.0.15 - 2017-08-01
 ### Changed
 - 調整內頁好康報報版位的上下間距 @esbb48

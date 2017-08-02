@@ -5,6 +5,7 @@ import { GTM } from './Tracking';
 import { connect } from 'react-redux';
 import StaticContainer from 'react-static-container';
 import { init } from '../../lib/track/pageview';
+import { firebaseInit } from '../../lib/firebase/notification';
 
 // import Idle from './Idle';
 
@@ -25,6 +26,7 @@ class Basic extends PureComponent {
     const { apiServ, headers } = state.sourceRequest;
     const { pathname, search } = window.location;
     init(apiServ, pathname, search, state, headers);
+    firebaseInit(apiServ, headers);
   }
 
   render () {
