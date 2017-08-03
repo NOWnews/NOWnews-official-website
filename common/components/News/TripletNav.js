@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 
 TripletNav.propTypes = {
   list: PropTypes.object.isRequired,
-  loadLBSList: PropTypes.func.isRequired,
+  loadLBSList: PropTypes.func,
   mapCity: PropTypes.string.isRequired
 };
 
