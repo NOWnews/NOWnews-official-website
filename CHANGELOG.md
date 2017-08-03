@@ -4,6 +4,10 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.12 - 2017-08-03
+### Changed
+- 內頁專題先用首頁的 api @esbb48
+
 ## 1.0.11 - 2017-07-19
 ### Changed
 - 將 completeUrl 移到 api 做 @esbb48

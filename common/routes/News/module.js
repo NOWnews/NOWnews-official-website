@@ -62,9 +62,10 @@ export const loadNews = (sn, fontSize) => {
       axios.get(`${apiServ}/news/${sn}`),
       axios.get(`${apiServ}/news/${sn}/nextandprev`),
       axios.get(`${apiServ}/news/${sn}/relations`),
-      axios.get(`${apiServ}/specialtopics?limit=6`),
+      // axios.get(`${apiServ}/specialtopics?limit=6`), //暫時用首頁的
+      axios.get(`${apiServ}/indexpage?limit=6`),
       axios.get(`${apiServ}/promote/news`)
-    ]).then(([news, nextandprev, relations, topic, ads]) => {
+    ]).then(([news, nextandprev, relations, indexTopic, ads]) => {
       let { next, prev } = nextandprev.data;
       let result = news.data;
 
@@ -78,7 +79,7 @@ export const loadNews = (sn, fontSize) => {
             prev,
             relations: relations.data
           },
-          topics: topic.data.specialTopics
+          topics: indexTopic.data.specialTopics.slice(0, 6)
         },
         meta: {
           lastFetched: Date.now()
