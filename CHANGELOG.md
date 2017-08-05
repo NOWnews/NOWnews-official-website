@@ -4,10 +4,16 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
-## 1.0.16 - 2017-08-04
+## 1.0.18 - 2017-08-07
 ### Add
 - 世大運 @esbb48
+
+### Fixed
 - isAdult 成人新聞提醒 @esbb48
+
+## 1.0.17 - 2017-08-04
+### Fixed
+- 內頁無限下滑 PV 追蹤網址 Bug @esbb48
 
 ## 1.0.16 - 2017-08-02
 ### Changed

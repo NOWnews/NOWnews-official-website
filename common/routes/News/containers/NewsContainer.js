@@ -97,7 +97,7 @@ class NewsContainer extends PureComponent {
       window.history.pushState(null, null, `${parseUrl}${search}`);
       window.document.getElementsByTagName('title')[0].innerHTML = `${title}| NOWnews 今日新聞`;
       this.props.changeNewsTitle(title);
-      trackInfiniteScrollNews(apiServ, news, pathname, search, headers);
+      trackInfiniteScrollNews(apiServ, news, search, headers);
     }
   }
 
