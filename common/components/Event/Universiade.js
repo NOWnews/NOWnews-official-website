@@ -36,7 +36,10 @@ class Universiade extends PureComponent {
           </div>
           <img src={`/events/201708_universiade/${data.kind}.gif`} />
           <div className={css(styles.no)}>{data.createdAt}_{data.id}</div>
-          <a className={css(styles.callToAction)} href='https://www.facebook.com/nownews' target='_blank'>參加活動</a>
+          <a className={css(styles.callToAction)} href='https://www.facebook.com/nownews' target='_blank'>
+            為世大運加油<br />
+            快來參加活動！
+          </a>
         </div>
       </Modal>
     );
@@ -63,11 +66,13 @@ const styles = StyleSheet.create({
   },
   callToAction: {
     background: '#F15BA6',
-    textDecoration: 'none',
+    display: 'block',
     color: 'white',
-    padding: '12px 170px',
-    fontSize: 30,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    textDecoration: 'none',
+    width: 450,
+    padding: '12px 0',
+    fontSize: 30
   },
   closeBtn: {
     backgroundColor: '#000000',
@@ -108,9 +113,9 @@ const styles = StyleSheet.create({
     fontSize: 45
   },
   no: {
-    color: '#555',
+    color: '#cccccc',
     position: 'relative',
-    top: -8
+    top: -5
   }
 });
 
