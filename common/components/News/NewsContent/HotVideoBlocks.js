@@ -11,7 +11,7 @@ const HotVideoBlocks = ({ list }) => {
     return (
       <Link className={css(styles.blockItem)} key={sn} to={parseUrl}>
         <TypeIcon type='VIDEO' />
-        <img className={css(styles.img)} src={MainPhoto.thumbnail || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
+        <img className={css(styles.img)} src={MainPhoto.googleCDN || MainPhoto.thumbnail || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} />
         <div className={css(styles.bottom)}>
           <div className={css(styles.title)}>{shortTitle}</div>
           <img src='/icons/whiteClock.png' />

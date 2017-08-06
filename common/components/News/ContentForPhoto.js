@@ -35,8 +35,16 @@ class ContentForPhoto extends PureComponent {
     };
     const randomKey = news.sn % 3;
     const imgApi = 'https://imgapiv2.nownews.com/?w=1080&q=70&src=';
+    let imgUrl = '';
+
+    if (MainPhoto && MainPhoto.googleCDN) {
+      imgUrl = MainPhoto.googleCDN;
+    } else if (MainPhoto && MainPhoto.url) {
+      imgUrl = `${imgApi}${MainPhoto.url}`;
+    }
+
     const socialProps = {
-      img: MainPhoto && MainPhoto.url,
+      img: imgUrl,
       title: news.title,
       url: news.completeUrl
     };
@@ -46,7 +54,7 @@ class ContentForPhoto extends PureComponent {
           <Carousel {...settings}>
             {Photos.map(({ desc, sn, url }) => (
               <div className={css(styles.contentDiv)} key={sn}>
-                <img className={css(styles.contentImg)} src={`${imgApi}${url}`} />
+                <img className={css(styles.contentImg)} src={imgUrl} />
                 <p className={css(styles.imgDesc)}>{desc}</p>
               </div>
             ))}

@@ -20,7 +20,7 @@ class ListItem extends PureComponent {
         to={url} target={isExternal === true ? '_blank' : null}>
         <div className={`left ${css(styles.left)}`}>
           <img className={css(styles.img)} style={imgStyle}
-            src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} alt={mainPhoto.desc} />
+            src={mainPhoto.googleCDN || mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} alt={mainPhoto.desc} />
           <TypeIcon type={type} size='LI' />
         </div>
         <div className={`right ${css(styles.right)}`}>
