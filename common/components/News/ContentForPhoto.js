@@ -52,9 +52,9 @@ class ContentForPhoto extends PureComponent {
       <Container>
         <div className={css(styles.SlideBox)}>
           <Carousel {...settings}>
-            {Photos.map(({ desc, sn, url }) => (
+            {Photos.map(({ desc, sn, googleCDN, url }) => (
               <div className={css(styles.contentDiv)} key={sn}>
-                <img className={css(styles.contentImg)} src={imgUrl} />
+                <img className={css(styles.contentImg)} src={googleCDN || url} />
                 <p className={css(styles.imgDesc)}>{desc}</p>
               </div>
             ))}
