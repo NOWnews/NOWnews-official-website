@@ -35,10 +35,10 @@ class Universiade extends PureComponent {
             <span className={css(styles.hintWord)}>拍我！</span>
           </div>
           <img src={`/events/201708_universiade/${data.kind}.gif`} />
-          <div className={css(styles.no)}>{data.createdAt}_{data.id}</div>
+          <div className={css(styles.no)}>{data.createdAt}{data.id}</div>
           <a className={css(styles.callToAction)} href='https://www.facebook.com/nownews' target='_blank'>
             為世大運加油<br />
-            快來參加活動！
+            快來參加活動
           </a>
         </div>
       </Modal>
@@ -113,7 +113,9 @@ const styles = StyleSheet.create({
     fontSize: 45
   },
   no: {
-    color: '#cccccc',
+    color: '#ffffff',
+    fontSize: 22,
+    fontWeight: 700,
     position: 'relative',
     top: -5
   }
