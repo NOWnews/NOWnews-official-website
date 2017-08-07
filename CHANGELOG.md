@@ -4,6 +4,10 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## [Unreleased]
+### Fixed
+- 減少 firebase 不需要的套件的載入 @esbb48
+
 ## 1.0.17 - 2017-08-04
 ### Fixed
 - 內頁無限下滑 PV 追蹤網址 Bug @esbb48
