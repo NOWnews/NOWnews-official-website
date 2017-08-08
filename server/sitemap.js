@@ -11,7 +11,7 @@ module.exports = function (app) {
 
   let xmlGoogleNews = (news) => {
     return `<url>
-      <loc>${news.url}</loc>
+      <loc><![CDATA[${news.url}]]></loc>
       <lastmod>${news.lastmod}</lastmod>
       <changefreq>${news.changefreq}</changefreq>
       <priority>${news.priority}.0</priority>
@@ -19,7 +19,7 @@ module.exports = function (app) {
   };
   let xmlSitemapNews = (news) => {
     return `<url>
-      <loc>${news.url}</loc>
+      <loc><![CDATA[${news.url}]]></loc>
       <news:news>
         <news:publication>
           <news:name>${news.name}</news:name>
@@ -27,10 +27,11 @@ module.exports = function (app) {
         </news:publication>
         <news:genres>${news.genres}</news:genres>
         <news:publication_date>${news.publication_date}</news:publication_date>
-        <news:title>${news.title}</news:title>
+        <news:title><![CDATA[${news.title}]]></news:title>
       </news:news>
     </url>`;
   };
+
   app.get('/sitemap.xml', (req, res) => {
     axios.get(`${webApiServer}/sitemap/google?device=desktop`, {
       headers: { 'X-NOWnews-API': 'YouCanSeeMeJohnCena' }
@@ -47,6 +48,7 @@ module.exports = function (app) {
       return res.status(500).send('Internal server error');
     });
   });
+
   app.get('/sitemapSSL.xml', (req, res) => {
     axios.get(`${webApiServer}/sitemap/googleSSL?device=desktop`, { headers })
     .then((result) => {
@@ -62,6 +64,7 @@ module.exports = function (app) {
       return res.status(500).send('Internal server error');
     });
   });
+
   app.get('/newsSitemap.xml', (req, res) => {
     axios.get(`${webApiServer}/sitemap/newsSitemap?device=desktop`, { headers })
     .then((result) => {
