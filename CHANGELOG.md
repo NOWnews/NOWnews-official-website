@@ -4,6 +4,13 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.19 - 2017-08-08
+### Changed
+- 把 sitemap 移到 middleware作 @esbb48
+
+### Fixed
+- sitemap 加上 CDATA 防護 @esbb48
+
 ## 1.0.18 - 2017-08-07
 ### Changed
 - 將圖片調整長 GoogleCDN @esbb48
