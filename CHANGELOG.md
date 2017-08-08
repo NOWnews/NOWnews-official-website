@@ -5,6 +5,9 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## 1.0.18 - 2017-08-07
+### Changed
+- 將圖片調整長 GoogleCDN @esbb48
+
 ### Fixed
 - 減少 firebase 不需要的套件的載入 @esbb48
 - 在 ie 時，執行推播會 404 @esbb48

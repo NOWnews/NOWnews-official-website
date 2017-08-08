@@ -4,7 +4,7 @@ import 'videojs-youtube';
 
 class VideoPlayer extends PureComponent {
   componentDidMount () {
-    let { src, poster, width = 970 } = this.props;
+    let { src, poster } = this.props;
     if (src.indexOf('facebook') > 0 || src.indexOf('streamable') > 0) {
       return;
     }
@@ -20,7 +20,7 @@ class VideoPlayer extends PureComponent {
       autoPlay: false,
       controls: true,
       techOrder: ['flash', 'html5', 'youtube'],
-      poster: `https://imgapiv2.nownews.com/?w=${width}&q=70&src=${poster}`,
+      poster,
       sources: [{ src, type }]
     };
 

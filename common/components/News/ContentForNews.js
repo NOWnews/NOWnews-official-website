@@ -24,7 +24,12 @@ class ContentForNews extends PureComponent {
     const { ads, adType, news, isFirstNews, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
     const imgApi = `https://imgapiv2.nownews.com/?w=1080&q=70&src=`;
-    const imgUrl = (news.MainPhoto && news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
+    let imgUrl = 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
+    if (news.MainPhoto && news.MainPhoto.googleCDN) {
+      imgUrl = news.MainPhoto.googleCDN;
+    } else if (news.MainPhoto && news.MainPhoto.url) {
+      imgUrl = `${imgApi}${news.MainPhoto.url}`;
+    }
     const socialProps = {
       img: imgUrl,
       title: news.title,
