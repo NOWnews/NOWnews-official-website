@@ -20,7 +20,7 @@ class BlockItem extends PureComponent {
         <TypeIcon type={type} />
         <div className={css(styles.imgDiv)}>
           <img className={css(styles.img)} style={imgStyle}
-            src={mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} alt={title} />
+            src={mainPhoto.googleCDN || mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} alt={title} />
         </div>
         <div className={css(styles.bottom)}>
           <div className={css(styles.category)}>{category}</div>
