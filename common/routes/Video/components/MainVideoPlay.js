@@ -25,7 +25,7 @@ class MainVideoPlay extends PureComponent {
       <div className={css(styles.box)}>
         <Container className='clearfix'>
           <div className={css(styles.leftSide)} key={sn}>
-            <VideoPlayer width={650} height={360} poster={MainPhoto.url}
+            <VideoPlayer width={650} height={360} poster={MainPhoto.googleCDN || MainPhoto.url}
               src={videoUrl} />
           </div>
           <div className={css(styles.rightSide)}>

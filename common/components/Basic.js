@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 
 class Basic extends PureComponent {
   componentDidMount () {
-    // 有要測試 Perf 的時候才打開，chrome 記得安裝相關套件
+    // 有要測試 Perf 的時候才打開，chrorme 記得安裝相關套件
     // window.Perf = Perf;
 
     // For first time SSR
@@ -26,7 +26,10 @@ class Basic extends PureComponent {
     const { apiServ, headers } = state.sourceRequest;
     const { pathname, search } = window.location;
     init(apiServ, pathname, search, state, headers);
-    firebaseInit(apiServ, headers);
+
+    if ('Notification' in window) {
+      firebaseInit(apiServ, headers);
+    }
   }
 
   render () {

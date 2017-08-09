@@ -44,7 +44,7 @@ class VideoBlock extends PureComponent {
 
       return (
         <div className={`left ${css(styles.thumb)}`} key={index} onClick={() => this.onSelectThumb(index)}>
-          <img src={MainPhoto && (MainPhoto.thumbnail || MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg')}
+          <img src={MainPhoto && (MainPhoto.googleCDN || MainPhoto.thumbnail || MainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg')}
             alt={shortTitle} className={css(styles.img)} />
           <div className={thumbTitleClass}><h3 className={css(styles.h3)}>{shortTitle}</h3></div>
         </div>
@@ -54,7 +54,7 @@ class VideoBlock extends PureComponent {
     return (
       <Margin10 className='relative'>
         <div key={this.state.selectedIndex}>
-          <VideoPlayer height={500} poster={selectedItem.MainPhoto.url}
+          <VideoPlayer height={500} poster={selectedItem.MainPhoto.googleCDN || selectedItem.MainPhoto.url}
             src={selectedItem.MainVideo.url} />
         </div>
         <FontAwesome className={css(styles.iconLeft)} name='chevron-left' size='2x'
