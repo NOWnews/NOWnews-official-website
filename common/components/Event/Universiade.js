@@ -32,13 +32,12 @@ class Universiade extends PureComponent {
           <span className={css(styles.closeBtn)} onClick={this.close}>✖ 關閉</span>
           <div className='relative'>
             <FontAwesome className={css(styles.hint)} name='comment' flip='horizontal' />
-            <span className={css(styles.hintWord)}>拍我！</span>
+            <img className={css(styles.hintWord)} src='/events/201708_universiade/hint.png' />
           </div>
           <img src={`/events/201708_universiade/${data.kind}.gif`} />
           <div className={css(styles.no)}>{data.createdAt}{data.id}</div>
           <a className={css(styles.callToAction)} href='https://www.facebook.com/nownews' target='_blank'>
-            為世大運加油<br />
-            快來參加活動
+            <img src='/events/201708_universiade/calltoaction.png' />
           </a>
         </div>
       </Modal>
@@ -67,12 +66,10 @@ const styles = StyleSheet.create({
   callToAction: {
     background: '#F15BA6',
     display: 'block',
-    color: 'white',
     cursor: 'pointer',
     textDecoration: 'none',
     width: 450,
-    padding: '12px 0',
-    fontSize: 30
+    paddingTop: 12
   },
   closeBtn: {
     backgroundColor: '#000000',
@@ -106,11 +103,9 @@ const styles = StyleSheet.create({
     position: 'absolute'
   },
   hintWord: {
-    color: 'white',
     position: 'absolute',
-    left: 24,
-    top: 44,
-    fontSize: 45
+    left: 0,
+    top: 35
   },
   no: {
     color: '#ffffff',
