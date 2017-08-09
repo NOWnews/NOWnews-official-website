@@ -36,7 +36,7 @@ class Universiade extends PureComponent {
           </div>
           <img src={`/events/201708_universiade/${data.kind}.gif`} />
           <div className={css(styles.no)}>{data.createdAt}{data.id}</div>
-          <a className={css(styles.callToAction)} href='https://www.facebook.com/nownews' target='_blank'>
+          <a className={css(styles.callToAction)} href='https://goo.gl/WvaHCJ' target='_blank'>
             <img src='/events/201708_universiade/calltoaction.png' />
           </a>
         </div>
