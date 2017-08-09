@@ -231,7 +231,7 @@ class NewsContainer extends PureComponent {
                 {rel: 'canonical', href: news.completeUrl}
             ]} />
           <MicroDataNews news={news} />
-          {data.length === 1 && <IsAdult isAdult={news.isAdult} />}
+          <IsAdult isAdult={news.isAdult} />
         </div>}
         <Header ad={topAd} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}

@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
+import FacebookProvider, { Comments } from 'react-facebook';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 import {
@@ -8,7 +9,7 @@ import {
 import { SpecialTopicNav, TripletNav } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 import { DFP, GrabBag, OneAdIR } from '../Ad';
-import FacebookProvider, { Comments } from 'react-facebook';
+import { Universiade } from '../Event';
 
 class ContentForPhoto extends PureComponent {
 
@@ -87,6 +88,7 @@ class ContentForPhoto extends PureComponent {
             <Margin10><GrabBag list={ads.grabBag} /></Margin10>
           </RightSide>
         </Margin10>
+        {isFirstNews && <Universiade data={news.SummerUniversiade} />}
       </Container>
     );
   }
