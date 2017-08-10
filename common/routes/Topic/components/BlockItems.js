@@ -5,14 +5,14 @@ import { BlockTopicItem } from '../../../components/News';
 const BlockItems = ({ topics }) => {
   let items = [];
 
-  topics.forEach(({ sn, MainMenu, MainPhoto, shortTitle, createdAt, url }, key) => {
+  topics.forEach(({ sn, MainMenu, MainPhoto, title, createdAt, url }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockTopicItem
           category='專題'
           key={sn}
           photo={MainPhoto}
-          title={shortTitle}
+          title={title}
           time={createdAt}
           url={url || ''} />
       </div>

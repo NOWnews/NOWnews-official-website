@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     right: -70,
     textDecoration: 'none',
-    top: 0,
+    top: 50,
     padding: '5px 10px',
     position: 'absolute',
     ':hover': {
