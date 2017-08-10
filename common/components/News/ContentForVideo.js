@@ -26,14 +26,14 @@ class ContentForVideo extends PureComponent {
     const { MainPhoto, MainVideo, completeUrl, title } = news;
     const randomKey = news.sn % 3;
     const socialProps = {
-      img: MainPhoto.url,
+      img: MainPhoto.large,
       title,
       url: completeUrl
     };
 
     return (
       <Container>
-        <VideoPlayer src={MainVideo.url} poster={MainPhoto.url} />
+        <VideoPlayer src={MainVideo.url} poster={MainPhoto.large} />
         <i>{MainVideo && MainVideo.desc}</i>
         <Margin10 className='clearfix'>
           <LeftSide>

@@ -23,7 +23,7 @@ class BlockItems9 extends PureComponent {
       return (
         <div key={sn} className={css(styles.blockItem)} onClick={() => { this.select(index); }}>
           <TypeIcon type='VIDEO' />
-          <img className={css(styles.img)} src={MainPhoto.url} />
+          <img className={css(styles.img)} src={MainPhoto.thumbnail} />
           <div className={css(styles.bottom)}>
             <div className={css(styles.title)}><h3 className={css(styles.h3)}>{shortTitle}</h3></div>
             <img src='/icons/whiteClock.png' />

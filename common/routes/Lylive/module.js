@@ -1,3 +1,6 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../../lib/format/photo';
+
 export const LOAD_RELATED_NEWS_REQUEST = 'LOAD_RELATED_NEWS_REQUEST';
 export const LOAD_RELATED_NEWS_SUCCESS = 'LOAD_RELATED_NEWS_SUCCESS';
 export const LOAD_RELATED_NEWS_FAILURE = 'LOAD_RELATED_NEWS_FAILURE';
@@ -126,4 +129,20 @@ export default function lylivePage (state = initialState, action) {
   }
 }
 
-export const selectLylivePage = state => state.lylivePage;
+// selecter
+const getLylivePage = (state) => state.lylivePage;
+const formatLylivePage = createSelector(
+  [getLylivePage], ({ newsList, ...lylivePage }) => {
+    const result = {
+      ...lylivePage,
+      newsList: newsList.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto)
+        };
+      })
+    };
+    return result;
+  }
+);
+export const selectLylivePage = state => formatLylivePage(state);

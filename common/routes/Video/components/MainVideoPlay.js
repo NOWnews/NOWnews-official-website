@@ -18,15 +18,15 @@ class MainVideoPlay extends PureComponent {
 
   render () {
     const { news, showNextButton } = this.props;
-    const { MainPhoto, MainVideo = {}, startedAt, sn, title, parseUrl } = news;
+    const { MainPhoto, MainVideo = {}, startedAt, sn, shortTitle, parseUrl } = news;
     return (
       <div className={css(styles.box)}>
         <Container className='clearfix'>
           <div className={css(styles.leftSide)} key={sn}>
-            <VideoPlayer width={650} height={360} poster={MainPhoto.url} src={MainVideo.url} />
+            <VideoPlayer width={650} height={360} poster={MainPhoto.medium} src={MainVideo.url} />
           </div>
           <div className={css(styles.rightSide)}>
-            <h2 className={css(styles.title)}>{title}</h2>
+            <h2 className={css(styles.title)}>{shortTitle}</h2>
             <img src='/icons/whiteClock.png' />
             <span className={css(styles.time)}>
               {moment(startedAt).format('YYYY.MM.DD hh:mm')}
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     bottom: '1.5rem',
     border: 'none',
     color: '#ffffff',
+    cursor: 'pointer',
     fontSize: 16,
     outline: 'none',
     position: 'absolute',

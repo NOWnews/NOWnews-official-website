@@ -18,9 +18,9 @@ const PreviewForPhoto = ({ news: { Photos, ...news } }) => {
     <Container>
       <div className={css(styles.SlideBox)}>
         <Carousel {...settings}>
-          {Photos.map(({ desc, sn, url }) => (
+          {Photos.map(({ desc, sn, large }) => (
             <div className={css(styles.contentDiv)}>
-              <img className={css(styles.contentImg)} src={url} />
+              <img className={css(styles.contentImg)} src={large} />
               <p className={css(styles.imgDesc)}>{desc}</p>
             </div>
           ))}

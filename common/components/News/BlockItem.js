@@ -19,7 +19,7 @@ class BlockItem extends PureComponent {
       <Link className={css(styles.box)} to={url} target={target}>
         <TypeIcon type={type} />
         <div className={css(styles.imgDiv)}>
-          <img className={css(styles.img)} style={imgStyle} src={MainPhoto.url} alt={title} />
+          <img className={css(styles.img)} style={imgStyle} src={MainPhoto.thumbnail} alt={title} />
         </div>
         <div className={css(styles.bottom)}>
           <div className={css(styles.category)}>{category}</div>

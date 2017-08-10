@@ -25,14 +25,14 @@ class ContentForNews extends PureComponent {
     const { ads, adType, news, isFirstNews, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
     const socialProps = {
-      img: news.MainPhoto.url,
+      img: news.MainPhoto.large,
       title: news.title,
       url: news.completeUrl
     };
     return (
       <Container>
         <div className={css(styles.contentDiv)}>
-          <img className={css(styles.contentImg)} src={news.MainPhoto.url} alt={news.MainPhoto.desc} />
+          <img className={css(styles.contentImg)} src={news.MainPhoto.large} alt={news.MainPhoto.desc} />
         </div>
         <i>{news.MainPhoto.desc}</i>
         <Margin10 className='clearfix'>

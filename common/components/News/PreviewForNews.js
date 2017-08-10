@@ -7,7 +7,7 @@ const PreviewForNews = ({ news }) => {
   return (
     <Container>
       <div className={css(styles.contentDiv)}>
-        <img className={css(styles.contentImg)} src={news.MainPhoto.url} />
+        <img className={css(styles.contentImg)} src={news.MainPhoto.large} />
       </div>
       <i>{news.MainPhoto.desc}</i>
       <Margin10 className='clearfix'>

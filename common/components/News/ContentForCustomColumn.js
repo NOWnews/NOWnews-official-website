@@ -11,14 +11,14 @@ class ContentForCustomColumn extends PureComponent {
     const { news, changeFontSize, fontSize } = this.props;
     const MainPhoto = news.MainPhoto;
     const socialProps = {
-      img: MainPhoto.url,
+      img: MainPhoto.large,
       title: news.title,
       url: news.completeUrl
     };
     return (
       <Container>
         <div className={css(styles.contentDiv)}>
-          <img className={css(styles.contentImg)} src={MainPhoto.url} alt={MainPhoto.desc} />
+          <img className={css(styles.contentImg)} src={MainPhoto.large} alt={MainPhoto.desc} />
         </div>
         <i>{MainPhoto.desc}</i>
         <Margin10 className='clearfix'>
