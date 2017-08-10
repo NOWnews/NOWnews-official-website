@@ -7,6 +7,8 @@
 ## 1.0.22 - 2017-08-11
 ### Changed
 - 將 state 資料先做格式化 @esbb48
+- 移除整理不需要的檔案，ex: `HotVideoBlocks` @esbb48
+- 微調 css 樣式與顯示 @esbb48
 
 ## 1.0.21 - 2017-08-10
 ### Fixed
