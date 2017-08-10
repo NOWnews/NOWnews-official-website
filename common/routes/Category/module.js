@@ -1,3 +1,6 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../../lib/format/photo';
+
 export const LOAD_CATEGORY_REQUEST = 'LOAD_CATEGORY_REQUEST';
 export const LOAD_CATEGORY_SUCCESS = 'LOAD_CATEGORY_SUCCESS';
 export const LOAD_CATEGORY_FAILURE = 'LOAD_CATEGORY_FAILURE';
@@ -72,4 +75,26 @@ export default function categoryPage (state = initialState, action) {
   }
 }
 
-export const selectCategoryPage = state => state.categoryPage;
+// selecter
+const getCategoryPage = (state) => state.categoryPage;
+const formatCategoryPage = createSelector(
+  [getCategoryPage], ({ hotNewsList, newsList, ...categoryPage }) => {
+    const result = {
+      ...categoryPage,
+      hotNewsList: hotNewsList.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto)
+        };
+      }),
+      newsList: newsList.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto)
+        };
+      })
+    };
+    return result;
+  }
+);
+export const selectCategoryPage = state => formatCategoryPage(state);

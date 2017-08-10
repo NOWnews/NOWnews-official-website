@@ -24,8 +24,8 @@ const LylivePage = ({ lylivePage }) => {
   return (
     <div>
       <Container>
-        <NavBar selected='LY_LIVE' />
         <OneAdICIP />
+        <NavBar selected='LY_LIVE' />
         <MainVideoPlay url={lylivePage.videoSourceList[lylivePage.videoSource - 1].url} />
         {lylivePage.isLoading && <Loading />}
         {!lylivePage.isLoading &&

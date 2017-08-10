@@ -66,6 +66,7 @@
     "redux": "3.7.0",
     "redux-form": "6.8.0",
     "redux-thunk": "2.2.0",
+    "reselect": "^3.0.1",
     "source-map-support": "0.4.15",
     "standard": "8.6.0",
     "throng": "4.0.0",

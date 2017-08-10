@@ -1,3 +1,6 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../../lib/format/photo';
+
 export const LOAD_SEARCH_REQUEST = 'LOAD_SEARCH_REQUEST';
 export const LOAD_SEARCH_SUCCESS = 'LOAD_SEARCH_SUCCESS';
 export const LOAD_SEARCH_FAILURE = 'LOAD_SEARCH_FAILURE';
@@ -76,4 +79,19 @@ export default function searchPage (state = initialState, action) {
   }
 }
 
-export const selectSearchPage = state => state.searchPage;
+const getSearchPage = (state) => state.searchPage;
+const formatSearchPage = createSelector(
+  [getSearchPage], ({ list, ...searchPage }) => {
+    const result = {
+      ...searchPage,
+      list: list.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto)
+        };
+      })
+    };
+    return result;
+  }
+);
+export const selectSearchPage = state => formatSearchPage(state);

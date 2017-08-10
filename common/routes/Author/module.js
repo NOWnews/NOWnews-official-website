@@ -1,3 +1,6 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../../lib/format/photo';
+
 export const LOAD_AUTHOR_REQUEST = 'LOAD_AUTHOR_REQUEST';
 export const LOAD_AUTHOR_SUCCESS = 'LOAD_AUTHOR_SUCCESS';
 export const LOAD_AUTHOR_FAILURE = 'LOAD_AUTHOR_FAILURE';
@@ -60,4 +63,20 @@ export default function authorPage (state = initialState, action) {
   }
 }
 
-export const selectAuthorPage = state => state.authorPage;
+const getAuthorPage = (state) => state.authorPage;
+const formatAuthorPage = createSelector(
+  [getAuthorPage], ({ newsList, ...authorPage }) => {
+    const result = {
+      ...authorPage,
+      newsList: newsList.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto)
+        };
+      })
+    };
+    return result;
+  }
+);
+
+export const selectAuthorPage = state => formatAuthorPage(state);

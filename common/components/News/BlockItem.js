@@ -7,7 +7,7 @@ import TypeIcon from './TypeIcon';
 class BlockItem extends PureComponent {
   render () {
     const { category, photo, target, time, title, type, url } = this.props;
-    const { width, height, ...mainPhoto } = photo || {};
+    const { width, height, ...MainPhoto } = photo || {};
     let imgStyle = {};
     // 如果是接近方圖的話會往上位移 20%，因為方形的圖通常主要內容在中間。
     if (height >= width && (width - height) > -200) {
@@ -19,8 +19,7 @@ class BlockItem extends PureComponent {
       <Link className={css(styles.box)} to={url} target={target}>
         <TypeIcon type={type} />
         <div className={css(styles.imgDiv)}>
-          <img className={css(styles.img)} style={imgStyle}
-            src={mainPhoto.googleCDN || mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} alt={title} />
+          <img className={css(styles.img)} style={imgStyle} src={MainPhoto.url} alt={title} />
         </div>
         <div className={css(styles.bottom)}>
           <div className={css(styles.category)}>{category}</div>

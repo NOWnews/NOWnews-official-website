@@ -9,19 +9,18 @@ class ContentForCustomColumn extends PureComponent {
 
   render () {
     const { news, changeFontSize, fontSize } = this.props;
-    const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
-    const imgUrl = (news.MainPhoto && news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
+    const MainPhoto = news.MainPhoto;
     const socialProps = {
-      img: imgUrl,
+      img: MainPhoto.url,
       title: news.title,
       url: news.completeUrl
     };
     return (
       <Container>
         <div className={css(styles.contentDiv)}>
-          <img className={css(styles.contentImg)} src={imgUrl} alt={news.MainPhoto && news.MainPhoto.desc} />
+          <img className={css(styles.contentImg)} src={MainPhoto.url} alt={MainPhoto.desc} />
         </div>
-        <i>{news.MainPhoto && news.MainPhoto.desc}</i>
+        <i>{MainPhoto.desc}</i>
         <Margin10 className='clearfix'>
           <LeftSide>
             <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent} />

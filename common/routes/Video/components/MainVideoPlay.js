@@ -19,14 +19,11 @@ class MainVideoPlay extends PureComponent {
   render () {
     const { news, showNextButton } = this.props;
     const { MainPhoto, MainVideo = {}, startedAt, sn, title, parseUrl } = news;
-    const videoUrl = MainVideo.url;
-
     return (
       <div className={css(styles.box)}>
         <Container className='clearfix'>
           <div className={css(styles.leftSide)} key={sn}>
-            <VideoPlayer width={650} height={360} poster={MainPhoto.googleCDN || MainPhoto.url}
-              src={videoUrl} />
+            <VideoPlayer width={650} height={360} poster={MainPhoto.url} src={MainVideo.url} />
           </div>
           <div className={css(styles.rightSide)}>
             <h2 className={css(styles.title)}>{title}</h2>

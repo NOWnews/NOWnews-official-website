@@ -1,3 +1,6 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../../lib/format/photo';
+
 export const LOAD_VIDEO_REQUEST = 'LOAD_VIDEO_REQUEST';
 export const LOAD_VIDEO_SUCCESS = 'LOAD_VIDEO_SUCCESS';
 export const LOAD_VIDEO_FAILURE = 'LOAD_VIDEO_FAILURE';
@@ -8,7 +11,6 @@ const initialState = {
   currentCategory: '',
   currentMenu: {},
   error: null,
-  hotNewsList: [],
   isLoading: false,
   lastFetched: null,
   newsList: [],
@@ -102,4 +104,19 @@ export default function videoPage (state = initialState, action) {
   }
 }
 
-export const selectVideoPage = state => state.videoPage;
+const getVideoPage = (state) => state.videoPage;
+const formatVideoPage = createSelector(
+  [getVideoPage], ({ newsList, ...videoPage }) => {
+    const result = {
+      ...videoPage,
+      newsList: newsList.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto)
+        };
+      })
+    };
+    return result;
+  }
+);
+export const selectVideoPage = state => formatVideoPage(state);

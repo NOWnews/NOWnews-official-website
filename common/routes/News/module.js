@@ -1,4 +1,6 @@
 import isomorphicCookie from 'isomorphic-cookie';
+import { createSelector } from 'reselect';
+import formatPhoto from '../../../lib/format/photo';
 export const CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE';
 export const CHANGE_NEWS_TITLE = 'CHANGE_NEWS_TITLE';
 export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
@@ -26,9 +28,7 @@ const initialState = {
   lastFetched: null,
   newsTitle: '',
   showFixedHeader: false,
-  topics: [],
-  favorite: [],
-  lbs: []
+  topics: []
 };
 
 export const changeFontSize = (fontSize) => {
@@ -261,4 +261,28 @@ export default function currentNews (state = initialState, action) {
   }
 }
 
-export const selectCurrentNews = state => state.currentNews;
+// For Selecter
+const getCurrentNews = (state) => state.currentNews;
+const formatCurrentNews = createSelector(
+  [getCurrentNews], ({ data, ...currentNews }) => {
+    const result = {
+      ...currentNews,
+      data: data.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto),
+          Photos: news.Photos.map(photo => formatPhoto(photo)),
+          relations: news.relations.map((relationNews) => {
+            return {
+              ...relationNews,
+              MainPhoto: formatPhoto(relationNews.MainPhoto)
+            };
+          })
+        };
+      })
+    };
+    return result;
+  }
+);
+
+export const selectCurrentNews = state => formatCurrentNews(state);

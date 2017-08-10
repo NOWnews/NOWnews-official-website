@@ -4,14 +4,12 @@ import { Content, Tags } from './NewsContent';
 import { Container, LeftSide, Margin10 } from '../Layout';
 
 const PreviewForNews = ({ news }) => {
-  const imgApi = `https://imgapiv2.nownews.com/?h=545&q=70&src=`;
-  const imgUrl = (news.MainPhoto.url) ? `${imgApi}${news.MainPhoto.url}` : 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
   return (
     <Container>
       <div className={css(styles.contentDiv)}>
-        <img className={css(styles.contentImg)} src={imgUrl} />
+        <img className={css(styles.contentImg)} src={news.MainPhoto.url} />
       </div>
-      <i>{news.MainPhoto && news.MainPhoto.desc}</i>
+      <i>{news.MainPhoto.desc}</i>
       <Margin10 className='clearfix'>
         <LeftSide>
           <Content content={news.content} fontSize={16} freeContent={news.freeContent} />

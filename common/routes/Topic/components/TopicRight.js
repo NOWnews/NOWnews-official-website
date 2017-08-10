@@ -5,7 +5,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 const TopicRight = ({ topics }) => (
   <div className={css(styles.box)}>
     {topics.map(({ sn, MainPhoto, title, url }) => (
-      <Link className={css(styles.link)} style={{backgroundImage: 'url(' + (MainPhoto.googleCDN || MainPhoto.thumbnail || MainPhoto.url) + ')'}} key={sn}
+      <Link className={css(styles.link)} style={{backgroundImage: 'url(' + (MainPhoto.url) + ')'}} key={sn}
         to={url}>
         <div className={css(styles.item)}>{ title }</div>
       </Link>

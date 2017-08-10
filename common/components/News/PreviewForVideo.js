@@ -5,7 +5,7 @@ import { Container, LeftSide, Margin10 } from '../Layout';
 
 const PreviewForVideo = ({ news }) => (
   <Container>
-    <VideoPlayer src={news.MainVideo.url} poster={news.MainPhoto.googleCDN || news.MainPhoto.url} />
+    <VideoPlayer src={news.MainVideo.url} poster={news.MainPhoto.url} />
     <i>{news.MainVideo && news.MainVideo.desc}</i>
     <Margin10 className='clearfix'>
       <LeftSide>

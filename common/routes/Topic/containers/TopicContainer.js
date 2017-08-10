@@ -39,7 +39,7 @@ const TopicContainer = ({ local, topicPage, menus, marquee }) => {
             <Slide list={topics.slice(0, 5)} />
             <TopicRight topics={topics.slice(5, 10)} />
           </Margin10>
-          <BlockItems topics={topics.slice(10, 20)} />
+          <BlockItems topics={topics.slice(10, 19)} />
           <Pagination {...pageData} {...local} />
         </div>
       }

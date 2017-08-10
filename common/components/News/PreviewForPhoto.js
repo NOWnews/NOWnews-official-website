@@ -14,14 +14,13 @@ const PreviewForPhoto = ({ news: { Photos, ...news } }) => {
     showThumbs: true,
     showIndicators: false
   };
-  const imgApi = 'https://imgapiv2.nownews.com/?h=570&q=70&src=';
   return (
     <Container>
       <div className={css(styles.SlideBox)}>
         <Carousel {...settings}>
           {Photos.map(({ desc, sn, url }) => (
             <div className={css(styles.contentDiv)}>
-              <img className={css(styles.contentImg)} src={`${imgApi}${url}`} />
+              <img className={css(styles.contentImg)} src={url} />
               <p className={css(styles.imgDesc)}>{desc}</p>
             </div>
           ))}
