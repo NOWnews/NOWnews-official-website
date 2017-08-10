@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     cursor: 'pointer',
     textDecoration: 'none',
     width: 450,
-    paddingTop: 12
+    paddingTop: 5
   },
   closeBtn: {
     backgroundColor: '#000000',
@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     cursor: 'pointer',
     fontSize: 16,
-    right: -70,
+    right: -100,
     textDecoration: 'none',
-    top: 0,
+    top: 80,
     padding: '5px 10px',
     position: 'absolute',
     ':hover': {
