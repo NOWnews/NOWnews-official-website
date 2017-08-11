@@ -4,6 +4,13 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## 1.0.22 - 2017-08-11
+### Changed
+- 將 state 資料先做格式化 @esbb48
+- 移除整理不需要的檔案，ex: `HotVideoBlocks` @esbb48
+- 微調 css 樣式與顯示 @esbb48
+- 調整首頁的影音區塊 @esbb48
+
 ## 1.0.21 - 2017-08-10
 ### Fixed
 - 世大運關閉按鈕位置 @esbb48

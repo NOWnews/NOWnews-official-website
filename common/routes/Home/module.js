@@ -1,3 +1,6 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../../lib/format/photo';
+
 export const LOAD_INDEX_REQUEST = 'LOAD_INDEX_REQUEST';
 export const LOAD_INDEX_SUCCESS = 'LOAD_INDEX_SUCCESS';
 export const LOAD_INDEX_SUCCESS_AND_EMPTY = 'LOAD_INDEX_SUCCESS_AND_EMPTY';
@@ -107,4 +110,25 @@ export default function homePage (state = initialState, action) {
   }
 }
 
-export const selectHomePage = state => state.homePage;
+// selecter
+const processMainPhoto = (item) => {
+  return {
+    ...item,
+    MainPhoto: formatPhoto(item.MainPhoto)
+  };
+};
+
+const getHomePage = (state) => state.homePage;
+const formatHomePage = createSelector(
+  [getHomePage], ({ videos, specialChannels, specialTopics, carousels, ...homePage }) => {
+    const result = {
+      ...homePage,
+      videos: videos.map(processMainPhoto),
+      specialChannels: specialChannels.map(processMainPhoto),
+      specialTopics: specialTopics.map(processMainPhoto),
+      carousels: carousels.map(processMainPhoto)
+    };
+    return result;
+  }
+);
+export const selectHomePage = state => formatHomePage(state);

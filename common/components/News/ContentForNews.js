@@ -24,24 +24,17 @@ class ContentForNews extends PureComponent {
   render () {
     const { ads, adType, news, isFirstNews, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
-    const imgApi = `https://imgapiv2.nownews.com/?w=1080&q=70&src=`;
-    let imgUrl = 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg';
-    if (news.MainPhoto && news.MainPhoto.googleCDN) {
-      imgUrl = news.MainPhoto.googleCDN;
-    } else if (news.MainPhoto && news.MainPhoto.url) {
-      imgUrl = `${imgApi}${news.MainPhoto.url}`;
-    }
     const socialProps = {
-      img: imgUrl,
+      img: news.MainPhoto.large,
       title: news.title,
       url: news.completeUrl
     };
     return (
       <Container>
         <div className={css(styles.contentDiv)}>
-          <img className={css(styles.contentImg)} src={imgUrl} alt={news.MainPhoto && news.MainPhoto.desc} />
+          <img className={css(styles.contentImg)} src={news.MainPhoto.large} alt={news.MainPhoto.desc} />
         </div>
-        <i>{news.MainPhoto && news.MainPhoto.desc}</i>
+        <i>{news.MainPhoto.desc}</i>
         <Margin10 className='clearfix'>
           <LeftSide>
             <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent} />

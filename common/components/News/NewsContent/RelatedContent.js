@@ -10,7 +10,7 @@ const RelatedContent = ({ ad, adKey, list, type }) => {
     formatStartedAt: (new Date()).toISOString(),
     isExternal: true,
     MainPhoto: {
-      url: ad.img,
+      thumbnail: ad.img,
       height: 95,
       width: 170,
       desc: ad.title

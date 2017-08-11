@@ -1,3 +1,6 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../../lib/format/photo';
+
 export const LOAD_TOPIC_REQUEST = 'LOAD_TOPIC_REQUEST';
 export const LOAD_TOPIC_SUCCESS = 'LOAD_TOPIC_SUCCESS';
 export const LOAD_TOPIC_FAILURE = 'LOAD_TOPIC_FAILURE';
@@ -14,7 +17,7 @@ export function loadTopics (page = 1) {
   return (dispatch, getState, { axios }) => {
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_TOPIC_REQUEST });
-    return axios.get(`${apiServ}/specialtopics?limit=20&page=${page}`)
+    return axios.get(`${apiServ}/specialtopics?limit=19&page=${page}`)
     .then((result) => {
       let { specialTopics, pageData } = result.data;
       dispatch({
@@ -65,4 +68,19 @@ export default function topicPage (state = initialState, action) {
   }
 }
 
-export const selectTopicPage = state => state.topicPage;
+const getTopicPage = (state) => state.topicPage;
+const formatTopicPage = createSelector(
+  [getTopicPage], ({ topics, ...topicPage }) => {
+    const result = {
+      ...topicPage,
+      topics: topics.map((topic) => {
+        return {
+          ...topic,
+          MainPhoto: formatPhoto(topic.MainPhoto)
+        };
+      })
+    };
+    return result;
+  }
+);
+export const selectTopicPage = state => formatTopicPage(state);

@@ -9,7 +9,6 @@ import throng from 'throng';
 import url from 'url';
 import isomorphicCookie from 'isomorphic-cookie';
 import axios from 'axios';
-import _ from 'lodash';
 
 import React from 'react';
 import ReactDOM from 'react-dom/server';

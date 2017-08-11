@@ -159,7 +159,6 @@ class NewsContainer extends PureComponent {
 
     // 如果有新聞的話做處理：取得分類、關鍵字字串
     const news = data[0];
-    const imgApi = `http://imgapiv2.nownews.com/?w=640&q=70&src=`;
     let adType;
     let childMenuId;
     let footerAd = '';
@@ -169,13 +168,11 @@ class NewsContainer extends PureComponent {
     let metaOpts = [];
 
     if (news) {
-      if (news.MainPhoto && news.MainPhoto.url) {
-        let newsMainPhoto = `${imgApi}${news.MainPhoto.url}`;
-        metaOpts.push({ name: 'twitter:image', content: newsMainPhoto });
-        metaOpts.push({ name: 'twitter:card', content: newsMainPhoto });
-        metaOpts.push({ property: 'og:image', content: news.MainPhoto.googleCDN || news.MainPhoto.url });
-        metaOpts.push({ property: 'popin:image', content: news.MainPhoto.googleCDN || news.MainPhoto.url });
-      }
+      const MainPhoto = news.MainPhoto;
+      metaOpts.push({ name: 'twitter:image', content: MainPhoto.medium });
+      metaOpts.push({ name: 'twitter:card', content: MainPhoto.medium });
+      metaOpts.push({ property: 'og:image', content: MainPhoto.url });
+      metaOpts.push({ property: 'popin:image', content: MainPhoto.url });
 
       if (news.type === 'VIDEO') {
         metaOpts.push({ property: 'og:video', content: news.MainVideo.url });

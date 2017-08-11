@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../lib/format/photo';
 export const LOAD_LBS_REQUEST = 'LOAD_LBS_REQUEST';
 export const LOAD_LBS_SUCCESS = 'LOAD_LBS_SUCCESS';
 export const LOAD_LBS_FAILURE = 'LOAD_LBS_FAILURE';
@@ -124,4 +126,20 @@ export default function LBS (state = initialState, action) {
   }
 }
 
-export const selectLBS = state => state.LBS;
+// For Selecter
+const getLBS = (state) => state.LBS;
+const formatLBS = createSelector(
+  [getLBS], ({ newsList, ...LBS }) => {
+    const result = {
+      ...LBS,
+      newsList: newsList.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto)
+        };
+      })
+    };
+    return result;
+  }
+);
+export const selectLBS = state => formatLBS(state);

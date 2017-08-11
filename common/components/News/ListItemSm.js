@@ -8,7 +8,7 @@ class ListItemSm extends PureComponent {
   render () {
     const { category, photo, time, title, type, url } = this.props;
 
-    const { width, height, ...mainPhoto } = photo || {};
+    const { width, height, ...MainPhoto } = photo || {};
     let imgStyle = {};
     // 如果是接近方圖的話會往上位移 25%，因為方形的圖通常主要內容在中間。
     if (height >= width && (width - height) > -200) {
@@ -19,8 +19,7 @@ class ListItemSm extends PureComponent {
     return (
       <Link className={`clearfix ${css(styles.box)}`} to={url}>
         <div className={`left ${css(styles.left)}`}>
-          <img className={css(styles.img)} style={imgStyle}
-            src={mainPhoto.googleCDN || mainPhoto.thumbnail || mainPhoto.url || 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg'} alt={mainPhoto.desc} />
+          <img className={css(styles.img)} style={imgStyle} src={MainPhoto.thumbnail} alt={MainPhoto.desc} />
           <TypeIcon type={type} size='LI_S' />
         </div>
         <div className={`right ${css(styles.right)}`}>

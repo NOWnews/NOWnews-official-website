@@ -4,7 +4,6 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 
 export const Slide = ({ list }) => {
-  const imgApi = 'https://imgapiv2.nownews.com/?w=640&q=70&src=';
   const settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -20,12 +19,11 @@ export const Slide = ({ list }) => {
   return (
     <Carousel className={css(styles.box)} {...settings}>
       {list.map(({ parseUrl, url, MainPhoto, shortTitle, sn, startedAt, title }) => {
-        const imgUrl = MainPhoto && (MainPhoto.googleCDN || `${imgApi}${MainPhoto.url}`);
         return (
-          <Link className={css(styles.ahref)} style={{backgroundImage: `url(${imgUrl})`}}
+          <Link className={css(styles.ahref)} style={{backgroundImage: `url(${MainPhoto.url})`}}
             alt={shortTitle || title}
             key={sn} to={parseUrl || url}>
-            { /* <img className={css(styles.img)} src={MainPhoto.url} /> */ }
+            { /* <img className={css(styles.img)} src={MainPhoto.medium} /> */ }
           </Link>
         );
       })}

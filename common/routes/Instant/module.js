@@ -1,3 +1,6 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../../lib/format/photo';
+
 export const LOAD_INSTANT_REQUEST = 'LOAD_INSTANT_REQUEST';
 export const LOAD_INSTANT_SUCCESS = 'LOAD_INSTANT_SUCCESS';
 export const LOAD_INSTANT_FAILURE = 'LOAD_INSTANT_FAILURE';
@@ -77,4 +80,25 @@ export default function instantPage (state = initialState, action) {
   }
 }
 
-export const selectInstantPage = state => state.instantPage;
+const getInstantPage = (state) => state.instantPage;
+const formatInstantPage = createSelector(
+  [getInstantPage], ({ videos, newsList, ...instantPage }) => {
+    const result = {
+      ...instantPage,
+      videos: videos.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto)
+        };
+      }),
+      newsList: newsList.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto)
+        };
+      })
+    };
+    return result;
+  }
+);
+export const selectInstantPage = state => formatInstantPage(state);

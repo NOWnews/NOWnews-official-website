@@ -35,8 +35,8 @@ const VideoPage = ({ local, menus, nextVideo, selectVideo, videoPage }) => {
   return (
     <div>
       <IsAdult isAdult={currentMenu.isAdult} />
-      <NavBar selected='VIDEO' />
       <OneAdICIP />
+      <NavBar selected='VIDEO' />
       {videoPage.isLoading && <Loading />}
       {!videoPage.isLoading && newsList.length > 0 &&
         <MainVideoPlay

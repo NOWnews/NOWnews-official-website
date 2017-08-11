@@ -1,3 +1,6 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../../lib/format/photo';
+
 export const LOAD_CHANNEL_REQUEST = 'LOAD_CHANNEL_REQUEST';
 export const LOAD_CHANNEL_SUCCESS = 'LOAD_CHANNEL_SUCCESS';
 export const LOAD_CHANNEL_FAILURE = 'LOAD_CHANNEL_FAILURE';
@@ -50,7 +53,12 @@ export default function channelPage (state = initialState, action) {
       return {
         ...state,
         isLoading: true,
-        error: null
+        error: null,
+        selectedChannel: {
+          sn: '',
+          title: '',
+          newsList: []
+        }
       };
     case LOAD_CHANNEL_SUCCESS:
       let { channels, selectedChannel, pageData } = action.payload;
@@ -67,11 +75,42 @@ export default function channelPage (state = initialState, action) {
         ...state,
         error: action.payload.message,
         isLoading: false,
-        selectedChannel: []
+        selectedChannel: {
+          sn: '',
+          title: '',
+          newsList: []
+        }
       };
     default:
       return state;
   }
 }
 
-export const selectChannelPage = state => state.channelPage;
+const getChannelPage = (state) => state.channelPage;
+const formatChannelPage = createSelector(
+  [getChannelPage], ({ selectedChannel, ...channelPage }) => {
+    let channel = {
+      sn: '',
+      title: '',
+      newsList: []
+    };
+    if (selectedChannel.newsList) {
+      channel = {
+        ...selectedChannel,
+        newsList: selectedChannel.newsList.map((news) => {
+          return {
+            ...news,
+            MainPhoto: formatPhoto(news.MainPhoto)
+          };
+        })
+      };
+    }
+
+    const result = {
+      ...channelPage,
+      selectedChannel: channel
+    };
+    return result;
+  }
+);
+export const selectChannelPage = state => formatChannelPage(state);

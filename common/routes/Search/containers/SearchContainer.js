@@ -61,10 +61,6 @@ class SearchPage extends PureComponent {
     const { loadSearchList, local, menus, searchPage, marquee } = this.props;
     const { isLoading, list, hotKeywords, pageData, keyword, timeRange } = searchPage;
     const news = list[0];
-    let newsMainPhoto;
-    if (news) {
-      newsMainPhoto = news.MainPhoto && news.MainPhoto.url;
-    }
     // SPA 的關係，local 的 query 不會持續被更新。
     const refreshLocal = {
       ...local,
@@ -82,7 +78,7 @@ class SearchPage extends PureComponent {
               { name: 'keywords', content: `${keyword}, ${hotKeywords.join(',')}` },
               { name: 'news_keywords', content: `${keyword}, ${hotKeywords.join(',')}` },
               { name: 'twitter:title', content: `${keyword} 熱門搜尋| 新聞搜尋 | NOWnews 今日新聞` },
-              { name: 'twitter:image', content: newsMainPhoto },
+              { name: 'twitter:image', content: news.MainPhoto.url },
               { name: 'twitter:description', content: `${keyword}相關新聞及資料都在NOWnews今日新聞。` },
               { name: 'twitter:card', content: news.MainPhoto.url },
               { name: 'contact', content: 'service@nownews.com' },
@@ -92,7 +88,7 @@ class SearchPage extends PureComponent {
               { property: 'og:locale', content: 'zh_TW' },
               { property: 'og:title', content: `${keyword} 熱門搜尋| 新聞搜尋 | NOWnews 今日新聞` },
               { property: 'og:description', content: `${keyword}相關新聞及資料都在NOWnews今日新聞。` },
-              { property: 'og:image', content: newsMainPhoto },
+              { property: 'og:image', content: news.MainPhoto.url },
               { property: 'og:video', content: (news.type === 'VIDEO') ? news.MainVideo.url : '' },
               { property: 'og:url', content: `https://www.nownews.com/search?keyword=${keyword}&timeRange=lastWeek` },
               { property: 'og:rich_attachment', content: 'true' }

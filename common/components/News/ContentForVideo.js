@@ -25,22 +25,15 @@ class ContentForVideo extends PureComponent {
     const { ads, adType, isFirstNews, news, changeFontSize, fontSize, triplet } = this.props;
     const { MainPhoto, MainVideo, completeUrl, title } = news;
     const randomKey = news.sn % 3;
-    const imgApi = `https://imgapiv2.nownews.com/?w=1080&q=70&src=`;
-    let imgUrl = '';
-    if (MainPhoto && MainPhoto.googleCDN) {
-      imgUrl = MainPhoto.googleCDN;
-    } else if (MainPhoto && MainPhoto.url) {
-      imgUrl = `${imgApi}${MainPhoto.url}`;
-    }
     const socialProps = {
-      img: imgUrl,
+      img: MainPhoto.large,
       title,
       url: completeUrl
     };
 
     return (
       <Container>
-        <VideoPlayer src={MainVideo.url} poster={imgUrl} />
+        <VideoPlayer src={MainVideo.url} poster={MainPhoto.large} />
         <i>{MainVideo && MainVideo.desc}</i>
         <Margin10 className='clearfix'>
           <LeftSide>
@@ -54,7 +47,6 @@ class ContentForVideo extends PureComponent {
             </FacebookProvider>
             <RelatedContent type='相關新聞' list={news.relations} adKey={randomKey} ad={ads.relation} />
             <div className='_popIn_recommend' data-url={`https://www.nownews.com${news.parseUrl}`} />
-            {/* <HotVideoBlocks list={news.relations} /> */}
           </LeftSide>
           <RightSide>
             <Social {...socialProps} />

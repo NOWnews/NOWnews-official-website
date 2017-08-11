@@ -1,4 +1,6 @@
 import isomorphicCookie from 'isomorphic-cookie';
+import { createSelector } from 'reselect';
+import formatPhoto from '../../lib/format/photo';
 export const LOAD_INTEREST_REQUEST = 'LOAD_INTEREST_REQUEST';
 export const LOAD_INTEREST_SUCCESS = 'LOAD_INTEREST_SUCCESS';
 export const LOAD_INTEREST_FAILURE = 'LOAD_INTEREST_FAILURE';
@@ -72,5 +74,22 @@ export default function interest (state = initialState, action) {
   }
 }
 
-export const selectInterestPage = state => state.interest;
-export const selectInterest = state => state.interest.newsList;
+// For Selecter
+const getList = (state) => state.interest.newsList;
+const formatNewsList = createSelector(
+  [getList], (list) => {
+    return list.map((news) => {
+      return {
+        ...news,
+        MainPhoto: formatPhoto(news.MainPhoto)
+      };
+    });
+  }
+);
+export const selectInterest = state => formatNewsList(state);
+export const selectInterestPage = (state) => {
+  return {
+    ...state.interest,
+    newsList: formatNewsList(state)
+  };
+};
