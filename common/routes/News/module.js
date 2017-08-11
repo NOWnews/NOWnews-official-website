@@ -135,6 +135,12 @@ export const loadPreview = (redisKey) => {
     dispatch({ type: LOAD_PREVIEW_REQUEST });
     return axios.get(`${apiServ}/previews/${redisKey}`)
       .then(res => {
+        if (res.data === null) {
+          return dispatch({
+            type: LOAD_PREVIEW_FAILURE,
+            payload: 'redisKey 過期找不到相關資料'
+          });
+        }
         dispatch({
           type: LOAD_PREVIEW_SUCCESS,
           payload: res.data,
@@ -285,4 +291,21 @@ const formatCurrentNews = createSelector(
   }
 );
 
+const formatPreviewNews = createSelector(
+  [getCurrentNews], ({ data, ...previewNews }) => {
+    const result = {
+      ...previewNews,
+      data: data.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto),
+          Photos: news.Photos ? news.Photos.map(photo => formatPhoto(photo)) : []
+        };
+      })
+    };
+    return result;
+  }
+);
+
 export const selectCurrentNews = state => formatCurrentNews(state);
+export const selectPreviewNews = state => formatPreviewNews(state);
