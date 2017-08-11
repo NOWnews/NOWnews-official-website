@@ -34,7 +34,7 @@ class Universiade extends PureComponent {
             <FontAwesome className={css(styles.hint)} name='comment' flip='horizontal' />
             <img className={css(styles.hintWord)} src='/events/201708_universiade/hint.png' />
           </div>
-          <img src={`/events/201708_universiade/${data.kind}.gif`} />
+          <img width='400' src={`/events/201708_universiade/${data.kind}.gif`} />
           <div className={css(styles.no)}>{data.createdAt}{data.id}</div>
           <a className={css(styles.callToAction)} href='https://goo.gl/WvaHCJ' target='_blank'>
             <img src='/events/201708_universiade/calltoaction.png' />
@@ -49,7 +49,7 @@ const top = 50;
 const left = 50;
 const modalStyle = {
   position: 'fixed',
-  zIndex: 1040,
+  zIndex: 99999,
   top: 0,
   bottom: 0,
   left: 0,
