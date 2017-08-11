@@ -5,6 +5,7 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## 1.0.22 - 2017-08-11
+### Note: 安裝 `reselect` 套件
 ### Changed
 - 將 state 資料先做格式化 @esbb48
 - 移除整理不需要的檔案，ex: `HotVideoBlocks` @esbb48
