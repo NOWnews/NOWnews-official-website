@@ -1,3 +1,4 @@
+export CTHouse from './CTHouse';
 export CrazyAd from './CrazyAd';
 export DFP from './DFP';
 export * as getAdType from './getAdType';

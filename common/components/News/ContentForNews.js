@@ -7,7 +7,7 @@ import {
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
-import { DFP, GrabBag, OneAdIR } from '../Ad';
+import { CTHouse, DFP, GrabBag, OneAdIR } from '../Ad';
 import { Universiade } from '../Event';
 
 class ContentForNews extends PureComponent {
@@ -60,6 +60,7 @@ class ContentForNews extends PureComponent {
             <SpecialTopicNav list={topics} />
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RB_new2`, [300, 250]]} />
             <Margin10><GrabBag list={ads.grabBag} /></Margin10>
+            <CTHouse />
           </RightSide>
         </Margin10>
         {isFirstNews && <Universiade data={news.SummerUniversiade} />}
