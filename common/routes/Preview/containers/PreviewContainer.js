@@ -2,7 +2,7 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
-import { loadPreview, selectCurrentNews } from '../../News/module';
+import { loadPreview, selectPreviewNews } from '../../News/module';
 import { Header } from '../../../components/Header';
 import { Loading } from '../../../components/Layout';
 import { Head, PreviewForNews, PreviewForPhoto, PreviewForVideo } from '../../../components/News';
@@ -15,7 +15,7 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
-  currentNews: selectCurrentNews(state),
+  currentNews: selectPreviewNews(state),
   marquee: selectMarquee(state),
   menus: selectMenus(state)
 });
