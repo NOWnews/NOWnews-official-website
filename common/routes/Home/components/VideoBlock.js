@@ -25,6 +25,7 @@ class VideoBlock extends PureComponent {
 
   onSelectThumb (index) {
     this.setState({selectedIndex: index});
+    window.scroll(0, 3150);
   }
 
   prev () {

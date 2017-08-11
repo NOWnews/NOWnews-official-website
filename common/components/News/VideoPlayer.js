@@ -76,6 +76,9 @@ class VideoPlayer extends PureComponent {
               padding-top: ${(iconSize - fontSize) / 2 + 10}px;
               font-size: ${fontSize}px;
             }
+            .vjs-youtube .vjs-poster {
+                background-size: contain;
+            }
           `}} />
           <video width={width} height={height} className='video-js'
             ref={node => { this.videoNode = node; }} />
