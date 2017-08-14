@@ -4,6 +4,9 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## [Unreleased]
+### Changed
+- 如果 queryString 中有 ad=0 就會隱蔽另外載 js 的廣告 @esbb48
 
 ## 1.0.23 - 2017-08-14
 ### Added
