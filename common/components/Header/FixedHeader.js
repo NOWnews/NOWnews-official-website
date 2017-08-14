@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     position: 'fixed',
     top: 0,
     width: '100%',
-    zIndex: 9999
+    zIndex: 10
   },
   firstRow: {
     color: '#999',

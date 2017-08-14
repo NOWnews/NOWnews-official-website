@@ -4,9 +4,13 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+
 ## 1.0.23 - 2017-08-14
 ### Added
 - 加中信廣告在新聞內頁 @esbb48
+
+### Changed
+- 調整權重 @esbb48
 
 ## 1.0.22 - 2017-08-11
 ### Note: 安裝 `reselect` 套件
