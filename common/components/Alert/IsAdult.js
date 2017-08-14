@@ -42,7 +42,7 @@ const top = 50;
 const left = 50;
 const modalStyle = {
   position: 'fixed',
-  zIndex: 1040,
+  zIndex: 20,
   top: 0,
   bottom: 0,
   left: 0,
