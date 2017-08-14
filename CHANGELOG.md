@@ -11,6 +11,7 @@
 
 ### Changed
 - 調整世大運蓋板權重 @esbb48
+- 如果 queryString 中有 ad=0 就會隱蔽另外載 js 的廣告 @esbb48
 
 ## 1.0.22 - 2017-08-11
 ### Note: 安裝 `reselect` 套件
