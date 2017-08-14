@@ -12,10 +12,14 @@ export const LogoRow = ({ user }) => (
         <Logo />
       </StaticContainer>
       <StaticContainer>
-        <DFP className={css(styles.adBox)} opts={['/5799246/Nownews_all_200x70_LT_new2', [200, 70], 'div-gpt-ad-1496983081227-0']} />
+        <div className={css(styles.adBox)}>
+          <DFP opts={['/5799246/Nownews_all_200x70_LT_new2', [200, 70], 'div-gpt-ad-1496983081227-0']} />
+        </div>
       </StaticContainer>
       <StaticContainer>
-        <DFP className={css(styles.adBox)} opts={['/5799246/Nownews_all_200x70_RT_new2', [200, 70], 'div-gpt-ad-1496983120685-0']} />
+        <div className={css(styles.adBox)}>
+          <DFP opts={['/5799246/Nownews_all_200x70_RT_new2', [200, 70], 'div-gpt-ad-1496983120685-0']} />
+        </div>
       </StaticContainer>
       <RightSide user={user} />
     </div>
