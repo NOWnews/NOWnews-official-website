@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
   },
   contentImg: {
     height: '100%',
-    width: 'auto !important'
+    width: 'auto !important',
+    maxWidth: 970
   },
   contentDiv: {
     textAlign: 'center',

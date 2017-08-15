@@ -65,16 +65,16 @@ class VideoPlayer extends PureComponent {
         {!useIframe && <div data-vjs-player>
           <style dangerouslySetInnerHTML={{__html: `
             .video-js .vjs-big-play-button {
-              border: 0;
-              border-radius: 50%;
-              left: ${width / 2 - iconSize / 2}px;
-              top: ${height / 2 - iconSize / 2}px;
-              width: ${iconSize}px;
-              height: ${iconSize}px;
+              border: 0 !important;
+              border-radius: 50% !important;
+              left: ${width / 2 - iconSize / 2}px !important;
+              top: ${height / 2 - iconSize / 2}px !important;
+              width: ${iconSize}px !important;
+              height: ${iconSize}px !important;
             }
             .video-js .vjs-big-play-button:before {
-              padding-top: ${(iconSize - fontSize) / 2 + 10}px;
-              font-size: ${fontSize}px;
+              padding-top: ${(iconSize - fontSize) / 2 + 10}px !important;
+              font-size: ${fontSize}px !important;
             }
             .vjs-youtube .vjs-poster {
                 background-size: contain;

@@ -4,6 +4,15 @@
 格式基於 [Keep a Changelog](http://keepachangelog.com/zh-CN/1.0.0/)
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
+## [Unreleased]
+
+## 1.0.24 - 2017-08-15
+### Changed
+- 加縮圖在廣告新聞內頁與首頁 @wayne1025
+
+### Fixed
+- PageSpeed 的清除前幾行內容中的禁止轉譯 JavaScript 和 CSS 項目 @esbb48
+- 調整預覽圖的最大寬度 @esbb48
 
 ## 1.0.23 - 2017-08-14
 ### Added
