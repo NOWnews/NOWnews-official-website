@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### Changed
+- 加縮圖在廣告新聞內頁與首頁 @wayne1025
+
 ### Fixed
 - PageSpeed 的清除前幾行內容中的禁止轉譯 JavaScript 和 CSS 項目 @esbb48
 
