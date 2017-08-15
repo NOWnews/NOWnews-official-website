@@ -23,7 +23,8 @@ const PreviewForNews = ({ news }) => {
 const styles = StyleSheet.create({
   contentImg: {
     height: 545,
-    width: 'auto'
+    width: 'auto',
+    maxWidth: 970
   },
   contentDiv: {
     textAlign: 'center',
