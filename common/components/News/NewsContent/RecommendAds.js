@@ -9,7 +9,7 @@ const RecommendAds = ({ ads }) => {
     items.push(
       <a className={css(styles.item)} key={index} href={ad.url} target='_blank'>
         <div>
-          <img src={ad.img} width='200' height='112' alt={ad.title} />
+          <img src={`https://imgapiv2.nownews.com/?w=200&q=70&src=${ad.img}`} width='200' height='112' alt={ad.title} />
         </div>
         <div className={css(styles.title)}>{ad.title}</div>
       </a>

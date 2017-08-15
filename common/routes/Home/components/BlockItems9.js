@@ -14,7 +14,7 @@ class BlockItems9 extends PureComponent {
         formatStartedAt: (new Date()).toISOString(),
         parseUrl: url,
         MainMenu: { name: menu },
-        MainPhoto: { thumbnail: img }
+        MainPhoto: { thumbnail: 'https://imgapiv2.nownews.com/?w=300&q=70&src=' + img }
       };
     };
 
