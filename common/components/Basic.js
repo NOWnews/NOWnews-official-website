@@ -38,12 +38,6 @@ class Basic extends PureComponent {
         <StaticContainer>
           <div>
             <Helmet title='NOWnews 今日新聞' titleTemplate='NOWnews 今日新聞'
-              link={[
-                {async: 'async', rel: 'stylesheet', href: '/vendor/basscss.min.css'},
-                {async: 'async', rel: 'stylesheet', href: '/vendor/font-awesome-4.7.0/css/font-awesome.min.css'},
-                {async: 'async', rel: 'stylesheet', href: '/vendor/carousel.min.css'},
-                {async: 'async', rel: 'stylesheet', href: '/vendor/video-js.min.css'}
-              ]}
               meta={[
                 {name: 'msvalidate.01', content: 'DD4BB84D2BD1EE97A75961E31C37B771'},
                 {name: 'google-site-verification', content: 'IpBBA_rIUzM0_7nqKskLksd7Rg-aFVbhQyD7DKZT-Ac'},
