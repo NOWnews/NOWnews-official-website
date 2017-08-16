@@ -2,7 +2,6 @@
   "mode": "production",
   "webApiServer": "https://v4api.nownews.com",
   "memberApiServer": "https://memberapi.nownews.com",
-  "isProdMode": true,
   "headers": {
     "X-NOWnews-API": "YouCanSeeMeJohnCena"
   },
