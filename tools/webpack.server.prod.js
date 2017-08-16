@@ -15,7 +15,7 @@ function getExternals () {
 
 module.exports = {
   target: 'node',
-  devtool: 'inline-source-map',
+  devtool: false,
   entry: SERVER_ENTRY,
   output: {
     path: SERVER_OUTPUT,
