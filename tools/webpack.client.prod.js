@@ -12,6 +12,7 @@ module.exports = {
     vendor: [
       'babel-polyfill', // fixed ie11 minified problem
       'aphrodite/no-important',
+      'isomorphic-cookie',
       'react',
       'react-dom',
       'react-fontawesome',
@@ -20,7 +21,10 @@ module.exports = {
       'react-redux',
       'react-overlays/lib/Modal',
       'react-simple-dfp',
-      'redux'
+      'redux',
+      'redux-thunk',
+      'reselect',
+      'uuid/v4'
     ]
   },
   output: {
