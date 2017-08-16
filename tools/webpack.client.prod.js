@@ -66,5 +66,10 @@ module.exports = {
         exclude: /(node_modules)/
       }
     ]
+  },
+  externals: {
+    moment: 'moment',
+    firebase: 'firebase',
+    'video.js': 'videojs'
   }
 };

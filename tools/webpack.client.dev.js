@@ -51,6 +51,11 @@ module.exports = {
       }
     ]
   },
+  externals: {
+    moment: true,
+    firebase: true,
+    'video.js': 'videojs'
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('develop'),
