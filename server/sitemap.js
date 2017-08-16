@@ -1,6 +1,5 @@
 import configLib from 'config';
 import axios from 'axios';
-import _ from 'lodash';
 
 module.exports = function (app) {
   const webApiServer = configLib.get('webApiServer');
@@ -37,7 +36,7 @@ module.exports = function (app) {
       headers: { 'X-NOWnews-API': 'YouCanSeeMeJohnCena' }
     }).then((result) => {
       let content = '';
-      _.forEach(result.data, (news) => {
+      result.data.forEach((news) => {
         content += xmlGoogleNews(news);
       });
       res.header('Content-Type', 'application/xml');
@@ -53,7 +52,7 @@ module.exports = function (app) {
     axios.get(`${webApiServer}/sitemap/googleSSL?device=desktop`, { headers })
     .then((result) => {
       let content = '';
-      _.forEach(result.data, (news) => {
+      result.data.forEach((news) => {
         content += xmlGoogleNews(news);
       });
       res.header('Content-Type', 'application/xml');
@@ -69,7 +68,7 @@ module.exports = function (app) {
     axios.get(`${webApiServer}/sitemap/newsSitemap?device=desktop`, { headers })
     .then((result) => {
       let content = '';
-      _.forEach(result.data, (news) => {
+      result.data.forEach((news) => {
         content += xmlSitemapNews(news);
       });
       res.header('Content-Type', 'application/xml');
