@@ -7,7 +7,6 @@ import {
 import { TripletNav, VideoPlayer } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 import { CTHouse, DFP, GrabBag, OneAdIR } from '../Ad';
-import { Universiade } from '../Event';
 
 class ContentForVideo extends PureComponent {
 
@@ -58,7 +57,6 @@ class ContentForVideo extends PureComponent {
             <CTHouse />
           </RightSide>
         </Margin10>
-        {isFirstNews && <Universiade data={news.SummerUniversiade} />}
       </Container>
     );
   }
