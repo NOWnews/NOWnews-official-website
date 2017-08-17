@@ -23,6 +23,7 @@ module.exports = {
       'react-redux',
       'react-overlays/lib/Modal',
       'react-simple-dfp',
+      'react-static-container',
       'redux',
       'redux-thunk',
       'reselect',
