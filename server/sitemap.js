@@ -11,7 +11,7 @@ module.exports = function (app) {
 
   let xmlGoogleNews = (news) => {
     return `<url>
-      <loc><![CDATA[${news.url}]]></loc>
+      <loc>${news.url}</loc>
       <lastmod>${news.lastmod}</lastmod>
       <changefreq>${news.changefreq}</changefreq>
       <priority>${news.priority}.0</priority>
@@ -19,7 +19,7 @@ module.exports = function (app) {
   };
   let xmlSitemapNews = (news) => {
     return `<url>
-      <loc><![CDATA[${news.url}]]></loc>
+      <loc>${news.url}</loc>
       <news:news>
         <news:publication>
           <news:name>${news.name}</news:name>
