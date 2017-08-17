@@ -1,15 +1,11 @@
 import http from 'http';
 import express from 'express';
-import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import compression from 'compression';
-import hpp from 'hpp';
 import throng from 'throng';
 import url from 'url';
 import isomorphicCookie from 'isomorphic-cookie';
 import axios from 'axios';
-import Helm from 'react-helmet'; // because we are already using helmet
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -37,7 +33,6 @@ const region = configLib.get('region');
 
 export const createServer = (config) => {
   const app = express();
-  let assets = null;
   app.disable('x-powered-by');
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));

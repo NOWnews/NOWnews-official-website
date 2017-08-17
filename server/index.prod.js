@@ -9,7 +9,6 @@ import throng from 'throng';
 import url from 'url';
 import isomorphicCookie from 'isomorphic-cookie';
 import axios from 'axios';
-import { compileDev, startDev } from '../tools/dx';
 import React from 'react';
 import { renderToString as ReactDOMrenderToString } from 'react-dom/server';
 import { createMemoryHistory, RouterContext, match } from 'react-router';
@@ -31,7 +30,6 @@ const headers = configLib.get('headers');
 const region = configLib.get('region');
 
 export const createServer = (config) => {
-
   const app = express();
   const assets = require('../assets.json');
   app.disable('x-powered-by');
