@@ -5,6 +5,14 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Changed
+- 優化 webpack bundle @esbb48
+  - 使用 CDN
+  - 移除不需要載入的元件（世大運）、Router（帳號密碼註冊登入）
+  - 把共用的套件加到 Vendor
+  - 將 server 分成 prod 和 dev 兩種（避免在 build 的時候載入 dev 的 lib）
+  - 因應第四項調整 script
+  - 把 dev 的 lib 移到 devDependence
 
 ## 1.0.24 - 2017-08-15
 ### Changed
