@@ -36,7 +36,8 @@ module.exports = function (app) {
       headers: { 'X-NOWnews-API': 'YouCanSeeMeJohnCena' }
     }).then((result) => {
       let content = '';
-      result.data.forEach((news) => {
+      let data = result.data || [];
+      data.forEach((news) => {
         content += xmlGoogleNews(news);
       });
       res.header('Content-Type', 'application/xml');
@@ -52,7 +53,8 @@ module.exports = function (app) {
     axios.get(`${webApiServer}/sitemap/googleSSL?device=desktop`, { headers })
     .then((result) => {
       let content = '';
-      result.data.forEach((news) => {
+      let data = result.data || [];
+      data.forEach((news) => {
         content += xmlGoogleNews(news);
       });
       res.header('Content-Type', 'application/xml');
@@ -68,7 +70,8 @@ module.exports = function (app) {
     axios.get(`${webApiServer}/sitemap/newsSitemap?device=desktop`, { headers })
     .then((result) => {
       let content = '';
-      result.data.forEach((news) => {
+      let data = result.data || [];
+      data.forEach((news) => {
         content += xmlSitemapNews(news);
       });
       res.header('Content-Type', 'application/xml');
