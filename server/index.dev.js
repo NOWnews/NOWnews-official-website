@@ -137,9 +137,6 @@ export const createServer = (config) => {
                 <link rel="shortcut icon" href="/favicon.ico">
                 ${head.meta.toString().replace(regexp, '')}
                 ${head.link.toString()}
-                <script async src="//apps.bdimg.com/libs/moment/2.8.3/moment-with-locales.min.js"></script>
-                <script async src="//www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-                <script async src="//vjs.zencdn.net/5.20.1/video.js"></script>
                 <script>
                   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -211,6 +208,9 @@ export const createServer = (config) => {
                 <div id="root">${data.html}</div>
                 <script>window.renderedClassNames = ${JSON.stringify(data.css.renderedClassNames)};</script>
                 <script>window.INITIAL_STATE = ${JSON.stringify(initialState).replace(/</g, '\\u003c')};</script>
+                <script src="//apps.bdimg.com/libs/moment/2.8.3/moment-with-locales.min.js"></script>
+                <script src="//www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+                <script src="//vjs.zencdn.net/5.20.1/video.min.js"></script>
                 <script src="/vendor.js"></script>
                 <script async src="/main.js" ></script>
                 <link rel='stylesheet' type='text/css' href='/vendor/basscss.min.css' />
