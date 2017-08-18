@@ -1,8 +1,14 @@
 const path = require('path');
+const HappyPack = require('happypack');
 const webpack = require('webpack');
 const CONFIG = require('./webpack.base');
 
 const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH } = CONFIG;
+
+const babelQuery = {
+  cacheDirectory: true,
+  presets: ['es2015', 'react', 'stage-0']
+};
 
 module.exports = {
   devtool: 'eval',
@@ -40,19 +46,15 @@ module.exports = {
     preLoaders: [
       {
         test: /\.jsx?$/,
-        loader: 'eslint',
+        loader: 'happypack/loader?id=eslint',
         exclude: /(node_modules)/
       }
     ],
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
-        exclude: /(node_modules|server)/,
-        query: {
-          cacheDirectory: true,
-          presets: ['es2015', 'react', 'stage-0']
-        }
+        loader: 'happypack/loader?id=babel',
+        exclude: /(node_modules|server)/
       }
     ]
   },
@@ -65,6 +67,14 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('develop'),
       '__DEV__': true
+    }),
+    new HappyPack({
+      id: 'babel',
+      loaders: [`babel?${JSON.stringify(babelQuery)}`],
+    }),
+    new HappyPack({
+      id: 'eslint',
+      loaders: ['eslint'],
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', 2),

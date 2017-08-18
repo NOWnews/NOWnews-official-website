@@ -5,6 +5,9 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Note
+- `npm install happypack`
+
 ### Changed
 - 優化 webpack bundle @esbb48
   - 使用 CDN
@@ -13,6 +16,7 @@
   - 將 server 分成 prod 和 dev 兩種（避免在 build 的時候載入 dev 的 lib）
   - 因應第四項調整 script
   - 把 dev 的 lib 移到 devDependence
+  - 使用 happypack 套件併發 build 的時間
 
 ## 1.0.24 - 2017-08-15
 ### Changed

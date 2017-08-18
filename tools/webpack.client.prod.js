@@ -1,9 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
+const HappyPack = require('happypack');
 const AssetsPlugin = require('assets-webpack-plugin');
 
 const CONFIG = require('./webpack.base');
 const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH } = CONFIG;
+
+const babelQuery = {
+  cacheDirectory: true,
+  presets: ['es2015', 'react', 'stage-0', 'react-optimize']
+};
 
 module.exports = {
   devtool: false,
@@ -39,6 +45,10 @@ module.exports = {
       'process.env.NODE_ENV': '"production"',
       '__DEV__': false
     }),
+    new HappyPack({
+      id: 'babel',
+      loaders: [`babel?${JSON.stringify(babelQuery)}`],
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor_[hash].js', 2),
@@ -63,11 +73,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
-        query: {
-          cacheDirectory: true,
-          presets: ['es2015', 'react', 'stage-0', 'react-optimize']
-        },
+        loader: 'happypack/loader?id=babel',
         exclude: /(node_modules)/
       }
     ]
