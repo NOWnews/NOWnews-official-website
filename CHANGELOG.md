@@ -17,6 +17,7 @@
   - 把 dev 的 lib 移到 devDependence
   - 使用 happypack 套件併發 build 的時間
   - 壓縮 onead_ir 的 js 檔案，並移到本地端
+  - 預防 CDN 掛掉，像是 moment、video、firebase
 
 ## 1.0.24 - 2017-08-15
 ### Changed
