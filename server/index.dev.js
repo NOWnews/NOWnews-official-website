@@ -215,7 +215,6 @@ export const createServer = (config) => {
                 <script async src="/main.js" ></script>
                 <link rel='stylesheet' type='text/css' href='/vendor/basscss.min.css' />
                 <link rel='stylesheet' type='text/css' href='/vendor/font-awesome-4.7.0/css/font-awesome.min.css' />
-                <link rel='stylesheet' type='text/css' href='/vendor/carousel.min.css' />
                 <link rel='stylesheet' type='text/css' href='/vendor/video-js.min.css' />
                 <div style="display:none;">Server in ${region}</div>
               </body>

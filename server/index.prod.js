@@ -190,11 +190,9 @@ export const createServer = (config) => {
                     margin: 0;
                     padding: 0;
                   }
-
                   article img {
                     width: 100%;
                   }
-
                 </style>
                 <style data-aphrodite>${data.css.content}</style>
               </head>
@@ -209,7 +207,6 @@ export const createServer = (config) => {
                 <script async src="${assets.main.js}" ></script>
                 <link rel='stylesheet' type='text/css' href='/vendor/basscss.min.css' />
                 <link rel='stylesheet' type='text/css' href='/vendor/font-awesome-4.7.0/css/font-awesome.min.css' />
-                <link rel='stylesheet' type='text/css' href='/vendor/carousel.min.css' />
                 <link rel='stylesheet' type='text/css' href='/vendor/video-js.min.css' />
                 <div style="display:none;">Server in ${region}</div>
               </body>
