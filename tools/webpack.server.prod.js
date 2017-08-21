@@ -1,7 +1,11 @@
 const webpack = require('webpack');
+const HappyPack = require('happypack');
 const fs = require('fs');
 const path = require('path');
-
+const babelQuery = {
+  cacheDirectory: true,
+  presets: ['es2015', 'react', 'stage-0', 'react-optimize']
+};
 const CONFIG = require('./webpack.base');
 const { SERVER_ENTRY, SERVER_OUTPUT, PUBLIC_PATH } = CONFIG;
 
@@ -15,7 +19,7 @@ function getExternals () {
 
 module.exports = {
   target: 'node',
-  devtool: 'inline-source-map',
+  devtool: false,
   entry: SERVER_ENTRY,
   output: {
     path: SERVER_OUTPUT,
@@ -30,14 +34,11 @@ module.exports = {
     loaders: [
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        loader: 'happypack/loader?id=json'
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react', 'stage-0', 'react-optimize']
-        },
+        loader: 'happypack/loader?id=babel',
         exclude: /(node_modules)/
       }
 
@@ -48,6 +49,14 @@ module.exports = {
         'require("source-map-support").install();',
         { raw: true, entryOnly: false }
     ),
+    new HappyPack({
+      id: 'babel',
+      loaders: [`babel?${JSON.stringify(babelQuery)}`],
+    }),
+    new HappyPack({
+      id: 'json',
+      loaders: ['json'],
+    }),
     new webpack.IgnorePlugin(/\.(css|less|scss|svg|png|jpe?g|png)$/),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

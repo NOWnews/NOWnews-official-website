@@ -1,28 +1,23 @@
 import http from 'http';
 import express from 'express';
-import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import compression from 'compression';
-import hpp from 'hpp';
 import throng from 'throng';
 import url from 'url';
 import isomorphicCookie from 'isomorphic-cookie';
 import axios from 'axios';
-
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../tools/webpack.client.dev';
+import { compileDev, startDev } from '../tools/dx';
 import React from 'react';
-import ReactDOM from 'react-dom/server';
+import { renderToString as ReactDOMrenderToString } from 'react-dom/server';
 import { createMemoryHistory, RouterContext, match } from 'react-router';
 import { Provider } from 'react-redux';
 import { trigger } from 'redial';
 import { StyleSheetServer } from 'aphrodite/no-important';
-import Helm from 'react-helmet'; // because we are already using helmet
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-
-import webpackConfig from '../tools/webpack.client.dev';
-import { compileDev, startDev } from '../tools/dx';
+import { rewind as HelmRewind } from 'react-helmet'; // because we are already using helmet
 import { configureStore } from '../common/store';
 import createRoutes from '../common/routes/root';
 import configLib from 'config';
@@ -31,40 +26,25 @@ import redirect from './redirect';
 import sitemap from './sitemap';
 
 const defaultServerConfig = configLib.get('server');
-const isProdMode = configLib.get('isProdMode');
 const webApiServer = configLib.get('webApiServer');
 const memberApiServer = configLib.get('memberApiServer');
 const headers = configLib.get('headers');
 const region = configLib.get('region');
 
 export const createServer = (config) => {
-  const __PROD__ = isProdMode;
-
   const app = express();
-  let assets = null;
   app.disable('x-powered-by');
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-
-  if (__PROD__) {
-    app.use(morgan('combined'));
-    app.use(helmet());
-    app.use(hpp());
-    app.use(compression());
-    if (__PROD__) {
-      assets = require('../assets.json');
+  app.use(morgan('dev'));
+  const compiler = compileDev((webpack(webpackConfig)), config.port);
+  app.use(webpackDevMiddleware(compiler, {
+    quiet: true,
+    watchOptions: {
+      ignored: /node_modules/
     }
-  } else {
-    app.use(morgan('dev'));
-    const compiler = compileDev((webpack(webpackConfig)), config.port);
-    app.use(webpackDevMiddleware(compiler, {
-      quiet: true,
-      watchOptions: {
-        ignored: /node_modules/
-      }
-    }));
-    app.use(webpackHotMiddleware(compiler, { log: console.log }));
-  }
+  }));
+  app.use(webpackHotMiddleware(compiler, { log: console.log }));
 
   app.use(express.static('public', { etag: 1000, maxage: 86400000 * 365 }));
 
@@ -142,9 +122,9 @@ export const createServer = (config) => {
           // to if you don't want Aphrodite. Also change renderFullPage
           // accordingly
           const data = StyleSheetServer.renderStatic(
-            () => ReactDOM.renderToString(InitialView)
+            () => ReactDOMrenderToString(InitialView)
           );
-          const head = Helm.rewind();
+          const head = HelmRewind();
           const regexp = / data-react-helmet="true"/g;
           res.status(200).send(`
             <!DOCTYPE html>
@@ -228,11 +208,16 @@ export const createServer = (config) => {
                 <div id="root">${data.html}</div>
                 <script>window.renderedClassNames = ${JSON.stringify(data.css.renderedClassNames)};</script>
                 <script>window.INITIAL_STATE = ${JSON.stringify(initialState).replace(/</g, '\\u003c')};</script>
-                <script src="${__PROD__ ? assets.vendor.js : '/vendor.js'}"></script>
-                <script async src="${__PROD__ ? assets.main.js : '/main.js'}" ></script>
+                <script src="//apps.bdimg.com/libs/moment/2.8.3/moment-with-locales.min.js"></script>
+                <script src="//www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+                <script src="//vjs.zencdn.net/5.20.1/video.min.js"></script>
+                <script>window.moment || document.write('<script src="/vendor/moment.min.js"\><\\/script>')</script>
+                <script>window.videojs || document.write('<script src="/vendor/videojs.min.js"\><\\/script>')</script>
+                <script>window.firebase || document.write('<script src="/vendor/firebase.min.js"\><\\/script>')</script>
+                <script src="/vendor.js"></script>
+                <script async src="/main.js" ></script>
                 <link rel='stylesheet' type='text/css' href='/vendor/basscss.min.css' />
                 <link rel='stylesheet' type='text/css' href='/vendor/font-awesome-4.7.0/css/font-awesome.min.css' />
-                <link rel='stylesheet' type='text/css' href='/vendor/carousel.min.css' />
                 <link rel='stylesheet' type='text/css' href='/vendor/video-js.min.css' />
                 <div style="display:none;">Server in ${region}</div>
               </body>
@@ -270,12 +255,7 @@ export const startServer = (serverConfig) => {
   const config = {...defaultServerConfig, ...serverConfig};
   const server = createServer(config);
   server.listen(config.port, (err) => {
-    if (isProdMode) {
-      if (err) console.log(err);
-      console.log(`server ${config.id} listening on port ${config.port}`);
-    } else {
-      startDev(config.port, err);
-    }
+    startDev(config.port, err);
   });
 };
 

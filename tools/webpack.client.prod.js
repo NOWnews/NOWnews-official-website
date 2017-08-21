@@ -1,9 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
+const HappyPack = require('happypack');
 const AssetsPlugin = require('assets-webpack-plugin');
 
 const CONFIG = require('./webpack.base');
 const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH } = CONFIG;
+
+const babelQuery = {
+  cacheDirectory: true,
+  presets: ['es2015', 'react', 'stage-0', 'react-optimize']
+};
 
 module.exports = {
   devtool: false,
@@ -12,6 +18,7 @@ module.exports = {
     vendor: [
       'babel-polyfill', // fixed ie11 minified problem
       'aphrodite/no-important',
+      'isomorphic-cookie',
       'react',
       'react-dom',
       'react-fontawesome',
@@ -20,7 +27,11 @@ module.exports = {
       'react-redux',
       'react-overlays/lib/Modal',
       'react-simple-dfp',
-      'redux'
+      'react-static-container',
+      'redux',
+      'redux-thunk',
+      'reselect',
+      'uuid/v4'
     ]
   },
   output: {
@@ -33,6 +44,10 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
       '__DEV__': false
+    }),
+    new HappyPack({
+      id: 'babel',
+      loaders: [`babel?${JSON.stringify(babelQuery)}`],
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
@@ -58,13 +73,14 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
-        query: {
-          cacheDirectory: true,
-          presets: ['es2015', 'react', 'stage-0', 'react-optimize']
-        },
+        loader: 'happypack/loader?id=babel',
         exclude: /(node_modules)/
       }
     ]
+  },
+  externals: {
+    moment: 'moment',
+    firebase: 'firebase',
+    'video.js': 'videojs'
   }
 };
