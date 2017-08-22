@@ -19,6 +19,9 @@
   - 壓縮 onead_ir 的 js 檔案，並移到本地端
   - 預防 CDN 掛掉，像是 moment、video、firebase
 
+### Fixed
+- 影音第一次載入沒有辦法播放 @esbb48
+
 ## 1.0.24 - 2017-08-15
 ### Changed
 - 加縮圖在廣告新聞內頁與首頁 @wayne1025
