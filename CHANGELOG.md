@@ -8,6 +8,9 @@
 ### Note
 - `npm install happypack`
 
+### Added
+- 加上 Meta `block-all-mixed-content` @esbb48
+
 ### Changed
 - 優化 webpack bundle @esbb48
   - client 端使用 CDN 取代套件，減少壓縮時間
