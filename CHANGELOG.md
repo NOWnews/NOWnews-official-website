@@ -21,6 +21,7 @@
   - 使用 happypack 套件併發 build 的時間
   - 壓縮 onead_ir 的 js 檔案，並移到本地端
   - 預防 CDN 掛掉，像是 moment、video、firebase
+- 調整新聞內頁的 title @esbb48
 
 ### Fixed
 - 影音第一次載入沒有辦法播放 @esbb48
