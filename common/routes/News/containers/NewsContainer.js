@@ -90,12 +90,12 @@ class NewsContainer extends PureComponent {
     // change url, title & track pageview for pv, ga, fb .. etc.
     const { apiServ, headers } = this.props.sourceRequest;
     const news = this.props.currentNews.data[index];
-    const { sn, title, parseUrl } = news;
+    const { sn, title, parseUrl, MainMenu } = news;
     const { pathname, search } = window.location;
     const originalSn = pathname.split('/')[3];
     if (parseInt(originalSn, 10) !== sn) {
       window.history.pushState(null, null, `${parseUrl}${search}`);
-      window.document.getElementsByTagName('title')[0].innerHTML = `${title}| NOWnews 今日新聞`;
+      window.document.getElementsByTagName('title')[0].innerHTML = `${title} | ${MainMenu.name} | NOWnews今日新聞`;
       this.props.changeNewsTitle(title);
       trackInfiniteScrollNews(apiServ, news, search, headers);
     }
@@ -206,7 +206,7 @@ class NewsContainer extends PureComponent {
     return (
       <div>
         {news && <div>
-          <Helmet title='NOWnews 今日新聞' titleTemplate={news.title + '| NOWnews 今日新聞'}
+          <Helmet title='NOWnews 今日新聞' titleTemplate={`${news.title} | ${currentMainMenu.name} | NOWnews今日新聞`}
             meta={[
               { name: 'description', content: news.summary },
               { name: 'keywords', content: tags.join(',') },

@@ -29,8 +29,12 @@ class VideoPlayer extends PureComponent {
         swf: '/src/video-js.swf'
       };
     }
+    // 直接執行有時候在第一次播放會不正常
+    let that = this;
+    setTimeout(function () {
+      that.player = videojs(that.videoNode, options);
+    }, 200);
 
-    this.player = videojs(this.videoNode, options);
     /* -- Use Video Js End -- */
   }
 
