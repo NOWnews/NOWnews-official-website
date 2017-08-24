@@ -5,8 +5,12 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Added
+- 增加廣告版位 `/5799246/column_300x250_amm_3` @esbb48
+
 ### Fixed
   - 圖片新聞沒有相關 CSS @esbb48
+
 
 ## 1.0.25 - 2017-08-24
 ### Note
