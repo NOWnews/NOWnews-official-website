@@ -58,6 +58,7 @@ env NODE_ENV=staging pm2 start ./build/server.js --name 'official-web-staging'
 │   ├── /assets                 # npm run build 會產生的資料夾
 │   └── ...                     # 網站所需的 Logo、icon 放在這
 ├── /server/                    #
-│   └── /index.js               # 後端啟動相關 script
+│   ├── /index.dev.js           # 後端啟動相關 script 給 develop
+│   └── /index.prod.js          # 後端啟動相關 script 給 Production
 └── /tools/                     # webpack 相關設定
 ```

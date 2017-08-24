@@ -9,7 +9,6 @@ import {
 import { SpecialTopicNav, TripletNav } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
 import { CTHouse, DFP, GrabBag, OneAdIR } from '../Ad';
-import { Universiade } from '../Event';
 
 class ContentForPhoto extends PureComponent {
 
@@ -80,7 +79,6 @@ class ContentForPhoto extends PureComponent {
             <CTHouse />
           </RightSide>
         </Margin10>
-        {isFirstNews && <Universiade data={news.SummerUniversiade} />}
       </Container>
     );
   }

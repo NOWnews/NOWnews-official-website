@@ -6,6 +6,25 @@
 
 ## [Unreleased]
 
+## 1.0.25 - 2017-08-24
+### Note
+- `npm install happypack`
+
+### Changed
+- 優化 webpack bundle @esbb48
+  - client 端使用 CDN 取代套件，減少壓縮時間
+  - 移除不需要載入的元件（世大運）、Router（帳號密碼註冊登入）
+  - 把共用的套件加到 Vendor
+  - 將 server 分成 prod 和 dev 兩種（避免在 build 的時候載入 dev 的 lib）並調整 script
+  - 把 dev 的 lib 移到 devDependence
+  - 使用 happypack 套件併發 build 的時間
+  - 壓縮 onead_ir 的 js 檔案，並移到本地端
+  - 預防 CDN 掛掉，像是 moment、video、firebase
+  - 調整新聞內頁的 title @esbb48
+
+### Fixed
+  - 影音第一次載入沒有辦法播放 @esbb48
+
 ## 1.0.24 - 2017-08-15
 ### Changed
 - 加縮圖在廣告新聞內頁與首頁 @wayne1025
