@@ -5,7 +5,9 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
 ### Added
+- 增加廣告版位 `/5799246/column_300x250_amm_3` @esbb48
 - 加上 `ad=0` @esbb48
 
 ## 1.0.26 - 2017-08-25
