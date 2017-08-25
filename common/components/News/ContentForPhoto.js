@@ -7,7 +7,7 @@ import {
   Tags, Thermometer, ThermometerSm
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
-import { Container, LeftSide, Margin10, RightSide } from '../Layout';
+import { CarouselCSS, Container, LeftSide, Margin10, RightSide } from '../Layout';
 import { CTHouse, DFP, GrabBag, OneAdIR } from '../Ad';
 
 class ContentForPhoto extends PureComponent {
@@ -42,6 +42,7 @@ class ContentForPhoto extends PureComponent {
     return (
       <Container>
         <div className={css(styles.SlideBox)}>
+          <CarouselCSS />
           <Carousel {...settings}>
             {Photos.map(({ desc, sn, large }) => (
               <div className={css(styles.contentDiv)} key={sn}>

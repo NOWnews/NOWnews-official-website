@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Fixed
+  - 圖片新聞沒有相關 CSS @esbb48
 
 ## 1.0.25 - 2017-08-24
 ### Note

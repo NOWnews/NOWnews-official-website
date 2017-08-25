@@ -1,3 +1,4 @@
+export CarouselCSS from './CarouselCSS';
 export Container from './Container';
 export LeftSide from './LeftSide';
 export Loading from './Loading';

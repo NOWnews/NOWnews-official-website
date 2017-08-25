@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 import { Content, Tags } from './NewsContent';
-import { Container, LeftSide, Margin10 } from '../Layout';
+import { CarouselCSS, Container, LeftSide, Margin10 } from '../Layout';
 
 const PreviewForPhoto = ({ news: { Photos, ...news } }) => {
   const settings = {
@@ -17,6 +17,7 @@ const PreviewForPhoto = ({ news: { Photos, ...news } }) => {
   return (
     <Container>
       <div className={css(styles.SlideBox)}>
+        <CarouselCSS />
         <Carousel {...settings}>
           {Photos.map(({ desc, sn, large }) => (
             <div className={css(styles.contentDiv)}>
