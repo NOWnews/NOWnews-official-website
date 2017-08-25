@@ -6,6 +6,10 @@
 
 ## [Unreleased]
 
+## 1.0.26 - 2017-08-25
+### Fixed
+  - 圖片新聞沒有相關 CSS @esbb48
+
 ## 1.0.25 - 2017-08-24
 ### Note
 - `npm install happypack`
