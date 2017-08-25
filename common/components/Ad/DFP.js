@@ -5,7 +5,6 @@ import Dfp from 'react-simple-dfp';
 const canUseDOM = !!(typeof window !== 'undefined' && window.document);
 
 const DFP = ({ className = '', opts }) => {
-
   if (canUseDOM && window.location.search.indexOf('ad=0') > -1) {
     return null;
   }
