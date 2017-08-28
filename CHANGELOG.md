@@ -9,6 +9,7 @@
 ### Added
 - 增加廣告版位 `/5799246/column_300x250_amm_3` @esbb48
 - 加上 `ad=0` @esbb48
+- 增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
 
 ## 1.0.26 - 2017-08-25
 ### Fixed
