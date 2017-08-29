@@ -12,7 +12,7 @@ const Head = ({ newsBy = '', mainMenu, time, title, authorId, imgSrc }) => (
       <div className={css(styles.authorArea)}>
         <Link to={`/author/${authorId}`} className={css(styles.authorArea)}>
           <FontAwesome name='user-circle' size='2x' style={{ position: 'relative', top: '4px' }} />
-          { /*imgSrc ? <img className={css(styles.avatar)} src={imgSrc} />
+          { /* imgSrc ? <img className={css(styles.avatar)} src={imgSrc} />
           : <FontAwesome name='user-circle' size='2x' style={{ position: 'relative', top: '4px' }} />
           */}
           <span className={css(styles.author)}>{ newsBy }</span>
