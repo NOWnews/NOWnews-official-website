@@ -5,11 +5,12 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+- 增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
 
+## 1.0.27 - 2017-08-29
 ### Added
 - 增加廣告版位 `/5799246/column_300x250_amm_3` @esbb48
 - 加上 `ad=0` @esbb48
-- 增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
 
 ## 1.0.26 - 2017-08-25
 ### Fixed
@@ -84,7 +85,6 @@
 ### Fixed
 - 減少 firebase 不需要的套件的載入 @esbb48
 - 在 ie 時，執行推播會 404 @esbb48
->>>>>>> develop
 
 ## 1.0.17 - 2017-08-04
 ### Fixed
