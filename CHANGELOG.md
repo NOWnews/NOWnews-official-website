@@ -6,6 +6,7 @@
 
 ## [Unreleased]
 
+## 1.0.27 - 2017-08-29
 ### Added
 - 增加廣告版位 `/5799246/column_300x250_amm_3` @esbb48
 - 加上 `ad=0` @esbb48
@@ -83,7 +84,6 @@
 ### Fixed
 - 減少 firebase 不需要的套件的載入 @esbb48
 - 在 ie 時，執行推播會 404 @esbb48
->>>>>>> develop
 
 ## 1.0.17 - 2017-08-04
 ### Fixed
