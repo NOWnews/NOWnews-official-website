@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Changed
+- 隱藏作者圖片，避免爬蟲因為抓不到主圖而抓到作者圖 @esbb48
 
 ## 1.0.27 - 2017-08-29
 ### Added
