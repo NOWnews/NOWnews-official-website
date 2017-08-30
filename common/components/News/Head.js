@@ -11,9 +11,10 @@ const Head = ({ newsBy = '', mainMenu, time, title, authorId, imgSrc }) => (
       <h1 className={css(styles.title)}>{ title }</h1>
       <div className={css(styles.authorArea)}>
         <Link to={`/author/${authorId}`} className={css(styles.authorArea)}>
-          { imgSrc ? <img className={css(styles.avatar)} src={imgSrc} />
+          <FontAwesome name='user-circle' size='2x' style={{ position: 'relative', top: '4px' }} />
+          { /* imgSrc ? <img className={css(styles.avatar)} src={imgSrc} />
           : <FontAwesome name='user-circle' size='2x' style={{ position: 'relative', top: '4px' }} />
-          }
+          */}
           <span className={css(styles.author)}>{ newsBy }</span>
         </Link>
         <img className={css(styles.timeIcon)}src='/icons/grayClock.png' />
