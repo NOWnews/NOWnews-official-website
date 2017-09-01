@@ -91,10 +91,11 @@ class NewsContainer extends PureComponent {
     const { apiServ, headers } = this.props.sourceRequest;
     const news = this.props.currentNews.data[index];
     const { sn, title, parseUrl, MainMenu } = news;
-    const { pathname, search } = window.location;
+    let { pathname, search } = window.location;
     const originalSn = pathname.split('/')[3];
     if (parseInt(originalSn, 10) !== sn) {
-      window.history.pushState(null, null, `${parseUrl}${search}`);
+      search += (search.indexOf('from=scroll') > -1) ? '' : '&from=scroll';
+      window.history.pushState(null, null, `${parseUrl}?${search.slice(1)}`);
       window.document.getElementsByTagName('title')[0].innerHTML = `${title} | ${MainMenu.name} | NOWnews今日新聞`;
       this.props.changeNewsTitle(title);
       trackInfiniteScrollNews(apiServ, news, search, headers);
