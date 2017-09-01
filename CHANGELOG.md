@@ -5,7 +5,11 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Added
 - 增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
+
+### Fixed
+- 首頁點選影音滑到對應高度會因上方有無廣告影響 @esbb48
 
 ## 1.0.27 - 2017-08-29
 ### Added
