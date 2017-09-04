@@ -88,7 +88,7 @@ export const createServer = (config) => {
 
     match({routes, history}, (err, redirectLocation, renderProps) => {
       if (err) {
-        console.error(err);
+        console.error('router match error', err);
         return res.status(500).send('Internal server error');
       }
 
@@ -223,7 +223,10 @@ export const createServer = (config) => {
               </body>
             </html>
           `);
-        }).catch(e => console.log(e));
+        }).catch((e) => {
+          console.log('catch error', e);
+          return res.status(500).send('Internal server error');
+        });
     });
   });
 
