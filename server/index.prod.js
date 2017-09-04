@@ -203,9 +203,9 @@ export const createServer = (config) => {
                 <script src="//apps.bdimg.com/libs/moment/2.8.3/moment-with-locales.min.js"></script>
                 <script src="//www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
                 <script src="//vjs.zencdn.net/5.20.1/video.min.js"></script>
-                <script>window.moment || document.write('<script src="/vendor/moment.min.js"\><\\/script>')</script>
-                <script>window.videojs || document.write('<script src="/vendor/videojs.min.js"\><\\/script>')</script>
-                <script>window.firebase || document.write('<script src="/vendor/firebase.min.js"\><\\/script>')</script>
+                <script>window.moment || document.write('<script src="/vendor/moment.min.js"><\\/script>')</script>
+                <script>window.videojs || document.write('<script src="/vendor/videojs.min.js"><\\/script>')</script>
+                <script>window.firebase || document.write('<script src="/vendor/firebase.min.js"><\\/script>')</script>
                 <script src="${assets.vendor.js}"></script>
                 <script async src="${assets.main.js}" ></script>
                 <link rel='stylesheet' type='text/css' href='/vendor/basscss.min.css' />
