@@ -1,6 +1,6 @@
 {
   "mode": "develop",
-  "webApiServer": "http://localhost:10001",
+  "webApiServer": "https://devapi.nownews.com",
   "memberApiServer": "https://memberapi.nownews.com",
   "headers": {
     "X-NOWnews-API": "YouCanSeeMeJohnCena"
