@@ -8,7 +8,7 @@
     "build": "webpack -p --config ./tools/webpack.client.prod.js && webpack -p --config ./tools/webpack.server.prod.js",
     "test": "npm run fix && jest test/page.spec.js",
     "clean": "rm -rf build",
-    "fix": "eslint common server client --fix"
+    "fix": "eslint common server client test --fix"
   },
   "repository": {
     "type": "git",
@@ -84,10 +84,10 @@
     "eslint-plugin-react": "6.10.0",
     "eslint-plugin-standard": "2.1.1",
     "happypack": "4.0.0-beta.2",
-    "jest": "^21.0.1",
+    "jest": "21.0.1",
     "phantom": "4.0.5",
     "react-addons-perf": "15.4.2",
-    "should": "^12.0.0",
+    "should": "12.0.0",
     "webpack": "1.15.0",
     "webpack-dev-middleware": "1.10.2",
     "webpack-hot-middleware": "2.18.0"
