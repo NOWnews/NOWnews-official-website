@@ -6,7 +6,7 @@
     "start": "cross-env NODE_ENV=develop node -r \"babel-register\" ./server/index.dev.js",
     "start:prod": "cross-env NODE_ENV=production node ./build/server.js",
     "build": "webpack -p --config ./tools/webpack.client.prod.js && webpack -p --config ./tools/webpack.server.prod.js",
-    "test": "jest test/page.spec.js",
+    "test": "npm run fix && jest test/page.spec.js",
     "clean": "rm -rf build",
     "fix": "eslint common server client --fix"
   },

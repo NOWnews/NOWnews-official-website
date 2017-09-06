@@ -9,7 +9,6 @@ const NotFound = () => (
   </div>
 );
 
-
 const styles = StyleSheet.create({
   notFoundImg: {
     width: '60%',
