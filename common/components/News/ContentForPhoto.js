@@ -56,9 +56,9 @@ class ContentForPhoto extends PureComponent {
           <LeftSide>
             <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent} />
             <Tags tags={news.Tags || []} />
-            <Margin10>
+            {/* TODO: UNA 廣告延後 先隱藏 <Margin10>
               <DFP opts={[`/5799246/Nownews_${adType}_article_600x225_i_new2`, [600, 225]]} />
-            </Margin10>
+            </Margin10> */}
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
             {isFirstNews && <OneAdIR />}
