@@ -60,5 +60,8 @@ env NODE_ENV=staging pm2 start ./build/server.js --name 'official-web-staging'
 ├── /server/                    #
 │   ├── /index.dev.js           # 後端啟動相關 script 給 develop
 │   └── /index.prod.js          # 後端啟動相關 script 給 Production
+├── /test/                    	# 放測試
 └── /tools/                     # webpack 相關設定
+
+
 ```
