@@ -5,10 +5,12 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
 ### Added
 - 增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
 - 追蹤因滑動而觸發的 pageview @esbb48
 - 加上 JestTest @esbb48
+- 安裝測試相關套件 `jest`, `phantom`, `should` @esbb48
 
 
 ### Fixed
