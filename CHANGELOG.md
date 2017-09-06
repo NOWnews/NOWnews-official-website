@@ -6,7 +6,7 @@
 
 ## [Unreleased]
 ### Added
-- 增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
+- （先隱藏）增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
 - 追蹤因滑動而觸發的 pageview @esbb48
 
 ### Fixed
