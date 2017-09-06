@@ -76,21 +76,22 @@ export default function categoryPage (state = initialState, action) {
 }
 
 // selecter
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const getCategoryPage = (state) => state.categoryPage;
 const formatCategoryPage = createSelector(
-  [getCategoryPage], ({ hotNewsList, newsList, ...categoryPage }) => {
+  [getCategoryPage, getImgServ], ({ hotNewsList, newsList, ...categoryPage }, imgServ) => {
     const result = {
       ...categoryPage,
       hotNewsList: hotNewsList.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
         };
       }),
       newsList: newsList.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
         };
       })
     };

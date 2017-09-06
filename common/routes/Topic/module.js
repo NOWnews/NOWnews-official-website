@@ -68,15 +68,16 @@ export default function topicPage (state = initialState, action) {
   }
 }
 
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const getTopicPage = (state) => state.topicPage;
 const formatTopicPage = createSelector(
-  [getTopicPage], ({ topics, ...topicPage }) => {
+  [getTopicPage, getImgServ], ({ topics, ...topicPage }, imgServ) => {
     const result = {
       ...topicPage,
       topics: topics.map((topic) => {
         return {
           ...topic,
-          MainPhoto: formatPhoto(topic.MainPhoto)
+          MainPhoto: formatPhoto(topic.MainPhoto, imgServ)
         };
       })
     };

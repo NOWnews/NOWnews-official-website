@@ -79,15 +79,16 @@ export default function searchPage (state = initialState, action) {
   }
 }
 
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const getSearchPage = (state) => state.searchPage;
 const formatSearchPage = createSelector(
-  [getSearchPage], ({ list, ...searchPage }) => {
+  [getSearchPage, getImgServ], ({ list, ...searchPage }, imgServ) => {
     const result = {
       ...searchPage,
       list: list.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
         };
       })
     };
