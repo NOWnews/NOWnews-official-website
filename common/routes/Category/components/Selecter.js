@@ -28,7 +28,6 @@ class Selecter extends PureComponent {
 
     let items = options.map(({ categoryName, sn, url, name }) => {
       let isActive = (sn === selected.sn) ? css(styles.activeItem) : '';
-      categoryName = 'fuhaa';
       return (
         <span key={sn} className={`${css(styles.item)} ${isActive}`}
           onClick={() => { this.switchMenu(categoryName, url); }}>
