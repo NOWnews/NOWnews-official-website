@@ -1,6 +1,7 @@
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus, selectObjectMenu } from '../../../modules/header';
@@ -8,7 +9,7 @@ import { DFP, getAdType, OneAdICIP } from '../../../components/Ad';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
-import { HotNews } from '../components';
+import { HotNews, ChannelTemplate } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
 import { MicroDataCategory } from '../../../components/JSONLD';
 import Helmet from 'react-helmet';
@@ -20,6 +21,10 @@ const redial = {
   ])
 };
 
+const mapDispatchToProps = bindActionCreators.bind(null, {
+  loadCategoryList
+});
+
 const mapStateToProps = state => ({
   local: selectLocal(state),
   categoryPage: selectCategoryPage(state),
@@ -28,9 +33,10 @@ const mapStateToProps = state => ({
   objectMenu: selectObjectMenu(state)
 });
 
-const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
-  const { currentMenu, hotNewsList, newsList, pageData } = categoryPage;
+const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu, loadCategoryList }) => {
+  const { currentMenu, hotNewsList, newsList, pageData, columnSpecialChannel } = categoryPage;
   const isDefaultTemplate = currentMenu.template === 'DEFAULT';
+  const isChannelTemplate = currentMenu.template === 'SPECIALCHANNEL';
   const slideData = isDefaultTemplate ? newsList.slice(0, 5) : hotNewsList.slice(0, 5);
   const hotBlockData = isDefaultTemplate ? hotNewsList.slice(0, 6) : hotNewsList.slice(5, 11);
   const blockData = isDefaultTemplate ? newsList.slice(5, 15) : newsList.slice(0, 10);
@@ -77,7 +83,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
       {isDefaultTemplate && <OneAdICIP />}
       {categoryPage.isLoading && <Loading />}
       {!categoryPage.isLoading && newsList.length === 0 && <NotFound />}
-      {!categoryPage.isLoading && newsList.length > 0 &&
+      {!categoryPage.isLoading && newsList.length > 0 && !isChannelTemplate &&
         <div>
           <Margin10 className='clearfix'>
             <Slide list={slideData} />
@@ -86,12 +92,17 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu }) => {
           <BlockItems12 isDefaultTemplate={isDefaultTemplate} adCode={adCode} newsList={blockData} page={pageData} local={local} />
         </div>
       }
+      {!categoryPage.isLoading && newsList.length > 0 && isChannelTemplate &&
+        <ChannelTemplate newsList={newsList} page={pageData} local={local}
+          loadData={loadCategoryList} selected={currentMenu} options={columnSpecialChannel.SubMenus} />
+      }
       <DFP opts={[footerAd, [[970, 250], [970, 90]]]} />
     </Container>
   );
 };
 
 CategoryPage.propTypes = {
+  loadCategoryList: PropTypes.func.isRequired,
   local: PropTypes.object.isRequired,
   categoryPage: PropTypes.object.isRequired,
   marquee: PropTypes.object.isRequired,
@@ -99,4 +110,4 @@ CategoryPage.propTypes = {
   objectMenu: PropTypes.object.isRequired
 };
 
-export default provideHooks(redial)(connect(mapStateToProps)(CategoryPage));
+export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(CategoryPage));
