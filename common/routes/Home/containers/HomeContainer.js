@@ -133,7 +133,7 @@ class HomeContainer extends PureComponent {
               <LeftSide>
                 <BlockItems8 channels={specialChannels.slice(0, 8)} />
                 <div className={css(styles.seeMoreBlock)}>
-                  <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多話題</Link>
+                  <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多特輯</Link>
                 </div>
               </LeftSide>
               <RightSide>
