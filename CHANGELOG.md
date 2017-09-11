@@ -9,6 +9,10 @@
 - （先隱藏）增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
 - 追蹤因滑動而觸發的 pageview @esbb48
 
+### Changed
+- 精選特輯換成火線話題 @esbb48
+- 對調專題與特輯的位置 @esbb48
+
 ### Fixed
 - 首頁點選影音滑到對應高度會因上方有無廣告影響 @esbb48
 
@@ -19,6 +23,7 @@
 
 ### Changed
 - 隱藏作者圖片，避免爬蟲因為抓不到主圖而抓到作者圖 @esbb48
+
 
 ## 1.0.26 - 2017-08-25
 ### Fixed
