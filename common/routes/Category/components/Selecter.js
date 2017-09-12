@@ -3,35 +3,35 @@ import FontAwesome from 'react-fontawesome';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
 
-class ChannelSelecter extends PureComponent {
+class Selecter extends PureComponent {
   constructor (props) {
     super(props);
     this.state = {
       isOpen: false
     };
     this.switchOpenStatus = this.switchOpenStatus.bind(this);
-    this.switchChannel = this.switchChannel.bind(this);
+    this.switchMenu = this.switchMenu.bind(this);
   }
 
   switchOpenStatus () {
     this.setState({isOpen: !this.state.isOpen});
   }
 
-  switchChannel (sn) {
+  switchMenu (categoryName, url) {
     this.setState({isOpen: false});
-    window.history.pushState(null, null, `/channel/${sn}`);
-    this.props.loadChannelData(sn);
+    window.history.pushState(null, null, url);
+    this.props.loadData(categoryName);
   }
 
   render () {
-    let { channels, selectedChannel } = this.props;
+    let { options, selected } = this.props;
 
-    let items = channels.map(({ sn, title }) => {
-      let isActive = (sn === selectedChannel.sn) ? css(styles.activeItem) : '';
+    let items = options.map(({ categoryName, sn, url, name }) => {
+      let isActive = (sn === selected.sn) ? css(styles.activeItem) : '';
       return (
-        <span key={sn} className={`${css(styles.channelItem)} ${isActive}`}
-          onClick={() => { this.switchChannel(sn); }}>
-          {title}
+        <span key={sn} className={`${css(styles.item)} ${isActive}`}
+          onClick={() => { this.switchMenu(categoryName, url); }}>
+          {name}
         </span>
       );
     });
@@ -40,11 +40,11 @@ class ChannelSelecter extends PureComponent {
     return (
       <Margin10 className='center'>
         <button className={css(styles.selecter)} onClick={this.switchOpenStatus}>
-          <span className={css(styles.selType)}>特輯</span>
-          <span className={css(styles.selTitle)}>{ selectedChannel.title || '請選擇' }</span>
+          <span className={css(styles.selType)}>分類</span>
+          <span className={css(styles.selTitle)}>{ selected.name || '請選擇' }</span>
           <FontAwesome name='play' className={`${iconRotate} ${css(styles.selIcon)}`} size='2x' />
         </button>
-        <div className={`clearfix ${isOpen} ${css(styles.channelsBox)}`}>{ items }</div>
+        <div className={`clearfix ${isOpen} ${css(styles.itemBox)}`}>{ items }</div>
       </Margin10>
     );
   }
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   activeItem: {
     color: '#1886FB'
   },
-  channelsBox: {
+  itemBox: {
     background: '#ffffff',
     marginTop: 10,
     opacity: 0.8,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     width: 970,
     zIndex: 100
   },
-  channelItem: {
+  item: {
     color: '#000000',
     float: 'left',
     padding: '8px 0',
@@ -102,10 +102,10 @@ const styles = StyleSheet.create({
   }
 });
 
-ChannelSelecter.propTypes = {
-  channels: PropTypes.array.isRequired,
-  loadChannelData: PropTypes.func.isRequired,
-  selectedChannel: PropTypes.object.isRequired
+Selecter.propTypes = {
+  options: PropTypes.array.isRequired,
+  loadData: PropTypes.func.isRequired,
+  selected: PropTypes.object.isRequired
 };
 
-export default ChannelSelecter;
+export default Selecter;
