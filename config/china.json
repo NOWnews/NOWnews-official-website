@@ -2,7 +2,7 @@
   "mode": "production",
   "webApiServer": "http://61.220.58.52:10001",
   "memberApiServer": "https://memberapi.nownews.com",
-  "imgApiServer": "https://imgapiv2.nownews.com/",
+  "imgApiServer": "http://imgapiv2.nownews.com/",
   "headers": {
     "X-NOWnews-API": "YouCanSeeMeJohnCena"
   },
