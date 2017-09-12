@@ -11,6 +11,7 @@
 
 ### Changed
 - 使用新版 imgLib  @esbb48
+- 調整 popin:image 屬性 @esbb48
 
 ### Fixed
 - 首頁點選影音滑到對應高度會因上方有無廣告影響 @esbb48
