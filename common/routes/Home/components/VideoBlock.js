@@ -25,8 +25,9 @@ class VideoBlock extends PureComponent {
 
   onSelectThumb (index) {
     this.setState({selectedIndex: index});
-    // 2330px = VideoBlock 到底下的高度 = document.body.scrollHeight - document.body.scrollTop
-    window.scroll(0, document.body.scrollHeight - 2330);
+    // 70 是 margin-top 要額外減掉
+    var videoOffsetTop = document.getElementById('home-video-block').offsetTop;
+    window.scroll(0, videoOffsetTop - 70);
   }
 
   prev () {
