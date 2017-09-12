@@ -181,7 +181,7 @@ class HomeContainer extends PureComponent {
         </Container>
 
         {!isLoading && videos.length > 0 &&
-          <div className={css(styles.videoBlock)}>
+          <div id='home-video-block' className={css(styles.videoBlock)}>
             <Container className={css(styles.videoContaienr)}>
               <VideoBlock list={videos} />
               <div className={css(styles.seeMoreBlock)}>
