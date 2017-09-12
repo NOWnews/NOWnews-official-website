@@ -14,6 +14,10 @@
 - 精選特輯換成火線話題 @esbb48
 - 對調專題與特輯的位置 @esbb48
 
+### Changed
+- 使用新版 imgLib  @esbb48
+- 調整 popin:image 屬性 @esbb48
+
 ### Fixed
 - 首頁點選影音滑到對應高度會因上方有無廣告影響 @esbb48
 - 影音新聞沒有關鍵字 @esbb48

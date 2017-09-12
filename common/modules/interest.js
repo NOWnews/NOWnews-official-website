@@ -75,13 +75,14 @@ export default function interest (state = initialState, action) {
 }
 
 // For Selecter
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const getList = (state) => state.interest.newsList;
 const formatNewsList = createSelector(
-  [getList], (list) => {
+  [getList, getImgServ], (list, imgServ) => {
     return list.map((news) => {
       return {
         ...news,
-        MainPhoto: formatPhoto(news.MainPhoto)
+        MainPhoto: formatPhoto(news.MainPhoto, imgServ)
       };
     });
   }

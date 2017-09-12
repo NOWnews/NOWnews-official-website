@@ -80,21 +80,22 @@ export default function instantPage (state = initialState, action) {
   }
 }
 
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const getInstantPage = (state) => state.instantPage;
 const formatInstantPage = createSelector(
-  [getInstantPage], ({ videos, newsList, ...instantPage }) => {
+  [getInstantPage, getImgServ], ({ videos, newsList, ...instantPage }, imgServ) => {
     const result = {
       ...instantPage,
       videos: videos.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
         };
       }),
       newsList: newsList.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
         };
       })
     };
