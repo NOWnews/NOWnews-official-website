@@ -55,8 +55,10 @@ class VideoBlock extends PureComponent {
 
     return (
       <Margin10 className='relative'>
-        <div key={this.state.selectedIndex}>
-          <VideoPlayer height={500} poster={selectedItem.MainPhoto.large} src={selectedItem.MainVideo.url} />
+        <div className={css(styles.videoPlayer)}>
+          <div key={this.state.selectedIndex}>
+            <VideoPlayer height={500} poster={selectedItem.MainPhoto.large} src={selectedItem.MainVideo.url} />
+          </div>
         </div>
         <FontAwesome className={css(styles.iconLeft)} name='chevron-left' size='2x'
           onClick={this.prev} />
@@ -128,6 +130,11 @@ const styles = StyleSheet.create({
     background: '#4A4C4D',
     height: 55.5,
     padding: '5px 10px'
+  },
+  videoPlayer: {
+    background: '#000000',
+    width: 970,
+    height: 500
   }
 });
 
