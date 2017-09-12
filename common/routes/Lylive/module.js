@@ -130,15 +130,16 @@ export default function lylivePage (state = initialState, action) {
 }
 
 // selecter
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const getLylivePage = (state) => state.lylivePage;
 const formatLylivePage = createSelector(
-  [getLylivePage], ({ newsList, ...lylivePage }) => {
+  [getLylivePage, getImgServ], ({ newsList, ...lylivePage }, imgServ) => {
     const result = {
       ...lylivePage,
       newsList: newsList.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
         };
       })
     };
