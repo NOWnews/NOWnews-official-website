@@ -269,19 +269,20 @@ export default function currentNews (state = initialState, action) {
 
 // For Selecter
 const getCurrentNews = (state) => state.currentNews;
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const formatCurrentNews = createSelector(
-  [getCurrentNews], ({ data, ...currentNews }) => {
+  [getCurrentNews, getImgServ], ({ data, ...currentNews }, imgServ) => {
     const result = {
       ...currentNews,
       data: data.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto),
-          Photos: news.Photos.map(photo => formatPhoto(photo)),
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ),
+          Photos: news.Photos.map(photo => formatPhoto(photo, imgServ)),
           relations: news.relations.map((relationNews) => {
             return {
               ...relationNews,
-              MainPhoto: formatPhoto(relationNews.MainPhoto)
+              MainPhoto: formatPhoto(relationNews.MainPhoto, imgServ)
             };
           })
         };
@@ -292,7 +293,7 @@ const formatCurrentNews = createSelector(
 );
 
 const formatPreviewNews = createSelector(
-  [getCurrentNews], ({ data, ...previewNews }) => {
+  [getCurrentNews, getImgServ], ({ data, ...previewNews }, imgServ) => {
     const result = {
       ...previewNews,
       data: data.map((news) => {

@@ -104,15 +104,16 @@ export default function videoPage (state = initialState, action) {
   }
 }
 
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const getVideoPage = (state) => state.videoPage;
 const formatVideoPage = createSelector(
-  [getVideoPage], ({ newsList, ...videoPage }) => {
+  [getVideoPage, getImgServ], ({ newsList, ...videoPage }, imgServ) => {
     const result = {
       ...videoPage,
       newsList: newsList.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
         };
       })
     };

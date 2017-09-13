@@ -27,7 +27,7 @@ class Basic extends PureComponent {
     const { pathname, search } = window.location;
     init(apiServ, pathname, search, state, headers);
 
-    if ('Notification' in window) {
+    if ('Notification' in window && !window.firebase.apps.length) {
       firebaseInit(apiServ, headers);
     }
   }

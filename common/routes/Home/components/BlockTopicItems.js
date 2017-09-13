@@ -28,7 +28,7 @@ class BlockItems extends PureComponent {
 const styles = StyleSheet.create({
   blockItem: {
     float: 'left',
-    margin: '0 11.5px 25px',
+    margin: '12px 11.5px',
     width: 300,
     position: 'relative'
   }

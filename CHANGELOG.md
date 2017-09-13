@@ -6,6 +6,25 @@
 
 ## [Unreleased]
 
+## 1.0.28 - 2017-09-13
+### Added
+- （先隱藏）增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
+- 追蹤因滑動而觸發的 pageview @esbb48
+- 增加專欄頁面的特輯版型 @esbb48
+
+### Changed
+- 精選特輯換成火線話題 @esbb48
+- 專題文字換成熱門專題 @esbb48
+- 對調專題與特輯的位置 @esbb48
+- 微調首頁 Video 的樣式，讓換影片的體驗不會有瞬間抽換的感覺 @esbb48
+- 使用新版 imgLib  @esbb48
+- 調整 popin:image 屬性 @esbb48
+
+### Fixed
+- 首頁點選影音滑到對應高度會因上方有無廣告影響 @esbb48
+- 影音新聞沒有關鍵字 @esbb48
+- firebase 重複 init @esbb48
+
 ## 1.0.27 - 2017-08-29
 ### Added
 - 增加廣告版位 `/5799246/column_300x250_amm_3` @esbb48
@@ -13,6 +32,7 @@
 
 ### Changed
 - 隱藏作者圖片，避免爬蟲因為抓不到主圖而抓到作者圖 @esbb48
+
 
 ## 1.0.26 - 2017-08-25
 ### Fixed

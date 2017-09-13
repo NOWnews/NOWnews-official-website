@@ -86,9 +86,10 @@ export default function channelPage (state = initialState, action) {
   }
 }
 
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const getChannelPage = (state) => state.channelPage;
 const formatChannelPage = createSelector(
-  [getChannelPage], ({ selectedChannel, ...channelPage }) => {
+  [getChannelPage, getImgServ], ({ selectedChannel, ...channelPage }, imgServ) => {
     let channel = {
       sn: '',
       title: '',
@@ -100,7 +101,7 @@ const formatChannelPage = createSelector(
         newsList: selectedChannel.newsList.map((news) => {
           return {
             ...news,
-            MainPhoto: formatPhoto(news.MainPhoto)
+            MainPhoto: formatPhoto(news.MainPhoto, imgServ)
           };
         })
       };
