@@ -32,11 +32,12 @@ const styles = StyleSheet.create({
     padding: '5px 10px'
   },
   category: {
+    color: '#000000',
     fontSize: 13,
     position: 'absolute',
     top: '-115px',
     left: 0,
-    background: '#1380f5',
+    background: '#fec340',
     padding: '2px 6px',
     fontWeight: 'bold'
   },

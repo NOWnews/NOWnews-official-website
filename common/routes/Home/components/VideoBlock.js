@@ -91,7 +91,7 @@ const iconStyles = {
 const styles = StyleSheet.create({
   active: {
     background: '#000000',
-    color: '#1886FB'
+    color: '#FFEC50'
   },
   img: {
     height: 130,

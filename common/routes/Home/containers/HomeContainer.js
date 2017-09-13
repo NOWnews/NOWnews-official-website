@@ -150,30 +150,28 @@ class HomeContainer extends PureComponent {
           </div>}
 
         {!isLoading && tripletObject.instant.length > 0 &&
-          <div className={css(styles.tripletBlock)}>
-            <Container>
-              <div className={css(styles.tripletBlockTop)}>
-                { TripletIcons }
-                { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>{LBS.mapCity}</span>}
-              </div>
-              <BlockItems9
-                ads={ads.health}
-                hasAd={tripletType === 'instant'}
-                newsList={tripletObject[tripletType].slice(0, 9)} />
-              { tripletType === 'interest' && interest.isLoading && <h3>資料載入中 ...</h3>}
-              { tripletType === 'interest' && !interest.isLoading && tripletObject.interest.length === 0 && <h3>查無相關新聞 ...</h3>}
-              { tripletType === 'lbs' && LBS.isLocationLoading && <h3>尚未取得您的位置資訊，正在載入中 ...</h3>}
-              { tripletType === 'lbs' && LBS.isLoading && <h3>資料載入中 ...</h3>}
-              { tripletType === 'lbs' && LBS.error && LBS.error.code === 1 && <h3> 您拒絕提供位置資訊給我們，因此無法載入您的區域新聞 T____T </h3>}
-              { tripletType === 'lbs' && LBS.error && (LBS.error.code === 2 || LBS.error.code === 3) && <h3> 無法取得您的位置資訊 </h3>}
-              { tripletType === 'lbs' && !LBS.error && !LBS.isLoading && !LBS.isLocationLoading && tripletObject.lbs.length === 0 && <h3>查無此區的相關新聞 ...</h3>}
-              <div className={css(styles.seeMoreBlock)}>
-                <Link className={css(styles.seeMoreLink)} to={tripletType}>
-                  看更多{seeMoreTextDefined[tripletType]}新聞
-                </Link>
-              </div>
-            </Container>
-          </div>}
+          <Container>
+            <div className={css(styles.tripletBlockTop)}>
+              { TripletIcons }
+              { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>{LBS.mapCity}</span>}
+            </div>
+            <BlockItems9
+              ads={ads.health}
+              hasAd={tripletType === 'instant'}
+              newsList={tripletObject[tripletType].slice(0, 9)} />
+            { tripletType === 'interest' && interest.isLoading && <h3>資料載入中 ...</h3>}
+            { tripletType === 'interest' && !interest.isLoading && tripletObject.interest.length === 0 && <h3>查無相關新聞 ...</h3>}
+            { tripletType === 'lbs' && LBS.isLocationLoading && <h3>尚未取得您的位置資訊，正在載入中 ...</h3>}
+            { tripletType === 'lbs' && LBS.isLoading && <h3>資料載入中 ...</h3>}
+            { tripletType === 'lbs' && LBS.error && LBS.error.code === 1 && <h3> 您拒絕提供位置資訊給我們，因此無法載入您的區域新聞 T____T </h3>}
+            { tripletType === 'lbs' && LBS.error && (LBS.error.code === 2 || LBS.error.code === 3) && <h3> 無法取得您的位置資訊 </h3>}
+            { tripletType === 'lbs' && !LBS.error && !LBS.isLoading && !LBS.isLocationLoading && tripletObject.lbs.length === 0 && <h3>查無此區的相關新聞 ...</h3>}
+            <div className={css(styles.seeMoreBlock)}>
+              <Link className={css(styles.seeMoreLink)} to={tripletType}>
+                看更多{seeMoreTextDefined[tripletType]}新聞
+              </Link>
+            </div>
+          </Container>}
         <Container className='clearfix'>
           <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_1', [300, 250], 'div-gpt-ad-1498098181254-0']} />
           <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_2', [300, 250], 'div-gpt-ad-1498098246352-0']} />
@@ -193,34 +191,32 @@ class HomeContainer extends PureComponent {
           </div>}
 
         {!isLoading && specialTopics.length > 0 &&
-          <div className={css(styles.specialTopicBox)}>
-            <Container className='clearfix'>
-              <LeftSide>
-                <div className={css(styles.specialChannelsTitle)}>
-                  <h2 className={css(styles.specialChannelsTitleText)}>火線話題</h2>
-                  <hr className={css(styles.specialChannelsTitleLine)} />
-                </div>
-                <BlockTopicItems newsList={specialTopics.slice(0, 8)} />
-                <div className={css(styles.seeMoreBlock)}>
-                  <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
-                </div>
-              </LeftSide>
-              <RightSide>
-                <Margin10>
-                  <DFP opts={['/5799246/Nownews_home_300x600_RB_new2', [300, 600], 'div-gpt-ad-1496983253991-0']} />
-                </Margin10>
-                <Margin10>
-                  <DFP opts={['/5799246/Nownews_home_300x250_RB_new2', [300, 250], 'div-gpt-ad-1496983283211-0']} />
-                </Margin10>
-                <Margin10>
-                  <AppleStyle />
-                </Margin10>
-                <Margin10>
-                  <AndroidStyle />
-                </Margin10>
-              </RightSide>
-            </Container>
-          </div>}
+          <Container className='clearfix'>
+            <LeftSide>
+              <div className={css(styles.specialChannelsTitle)}>
+                <h2 className={css(styles.specialChannelsTitleText)}>火線話題</h2>
+                <hr className={css(styles.specialChannelsTitleLine)} />
+              </div>
+              <BlockTopicItems newsList={specialTopics.slice(0, 8)} />
+              <div className={css(styles.seeMoreBlock)}>
+                <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
+              </div>
+            </LeftSide>
+            <RightSide>
+              <Margin10>
+                <DFP opts={['/5799246/Nownews_home_300x600_RB_new2', [300, 600], 'div-gpt-ad-1496983253991-0']} />
+              </Margin10>
+              <Margin10>
+                <DFP opts={['/5799246/Nownews_home_300x250_RB_new2', [300, 250], 'div-gpt-ad-1496983283211-0']} />
+              </Margin10>
+              <Margin10>
+                <AppleStyle />
+              </Margin10>
+              <Margin10>
+                <AndroidStyle />
+              </Margin10>
+            </RightSide>
+          </Container>}
         <Container>
           <DFP opts={['/5799246/Nownews_home_970x250_B_new2', [[970, 250], [970, 90]], 'div-gpt-ad-1496983308222-0']} />
         </Container>
@@ -234,10 +230,10 @@ const styles = StyleSheet.create({
     height: 300
   },
   bg: {
-    background: 'url(/bg/bg-home-dot.png)',
+    background: '#F3F4F5',
     backgroundSize: 5,
-    marginTop: '-41px',
-    paddingBottom: '100px'
+    padding: '35px 0 30px',
+    marginBottom: 30
   },
   white: {
     borderColor: '#ffffff',
@@ -245,12 +241,12 @@ const styles = StyleSheet.create({
   },
   seeMoreBlock: {
     textAlign: 'center',
-    padding: '25px 0'
+    padding: '25px 0 30px'
   },
   seeMoreLink: {
     color: '#222',
     border: '1px solid #222',
-    padding: '6px 17px',
+    padding: '12px 55px',
     borderRadius: 30,
     fontSize: 26,
     textDecoration: 'none'
@@ -270,19 +266,6 @@ const styles = StyleSheet.create({
     top: '32px',
     width: '480px',
     right: '15px'
-  },
-  specialTopicBox: {
-    background: 'url(/bg/bg-home2.png)',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'calc(((100% - 970px)/2) + 648px) 98%'
-  },
-  tripletBlock: {
-    background: 'url(/bg/bg-home1.png)',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 95%',
-    backgroundPositionY: '45px',
-    marginBottom: 60,
-    marginTop: '-80px'
   },
   tripletBlockTop: {
     position: 'relative',
