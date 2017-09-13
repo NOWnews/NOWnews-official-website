@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   category: {
-    color: '#1886FB',
+    color: '#C86A01',
     fontSize: 13,
     height: 18.89,
     position: 'relative',
