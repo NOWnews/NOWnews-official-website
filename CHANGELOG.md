@@ -17,6 +17,8 @@
 - 微調首頁 Video 的樣式，讓換影片的體驗不會有瞬間抽換的感覺 @esbb48
 - 使用新版 imgLib  @esbb48
 - 調整 popin:image 屬性 @esbb48
+- 新 CI 樣式改版 @esbb48
+- 移除已經停止的議題票選 @esbb48
 
 ### Fixed
 - 首頁點選影音滑到對應高度會因上方有無廣告影響 @esbb48

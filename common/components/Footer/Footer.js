@@ -17,7 +17,6 @@ export const Footer = ({ ads }) => {
     { isExternal: false, title: '名家論壇', url: '/cat/celebritycomment' },
     ...moreAds,
     { isExternal: false, title: '公益行善', url: '/cat/public' },
-    { isExternal: true, title: '投票區', url: 'http://vote.nownews.com/' },
     { isExternal: false, title: '色區', url: '/cat/hotzone' }
   ];
   const socialList = [
