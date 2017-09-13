@@ -133,7 +133,7 @@ class HomeContainer extends PureComponent {
               <LeftSide>
                 <BlockItems8 channels={specialChannels.slice(0, 8)} />
                 <div className={css(styles.seeMoreBlock)}>
-                  <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多特輯</Link>
+                  <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多火線話題</Link>
                 </div>
               </LeftSide>
               <RightSide>
@@ -197,12 +197,12 @@ class HomeContainer extends PureComponent {
             <Container className='clearfix'>
               <LeftSide>
                 <div className={css(styles.specialChannelsTitle)}>
-                  <h2 className={css(styles.specialChannelsTitleText)}>火線話題</h2>
+                  <h2 className={css(styles.specialChannelsTitleText)}>熱門專題</h2>
                   <hr className={css(styles.specialChannelsTitleLine)} />
                 </div>
                 <BlockTopicItems newsList={specialTopics.slice(0, 8)} />
                 <div className={css(styles.seeMoreBlock)}>
-                  <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
+                  <Link className={css(styles.seeMoreLink)} to='topic'>看更多熱門專題</Link>
                 </div>
               </LeftSide>
               <RightSide>
