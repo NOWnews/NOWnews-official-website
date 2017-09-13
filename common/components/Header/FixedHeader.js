@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     width: 151
   },
   active: {
-    color: '#1886FB'
+    color: '#EE7800'
   },
   icons: {
     position: 'absolute',
