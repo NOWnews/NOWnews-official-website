@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+## 1.0.28 - 2017-09-13
 ### Added
 - （先隱藏）增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
 - 追蹤因滑動而觸發的 pageview @esbb48
@@ -15,8 +17,6 @@
 - 專題文字換成熱門專題 @esbb48
 - 對調專題與特輯的位置 @esbb48
 - 微調首頁 Video 的樣式，讓換影片的體驗不會有瞬間抽換的感覺 @esbb48
-
-### Changed
 - 使用新版 imgLib  @esbb48
 - 調整 popin:image 屬性 @esbb48
 
