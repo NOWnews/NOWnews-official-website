@@ -12,10 +12,9 @@
 
 ### Changed
 - 精選特輯換成火線話題 @esbb48
+- 專題文字換成熱門專題 @esbb48
 - 對調專題與特輯的位置 @esbb48
 - 微調首頁 Video 的樣式，讓換影片的體驗不會有瞬間抽換的感覺 @esbb48
-
-### Changed
 - 使用新版 imgLib  @esbb48
 - 調整 popin:image 屬性 @esbb48
 
