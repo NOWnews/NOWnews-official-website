@@ -299,8 +299,8 @@ const formatPreviewNews = createSelector(
       data: data.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto),
-          Photos: news.Photos ? news.Photos.map(photo => formatPhoto(photo)) : []
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ),
+          Photos: news.Photos ? news.Photos.map(photo => formatPhoto(photo, imgServ)) : []
         };
       })
     };
