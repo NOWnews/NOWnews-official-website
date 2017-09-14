@@ -68,7 +68,7 @@ export const Footer = ({ ads }) => {
           <div className='left' style={{ width: '35%' }}>
             <label className={css(styles.groupTitle)}>Contact Us</label>
             <div className={css(styles.btnEmail)}>
-              <a href='mailto:someone@nownews.com' target='_top'>
+              <a href='mailto:public@nownews.com,service@nownews.com' target='_top'>
                 <img src='/icons/email.png' />
               </a>
             </div>
