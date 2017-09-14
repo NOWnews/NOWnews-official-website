@@ -7,6 +7,7 @@
 ## [Unreleased]
 ### Fixed
 - 主圖無法正常預覽 @esbb48
+- 調整聯絡我們 @esbb48
 
 ## 1.0.28 - 2017-09-13
 ### Added
