@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+## 1.0.29 - 2017-09-14
 ### Fixed
 - 主圖無法正常預覽 @esbb48
 - 調整聯絡我們 @esbb48
