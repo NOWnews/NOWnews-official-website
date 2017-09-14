@@ -6,6 +6,11 @@
 
 ## [Unreleased]
 
+## 1.0.29 - 2017-09-14
+### Fixed
+- 主圖無法正常預覽 @esbb48
+- 調整聯絡我們 @esbb48
+
 ## 1.0.28 - 2017-09-13
 ### Added
 - （先隱藏）增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
