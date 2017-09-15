@@ -7,6 +7,7 @@
 ## [Unreleased]
 ### Changed
 - 打開廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
+- 使用虛擬欄位 `sizeFormat` @esbb48
 
 ## 1.0.29 - 2017-09-14
 ### Fixed
