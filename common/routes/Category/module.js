@@ -88,7 +88,7 @@ const formatCategoryPage = createSelector(
       hotNewsList: hotNewsList.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
+          MainPhoto: (typeof news.MainPhoto === 'string') ? news.MainPhoto : formatPhoto(news.MainPhoto, imgServ)
         };
       }),
       newsList: newsList.map((news) => {
