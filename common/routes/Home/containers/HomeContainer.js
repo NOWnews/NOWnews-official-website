@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
-import { BlockItems9, BlockTopicItems, BlockItems8, SlideRight, VideoBlock } from '../components';
+import { BlockItems9, BlockTopicItems, BlockItems8, NewsList12, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
@@ -131,6 +131,7 @@ class HomeContainer extends PureComponent {
           <div className={css(styles.bg)}>
             <Container className='clearfix'>
               <LeftSide>
+                <NewsList12 newsList={carousels.slice(10, 22)} />
                 <BlockItems8 channels={specialChannels.slice(0, 8)} />
                 <div className={css(styles.seeMoreBlock)}>
                   <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多火線話題</Link>
