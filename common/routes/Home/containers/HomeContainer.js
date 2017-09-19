@@ -233,7 +233,8 @@ const styles = StyleSheet.create({
     background: '#F3F4F5',
     backgroundSize: 5,
     padding: '35px 0 30px',
-    marginBottom: 30
+    marginBottom: 30,
+    width: '100%'
   },
   white: {
     borderColor: '#ffffff',
