@@ -46,9 +46,9 @@ const ChannelContainer = ({ channelPage, local, loadChannelData, menus, marquee 
             meta={[
               { name: 'description', content: `${selectedChannel.title} | 特輯` },
               { name: 'twitter:title', content: `${selectedChannel.title} | 特輯` },
-              { name: 'twitter:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+              { name: 'twitter:image', content: newsList[0].MainPhoto.large },
               { name: 'twitter:description', content: `${selectedChannel.title} | 特輯 | NOWnews 今日新聞` },
-              { name: 'twitter:card', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+              { name: 'twitter:card', content: newsList[0].MainPhoto.large },
               { name: 'contact', content: 'service@nownews.com' },
               { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
               { property: 'article:author', content: 'https://www.facebook.com/nownews' },
@@ -56,7 +56,7 @@ const ChannelContainer = ({ channelPage, local, loadChannelData, menus, marquee 
               { property: 'og:locale', content: 'zh_TW' },
               { property: 'og:title', content: `${selectedChannel.title} | 特輯` },
               { property: 'og:description', content: `${selectedChannel.title} | 特輯 | NOWnews 今日新聞` },
-              { property: 'og:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+              { property: 'og:image', content: newsList[0].MainPhoto.originSource },
               { property: 'og:url', content: 'https://www.nownews.com/channel/' + selectedChannel.sn },
               { property: 'og:rich_attachment', content: 'true' }
             ]}
