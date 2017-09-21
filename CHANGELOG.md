@@ -7,6 +7,9 @@
 ## [Unreleased]
 
 ## 1.0.30 - 2017-09-21
+### Fixed
+- 修復圖片問題 @wb
+
 ### Changed
 - 打開廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
 - 使用虛擬欄位 `sizeFormat` @esbb48
