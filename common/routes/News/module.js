@@ -1,6 +1,6 @@
 import isomorphicCookie from 'isomorphic-cookie';
 import { createSelector } from 'reselect';
-import formatPhoto from '../../../lib/format/photo';
+import { formatPhoto, formatPreviewPhoto } from '../../../lib/format/photo';
 export const CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE';
 export const CHANGE_NEWS_TITLE = 'CHANGE_NEWS_TITLE';
 export const LOAD_NEWS_REQUEST = 'LOAD_NEWS_REQUEST';
@@ -299,8 +299,8 @@ const formatPreviewNews = createSelector(
       data: data.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto, imgServ),
-          Photos: news.Photos ? news.Photos.map(photo => formatPhoto(photo, imgServ)) : []
+          MainPhoto: formatPreviewPhoto(news.MainPhoto, imgServ),
+          Photos: news.Photos ? news.Photos.map(photo => formatPreviewPhoto(photo, imgServ)) : []
         };
       })
     };
