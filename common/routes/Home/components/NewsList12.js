@@ -5,7 +5,6 @@ import Link from 'react-router/lib/Link';
 class NewsList12 extends PureComponent {
   render () {
     const { newsList } = this.props;
-    console.log(newsList.length);
     if (newsList.length !== 12) {
       return null;
     }
