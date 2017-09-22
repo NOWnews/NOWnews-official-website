@@ -8,17 +8,17 @@ class NewsList12 extends PureComponent {
     if (newsList.length !== 12) {
       return null;
     }
-    const rows = [0, 2, 4, 6, 8, 10];
+    const newsInRows = [[0,1],[2,3],[4,5],[6,7],[8,9],[10,11]];
     let items = [];
 
-    rows.forEach((row) => {
+    newsInRows.forEach((row, index) => {
       let linkClass = css(
         styles.link,
-        (row === 0) && styles.firstLineLink
+        (index === 0) && styles.firstLineLink
       );
 
-      let newsForLeft = newsList[row];
-      let newsForRight = newsList[row + 1];
+      let newsForLeft = newsList[row[0]];
+      let newsForRight = newsList[row[1]];
       items.push(
         <Link key={newsForLeft.sn} className={linkClass} to={newsForLeft.parseUrl}>
           <span className={css(styles.label)}>{newsForLeft.MainMenu.name}</span>
