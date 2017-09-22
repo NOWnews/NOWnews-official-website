@@ -8,15 +8,20 @@
 ### Added
 - 首頁增加 12 條新聞空間再特輯上方 @esbb48
 
+## 1.0.30 - 2017-09-21
 ### Changed
 - 打開廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
 - 使用虛擬欄位 `sizeFormat` @esbb48
 - 調整特輯的 `og:iamge` 不使用預設圖 @esbb48
 
+### Fixed
+- 修復圖片問題 @wb
+
 ## 1.0.29 - 2017-09-14
 ### Fixed
 - 主圖無法正常預覽 @esbb48
 - 調整聯絡我們 @esbb48
+- 修復預覽新聞圖片過格式化時沒有 sizeFormat 的錯誤 @esbb48
 
 ## 1.0.28 - 2017-09-13
 ### Added
