@@ -19,8 +19,8 @@ const PreviewForPhoto = ({ news: { Photos, ...news } }) => {
       <div className={css(styles.SlideBox)}>
         <CarouselCSS />
         <Carousel {...settings}>
-          {Photos.map(({ desc, sn, large }) => (
-            <div className={css(styles.contentDiv)}>
+          {Photos.map(({ desc, large }, index) => (
+            <div className={css(styles.contentDiv)} key={index}>
               <img className={css(styles.contentImg)} src={large} />
               <p className={css(styles.imgDesc)}>{desc}</p>
             </div>
