@@ -8,7 +8,7 @@ class NewsList12 extends PureComponent {
     if (newsList.length !== 12) {
       return null;
     }
-    const newsInRows = [[0,1],[2,3],[4,5],[6,7],[8,9],[10,11]];
+    const newsInRows = [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9], [10, 11]];
     let items = [];
 
     newsInRows.forEach((row, index) => {
