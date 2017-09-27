@@ -2,6 +2,7 @@
   "mode": "default",
   "webApiServer": "http://localhost:10001",
   "memberApiServer": "https://memberapi.nownews.com",
+  "imgApiServer": "https://devimagelab.nownews.com/",
   "headers": {
     "X-NOWnews-API": "YouCanSeeMeJohnCena"
   },

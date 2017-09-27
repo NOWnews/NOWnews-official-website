@@ -127,13 +127,13 @@ class HomeContainer extends PureComponent {
               <SlideRight newsList={carousels.slice(5, 10)} />
             </div>
           </Container>}
-        {!isLoading && specialTopics.length > 0 &&
+        {!isLoading && specialChannels.length > 0 &&
           <div className={css(styles.bg)}>
             <Container className='clearfix'>
               <LeftSide>
-                <BlockTopicItems newsList={specialTopics.slice(0, 8)} />
+                <BlockItems8 channels={specialChannels.slice(0, 8)} />
                 <div className={css(styles.seeMoreBlock)}>
-                  <Link className={css(styles.seeMoreLink)} to='topic'>看更多專題</Link>
+                  <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多火線話題</Link>
                 </div>
               </LeftSide>
               <RightSide>
@@ -181,7 +181,7 @@ class HomeContainer extends PureComponent {
         </Container>
 
         {!isLoading && videos.length > 0 &&
-          <div className={css(styles.videoBlock)}>
+          <div id='home-video-block' className={css(styles.videoBlock)}>
             <Container className={css(styles.videoContaienr)}>
               <VideoBlock list={videos} />
               <div className={css(styles.seeMoreBlock)}>
@@ -192,19 +192,17 @@ class HomeContainer extends PureComponent {
             </Container>
           </div>}
 
-        {!isLoading && specialChannels.length > 0 &&
-          <div className={css(styles.specialChannelsBox)}>
+        {!isLoading && specialTopics.length > 0 &&
+          <div className={css(styles.specialTopicBox)}>
             <Container className='clearfix'>
               <LeftSide>
-                <div>
-                  <div className={css(styles.specialChannelsTitle)}>
-                    <h2 className={css(styles.specialChannelsTitleText)}>精選特輯</h2>
-                    <hr className={css(styles.specialChannelsTitleLine)} />
-                  </div>
-                  <BlockItems8 channels={specialChannels.slice(0, 8)} />
-                  <div className={css(styles.seeMoreBlock)}>
-                    <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多特輯</Link>
-                  </div>
+                <div className={css(styles.specialChannelsTitle)}>
+                  <h2 className={css(styles.specialChannelsTitleText)}>熱門專題</h2>
+                  <hr className={css(styles.specialChannelsTitleLine)} />
+                </div>
+                <BlockTopicItems newsList={specialTopics.slice(0, 8)} />
+                <div className={css(styles.seeMoreBlock)}>
+                  <Link className={css(styles.seeMoreLink)} to='topic'>看更多熱門專題</Link>
                 </div>
               </LeftSide>
               <RightSide>
@@ -273,7 +271,7 @@ const styles = StyleSheet.create({
     width: '480px',
     right: '15px'
   },
-  specialChannelsBox: {
+  specialTopicBox: {
     background: 'url(/bg/bg-home2.png)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'calc(((100% - 970px)/2) + 648px) 98%'

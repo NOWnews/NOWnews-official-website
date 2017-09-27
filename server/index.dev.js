@@ -28,6 +28,7 @@ import sitemap from './sitemap';
 const defaultServerConfig = configLib.get('server');
 const webApiServer = configLib.get('webApiServer');
 const memberApiServer = configLib.get('memberApiServer');
+const imgApiServer = configLib.get('imgApiServer');
 const headers = configLib.get('headers');
 const region = configLib.get('region');
 
@@ -79,7 +80,8 @@ export const createServer = (config) => {
           query: req.query,
           user
         },
-        memberServ: memberApiServer
+        memberServ: memberApiServer,
+        imgServ: imgApiServer
       }
     });
     const routes = createRoutes(store);

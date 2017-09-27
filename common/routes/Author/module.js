@@ -64,14 +64,15 @@ export default function authorPage (state = initialState, action) {
 }
 
 const getAuthorPage = (state) => state.authorPage;
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const formatAuthorPage = createSelector(
-  [getAuthorPage], ({ newsList, ...authorPage }) => {
+  [getAuthorPage, getImgServ], ({ newsList, ...authorPage }, imgServ) => {
     const result = {
       ...authorPage,
       newsList: newsList.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
         };
       })
     };
