@@ -76,7 +76,7 @@ const render = () => {
           window.document.body.scrollTop = 0;
           const { pathname, search } = renderProps.location;
           const { sourceRequest: { apiServ, headers }, ...state } = store.getState();
-          pageview.init(apiServ, pathname, search, state, headers);
+          pageview.spaInit(apiServ, pathname, search, state, headers);
         });
       }
 
