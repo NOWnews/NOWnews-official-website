@@ -127,15 +127,16 @@ export default function LBS (state = initialState, action) {
 }
 
 // For Selecter
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const getLBS = (state) => state.LBS;
 const formatLBS = createSelector(
-  [getLBS], ({ newsList, ...LBS }) => {
+  [getLBS, getImgServ], ({ newsList, ...LBS }, imgServ) => {
     const result = {
       ...LBS,
       newsList: newsList.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
         };
       })
     };

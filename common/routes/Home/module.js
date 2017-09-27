@@ -111,22 +111,23 @@ export default function homePage (state = initialState, action) {
 }
 
 // selecter
-const processMainPhoto = (item) => {
+const getImgServ = (state) => state.sourceRequest.imgServ;
+const processMainPhoto = (item, imgServ) => {
   return {
     ...item,
-    MainPhoto: formatPhoto(item.MainPhoto)
+    MainPhoto: formatPhoto(item.MainPhoto, imgServ)
   };
 };
 
 const getHomePage = (state) => state.homePage;
 const formatHomePage = createSelector(
-  [getHomePage], ({ videos, specialChannels, specialTopics, carousels, ...homePage }) => {
+  [getHomePage, getImgServ], ({ videos, specialChannels, specialTopics, carousels, ...homePage }, imgServ) => {
     const result = {
       ...homePage,
-      videos: videos.map(processMainPhoto),
-      specialChannels: specialChannels.map(processMainPhoto),
-      specialTopics: specialTopics.map(processMainPhoto),
-      carousels: carousels.map(processMainPhoto)
+      videos: videos.map((item) => processMainPhoto(item, imgServ)),
+      specialChannels: specialChannels.map((item) => processMainPhoto(item, imgServ)),
+      specialTopics: specialTopics.map((item) => processMainPhoto(item, imgServ)),
+      carousels: carousels.map((item) => processMainPhoto(item, imgServ))
     };
     return result;
   }

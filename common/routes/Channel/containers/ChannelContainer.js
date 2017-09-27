@@ -10,6 +10,7 @@ import Pagination from '../../../components/Pagination';
 import { ChannelSelecter, BlockItems } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
 import { DFP, OneAdICIP } from '../../../components/Ad';
+import Helmet from 'react-helmet';
 
 const redial = {
   fetch: ({ dispatch, params: { sn }, query: { page } }) => Promise.all([
@@ -41,6 +42,27 @@ const ChannelContainer = ({ channelPage, local, loadChannelData, menus, marquee 
       {!isLoading && newsList.length === 0 && <NotFound />}
       {!isLoading && newsList.length > 0 &&
         <Margin10>
+          <Helmet title='NOWnews 今日新聞' titleTemplate={selectedChannel.title + '| NOWnews 今日新聞'}
+            meta={[
+              { name: 'description', content: `${selectedChannel.title} | 特輯` },
+              { name: 'twitter:title', content: `${selectedChannel.title} | 特輯` },
+              { name: 'twitter:image', content: newsList[0].MainPhoto.large },
+              { name: 'twitter:description', content: `${selectedChannel.title} | 特輯 | NOWnews 今日新聞` },
+              { name: 'twitter:card', content: newsList[0].MainPhoto.large },
+              { name: 'contact', content: 'service@nownews.com' },
+              { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
+              { property: 'article:author', content: 'https://www.facebook.com/nownews' },
+              { property: 'og:type', content: 'article' },
+              { property: 'og:locale', content: 'zh_TW' },
+              { property: 'og:title', content: `${selectedChannel.title} | 特輯` },
+              { property: 'og:description', content: `${selectedChannel.title} | 特輯 | NOWnews 今日新聞` },
+              { property: 'og:image', content: newsList[0].MainPhoto.originSource },
+              { property: 'og:url', content: 'https://www.nownews.com/channel/' + selectedChannel.sn },
+              { property: 'og:rich_attachment', content: 'true' }
+            ]}
+            link={[
+              {rel: 'canonical', href: `https://www.nownews.com/channel/${selectedChannel.sn}`}
+            ]} />
           <BlockItems newsList={newsList} />
           <Pagination {...pageData} {...local} />
         </Margin10>

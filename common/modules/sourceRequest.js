@@ -4,7 +4,8 @@ export const SET_LOCAL = 'SET_LOCAL';
 const initialState = {
   apiServ: null,
   local: {},
-  memberServ: null
+  memberServ: null,
+  imgServ: null
 };
 
 export function setLocal (local) {

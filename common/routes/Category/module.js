@@ -6,6 +6,7 @@ export const LOAD_CATEGORY_SUCCESS = 'LOAD_CATEGORY_SUCCESS';
 export const LOAD_CATEGORY_FAILURE = 'LOAD_CATEGORY_FAILURE';
 
 const initialState = {
+  columnSpecialChannel: null,
   currentMenu: {},
   error: null,
   hotNewsList: [],
@@ -23,10 +24,11 @@ export function loadCategoryList (categoryName, page = 1) {
       axios.get(`${apiServ}/cat/${categoryName}?page=${page}&limit=15`),
       axios.get(`${apiServ}/hot/${categoryName}`)
     ]).then(([categoryNewsList, hotNewsList]) => {
-      const { menu, newsList, pageData } = categoryNewsList.data;
+      const { menu, newsList, pageData, columnSpecialChannel } = categoryNewsList.data;
       dispatch({
         type: LOAD_CATEGORY_SUCCESS,
         payload: {
+          columnSpecialChannel,
           hotNewsList: hotNewsList.data,
           currentMenu: menu,
           newsList,
@@ -54,9 +56,10 @@ export default function categoryPage (state = initialState, action) {
         error: null
       };
     case LOAD_CATEGORY_SUCCESS:
-      let { currentMenu, hotNewsList, newsList, pageData } = action.payload;
+      let { columnSpecialChannel, currentMenu, hotNewsList, newsList, pageData } = action.payload;
       return {
         ...state,
+        columnSpecialChannel,
         currentMenu,
         newsList,
         pageData,
@@ -76,21 +79,22 @@ export default function categoryPage (state = initialState, action) {
 }
 
 // selecter
+const getImgServ = (state) => state.sourceRequest.imgServ;
 const getCategoryPage = (state) => state.categoryPage;
 const formatCategoryPage = createSelector(
-  [getCategoryPage], ({ hotNewsList, newsList, ...categoryPage }) => {
+  [getCategoryPage, getImgServ], ({ hotNewsList, newsList, ...categoryPage }, imgServ) => {
     const result = {
       ...categoryPage,
       hotNewsList: hotNewsList.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: (typeof news.MainPhoto === 'string') ? news.MainPhoto : formatPhoto(news.MainPhoto, imgServ)
         };
       }),
       newsList: newsList.map((news) => {
         return {
           ...news,
-          MainPhoto: formatPhoto(news.MainPhoto)
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
         };
       })
     };

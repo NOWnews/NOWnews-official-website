@@ -172,8 +172,8 @@ class NewsContainer extends PureComponent {
       const MainPhoto = news.MainPhoto;
       metaOpts.push({ name: 'twitter:image', content: MainPhoto.medium });
       metaOpts.push({ name: 'twitter:card', content: MainPhoto.medium });
-      metaOpts.push({ property: 'og:image', content: MainPhoto.url });
-      metaOpts.push({ property: 'popin:image', content: MainPhoto.url });
+      metaOpts.push({ property: 'og:image', content: MainPhoto.originSource });
+      metaOpts.push({ name: 'popin:image', content: MainPhoto.url });
 
       if (news.type === 'VIDEO') {
         metaOpts.push({ property: 'og:video', content: news.MainVideo.url });
