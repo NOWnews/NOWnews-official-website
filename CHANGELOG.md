@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+## 1.0.31 - 2017-09-28
 ### Added
 - 加上 JestTest @esbb48
 - 安裝測試相關套件 `jest`, `phantom`, `should` @esbb48
