@@ -5,17 +5,19 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Added
+- 首頁增加 12 條新聞空間再特輯上方 @esbb48
+
+### Changed
+- 調整 CI @esbb48
+- 調整首頁特輯區塊改成各特色頻道 @esbb48
 
 ## 1.0.31 - 2017-09-28
 ### Added
 - 加上 JestTest @esbb48
 - 安裝測試相關套件 `jest`, `phantom`, `should` @esbb48
-- 首頁增加 12 條新聞空間再特輯上方 @esbb48
-
 ### Changed
 - 調整 GA 追蹤碼，避免重複打或者漏打台中 26 的 GA @esbb48
-- 調整 CI @esbb48
-- 調整首頁特輯區塊改成各特色頻道 @esbb48
 
 ## 1.0.30 - 2017-09-21
 ### Changed
