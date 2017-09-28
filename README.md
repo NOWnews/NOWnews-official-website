@@ -14,6 +14,7 @@ npm start
 
 ### HOW TO START FOR PROD MODE
 ```
+npm install --only=production
 npm run build
 npm run start:prod
 ```
@@ -21,9 +22,19 @@ npm run start:prod
 ### HOW TO START FOR PM2
 
 ```
+npm install --only=production
 npm run build
 env NODE_ENV=staging pm2 start ./build/server.js --name 'official-web-staging'
 ```
+
+### HOW TO RUN Test
+
+再開始 run 測試前，要啟動 Local Prod Mode 
+```
+npm install
+npm run test
+```
+
 > NOTE: 依據你的 NODE_ENV 切換
 
 ## Structure
@@ -60,5 +71,8 @@ env NODE_ENV=staging pm2 start ./build/server.js --name 'official-web-staging'
 ├── /server/                    #
 │   ├── /index.dev.js           # 後端啟動相關 script 給 develop
 │   └── /index.prod.js          # 後端啟動相關 script 給 Production
+├── /test/                    	# 放測試
 └── /tools/                     # webpack 相關設定
+
+
 ```

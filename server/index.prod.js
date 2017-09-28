@@ -84,7 +84,7 @@ export const createServer = (config) => {
 
     match({routes, history}, (err, redirectLocation, renderProps) => {
       if (err) {
-        console.error(err);
+        console.error('router match error', err);
         return res.status(500).send('Internal server error');
       }
 
@@ -140,8 +140,10 @@ export const createServer = (config) => {
                   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
                   ga('create', 'UA-4021556-54', 'auto');
                   ga('create', 'UA-4021556-26', {'name':'26'});
-                  ga('send', 'pageview');
-                  ga('26.send', 'pageview');
+                  // 目前會有重複打兩次的問題，
+                  // 這邊先註解，要上線後才能測試機器人壓測大軍打不打得到
+                  // ga('send', 'pageview');
+                  // ga('26.send', 'pageview');
 
                   var _comscore = _comscore || [];
                   _comscore.push({ c1: "2", c2: "11473067" });
@@ -205,9 +207,9 @@ export const createServer = (config) => {
                 <script src="//apps.bdimg.com/libs/moment/2.8.3/moment-with-locales.min.js"></script>
                 <script src="//www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
                 <script src="//vjs.zencdn.net/5.20.1/video.min.js"></script>
-                <script>window.moment || document.write('<script src="/vendor/moment.min.js"\><\\/script>')</script>
-                <script>window.videojs || document.write('<script src="/vendor/videojs.min.js"\><\\/script>')</script>
-                <script>window.firebase || document.write('<script src="/vendor/firebase.min.js"\><\\/script>')</script>
+                <script>window.moment || document.write('<script src="/vendor/moment.min.js"><\\/script>')</script>
+                <script>window.videojs || document.write('<script src="/vendor/videojs.min.js"><\\/script>')</script>
+                <script>window.firebase || document.write('<script src="/vendor/firebase.min.js"><\\/script>')</script>
                 <script src="${assets.vendor.js}"></script>
                 <script async src="${assets.main.js}" ></script>
                 <link rel='stylesheet' type='text/css' href='/vendor/basscss.min.css' />
@@ -217,7 +219,10 @@ export const createServer = (config) => {
               </body>
             </html>
           `);
-        }).catch(e => console.log(e));
+        }).catch((e) => {
+          console.log('catch error', e);
+          return res.status(500).send('Internal server error');
+        });
     });
   });
 

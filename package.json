@@ -6,8 +6,9 @@
     "start": "cross-env NODE_ENV=develop node -r \"babel-register\" ./server/index.dev.js",
     "start:prod": "cross-env NODE_ENV=production node ./build/server.js",
     "build": "webpack -p --config ./tools/webpack.client.prod.js && webpack -p --config ./tools/webpack.server.prod.js",
+    "test": "npm run fix && jest test/page.spec.js",
     "clean": "rm -rf build",
-    "fix": "eslint common server client --fix"
+    "fix": "eslint common server client test --fix"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "cross-env": "2.0.1",
     "express": "4.15.3",
     "firebase": "4.2.0",
+    "happypack": "4.0.0-beta.2",
     "helmet": "2.3.0",
     "history": "4.6.2",
     "hpp": "0.2.2",
@@ -72,7 +74,8 @@
     "throng": "4.0.0",
     "uuid": "3.1.0",
     "video.js": "5.20.1",
-    "videojs-youtube": "2.4.0"
+    "videojs-youtube": "2.4.0",
+    "webpack": "1.15.0"
   },
   "devDependencies": {
     "eslint": "3.15.0",
@@ -82,9 +85,10 @@
     "eslint-plugin-promise": "3.5.0",
     "eslint-plugin-react": "6.10.0",
     "eslint-plugin-standard": "2.1.1",
-    "happypack": "^4.0.0-beta.2",
+    "jest": "21.0.1",
+    "phantom": "4.0.5",
     "react-addons-perf": "15.4.2",
-    "webpack": "1.15.0",
+    "should": "12.0.0",
     "webpack-dev-middleware": "1.10.2",
     "webpack-hot-middleware": "2.18.0"
   },
