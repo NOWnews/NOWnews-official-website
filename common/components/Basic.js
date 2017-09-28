@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import { GTM } from './Tracking';
 import { connect } from 'react-redux';
 import StaticContainer from 'react-static-container';
-import { init } from '../../lib/track/pageview';
+import { ssrInit } from '../../lib/track/pageview';
 import { firebaseInit } from '../../lib/firebase/notification';
 
 // import Idle from './Idle';
@@ -25,8 +25,7 @@ class Basic extends PureComponent {
     const state = this.props.state;
     const { apiServ, headers } = state.sourceRequest;
     const { pathname, search } = window.location;
-    init(apiServ, pathname, search, state, headers);
-
+    ssrInit(apiServ, pathname, search, state, headers);
     if ('Notification' in window && !window.firebase.apps.length) {
       firebaseInit(apiServ, headers);
     }

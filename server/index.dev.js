@@ -146,8 +146,11 @@ export const createServer = (config) => {
                   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
                   ga('create', 'UA-4021556-54', 'auto');
                   ga('create', 'UA-4021556-26', {'name':'26'});
-                  ga('send', 'pageview');
-                  ga('26.send', 'pageview');
+                  // 目前會有重複打兩次的問題，
+                  // 這邊先註解，要上線後才能測試機器人壓測大軍打不打得到
+                  // ga('send', 'pageview');
+                  // ga('26.send', 'pageview');
+
 
                   var _comscore = _comscore || [];
                   _comscore.push({ c1: "2", c2: "11473067" });
