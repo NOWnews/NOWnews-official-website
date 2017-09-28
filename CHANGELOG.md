@@ -29,6 +29,8 @@
 
 ## 1.0.28 - 2017-09-13
 ### Added
+- （先隱藏）增加廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
+- 追蹤因滑動而觸發的 pageview @esbb48
 - 增加專欄頁面的特輯版型 @esbb48
 
 ### Changed
