@@ -18,6 +18,7 @@
 - 安裝測試相關套件 `jest`, `phantom`, `should` @esbb48
 ### Changed
 - 調整 GA 追蹤碼，避免重複打或者漏打台中 26 的 GA @esbb48
+- 完全移除在 `server/index.xx.js` send ga 的行為 @esbb48
 
 ## 1.0.30 - 2017-09-21
 ### Changed
