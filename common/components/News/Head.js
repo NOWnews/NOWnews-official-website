@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   category: {
-    color: '#1886FB',
+    color: '#EE7800',
     fontSize: '20px'
   },
   content: {

@@ -51,7 +51,7 @@ class BlockItems9 extends PureComponent {
 
 const styles = StyleSheet.create({
   blockItem: {
-    background: '#ffffff',
+    background: '#F3F4F5',
     float: 'left',
     margin: 11.5,
     paddingBottom: 10,

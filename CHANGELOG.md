@@ -5,24 +5,29 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Added
+- 首頁增加 12 條新聞空間再特輯上方 @esbb48
+
+### Changed
+- 調整 CI @esbb48
+- 調整首頁特輯區塊改成各特色頻道 @esbb48
 
 ## 1.0.31 - 2017-09-28
 ### Added
 - 加上 JestTest @esbb48
 - 安裝測試相關套件 `jest`, `phantom`, `should` @esbb48
-
 ### Changed
 - 調整 GA 追蹤碼，避免重複打或者漏打台中 26 的 GA @esbb48
 - 完全移除在 `server/index.xx.js` send ga 的行為 @esbb48
 
 ## 1.0.30 - 2017-09-21
-### Fixed
-- 修復圖片問題 @wb
-
 ### Changed
 - 打開廣告版位新聞全網文末iframe `Nownews_${adType}_article_600x225_i_new2` @esbb48
 - 使用虛擬欄位 `sizeFormat` @esbb48
 - 調整特輯的 `og:iamge` 不使用預設圖 @esbb48
+
+### Fixed
+- 修復圖片問題 @wb
 
 ## 1.0.29 - 2017-09-14
 ### Fixed
@@ -43,6 +48,8 @@
 - 微調首頁 Video 的樣式，讓換影片的體驗不會有瞬間抽換的感覺 @esbb48
 - 使用新版 imgLib  @esbb48
 - 調整 popin:image 屬性 @esbb48
+- 新 CI 樣式改版 @esbb48
+- 移除已經停止的議題票選 @esbb48
 
 ### Fixed
 - 首頁點選影音滑到對應高度會因上方有無廣告影響 @esbb48

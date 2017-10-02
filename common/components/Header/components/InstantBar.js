@@ -96,14 +96,15 @@ class InstantBar extends PureComponent {
   }
 }
 
-const lineHeight = 44;
+const lineHeight = 48;
 const styles = StyleSheet.create({
   box: {
-    backgroundImage: 'url("/bg/bg-header-instant-bar.png")',
-    color: '#fff',
+    background: '#000000',
+    color: '#ffffff',
+    fontWeight: 'bold',
     display: 'inline-flex',
     height: lineHeight,
-    margin: '0.5rem 0 1rem 0',
+    margin: '0rem 0 1rem 0',
     width: 970
   },
   linkWrapper: {
@@ -116,7 +117,6 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     position: 'absolute',
     display: 'inline-block',
-    fontWeight: 'bold',
     height: lineHeight,
     lineHeight: `${lineHeight}px`,
     textDecoration: 'none',

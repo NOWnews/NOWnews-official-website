@@ -12,6 +12,7 @@ export const BlockChannelItem = ({ photo = {}, sn, title }) => {
     </Link>
   );
 };
+const height = 160;
 
 const styles = StyleSheet.create({
   box: {
@@ -27,15 +28,15 @@ const styles = StyleSheet.create({
     top: 0,
     background: 'rgba(0, 0, 0, 0.7)',
     width: '100%',
-    height: '190px'
+    height: height
   },
   img: {
-    height: '190px',
+    height: height,
     width: '100%'
   },
   title: {
     color: '#fff',
-    lineHeight: '190px',
+    lineHeight: `${height}px`,
     letterSpacing: '2px'
   }
 });

@@ -19,9 +19,9 @@ const HotNews = ({ newsList }) => (
 
 const styles = StyleSheet.create({
   head: {
-    backgroundColor: '#AD6116',
-    color: '#ffffff',
-    fontSize: 16,
+    backgroundColor: '#fec340',
+    fontSize: 17,
+    fontWeight: 'bold',
     height: 40,
     lineHeight: '40px',
     textAlign: 'center'

@@ -5,23 +5,22 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 const Logo = ({ customClass = css(styles.defaultBox) }) => (
   <div className={customClass}>
     <IndexLink to='/'>
-      <img className={css(styles.img)} alt='NOWnews Logo' src='/logo.png' />
+      <img className={css(styles.img)} alt='NOWnews Logo' src='/logo.jpg' />
     </IndexLink>
   </div>
 );
 
 const styles = StyleSheet.create({
   defaultBox: {
-    height: 70,
+    height: 80,
     minWidth: 250,
     width: 250,
-    paddingBottom: 19.7,
-    paddingRight: '1rem',
-    paddingTop: 19.7
+    paddingTop: 10,
+    paddingBottom: 15,
+    paddingRight: '1rem'
   },
   img: {
-    height: '100%',
-    width: '100%'
+    height: '100%'
   }
 });
 
