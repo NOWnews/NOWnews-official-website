@@ -1,0 +1,17 @@
+{
+  "apps" : [{
+    "name"        : "official-web-dev",
+    "script"      : "./build/server.js",
+    "watch"       : false,
+    "env": {
+      "NODE_ENV": "develop"
+    },
+    "env_production" : {
+       "NODE_ENV": "develop"
+    },
+    "instances"  : 0,
+    "exec_mode"  : "cluster",
+    "log_date_format" : "YYYY-MM-DD HH:mm Z",
+    "out_file": "/dev/null"
+  }]
+}

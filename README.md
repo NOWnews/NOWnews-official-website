@@ -19,12 +19,12 @@ npm run build
 npm run start:prod
 ```
 
-### HOW TO START FOR PM2
+### HOW TO START FOR PROD SEVER USE PM2
 
 ```
 npm install --only=production
 npm run build
-env NODE_ENV=staging pm2 start ./build/server.js --name 'official-web-staging'
+pm2 start pm2/production.json
 ```
 
 ### HOW TO RUN Test
