@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+## 1.0.32 - 2017-10-02
 ### Added
 - 首頁增加 12 條新聞空間再特輯上方 @esbb48
 
