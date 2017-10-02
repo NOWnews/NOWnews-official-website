@@ -25,7 +25,7 @@ class MicroDataCategory extends PureComponent {
           "item": {
             "@id": `https://www.nownews.com${category.currentMenu.url}`,
             "name": category.currentMenu.name,
-            "image": "https://legacy.nownews.com/NOWnews_default/default_terry.jpg"
+            "image": "https://legacy.nownews.com/NOWnews_default/default.png"
           }
         }]
       }

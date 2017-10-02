@@ -28,17 +28,16 @@ const styles = StyleSheet.create({
   box: {
   },
   title: {
-    background: '#00A0D1',
-    color: '#ffffff',
+    background: '#fec340',
     fontSize: 20,
     textAlign: 'center',
     padding: '10px'
   },
   item: {
-    background: '#00A0D1',
+    background: '#fec340',
     border: 0,
     borderRadius: 20,
-    color: '#ffffff',
+    color: '#000000',
     cursor: 'pointer',
     float: 'left',
     fontSize: 16,
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
     }
   },
   items: {
-    background: '#E9EAEB',
+    background: '#ffffff',
     clear: 'both',
     height: 108,
     padding: '10px 0',

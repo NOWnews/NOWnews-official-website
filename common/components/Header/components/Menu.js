@@ -19,7 +19,7 @@ class Menu extends PureComponent {
 
       let linkClass = css(
         styles.link,
-        (isCurrentMainMenu) && styles.active
+        (isCurrentMainMenu) && styles.menuActive
       );
 
       mainMenuDoms.push(
@@ -36,11 +36,10 @@ class Menu extends PureComponent {
     return (
       <div>
         <div className={css(styles.menu)}>{ mainMenuDoms }</div>
-        {childMenus.length > 0 && <hr />}
-        <div className={css(styles.menu)}>
+        <div className={css(styles.subMenu)}>
           { childMenus.map(({ _id, sn, isExternal, url, name }) =>
             <Link
-              className={`${css(styles.link)} ${(_id === currentChildMenu) && css(styles.active)}`}
+              className={`${css(styles.link)} ${(_id === currentChildMenu) && css(styles.subMenuActive)}`}
               key={sn}
               target={isExternal === true ? '_blank' : null}
               to={url}>
@@ -53,21 +52,32 @@ class Menu extends PureComponent {
   };
 }
 const styles = StyleSheet.create({
-  menu: {
-    display: 'flex',
-    justifyContent: 'space-between'
-  },
   link: {
     color: '#000',
-    margin: '0.5rem 0',
+    padding: '1rem 10px',
     textDecoration: 'none',
     transition: '.2s opacity ease',
     ':hover': {
+      color: '#EE7800',
       opacity: 0.6
     }
   },
-  active: {
-    color: '#1886FB'
+  menu: {
+    display: 'flex',
+    fontWeight: 800,
+    justifyContent: 'space-around',
+    background: '#fec340'
+  },
+  menuActive: {
+    background: '#ffffff',
+    color: '#000000'
+  },
+  subMenu: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  subMenuActive: {
+    color: '#EE7800'
   }
 });
 

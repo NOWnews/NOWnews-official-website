@@ -57,9 +57,9 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu, loadCat
             { name: 'keywords', content: currentMenu.name },
             { name: 'news_keywords', content: currentMenu.name },
             { name: 'twitter:title', content: `${currentMenu.name}相關新聞及資料都在NOWnews今日新聞。` },
-            { name: 'twitter:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+            { name: 'twitter:image', content: 'https://legacy.nownews.com/NOWnews_default/default.png' },
             { name: 'twitter:description', content: `${currentMenu.name}相關新聞及資料都在NOWnews今日新聞。` },
-            { name: 'twitter:card', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+            { name: 'twitter:card', content: 'https://legacy.nownews.com/NOWnews_default/default.png' },
             { name: 'contact', content: 'service@nownews.com' },
             { property: 'og:site_name', name: 'application-name', content: 'NOWnews 今日新聞' },
             { property: 'article:author', content: 'https://www.facebook.com/nownews' },
@@ -67,7 +67,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu, loadCat
             { property: 'og:locale', content: 'zh_TW' },
             { property: 'og:title', content: currentMenu.name },
             { property: 'og:description', content: `${currentMenu.name}相關新聞及資料都在NOWnews今日新聞。` },
-            { property: 'og:image', content: 'https://legacy.nownews.com/NOWnews_default/default_terry.jpg' },
+            { property: 'og:image', content: 'https://legacy.nownews.com/NOWnews_default/default.png' },
             { property: 'og:url', content: 'https://www.nownews.com' + currentMenu.url },
             { property: 'og:rich_attachment', content: 'true' }
           ]}

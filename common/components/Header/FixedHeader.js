@@ -96,13 +96,14 @@ const styles = StyleSheet.create({
   },
   logo: {
     display: 'inline-block',
-    minWidth: 151,
+    minHeight: 40,
     position: 'relative',
-    top: 4,
-    width: 151
+    top: 10,
+    width: 137,
+    height: 40
   },
   active: {
-    color: '#1886FB'
+    color: '#EE7800'
   },
   icons: {
     position: 'absolute',
