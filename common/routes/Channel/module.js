@@ -23,7 +23,7 @@ export function loadChannelData (sn, page = 1) {
     const { apiServ } = getState().sourceRequest;
     dispatch({ type: LOAD_CHANNEL_REQUEST });
     return Promise.all([
-      axios.get(`${apiServ}/specialchannels`),
+      axios.get(`${apiServ}/specialchannels?limit=40`),
       axios.get(`${apiServ}/specialchannels/${sn}?page=${page}`)
     ]).then(([specialchannels, channelData]) => {
       let { pageData, ...selectedChannel } = channelData.data || {};
