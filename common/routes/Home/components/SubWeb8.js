@@ -18,7 +18,7 @@ class SubWeb8 extends PureComponent {
         <a key={img} href={url}
           className={css(styles.blockItem)}
           target='_blank'>
-          <img src={`/subWebBanner/${img}.jpg`} alt={text} />
+          <img src={`/subWebBanner_colorful/${img}.jpg`} alt={text} />
         </a>
       );
     });
