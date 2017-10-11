@@ -13,7 +13,8 @@ class BlockItems9 extends PureComponent {
   select (index) {
     if (this.props.selectVideo !== index) {
       this.props.selectVideo(index);
-      window.document.body.scrollTop = 0;
+      window.document.documentElement.scrollTop = 0; // For chrome, IE
+      window.document.body.scrollTop = 0;// For Safari, Edge
     }
   }
 

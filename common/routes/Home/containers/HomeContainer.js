@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
-import { BlockItems9, BlockTopicItems, SubWeb8, NewsList12, SlideRight, VideoBlock } from '../components';
+import { BlockItems8, BlockItems9, SubWeb8, NewsList12, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
@@ -127,7 +127,7 @@ class HomeContainer extends PureComponent {
               <SlideRight newsList={carousels.slice(5, 10)} />
             </div>
           </Container>}
-        {!isLoading && specialChannels.length > 0 &&
+        {!isLoading && specialTopics.length > 0 &&
           <div className={css(styles.bg)}>
             <Container className='clearfix'>
               <LeftSide>
@@ -135,7 +135,7 @@ class HomeContainer extends PureComponent {
                 <SubWeb8 />
                 {/* <BlockItems8 channels={specialChannels.slice(0, 8)} /> */}
                 <div className={css(styles.seeMoreBlock)}>
-                  <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多火線話題</Link>
+                  <Link className={css(styles.seeMoreLink)} to='topic'>看更多熱門專題</Link>
                 </div>
               </LeftSide>
               <RightSide>
@@ -192,16 +192,17 @@ class HomeContainer extends PureComponent {
             </Container>
           </div>}
 
-        {!isLoading && specialTopics.length > 0 &&
+        {!isLoading && specialChannels.length > 0 &&
           <Container className='clearfix'>
             <LeftSide>
               <div className={css(styles.specialChannelsTitle)}>
-                <h2 className={css(styles.specialChannelsTitleText)}>熱門專題</h2>
+                <h2 className={css(styles.specialChannelsTitleText)}>火線話題</h2>
                 <hr className={css(styles.specialChannelsTitleLine)} />
               </div>
-              <BlockTopicItems newsList={specialTopics.slice(0, 8)} />
+              <BlockItems8 channels={specialChannels.slice(0, 8)} />
+              {/* <BlockTopicItems newsList={specialTopics.slice(0, 8)} /> */}
               <div className={css(styles.seeMoreBlock)}>
-                <Link className={css(styles.seeMoreLink)} to='topic'>看更多熱門專題</Link>
+                <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多火線話題</Link>
               </div>
             </LeftSide>
             <RightSide>

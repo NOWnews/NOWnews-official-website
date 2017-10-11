@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     top: -7.5
   },
   box: {
-    margin: 'auto 0 auto 10px',
+    margin: '20px 0 20px 10px',
     width: 270
   },
   btnSocial: {
