@@ -54,7 +54,7 @@ class NewsContainer extends PureComponent {
     this.scrollListener = this.scrollListener.bind(this);
   }
   componentDidMount () {
-    // 第一次 SSR 完將 scroll 置頂
+    // reload twitter iframe
     if (this.props.currentNews.isSSRAndInit) {
       setTimeout(function () {
         if (window.twttr) {
