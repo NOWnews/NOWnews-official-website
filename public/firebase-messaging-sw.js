@@ -7,23 +7,23 @@
 
 // const messaging = firebase.messaging();
 
- // [START initialize_firebase_in_sw]
- // Give the service worker access to Firebase Messaging.
- // Note that you can only use Firebase Messaging here, other Firebase libraries
- // are not available in the service worker.
- importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
- importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js');
+// [START initialize_firebase_in_sw]
+// Give the service worker access to Firebase Messaging.
+// Note that you can only use Firebase Messaging here, other Firebase libraries
+// are not available in the service worker.
+importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js');
 
- // Initialize the Firebase app in the service worker by passing in the
- // messagingSenderId.
- firebase.initializeApp({
-   'messagingSenderId': '581106378067'
- });
+// Initialize the Firebase app in the service worker by passing in the
+// messagingSenderId.
+firebase.initializeApp({
+	'messagingSenderId': '581106378067'
+});
 
- // Retrieve an instance of Firebase Messaging so that it can handle background
- // messages.
- const messaging = firebase.messaging();
- // [END initialize_firebase_in_sw]
+// Retrieve an instance of Firebase Messaging so that it can handle background
+// messages.
+const messaging = firebase.messaging();
+// [END initialize_firebase_in_sw]
 
 
 // If you would like to customize notifications that are received in the
