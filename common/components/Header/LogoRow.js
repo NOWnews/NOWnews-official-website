@@ -25,7 +25,8 @@ export const LogoRow = ({ user }) => (
 const styles = StyleSheet.create({
   adBox: {
     textAlign: 'center',
-    width: 225
+    width: 225,
+    marginRight: 17
   },
   header: {
     color: '#999',
