@@ -9,6 +9,9 @@
 ### Changed
 - 調整子網站的圖片變為多彩 @esbb48
 
+### Fixed
+- `window.document.body.scrollTop` 有時沒作用，使用 `window.document.documentElement.scrollTop` 取代 @esbb48
+
 ## 1.0.33 - 2017-10-05
 ### Changed
 - 調整特輯列表預設數量從 15 變 40 @esbb48

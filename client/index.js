@@ -73,7 +73,7 @@ const render = () => {
         // Fetch mandatory data dependencies for 2nd route change onwards:
         trigger('fetch', components, locals)
         .then(() => {
-          window.document.body.scrollTop = 0;
+          window.document.documentElement.scrollTop = 0;
           const { pathname, search } = renderProps.location;
           const { sourceRequest: { apiServ, headers }, ...state } = store.getState();
           pageview.spaInit(apiServ, pathname, search, state, headers);

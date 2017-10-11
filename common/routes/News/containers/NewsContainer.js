@@ -57,7 +57,6 @@ class NewsContainer extends PureComponent {
     // 第一次 SSR 完將 scroll 置頂
     if (this.props.currentNews.isSSRAndInit) {
       setTimeout(function () {
-        window.document.body.scrollTop = 0;
         if (window.twttr) {
           window.twttr.widgets.load();
         }
