@@ -6,6 +6,15 @@
 
 ## [Unreleased]
 
+## 1.0.34 - 2017-10-12
+### Changed
+- 調整子網站的圖片變為多彩 @esbb48
+- 將專題與特輯位置顛倒 @esbb48
+- 調整 Logo 與右側廣告間距 @esbb48
+
+### Fixed
+- `window.document.body.scrollTop` 有時沒作用，使用 `window.document.documentElement.scrollTop` 取代 @esbb48
+
 ## 1.0.33 - 2017-10-05
 ### Changed
 - 調整特輯列表預設數量從 15 變 40 @esbb48
