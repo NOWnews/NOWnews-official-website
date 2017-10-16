@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Added
+- 使用 pm2 config 控管
 
 ## 1.0.34 - 2017-10-12
 ### Changed
