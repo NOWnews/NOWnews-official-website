@@ -24,7 +24,7 @@ npm run start:prod
 ```
 npm install --only=production
 npm run build
-pm2 start pm2/production.json
+pm2 start pm2/web.json --env production
 ```
 
 ### HOW TO RUN Test

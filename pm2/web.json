@@ -1,13 +1,16 @@
 {
   "apps" : [{
-    "name"        : "official-web-dev",
+    "name"        : "official-web",
     "script"      : "./build/server.js",
     "watch"       : false,
     "env": {
       "NODE_ENV": "develop"
     },
+    "env_staging" : {
+      "NODE_ENV": "staging"
+    },
     "env_production" : {
-       "NODE_ENV": "develop"
+      "NODE_ENV": "production"
     },
     "instances"  : 0,
     "exec_mode"  : "cluster",
