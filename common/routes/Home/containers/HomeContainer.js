@@ -268,7 +268,8 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   subTitle: {
-    position: 'relative'
+    position: 'relative',
+    overflow: 'hidden'
   },
   subTitleText: {
     fontSize: '40px',
@@ -277,7 +278,7 @@ const styles = StyleSheet.create({
   subTitleLine: {
     position: 'absolute',
     top: 32,
-    width: 480,
+    width: '100%',
     left: 170
   },
   tripletBlockTop: {
