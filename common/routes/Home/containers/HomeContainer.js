@@ -158,7 +158,7 @@ class HomeContainer extends PureComponent {
               { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>{LBS.mapCity}</span>}
             </div>
             <BlockItems9
-              ads={ads.health}
+              ads={ads.triplet}
               hasAd={tripletType === 'instant'}
               newsList={tripletObject[tripletType].slice(0, 9)} />
             { tripletType === 'interest' && interest.isLoading && <h3>資料載入中 ...</h3>}
