@@ -6,7 +6,8 @@
 
 ## [Unreleased]
 ### Added
-- 使用 pm2 config 控管
+- 使用 pm2 config 控管 @esbb48
+- 新增健康與遊戲專區的版位 @esbb48
 
 ## 1.0.34 - 2017-10-12
 ### Changed

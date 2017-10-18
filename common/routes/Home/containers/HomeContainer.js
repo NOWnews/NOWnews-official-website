@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
-import { BlockItems8, BlockItems9, SubWeb8, NewsList12, SlideRight, VideoBlock } from '../components';
+import { BlockAdItems3, BlockItems8, BlockItems9, SubWeb8, NewsList12, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
@@ -174,6 +174,21 @@ class HomeContainer extends PureComponent {
               </Link>
             </div>
           </Container>}
+        <div className={css(styles.bg)}>
+          <Container>
+            <div className={css(styles.subTitle)}>
+              <h2 className={css(styles.subTitleText)}>健康百科</h2>
+              <hr className={css(styles.subTitleLine)} />
+            </div>
+            <BlockAdItems3 ads={ads.health} type='left' />
+            <div className={css(styles.subTitle)}>
+              <h2 className={css(styles.subTitleText)}>遊戲專區</h2>
+              <hr className={css(styles.subTitleLine)} />
+            </div>
+            <BlockAdItems3 ads={ads.health} type='right' />
+          </Container>
+        </div>
+
         <Container className='clearfix'>
           <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_1', [300, 250], 'div-gpt-ad-1498098181254-0']} />
           <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_2', [300, 250], 'div-gpt-ad-1498098246352-0']} />
@@ -191,13 +206,12 @@ class HomeContainer extends PureComponent {
               </div>
             </Container>
           </div>}
-
         {!isLoading && specialChannels.length > 0 &&
           <Container className='clearfix'>
             <LeftSide>
-              <div className={css(styles.specialChannelsTitle)}>
-                <h2 className={css(styles.specialChannelsTitleText)}>火線話題</h2>
-                <hr className={css(styles.specialChannelsTitleLine)} />
+              <div className={css(styles.subTitle)}>
+                <h2 className={css(styles.subTitleText)}>火線話題</h2>
+                <hr className={css(styles.subTitleLine)} />
               </div>
               <BlockItems8 channels={specialChannels.slice(0, 8)} />
               {/* <BlockTopicItems newsList={specialTopics.slice(0, 8)} /> */}
@@ -234,7 +248,6 @@ const styles = StyleSheet.create({
   },
   bg: {
     background: '#F3F4F5',
-    backgroundSize: 5,
     padding: '35px 0 30px',
     marginBottom: 30,
     width: '100%'
@@ -258,18 +271,18 @@ const styles = StyleSheet.create({
   slideArea: {
     marginTop: 10
   },
-  specialChannelsTitle: {
+  subTitle: {
     position: 'relative'
   },
-  specialChannelsTitleText: {
+  subTitleText: {
     fontSize: '40px',
     fontWeight: 'inherit'
   },
-  specialChannelsTitleLine: {
+  subTitleLine: {
     position: 'absolute',
-    top: '32px',
-    width: '480px',
-    right: '15px'
+    top: 32,
+    width: 480,
+    left: 170
   },
   tripletBlockTop: {
     position: 'relative',
