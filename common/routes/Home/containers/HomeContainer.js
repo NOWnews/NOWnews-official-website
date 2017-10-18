@@ -176,14 +176,14 @@ class HomeContainer extends PureComponent {
           </Container>}
         {!isLoading && <div className={css(styles.bg)}>
           <Container>
-            {ads.health[0].img && <div>
+            {ads.health && ads.health[0].img && <div>
               <div className={css(styles.subTitle)}>
                 <h2 className={css(styles.subTitleText)}>健康百科</h2>
                 <hr className={css(styles.subTitleLine)} />
               </div>
               <BlockAdItems3 ads={ads.health} mainAdPosition='left' />
             </div>}
-            {ads.niceGame[0].img && <div>
+            {ads.niceGame && ads.niceGame[0].img && <div>
               <div className={css(styles.subTitle)}>
                 <h2 className={css(styles.subTitleText)}>遊戲專區</h2>
                 <hr className={css(styles.subTitleLine)} />
