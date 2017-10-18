@@ -12,6 +12,9 @@
 ### Changed
 - 移除舊 NiceGame 的 DFP 廣告 @esbb48
 
+### Fixed
+- 避免左右版型時超過其寬度 @esbb48
+
 ## 1.0.34 - 2017-10-12
 ### Changed
 - 調整子網站的圖片變為多彩 @esbb48

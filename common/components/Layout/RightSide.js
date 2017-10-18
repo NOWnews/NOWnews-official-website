@@ -10,6 +10,7 @@ const RightSide = ({ children }) => (
 const styles = StyleSheet.create({
   rightSide: {
     float: 'right',
+    overflow: 'hidden',
     width: 300
   }
 });
