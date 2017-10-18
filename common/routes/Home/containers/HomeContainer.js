@@ -174,20 +174,24 @@ class HomeContainer extends PureComponent {
               </Link>
             </div>
           </Container>}
-        <div className={css(styles.bg)}>
+        {!isLoading && <div className={css(styles.bg)}>
           <Container>
-            <div className={css(styles.subTitle)}>
-              <h2 className={css(styles.subTitleText)}>健康百科</h2>
-              <hr className={css(styles.subTitleLine)} />
-            </div>
-            <BlockAdItems3 ads={ads.health} mainAdPosition='left' />
-            <div className={css(styles.subTitle)}>
-              <h2 className={css(styles.subTitleText)}>遊戲專區</h2>
-              <hr className={css(styles.subTitleLine)} />
-            </div>
-            <BlockAdItems3 ads={ads.niceGame} mainAdPosition='right' />
+            {ads.health[0].img && <div>
+              <div className={css(styles.subTitle)}>
+                <h2 className={css(styles.subTitleText)}>健康百科</h2>
+                <hr className={css(styles.subTitleLine)} />
+              </div>
+              <BlockAdItems3 ads={ads.health} mainAdPosition='left' />
+            </div>}
+            {ads.niceGame[0].img && <div>
+              <div className={css(styles.subTitle)}>
+                <h2 className={css(styles.subTitleText)}>遊戲專區</h2>
+                <hr className={css(styles.subTitleLine)} />
+              </div>
+              <BlockAdItems3 ads={ads.niceGame} mainAdPosition='right' />
+            </div>}
           </Container>
-        </div>
+        </div>}
         {!isLoading && videos.length > 0 &&
           <div id='home-video-block' className={css(styles.videoBlock)}>
             <Container>
