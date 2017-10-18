@@ -158,7 +158,7 @@ class HomeContainer extends PureComponent {
               { tripletType === 'lbs' && <span className={css(styles.mapTitle)}>{LBS.mapCity}</span>}
             </div>
             <BlockItems9
-              ads={ads.health}
+              ads={ads.triplet}
               hasAd={tripletType === 'instant'}
               newsList={tripletObject[tripletType].slice(0, 9)} />
             { tripletType === 'interest' && interest.isLoading && <h3>資料載入中 ...</h3>}
@@ -180,24 +180,17 @@ class HomeContainer extends PureComponent {
               <h2 className={css(styles.subTitleText)}>健康百科</h2>
               <hr className={css(styles.subTitleLine)} />
             </div>
-            <BlockAdItems3 ads={ads.health} type='left' />
+            <BlockAdItems3 ads={ads.health} mainAdPosition='left' />
             <div className={css(styles.subTitle)}>
               <h2 className={css(styles.subTitleText)}>遊戲專區</h2>
               <hr className={css(styles.subTitleLine)} />
             </div>
-            <BlockAdItems3 ads={ads.health} type='right' />
+            <BlockAdItems3 ads={ads.niceGame} mainAdPosition='right' />
           </Container>
         </div>
-
-        <Container className='clearfix'>
-          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_1', [300, 250], 'div-gpt-ad-1498098181254-0']} />
-          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_2', [300, 250], 'div-gpt-ad-1498098246352-0']} />
-          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_3', [300, 250], 'div-gpt-ad-1498098293038-0']} />
-        </Container>
-
         {!isLoading && videos.length > 0 &&
           <div id='home-video-block' className={css(styles.videoBlock)}>
-            <Container className={css(styles.videoContaienr)}>
+            <Container>
               <VideoBlock list={videos} />
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink, styles.white)} to={'/video/instant'}>
@@ -249,7 +242,6 @@ const styles = StyleSheet.create({
   bg: {
     background: '#F3F4F5',
     padding: '35px 0 30px',
-    marginBottom: 30,
     width: '100%'
   },
   white: {
@@ -287,7 +279,8 @@ const styles = StyleSheet.create({
   tripletBlockTop: {
     position: 'relative',
     textAlign: 'center',
-    paddingBottom: '10px'
+    marginTop: 30,
+    paddingBottom: 10
   },
   tripletBlockTopIcon: {
     cursor: 'pointer',
@@ -299,13 +292,11 @@ const styles = StyleSheet.create({
   },
   videoBlock: {
     background: '#323334',
-    height: 770,
     marginBottom: 30,
-    marginTop: 70
+    padding: '25px 0'
   },
   videoContaienr: {
-    position: 'relative',
-    top: -40
+    position: 'relative'
   },
   mapTitle: {
     position: 'absolute',
@@ -313,10 +304,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     lineHeight: '90px',
     color: '#0080ff'
-  },
-  niceGame: {
-    float: 'left',
-    margin: '0 11.5px'
   }
 });
 

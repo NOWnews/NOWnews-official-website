@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 
-export const BlockAdItems3 = ({ ads, type = 'left' }) => {
+export const BlockAdItems3 = ({ ads, mainAdPosition = 'left' }) => {
   return (
     <div className={`clearfix ${css(styles.box)}`}>
-      <div className={`${type} ${css(styles.balance)}`}>
+      <div className={`${mainAdPosition} ${css(styles.balance)}`}>
         <div className={css(styles.oneAdBlock)}>
           <a href={ads[0].url} target='_blank'>
             <img className={css(styles.img)} src={ads[0].img} />
@@ -12,7 +12,7 @@ export const BlockAdItems3 = ({ ads, type = 'left' }) => {
           </a>
         </div>
       </div>
-      <div className={`${type} ${css(styles.balance)}`}>
+      <div className={`${mainAdPosition} ${css(styles.balance)}`}>
         <div className={css(styles.twoAdBlock)}>
           <a href={ads[1].url} target='_blank'>
             <img width='160' height='130' src={ads[1].img} />
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 
 BlockAdItems3.propTypes = {
   ads: PropTypes.array.isRequired,
-  type: PropTypes.string
+  mainAdPosition: PropTypes.string.isRequired
 };
 
 export default BlockAdItems3;
