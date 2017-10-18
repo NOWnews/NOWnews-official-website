@@ -1,3 +1,6 @@
+import { createSelector } from 'reselect';
+import formatPhoto from '../../lib/format/photo';
+
 export const LOAD_HEADER_REQUEST = 'LOAD_HEADER_REQUEST';
 export const LOAD_HEADER_SUCCESS = 'LOAD_HEADER_SUCCESS';
 export const LOAD_HEADER_FAILURE = 'LOAD_HEADER_FAILURE';
@@ -75,27 +78,48 @@ export default function header (state = initialState, action) {
   }
 }
 
-export const selectFooterAds = (state) => {
-  return {
-    footer: state.header.ads.footer,
-    grabBag: state.header.ads.grabBag
-  };
-};
+const getHeader = (state) => state.header;
+const getImgServ = (state) => state.sourceRequest.imgServ;
+
+const formatFooterAds = createSelector(
+  [getHeader], ({ ads }) => {
+    return {
+      footer: ads.footer,
+      grabBag: ads.grabBag
+    };
+  }
+);
+
+const formatMarquee = createSelector(
+  [getHeader, getImgServ], ({ ads, news }, imgServ) => {
+    const result = {
+      ads: {
+        instant: ads.instant || [],
+        grabBag: ads.grabBag || []
+      },
+      news: news.map((news) => {
+        return {
+          ...news,
+          MainPhoto: formatPhoto(news.MainPhoto, imgServ)
+        };
+      })
+    };
+    return result;
+  }
+);
+
+const formatObjectMenu = createSelector(
+  [getHeader], ({ menus }) => {
+    let result = {};
+    menus.forEach((menu) => {
+      result[menu._id] = menu;
+    });
+    return result;
+  }
+);
+
+export const selectFooterAds = state => formatFooterAds(state);
 export const selectMenus = state => state.header.menus;
-export const selectMarquee = (state) => {
-  return {
-    ads: {
-      instant: state.header.ads.instant || [],
-      grabBag: state.header.ads.grabBag || []
-    },
-    news: state.header.news
-  };
-};
-export const selectObjectMenu = (state) => {
-  let result = {};
-  state.header.menus.forEach((menu) => {
-    result[menu._id] = menu;
-  });
-  return result;
-};
+export const selectMarquee = state => formatMarquee(state);
+export const selectObjectMenu = state => formatObjectMenu(state);
 
