@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 
   },
   img: {
-    width: 'auto',
+    width: '100%',
     maxWidth: '100%',
     height: '100%'
   },
