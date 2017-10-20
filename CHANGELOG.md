@@ -5,11 +5,12 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Added
+- 新增健康與遊戲專區的版位 @esbb48
 
 ## 1.0.35 - 2017-10-19
 ### Added
 - 使用 pm2 config 控管 @esbb48
-- 新增健康與遊戲專區的版位 @esbb48
 
 ### Changed
 - 移除舊 NiceGame 的 DFP 廣告 @esbb48
