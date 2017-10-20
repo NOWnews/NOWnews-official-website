@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+## 1.0.35 - 2017-10-19
 ### Added
 - 使用 pm2 config 控管 @esbb48
 - 新增健康與遊戲專區的版位 @esbb48
@@ -15,6 +17,12 @@
 ### Fixed
 - 避免左右版型時超過其寬度 @esbb48
 - 修復即時頁面影音沒有出來的問題 @esbb48
+
+### Changed
+- 區分 firebase prod 和 dev 的環境 @esbb48
+- 移除 `public/firebase-messaging-sw.js` 不需要的程式碼 @esbb48 
+- 調整首頁廣告 key @esbb48
+- 調整 header module 使用 selecter @esbb48
 
 ## 1.0.34 - 2017-10-12
 ### Changed
