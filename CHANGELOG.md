@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Changed
+- 使用 Google 站內搜尋 @esbb48
 
 ## 1.0.35 - 2017-10-19
 ### Added

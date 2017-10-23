@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import formatPhoto from '../../../lib/format/photo';
 
+export const LOAD_KEYWORDS_SUCCESS = 'LOAD_KEYWORDS_SUCCESS';
 export const LOAD_SEARCH_REQUEST = 'LOAD_SEARCH_REQUEST';
 export const LOAD_SEARCH_SUCCESS = 'LOAD_SEARCH_SUCCESS';
 export const LOAD_SEARCH_FAILURE = 'LOAD_SEARCH_FAILURE';
@@ -48,8 +49,34 @@ export function loadSearchList ({ keyword = '', page = 1, timeRange }) {
   };
 }
 
+export function loadHotKeywords () {
+  return (dispatch, getState, { axios }) => {
+    dispatch({ type: LOAD_SEARCH_REQUEST });
+    const { apiServ } = getState().sourceRequest;
+    return axios.get(`${apiServ}/tag/hot`).then((tag) => {
+      dispatch({
+        type: LOAD_KEYWORDS_SUCCESS,
+        payload: {
+          tags: tag.data
+        }
+      });
+    }).catch(error => {
+      dispatch({
+        type: LOAD_SEARCH_FAILURE,
+        payload: error.response ? error.response.data : error.message
+      });
+    });
+  };
+}
+
 export default function searchPage (state = initialState, action) {
   switch (action.type) {
+    case LOAD_KEYWORDS_SUCCESS:
+      return {
+        ...state,
+        hotKeywords: action.payload.tags,
+        isLoading: false
+      };
     case LOAD_SEARCH_REQUEST:
       return {
         ...state,
@@ -96,3 +123,4 @@ const formatSearchPage = createSelector(
   }
 );
 export const selectSearchPage = state => formatSearchPage(state);
+export const selectHotKeywords = state => state.searchPage.hotKeywords;
