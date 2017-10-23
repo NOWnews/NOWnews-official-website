@@ -29,12 +29,11 @@ const mapStateToProps = state => ({
 class SearchPage extends PureComponent {
   render () {
     const { hotKeywords, menus, local, marquee } = this.props;
-    const { keyword } = local.query;
+    const { keyword = '' } = local.query;
     const cx = '011307215138928456114:avv2qvejmpc';
     const googleSearchScript = `https://cse.google.com/cse.js?cx=${cx}`;
     const googleSearchDom = '<gcse:searchresults-only></gcse:searchresults-only>';
     const defaultPhoto = 'https://legacy.nownews.com/NOWnews_default/default.png';
-
     return (
       <Container>
         <Helmet title='NOWnews 今日新聞' titleTemplate={keyword + '熱門搜尋| 新聞搜尋 | NOWnews 今日新聞'}
