@@ -7,6 +7,7 @@
 ## [Unreleased]
 ### Added
 - 新增健康與遊戲專區的版位 @esbb48
+- 增加文中 DFP `/5799246/Nownews_all_article_300x250_artm` 廣告 @esbb48
 
 ### Changed
 - 使用 Google 站內搜尋 @esbb48
