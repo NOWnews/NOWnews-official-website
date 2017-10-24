@@ -8,6 +8,9 @@
 ### Added
 - 新增健康與遊戲專區的版位 @esbb48
 
+### Changed
+- 使用 Google 站內搜尋 @esbb48
+
 ## 1.0.35 - 2017-10-19
 ### Added
 - 使用 pm2 config 控管 @esbb48
