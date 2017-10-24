@@ -6,12 +6,12 @@ export default function createRoutes (store) {
     path: 'search',
     getComponents (location, cb) {
       require.ensure([
-        './containers/SearchContainer'
+        './containers/GoogleSearchContainer'
       ], (require) => {
-        let SearchContainer = require('./containers/SearchContainer').default;
+        let GoogleSearchContainer = require('./containers/GoogleSearchContainer').default;
         let searchReducer = require('./module').default;
         injectAsyncReducer(store, 'searchPage', searchReducer);
-        cb(null, SearchContainer);
+        cb(null, GoogleSearchContainer);
       }, 'searchPage');
     }
   };
