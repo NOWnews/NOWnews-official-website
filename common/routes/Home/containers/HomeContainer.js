@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
-import { BlockItems8, BlockItems9, SubWeb8, NewsList12, SlideRight, VideoBlock } from '../components';
+import { BlockAdItems3, BlockItems8, BlockItems9, SubWeb8, NewsList12, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
@@ -174,15 +174,27 @@ class HomeContainer extends PureComponent {
               </Link>
             </div>
           </Container>}
-        <Container className='clearfix'>
-          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_1', [300, 250], 'div-gpt-ad-1498098181254-0']} />
-          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_2', [300, 250], 'div-gpt-ad-1498098246352-0']} />
-          <DFP className={css(styles.niceGame)} opts={['/5799246/nicegame_300x250_3', [300, 250], 'div-gpt-ad-1498098293038-0']} />
-        </Container>
-
+        {!isLoading && <div className={css(styles.bg)}>
+          <Container>
+            {ads.health && ads.health[0].img && <div>
+              <div className={css(styles.subTitle)}>
+                <h2 className={css(styles.subTitleText)}>健康百科</h2>
+                <hr className={css(styles.subTitleLine)} />
+              </div>
+              <BlockAdItems3 ads={ads.health} mainAdPosition='left' />
+            </div>}
+            {ads.niceGame && ads.niceGame[0].img && <div>
+              <div className={css(styles.subTitle)}>
+                <h2 className={css(styles.subTitleText)}>遊戲專區</h2>
+                <hr className={css(styles.subTitleLine)} />
+              </div>
+              <BlockAdItems3 ads={ads.niceGame} mainAdPosition='right' />
+            </div>}
+          </Container>
+        </div>}
         {!isLoading && videos.length > 0 &&
           <div id='home-video-block' className={css(styles.videoBlock)}>
-            <Container className={css(styles.videoContaienr)}>
+            <Container>
               <VideoBlock list={videos} />
               <div className={css(styles.seeMoreBlock)}>
                 <Link className={css(styles.seeMoreLink, styles.white)} to={'/video/instant'}>
@@ -191,13 +203,12 @@ class HomeContainer extends PureComponent {
               </div>
             </Container>
           </div>}
-
         {!isLoading && specialChannels.length > 0 &&
           <Container className='clearfix'>
             <LeftSide>
-              <div className={css(styles.specialChannelsTitle)}>
-                <h2 className={css(styles.specialChannelsTitleText)}>火線話題</h2>
-                <hr className={css(styles.specialChannelsTitleLine)} />
+              <div className={css(styles.subTitle)}>
+                <h2 className={css(styles.subTitleText)}>火線話題</h2>
+                <hr className={css(styles.subTitleLine)} />
               </div>
               <BlockItems8 channels={specialChannels.slice(0, 8)} />
               {/* <BlockTopicItems newsList={specialTopics.slice(0, 8)} /> */}
@@ -234,9 +245,7 @@ const styles = StyleSheet.create({
   },
   bg: {
     background: '#F3F4F5',
-    backgroundSize: 5,
     padding: '35px 0 30px',
-    marginBottom: 30,
     width: '100%'
   },
   white: {
@@ -258,23 +267,25 @@ const styles = StyleSheet.create({
   slideArea: {
     marginTop: 10
   },
-  specialChannelsTitle: {
-    position: 'relative'
+  subTitle: {
+    position: 'relative',
+    overflow: 'hidden'
   },
-  specialChannelsTitleText: {
+  subTitleText: {
     fontSize: '40px',
     fontWeight: 'inherit'
   },
-  specialChannelsTitleLine: {
+  subTitleLine: {
     position: 'absolute',
-    top: '32px',
-    width: '480px',
-    right: '15px'
+    top: 32,
+    width: '100%',
+    left: 170
   },
   tripletBlockTop: {
     position: 'relative',
     textAlign: 'center',
-    paddingBottom: '10px'
+    marginTop: 30,
+    paddingBottom: 10
   },
   tripletBlockTopIcon: {
     cursor: 'pointer',
@@ -286,13 +297,11 @@ const styles = StyleSheet.create({
   },
   videoBlock: {
     background: '#323334',
-    height: 770,
     marginBottom: 30,
-    marginTop: 70
+    padding: '25px 0'
   },
   videoContaienr: {
-    position: 'relative',
-    top: -40
+    position: 'relative'
   },
   mapTitle: {
     position: 'absolute',
@@ -300,10 +309,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     lineHeight: '90px',
     color: '#0080ff'
-  },
-  niceGame: {
-    float: 'left',
-    margin: '0 11.5px'
   }
 });
 

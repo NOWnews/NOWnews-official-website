@@ -27,7 +27,7 @@ export function loadInstantList (page = 1) {
     dispatch({ type: LOAD_INSTANT_REQUEST });
     return Promise.all([
       axios.get(`${apiServ}/instant?page=${page}&limit=12`),
-      axios.get(`${apiServ}/instant?type=video&limit=4`),
+      axios.get(`${apiServ}/instant?type=VIDEO&limit=4`),
       axios.get(`${apiServ}/specialtopics?limit=6`)
     ]).then(([instant, instantVideo, topic]) => {
       dispatch({
