@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+## 1.0.36 - 2017-10-26
 ### Added
 - 新增健康與遊戲專區的版位 @esbb48
 - 增加文中 DFP `/5799246/Nownews_all_article_300x250_artm` 廣告 @esbb48
@@ -25,7 +27,7 @@
 
 ### Changed
 - 區分 firebase prod 和 dev 的環境 @esbb48
-- 移除 `public/firebase-messaging-sw.js` 不需要的程式碼 @esbb48 
+- 移除 `public/firebase-messaging-sw.js` 不需要的程式碼 @esbb48
 - 調整首頁廣告 key @esbb48
 - 調整 header module 使用 selecter @esbb48
 
