@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Added
+- 依照業務需求加入 ads.txt @wb
 
 ## 1.0.36 - 2017-10-26
 ### Added
