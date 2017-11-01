@@ -36,7 +36,8 @@ class ContentForVideo extends PureComponent {
         <i>{MainVideo && MainVideo.desc}</i>
         <Margin10 className='clearfix'>
           <LeftSide>
-            <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent} />
+            <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent}
+              adIndex={news.contentAdIndex} hasAd={news.hasContentAd} />
             <Tags tags={news.Tags || []} />
             <Margin10>
               <DFP opts={[`/5799246/Nownews_${adType}_article_600x225_i_new2`, [600, 225]]} />
