@@ -7,6 +7,7 @@
 ## [Unreleased]
 ### Added
 - 依照業務需求加入 ads.txt @wb
+- 增加文中 DFP `/5799246/Nownews_all_article_300x250_artm` 廣告 @esbb48
 
 ## 1.0.36 - 2017-10-26
 ### Added
