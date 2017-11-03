@@ -1,9 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
+import Link from 'react-router/lib/Link';
 import Modal from 'react-overlays/lib/Modal';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { DFP } from '../Ad';
-
-// import { selectInterest, loadInterest } from '../../../modules/interest';
 
 class Idle extends PureComponent {
   constructor (props) {
@@ -48,7 +47,7 @@ class Idle extends PureComponent {
   }
 
   scrollListener () {
-    const timer = 1 * 1000;
+    const timer = 600 * 1000;
     if (this.idleInterval) {
       window.clearInterval(this.idleInterval);
     }
@@ -60,8 +59,17 @@ class Idle extends PureComponent {
   }
 
   render () {
-    const ad1 = '/5799246/Nownews_home_970x250_T_new2';
-    const ad2 = '/5799246/Nownews_all_article_300x250_artm';
+    const ad1 = '/5799246/Nownews_idle_970x90';
+    const ad2 = '/5799246/NOWnews_idle_300x250';
+    let big3 = [];
+    let small6 = [];
+    this.props.idleNews.forEach((news, index) => {
+      if (index > 2) {
+        small6.push(news);
+      } else {
+        big3.push(news);
+      }
+    });
 
     return (
       <Modal
@@ -73,21 +81,18 @@ class Idle extends PureComponent {
         <div className={css(styles.dialog)}>
           <span className={css(styles.closeBtn)} onClick={this.close}>✖ 關閉</span>
           <div>
-            <div className={css(styles.dialogTitle)}>本頁面已經閒置超過10分鐘，您可以點擊空白處回原網址，NOWnews關心您</div>
+            <div className={css(styles.dialogTitle)}>
+              本頁面已經閒置超過10分鐘，您可以點擊空白處回原網址，NOWnews關心您
+              <img className={css(styles.dialogIcon)} src='/icons/sleep.png' />
+            </div>
             <div className={css(styles.dialogContent)}>
               <div>
-                <a href='/' className={css(styles.newsBlock)}>
-                  <img className={css(styles.newsImg)} src='/subWebBanner_colorful/pinknow.jpg' />
-                  <h3>本頁面已經閒置超過10分鐘，您可以點擊空白處回原網址</h3>
-                </a>
-                <a href='/' className={css(styles.newsBlock)}>
-                  <img className={css(styles.newsImg)} src='/subWebBanner_colorful/pinknow.jpg' />
-                  <h3>本頁面已經閒置超過10分鐘，您可以點擊空白處回原網址</h3>
-                </a>
-                <a href='/' className={css(styles.newsBlock)}>
-                  <img className={css(styles.newsImg)} src='/subWebBanner_colorful/pinknow.jpg' />
-                  <h3>本頁面已經閒置超過10分鐘，您可以點擊空白處回原網址</h3>
-                </a>
+                {big3.map(({ shortTitle, parseUrl, _id, MainPhoto }) => (
+                  <Link className={css(styles.newsBlock)} key={_id} to={parseUrl} onClick={this.close}>
+                    <img className={css(styles.newsImg)} src={MainPhoto.url} />
+                    <h3>{ shortTitle }</h3>
+                  </Link>
+                ))}
               </div>
               <div className={css(styles.clearfix)} />
               <div className={css(styles.dfp970x50)}>
@@ -95,30 +100,12 @@ class Idle extends PureComponent {
               </div>
               <div>
                 <div className={css(styles.listNews)}>
-                  <a href='/news/20171101/2635686' className={css(styles.newsLink)}>
-                    <span className={css(styles.newsMenu)}>財經</span>
-                    <span>蘋果股價創高　台股再戰10800</span>
-                  </a>
-                  <a href='/news/20171101/2635686' className={css(styles.newsLink)}>
-                    <span className={css(styles.newsMenu)}>財經</span>
-                    <span>蘋果股價創高　台股再戰10800</span>
-                  </a>
-                  <a href='/news/20171101/2635686' className={css(styles.newsLink)}>
-                    <span className={css(styles.newsMenu)}>財經</span>
-                    <span>蘋果股價創高　台股再戰10800</span>
-                  </a>
-                  <a href='/news/20171101/2635686' className={css(styles.newsLink)}>
-                    <span className={css(styles.newsMenu)}>財經</span>
-                    <span>蘋果股價創高　台股再戰10800</span>
-                  </a>
-                  <a href='/news/20171101/2635686' className={css(styles.newsLink)}>
-                    <span className={css(styles.newsMenu)}>財經</span>
-                    <span>蘋果股價創高　台股再戰10800</span>
-                  </a>
-                  <a href='/news/20171101/2635686' className={css(styles.newsLink)}>
-                    <span className={css(styles.newsMenu)}>財經</span>
-                    <span>蘋果股價創高　台股再戰10800</span>
-                  </a>
+                  {small6.map(({ shortTitle, parseUrl, _id, MainMenu }) => (
+                    <Link className={css(styles.newsLink)} key={_id} to={parseUrl} onClick={this.close}>
+                      <span className={css(styles.newsMenu)}>{MainMenu.name}</span>
+                      <span>{ shortTitle }</span>
+                    </Link>
+                  ))}
                 </div>
                 <div className={css(styles.dfp300x250)}>
                   {ad2 && <DFP opts={[ad2, [[300, 250], [336, 280]]]} />}
@@ -131,6 +118,10 @@ class Idle extends PureComponent {
       </Modal>
     );
   }
+};
+
+Idle.propTypes = {
+  idleNews: PropTypes.array
 };
 
 const top = 50;
@@ -176,11 +167,18 @@ const styles = StyleSheet.create({
     border: '1px solid #e5e5e5',
     backgroundColor: 'white',
     boxShadow: '0 5px 15px rgba(0,0,0,.5)'
-    // display: 'none'
   },
   dialogTitle: {
     backgroundColor: '#fec340',
-    padding: 16
+    padding: 16,
+    fontWeight: 'bold',
+    color: '#000'
+  },
+  dialogIcon: {
+    position: 'relative',
+    marginTop: -17,
+    top: 10,
+    left: 10
   },
   dialogContent: {
     paddingLeft: 15
@@ -189,7 +187,9 @@ const styles = StyleSheet.create({
     display: 'block',
     float: 'left',
     width: '300px',
-    margin: '20px 12px 0'
+    margin: '20px 12px 0',
+    textDecoration: 'none',
+    color: '#333'
   },
   newsImg: {
     width: 300,

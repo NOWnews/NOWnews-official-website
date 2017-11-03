@@ -12,7 +12,8 @@ const initialState = {
   error: null,
   menus: [],
   currentMenu: {},
-  ads: {}
+  ads: {},
+  idleNews: []
 };
 
 export function loadHeader (url) {
@@ -27,11 +28,12 @@ export function loadHeader (url) {
     return Promise.all([
       axios.get(`${apiServ}/menus`),
       axios.get(`${apiServ}/instant?limit=9`),
+      axios.get(`${apiServ}/instant?page=2&limit=9`),
       axios.get(`${apiServ}/promote/common`)
-    ]).then(([menus, instant, ad]) => {
+    ]).then(([menus, instant, idleInstant, ad]) => {
       dispatch({
         type: LOAD_HEADER_SUCCESS,
-        payload: [menus.data, instant.data, ad.data],
+        payload: [menus.data, instant.data, idleInstant.data, ad.data],
         meta: {
           lastFetched: Date.now()
         }
@@ -57,12 +59,13 @@ export default function header (state = initialState, action) {
         error: null
       };
     case LOAD_HEADER_SUCCESS:
-      const [ menus, instant, ads ] = action.payload;
+      const [ menus, instant, idleInstant, ads ] = action.payload;
       return {
         ...state,
         ads,
         menus,
         news: instant && instant.newsList || [],
+        idleNews: idleInstant && idleInstant.newsList || [],
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
@@ -71,6 +74,7 @@ export default function header (state = initialState, action) {
         error: action.payload.message,
         menus: [],
         news: [],
+        idleNews: [],
         isLoading: false
       };
     default:
@@ -118,8 +122,15 @@ const formatObjectMenu = createSelector(
   }
 );
 
+const formatIdleNews = createSelector(
+  [getHeader], ({ idleNews, news }) => {
+    return idleNews;
+  }
+);
+
 export const selectFooterAds = state => formatFooterAds(state);
 export const selectMenus = state => state.header.menus;
 export const selectMarquee = state => formatMarquee(state);
 export const selectObjectMenu = state => formatObjectMenu(state);
+export const selectIdleNews = state => formatIdleNews(state);
 

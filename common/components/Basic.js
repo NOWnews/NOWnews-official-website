@@ -7,7 +7,7 @@ import StaticContainer from 'react-static-container';
 import { ssrInit } from '../../lib/track/pageview';
 import { firebaseInit } from '../../lib/firebase/notification';
 
-// import Idle from './Idle';
+import Idle from './Idle';
 
 // 有要測試 Perf 的時候才打開，chrome 記得安裝相關套件
 // import Perf from 'react-addons-perf';
@@ -32,6 +32,7 @@ class Basic extends PureComponent {
   }
 
   render () {
+    const { idleNews } = this.props;
     return (
       <div className={css(styles.root)}>
         <StaticContainer>
@@ -48,7 +49,7 @@ class Basic extends PureComponent {
             <GTM gtmId='GTM-W25KLJG' />
           </div>
         </StaticContainer>
-        {/* 目前先不放 <Idle /> */}
+        <Idle idleNews={idleNews} />
         {this.props.children}
       </div>
     );
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
 
 Basic.propTypes = {
   children: PropTypes.any.isRequired,
+  idleNews: PropTypes.array.isRequired,
   state: PropTypes.object
 };
 export default connect(mapStateToProps)(Basic);
