@@ -28,12 +28,11 @@ export function loadHeader (url) {
     return Promise.all([
       axios.get(`${apiServ}/menus`),
       axios.get(`${apiServ}/instant?limit=9`),
-      axios.get(`${apiServ}/instant?limit=9`),
       axios.get(`${apiServ}/promote/common`)
-    ]).then(([menus, instant, idleInstant, ad]) => {
+    ]).then(([menus, instant, ad]) => {
       dispatch({
         type: LOAD_HEADER_SUCCESS,
-        payload: [menus.data, instant.data, idleInstant.data, ad.data],
+        payload: [menus.data, instant.data, ad.data],
         meta: {
           lastFetched: Date.now()
         }
@@ -59,13 +58,13 @@ export default function header (state = initialState, action) {
         error: null
       };
     case LOAD_HEADER_SUCCESS:
-      const [ menus, instant, idleInstant, ads ] = action.payload;
+      const [ menus, instant, ads ] = action.payload;
       return {
         ...state,
         ads,
         menus,
         news: instant && instant.newsList || [],
-        idleNews: idleInstant && idleInstant.newsList || [],
+        idleNews: instant && instant.newsList || [],
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
