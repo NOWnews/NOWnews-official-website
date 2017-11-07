@@ -28,7 +28,7 @@ export function loadHeader (url) {
     return Promise.all([
       axios.get(`${apiServ}/menus`),
       axios.get(`${apiServ}/instant?limit=9`),
-      axios.get(`${apiServ}/instant?page=2&limit=9`),
+      axios.get(`${apiServ}/instant?limit=9`),
       axios.get(`${apiServ}/promote/common`)
     ]).then(([menus, instant, idleInstant, ad]) => {
       dispatch({

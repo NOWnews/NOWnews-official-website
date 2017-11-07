@@ -47,7 +47,7 @@ class Idle extends PureComponent {
   }
 
   scrollListener () {
-    const timer = 600 * 1000;
+    const timer = 90 * 1000;
     if (this.idleInterval) {
       window.clearInterval(this.idleInterval);
     }
@@ -82,21 +82,21 @@ class Idle extends PureComponent {
           <span className={css(styles.closeBtn)} onClick={this.close}>✖ 關閉</span>
           <div>
             <div className={css(styles.dialogTitle)}>
-              本頁面已經閒置超過10分鐘，您可以點擊空白處回原網址，NOWnews關心您
+              本頁面已經閒置超過90秒，您可以點擊空白處回原網址，NOWnews關心您
               <img className={css(styles.dialogIcon)} src='/icons/sleep.png' />
             </div>
             <div className={css(styles.dialogContent)}>
               <div>
                 {big3.map(({ shortTitle, parseUrl, _id, MainPhoto }) => (
                   <Link className={css(styles.newsBlock)} key={_id} to={parseUrl} onClick={this.close}>
-                    <img className={css(styles.newsImg)} src={MainPhoto.url} />
+                    <img className={css(styles.newsImg)} src={MainPhoto.thumbnail} />
                     <h3>{ shortTitle }</h3>
                   </Link>
                 ))}
               </div>
               <div className={css(styles.clearfix)} />
               <div className={css(styles.dfp970x50)}>
-                {ad1 && <DFP opts={[ad1, [[970, 90], [728, 90]]]} />}
+                <DFP opts={[ad1, [[970, 90], [728, 90]]]} />
               </div>
               <div>
                 <div className={css(styles.listNews)}>
@@ -108,7 +108,7 @@ class Idle extends PureComponent {
                   ))}
                 </div>
                 <div className={css(styles.dfp300x250)}>
-                  {ad2 && <DFP opts={[ad2, [[300, 250], [336, 280]]]} />}
+                  <DFP opts={[ad2, [[300, 250], [336, 280]]]} />
                 </div>
                 <div className={css(styles.clearfix)} />
               </div>

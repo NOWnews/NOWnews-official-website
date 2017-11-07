@@ -6,7 +6,7 @@
 
 ## [Unreleased]
 ### Added
-- 加上閒置頁面, 10 分鐘以後出現 @wb
+- 加上閒置頁面, 90 秒以後出現 @wb
 - 依照業務需求加入 ads.txt @wb
 - 增加文中 DFP `/5799246/Nownews_all_article_300x250_artm` 廣告 @esbb48
 
