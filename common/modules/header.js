@@ -12,7 +12,8 @@ const initialState = {
   error: null,
   menus: [],
   currentMenu: {},
-  ads: {}
+  ads: {},
+  idleNews: []
 };
 
 export function loadHeader (url) {
@@ -63,6 +64,7 @@ export default function header (state = initialState, action) {
         ads,
         menus,
         news: instant && instant.newsList || [],
+        idleNews: instant && instant.newsList || [],
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };
@@ -71,6 +73,7 @@ export default function header (state = initialState, action) {
         error: action.payload.message,
         menus: [],
         news: [],
+        idleNews: [],
         isLoading: false
       };
     default:
@@ -118,8 +121,15 @@ const formatObjectMenu = createSelector(
   }
 );
 
+const formatIdleNews = createSelector(
+  [getHeader], ({ idleNews, news }) => {
+    return idleNews;
+  }
+);
+
 export const selectFooterAds = state => formatFooterAds(state);
 export const selectMenus = state => state.header.menus;
 export const selectMarquee = state => formatMarquee(state);
 export const selectObjectMenu = state => formatObjectMenu(state);
+export const selectIdleNews = state => formatIdleNews(state);
 

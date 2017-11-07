@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import Footer from './Footer';
 import Basic from './Basic';
 import LogoRow from './Header/LogoRow';
-import { selectFooterAds } from '../modules/header';
+import { selectFooterAds, selectIdleNews } from '../modules/header';
 import { setLocal, selectUser } from '../modules/sourceRequest';
 import { connect } from 'react-redux';
 import StaticContainer from 'react-static-container';
@@ -16,11 +16,12 @@ const redial = {
 
 const mapStateToProps = state => ({
   user: selectUser(state),
-  ads: selectFooterAds(state)
+  ads: selectFooterAds(state),
+  idleNews: selectIdleNews(state)
 });
 
-const App = ({ ads, children, user }) => (
-  <Basic>
+const App = ({ ads, children, user, idleNews }) => (
+  <Basic idleNews={idleNews}>
     <LogoRow user={user.name} />
     {children}
     <StaticContainer>
@@ -31,6 +32,7 @@ const App = ({ ads, children, user }) => (
 
 App.propTypes = {
   ads: PropTypes.object.isRequired,
+  idleNews: PropTypes.array.isRequired,
   children: PropTypes.shape().isRequired,
   user: PropTypes.object
 };
