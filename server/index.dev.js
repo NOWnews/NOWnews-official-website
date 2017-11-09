@@ -146,7 +146,7 @@ export const createServer = (config) => {
                   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
                   ga('create', 'UA-4021556-54', 'auto');
                   ga('create', 'UA-4021556-26', {'name':'26'});
-                  if(navigator.userAgent.indexOf('5.65')>-1 || navigator.userAgent.indexOf('5.66')){
+                  if(navigator.userAgent.indexOf('5.65') > -1 || navigator.userAgent.indexOf('5.66') > -1){
                     ga('send', 'pageview');
                     ga('26.send', 'pageview');
                   }
