@@ -5,6 +5,12 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+## 1.0.37 - 2017-11-09
+- 更換 ads.txt 內容 @wb
+- 壓力測試判斷 @wb
+
+## 1.0.37 - 2017-11-02
 ### Added
 - 加上閒置頁面, 90 秒以後出現 @wb
 - 依照業務需求加入 ads.txt @wb
