@@ -135,7 +135,9 @@ class HomeContainer extends PureComponent {
                 <SubWeb8 />
                 {/* <BlockItems8 channels={specialChannels.slice(0, 8)} /> */}
                 <div className={css(styles.seeMoreBlock)}>
-                  <Link className={css(styles.seeMoreLink)} to='topic'>看更多熱門專題</Link>
+                  <Link className={css(styles.seeMoreLink)}
+                    data-on='click' data-event-category='home' data-event-action='topic-more'
+                    to='topic?from=topicm'>看更多熱門專題</Link>
                 </div>
               </LeftSide>
               <RightSide>
@@ -159,6 +161,7 @@ class HomeContainer extends PureComponent {
             </div>
             <BlockItems9
               ads={ads.triplet}
+              tripletType={tripletType}
               hasAd={tripletType === 'instant'}
               newsList={tripletObject[tripletType].slice(0, 9)} />
             { tripletType === 'interest' && interest.isLoading && <h3>資料載入中 ...</h3>}
@@ -169,7 +172,9 @@ class HomeContainer extends PureComponent {
             { tripletType === 'lbs' && LBS.error && (LBS.error.code === 2 || LBS.error.code === 3) && <h3> 無法取得您的位置資訊 </h3>}
             { tripletType === 'lbs' && !LBS.error && !LBS.isLoading && !LBS.isLocationLoading && tripletObject.lbs.length === 0 && <h3>查無此區的相關新聞 ...</h3>}
             <div className={css(styles.seeMoreBlock)}>
-              <Link className={css(styles.seeMoreLink)} to={tripletType}>
+              <Link className={css(styles.seeMoreLink)}
+                data-on='click' data-event-category='home' data-event-action={`${tripletType}-more`}
+                to={`${tripletType}?from=${tripletType}m`}>
                 看更多{seeMoreTextDefined[tripletType]}新聞
               </Link>
             </div>
@@ -197,7 +202,9 @@ class HomeContainer extends PureComponent {
             <Container>
               <VideoBlock list={videos} />
               <div className={css(styles.seeMoreBlock)}>
-                <Link className={css(styles.seeMoreLink, styles.white)} to={'/video/instant'}>
+                <Link className={css(styles.seeMoreLink, styles.white)}
+                  data-on='click' data-event-category='home' data-event-action='video-more'
+                  to={'/video/instant?from=videom'}>
                   看更多影音
                 </Link>
               </div>
@@ -213,7 +220,9 @@ class HomeContainer extends PureComponent {
               <BlockItems8 channels={specialChannels.slice(0, 8)} />
               {/* <BlockTopicItems newsList={specialTopics.slice(0, 8)} /> */}
               <div className={css(styles.seeMoreBlock)}>
-                <Link className={css(styles.seeMoreLink)} to={`channel/${specialChannels[0].sn}`}>看更多火線話題</Link>
+                <Link className={css(styles.seeMoreLink)}
+                  data-on='click' data-event-category='home' data-event-action='channel-more'
+                  to={`channel/${specialChannels[0].sn}?from=channelm`}>看更多火線話題</Link>
               </div>
             </LeftSide>
             <RightSide>

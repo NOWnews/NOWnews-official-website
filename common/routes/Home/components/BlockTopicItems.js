@@ -10,10 +10,11 @@ class BlockItems extends PureComponent {
         <div key={sn} className={css(styles.blockItem)}>
           <BlockTopicItem key={sn}
             category='專題'
+            data-on='click' data-event-category='home' data-event-action='topic'
             photo={MainPhoto}
             title={title}
             time={createdAt}
-            url={url} />
+            url={`${url}?from=top`} />
         </div>
       );
     });

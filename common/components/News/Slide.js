@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 import { CarouselCSS } from '../Layout';
 
-export const Slide = ({ list }) => {
+export const Slide = ({ list, type = 'home' }) => {
   const settings = {
     axis: 'horizontal',
     autoPlay: true,
@@ -16,7 +16,9 @@ export const Slide = ({ list }) => {
     showThumbs: false,
     width: '600px'
   };
-
+  const isCategory = type !== 'home' && type !== 'topic';
+  const category = isCategory ? `cat-${type}` : type;
+  const fromStr = isCategory ? `${type}sli` : 'sli';
   return (
     <div>
       <CarouselCSS />
@@ -25,7 +27,8 @@ export const Slide = ({ list }) => {
           return (
             <Link className={css(styles.ahref)} style={{backgroundImage: `url(${MainPhoto.medium})`}}
               alt={shortTitle || title}
-              key={sn} to={parseUrl || url}>
+              data-on='click' data-event-category={category} data-event-action='slide'
+              key={sn} to={`${(parseUrl || url)}?from=${fromStr}`}>
               { /* <img className={css(styles.img)} src={MainPhoto.medium} /> */ }
             </Link>
           );
@@ -56,7 +59,8 @@ const styles = StyleSheet.create({
 });
 
 Slide.propTypes = {
-  list: PropTypes.array.isRequired
+  list: PropTypes.array.isRequired,
+  type: PropTypes.string
 };
 
 export default Slide;

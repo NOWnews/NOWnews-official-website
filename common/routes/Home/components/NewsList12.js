@@ -20,14 +20,18 @@ class NewsList12 extends PureComponent {
       let newsForLeft = newsList[row[0]];
       let newsForRight = newsList[row[1]];
       items.push(
-        <Link key={newsForLeft.sn} className={linkClass} to={newsForLeft.parseUrl}>
+        <Link key={newsForLeft.sn} className={linkClass}
+          data-on='click' data-event-category='home' data-event-action='12-list'
+          to={newsForLeft.parseUrl}>
           <span className={css(styles.label)}>{newsForLeft.MainMenu.name}</span>
           <span>{newsForLeft.shortTitle}</span>
         </Link>
       );
 
       items.push(
-        <Link key={newsForRight.sn} className={linkClass} to={newsForRight.parseUrl}>
+        <Link key={newsForRight.sn} className={linkClass}
+          data-on='click' data-event-category='home' data-event-action='12-list'
+          to={newsForRight.parseUrl}>
           <span className={css(styles.label)}>{newsForRight.MainMenu.name}</span>
           <span>{newsForRight.shortTitle}</span>
         </Link>

@@ -9,6 +9,7 @@ class BlockItems extends PureComponent {
       return (
         <div key={sn} className={css(styles.blockItem)}>
           <BlockChannelItem key={sn}
+            data-on='click' data-event-category='home' data-event-action='channel'
             photo={MainPhoto}
             sn={sn}
             title={title} />

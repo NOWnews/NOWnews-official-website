@@ -25,9 +25,10 @@ class Menu extends PureComponent {
       mainMenuDoms.push(
         <Link
           className={linkClass}
+          data-on='click' data-event-category='common' data-event-action='nav'
           key={sn}
           target={isExternal === true ? '_blank' : null}
-          to={url}>
+          to={`${url}?from=nav`}>
           { name }
         </Link>
       );
@@ -40,9 +41,10 @@ class Menu extends PureComponent {
           { childMenus.map(({ _id, sn, isExternal, url, name }) =>
             <Link
               className={`${css(styles.link)} ${(_id === currentChildMenu) && css(styles.subMenuActive)}`}
+              data-on='click' data-event-category='common' data-event-action='nav'
               key={sn}
               target={isExternal === true ? '_blank' : null}
-              to={url}>
+              to={`${url}?from=nav`}>
               { name }
             </Link>
           )}

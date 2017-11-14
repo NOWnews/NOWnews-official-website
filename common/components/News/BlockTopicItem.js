@@ -3,9 +3,14 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import Link from 'react-router/lib/Link';
 
-export const BlockTopicItem = ({ category, photo, time, title, url }) => {
+export const BlockTopicItem = ({ category, photo, time, title, url, ...props }) => {
+  const dataOn = props['data-on'];
+  const dataEventCategory = props['data-event-category'];
+  const dataEventAction = props['data-event-action'];
   return (
-    <Link className={css(styles.box)} to={url} target='_blank'>
+    <Link className={css(styles.box)}
+      data-on={dataOn} data-event-category={dataEventCategory} data-event-action={dataEventAction}åå
+      to={`${url}?from=${dataEventAction}`} target='_blank'>
       <img className={css(styles.img)} src={photo.thumbnail} alt={title} />
       <div className={css(styles.bottom)}>
         <div className={css(styles.category)}>{category}</div>
@@ -72,6 +77,9 @@ const styles = StyleSheet.create({
 });
 
 BlockTopicItem.propTypes = {
+  'data-on': PropTypes.string,
+  'data-event-action': PropTypes.string,
+  'data-event-category': PropTypes.string,
   category: PropTypes.string.isRequired,
   photo: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,

@@ -14,9 +14,14 @@ class BlockItem extends PureComponent {
       const top = height * 300 / width / 5;
       imgStyle.top = `-${top}px`;
     }
+    const dataOn = this.props['data-on'];
+    const dataEventCategory = this.props['data-event-category'];
+    const dataEventAction = this.props['data-event-action'];
 
     return (
-      <Link className={css(styles.box)} to={url} target={target}>
+      <Link className={css(styles.box)}
+        data-on={dataOn} data-event-category={dataEventCategory} data-event-action={dataEventAction}
+        to={url} target={target}>
         <TypeIcon type={type} />
         <div className={css(styles.imgDiv)}>
           <img className={css(styles.img)} style={imgStyle} src={MainPhoto.thumbnail} alt={title} />
@@ -83,6 +88,9 @@ const styles = StyleSheet.create({
 });
 
 BlockItem.propTypes = {
+  'data-on': PropTypes.string,
+  'data-event-action': PropTypes.string,
+  'data-event-category': PropTypes.string,
   category: PropTypes.string.isRequired,
   photo: PropTypes.object,
   target: PropTypes.string,
