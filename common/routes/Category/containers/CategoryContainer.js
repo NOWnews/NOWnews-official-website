@@ -48,6 +48,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu, loadCat
   const adCode = (isDefaultTemplate) ? getAdType.fromCurrentOne(currentMainMenu, currentChildMenu) : currentMenu.templateAD;
   const topAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_T_new2` : `/5799246/column_970x90_pu_${adCode}`;
   const footerAd = (isDefaultTemplate) ? `/5799246/Nownews_${adCode}_970x250_B_new2` : `/5799246/column_970x90_pd_${adCode}`;
+  const categoryName = currentMenu.categoryName;
   return (
     <Container>
       {currentMenu.name && <div>
@@ -86,10 +87,11 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu, loadCat
       {!categoryPage.isLoading && newsList.length > 0 && !isChannelTemplate &&
         <div>
           <Margin10 className='clearfix'>
-            <Slide list={slideData} />
-            <HotNews newsList={hotBlockData} />
+            <Slide list={slideData} type={categoryName} />
+            <HotNews newsList={hotBlockData} category={categoryName} />
           </Margin10>
-          <BlockItems12 isDefaultTemplate={isDefaultTemplate} adCode={adCode} newsList={blockData} page={pageData} local={local} />
+          <BlockItems12 isDefaultTemplate={isDefaultTemplate} adCode={adCode} category={categoryName}
+            newsList={blockData} page={pageData} local={local} />
         </div>
       }
       {!categoryPage.isLoading && newsList.length > 0 && isChannelTemplate &&

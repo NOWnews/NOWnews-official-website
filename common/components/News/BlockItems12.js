@@ -4,19 +4,20 @@ import BlockItem from './BlockItem';
 import { DFP } from '../Ad';
 import Pagination from '../Pagination';
 
-const BlockItems12 = ({ isDefaultTemplate = true, adCode, newsList, page, local }) => {
+const BlockItems12 = ({ isDefaultTemplate = true, adCode, newsList, page, local, category }) => {
   let items = [];
   newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem
+          data-on='click' data-event-category={`cat-${category}`} data-event-action='list'
           category={MainMenu && MainMenu.name || 'Sponsored'}
           key={sn}
           photo={MainPhoto}
           title={shortTitle}
           time={formatStartedAt}
           type={type}
-          url={parseUrl} />
+          url={`${parseUrl}?from=${category}list`} />
       </div>
     );
 
@@ -56,6 +57,7 @@ BlockItems12.propTypes = {
   isDefaultTemplate: PropTypes.bool,
   local: PropTypes.object,
   adCode: PropTypes.string,
+  category: PropTypes.string,
   newsList: PropTypes.array.isRequired,
   page: PropTypes.object
 };

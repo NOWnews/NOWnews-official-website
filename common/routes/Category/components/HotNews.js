@@ -3,12 +3,13 @@ import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { RightSide } from '../../../components/Layout';
 
-const HotNews = ({ newsList }) => (
+const HotNews = ({ newsList, category }) => (
   <RightSide>
     <div className={css(styles.head)}>熱門</div>
     {newsList.map(({ shortTitle, sn, startedAt, parseUrl }) => (
       <Link className={css(styles.link)} key={sn}
-        to={parseUrl}>
+        data-on='click' data-event-category={`cat-${category}`} data-event-action='slide-right'
+        to={`${parseUrl}?from=${category}slir`}>
         <div className={css(styles.item)}>
           { shortTitle }
         </div>
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
 });
 
 HotNews.propTypes = {
+  category: PropTypes.string,
   newsList: PropTypes.any.isRequired
 };
 
