@@ -89,7 +89,9 @@ class Idle extends PureComponent {
               <div>
                 {big3.map(({ shortTitle, parseUrl, _id, MainPhoto }) => (
                   <Link className={css(styles.newsBlock)} key={_id} to={parseUrl} onClick={this.close}>
-                    <img className={css(styles.newsImg)} src={MainPhoto.thumbnail} />
+                    <div className={css(styles.imgBlock)}>
+                      <img className={css(styles.newsImg)} src={MainPhoto.thumbnail} />
+                    </div>
                     <h3>{ shortTitle }</h3>
                   </Link>
                 ))}
@@ -191,9 +193,15 @@ const styles = StyleSheet.create({
     textDecoration: 'none',
     color: '#333'
   },
+  imgBlock: {
+    width: 300,
+    height: 168,
+    overflow: 'hidden'
+  },
   newsImg: {
     width: 300,
-    height: 180
+    position: 'relative',
+    top: -30
   },
   dfp970x50: {
     width: 970,
