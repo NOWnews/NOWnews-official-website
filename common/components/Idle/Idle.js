@@ -88,7 +88,8 @@ class Idle extends PureComponent {
             <div className={css(styles.dialogContent)}>
               <div>
                 {big3.map(({ shortTitle, parseUrl, _id, MainPhoto }) => (
-                  <Link className={css(styles.newsBlock)} key={_id} to={parseUrl} onClick={this.close}>
+                  <Link data-on='click' data-event-category='idle' data-event-action='block-news'
+                    className={css(styles.newsBlock)} key={_id} to={`${parseUrl}?from=idleblock`} onClick={this.close}>
                     <div className={css(styles.imgBlock)}>
                       <img className={css(styles.newsImg)} src={MainPhoto.thumbnail} />
                     </div>
@@ -103,7 +104,8 @@ class Idle extends PureComponent {
               <div>
                 <div className={css(styles.listNews)}>
                   {small6.map(({ shortTitle, parseUrl, _id, MainMenu }) => (
-                    <Link className={css(styles.newsLink)} key={_id} to={parseUrl} onClick={this.close}>
+                    <Link data-on='click' data-event-category='idle' data-event-action='list-news'
+                      className={css(styles.newsLink)} key={_id} to={`${parseUrl}?from=idlelist`} onClick={this.close}>
                       <span className={css(styles.newsMenu)}>{MainMenu.name}</span>
                       <span>{ shortTitle }</span>
                     </Link>
