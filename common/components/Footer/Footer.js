@@ -78,7 +78,8 @@ export const Footer = ({ ads }) => {
 
           {/* Member, Download App */}
           <div className='right' style={{ textAlign: 'right', width: '15%' }}>
-            <Link className={css(styles.btnMember)} to='/auth/oauth'>加入會員</Link>
+            {/* 隱藏會員相關 */}
+            {/* <Link className={css(styles.btnMember)} to='/auth/oauth'>加入會員</Link> */}
             <Link target='_blank' to='https://itunes.apple.com/tw/app/nownews-v1/id388356807?mt=8'>
               <img src='/app/dark_ios.png' />
             </Link>
