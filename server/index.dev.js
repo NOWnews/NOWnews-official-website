@@ -150,6 +150,10 @@ export const createServer = (config) => {
                     ga('send', 'pageview');
                     ga('26.send', 'pageview');
                   }
+                  ga('require', 'eventTracker', {
+                    attributePrefix: 'data-',
+                    events: ['click']
+                  });
                   var _comscore = _comscore || [];
                   _comscore.push({ c1: "2", c2: "11473067" });
                   (function() {
@@ -161,6 +165,7 @@ export const createServer = (config) => {
                 <noscript>
                   <img src='http://b.scorecardresearch.com/p?c1=2&c2=11473067&cv=2.0&cj=1' />
                 </noscript>
+                <script src="/vendor/autotrack-eventTracker.min.js"></script>
                 <script type="text/javascript">
                   (function() {
                     var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.charset = "utf-8"; pa.async = true;

@@ -10,11 +10,12 @@ const BlockItems = ({ topics }) => {
       <div key={sn} className={css(styles.blockItem)}>
         <BlockTopicItem
           category='專題'
+          data-on='click' data-event-category='topic' data-event-action='list'
           key={sn}
           photo={MainPhoto}
           title={title}
           time={createdAt}
-          url={url || ''} />
+          url={`${url}?from=topiclist`} />
       </div>
     );
   });

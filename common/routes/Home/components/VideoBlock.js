@@ -46,7 +46,9 @@ class VideoBlock extends PureComponent {
       );
 
       return (
-        <div className={`left ${css(styles.thumb)}`} key={index} onClick={() => this.onSelectThumb(index)}>
+        <div className={`left ${css(styles.thumb)}`}
+          data-on='click' data-event-category='home' data-event-action='video'
+          key={index} onClick={() => this.onSelectThumb(index)}>
           <img src={MainPhoto.thumbnail} alt={shortTitle} className={css(styles.img)} />
           <div className={thumbTitleClass}><h3 className={css(styles.h3)}>{shortTitle}</h3></div>
         </div>

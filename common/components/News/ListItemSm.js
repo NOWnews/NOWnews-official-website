@@ -15,9 +15,12 @@ class ListItemSm extends PureComponent {
       const top = height * 95 / width / 4;
       imgStyle.top = `-${top}px`;
     }
-
+    const dataOn = this.props['data-on'];
+    const dataEventCategory = this.props['data-event-category'];
+    const dataEventAction = this.props['data-event-action'];
     return (
-      <Link className={`clearfix ${css(styles.box)}`} to={url}>
+      <Link className={`clearfix ${css(styles.box)}`} to={url}
+        data-on={dataOn} data-event-category={dataEventCategory} data-event-action={dataEventAction}>
         <div className={`left ${css(styles.left)}`}>
           <img className={css(styles.img)} style={imgStyle} src={MainPhoto.thumbnail} alt={MainPhoto.desc} />
           <TypeIcon type={type} size='LI_S' />
@@ -82,6 +85,9 @@ const styles = StyleSheet.create({
 });
 
 ListItemSm.propTypes = {
+  'data-on': PropTypes.string,
+  'data-event-action': PropTypes.string,
+  'data-event-category': PropTypes.string,
   category: PropTypes.string,
   photo: PropTypes.object,
   title: PropTypes.string.isRequired,

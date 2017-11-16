@@ -8,11 +8,12 @@ const LatestVideoNav = ({ list }) => {
     return (
       <div key={key} className={css(styles.item)}>
         <ListItemSm
+          data-on='click' data-event-category='instant' data-event-action='video'
           photo={MainPhoto}
           title={shortTitle}
           time={formatStartedAt}
           type='VIDEO'
-          url={parseUrl} />
+          url={`${parseUrl}?from=instantvideo`} />
       </div>
     );
   });

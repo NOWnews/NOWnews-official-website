@@ -6,9 +6,15 @@
 
 ## [Unreleased]
 
+### Added
+- 增加 autoTrack @esbb48
+
 ## 1.0.39 - 2017-11-16
 ### Added
 - 加上閒置頁面, 90 秒以後出現 @wb
+
+### Fixed
+- 修改閒置頁面圖片新聞的樣式，防止新聞圖被壓縮 @wb
 
 ### Changed
 - 隱藏會員相關功能 @esbb48

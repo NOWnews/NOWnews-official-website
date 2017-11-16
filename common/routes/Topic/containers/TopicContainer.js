@@ -36,7 +36,7 @@ const TopicContainer = ({ local, topicPage, menus, marquee }) => {
       {!topicPage.isLoading && topics.length > 0 &&
         <div>
           <Margin10 className='clearfix'>
-            <Slide list={topics.slice(0, 5)} />
+            <Slide list={topics.slice(0, 5)} type='topic' />
             <TopicRight topics={topics.slice(5, 10)} />
           </Margin10>
           <BlockItems topics={topics.slice(10, 19)} />

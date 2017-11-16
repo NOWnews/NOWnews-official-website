@@ -14,9 +14,13 @@ class ListItem extends PureComponent {
       const top = height * 95 / width / 4;
       imgStyle.top = `-${top}px`;
     }
+    const dataOn = this.props['data-on'];
+    const dataEventCategory = this.props['data-event-category'];
+    const dataEventAction = this.props['data-event-action'];
 
     return (
       <Link className={`clearfix ${css(styles.box)}`}
+        data-on={dataOn} data-event-category={dataEventCategory} data-event-action={dataEventAction}
         to={url} target={isExternal === true ? '_blank' : null}>
         <div className={`left ${css(styles.left)}`}>
           <img className={css(styles.img)} style={imgStyle} src={MainPhoto.thumbnail} alt={MainPhoto.desc} />
@@ -82,6 +86,9 @@ const styles = StyleSheet.create({
 });
 
 ListItem.propTypes = {
+  'data-on': PropTypes.string,
+  'data-event-action': PropTypes.string,
+  'data-event-category': PropTypes.string,
   category: PropTypes.string.isRequired,
   isExternal: PropTypes.bool,
   photo: PropTypes.object,

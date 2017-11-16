@@ -69,18 +69,18 @@ class InstantBar extends PureComponent {
         <style dangerouslySetInnerHTML={{__html: customTransitionStyle}} />
         <span className={css(styles.text)}>即時跑馬燈</span>
         <CSSTransitionGroup {...transitionConfig}>
-          {first &&
-          <Link key={first.sn} className={css(styles.link)}
-            to={first.parseUrl}>
+          {first && <Link key={first.sn} className={css(styles.link)}
+            data-on='click' data-event-category='common' data-event-action='marquee'
+            to={`${first.parseUrl}?from=mar`}>
             <span>{first.shortTitle}</span>
           </Link>
           }
         </CSSTransitionGroup>
         <span className={css(styles.split)}>｜</span>
         <CSSTransitionGroup {...transitionConfig}>
-          {second &&
-          <Link key={second.sn} className={css(styles.link)}
-            to={second.parseUrl}>
+          {second && <Link key={second.sn} className={css(styles.link)}
+            data-on='click' data-event-category='common' data-event-action='marquee'
+            to={`${second.parseUrl}?from=mar`}>
             <span>{second.shortTitle}</span>
           </Link>}
         </CSSTransitionGroup>

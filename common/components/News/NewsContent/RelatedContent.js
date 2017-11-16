@@ -20,19 +20,25 @@ const RelatedContent = ({ ad, adKey, list, type }) => {
     shortTitle: ad.title
   };
 
+  const eventAction = (type === '相關新聞') ? 'relation-news' : 'know-more';
+  const fromString = (type === '相關新聞') ? 'rel' : 'undm';
+
   // 將廣告有規律的安插在 array 裡面。
   cloneList.splice(adKey, 0, sponsorNews);
   cloneList.map((news) => {
     const { sn, isExternal, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl } = news;
     items.push(
       <ListItem
+        data-on='click'
+        data-event-category='news'
+        data-event-action={eventAction}
         isExternal={isExternal}
         key={sn}
         category={MainMenu && MainMenu.name || 'Sponsored'}
         photo={MainPhoto}
         title={shortTitle}
         time={formatStartedAt}
-        url={parseUrl} />
+        url={`${parseUrl}?from=${fromString}`} />
     );
   });
 

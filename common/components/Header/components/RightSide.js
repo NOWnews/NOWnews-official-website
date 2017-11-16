@@ -14,7 +14,8 @@ class RightSide extends PureComponent {
     // const memberLink = user ? '/auth/me' : '/auth/oauth';
     return (
       <div className={`clearfix ${css(styles.box)}`}>
-        <Link className={css(styles.link)} to='/search?timeRange=lastWeek'>
+        <Link data-on='click' data-event-category='common' data-event-action='search-logo'
+          className={css(styles.link)} to='/search?timeRange=lastWeek&from=searchbtn'>
           <FontAwesome name='search' size='2x' />
         </Link>
         {/* 隱藏會員相關 */}

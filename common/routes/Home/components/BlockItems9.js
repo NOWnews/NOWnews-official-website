@@ -4,7 +4,7 @@ import { BlockItem } from '../../../components/News';
 
 class BlockItems9 extends PureComponent {
   render () {
-    const { ads, hasAd, newsList } = this.props;
+    const { ads, hasAd, newsList, tripletType } = this.props;
     const transformAdFormat = (ad) => {
       const { id, img, menu, title, url } = ad;
       return {
@@ -31,12 +31,13 @@ class BlockItems9 extends PureComponent {
         <div key={sn} className={css(styles.blockItem)}>
           <BlockItem key={sn}
             category={MainMenu && MainMenu.name || 'Sponsored'}
+            data-on='click' data-event-category='home' data-event-action={tripletType}
             photo={MainPhoto}
             title={shortTitle}
             type={type}
             time={formatStartedAt}
             target={isExternal === true ? '_blank' : null}
-            url={parseUrl} />
+            url={`${parseUrl}?from=${tripletType}`} />
         </div>
       );
     });
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
 });
 
 BlockItems9.propTypes = {
+  tripletType: PropTypes.string.isRequired,
   ads: PropTypes.array.isRequired,
   hasAd: PropTypes.bool.isRequired,
   newsList: PropTypes.array.isRequired
