@@ -39,13 +39,14 @@ const InstantContainer = ({ local, marquee, menus, instantPage }) => (
             <div>
               {instantPage.newsList.map((value, i) => (
                 <ListItem
+                  data-on='click' data-event-category='instant' data-event-action='list'
                   key={value.sn}
                   category={value.MainMenu && value.MainMenu.name || 'Sponsored'}
                   photo={value.MainPhoto}
                   title={value.title}
                   time={value.formatStartedAt}
                   type={value.type}
-                  url={value.parseUrl} />
+                  url={`${value.parseUrl}?from=instantlist`} />
               ))}
             </div>
           }
@@ -55,7 +56,7 @@ const InstantContainer = ({ local, marquee, menus, instantPage }) => (
         </LeftSide>
         <RightSide>
           <DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />
-          <SpecialTopicNav list={instantPage.topics} />
+          <SpecialTopicNav list={instantPage.topics} eventCategory='instant' />
           <LatestVideoNav list={instantPage.videos} />
           <DFP opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />
         </RightSide>

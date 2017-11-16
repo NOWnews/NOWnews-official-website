@@ -58,7 +58,7 @@ describe('Check Page Status, should not be 500 or 404 NotFound', () => {
 
   it('Instant', async (done) => {
     try {
-      const url = `${server}/instnat?ad=0'`;
+      const url = `${server}/instant?ad=0'`;
       const status = await page.open(url);
       status.should.be.equal('success');
       const content = await page.property('content');
