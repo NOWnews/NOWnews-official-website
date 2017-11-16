@@ -22,7 +22,8 @@ class BlockItems9 extends PureComponent {
     const { local, newsList, page } = this.props;
     const items = newsList.map(({ sn, MainPhoto, shortTitle, startedAt }, index) => {
       return (
-        <div key={sn} className={css(styles.blockItem)} onClick={() => { this.select(index); }}>
+        <div key={sn} className={css(styles.blockItem)} onClick={() => { this.select(index); }}
+          data-on='click' data-event-category='video' data-event-action='list'>
           <TypeIcon type='VIDEO' />
           <img className={css(styles.img)} src={MainPhoto.thumbnail} />
           <div className={css(styles.bottom)}>

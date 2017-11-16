@@ -5,8 +5,8 @@ import { Container } from '../../components/Layout';
 
 export const NavBar = ({ selected = '' }) => {
   const navSourceData = [
-    { url: '/lylive/1', name: '立院直播', type: 'LY_LIVE' },
-    { url: '/video/instant', name: '影片', type: 'VIDEO' }
+    { url: '/lylive/1?page=vodpage', name: '立院直播', type: 'LY_LIVE' },
+    { url: '/video/instant?page=vodpage', name: '影片', type: 'VIDEO' }
   ];
 
   const NavItemDoms = navSourceData.map(({ name, type, url }) => {
@@ -16,7 +16,8 @@ export const NavBar = ({ selected = '' }) => {
     );
 
     return (
-      <Link className={linkClass} key={type} to={url}>
+      <Link className={linkClass} key={type} to={url}
+        data-on='click' data-event-category='video' data-event-action={type}>
         { name }
       </Link>
     );

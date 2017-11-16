@@ -152,7 +152,7 @@ export const createServer = (config) => {
                   }
                   ga('require', 'eventTracker', {
                     attributePrefix: 'data-',
-                    events: ['click', 'auxclick', 'contextmenu']
+                    events: ['click']
                   });
                   var _comscore = _comscore || [];
                   _comscore.push({ c1: "2", c2: "11473067" });

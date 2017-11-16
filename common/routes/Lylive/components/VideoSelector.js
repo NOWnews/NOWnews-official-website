@@ -13,6 +13,7 @@ class VideoSelector extends PureComponent {
             {this.props.videoSourceList.slice(0, 5).map((item, index) => {
               return (
                 <Link className={css(styles.firstRowItem, (this.props.currentVideoSource === item.id) && styles.active)}
+                  data-on='click' data-event-category='lylive' data-event-action='list'
                   key={item.id}
                   to={`/lylive/${item.id}`}>
                   <span className={css(styles.selectTitleOneLine)}>{item.title}</span>
@@ -24,6 +25,7 @@ class VideoSelector extends PureComponent {
             { this.props.videoSourceList.slice(5).map((item, index) => {
               return (
                 <Link className={css(styles.secondRowItem, (this.props.currentVideoSource === item.id) && styles.active)}
+                  data-on='click' data-event-category='lylive' data-event-action='list'
                   key={item.id}
                   to={`/lylive/${item.id}`}>
                   <span className={css(styles.selectTitleTwoLine)}>{item.title}</span>

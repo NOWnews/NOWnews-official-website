@@ -31,14 +31,16 @@ class MainVideoPlay extends PureComponent {
             <span className={css(styles.time)}>
               {moment(startedAt).format('YYYY.MM.DD hh:mm')}
             </span>
-            <Link className={css(styles.linkContent)} to={parseUrl}>內文</Link>
+            <Link className={css(styles.linkContent)} to={`${parseUrl}?from=videocotent`}
+              data-on='click' data-event-category='video' data-event-action='content'>內文</Link>
             {/* 不確定分享要連到哪先隱藏
               <div className={css(styles.share)}>
                 <FontAwesome name='share-alt' size='1x' />
                 分享
               </div> */}
             {showNextButton &&
-              <button className={css(styles.next)} onClick={this.next}>下一篇 ＞</button>}
+              <button className={css(styles.next)} onClick={this.next}
+                data-on='click' data-event-category='video' data-event-action='next-news'>下一篇 ＞</button>}
           </div>
         </Container>
       </div>

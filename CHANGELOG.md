@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### Added
+- 增加 autoTrack @esbb48
+
 ## 1.0.37 - 2017-11-09
 - 更換 ads.txt 內容 @wb
 - 壓力測試判斷 @wb
