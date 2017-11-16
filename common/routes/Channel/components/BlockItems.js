@@ -10,13 +10,14 @@ const BlockItems = ({ newsList }) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem
+          data-on='click' data-event-category='channel' data-event-action='list'
           category={MainMenu && MainMenu.name || 'Sponsored'}
           key={sn}
           photo={MainPhoto}
           title={shortTitle}
           time={formatStartedAt}
           type={type}
-          url={parseUrl} />
+          url={`${parseUrl}?from=channellist`} />
       </div>
     );
 
