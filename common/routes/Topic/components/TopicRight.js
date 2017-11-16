@@ -6,7 +6,8 @@ const TopicRight = ({ topics }) => (
   <div className={css(styles.box)}>
     {topics.map(({ sn, MainPhoto, title, url }) => (
       <Link className={css(styles.link)} style={{backgroundImage: 'url(' + (MainPhoto.thumbnail) + ')'}} key={sn}
-        to={url}>
+        data-on='click' data-event-category='topic' data-event-action='slide-right'
+        to={`${url}?from=topicslir`}>
         <div className={css(styles.item)}>{ title }</div>
       </Link>
     ))}

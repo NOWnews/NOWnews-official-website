@@ -14,7 +14,7 @@ class BlockItems extends PureComponent {
             photo={MainPhoto}
             title={title}
             time={createdAt}
-            url={`${url}?from=top`} />
+            url={`${url}?from=topic`} />
         </div>
       );
     });

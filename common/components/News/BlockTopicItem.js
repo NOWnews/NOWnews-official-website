@@ -9,8 +9,8 @@ export const BlockTopicItem = ({ category, photo, time, title, url, ...props }) 
   const dataEventAction = props['data-event-action'];
   return (
     <Link className={css(styles.box)}
-      data-on={dataOn} data-event-category={dataEventCategory} data-event-action={dataEventAction}åå
-      to={`${url}?from=${dataEventAction}`} target='_blank'>
+      data-on={dataOn} data-event-category={dataEventCategory} data-event-action={dataEventAction}
+      to={url} target='_blank'>
       <img className={css(styles.img)} src={photo.thumbnail} alt={title} />
       <div className={css(styles.bottom)}>
         <div className={css(styles.category)}>{category}</div>

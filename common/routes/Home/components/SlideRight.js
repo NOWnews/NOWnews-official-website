@@ -9,7 +9,7 @@ const SlideRight = ({ newsList }) => (
         data-on='click' data-event-category='home' data-event-action='slide-right'
         style={{backgroundImage: `url(${MainPhoto.thumbnail})`}}
         key={sn}
-        to={`${parseUrl}?from=slir`}>
+        to={`${parseUrl}?from=homeslir`}>
         <div className={css(styles.item)}>{ shortTitle }</div>
       </Link>
     ))}

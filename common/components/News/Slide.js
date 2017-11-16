@@ -18,7 +18,6 @@ export const Slide = ({ list, type = 'home' }) => {
   };
   const isCategory = type !== 'home' && type !== 'topic';
   const category = isCategory ? `cat-${type}` : type;
-  const fromStr = isCategory ? `${type}sli` : 'sli';
   return (
     <div>
       <CarouselCSS />
@@ -28,7 +27,7 @@ export const Slide = ({ list, type = 'home' }) => {
             <Link className={css(styles.ahref)} style={{backgroundImage: `url(${MainPhoto.medium})`}}
               alt={shortTitle || title}
               data-on='click' data-event-category={category} data-event-action='slide'
-              key={sn} to={`${(parseUrl || url)}?from=${fromStr}`}>
+              key={sn} to={`${(parseUrl || url)}?from=${type}sli`}>
               { /* <img className={css(styles.img)} src={MainPhoto.medium} /> */ }
             </Link>
           );
