@@ -5,23 +5,24 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 
 class RightSide extends PureComponent {
   render () {
-    const { user } = this.props;
+    // const { user } = this.props;
     const socialList = [
       { icon: 'weibo', url: 'http://tw.weibo.com/nownews' },
       { icon: 'IG', url: 'https://www.instagram.com/nownews/' },
       { icon: 'FB', url: 'https://facebook.com/nownews' }
     ];
-    const memberLink = user ? '/auth/me' : '/auth/oauth';
+    // const memberLink = user ? '/auth/me' : '/auth/oauth';
     return (
       <div className={`clearfix ${css(styles.box)}`}>
         <Link data-on='click' data-event-category='common' data-event-action='search-logo'
           className={css(styles.link)} to='/search?timeRange=lastWeek&from=searchbtn'>
           <FontAwesome name='search' size='2x' />
         </Link>
-        <Link className={css(styles.link)} to={memberLink}>
+        {/* 隱藏會員相關 */}
+        {/* <Link className={css(styles.link)} to={memberLink}>
           <FontAwesome name='user-circle-o' size='2x' />
           <div className={css(styles.account)}>{user ? '會員資料' : '加入會員'}</div>
-        </Link>
+        </Link> */}
         {socialList.map(({ icon, url }) =>
           <Link className={`right ${css(styles.btnSocial)}`} key={icon} target='_blank' to={url}>
             <img src={`/social/${icon}.png`} alt={icon} />
@@ -51,7 +52,9 @@ const styles = StyleSheet.create({
   },
   link: {
     color: '#999999',
-    marginLeft: 10,
+    marginLeft: 110,
+    position: 'relative',
+    top: -3,
     textDecoration: 'none',
     ':hover': {
       color: '#0080FF'

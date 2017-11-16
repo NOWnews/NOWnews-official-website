@@ -3,7 +3,8 @@ if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
 import App from '../components/App';
 export default function createRoutes (store) {
   const root = [
-    require('./Auth').default(store), // no need to modify store, no reducer
+    // 隱藏會員相關
+    // require('./Auth').default(store), // no need to modify store, no reducer
     {
       path: '/',
       component: App,
