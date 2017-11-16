@@ -12,12 +12,13 @@ const BlockItems = ({ newsList, page, local }) => {
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem
           category={MainMenu && MainMenu.name || 'Sponsored'}
+          data-on='click' data-event-category='lbs' data-event-action='list'
           key={sn}
           photo={MainPhoto}
           title={shortTitle}
           time={formatStartedAt}
           type={type}
-          url={parseUrl} />
+          url={`${parseUrl}?from=lbslist`} />
       </div>
     );
 

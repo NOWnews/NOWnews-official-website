@@ -4,13 +4,14 @@ import BlockItem from './BlockItem';
 import { DFP } from '../Ad';
 import Pagination from '../Pagination';
 
-const BlockItems12 = ({ isDefaultTemplate = true, adCode, newsList, page, local, category }) => {
+const BlockItems12 = ({ isDefaultTemplate = true, adCode, newsList, page, local, category = 'interest' }) => {
   let items = [];
+  const eventCategory = (category === 'interest') ? category : `cat-${category}`;
   newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
         <BlockItem
-          data-on='click' data-event-category={`cat-${category}`} data-event-action='list'
+          data-on='click' data-event-category={eventCategory} data-event-action='list'
           category={MainMenu && MainMenu.name || 'Sponsored'}
           key={sn}
           photo={MainPhoto}
