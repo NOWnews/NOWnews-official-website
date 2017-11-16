@@ -34,17 +34,17 @@ class TripletNav extends PureComponent {
           className={css(styles.icon)} src={`/icons/${imgName}.png`} title={titles[value]} />
       );
     });
-
     const items = slicedList.map(({ sn, MainMenu, MainPhoto, shortTitle, startedAt, type, parseUrl }, key) => {
       return (
         <div key={key}>
           <ListItemSm
             category={MainMenu && MainMenu.name || '未分類'}
+            data-on='click' data-event-category='news' data-event-action={`nav-${tripletType}`}
             photo={MainPhoto}
             title={shortTitle}
             time={startedAt}
             type={type}
-            url={parseUrl} />
+            url={`${parseUrl}?from=page${tripletType}`} />
         </div>
       );
     });

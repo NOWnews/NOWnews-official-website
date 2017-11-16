@@ -7,7 +7,8 @@ const RecommendAds = ({ ads }) => {
 
   ads.map((ad, index) => {
     items.push(
-      <a className={css(styles.item)} key={index} href={ad.url} target='_blank'>
+      <a className={css(styles.item)} key={index} href={ad.url} target='_blank'
+        data-on='click' data-event-category='ad' data-event-action='page-recommend-ad'>
         <div>
           <img src={`https://imgapiv2.nownews.com/?w=200&q=70&src=${ad.img}`} width='200' height='112' alt={ad.title} />
         </div>

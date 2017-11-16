@@ -3,11 +3,12 @@ import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../components/Layout';
 
-const SpecialTopicNav = ({ list }) => (
+const SpecialTopicNav = ({ list, eventCategory = 'news' }) => (
   <Margin10>
     <div className={css(styles.head)}>專題</div>
     {list.map(({ sn, title, url }, key) => (
-      <Link className={css(styles.link)} key={sn} to={url} target='_blank'>
+      <Link className={css(styles.link)} key={sn} to={`${url}?from=${eventCategory}topic`} target='_blank'
+        data-on='click' data-event-category={eventCategory} data-event-action='nav-topic'>
         <div className={css(styles.item)}>{ title }</div>
       </Link>
     ))}
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
 });
 
 SpecialTopicNav.propTypes = {
+  eventCategory: PropTypes.string,
   list: PropTypes.any.isRequired
 };
 
