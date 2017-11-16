@@ -7,7 +7,8 @@ const Tags = ({ tags }) => (
   <Margin10>
     { tags.length > 0 && '關鍵字' }
     {tags.map(({ sn, name }) =>
-      <Link className={css(styles.tag)} key={sn} to={`/search?timeRange=lastWeek&keyword=${name}`}>{ name }</Link>
+      <Link data-on='click' data-event-category='news' data-event-action='tag'
+        className={css(styles.tag)} key={sn} to={`/search?timeRange=lastWeek&keyword=${name}&from=tag`}>{ name }</Link>
     )}
   </Margin10>
 );
