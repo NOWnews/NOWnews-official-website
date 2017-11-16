@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Margin10 } from '../../../components/Layout';
 
-const Thermometer = ({ onWarm, pv = 1 }) => {
+const Thermometer = ({ pv = 1 }) => {
+// const Thermometer = ({ onWarm, pv = 1 }) => {
   const maxPv = 10000;
   const positionRate = (pv >= maxPv) ? 90 : (pv / maxPv) * 100 * 0.9;
   const pointerPosition = {
@@ -18,10 +19,11 @@ const Thermometer = ({ onWarm, pv = 1 }) => {
           style={pointerPosition} />
         <img className={css(styles.thermometerBar)} src='/others/thermometer-bar.png' />
       </div>
-      <div className={css(styles.wramBtn)} onClick={onWarm}>
+      {/* 隱藏會員相關 */}
+      {/* <div className={css(styles.wramBtn)} onClick={onWarm}>
         <img src='/icons/fire.png' />
         <span className={css(styles.fireWord)}>需要溫暖</span>
-      </div>
+      </div> */}
     </Margin10>
   );
 };
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
 });
 
 Thermometer.propTypes = {
-  onWarm: PropTypes.func.isRequired,
+  // onWarm: PropTypes.func.isRequired,
   pv: PropTypes.number
 };
 
