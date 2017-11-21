@@ -18,13 +18,20 @@ const Content = ({ hasAd, adIndex, content, fontSize, freeContent }) => {
             font-size: 16px;
           }
           .fontSize24 span {
-              font-size: 24px!important;
+            font-size: 24px!important;
           }
           .fontSize20 span {
-              font-size: 20px!important;
+            font-size: 20px!important;
           }
           .fontSize16 span {
-              font-size: 16px!important;
+            font-size: 16px!important;
+          }
+          .imgdesc img {
+            padding-bottom: 7px;
+          }
+          .imgdesc {
+            line-height: 130%;
+            color: #585a56;
           }
       `}</style>
       <article className={`${css(styles.box)} fontSize${fontSize}`}>
