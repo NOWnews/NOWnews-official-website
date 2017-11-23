@@ -6,6 +6,7 @@
 
 ## [Unreleased]
 
+## 1.0.40 - 2017-11-23
 ### Added
 - 加入內文圖說 style @wb
 - 增加 autoTrack @esbb48
