@@ -81,6 +81,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu, loadCat
       <Header ad={topAd} menus={menus} marquee={marquee}
         currentChildMenu={currentChildMenu && currentChildMenu._id}
         currentMainMenu={currentMainMenu && currentMainMenu._id} />
+      {isDefaultTemplate && <DFP opts={['/5799246/test_Nownews_PC_pushdown', [[1, 1], [970, 250]]]} />}
       {isDefaultTemplate && <OneAdICIP />}
       {categoryPage.isLoading && <Loading />}
       {!categoryPage.isLoading && newsList.length === 0 && <NotFound />}

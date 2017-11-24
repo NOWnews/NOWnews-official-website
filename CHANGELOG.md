@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### Added
+- 增加 DFP 廣告 `/5799246/test_Nownews_PC_pushdown` @esbb48
+
 ## 1.0.40 - 2017-11-23
 ### Added
 - 加入內文圖說 style @wb
