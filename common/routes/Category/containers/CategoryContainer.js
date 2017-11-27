@@ -9,7 +9,7 @@ import { DFP, getAdType, OneAdICIP } from '../../../components/Ad';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
-import { HotNews, ChannelTemplate } from '../components';
+import { BlockItems15, HotNews, ChannelTemplate } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
 import { MicroDataCategory } from '../../../components/JSONLD';
 import Helmet from 'react-helmet';
@@ -39,7 +39,7 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu, loadCat
   const isChannelTemplate = currentMenu.template === 'SPECIALCHANNEL';
   const slideData = isDefaultTemplate ? newsList.slice(0, 5) : hotNewsList.slice(0, 5);
   const hotBlockData = isDefaultTemplate ? hotNewsList.slice(0, 6) : hotNewsList.slice(5, 11);
-  const blockData = isDefaultTemplate ? newsList.slice(5, 15) : newsList.slice(0, 10);
+  const blockData = isDefaultTemplate ? newsList.slice(5, 15) : newsList;
 
   const isMainMenu = currentMenu.ParentId === null;
   const currentMainMenu = isMainMenu ? currentMenu : objectMenu[currentMenu.ParentId];
@@ -90,8 +90,9 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu, loadCat
             <Slide list={slideData} type={categoryName} />
             <HotNews newsList={hotBlockData} category={categoryName} />
           </Margin10>
-          <BlockItems12 isDefaultTemplate={isDefaultTemplate} adCode={adCode} category={categoryName}
-            newsList={blockData} page={pageData} local={local} />
+          {isDefaultTemplate ? <BlockItems12 adCode={adCode} category={categoryName}
+            newsList={blockData} page={pageData} local={local} /> : <BlockItems15 adCode={adCode} category={categoryName}
+              newsList={blockData} page={pageData} local={local} />}
         </div>
       }
       {!categoryPage.isLoading && newsList.length > 0 && isChannelTemplate &&

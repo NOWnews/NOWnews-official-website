@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import BlockItem from './BlockItem';
-import { DFP } from '../Ad';
-import Pagination from '../Pagination';
+import BlockItem from '../../../components/News/BlockItem';
+import Pagination from '../../../components/Pagination';
+import { DFP } from '../../../components/Ad';
 
-const BlockItems12 = ({ adCode, newsList, page, local, category = 'interest' }) => {
+const BlockItems15 = ({ adCode, newsList, page, local, category }) => {
   let items = [];
-  const eventCategory = (category === 'interest') ? category : `cat-${category}`;
+  const eventCategory = `cat-${category}`;
   newsList.forEach(({ sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }, key) => {
     items.push(
       <div key={sn} className={css(styles.blockItem)}>
@@ -23,11 +23,14 @@ const BlockItems12 = ({ adCode, newsList, page, local, category = 'interest' }) 
     );
 
     if (adCode && key === 1) {
-      const RTAd = `/5799246/Nownews_${adCode}_300x250_RT_new2`;
-      items.push(<DFP key={`Ad_RT`} className={css(styles.blockItem)} opts={[RTAd, [300, 250]]} />);
+      const PUAD = `/5799246/column_300x250_pu_${adCode}`;
+      items.push(<DFP key={`Ad_RT`} className={css(styles.blockItem)} opts={[PUAD, [300, 250]]} />);
     } else if (adCode && key === 6) {
-      const RBAd = `/5799246/Nownews_${adCode}_300x250_RB_new2`;
-      items.push(<DFP key={`Ad_RB`} className={css(styles.blockItem)} opts={[RBAd, [300, 250]]} />);
+      const PDAD = `/5799246/column_300x250_pd_${adCode}`;
+      items.push(<DFP key={`Ad_RB`} className={css(styles.blockItem)} opts={[PDAD, [300, 250]]} />);
+    } else if (adCode && key === 14) {
+      const PDDAD = `/5799246/column_300x250_pdd_${adCode}`;
+      items.push(<DFP key={`AD_PDD`} className={css(styles.blockItem)} opts={[PDDAD, [300, 250]]} />);
     }
   });
 
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
   }
 });
 
-BlockItems12.propTypes = {
+BlockItems15.propTypes = {
   local: PropTypes.object,
   adCode: PropTypes.string,
   category: PropTypes.string,
@@ -60,4 +63,4 @@ BlockItems12.propTypes = {
   page: PropTypes.object
 };
 
-export default BlockItems12;
+export default BlockItems15;

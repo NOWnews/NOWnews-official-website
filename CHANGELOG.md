@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- 讓專欄分類頁可以顯示完整的頁面並增加廣告 `/5799246/column_300x250_pdd_${adCode}` @esbb48
+
 ## 1.0.40 - 2017-11-23
 ### Added
 - 加入內文圖說 style @wb
