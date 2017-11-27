@@ -1,5 +1,5 @@
 //  設定分類頁 dfp
-const defaultAdType = 'life';
+const defaultAdType = 'finance';
 
 const definedMapping = {
   politic: 'political', // 政治

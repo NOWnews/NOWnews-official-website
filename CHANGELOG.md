@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Added
+- 生活內頁文末塞入台中議會的問卷 @esbb48
 
 ## 1.0.40 - 2017-11-23
 ### Added
