@@ -28,7 +28,7 @@ const BlockItems15 = ({ adCode, newsList, page, local, category }) => {
     } else if (adCode && key === 6) {
       const PDAD = `/5799246/column_300x250_pd_${adCode}`;
       items.push(<DFP key={`Ad_RB`} className={css(styles.blockItem)} opts={[PDAD, [300, 250]]} />);
-    } else if (adCode && key === 14) {
+    } else if (adCode && key === 11) {
       const PDDAD = `/5799246/column_300x250_pdd_${adCode}`;
       items.push(<DFP key={`AD_PDD`} className={css(styles.blockItem)} opts={[PDDAD, [300, 250]]} />);
     }
