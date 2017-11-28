@@ -5,6 +5,10 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+### Changed
+- 內頁的「NOWnews 推薦」廣告可以放gif 檔案 @wb
+
 ### Added
 - 生活內頁文末塞入台中議會的問卷 @esbb48
 
