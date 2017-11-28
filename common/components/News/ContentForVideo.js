@@ -38,6 +38,7 @@ class ContentForVideo extends PureComponent {
           <LeftSide>
             <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent}
               adIndex={news.contentAdIndex} hasAd={news.hasContentAd} />
+            {adType === 'life' && <iframe frameBorder='0' width='95%' height='460' scrolling='no' src='https://legacy.nownews.com/ad2004/171128-120016-5157h.html' />}
             <Tags tags={news.Tags || []} />
             <Margin10>
               <DFP opts={[`/5799246/Nownews_${adType}_article_600x225_i_new2`, [600, 225]]} />

@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Added
+- 生活內頁文末塞入台中議會的問卷 @esbb48
 
 ### Fixed
 - 讓專欄分類頁可以顯示完整的頁面並增加廣告 `/5799246/column_300x250_pdd_${adCode}` @esbb48
