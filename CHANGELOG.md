@@ -6,6 +6,7 @@
 
 ## [Unreleased]
 
+## 1.0.41 - 2017-11-29
 ### Changed
 - 內頁的「NOWnews 推薦」廣告可以放gif 檔案 @wb
 
