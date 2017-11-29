@@ -6,11 +6,18 @@ const RecommendAds = ({ ads }) => {
   var items = [];
 
   ads.map((ad, index) => {
+    // gif file check format.
+    let adImgFormat = `https://imgapiv2.nownews.com/?w=200&q=70&src=${ad.img}`;
+
+    if (ad.img.indexOf('.gif') > 0) {
+      adImgFormat = ad.img;
+    }
+
     items.push(
       <a className={css(styles.item)} key={index} href={ad.url} target='_blank'
         data-on='click' data-event-category='ad' data-event-action='page-recommend-ad'>
         <div>
-          <img src={`https://imgapiv2.nownews.com/?w=200&q=70&src=${ad.img}`} width='200' height='112' alt={ad.title} />
+          <img src={adImgFormat} width='200' height='112' alt={ad.title} />
         </div>
         <div className={css(styles.title)}>{ad.title}</div>
       </a>
