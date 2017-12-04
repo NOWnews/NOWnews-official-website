@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### Changed
+- 更換 ads.txt 內容 @wb
+
 ## 1.0.41 - 2017-11-29
 ### Changed
 - 內頁的「NOWnews 推薦」廣告可以放gif 檔案 @wb
@@ -35,6 +38,7 @@
 - 修改閒置頁面圖片新聞的樣式，防止新聞圖被壓縮 @wb
 
 ## 1.0.38 - 2017-11-09
+### Changed
 - 更換 ads.txt 內容 @wb
 - 壓力測試判斷 @wb
 
