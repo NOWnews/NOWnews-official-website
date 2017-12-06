@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Fixed
+避免原生廣告的連結失效 @esbb48
 
 ## 1.0.41 - 2017-11-29
 ### Changed
