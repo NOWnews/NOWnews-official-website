@@ -27,6 +27,7 @@ class BlockItems9 extends PureComponent {
     }
 
     const items = list.map(({ isExternal, sn, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl, type }) => {
+      const url = isExternal ? parseUrl : `${parseUrl}?from=${tripletType}`;
       return (
         <div key={sn} className={css(styles.blockItem)}>
           <BlockItem key={sn}
@@ -37,7 +38,7 @@ class BlockItems9 extends PureComponent {
             type={type}
             time={formatStartedAt}
             target={isExternal === true ? '_blank' : null}
-            url={`${parseUrl}?from=${tripletType}`} />
+            url={url} />
         </div>
       );
     });
