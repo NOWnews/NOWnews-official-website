@@ -27,7 +27,7 @@ export function loadHeader (url) {
     dispatch({ type: LOAD_HEADER_REQUEST });
     return Promise.all([
       axios.get(`${apiServ}/menus`),
-      axios.get(`${apiServ}/instant?limit=9`),
+      axios.get(`${apiServ}/indexpage`),
       axios.get(`${apiServ}/promote/common`)
     ]).then(([menus, instant, ad]) => {
       dispatch({
@@ -63,8 +63,8 @@ export default function header (state = initialState, action) {
         ...state,
         ads,
         menus,
-        news: instant && instant.newsList || [],
-        idleNews: instant && instant.newsList || [],
+        news: instant && instant.carousels.slice(22, 31) || [],
+        idleNews: instant && instant.carousels.slice(22, 31) || [],
         lastFetched: action.meta.lastFetched,
         isLoading: false
       };

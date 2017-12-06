@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### Changed
+- 首頁即時新聞取得的資料改從首頁空版的新聞裡面取得 @wb
+
 ## 1.0.41 - 2017-11-29
 ### Changed
 - 內頁的「NOWnews 推薦」廣告可以放gif 檔案 @wb
