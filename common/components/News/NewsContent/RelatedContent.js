@@ -27,6 +27,7 @@ const RelatedContent = ({ ad, adKey, list, type }) => {
   cloneList.splice(adKey, 0, sponsorNews);
   cloneList.map((news) => {
     const { sn, isExternal, MainMenu, MainPhoto, shortTitle, formatStartedAt, parseUrl } = news;
+    const url = isExternal ? parseUrl : `${parseUrl}?from=${fromString}`;
     items.push(
       <ListItem
         data-on='click'
@@ -38,7 +39,7 @@ const RelatedContent = ({ ad, adKey, list, type }) => {
         photo={MainPhoto}
         title={shortTitle}
         time={formatStartedAt}
-        url={`${parseUrl}?from=${fromString}`} />
+        url={url} />
     );
   });
 
