@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { Carousel } from 'react-responsive-carousel';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
-  Tags, Thermometer, ThermometerSm
+  Tags, Thermometer, ThermometerSm, PrevAndNext
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 import { CarouselCSS, Container, LeftSide, Margin10, RightSide } from '../Layout';
@@ -63,6 +63,7 @@ class ContentForPhoto extends PureComponent {
             </Margin10>
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
+            <PrevAndNext prev={news.prev} next={news.next} />
             <OneAdIR />
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={news.completeUrl} />

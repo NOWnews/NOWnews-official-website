@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import FacebookProvider, { Comments } from 'react-facebook';
 import {
   Content, FontSize, RelatedContent, Social, Tags,
-  Thermometer, ThermometerSm
+  Thermometer, ThermometerSm, PrevAndNext
 } from './NewsContent';
 import { TripletNav, VideoPlayer } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
@@ -45,6 +45,7 @@ class ContentForVideo extends PureComponent {
             </Margin10>
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
+            <PrevAndNext prev={news.prev} next={news.next} />
             <OneAdIR />
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={news.completeUrl} />

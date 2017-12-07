@@ -56,7 +56,6 @@
     "react-fontawesome": "1.6.1",
     "react-google-tag-manager": "2.1.0",
     "react-helmet": "3.3.2",
-    "react-infinite-scroller": "git+https://github.com/esbb48/react-infinite-scroller.git#touchWindowTop",
     "react-overlays": "0.7.0",
     "react-redux": "4.4.8",
     "react-responsive-carousel": "git+https://github.com/esbb48/react-responsive-carousel.git#customTitleWithCarousel",
