@@ -100,12 +100,13 @@ class NewsContainer extends PureComponent {
     let metaOpts = [];
     let news = null;
     let newsDom = null;
+    let newsTitle = null;
     if (data) {
       const { Author, formatStartedAt, newsBy, type, traceCode, ...news } = data;
       const MainPhoto = news.MainPhoto;
 
       let Content = null;
-
+      newsTitle = news.title;
       metaOpts.push({ name: 'twitter:image', content: MainPhoto.medium });
       metaOpts.push({ name: 'twitter:card', content: MainPhoto.medium });
       metaOpts.push({ property: 'og:image', content: MainPhoto.originSource });
@@ -192,9 +193,9 @@ class NewsContainer extends PureComponent {
         <Header ad={topAd} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
           currentMainMenu={mainMenuId} />
-        {isDefaultTemplate && <OneAdICIP />}
         {showFixedHeader && <FixedHeader menus={this.props.menus}
-          currentMainMenu={mainMenuId} newsTitle={news.title} />}
+          currentMainMenu={mainMenuId} newsTitle={newsTitle} />}
+        {isDefaultTemplate && <OneAdICIP />}
         {newsDom}
         {!isLoading && !newsDom && <Container><NotFound /></Container>}
         {isLoading && <Container><h3>新聞載入中，請稍候片刻 ...</h3></Container>}
