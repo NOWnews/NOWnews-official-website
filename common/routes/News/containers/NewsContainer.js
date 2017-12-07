@@ -69,9 +69,9 @@ class NewsContainer extends PureComponent {
   render () {
     const { currentNews, changeFontSize, interest, LBS, menus, marquee, onWarm } = this.props;
     const {
-      isLoading, data = [], fontSize, showFixedHeader, topics
+      isLoading, data, fontSize, showFixedHeader, topics
     } = currentNews;
-    const currentMainMenu = data[0] && data[0].MainMenu || {};
+    const currentMainMenu = data && data.MainMenu || {};
     const mainMenuId = currentMainMenu._id;
     const triplet = {
       list: {

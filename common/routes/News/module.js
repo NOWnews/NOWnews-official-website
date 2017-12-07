@@ -214,6 +214,9 @@ const getCurrentNews = (state) => state.currentNews;
 const getImgServ = (state) => state.sourceRequest.imgServ;
 const formatCurrentNews = createSelector(
   [getCurrentNews, getImgServ], ({ data: news, ...currentNews }, imgServ) => {
+    if (news === null) {
+      return { ...currentNews, data: null };
+    }
     const result = {
       ...currentNews,
       data: {
@@ -234,6 +237,9 @@ const formatCurrentNews = createSelector(
 
 const formatPreviewNews = createSelector(
   [getCurrentNews, getImgServ], ({ data: news, ...previewNews }, imgServ) => {
+    if (news === null) {
+      return { ...previewNews, data: null };
+    }
     const result = {
       ...previewNews,
       data: {

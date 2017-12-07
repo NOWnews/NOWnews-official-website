@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 });
 
 Container.propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.any,
   className: PropTypes.string
 };
 
