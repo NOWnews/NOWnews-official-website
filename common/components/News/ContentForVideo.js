@@ -21,7 +21,7 @@ class ContentForVideo extends PureComponent {
   }
 
   render () {
-    const { ads, adType, isFirstNews, news, changeFontSize, fontSize, triplet } = this.props;
+    const { ads, adType, news, changeFontSize, fontSize, triplet } = this.props;
     const { MainPhoto, MainVideo, completeUrl, title } = news;
     const randomKey = news.sn % 3;
     const socialProps = {
@@ -45,7 +45,7 @@ class ContentForVideo extends PureComponent {
             </Margin10>
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            {isFirstNews && <OneAdIR />}
+            <OneAdIR />
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={news.completeUrl} />
             </FacebookProvider>
@@ -72,7 +72,6 @@ ContentForVideo.propTypes = {
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  isFirstNews: PropTypes.bool.isRequired,
   onWarm: PropTypes.func.isRequired,
   news: PropTypes.object.isRequired,
   triplet: PropTypes.object.isRequired

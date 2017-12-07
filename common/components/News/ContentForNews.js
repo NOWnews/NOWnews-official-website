@@ -21,7 +21,7 @@ class ContentForNews extends PureComponent {
   }
 
   render () {
-    const { ads, adType, news, isFirstNews, changeFontSize, interest, fontSize, topics, triplet } = this.props;
+    const { ads, adType, news, changeFontSize, interest, fontSize, topics, triplet } = this.props;
     const randomKey = news.sn % 3;
     const socialProps = {
       img: news.MainPhoto.large,
@@ -45,7 +45,7 @@ class ContentForNews extends PureComponent {
             </Margin10>
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            {isFirstNews && <OneAdIR />}
+            <OneAdIR />
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={news.completeUrl} />
             </FacebookProvider>
@@ -90,7 +90,6 @@ ContentForNews.propTypes = {
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  isFirstNews: PropTypes.bool.isRequired,
   interest: PropTypes.array.isRequired,
   news: PropTypes.object.isRequired,
   onWarm: PropTypes.func.isRequired,
