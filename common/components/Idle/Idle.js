@@ -91,7 +91,7 @@ class Idle extends PureComponent {
                   <Link data-on='click' data-event-category='idle' data-event-action='block-news'
                     className={css(styles.newsBlock)} key={_id} to={`${parseUrl}?from=idleblock`} onClick={this.close}>
                     <div className={css(styles.imgBlock)}>
-                      <img className={css(styles.newsImg)} src={MainPhoto.thumbnail} />
+                      <img className={css(styles.newsImg)} src={MainPhoto && MainPhoto.thumbnail} />
                     </div>
                     <h3>{ shortTitle }</h3>
                   </Link>
