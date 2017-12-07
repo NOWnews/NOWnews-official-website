@@ -5,8 +5,11 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+## 1.0.42 - 2017-12-07
 ### Fixed
 避免原生廣告的連結失效 @esbb48
+驗證新聞網址不如預期變作 301 導轉 @esbb48
 
 ## 1.0.41 - 2017-11-29
 ### Changed
