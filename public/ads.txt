@@ -4,3 +4,13 @@ google.com, pub-6302680256002515, DIRECT, f08c47fec0942fa0
 google.com, pub-1937576406332709, RESELLER, f08c47fec0942fa0
 google.com, pub-5658234429566577, DIRECT, f08c47fec0942fa0
 google.com, pub-7475939466736018, RESELLER, f08c47fec0942fa0
+
+subdomain=sight.nownews.com
+subdomain=chinapost.nownews.com
+subdomain=pinknow.nownews.com
+subdomain=bobee.nownews.com
+subdomain=playnow.nownews.com
+subdomain=ifunnow.nownews.com
+subdomain=petsmao.nownews.com
+subdomain=sport.nownews.com
+subdomain=m.nownews.com
