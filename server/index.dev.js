@@ -248,10 +248,10 @@ export const createServer = (config) => {
                   });
                   var body = document.getElementsByTagName('body');
                   body[0].style.background = "url("+ optionObj.url +")";
-                  body[0].style.backgroundPosition = "center";
+                  body[0].style.backgroundPosition = "top center";
                   body[0].style.backgroundRepeat = "no-repeat";
                   if (optionObj.size){
-                    body[0].style.backgroundSize = "100%";
+                    body[0].style.backgroundSize = optionObj.size;
                   }
                   if (optionObj.fixed){
                     body[0].style.backgroundAttachment = "fixed";
