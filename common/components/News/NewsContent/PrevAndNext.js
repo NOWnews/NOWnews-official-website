@@ -1,48 +1,70 @@
 import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { Margin10 } from '../../../components/Layout';
+import FontAwesome from 'react-fontawesome';
 
 const PrevAndNext = ({ prev, next }) => (
-  <Margin10>
-    {prev && <Link to={`${prev.parseUrl}?from=prev`} className={css(styles.prev)}
+  <div className={css(styles.box)}>
+    {prev && prev.parseUrl && <Link to={`${prev.parseUrl}?from=prev`} className={css(styles.prev)}
       data-on='click' data-event-category='news' data-event-action='prev'>
-      <span className={css(styles.title)}>{ prev.title }</span>
+      <FontAwesome className={css(styles.prevIcon)} name='chevron-left' />
+      <span className={css(styles.title)}>{ prev.shortTitle }</span>
     </Link>}
-    {next && <Link to={`${next.parseUrl}?from=next`} className={css(styles.next)}
+    <span className={css(styles.line)} />
+    {next && next.parseUrl && <Link to={`${next.parseUrl}?from=next`} className={css(styles.next)}
       data-on='click' data-event-category='news' data-event-action='next'>
-      <span className={css(styles.title)}>{ next.title }</span>
+      <span className={css(styles.title)}>{ next.shortTitle }</span>
+      <FontAwesome className={css(styles.nextIcon)} name='chevron-right' />
     </Link>}
-  </Margin10>
+  </div>
 );
 
-const commonStyles = {
+const commonLinkStyles = {
   background: 'no-repeat',
   backgroundSize: '100% 100%',
-  width: '90%',
-  color: '#000',
-  display: 'block',
-  height: 65,
-  textDecoration: 'none'
+  width: '49%',
+  color: '#999999',
+  display: 'inline-block',
+  margin: '20px 0',
+  textDecoration: 'none',
+  ':hover': {
+    color: '#EE7800'
+  }
+};
+const commonIconStyles = {
+  color: '#999999 !important',
+  background: '#fec340',
+  padding: '3px 6px'
 };
 const styles = StyleSheet.create({
+  box: {
+    borderBottom: '1px solid #999999',
+    borderTop: '1px solid #999999'
+  },
   prev: {
-    ...commonStyles,
-    backgroundImage: 'url("https://m.nownews.com/static/img/news/prev-btn-bg.png")'
+    ...commonLinkStyles
+  },
+  prevIcon: {
+    ...commonIconStyles,
+    marginLeft: 10
+  },
+  line: {
+    borderLeft: '1px solid #999999',
+    fontSize: 35,
+    top: 5,
+    position: 'relative'
   },
   next: {
-    ...commonStyles,
-    backgroundImage: 'url("https://m.nownews.com/static/img/news/next-btn-bg.png")'
+    ...commonLinkStyles,
+    textAlign: 'right'
+  },
+  nextIcon: {
+    ...commonIconStyles
   },
   title: {
-    textAlign: 'center',
-    display: 'block',
-    position: 'relative',
-    top: 20,
-    ':hover': {
-      color: '#EE7800',
-      opacity: 0.6
-    }
+    display: 'inline-block',
+    width: 280,
+    padding: '0 10px'
   }
 });
 
