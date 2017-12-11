@@ -1,40 +1,38 @@
 import React, { PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import FontAwesome from 'react-fontawesome';
 
 const PrevAndNext = ({ prev, next }) => (
   <div className={css(styles.box)}>
     {prev && prev.parseUrl && <Link to={`${prev.parseUrl}?from=prev`} className={css(styles.prev)}
       data-on='click' data-event-category='news' data-event-action='prev'>
-      <FontAwesome className={css(styles.prevIcon)} name='chevron-left' />
+      <img className={css(styles.prevIcon)} src='/icons/btn-prev.png' />
       <span className={css(styles.title)}>{ prev.shortTitle }</span>
     </Link>}
     <span className={css(styles.line)} />
     {next && next.parseUrl && <Link to={`${next.parseUrl}?from=next`} className={css(styles.next)}
       data-on='click' data-event-category='news' data-event-action='next'>
       <span className={css(styles.title)}>{ next.shortTitle }</span>
-      <FontAwesome className={css(styles.nextIcon)} name='chevron-right' />
+      <img className={css(styles.nextIcon)} src='/icons/btn-next.png' />
     </Link>}
   </div>
 );
 
 const commonLinkStyles = {
-  background: 'no-repeat',
-  backgroundSize: '100% 100%',
   width: '49%',
   color: '#999999',
   display: 'inline-block',
-  margin: '20px 0',
+  padding: '20px 0',
   textDecoration: 'none',
   ':hover': {
     color: '#EE7800'
   }
 };
 const commonIconStyles = {
-  color: '#999999 !important',
-  background: '#fec340',
-  padding: '3px 6px'
+  display: 'inline-block',
+  width: 22,
+  position: 'relative',
+  top: 5
 };
 const styles = StyleSheet.create({
   box: {
