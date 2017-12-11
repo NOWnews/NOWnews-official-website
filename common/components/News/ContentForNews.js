@@ -40,12 +40,12 @@ class ContentForNews extends PureComponent {
               adIndex={news.contentAdIndex} hasAd={news.hasContentAd} />
             {adType === 'life' && !news.isSponsored && <iframe frameBorder='0' width='95%' height='470' scrolling='no' src='https://legacy.nownews.com/ad2004/171128-120016-5157h.html' />}
             <Tags tags={news.Tags || []} />
+            <PrevAndNext prev={news.prev} next={news.next} />
             <Margin10>
               <DFP opts={[`/5799246/Nownews_${adType}_article_600x225_i_new2`, [600, 225]]} />
             </Margin10>
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            <PrevAndNext prev={news.prev} next={news.next} />
             <OneAdIR />
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={news.completeUrl} />

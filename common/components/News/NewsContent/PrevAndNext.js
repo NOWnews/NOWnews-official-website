@@ -39,7 +39,8 @@ const commonIconStyles = {
 const styles = StyleSheet.create({
   box: {
     borderBottom: '1px solid #999999',
-    borderTop: '1px solid #999999'
+    borderTop: '1px solid #999999',
+    margin: '20px 20px 20px 0'
   },
   prev: {
     ...commonLinkStyles
