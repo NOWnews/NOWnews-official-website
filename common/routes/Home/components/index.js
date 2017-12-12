@@ -6,3 +6,4 @@ export NewsList12 from './NewsList12';
 export SlideRight from './SlideRight';
 export SubWeb8 from './SubWeb8';
 export VideoBlock from './VideoBlock';
+export BodyColor from './BodyColor';
