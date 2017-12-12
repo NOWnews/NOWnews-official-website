@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import FacebookProvider, { Comments } from 'react-facebook';
 import {
   Content, FontSize, RelatedContent, Social, Tags,
-  Thermometer, ThermometerSm
+  Thermometer, ThermometerSm, PrevAndNext
 } from './NewsContent';
 import { TripletNav, VideoPlayer } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
@@ -21,7 +21,7 @@ class ContentForVideo extends PureComponent {
   }
 
   render () {
-    const { ads, adType, isFirstNews, news, changeFontSize, fontSize, triplet } = this.props;
+    const { ads, adType, news, changeFontSize, fontSize, triplet } = this.props;
     const { MainPhoto, MainVideo, completeUrl, title } = news;
     const randomKey = news.sn % 3;
     const socialProps = {
@@ -40,12 +40,13 @@ class ContentForVideo extends PureComponent {
               adIndex={news.contentAdIndex} hasAd={news.hasContentAd} />
             {adType === 'life' && !news.isSponsored && <iframe frameBorder='0' width='95%' height='470' scrolling='no' src='https://legacy.nownews.com/ad2004/171128-120016-5157h.html' />}
             <Tags tags={news.Tags || []} />
+            <PrevAndNext prev={news.prev} next={news.next} />
             <Margin10>
               <DFP opts={[`/5799246/Nownews_${adType}_article_600x225_i_new2`, [600, 225]]} />
             </Margin10>
             <Social {...socialProps} />
             <ThermometerSm onWarm={this.onWarm} />
-            {isFirstNews && <OneAdIR />}
+            <OneAdIR />
             <FacebookProvider appId='132863386747341' language='zh_TW'>
               <Comments href={news.completeUrl} />
             </FacebookProvider>
@@ -72,7 +73,6 @@ ContentForVideo.propTypes = {
   adType: PropTypes.string.isRequired,
   changeFontSize: PropTypes.func.isRequired,
   fontSize: PropTypes.number.isRequired,
-  isFirstNews: PropTypes.bool.isRequired,
   onWarm: PropTypes.func.isRequired,
   news: PropTypes.object.isRequired,
   triplet: PropTypes.object.isRequired

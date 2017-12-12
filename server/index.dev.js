@@ -116,7 +116,7 @@ export const createServer = (config) => {
           const initialState = store.getState();
           const isNewsPage = /^\/news\/[0-9]+\/[0-9]+/.test(locals.path);
           if (isNewsPage && initialState.currentNews) {
-            const newsData = initialState.currentNews.data[0];
+            const newsData = initialState.currentNews.data;
             if (newsData && newsData.parseUrl !== locals.path) {
               return res.redirect(301, `${newsData.parseUrl}?${req._parsedUrl.query}`);
             }

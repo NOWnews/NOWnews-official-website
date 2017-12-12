@@ -3,22 +3,19 @@ import React, { PureComponent, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import InfiniteScroll from 'react-infinite-scroller';
 import { FixedHeader, Header } from '../../../components/Header';
 import { DFP, OneAdICIP, getAdType } from '../../../components/Ad';
 import { Container, NotFound } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo, ContentForCustomColumn } from '../../../components/News';
 import {
-  changeFontSize, changeNewsTitle, loadNews, loadMoreNews, onWarm,
+  changeFontSize, loadNews, onWarm,
   selectCurrentNews, showFixedHeader
 } from '../module';
 import { loadHeader, selectMarquee, selectMenus } from '../../../modules/header';
 import { selectLBS, loadLBSList } from '../../../modules/LBS';
 import { selectInterest, loadInterest } from '../../../modules/interest';
-import { selectSourceRequest } from '../../../modules/sourceRequest';
 import { IsAdult } from '../../../components/Alert';
 import { MicroDataNews } from '../../../components/JSONLD';
-import { trackInfiniteScrollNews } from '../../../../lib/track/pageview';
 
 const redial = {
   fetch: ({ dispatch, params: { sn }, fontSize }) => Promise.all([
@@ -28,7 +25,6 @@ const redial = {
 };
 
 const mapStateToProps = state => ({
-  sourceRequest: selectSourceRequest(state),
   currentNews: selectCurrentNews(state),
   interest: selectInterest(state),
   LBS: selectLBS(state),
@@ -38,10 +34,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = bindActionCreators.bind(null, {
   changeFontSize,
-  changeNewsTitle,
   loadInterest,
   loadLBSList,
-  loadMoreNews,
   onWarm,
   showFixedHeader
 });
@@ -49,8 +43,6 @@ const mapDispatchToProps = bindActionCreators.bind(null, {
 class NewsContainer extends PureComponent {
   constructor (props) {
     super(props);
-    this.loadItems = this.loadItems.bind(this);
-    this.touchWindowTop = this.touchWindowTop.bind(this);
     this.scrollListener = this.scrollListener.bind(this);
   }
   componentDidMount () {
@@ -66,17 +58,6 @@ class NewsContainer extends PureComponent {
     window.addEventListener('scroll', this.scrollListener);
   }
 
-  loadItems () {
-    const newsData = this.props.currentNews.data;
-    if (!this.props.currentNews.isLoading && this.props.currentNews.hasMore) {
-      const sn = newsData[newsData.length - 1].next.sn;
-      if (!sn) {
-        return;
-      }
-      this.props.loadMoreNews(sn);
-    }
-  }
-
   scrollListener () {
     if (this.props.currentNews.showFixedHeader && window.scrollY < 200) {
       this.props.showFixedHeader(false);
@@ -85,31 +66,13 @@ class NewsContainer extends PureComponent {
     }
   }
 
-  touchWindowTop (item, index) {
-    // change url, title & track pageview for pv, ga, fb .. etc.
-    const { apiServ, headers } = this.props.sourceRequest;
-    const news = this.props.currentNews.data[index];
-    const { sn, title, parseUrl, MainMenu } = news;
-    let { pathname, search } = window.location;
-    const originalSn = pathname.split('/')[3];
-    if (parseInt(originalSn, 10) !== sn) {
-      search += (search.indexOf('from=scroll') > -1) ? '' : '&from=scroll';
-      window.history.pushState(null, null, `${parseUrl}?${search.slice(1)}`);
-      window.document.getElementsByTagName('title')[0].innerHTML = `${title} | ${MainMenu.name} | NOWnews今日新聞`;
-      this.props.changeNewsTitle(title);
-      trackInfiniteScrollNews(apiServ, news, search, headers);
-    }
-  }
-
   render () {
     const { currentNews, changeFontSize, interest, LBS, menus, marquee, onWarm } = this.props;
     const {
-      isLoading, data = [], hasMore, fontSize, newsTitle,
-      showFixedHeader, topics
+      isLoading, data, fontSize, showFixedHeader, topics
     } = currentNews;
-    const currentMainMenu = data[0] && data[0].MainMenu || {};
+    const currentMainMenu = data && data.MainMenu || {};
     const mainMenuId = currentMainMenu._id;
-    const totalLength = data.length;
     const triplet = {
       list: {
         instant: marquee.news,
@@ -120,45 +83,14 @@ class NewsContainer extends PureComponent {
       loadLBSList: this.props.loadLBSList
     };
 
-    const items = data.map((item, i) => {
-      const { Author, formatStartedAt, newsBy, traceCode, type, ...news } = item;
-      const itemAdType = getAdType.fromMenus(news.MainMenu, news.Menus);
-      const isDefaultTemplateForItem = (news.template === 'DEFAULT');
-      const itemFooterAd = isDefaultTemplateForItem ? `/5799246/Nownews_${itemAdType}_article_970x250_B_new2` : `/5799246/column_970x90_ad_${news.templateAD}`;
-
-      const contentProps = {
-        ads: { ...currentNews.ads, ...marquee.ads },
-        adType: itemAdType,
-        changeFontSize,
-        interest,
-        fontSize,
-        isFirstNews: (i === 0),
-        news,
-        onWarm,
-        topics,
-        triplet
-      };
-      const ContentTypeObject = {
-        NEWS: ContentForNews,
-        PHOTO: ContentForPhoto,
-        VIDEO: ContentForVideo,
-        COLUMN: ContentForCustomColumn
-      };
-      const Content = isDefaultTemplateForItem ? ContentTypeObject[type] : ContentTypeObject[news.template];
-      return (
-        <div key={news.sn}>
-          <Head newsBy={newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
-          {<Content {...contentProps} />}
-          {traceCode && <div dangerouslySetInnerHTML={{__html: traceCode}} />}
-          {(totalLength - 1) !== i && <Container>
-            <DFP opts={[itemFooterAd, [[970, 90], [970, 250]]]} />
-          </Container>}
-        </div>
-      );
-    });
+    const ContentTypeObject = {
+      NEWS: ContentForNews,
+      PHOTO: ContentForPhoto,
+      VIDEO: ContentForVideo,
+      COLUMN: ContentForCustomColumn
+    };
 
     // 如果有新聞的話做處理：取得分類、關鍵字字串
-    const news = data[0];
     let adType;
     let childMenuId;
     let footerAd = '';
@@ -166,9 +98,15 @@ class NewsContainer extends PureComponent {
     let tags = [];
     let topAd = '';
     let metaOpts = [];
-
-    if (news) {
+    let news = null;
+    let newsDom = null;
+    let newsTitle = null;
+    if (data) {
+      const { Author, formatStartedAt, newsBy, type, traceCode, ...news } = data;
       const MainPhoto = news.MainPhoto;
+
+      let Content = null;
+      newsTitle = news.title;
       metaOpts.push({ name: 'twitter:image', content: MainPhoto.medium });
       metaOpts.push({ name: 'twitter:card', content: MainPhoto.medium });
       metaOpts.push({ property: 'og:image', content: MainPhoto.originSource });
@@ -195,12 +133,34 @@ class NewsContainer extends PureComponent {
       // 處理不同版型的廣告
       if (isDefaultTemplate) {
         adType = getAdType.fromMenus(currentMainMenu, news.Menus);
+        Content = ContentTypeObject[type];
         topAd = `/5799246/Nownews_${adType}_article_970x250_T_new2`;
         footerAd = `/5799246/Nownews_${adType}_article_970x250_B_new2`;
       } else {
+        Content = ContentTypeObject[news.template];
         topAd = `/5799246/column_970x90_au_${news.templateAD}`;
         footerAd = `/5799246/column_970x90_ad_${news.templateAD}`;
       }
+
+      const contentProps = {
+        ads: { ...currentNews.ads, ...marquee.ads },
+        adType,
+        changeFontSize,
+        interest,
+        fontSize,
+        news,
+        onWarm,
+        topics,
+        triplet
+      };
+
+      newsDom = (
+        <div key={news.sn}>
+          <Head newsBy={newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
+          {<Content {...contentProps} />}
+          {traceCode && <div dangerouslySetInnerHTML={{__html: traceCode}} />}
+        </div>
+      );
     }
 
     return (
@@ -233,18 +193,11 @@ class NewsContainer extends PureComponent {
         <Header ad={topAd} menus={menus} marquee={marquee}
           currentChildMenu={childMenuId}
           currentMainMenu={mainMenuId} />
-        {isDefaultTemplate && <OneAdICIP />}
         {showFixedHeader && <FixedHeader menus={this.props.menus}
           currentMainMenu={mainMenuId} newsTitle={newsTitle} />}
-        {!isLoading && !news && <Container><NotFound /></Container>}
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={this.loadItems}
-          hasMore={hasMore}
-          threshold={600}
-          touchWindowTop={this.touchWindowTop}>
-          <div>{items}</div>
-        </InfiniteScroll>
+        {isDefaultTemplate && <OneAdICIP />}
+        {newsDom}
+        {!isLoading && !newsDom && <Container><NotFound /></Container>}
         {isLoading && <Container><h3>新聞載入中，請稍候片刻 ...</h3></Container>}
         <Container>
           <DFP opts={[footerAd, [[970, 250], [970, 90]]]} />
@@ -256,18 +209,15 @@ class NewsContainer extends PureComponent {
 
 NewsContainer.propTypes = {
   changeFontSize: PropTypes.func.isRequired,
-  changeNewsTitle: PropTypes.func.isRequired,
   currentNews: PropTypes.object.isRequired,
   interest: PropTypes.array.isRequired,
   LBS: PropTypes.object,
   loadInterest: PropTypes.func.isRequired,
   loadLBSList: PropTypes.func.isRequired,
-  loadMoreNews: PropTypes.func.isRequired,
   marquee: PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
   onWarm: PropTypes.func.isRequired,
-  showFixedHeader: PropTypes.func.isRequired,
-  sourceRequest: PropTypes.object.isRequired
+  showFixedHeader: PropTypes.func.isRequired
 };
 
 export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(NewsContainer));
