@@ -10,6 +10,7 @@
 - 調整 ads.txt 內容加載子網域 @wb
 - 首頁即時新聞取得的資料改從後台 -> 首頁管理 -> 首頁管理建立的新聞裡面取得 @wb
 - 將無限下滑調整為上一頁下一頁 @esbb48
+- 更換 moemnt.js 和 video.js 的 CDN 因為 https://rescan.pro 掃描網站將原 moment.js 列為可疑來源（和百度有關）  @appleoxxo
 
 ## 1.0.42 - 2017-12-07
 ### Fixed
