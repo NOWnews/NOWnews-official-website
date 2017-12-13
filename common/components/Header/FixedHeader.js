@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
 FixedHeader.propTypes = {
   currentMainMenu: PropTypes.string,
   menus: PropTypes.array.isRequired,
-  newsTitle: PropTypes.string.isRequired
+  newsTitle: PropTypes.string
 };
 
 export default FixedHeader;

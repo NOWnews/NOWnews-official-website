@@ -21,11 +21,9 @@ const mapStateToProps = state => ({
 });
 
 const PreviewPage = ({ currentNews, marquee, menus }) => {
-  let {isLoading, data} = currentNews;
-  let [{ createdAt, startedAt, newsBy, MainMenu, title, type, traceCode, ...news }] = data;
-  let contentProps = {
-    news
-  };
+  const {isLoading, data} = currentNews;
+  const { createdAt, startedAt, newsBy, MainMenu, title, type, traceCode, ...news } = data;
+  const contentProps = { news };
   return (
     <div>
       <Header menus={menus} marquee={marquee} />
