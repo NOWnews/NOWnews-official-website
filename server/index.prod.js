@@ -228,27 +228,6 @@ export const createServer = (config) => {
                 <link rel='stylesheet' type='text/css' href='/vendor/video-js.min.css' />
                 <div style="display:none;">Server in ${region}</div>
               </body>
-              <script>
-                if(window.location.search.indexOf('ChangeDay') > -1) {
-                  var searchString = window.location.search.replace('?', '').split('&');
-                  var optionObj = {};
-                  searchString.forEach(function(query){
-                    var key = query.split('=')[0];
-                    var value = query.split('=')[1];
-                    optionObj[key] = value;
-                  });
-                  var body = document.getElementsByTagName('body');
-                  body[0].style.background = "url("+ optionObj.url +")";
-                  body[0].style.backgroundPosition = "top center";
-                  body[0].style.backgroundRepeat = "no-repeat";
-                  if (optionObj.size){
-                    body[0].style.backgroundSize = optionObj.size;
-                  }
-                  if (optionObj.fixed){
-                    body[0].style.backgroundAttachment = "fixed";
-                  }
-                }
-              </script>
             </html>
           `);
         }).catch((e) => {
