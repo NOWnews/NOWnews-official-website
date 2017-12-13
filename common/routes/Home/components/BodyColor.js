@@ -2,10 +2,12 @@ import React from 'react';
 
 class BodyColor extends React.Component {
   static propTypes = {
-    backgroundImageUrl: React.PropTypes.string
+    backgroundImageUrl: React.PropTypes.string,
+    link: React.PropTypes.string
   }
   static defaultProps = {
-    backgroundImageUrl: 'https://img.nownews.com/nownews_staging/images/5a2fb1a8e4156b269eeb2faf_201712121838.jpg'
+    backgroundImageUrl: 'https://imagelab.nownews.com/?q=85&src=https://img.nownews.com/nownews_production/images/5a3095257ae73a2cbd7f12fc_201712131049.jpg',
+    link: 'https://tw.beanfun.com/LineageM/web/index.aspx'
   }
   componentDidMount () {
     var body = document.getElementsByTagName('body');
@@ -17,7 +19,7 @@ class BodyColor extends React.Component {
     body[0].onclick = (event) => {
       let parentDom = event.target.parentElement.getAttribute('class');
       if (parentDom.indexOf('root_') > -1) {
-        window.open('https://www.google.com', '_blank');
+        window.open(this.props.link, '_blank');
       }
     };
   }
