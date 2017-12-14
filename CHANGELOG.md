@@ -8,7 +8,8 @@
 
 ## 1.0.42 - 2017-12-07
 ### Added
-哀悼樣式 @wb
+- 哀悼樣式 @wb
+- legacy.nownews.com 伺服器不穩定 先將生活新聞下的問卷 iframe 改簽入到 https://nownews.github.io/temp-static-page/ @appleoxxo
 
 ## 1.0.42 - 2017-12-07
 ### Fixed
