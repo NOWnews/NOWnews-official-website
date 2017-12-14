@@ -138,7 +138,7 @@ export const createServer = (config) => {
           const regexp = / data-react-helmet="true"/g;
           res.status(200).send(`
             <!DOCTYPE html>
-            <html lang="zh-Hant">
+            <html lang="zh-Hant" style="-webkit-filter: grayscale(90%);filter: grayscale(90%);">
               <head>
                 <meta charSet="utf-8">
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge">
