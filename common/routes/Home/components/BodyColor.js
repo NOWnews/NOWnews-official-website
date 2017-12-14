@@ -6,7 +6,7 @@ class BodyColor extends React.Component {
     link: React.PropTypes.string
   }
   static defaultProps = {
-    backgroundImageUrl: 'https://imagelab.nownews.com/?q=85&src=https://img.nownews.com/nownews_production/images/5a3095257ae73a2cbd7f12fc_201712131049.jpg',
+    backgroundImageUrl: 'https://imagelab.nownews.com/?q=85&src=https://img.nownews.com/nownews_staging/images/5a31ecdc7dfe325738e62dce_201712141115.jpg',
     link: 'https://tw.beanfun.com/LineageM/web/index.aspx'
   }
   componentDidMount () {
