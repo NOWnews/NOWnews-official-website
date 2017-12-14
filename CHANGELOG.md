@@ -13,6 +13,11 @@
 - 更換 moemnt.js 和 video.js 的 CDN 因為 https://rescan.pro 掃描網站將原 moment.js 列為可疑來源（和百度有關）  @appleoxxo
 
 ## 1.0.42 - 2017-12-07
+### Added
+- 哀悼樣式 @wb
+- legacy.nownews.com 伺服器不穩定 先將生活新聞下的問卷 iframe 改簽入到 https://nownews.github.io/temp-static-page/ @appleoxxo
+
+## 1.0.42 - 2017-12-07
 ### Fixed
 避免原生廣告的連結失效 @esbb48
 驗證新聞網址不如預期變作 301 導轉 @esbb48
