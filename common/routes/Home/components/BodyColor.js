@@ -14,8 +14,8 @@ class BodyColor extends React.Component {
     // if (window.location.search.indexOf('ChangeDay') > -1)
     if (window.location.search.indexOf('ChangeDay') > -1) {
       var body = document.getElementsByTagName('body');
-      body[0].style.background = `url(${this.props.backgroundImageUrl})`;
-      body[0].style.backgroundPosition = 'center';
+      body[0].style.background = `#000 url(${this.props.backgroundImageUrl})`;
+      body[0].style.backgroundPosition = 'top center';
       body[0].style.backgroundRepeat = 'no-repeat';
       body[0].style.backgroundSize = '100%';
       body[0].style.backgroundAttachment = 'fixed';
