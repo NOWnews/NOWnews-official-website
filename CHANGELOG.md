@@ -11,7 +11,7 @@
 ### Fixed
 - 修正 news 新聞頁 og tag 都沒出來 @appleoxxo
 - 瀏覽新聞內頁時 沒有正確去打 /pageviews 端點 導致後台 pv 數錯誤 @appleoxxo
-- 移除問卷（生活分類底下的新聞) 和 移除哀悼樣式 @appleoxxo
+- 移除問卷（生活分類底下的新聞) @appleoxxo
 
 
 ## 1.0.43 - 2017-12-14
