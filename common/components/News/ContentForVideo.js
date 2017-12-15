@@ -38,7 +38,6 @@ class ContentForVideo extends PureComponent {
           <LeftSide>
             <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent}
               adIndex={news.contentAdIndex} hasAd={news.hasContentAd} />
-            {adType === 'life' && !news.isSponsored && <iframe frameBorder='0' width='95%' height='470' scrolling='no' src='https://nownews.github.io/temp-static-page' />}
             <Tags tags={news.Tags || []} />
             <PrevAndNext prev={news.prev} next={news.next} />
             <Margin10>
