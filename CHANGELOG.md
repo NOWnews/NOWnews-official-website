@@ -6,12 +6,10 @@
 
 ## [Unreleased]
 
-### Fixed
-- 瀏覽新聞內頁時 沒有正確去打 /pageviews 端點 導致後台 pv 數錯誤 @appleoxxo
-
 ## 1.0.44 - 2017-12-15
 ### Fixed
 - 修正 news 新聞頁 og tag 都沒出來 @appleoxxo
+- 瀏覽新聞內頁時 沒有正確去打 /pageviews 端點 導致後台 pv 數錯誤 @appleoxxo
 
 ## 1.0.43 - 2017-12-14
 ### Changed
