@@ -38,7 +38,6 @@ class ContentForNews extends PureComponent {
           <LeftSide>
             <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent}
               adIndex={news.contentAdIndex} hasAd={news.hasContentAd} />
-            {adType === 'life' && !news.isSponsored && <iframe frameBorder='0' width='95%' height='470' scrolling='no' src='https://legacy.nownews.com/ad2004/171128-120016-5157h.html' />}
             <Tags tags={news.Tags || []} />
             <PrevAndNext prev={news.prev} next={news.next} />
             <Margin10>

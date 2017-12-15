@@ -6,10 +6,28 @@
 
 ## [Unreleased]
 
+
+## 1.0.44 - 2017-12-15
+### Fixed
+- 修正 news 新聞頁 og tag 都沒出來 @appleoxxo
+- 瀏覽新聞內頁時 沒有正確去打 /pageviews 端點 導致後台 pv 數錯誤 @appleoxxo
+- 移除問卷（生活分類底下的新聞) @appleoxxo
+
+
+## 1.0.43 - 2017-12-14
 ### Changed
 - 調整 ads.txt 內容加載子網域 @wb
 - 首頁即時新聞取得的資料改從後台 -> 首頁管理 -> 首頁管理建立的新聞裡面取得 @wb
 - 將無限下滑調整為上一頁下一頁 @esbb48
+- 更換 moemnt.js 和 video.js 的 CDN 因為 https://rescan.pro 掃描網站將原 moment.js 列為可疑來源（和百度有關）  @appleoxxo
+
+## 1.0.42 - 2017-12-07
+### Changed
+- 再次調整哀悼畫面 @wb
+
+### Added
+- 哀悼樣式 @wb
+- legacy.nownews.com 伺服器不穩定 先將生活新聞下的問卷 iframe 改簽入到 https://nownews.github.io/temp-static-page @appleoxxo
 
 ## 1.0.42 - 2017-12-07
 ### Fixed

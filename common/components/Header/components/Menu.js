@@ -68,7 +68,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     fontWeight: 800,
     justifyContent: 'space-around',
-    background: '#fec340'
+    background: '#fec340',
+    filter: 'grayscale(100%)',
+    '-webkit-filter': 'grayscale(100%)'
   },
   menuActive: {
     background: '#ffffff',
