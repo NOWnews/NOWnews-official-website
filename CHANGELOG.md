@@ -6,6 +6,10 @@
 
 ## [Unreleased]
 
+## 1.0.44 - 2017-12-15
+### Fixed
+- 修正 news 新聞頁 og tag 都沒出來 @appleoxxo
+
 ## 1.0.43 - 2017-12-14
 ### Changed
 - 調整 ads.txt 內容加載子網域 @wb

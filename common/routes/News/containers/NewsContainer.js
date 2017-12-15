@@ -102,7 +102,8 @@ class NewsContainer extends PureComponent {
     let newsDom = null;
     let newsTitle = null;
     if (data) {
-      const { Author, formatStartedAt, newsBy, type, traceCode, ...news } = data;
+      const { Author, formatStartedAt, newsBy, type, traceCode, ...newsData } = data;
+      news = newsData;
       const MainPhoto = news.MainPhoto;
 
       let Content = null;
