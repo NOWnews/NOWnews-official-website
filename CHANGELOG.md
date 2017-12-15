@@ -6,6 +6,8 @@
 
 ## [Unreleased]
 
+### Added
+- 首頁加入變天 @appleoxxo
 
 ## 1.0.44 - 2017-12-15
 ### Fixed
