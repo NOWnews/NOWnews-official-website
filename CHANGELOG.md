@@ -7,8 +7,13 @@
 ## [Unreleased]
 
 ## 1.0.45 - 2017-12-17
+<<<<<<< HEAD
 ### Added
 - 首頁加入變天 @appleoxxo
+=======
+### Changed
+- 移除哀悼樣式（ 恢復舊 logo 和 menu style ) @appleoxxo
+>>>>>>> develop
 
 ## 1.0.44 - 2017-12-15
 ### Fixed
