@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+## 1.0.45 - 2017-12-17
+### Changed
+- 移除哀悼樣式（ 恢復舊 logo 和 menu style ) @appleoxxo
 
 ## 1.0.44 - 2017-12-15
 ### Fixed
