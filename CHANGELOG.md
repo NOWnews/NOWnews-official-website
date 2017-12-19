@@ -6,6 +6,10 @@
 
 ## [Unreleased]
 
+## 1.0.46 - 2017-12-19
+### Changed
+- 首頁移除變天 @appleoxxo
+
 ## 1.0.45 - 2017-12-17
 ### Added
 - 首頁加入變天 @appleoxxo
