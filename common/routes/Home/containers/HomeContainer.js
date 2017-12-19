@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
-import { BlockAdItems3, BlockItems8, BlockItems9, SubWeb8, NewsList12, SlideRight, VideoBlock, BodyColor } from '../components';
+import { BlockAdItems3, BlockItems8, BlockItems9, SubWeb8, NewsList12, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
 import { AppleStyle, AndroidStyle } from '../../../components/AppBlock';
@@ -91,7 +91,6 @@ class HomeContainer extends PureComponent {
 
     return (
       <div>
-        <BodyColor />
         <Helmet title='NOWnews 今日新聞' titleTemplate={'NOWnews 今日新聞'}
           meta={[
             { name: 'description', content: 'NOWnews今日新聞 提供即時新聞以及豐富的政治、財經、生活、運動、娛樂、國際、社會等軟硬性新聞，屬綜合性的網路新聞網站。' },

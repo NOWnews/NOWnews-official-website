@@ -1,5 +1,6 @@
 import React from 'react';
 
+// 這是為變天廣告做的 Component 目前已經移除 2017.12.19
 class BodyColor extends React.Component {
   static propTypes = {
     backgroundImageUrl: React.PropTypes.string,
