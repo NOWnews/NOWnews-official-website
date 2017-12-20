@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### Changed
+- 依照業務需求修改 ads.txt @wb
+
 ## 1.0.46 - 2017-12-19
 ### Changed
 - 首頁移除變天 @appleoxxo
