@@ -166,7 +166,6 @@ export const createServer = (config) => {
                 <noscript>
                   <img src='http://b.scorecardresearch.com/p?c1=2&c2=11473067&cv=2.0&cj=1' />
                 </noscript>
-                <script src="https://www.likr.com.tw/nownews/include_code_customer/20171102000001.js"></script>
                 <script src="/vendor/autotrack-eventTracker.min.js"></script>
                 <script type="text/javascript">
                   (function() {
@@ -217,11 +216,9 @@ export const createServer = (config) => {
                 <script>window.renderedClassNames = ${JSON.stringify(data.css.renderedClassNames)};</script>
                 <script>window.INITIAL_STATE = ${JSON.stringify(initialState).replace(/</g, '\\u003c')};</script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment-with-locales.min.js"></script>
-                <!--<script src="//www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>-->
                 <script src="//cdnjs.cloudflare.com/ajax/libs/video.js/5.20.1/video.min.js"></script>
                 <script>window.moment || document.write('<script src="/vendor/moment.min.js"><\\/script>')</script>
                 <script>window.videojs || document.write('<script src="/vendor/videojs.min.js"><\\/script>')</script>
-                <!--<script>window.firebase || document.write('<script src="/vendor/firebase.min.js"><\\/script>')</script>-->
                 <script src="${assets.vendor.js}"></script>
                 <script async src="${assets.main.js}" ></script>
                 <link rel='stylesheet' type='text/css' href='/vendor/basscss.min.css' />
