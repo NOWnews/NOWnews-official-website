@@ -5,7 +5,7 @@ import { GTM } from './Tracking';
 import { connect } from 'react-redux';
 import StaticContainer from 'react-static-container';
 import { ssrInit } from '../../lib/track/pageview';
-import { firebaseInit } from '../../lib/firebase/notification';
+// import { firebaseInit } from '../../lib/firebase/notification';
 
 import Idle from './Idle';
 
@@ -26,9 +26,11 @@ class Basic extends PureComponent {
     const { apiServ, headers } = state.sourceRequest;
     const { pathname, search } = window.location;
     ssrInit(apiServ, pathname, search, state, headers);
-    if ('Notification' in window && !window.firebase.apps.length) {
-      firebaseInit(apiServ, headers);
-    }
+
+    // #487 使用禾多推播
+    // if ('Notification' in window && !window.firebase.apps.length) {
+    //   firebaseInit(apiServ, headers);
+    // }
   }
 
   render () {

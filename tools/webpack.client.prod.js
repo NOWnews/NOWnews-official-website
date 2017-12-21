@@ -80,7 +80,8 @@ module.exports = {
   },
   externals: {
     moment: 'moment',
-    firebase: 'firebase',
+    // #487 使用禾多推播
+    // firebase: 'firebase',
     'video.js': 'videojs'
   }
 };

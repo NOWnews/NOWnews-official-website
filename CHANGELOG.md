@@ -7,8 +7,12 @@
 ## [Unreleased]
 
 ### Changed
-- 依照業務需求修改 ads.txt @wb
 - 對調所有列表頁 DFP 與 OneAdICIP 的位置 @esbb48
+
+## 1.0.47 - 2017-12-21
+### Changed
+- 依照業務需求修改 ads.txt @wb
+- 使用禾多推播取代 firebase @esbb48
 
 ## 1.0.46 - 2017-12-19
 ### Changed
