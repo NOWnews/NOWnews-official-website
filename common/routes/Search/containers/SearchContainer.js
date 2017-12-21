@@ -15,7 +15,6 @@ import Pagination from '../../../components/Pagination';
 
 import { TimeAndKeywordArea } from '../components';
 import Helmet from 'react-helmet';
-import { OneAdICIP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, query }) => Promise.all([
@@ -98,7 +97,6 @@ class SearchPage extends PureComponent {
             ]} />}
         </div>
         <Header menus={menus} marquee={marquee} />
-        <OneAdICIP />
         <Margin10 className='center'>
           <input type='hidden' name='timeRange' value={timeRange} />
           <input type='text' key={keyword} name='keyword' placeholder='搜尋'

@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { selectCategoryPage, loadCategoryList } from '../module';
 import { selectLocal } from '../../../modules/sourceRequest';
 import { loadHeader, selectMarquee, selectMenus, selectObjectMenu } from '../../../modules/header';
-import { DFP, getAdType, OneAdICIP } from '../../../components/Ad';
+import { DFP, getAdType } from '../../../components/Ad';
 import { Header } from '../../../components/Header';
 import { IsAdult } from '../../../components/Alert';
 import { BlockItems12, Slide } from '../../../components/News';
@@ -78,10 +78,9 @@ const CategoryPage = ({ categoryPage, local, menus, marquee, objectMenu, loadCat
         <MicroDataCategory category={categoryPage} />
         <IsAdult isAdult={currentMenu.isAdult} />
       </div>}
-      <Header ad={topAd} menus={menus} marquee={marquee}
+      <Header ad={topAd} menus={menus} marquee={marquee} isDefaultTemplate={isDefaultTemplate}
         currentChildMenu={currentChildMenu && currentChildMenu._id}
         currentMainMenu={currentMainMenu && currentMainMenu._id} />
-      {isDefaultTemplate && <OneAdICIP />}
       {categoryPage.isLoading && <Loading />}
       {!categoryPage.isLoading && newsList.length === 0 && <NotFound />}
       {!categoryPage.isLoading && newsList.length > 0 && !isChannelTemplate &&

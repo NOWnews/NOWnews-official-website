@@ -9,7 +9,7 @@ import Pagination from '../../../components/Pagination';
 import { Slide } from '../../../components/News';
 import { BlockItems, TopicRight } from '../components';
 import { Container, Loading, Margin10, NotFound } from '../../../components/Layout';
-import { DFP, OneAdICIP } from '../../../components/Ad';
+import { DFP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch, query: { page } }) => Promise.all([
@@ -30,7 +30,6 @@ const TopicContainer = ({ local, topicPage, menus, marquee }) => {
   return (
     <Container>
       <Header menus={menus} marquee={marquee} />
-      <OneAdICIP />
       {topicPage.isLoading && <Loading />}
       {!topicPage.isLoading && topics.length === 0 && <NotFound />}
       {!topicPage.isLoading && topics.length > 0 &&

@@ -7,7 +7,6 @@ import { selectInterestPage, loadInterest } from '../../../modules/interest';
 import { Header } from '../../../components/Header';
 import { BlockItems12, TripletHead } from '../../../components/News';
 import { Container, Loading, NotFound } from '../../../components/Layout';
-import { OneAdICIP } from '../../../components/Ad';
 
 const redial = {
   fetch: ({ dispatch }) => Promise.all([
@@ -25,7 +24,6 @@ const mapStateToProps = state => ({
 const InterestContainer = ({ marquee, menus, interest }) => (
   <div>
     <Header menus={menus} marquee={marquee} />
-    <OneAdICIP />
     <TripletHead active='interest' />
     <Container>
       {interest.isLoading && <Loading />}
