@@ -60,7 +60,8 @@ module.exports = {
   },
   externals: {
     moment: true,
-    firebase: true,
+    // #487 使用禾多推播
+    // firebase: true,
     'video.js': 'videojs'
   },
   plugins: [
