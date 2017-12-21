@@ -8,6 +8,7 @@
 
 ### Changed
 - 依照業務需求修改 ads.txt @wb
+- 使用禾多推播取代 firebase @esbb48
 
 ## 1.0.46 - 2017-12-19
 ### Changed
