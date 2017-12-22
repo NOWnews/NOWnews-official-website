@@ -35,7 +35,11 @@ export const changeFontSize = (fontSize) => {
 
 export const loadNews = (sn, fontSize) => {
   return (dispatch, getState, { axios }) => {
-    if (!sn) {
+    if (!sn || !Number.isInteger(parseInt(sn, 10))) {
+      dispatch({
+        type: LOAD_NEWS_FAILURE,
+        payload: '16003'
+      });
       return Promise.resolve();
     }
 
