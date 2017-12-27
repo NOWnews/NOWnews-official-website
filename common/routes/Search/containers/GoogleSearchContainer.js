@@ -8,7 +8,6 @@ import { selectHotKeywords, loadHotKeywords } from '../module';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { Header } from '../../../components/Header';
 import Helmet from 'react-helmet';
-import { OneAdICIP } from '../../../components/Ad';
 import { Container, Margin10 } from '../../../components/Layout';
 import { KeywordArea } from '../components';
 
@@ -61,7 +60,6 @@ class SearchPage extends PureComponent {
               {async: 'async', src: googleSearchScript}
           ]} />
         <Header menus={menus} marquee={marquee} />
-        <OneAdICIP />
         <Margin10 className='center'>
           <form action='/search' method='get'>
             <input type='text' name='keyword' placeholder='搜尋'

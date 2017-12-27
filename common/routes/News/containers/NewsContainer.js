@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { FixedHeader, Header } from '../../../components/Header';
-import { DFP, OneAdICIP, getAdType } from '../../../components/Ad';
+import { DFP, getAdType } from '../../../components/Ad';
 import { Container, NotFound } from '../../../components/Layout';
 import { Head, ContentForNews, ContentForPhoto, ContentForVideo, ContentForCustomColumn } from '../../../components/News';
 import {
@@ -192,11 +192,10 @@ class NewsContainer extends PureComponent {
           <IsAdult isAdult={news.isAdult} />
         </div>}
         <Header ad={topAd} menus={menus} marquee={marquee}
-          currentChildMenu={childMenuId}
+          currentChildMenu={childMenuId} isDefaultTemplate={isDefaultTemplate}
           currentMainMenu={mainMenuId} />
         {showFixedHeader && <FixedHeader menus={this.props.menus}
           currentMainMenu={mainMenuId} newsTitle={newsTitle} />}
-        {isDefaultTemplate && <OneAdICIP />}
         {newsDom}
         {!isLoading && !newsDom && <Container><NotFound /></Container>}
         {isLoading && <Container><h3>新聞載入中，請稍候片刻 ...</h3></Container>}
