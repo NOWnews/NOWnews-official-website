@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### Added
+- 加上 safari icon @wb
+
 ### Changed
 - 對調所有列表頁 DFP 與 OneAdICIP 的位置 @esbb48
 

@@ -145,6 +145,7 @@ export const createServer = (config) => {
                 ${head.title.toString()}
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link rel="shortcut icon" href="/favicon.ico">
+                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-favicon.png">
                 ${head.meta.toString().replace(regexp, '')}
                 ${head.link.toString()}
                 <script>
