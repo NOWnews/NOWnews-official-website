@@ -9,6 +9,11 @@
 ### Changed
 - 對調所有列表頁 DFP 與 OneAdICIP 的位置 @esbb48
 
+## 1.0.48 - 2017-12-22
+### Added
+- 增加新聞頁時對 sn 型態的判斷 @esbb48
+- 針對 Bingbot 作延遲與錯誤網頁的 Disallow @esbb48
+
 ## 1.0.47 - 2017-12-21
 ### Changed
 - 依照業務需求修改 ads.txt @wb
