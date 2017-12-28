@@ -84,7 +84,7 @@ class HomeContainer extends PureComponent {
     });
 
     const tripletObject = {
-      instant: marquee.news,
+      instant: carousels && carousels.slice(22, 31),
       interest: interest.newsList,
       lbs: LBS.newsList
     };
