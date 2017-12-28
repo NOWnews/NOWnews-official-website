@@ -6,6 +6,7 @@
 
 ## [Unreleased]
 
+## 1.0.49 - 2017-12-28
 ### Added
 - 加上 safari icon @wb
 
