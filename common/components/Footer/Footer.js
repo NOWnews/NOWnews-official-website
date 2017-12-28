@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
     margin: '3px 0'
   },
   footer: {
+    height: 444,
     backgroundColor: '#323334',
     marginTop: '1rem',
     padding: '1rem 0'

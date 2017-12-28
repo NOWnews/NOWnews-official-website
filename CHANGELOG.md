@@ -11,6 +11,8 @@
 
 ### Changed
 - 對調所有列表頁 DFP 與 OneAdICIP 的位置 @esbb48
+- font-awesome 改使用 CDN @esbb48
+- footer 黑色區塊給固定高度 @essb48
 
 ## 1.0.48 - 2017-12-22
 ### Added
