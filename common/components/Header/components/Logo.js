@@ -12,15 +12,12 @@ const Logo = ({ customClass = css(styles.defaultBox) }) => (
 
 const styles = StyleSheet.create({
   defaultBox: {
-    height: 80,
-    minWidth: 205,
-    width: 205,
-    paddingTop: 10,
-    paddingBottom: 15,
-    paddingRight: '1rem'
+    height: 70,
+    minWidth: 220,
+    width: 220
   },
   img: {
-    height: '100%'
+    width: '100%'
   }
 });
 

@@ -61,7 +61,8 @@ class HomeContainer extends PureComponent {
   render () {
     const { marquee, interest, menus, homePage, LBS = {} } = this.props;
     const {
-      ads, carousels, isLoading, specialChannels, specialTopics,
+      ads, carousels, isLoading, specialChannels,
+       // specialTopics,
       tripletType, videos
     } = homePage;
     const seeMoreTextDefined = {
