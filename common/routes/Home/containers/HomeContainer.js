@@ -127,7 +127,7 @@ class HomeContainer extends PureComponent {
               <SlideRight newsList={carousels.slice(5, 10)} />
             </div>
           </Container>}
-        {!isLoading && specialTopics.length > 0 &&
+        {!isLoading &&
           <div className={css(styles.bg)}>
             <Container className='clearfix'>
               <LeftSide>
