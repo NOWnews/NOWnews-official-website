@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Changed
+- 移除要有專題才會顯示分眾頻道 @esbb48
 
 ## 1.0.49 - 2017-12-28
 ### Added
