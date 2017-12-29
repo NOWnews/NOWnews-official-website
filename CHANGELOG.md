@@ -5,6 +5,9 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Changed
+- 換成 10 週年 Logo @esbb48
+
 ## 1.0.50 - 2017-12-29
 ### Changed
 - 移除要有專題才會顯示分眾頻道 @esbb48
