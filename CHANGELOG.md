@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+## 1.0.51 - 2018-01-02
 ### Fixed
 - 隱藏未使用的參數 `specialTopics` @esbb48
 
