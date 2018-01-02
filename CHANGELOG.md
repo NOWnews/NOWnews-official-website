@@ -5,6 +5,10 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+### Add
+- 加上十週年 logo @wb
+
 ### Changed
 - 換成 10 週年 Logo @esbb48
 
