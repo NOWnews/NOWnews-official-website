@@ -6,11 +6,12 @@
 
 ## [Unreleased]
 
+
+## 1.0.51 - 2018-01-02
 ### Add
 - 加上十週年 logo @wb
 - 加上媒體小農 @esbb48
 
-## 1.0.51 - 2018-01-02
 ### Fixed
 - 隱藏未使用的參數 `specialTopics` @esbb48
 - 避免使用特殊字元造成 js 解析錯誤 @esbb48
