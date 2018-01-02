@@ -215,7 +215,7 @@ export const createServer = (config) => {
               <body>
                 <div id="root">${data.html}</div>
                 <script>window.renderedClassNames = ${JSON.stringify(data.css.renderedClassNames)};</script>
-                <script>window.INITIAL_STATE = ${JSON.stringify(initialState).replace(/</g, '\\u003c')};</script>
+                <script>window.INITIAL_STATE = ${JSON.stringify(initialState).replace(/</g, '\\u003c').replace(/[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, '')};</script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment-with-locales.min.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/video.js/5.20.1/video.min.js"></script>
                 <script>window.moment || document.write('<script src="/vendor/moment.min.js"><\\/script>')</script>
