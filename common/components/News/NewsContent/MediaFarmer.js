@@ -7,7 +7,7 @@ const MediaFarmer = ({ news }) => (
       hb-title='${news.title}'
       hb-width='650'
       hb-height='92'
-      hb-icon='/others/media-farmer.png' />
+      hb-icon='/others/media-farmer.png'></div>
   `}} />
 );
 
