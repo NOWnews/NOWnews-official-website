@@ -6,6 +6,9 @@
 
 ## [Unreleased]
 
+### Add
+- 加上十週年 logo @wb
+
 ## 1.0.51 - 2018-01-02
 ### Fixed
 - 隱藏未使用的參數 `specialTopics` @esbb48
