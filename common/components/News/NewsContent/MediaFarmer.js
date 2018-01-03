@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 const MediaFarmer = ({ news }) => (
   <div dangerouslySetInnerHTML={{__html: `
     <div id='herbsapi'
-      hb-author='${news.newsBy}'
+      hb-author='${news.Author.name}'
       hb-title='${news.title}'
       hb-width='650'
       hb-height='92'

@@ -102,7 +102,7 @@ class NewsContainer extends PureComponent {
     let newsDom = null;
     let newsTitle = null;
     if (data) {
-      const { Author, formatStartedAt, type, traceCode, ...newsData } = data;
+      const { newsBy, formatStartedAt, type, traceCode, ...newsData } = data;
       news = newsData;
       const MainPhoto = news.MainPhoto;
 
@@ -154,10 +154,10 @@ class NewsContainer extends PureComponent {
         topics,
         triplet
       };
-
+      const Author = news.Author;
       newsDom = (
         <div key={news.sn}>
-          <Head newsBy={news.newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
+          <Head newsBy={newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
           {traceCode && <div dangerouslySetInnerHTML={{__html: traceCode}} />}
         </div>
