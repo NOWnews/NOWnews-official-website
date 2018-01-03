@@ -3,7 +3,7 @@ import FacebookProvider, { Comments } from 'react-facebook';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import {
   Content, FontSize, RecommendAds, RelatedContent, Social,
-  Tags, Thermometer, ThermometerSm, PrevAndNext
+  Tags, Thermometer, ThermometerSm, PrevAndNext, MediaFarmer
 } from './NewsContent';
 import { SpecialTopicNav, TripletNav } from '../News';
 import { Container, LeftSide, Margin10, RightSide } from '../Layout';
@@ -39,6 +39,7 @@ class ContentForNews extends PureComponent {
             <Content content={news.content} fontSize={fontSize} freeContent={news.freeContent}
               adIndex={news.contentAdIndex} hasAd={news.hasContentAd} />
             <Tags tags={news.Tags || []} />
+            <MediaFarmer news={news} />
             <PrevAndNext prev={news.prev} next={news.next} />
             <Margin10>
               <DFP opts={[`/5799246/Nownews_${adType}_article_600x225_i_new2`, [600, 225]]} />

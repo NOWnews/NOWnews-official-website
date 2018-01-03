@@ -102,7 +102,7 @@ class NewsContainer extends PureComponent {
     let newsDom = null;
     let newsTitle = null;
     if (data) {
-      const { Author, formatStartedAt, newsBy, type, traceCode, ...newsData } = data;
+      const { Author, formatStartedAt, type, traceCode, ...newsData } = data;
       news = newsData;
       const MainPhoto = news.MainPhoto;
 
@@ -157,7 +157,7 @@ class NewsContainer extends PureComponent {
 
       newsDom = (
         <div key={news.sn}>
-          <Head newsBy={newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
+          <Head newsBy={news.newsBy} mainMenu={news.MainMenu} time={formatStartedAt} title={news.title} authorId={Author._id} imgSrc={Author.Avatar && Author.Avatar.thumbnail} />
           {<Content {...contentProps} />}
           {traceCode && <div dangerouslySetInnerHTML={{__html: traceCode}} />}
         </div>
@@ -186,7 +186,10 @@ class NewsContainer extends PureComponent {
               ...metaOpts
             ]}
             link={[
-                {rel: 'canonical', href: news.completeUrl}
+              {rel: 'canonical', href: news.completeUrl}
+            ]}
+            script={[
+              {async: 'async', rel: 'stylesheet', src: 'https://mediafarmers.org/api/api.js'}
             ]} />
           <MicroDataNews news={news} />
           <IsAdult isAdult={news.isAdult} />
