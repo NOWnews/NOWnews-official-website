@@ -5,6 +5,10 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+## 1.0.53 - 2018-01-08
+### Fixed
+- 修正logo圖片問題 @wb
+
 ## 1.0.52 - 2018-01-04
 ### Add
 - 加上媒體小農 @esbb48
