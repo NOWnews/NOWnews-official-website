@@ -5,7 +5,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 const Logo = ({ customClass = css(styles.defaultBox) }) => (
   <div className={customClass}>
     <IndexLink to='/' data-on='click' data-event-category='common' data-event-action='logo'>
-      <img className={css(styles.img)} alt='NOWnews Logo' src='/logo.jpg' />
+      <img className={css(styles.img)} alt='NOWnews Logo' src='/logo.png' />
     </IndexLink>
   </div>
 );
