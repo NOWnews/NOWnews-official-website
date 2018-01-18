@@ -5,6 +5,10 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+### Changed
+- 調整 Header 十週年 Logo @esbb48
+
 ## 1.0.53 - 2018-01-08
 ### Fixed
 - 修正logo圖片問題 @wb
