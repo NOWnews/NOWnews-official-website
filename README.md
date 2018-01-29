@@ -12,6 +12,14 @@ npm install
 npm start
 ```
 
+### HOW TO START FOR Staging MODE
+```
+npm install --only=production
+npm run build
+pm2 start pm2/web.json --env staging
+```
+
+
 ### HOW TO START FOR PROD MODE
 ```
 npm install --only=production
@@ -25,11 +33,13 @@ npm run start:prod
 npm install --only=production
 npm run build
 pm2 start pm2/web.json --env production
+// 中國環境
+pm2 start pm2/web.json --env china
 ```
 
 ### HOW TO RUN Test
 
-再開始 run 測試前，要啟動 Local Prod Mode 
+在開始 run 測試前，要啟動 Local Prod Mode
 ```
 npm install
 npm run test
@@ -64,13 +74,18 @@ npm run test
 │   └── /style.js               # 全域 style (目前沒有使用先移除)
 │
 ├── /config/                    # 各環境相關值設定
+├── /lib/                       # 共用客製化函示
+├── /pm2/                       # pm2 config 設定
 ├── /node_modules/              # npm 第三方套件
 ├── /public/                    # 靜態檔案存放位置
 │   ├── /assets                 # npm run build 會產生的資料夾
 │   └── ...                     # 網站所需的 Logo、icon 放在這
 ├── /server/                    #
 │   ├── /index.dev.js           # 後端啟動相關 script 給 develop
-│   └── /index.prod.js          # 後端啟動相關 script 給 Production
+│   ├── /index.prod.js          # 後端啟動相關 script 給 Production
+│   ├── /redirect.js            # 對過去 url 格式做 301 轉址
+│   └── /sitemap.js             # 對外 sitemap 端點
+│
 ├── /test/                    	# 放測試
 └── /tools/                     # webpack 相關設定
 
