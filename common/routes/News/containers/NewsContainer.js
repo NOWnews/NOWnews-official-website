@@ -49,7 +49,8 @@ class NewsContainer extends PureComponent {
     // 有文章的切換才做更新
     const prevNews = this.props.currentNews.data || {};
     const nextNews = nextProps.currentNews.data || {};
-    return nextNews.sn !== prevNews.sn;
+    const isSameNews = nextNews.sn === prevNews.sn;
+    return !isSameNews;
   }
   componentDidMount () {
     // reload twitter & IG iframe
