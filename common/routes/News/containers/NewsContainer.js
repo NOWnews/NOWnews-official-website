@@ -49,8 +49,8 @@ class NewsContainer extends PureComponent {
     // 有文章的切換才做更新
     const prevNews = this.props.currentNews.data || {};
     const nextNews = nextProps.currentNews.data || {};
-    const isSameNews = nextNews.sn === prevNews.sn;
-    return !isSameNews;
+    const isEqual = nextNews.sn === prevNews.sn;
+    return !isEqual;
   }
   componentDidMount () {
     // reload twitter & IG iframe
@@ -85,11 +85,6 @@ class NewsContainer extends PureComponent {
           scriptTag.type = 'text/javascript';
           scriptTag.async = true;
           scriptTag.src = instgrmApi;
-          head.addEventListener('load', function (event) {
-            if (event.target.nodeName === 'SCRIPT' && event.target.getAttribute('src') === instgrmApi) {
-              window.instgrm.Embeds.process();
-            }
-          }, true);
           head.appendChild(scriptTag);
         }
       })();
