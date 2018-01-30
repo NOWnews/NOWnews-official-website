@@ -60,7 +60,7 @@ class NewsContainer extends PureComponent {
       if (window.instgrm) {
         window.instgrm.Embeds.process();
       }
-    }, 100);
+    }, 1000);
 
     this.props.loadInterest();
     window.addEventListener('scroll', this.scrollListener);
