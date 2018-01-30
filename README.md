@@ -43,7 +43,7 @@ npm run test
 .
 ├── /build/                     # npm run build 會產生的資料夾
 ├── /client/                    #
-│   └── /index.js               # 前端啟動相關 script
+│   └── /index.js               # 前端啟動相關 script & 前端 SPA Router 轉換做的事情
 ├── /common/                    # 主要 React 程式放在這
 │   ├── /components/            # 共用元件（記得開頭要大寫）
 │   │   ├── /Layout/            # Container、Loading，等都放在這邊 依據相關性分類，例如：Ad、Footer、Header ...。

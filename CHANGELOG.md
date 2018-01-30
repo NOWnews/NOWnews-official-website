@@ -7,6 +7,8 @@
 ## [Unreleased]
 ### Changed
 - 頁面重整重新載入 IG embed @esbb48
+- 在更新時如果發現有 IG embed 卻沒有相關 js 則動態載入 @esbb48
+- 減少頁面更新次數 @esbb48
 
 ## 1.0.54 - 2018-01-18
 ### Changed

@@ -45,27 +45,58 @@ class NewsContainer extends PureComponent {
     super(props);
     this.scrollListener = this.scrollListener.bind(this);
   }
+  shouldComponentUpdate (nextProps) {
+    const prevNews = this.props.currentNews.data || {};
+    const nextNews = nextProps.currentNews.data || {};
+    if (nextNews.sn !== prevNews.sn) {
+      console.log(prevNews.sn, nextNews.sn);
+    }
+    return nextNews.sn !== prevNews.sn;
+  }
   componentDidMount () {
-    // reload twitter iframe
+    // reload twitter & IG iframe
     if (this.props.currentNews.isSSRAndInit) {
       setTimeout(function () {
         if (window.twttr) {
           window.twttr.widgets.load();
         }
+        if (window.instgrm) {
+          window.instgrm.Embeds.process();
+        }
       }, 100);
     }
-
-    // reload ig embed
-    setTimeout(function () {
-      if (window.instgrm) {
-        window.instgrm.Embeds.process();
-      }
-    }, 500);
-
     this.props.loadInterest();
     window.addEventListener('scroll', this.scrollListener);
   }
-
+  componentDidUpdate (prevProps) {
+    const news = this.props.currentNews.data;
+    if (news) {
+      (function () {
+        var hasInstgrm = document.getElementsByClassName('instagram-media').length > 0;
+        if (!hasInstgrm) {
+          console.log('no instgram');
+          return;
+        }
+        if (window.instgrm) {
+          window.instgrm.Embeds.process();
+        } else {
+          var instgrmApi = '//platform.instagram.com/en_US/embeds.js';
+          var head = document.getElementsByTagName('head')[0];
+          var scriptTag = document.createElement('script');
+          scriptTag.type = 'text/javascript';
+          scriptTag.async = true;
+          scriptTag.src = instgrmApi;
+          head.addEventListener('load', function (event) {
+            if (event.target.nodeName === 'SCRIPT' && event.target.getAttribute('src') === instgrmApi) {
+              window.instgrm.Embeds.process();
+              console.log('reload');
+            }
+          }, true);
+          head.appendChild(scriptTag);
+        }
+      })();
+    }
+  }
   scrollListener () {
     if (this.props.currentNews.showFixedHeader && window.scrollY < 200) {
       this.props.showFixedHeader(false);
