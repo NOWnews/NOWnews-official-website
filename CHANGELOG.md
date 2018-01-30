@@ -5,9 +5,15 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+### Changed
+- 頁面重整重新載入 IG embed @esbb48
+- 在更新時如果發現有 IG embed 卻沒有相關 js 則動態載入 @esbb48
+- 減少頁面更新次數 @esbb48
+
 ## 1.0.55 - 2018-01-30
 ### Changed
 - 調整 ads.txt 增加1/30馬克提出把信任來源加回來 @wn
+
 ## 1.0.54 - 2018-01-18
 ### Changed
 - 調整 Header 十週年 Logo @esbb48

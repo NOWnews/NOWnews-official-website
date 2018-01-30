@@ -45,19 +45,51 @@ class NewsContainer extends PureComponent {
     super(props);
     this.scrollListener = this.scrollListener.bind(this);
   }
+  shouldComponentUpdate (nextProps) {
+    // 有文章的切換才做更新
+    const prevNews = this.props.currentNews.data || {};
+    const nextNews = nextProps.currentNews.data || {};
+    const isEqual = nextNews.sn === prevNews.sn;
+    return !isEqual;
+  }
   componentDidMount () {
-    // reload twitter iframe
+    // reload twitter & IG iframe
     if (this.props.currentNews.isSSRAndInit) {
       setTimeout(function () {
         if (window.twttr) {
           window.twttr.widgets.load();
+        }
+        if (window.instgrm) {
+          window.instgrm.Embeds.process();
         }
       }, 100);
     }
     this.props.loadInterest();
     window.addEventListener('scroll', this.scrollListener);
   }
-
+  componentDidUpdate (prevProps) {
+    const news = this.props.currentNews.data;
+    if (news) {
+      (function () {
+        var hasInstgrm = document.getElementsByClassName('instagram-media').length > 0;
+        if (!hasInstgrm) {
+          console.log('no instgram');
+          return;
+        }
+        if (window.instgrm) {
+          window.instgrm.Embeds.process();
+        } else {
+          var instgrmApi = '//platform.instagram.com/en_US/embeds.js';
+          var head = document.getElementsByTagName('head')[0];
+          var scriptTag = document.createElement('script');
+          scriptTag.type = 'text/javascript';
+          scriptTag.async = true;
+          scriptTag.src = instgrmApi;
+          head.appendChild(scriptTag);
+        }
+      })();
+    }
+  }
   scrollListener () {
     if (this.props.currentNews.showFixedHeader && window.scrollY < 200) {
       this.props.showFixedHeader(false);
