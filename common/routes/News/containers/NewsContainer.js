@@ -46,11 +46,9 @@ class NewsContainer extends PureComponent {
     this.scrollListener = this.scrollListener.bind(this);
   }
   shouldComponentUpdate (nextProps) {
+    // 有文章的切換才做更新
     const prevNews = this.props.currentNews.data || {};
     const nextNews = nextProps.currentNews.data || {};
-    if (nextNews.sn !== prevNews.sn) {
-      console.log(prevNews.sn, nextNews.sn);
-    }
     return nextNews.sn !== prevNews.sn;
   }
   componentDidMount () {
@@ -89,7 +87,6 @@ class NewsContainer extends PureComponent {
           head.addEventListener('load', function (event) {
             if (event.target.nodeName === 'SCRIPT' && event.target.getAttribute('src') === instgrmApi) {
               window.instgrm.Embeds.process();
-              console.log('reload');
             }
           }, true);
           head.appendChild(scriptTag);
