@@ -5,6 +5,8 @@
 而項目則基於 [Semantic Versioning](http://semver.org/lang/zh-TW/).
 
 ## [Unreleased]
+
+## 1.0.56 - 2018-01-31
 ### Changed
 - 頁面重整重新載入 IG embed @esbb48
 - 在更新時如果發現有 IG embed 卻沒有相關 js 則動態載入 @esbb48

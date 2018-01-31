@@ -73,7 +73,6 @@ class NewsContainer extends PureComponent {
       (function () {
         var hasInstgrm = document.getElementsByClassName('instagram-media').length > 0;
         if (!hasInstgrm) {
-          console.log('no instgram');
           return;
         }
         if (window.instgrm) {
