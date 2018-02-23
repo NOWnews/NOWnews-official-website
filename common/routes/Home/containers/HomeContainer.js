@@ -4,7 +4,7 @@ import Link from 'react-router/lib/Link';
 import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { Header } from '../../../components/IndexHeader';
+import { IndexHeader } from '../../../components/Header';
 import { BlockAdItems3, BlockItems8, BlockItems9, SubWeb8, NewsList12, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
@@ -115,7 +115,7 @@ class HomeContainer extends PureComponent {
           link={[
             {rel: 'canonical', href: `https://www.nownews.com`}
           ]} />
-        <Header menus={menus} marquee={marquee} />
+        <IndexHeader menus={menus} marquee={marquee} />
         {isLoading && <Loading />}
         {ads.crazyAd && ads.crazyAd.type && <CrazyAd ad={ads.crazyAd} />}
         <StaticContainer>
