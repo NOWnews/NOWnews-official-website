@@ -9,6 +9,7 @@ export const Header = ({ ad = '/5799246/Nownews_home_970x250_T_new2', menus, cur
       currentMainMenu={currentMainMenu}
       currentChildMenu={currentChildMenu} />
     <InstantBar {...marquee} />
+    {isDefaultTemplate }
     {ad && <DFP opts={[ad, [[970, 90], [970, 250]]]} />}
   </Container>
 );
