@@ -4,7 +4,7 @@ import Link from 'react-router/lib/Link';
 import { bindActionCreators } from 'redux';
 import { provideHooks } from 'redial';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { Header } from '../../../components/Header';
+import { Header } from '../../../components/IndexHeader';
 import { BlockAdItems3, BlockItems8, BlockItems9, SubWeb8, NewsList12, SlideRight, VideoBlock } from '../components';
 import { Container, RightSide, LeftSide, Loading, Margin10 } from '../../../components/Layout';
 import { Slide } from '../../../components/News';
