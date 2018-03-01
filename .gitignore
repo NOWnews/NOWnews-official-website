@@ -38,3 +38,4 @@ public/assets
 coverage
 npm-debug.log
 .DS_Store
+/nbproject/private/

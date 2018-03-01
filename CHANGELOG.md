@@ -6,6 +6,10 @@
 
 ## [Unreleased]
 
+## 1.0.57 - 2018-03-01
+### Changed
+- 關閉首頁oneAD廣告 @leomax0725
+
 ## 1.0.56 - 2018-01-31
 ### Changed
 - 頁面重整重新載入 IG embed @esbb48
