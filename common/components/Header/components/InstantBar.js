@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     background: '#000000',
     color: '#ffffff',
     fontWeight: 'bold',
+    'word-break': 'keep-all',
     display: 'inline-flex',
     height: lineHeight,
     margin: '0rem 0 1rem 0',
