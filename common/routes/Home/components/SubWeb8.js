@@ -6,12 +6,8 @@ class SubWeb8 extends PureComponent {
     const list = [
       { img: 'sight', text: '今日觀點 Sight', url: 'https://sight.nownews.com/' },
       { img: 'chinapost', text: 'China Post', url: 'https://chinapost.nownews.com' },
-      { img: 'pinknow', text: '粉樂NOW', url: 'https://pinknow.nownews.com/' },
       { img: 'bobee', text: '保庇Bobee', url: 'https://bobee.nownews.com/' },
-      { img: 'ifunnow', text: 'iFunNOW', url: 'https://ifunnow.nownews.com/' },
-      { img: 'playnow', text: 'PlayNOW', url: 'https://playnow.nownews.com/' },
-      { img: 'petsmao', text: '寵毛網', url: 'https://petsmao.nownews.com/' },
-      { img: 'sport', text: 'Sport', url: 'https://sport.nownews.com/' }
+      { img: 'petsmao', text: '寵毛網', url: 'https://petsmao.nownews.com/' }
     ];
     const items = list.map(({ img, text, url }) => {
       return (
