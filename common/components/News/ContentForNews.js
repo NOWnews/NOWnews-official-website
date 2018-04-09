@@ -66,6 +66,7 @@ class ContentForNews extends PureComponent {
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RB_new2`, [300, 250]]} />
             <Margin10><GrabBag list={ads.grabBag} /></Margin10>
             <CTHouse />
+            <div id='_popIn_recommend_right'  />
           </RightSide>
         </Margin10>
       </Container>
