@@ -32,7 +32,6 @@ class Idle extends PureComponent {
     scrollEl.addEventListener('mousemove', this.scrollListener);
     scrollEl.addEventListener('resize', this.scrollListener);
     scrollEl.addEventListener('scroll', this.scrollListener);
-    scrollEl.top.addEventListener('keydown', this.scrollListener);
   }
 
   close = () => {
@@ -45,7 +44,6 @@ class Idle extends PureComponent {
     scrollEl.removeEventListener('mousemove', this.scrollListener);
     scrollEl.removeEventListener('resize', this.scrollListener);
     scrollEl.removeEventListener('scroll', this.scrollListener);
-    scrollEl.top.removeEventListener('keydown', this.scrollListener);
   }
 
   scrollListener () {
