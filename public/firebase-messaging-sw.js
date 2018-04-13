@@ -1,16 +1,19 @@
-// Import and configure the Firebase SDK
-// These scripts are made available when the app is served or deployed on Firebase Hosting
-// If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup
-importScripts('https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js');
+function getUpdateTime(now)
+{
+    if(now) return new Date().getTime();
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth()+1; //January is 0!
+    let yyyy = today.getFullYear();
+    if(dd < 10){
+        dd = '0' + dd;
+    }
+    if(mm < 10){
+        mm = '0'+ mm;
+    }
+    return yyyy+'-'+mm+'-'+dd;
+}
 
-// Initialize the Firebase app in the service worker by passing in the
-// messagingSenderId.
-const isProd = location.hostname === 'www.nownews.com';
-firebase.initializeApp({
-	'messagingSenderId': isProd ? '581106378067' : '909045564165'
-});
+self.SENDER_ID = '';
+importScripts('https://www.likr.com.tw/pushEndPoint/js/sw_fcm_import.js?' + getUpdateTime(0));
 
-// Retrieve an instance of Firebase Messaging so that it can handle background
-// messages.
-const messaging = firebase.messaging();
