@@ -29,7 +29,7 @@ class SearchPage extends PureComponent {
   render () {
     const { menus, local, marquee } = this.props;
     const { keyword = '' } = local.query;
-    const cx = '011307215138928456114:avv2qvejmpc';
+    const cx = '006155889634892889153:zhe_pi_rbmi';
     const googleSearchScript = `https://cse.google.com/cse.js?cx=${cx}`;
     const googleSearchDom = '<gcse:searchresults-only></gcse:searchresults-only>';
     const defaultPhoto = 'https://legacy.nownews.com/NOWnews_default/default.png';
