@@ -4,10 +4,12 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 class SubWeb8 extends PureComponent {
   render () {
     const list = [
-      { img: 'sight', text: '今日觀點 Sight', url: 'https://sight.nownews.com/' },
-      { img: 'chinapost', text: 'China Post', url: 'https://chinapost.nownews.com' },
-      { img: 'bobee', text: '保庇Bobee', url: 'https://bobee.nownews.com/' },
-      { img: 'petsmao', text: '寵毛網', url: 'https://petsmao.nownews.com/' }
+      { img: 'sight', text: '今日觀點 Sight', url: 'https://sight.nownews.com/?utm_source=nownews&utm_medium=desktop_home' },
+      { img: 'chinapost', text: 'China Post', url: 'https://chinapost.nownews.com/?utm_source=nownews&utm_medium=desktop_home' },
+      { img: 'bobee', text: '保庇Bobee', url: 'https://bobee.nownews.com/?utm_source=nownews&utm_medium=desktop_home' },
+      { img: 'petsmao', text: '寵毛網', url: 'https://petsmao.nownews.com/?utm_source=nownews&utm_medium=desktop_home' },
+      { img: 'trend', text: 'Trend', url: 'https://trend.nownews.com/?utm_source=nownews&utm_medium=desktop_home' },
+      { img: 'health', text: 'NOW健康', url: 'http://healthmedia.nownews.com/?utm_source=nownews&utm_medium=desktop_home' }
     ];
     const items = list.map(({ img, text, url }) => {
       return (
