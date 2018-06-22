@@ -141,6 +141,13 @@ export const createServer = (config) => {
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-favicon.png">
                 ${head.meta.toString().replace(regexp, '')}
                 ${head.link.toString()}
+                <!-- Start Alexa Certify Javascript -->
+                <script type="text/javascript">
+                _atrk_opts = { atrk_acct:"3yibi1aoZM00M2", domain:"nownews.com",dynamic: true};
+                (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://certify-js.alexametrics.com/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+                </script>
+                <noscript><img src="https://certify.alexametrics.com/atrk.gif?account=3yibi1aoZM00M2" style="display:none" height="1" width="1" alt="" /></noscript>
+                <!-- End Alexa Certify Javascript -->  
                 <script>
                   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
