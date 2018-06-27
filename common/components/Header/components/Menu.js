@@ -22,16 +22,31 @@ class Menu extends PureComponent {
         (isCurrentMainMenu) && styles.menuActive
       );
 
-      mainMenuDoms.push(
-        <Link
-          className={linkClass}
-          data-on='click' data-event-category='common' data-event-action='nav'
-          key={sn}
-          target={isExternal === true ? '_blank' : null}
-          to={`${url}?from=nav`}>
-          { name }
-        </Link>
-      );
+        if( name != "房市"){
+            mainMenuDoms.push(
+                <Link
+                    className={linkClass}
+                    data-on='click' data-event-category='common' data-event-action='nav'
+                    key={sn}
+                    target={isExternal === true ? '_blank' : null}
+                    to={`${url}?from=nav`}>
+                    { name }
+                </Link>
+            );
+        }
+
+      // mainMenuDoms.push(
+      //   <Link
+      //     className={linkClass}
+      //     data-on='click' data-event-category='common' data-event-action='nav'
+      //     key={sn}
+      //     target={isExternal === true ? '_blank' : null}
+      //     to={`${url}?from=nav`}>
+      //     { name }
+      //   </Link>
+      // );
+    // });
+
     });
 
     return (
