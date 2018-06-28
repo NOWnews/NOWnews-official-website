@@ -13,14 +13,17 @@ class FontSize extends Component {
 
   changeToBig () {
     this.props.changeFontSize(24);
+      window.location.reload();
   }
 
   changeToMiddle () {
     this.props.changeFontSize(20);
+      window.location.reload();
   }
 
   changeToSmall () {
     this.props.changeFontSize(16);
+      window.location.reload();
   }
 
   render () {
