@@ -218,9 +218,6 @@ class NewsContainer extends PureComponent {
             ]}
             link={[
               {rel: 'canonical', href: news.completeUrl}
-            ]}
-            script={[
-              {async: 'async', rel: 'stylesheet', src: 'https://mediafarmers.org/api/api.js'}
             ]} />
           <MicroDataNews news={news} />
           <IsAdult isAdult={news.isAdult} />
