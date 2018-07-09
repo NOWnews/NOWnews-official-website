@@ -55,7 +55,6 @@ const InstantContainer = ({ local, marquee, menus, instantPage }) => (
         </LeftSide>
         <RightSide>
           <DFP opts={['/5799246/Nownews_home_300x250_M1_new2', [300, 250], 'div-gpt-ad-1496983171426-0']} />
-          <SpecialTopicNav list={instantPage.topics} eventCategory='instant' />
           <LatestVideoNav list={instantPage.videos} />
           <DFP opts={['/5799246/Nownews_home_300x250_M2_new2', [300, 250], 'div-gpt-ad-1496983198899-0']} />
         </RightSide>
