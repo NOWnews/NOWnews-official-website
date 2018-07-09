@@ -79,7 +79,6 @@ class ContentForPhoto extends PureComponent {
             <Thermometer pv={news.pageView ? news.pageView.totalScore : 0} onWarm={this.onWarm} />
             <TripletNav {...triplet} />
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RM_new2`, [300, 250]]} />
-            <SpecialTopicNav list={topics} />
             <DFP opts={[`/5799246/Nownews_${adType}_article_300x250_RB_new2`, [300, 250]]} />
             <Margin10><GrabBag list={ads.grabBag} /></Margin10>
             <CTHouse />
