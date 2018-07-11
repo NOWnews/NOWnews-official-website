@@ -22,8 +22,11 @@ class Menu extends PureComponent {
         (isCurrentMainMenu) && styles.menuActive
       );
 
-        if( name != "房市"){
-            mainMenuDoms.push(
+      if( name != "房市"){
+        if (name == "總覽") {
+          url += "1";
+        }
+        mainMenuDoms.push(
                 <Link
                     className={linkClass}
                     data-on='click' data-event-category='common' data-event-action='nav'
