@@ -138,7 +138,7 @@ class HomeContainer extends PureComponent {
                 <div className={css(styles.seeMoreBlock)}>
                   <Link className={css(styles.seeMoreLink)}
                     data-on='click' data-event-category='home' data-event-action='topic-more'
-                    to='topic?from=topicm'>看更多熱門專題</Link>
+                    to='channel/215?from=topicm'>看更多熱門專題</Link>
                 </div>
               </LeftSide>
               <RightSide>
