@@ -10,7 +10,7 @@ const RelatedContent = ({ ad, adKey, list, type }) => {
     formatStartedAt: (new Date()).toISOString(),
     isExternal: true,
     MainPhoto: {
-      thumbnail: 'https://imgapiv2.nownews.com/?w=170&q=70&src=' + ad.img,
+      thumbnail: ad.img,
       height: 95,
       width: 170,
       desc: ad.title
