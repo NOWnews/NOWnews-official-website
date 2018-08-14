@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 export const AdBlock = ({ ad }) => (
   <a className={css(styles.box)} href={ad.url} target='_blank'>
     <div>
-      <img src={`https://imgapiv2.nownews.com/?w=150&q=70&src=${ad.img}`} width='150' height='150' alt={ad.title} />
+      <img src={ad.img} width='150' height='150' alt={ad.title} />
     </div>
     <div className={css(styles.title)}>{ad.title}</div>
   </a>
