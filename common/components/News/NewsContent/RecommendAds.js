@@ -7,7 +7,7 @@ const RecommendAds = ({ ads }) => {
 
   ads.map((ad, index) => {
     // gif file check format.
-    let adImgFormat = {ad.img};
+    let adImgFormat = ad.img;
 
     if (ad.img.indexOf('.gif') > 0) {
       adImgFormat = ad.img;
