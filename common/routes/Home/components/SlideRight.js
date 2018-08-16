@@ -7,7 +7,7 @@ const SlideRight = ({ newsList }) => (
     {newsList.map(({ sn, MainPhoto, shortTitle, parseUrl }) => (
       <Link className={css(styles.link)}
         data-on='click' data-event-category='home' data-event-action='slide-right'
-        style={{backgroundImage: `url(${MainPhoto.thumbnail})`}}
+        style={{backgroundImage: `url(${MainPhoto.slide})`}}
         key={sn}
         to={`${parseUrl}?from=homeslir`}>
         <div className={css(styles.item)}>{ shortTitle }</div>
