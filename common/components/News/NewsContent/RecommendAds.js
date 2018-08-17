@@ -9,9 +9,9 @@ const RecommendAds = ({ ads }) => {
     // gif file check format.
     let adImgFormat = ad.img;
 
-    if (ad.img.indexOf('.gif') > 0) {
-      adImgFormat = ad.img;
-    }
+//    if (ad.img.indexOf('.gif') > 0) {
+//      adImgFormat = ad.img;
+//    }
 
     items.push(
       <a className={css(styles.item)} key={index} href={ad.url} target='_blank'
